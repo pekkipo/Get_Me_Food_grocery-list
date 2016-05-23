@@ -1,0 +1,24 @@
+
+/* Class = "UIButton"; normalTitle = "Share"; ObjectID = "3W9-E5-jz4"; */
+"3W9-E5-jz4.normalTitle" = " Send list";
+
+/* Class = "UILabel"; text = "Sender Name Long, prettylong@email.com"; ObjectID = "4XW-ja-vXU"; */
+"4XW-ja-vXU.text" = "Sender Name Long, prettylong@email.com";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "Arn-8s-NUB"; */
+"Arn-8s-NUB.normalTitle" = " Save";
+
+/* Class = "UIButton"; normalTitle = "Note"; ObjectID = "n9e-nC-8cd"; */
+"n9e-nC-8cd.normalTitle" = " Note";
+
+/* Class = "UIButton"; normalTitle = "Received List Name"; ObjectID = "ERG-y9-ZjW"; */
+"ERG-y9-ZjW.normalTitle" = "Received List Name";
+
+/* Class = "UILabel"; text = "17.11.2015"; ObjectID = "GxF-L7-V3d"; */
+"GxF-L7-V3d.text" = "17.11.2015";
+
+/* Class = "UILabel"; text = "Items: 20/19"; ObjectID = "nt9-qw-Ytq"; */
+"nt9-qw-Ytq.text" = "Items: 20/19";
+
+/* Class = "UILabel"; text = "Received List. From:"; ObjectID = "uff-sG-lxC"; */
+"uff-sG-lxC.text" = "Received List. From:";
