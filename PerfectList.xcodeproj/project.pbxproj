@@ -140,6 +140,7 @@
 		14AB96371BE443C200535045 /* ToDoListCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AB96361BE443C100535045 /* ToDoListCreation.swift */; };
 		14AB96391BE443E900535045 /* ToDoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AB96381BE443E900535045 /* ToDoListCell.swift */; };
 		14AB963D1BE44F7E00535045 /* toDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AB963C1BE44F7E00535045 /* toDoItem.swift */; };
+		14AD0DCA1CF358660011B4A9 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AD0DC91CF358660011B4A9 /* SWRevealViewController.m */; };
 		14ADB9971BB97B0A00CDF260 /* AddItemWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ADB9961BB97B0A00CDF260 /* AddItemWithOptions.swift */; };
 		14ADB99A1BB9844000CDF260 /* dynamicItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ADB9981BB9844000CDF260 /* dynamicItemsCell.swift */; };
 		14ADB99B1BB9844000CDF260 /* dynamicItemsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14ADB9991BB9844000CDF260 /* dynamicItemsCell.xib */; };
@@ -329,6 +330,8 @@
 		14AB96361BE443C100535045 /* ToDoListCreation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListCreation.swift; sourceTree = "<group>"; };
 		14AB96381BE443E900535045 /* ToDoListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListCell.swift; sourceTree = "<group>"; };
 		14AB963C1BE44F7E00535045 /* toDoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = toDoItem.swift; path = ../toDoItem.swift; sourceTree = "<group>"; };
+		14AD0DC81CF358660011B4A9 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		14AD0DC91CF358660011B4A9 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		14ADB9961BB97B0A00CDF260 /* AddItemWithOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemWithOptions.swift; sourceTree = "<group>"; };
 		14ADB9981BB9844000CDF260 /* dynamicItemsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dynamicItemsCell.swift; sourceTree = "<group>"; };
 		14ADB9991BB9844000CDF260 /* dynamicItemsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = dynamicItemsCell.xib; sourceTree = "<group>"; };
@@ -445,6 +448,15 @@
 			name = CatalogItems;
 			sourceTree = "<group>";
 		};
+		14AD0DC71CF358520011B4A9 /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14AD0DC81CF358660011B4A9 /* SWRevealViewController.h */,
+				14AD0DC91CF358660011B4A9 /* SWRevealViewController.m */,
+			);
+			name = SWRevealViewController;
+			sourceTree = "<group>";
+		};
 		14AEB5DF1C6BEE4900835C38 /* Walkthrough */ = {
 			isa = PBXGroup;
 			children = (
@@ -495,6 +507,7 @@
 				81BA814A1A49DA1800E65899 /* AppDelegate.swift */,
 				14BECE491BE1712000A70F53 /* FavouriteItems.swift */,
 				1445225E1BAF2B30001E613F /* TestTableCell.swift */,
+				14AD0DC71CF358520011B4A9 /* SWRevealViewController */,
 				149890981C442BEB005A9843 /* OptionsToDo.swift */,
 				147BEE741C459A4E00BE6242 /* ReminderPopover.swift */,
 				14BECE451BE1592500A70F53 /* ProgressHUD.swift */,
@@ -974,6 +987,7 @@
 				149455B21C1F8A600075996B /* HelpContact.swift in Sources */,
 				148C79321BD59B560086794B /* SubCatalogTableViewController.swift in Sources */,
 				1400D5BA1BB94F2C007E2C8C /* UnitsPopover.swift in Sources */,
+				14AD0DCA1CF358660011B4A9 /* SWRevealViewController.m in Sources */,
 				146853EF1BC8878B00EA5266 /* CategoriesCell.swift in Sources */,
 				14339EDC1BE9553500722440 /* MainMenuViewController.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
