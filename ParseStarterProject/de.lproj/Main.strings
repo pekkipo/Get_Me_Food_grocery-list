@@ -1,0 +1,893 @@
+
+/* Class = "UILabel"; text = "Not registered yet?"; ObjectID = "0WZ-mL-in8"; */
+"0WZ-mL-in8.text" = "Not registered yet?"; // Noch nicht registriert
+
+/* Class = "UILabel"; text = "Product Note:"; ObjectID = "0ah-T9-eaL"; */
+"0ah-T9-eaL.text" = "Note";
+
+/* Class = "UILabel"; text = "Send via email"; ObjectID = "0kd-XU-7B0"; */
+"0kd-XU-7B0.text" = "Send via email"; // Per email senden
+
+/* Class = "UITextField"; placeholder = "Type item name"; ObjectID = "1Sq-ay-MJI"; */
+"1Sq-ay-MJI.placeholder" = "Type item name"; // Artikelname eingeben
+
+/* Class = "UILabel"; text = "Price:"; ObjectID = "26f-dg-EOZ"; */
+"26f-dg-EOZ.text" = "Price"; // Preis
+
+/* Class = "UIButton"; normalTitle = "I forgot my password"; ObjectID = "2Lr-q6-KRy"; */
+"2Lr-q6-KRy.normalTitle" = "I forgot my password"; // Passwort vergessen?
+
+/* Class = "UILabel"; text = "Item name"; ObjectID = "2Zh-Ha-9Pr"; */
+"2Zh-Ha-9Pr.text" = "Item name";
+
+/* Class = "UILabel"; text = "No items in the list yet"; ObjectID = "3Ra-mY-j64"; */
+"3Ra-mY-j64.text" = "No items in the list yet"; // Noch keine Artikel vorhanden
+
+/* Class = "UILabel"; text = "Status:"; ObjectID = "3WY-ab-Dcu"; */
+"3WY-ab-Dcu.text" = "Status:"; // Status
+
+/* Class = "UILabel"; text = "Email:"; ObjectID = "3Yj-Hh-ioy"; */
+"3Yj-Hh-ioy.text" = "Email:";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "3ZZ-kV-FL8"; */
+"3ZZ-kV-FL8.text" = "Label";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "3oH-pC-bSx"; */
+"3oH-pC-bSx.text" = "Name";
+
+/* Class = "UIBarButtonItem"; title = "EDIT ALL"; ObjectID = "406-R4-oXq"; */
+"406-R4-oXq.title" = "Edit All"; // Alles bearbeiten
+
+/* Class = "UILabel"; text = "No new items so far"; ObjectID = "4bR-Js-ZrJ"; */
+"4bR-Js-ZrJ.text" = "No new items so far"; // Noch keine neuen Artikel
+
+/* Class = "UIViewController"; title = "Edit categories"; ObjectID = "5ci-3X-Dkp"; */
+"5ci-3X-Dkp.title" = "Edit categories";
+
+/* Class = "UIButton"; normalTitle = "Block User"; ObjectID = "5mP-yi-Qgv"; */
+"5mP-yi-Qgv.normalTitle" = "Block User"; //
+
+/* Class = "UIButton"; normalTitle = "Add First Item"; ObjectID = "5qp-Y3-KSb"; */
+"5qp-Y3-KSb.normalTitle" = "Add First Item";
+
+/* Class = "UILabel"; text = "10.12.2015"; ObjectID = "6NB-f4-e7B"; */
+"6NB-f4-e7B.text" = "10.12.2015";
+
+/* Class = "UITextField"; placeholder = "Display Name"; ObjectID = "6nT-JJ-BGF"; */
+"6nT-JJ-BGF.placeholder" = "Display Name"; // Display Name
+
+/* Class = "UITextField"; text = "Display Name"; ObjectID = "6nT-JJ-BGF"; */
+"6nT-JJ-BGF.text" = "Display Name";
+
+/* Class = "UIButton"; normalTitle = "SEND"; ObjectID = "6pS-Mh-zXp"; */
+"6pS-Mh-zXp.normalTitle" = "SEND";
+
+/* Class = "UILabel"; text = "Username (email):"; ObjectID = "6rP-ex-rIV"; */
+"6rP-ex-rIV.text" = "Username (email):";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "7ZP-PJ-nyj"; */
+"7ZP-PJ-nyj.normalTitle" = "Login";
+
+
+/* Class = "UIBarButtonItem"; title = "SAVE"; ObjectID = "8HJ-eO-2Wc"; */
+"8HJ-eO-2Wc.title" = "Save";
+
+/* Class = "UITextField"; placeholder = "Type here an email"; ObjectID = "8p1-34-8y4"; */
+"8p1-34-8y4.placeholder" = "Type here an email";
+
+/* Class = "UITextField"; placeholder = "Item Name"; ObjectID = "90k-Xn-cpg"; */
+"90k-Xn-cpg.placeholder" = "Item Name";
+
+/* Class = "UITextField"; text = "Item"; ObjectID = "90k-Xn-cpg"; */
+"90k-Xn-cpg.text" = "";
+
+/* Class = "UIBarButtonItem"; title = "Done"; ObjectID = "9DG-ba-NXu"; */
+"9DG-ba-NXu.title" = "Done";
+
+/* Class = "UINavigationItem"; title = "Catalog"; ObjectID = "9Hz-Qx-EV4"; */
+"9Hz-Qx-EV4.title" = "Catalog";
+
+/* Class = "UIButton"; normalTitle = "DONE"; ObjectID = "9rl-Sz-V4V"; */
+"9rl-Sz-V4V.normalTitle" = "Done";
+
+/* Class = "UIButton"; normalTitle = "SAVE"; ObjectID = "Abe-KX-21h"; */
+"Abe-KX-21h.normalTitle" = "Save";
+
+/* Class = "UILabel"; text = "Create To Do List"; ObjectID = "AlR-j5-wcN"; */
+"AlR-j5-wcN.text" = "Create To Do List"; // to do liste Erstellen
+
+/* Class = "UITextField"; placeholder = "Enter receiver's email"; ObjectID = "B1F-P4-Mcv"; */
+"B1F-P4-Mcv.placeholder" = "Enter receiver's email"; // Email des Empfengers
+
+/* Class = "UILabel"; text = "Total sum: 1290.90 E"; ObjectID = "B9i-ZG-Iyw"; */
+"B9i-ZG-Iyw.text" = "Total sum: 1290.90 E";
+
+/* Class = "UIButton"; normalTitle = "DONE"; ObjectID = "BAP-Uz-gXl"; */
+"BAP-Uz-gXl.normalTitle" = "Done";
+
+/* Class = "UILabel"; text = "Settings -> Contacts"; ObjectID = "Bk2-Ny-3aC"; */
+"Bk2-Ny-3aC.text" = "Settings -> Contacts";
+
+/* Class = "UINavigationItem"; title = "Add Item Options"; ObjectID = "BlZ-xw-JXF"; */
+"BlZ-xw-JXF.title" = "Add items";
+
+
+
+/* Class = "UILabel"; text = "veryfuckingloingemail@verylongemail.com"; ObjectID = "CR6-S0-VDb"; */
+"CR6-S0-VDb.text" = "veryfuckingloingemail@verylongemail.com";
+
+/* Class = "UITextField"; placeholder = "You login name (email)"; ObjectID = "CWB-c2-ngR"; */
+"CWB-c2-ngR.placeholder" = "Your login name (email)";
+
+/* Class = "UILabel"; text = "Choose from catalog"; ObjectID = "CZP-qV-fXX"; */
+"CZP-qV-fXX.text" = "Choose from catalog"; //aus dem Katalog auswaehlen
+
+/* Class = "UINavigationItem"; title = "Create to Do Item"; ObjectID = "CoB-2C-cVn"; */
+"CoB-2C-cVn.title" = "Create to Do Item";
+
+
+/* Class = "UIButton"; normalTitle = "Sort alphabetically"; ObjectID = "D1H-vh-5vk"; */
+"D1H-vh-5vk.normalTitle" = "Sort alphabetically";
+
+/* Class = "UIButton"; normalTitle = "Set a reminder"; ObjectID = "DHg-m6-upC"; */
+"DHg-m6-upC.normalTitle" = "Set a reminder"; // Erinnerung erstellen
+
+/* Class = "UILabel"; text = "Products Name"; ObjectID = "DY5-l4-Sq0"; */
+"DY5-l4-Sq0.text" = "Products Name"; // Artikelname
+
+/* Class = "UITextField"; placeholder = "Type notes for your list here"; ObjectID = "EEF-rX-Y0B"; */
+"EEF-rX-Y0B.placeholder" = "Type notes for your list here";
+
+/* Class = "UITextField"; placeholder = "Type email"; ObjectID = "EMB-Qw-dUt"; */
+"EMB-Qw-dUt.placeholder" = "Type email";
+
+/* Class = "UITextField"; text = "Type email"; ObjectID = "EMB-Qw-dUt"; */
+"EMB-Qw-dUt.text" = "Type email";
+
+/* Class = "UIButton"; normalTitle = "CANCEL"; ObjectID = "Ebf-XD-hSg"; */
+"Ebf-XD-hSg.normalTitle" = "Cancel";
+
+/* Class = "UITextField"; placeholder = "0"; ObjectID = "Ed5-YU-JwW"; */
+"Ed5-YU-JwW.placeholder" = "0";
+
+/* Class = "UIButton"; normalTitle = "Share"; ObjectID = "Eh6-yQ-3b4"; */
+"Eh6-yQ-3b4.normalTitle" = " Send list";
+
+/* Class = "UILabel"; text = "Email: (used as login name)"; ObjectID = "Evg-ch-7KJ"; */
+"Evg-ch-7KJ.text" = "Email: (login name)";
+
+/* Class = "UIButton"; normalTitle = "Category   "; ObjectID = "Fd1-Jd-b2e"; */
+"Fd1-Jd-b2e.normalTitle" = "Category   ";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "Fls-lO-WbQ"; */
+"Fls-lO-WbQ.title" = "Back";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Fq2-wh-1dB"; */
+"Fq2-wh-1dB.text" = "0";
+
+/* Class = "UILabel"; text = "email"; ObjectID = "Fyp-bN-6ms"; */
+"Fyp-bN-6ms.text" = "email";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "GbQ-q1-X0B"; */
+"GbQ-q1-X0B.placeholder" = "Password";
+
+/* Class = "UIBarButtonItem"; title = "SAVE"; ObjectID = "HB3-JD-nay"; */
+"HB3-JD-nay.title" = "Save";
+
+/* Class = "UILabel"; text = "Amount"; ObjectID = "HiG-ru-oZg"; */
+"HiG-ru-oZg.text" = "Amount";
+
+/* Class = "UILabel"; text = "Create Shopping List"; ObjectID = "I3e-hz-Aqc"; */
+"I3e-hz-Aqc.text" = "Create Shopping List";
+
+/* Class = "UIButton"; normalTitle = "Save changes"; ObjectID = "IH0-hH-3dW"; */
+"IH0-hH-3dW.normalTitle" = "Save changes"; // Aenderung speichern
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "IVZ-QN-k8S"; */
+"IVZ-QN-k8S.title" = "Settings";
+
+/* Class = "UIButton"; normalTitle = "DONE"; ObjectID = "J1y-EH-zkf"; */
+"J1y-EH-zkf.normalTitle" = "Done";
+
+/* Class = "UILabel"; text = "Recent Events"; ObjectID = "J4T-44-vOe"; */
+"J4T-44-vOe.text" = "Events"; // Veranstaltungen
+
+/* Class = "UITextField"; placeholder = "Type new item name"; ObjectID = "JzV-ct-jZa"; */
+"JzV-ct-jZa.placeholder" = "Type new item name";
+
+/* Class = "UILabel"; text = "Sharing History"; ObjectID = "KLc-8y-W31"; */
+"KLc-8y-W31.text" = "Sharing History";
+
+/* Class = "UILabel"; text = "or login via"; ObjectID = "Kbl-8Q-2xI"; */
+"Kbl-8Q-2xI.text" = "or login via"; // oder via
+
+/* Class = "UILabel"; text = "No match"; ObjectID = "KnV-D6-Zf7"; */
+"KnV-D6-Zf7.text" = "No match"; //
+
+/* Class = "UIButton"; normalTitle = " Add Image"; ObjectID = "KtB-ut-XKn"; */
+"KtB-ut-XKn.normalTitle" = " Add Image"; // Bild hinzufugen
+
+/* Class = "UILabel"; text = "Password:"; ObjectID = "L0R-xK-E3F"; */
+"L0R-xK-E3F.text" = "Password:";
+
+/* Class = "UIButton"; normalTitle = "Add First Item"; ObjectID = "LOt-Mj-PjS"; */
+"LOt-Mj-PjS.normalTitle" = "Add First Item";
+
+/* Class = "UIButton"; normalTitle = "Change picture"; ObjectID = "LZe-ng-Xkk"; */
+"LZe-ng-Xkk.normalTitle" = "Change picture"; // Bild aendern
+
+/* Class = "UILabel"; text = "Time:"; ObjectID = "Lac-Ot-fU2"; */
+"Lac-Ot-fU2.text" = "Time:";
+
+/* Class = "UILabel"; text = "Note"; ObjectID = "Ljc-dU-vnm"; */
+"Ljc-dU-vnm.text" = "Note";
+
+/* Class = "UILabel"; text = "Category Name"; ObjectID = "MCt-p7-o53"; */
+"MCt-p7-o53.text" = "Category Name";
+
+/* Class = "UIButton"; normalTitle = "SAVE"; ObjectID = "Mbg-ky-5Av"; */
+"Mbg-ky-5Av.normalTitle" = "Save";
+
+/* Class = "UITextField"; placeholder = "Start typing email"; ObjectID = "N0l-J6-bPr"; */
+"N0l-J6-bPr.placeholder" = "Start typing email";
+
+/* Class = "UILabel"; text = "Russian"; ObjectID = "N77-j9-9j7"; */
+"N77-j9-9j7.text" = "Russian"; //
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "O5r-9F-Ii5"; */
+"O5r-9F-Ii5.title" = "Back";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "P2K-S4-gdg"; */
+"P2K-S4-gdg.text" = "Name";
+
+/* Class = "UIButton"; normalTitle = "Set a reminder"; ObjectID = "PCZ-LX-oUj"; */
+"PCZ-LX-oUj.normalTitle" = "Set a reminder";
+
+/* Class = "UINavigationController"; title = "Sharing History"; ObjectID = "PTg-Ey-tS8"; */
+"PTg-Ey-tS8.title" = "Sharing History";
+
+/* Class = "UILabel"; text = "List sent:"; ObjectID = "PTo-NI-kcq"; */
+"PTo-NI-kcq.text" = "List sent:";
+
+/* Class = "UILabel"; text = "Item Added"; ObjectID = "PdO-8q-K5O"; */
+"PdO-8q-K5O.text" = "Item Added";
+
+/* Class = "UIBarButtonItem"; title = "SHARE"; ObjectID = "Pt9-5H-Zkr"; */
+"Pt9-5H-Zkr.title" = "SHARE"; // Teilen
+
+/* Class = "UITextField"; placeholder = "Type additional notes for reminder"; ObjectID = "QEZ-Ig-tX2"; */
+"QEZ-Ig-tX2.placeholder" = "Type additional notes for the reminder"; // Weitere erinnerungen hinzufugen
+
+/* Class = "UITextField"; text = "To Do List Reminder"; ObjectID = "QEZ-Ig-tX2"; */
+"QEZ-Ig-tX2.text" = "To Do List Reminder";
+
+/* Class = "UILabel"; text = "Units"; ObjectID = "Qvo-bl-1Nc"; */
+"Qvo-bl-1Nc.text" = "Units";
+
+/* Class = "UILabel"; text = "Quickly add new item"; ObjectID = "Rf3-lp-KIC"; */
+"Rf3-lp-KIC.text" = "Quickly add new item";
+
+/* Class = "UILabel"; text = "1300.50 E"; ObjectID = "RqE-QH-vFX"; */
+"RqE-QH-vFX.text" = "1300.50 E";
+
+/* Class = "UILabel"; text = "Username"; ObjectID = "S1l-uT-ETO"; */
+"S1l-uT-ETO.text" = "Username";
+
+/* Class = "UILabel"; text = "Change login (email):"; ObjectID = "Sns-DI-ufw"; */
+"Sns-DI-ufw.text" = "Login (email):";
+
+/* Class = "UIViewController"; title = "Subscription Info"; ObjectID = "Sxv-Cs-RCe"; */
+"Sxv-Cs-RCe.title" = "Subscription Info";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "T1O-X3-HjC"; */
+"T1O-X3-HjC.text" = "Name";
+
+/* Class = "UILabel"; text = "Catalog Item Name"; ObjectID = "T3O-2E-lwt"; */
+"T3O-2E-lwt.text" = "Catalog Item Name";
+
+/* Class = "UILabel"; text = "Product Name"; ObjectID = "TXc-ZY-Xip"; */
+"TXc-ZY-Xip.text" = "Product Name";
+
+/* Class = "UILabel"; text = "Quantity:"; ObjectID = "TXs-bT-eWS"; */
+"TXs-bT-eWS.text" = "Amount";
+
+/* Class = "UIBarButtonItem"; title = "Done"; ObjectID = "TbB-pY-TgC"; */
+"TbB-pY-TgC.title" = "Done";
+
+/* Class = "UILabel"; text = "Items: 20/19"; ObjectID = "U24-Ha-wRt"; */
+"U24-Ha-wRt.text" = "Items: 20/19";
+
+/* Class = "UITextField"; placeholder = "To Do Item Caption"; ObjectID = "UCS-5Y-VR7"; */
+"UCS-5Y-VR7.placeholder" = "To Do Item Caption";
+
+/* Class = "UITextField"; text = "Add title"; ObjectID = "UCS-5Y-VR7"; */
+"UCS-5Y-VR7.text" = "Add title";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "UbF-33-yql"; */
+"UbF-33-yql.text" = "Name";
+
+/* Class = "UILabel"; text = "Category Name"; ObjectID = "UcW-yH-sqI"; */
+"UcW-yH-sqI.text" = "Category Name";
+
+/* Class = "UILabel"; text = "Header"; ObjectID = "UlG-PA-cV9"; */
+"UlG-PA-cV9.text" = "Header";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "V2W-q2-Q3a"; */
+"V2W-q2-Q3a.title" = "Back";
+
+/* Class = "UILabel"; text = "per"; ObjectID = "VKA-3f-f5u"; */
+"VKA-3f-f5u.text" = "per";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "VUO-zA-9h6"; */
+"VUO-zA-9h6.text" = "0";
+
+/* Class = "UILabel"; text = "email"; ObjectID = "VX2-tq-VwC"; */
+"VX2-tq-VwC.text" = "email";
+
+/* Class = "UINavigationItem"; title = "Manage categories"; ObjectID = "VYm-6c-ce7"; */
+"VYm-6c-ce7.title" = "Manage categories"; // erwalten kategorien
+
+/* Class = "UILabel"; text = "Add contact via: "; ObjectID = "Vdz-Fl-Gn4"; */
+"Vdz-Fl-Gn4.text" = "Add contact via: "; // Kontakt hinzufugen via
+
+/* Class = "UIButton"; normalTitle = "Reset password"; ObjectID = "W5o-5W-o4b"; */
+"W5o-5W-o4b.normalTitle" = "Reset password"; // Passwort zurucksetzen
+
+/* Class = "UIBarButtonItem"; title = "SHARE"; ObjectID = "WzH-TO-yAp"; */
+"WzH-TO-yAp.title" = "Send";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "XpT-lf-8l0"; */
+"XpT-lf-8l0.title" = "Back";
+
+/* Class = "UIButton"; normalTitle = "Delete Account"; ObjectID = "XuE-r3-zN3"; */
+"XuE-r3-zN3.normalTitle" = "Delete Account";
+
+/* Class = "UILabel"; text = "No contacts so far"; ObjectID = "YSj-or-9XS"; */
+"YSj-or-9XS.text" = "No contacts so far";
+
+/* Class = "UILabel"; text = "Choose from history"; ObjectID = "YT8-0z-DbK"; */
+"YT8-0z-DbK.text" = "Choose from history"; // Aus gesamtverlauf auswaehlen
+
+/* Class = "UIButton"; normalTitle = " Add item to the catalog"; ObjectID = "Yvr-IU-ODK"; */
+"Yvr-IU-ODK.normalTitle" = " Add item";
+
+/* Class = "UIButton"; normalTitle = " Add custom category"; ObjectID = "Ywt-rn-IeY"; */
+"Ywt-rn-IeY.normalTitle" = " Add custom category"; // Kundenkategorie hinzufugen
+
+/* Class = "UIButton"; normalTitle = " CLOSE"; ObjectID = "ZDF-A0-cea"; */
+"ZDF-A0-cea.normalTitle" = " CLOSE";
+
+/* Class = "UIButton"; normalTitle = "Change image"; ObjectID = "ZMq-aI-lgg"; */
+"ZMq-aI-lgg.normalTitle" = "Change image";
+
+/* Class = "UILabel"; text = "10/9"; ObjectID = "ZZ0-rZ-Jfc"; */
+"ZZ0-rZ-Jfc.text" = "10/9";
+
+/* Class = "UIButton"; normalTitle = "Logout"; ObjectID = "ZZA-J9-pVV"; */
+"ZZA-J9-pVV.normalTitle" = "Logout";
+
+/* Class = "UILabel"; text = "Units"; ObjectID = "Zbs-Ku-3Vt"; */
+"Zbs-Ku-3Vt.text" = "Units";
+
+/* Class = "UILabel"; text = "Quantity:"; ObjectID = "Zg0-Fz-bGm"; */
+"Zg0-Fz-bGm.text" = "Quantity:";
+
+
+
+/* Class = "UIBarButtonItem"; title = "Close"; ObjectID = "Ztb-nw-CPK"; */
+"Ztb-nw-CPK.title" = "Close";
+
+/* Class = "UITextField"; text = "1"; ObjectID = "a3Q-O4-Gfi"; */
+"a3Q-O4-Gfi.text" = "1";
+
+/* Class = "UILabel"; text = "Shared List name"; ObjectID = "arr-9B-nRe"; */
+"arr-9B-nRe.text" = "Shared List name"; // Geteilte Listen
+
+/* Class = "UILabel"; text = "Choose unit:"; ObjectID = "b0R-Zz-E1Q"; */
+"b0R-Zz-E1Q.text" = "Choose unit";
+
+/* Class = "UILabel"; text = "Change display name:"; ObjectID = "bAn-3g-vCW"; */
+"bAn-3g-vCW.text" = "Profile name:"; // Profilname
+
+/* Class = "UILabel"; text = "Sharing History"; ObjectID = "bQM-4B-q4Y"; */
+"bQM-4B-q4Y.text" = "Sharing History";
+
+/* Class = "UITextField"; placeholder = "Type an email here"; ObjectID = "bS4-Jp-6Cj"; */
+"bS4-Jp-6Cj.placeholder" = "Type an email here";
+
+/* Class = "UILabel"; text = "Choose from favourite items"; ObjectID = "bSj-ov-PLL"; */
+"bSj-ov-PLL.text" = "Choose from favourite items";
+
+/* Class = "UIViewController"; title = "Categories"; ObjectID = "bTs-OD-A1u"; */
+"bTs-OD-A1u.title" = "Categories";
+
+/* Class = "UIViewController"; title = "Favourite Items"; ObjectID = "bWf-F7-xnB"; */
+"bWf-F7-xnB.title" = "Favourite Items";
+
+/* Class = "UILabel"; text = "Item Added"; ObjectID = "bdw-G2-SVI"; */
+"bdw-G2-SVI.text" = "Item Added";
+
+/* Class = "UILabel"; text = "Display name:"; ObjectID = "bmI-V2-gGp"; */
+"bmI-V2-gGp.text" = "Profile name:";
+
+/* Class = "UIButton"; normalTitle = "Veryvery lon shopping list name"; ObjectID = "bxO-rk-7tR"; */
+"bxO-rk-7tR.normalTitle" = "Veryvery long shopping list name";
+
+/* Class = "UITextField"; placeholder = "Type your notes here"; ObjectID = "c2D-bf-TEi"; */
+"c2D-bf-TEi.placeholder" = "Add note";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "cbO-nw-HA1"; */
+"cbO-nw-HA1.text" = "0";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "ctr-No-9Eu"; */
+"ctr-No-9Eu.title" = "Back";
+
+/* Class = "UILabel"; text = "Tell people you are going shopping:"; ObjectID = "cxn-Ia-iuU"; */
+"cxn-Ia-iuU.text" = "Tell people you are going shopping:";
+
+/* Class = "UILabel"; text = "Total sum: "; ObjectID = "d3O-MX-n6g"; */
+"d3O-MX-n6g.text" = "Total sum";
+
+/* Class = "UIButton"; normalTitle = "Plus"; ObjectID = "dHl-j2-uo1"; */
+"dHl-j2-uo1.normalTitle" = "Plus";
+
+/* Class = "UIButton"; normalTitle = " CLOSE"; ObjectID = "dda-Yt-FXx"; */
+"dda-Yt-FXx.normalTitle" = " CLOSE";
+
+/* Class = "UINavigationItem"; title = "Recent Events"; ObjectID = "ert-z4-FMw"; */
+"ert-z4-FMw.title" = "Events";
+
+/* Class = "UINavigationItem"; title = "List Creation"; ObjectID = "f2P-qa-kNm"; */
+"f2P-qa-kNm.title" = "List Creation";
+
+/* Class = "UITextField"; placeholder = "Type category name"; ObjectID = "fQk-zr-UgN"; */
+"fQk-zr-UgN.placeholder" = "Type category name";
+
+/* Class = "UILabel"; text = "Receiver:"; ObjectID = "fRn-f9-FYU"; */
+"fRn-f9-FYU.text" = "Receiver:";
+
+/* Class = "UILabel"; text = "Receiver Name"; ObjectID = "fpt-Uz-9jP"; */
+"fpt-Uz-9jP.text" = "Receiver Name";
+
+/* Class = "UILabel"; text = "Show All Lists"; ObjectID = "fwn-tV-dC6"; */
+"fwn-tV-dC6.text" = "Show All Lists";
+
+/* Class = "UILabel"; text = "17.11.2015"; ObjectID = "g42-Na-JDA"; */
+"g42-Na-JDA.text" = "17.11.2015";
+
+/* Class = "UIButton"; accessibilityLabel = "checkbutton"; ObjectID = "gC7-AJ-ffb"; */
+"gC7-AJ-ffb.accessibilityLabel" = "checkbutton";
+
+/* Class = "UILabel"; text = "Already have an account? Login"; ObjectID = "gFJ-BE-4cB"; */
+"gFJ-BE-4cB.text" = "Already have an account? Login"; // Bereits einen Account? Login
+
+/* Class = "UIButton"; normalTitle = "Choose"; ObjectID = "gGJ-2O-QFm"; */
+"gGJ-2O-QFm.normalTitle" = "Choose";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "gOd-Yb-V0r"; */
+"gOd-Yb-V0r.title" = "Back";
+
+/* Class = "UILabel"; text = "Choose color:"; ObjectID = "gdC-03-mu6"; */
+"gdC-03-mu6.text" = "Choose list color label:"; // Farbe fuer liste waehlen
+
+/* Class = "UILabel"; text = "Kupika"; ObjectID = "gmD-ub-nZv"; */
+"gmD-ub-nZv.text" = "Get Me Food";
+
+/* Class = "UILabel"; text = "Send to the user"; ObjectID = "gxK-pE-vPd"; */
+"gxK-pE-vPd.text" = "Send to the user";
+
+/* Class = "UIButton"; normalTitle = "CANCEL"; ObjectID = "h7X-hV-Wso"; */
+"h7X-hV-Wso.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = "Upload your picture:"; ObjectID = "hW9-6d-T6z"; */
+"hW9-6d-T6z.text" = "Upload your picture:"; // Bild hochladen
+
+/* Class = "UILabel"; text = "Product Name"; ObjectID = "hdA-xk-Kgp"; */
+"hdA-xk-Kgp.text" = "Product Name";
+
+/* Class = "UILabel"; text = "Receiver email"; ObjectID = "hk2-bf-Nt9"; */
+"hk2-bf-Nt9.text" = "Receiver email";
+
+/* Class = "UILabel"; text = "useremail"; ObjectID = "hxG-bS-HcV"; */
+"hxG-bS-HcV.text" = "useremail";
+
+/* Class = "UILabel"; text = "Urgent"; ObjectID = "i3t-gl-NeE"; */
+"i3t-gl-NeE.text" = "Urgent"; // Dringend
+
+/* Class = "UILabel"; text = "Caption:"; ObjectID = "i7H-SH-mpO"; */
+"i7H-SH-mpO.text" = "Caption:"; // Titel
+
+/* Class = "UIButton"; normalTitle = "Google"; ObjectID = "iCo-JI-oDA"; */
+"iCo-JI-oDA.normalTitle" = "Google";
+
+
+
+/* Class = "UIButton"; normalTitle = "Show categories"; ObjectID = "iRK-go-U6L"; */
+"iRK-go-U6L.normalTitle" = "Show categories";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "ihD-Fb-Wcc"; */
+"ihD-Fb-Wcc.text" = "Name";
+
+/* Class = "UIBarButtonItem"; title = "Done"; ObjectID = "jBd-Up-u4n"; */
+"jBd-Up-u4n.title" = "Done";
+
+/* Class = "UINavigationItem"; title = "Adding New Item"; ObjectID = "jK4-ZU-UUm"; */
+"jK4-ZU-UUm.title" = "Adding New Item";
+
+/* Class = "UINavigationItem"; title = "Sharing the List"; ObjectID = "jLX-Lg-yVS"; */
+"jLX-Lg-yVS.title" = "Sharing the List";
+
+/* Class = "UILabel"; text = "Include in catalog"; ObjectID = "jey-pd-9Px"; */
+"jey-pd-9Px.text" = "In catalog"; // Zum Katalog
+
+/* Class = "UITextField"; placeholder = "New List Placeholder"; ObjectID = "jtS-ev-vVo"; */
+"jtS-ev-vVo.placeholder" = "List name";
+
+/* Class = "UIButton"; normalTitle = "Items"; ObjectID = "kgv-cl-Zgt"; */
+"kgv-cl-Zgt.normalTitle" = "Items";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "kkL-IZ-LZY"; */
+"kkL-IZ-LZY.text" = "Name";
+
+/* Class = "UILabel"; text = "Item Added"; ObjectID = "kvA-lk-7Bc"; */
+"kvA-lk-7Bc.text" = "Item Added";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "lb4-fx-1OL"; */
+"lb4-fx-1OL.text" = "Settings";
+
+/* Class = "UILabel"; text = "Reminder note:"; ObjectID = "lfb-0I-bBH"; */
+"lfb-0I-bBH.text" = "Reminder note";
+
+/* Class = "UILabel"; text = "No items in the list yet"; ObjectID = "liQ-Y3-xG0"; */
+"liQ-Y3-xG0.text" = "No items in the list yet";
+
+/* Class = "UIButton"; normalTitle = "Close"; ObjectID = "mD7-Xb-32p"; */
+"mD7-Xb-32p.normalTitle" = "Close";
+
+/* Class = "UITextField"; placeholder = "Price"; ObjectID = "mPk-QJ-GUy"; */
+"mPk-QJ-GUy.placeholder" = "0";
+
+/* Class = "UILabel"; text = "Notes"; ObjectID = "mcL-7k-Ps8"; */
+"mcL-7k-Ps8.text" = "Notes";
+
+/* Class = "UITextField"; placeholder = "Type note here"; ObjectID = "mdG-e3-Xan"; */
+"mdG-e3-Xan.placeholder" = "Type note here";
+
+/* Class = "UITextField"; text = "Go shopping"; ObjectID = "mdG-e3-Xan"; */
+"mdG-e3-Xan.text" = "Go shopping";
+
+/* Class = "UIButton"; normalTitle = " Add custom category"; ObjectID = "mv6-9A-7YZ"; */
+"mv6-9A-7YZ.normalTitle" = " Add custom category";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "mvG-gb-Cxo"; */
+"mvG-gb-Cxo.title" = "Back";
+
+/* Class = "UILabel"; text = "sdcscds"; ObjectID = "nU1-hS-lj0"; */
+"nU1-hS-lj0.text" = "sdcscds";
+
+/* Class = "UILabel"; text = "EUR"; ObjectID = "nuo-NW-fGw"; */
+"nuo-NW-fGw.text" = "EUR";
+
+/* Class = "UILabel"; text = "Sent. Not yet accepted"; ObjectID = "o6n-sj-dLH"; */
+"o6n-sj-dLH.text" = "Sent. Not yet accepted";
+
+/* Class = "UINavigationItem"; title = "Favourite items"; ObjectID = "oDc-tt-V8G"; */
+"oDc-tt-V8G.title" = "Favourite items";
+
+/* Class = "UILabel"; text = "Note:"; ObjectID = "oRF-GK-VPC"; */
+"oRF-GK-VPC.text" = "Note";
+
+/* Class = "UIBarButtonItem"; title = "Done"; ObjectID = "osy-8T-yDW"; */
+"osy-8T-yDW.title" = "Done";
+
+/* Class = "UILabel"; text = "Choose from existing"; ObjectID = "p0B-QU-SUD"; */
+"p0B-QU-SUD.text" = "Choose from existing";
+
+/* Class = "UILabel"; text = "Help"; ObjectID = "pIq-1V-nLp"; */
+"pIq-1V-nLp.text" = "Help";
+
+/* Class = "UILabel"; text = "Mister Very Long Name"; ObjectID = "pOx-uS-GHJ"; */
+"pOx-uS-GHJ.text" = "Mister Very Long Name";
+
+/* Class = "UINavigationItem"; title = "To Do Item"; ObjectID = "pQh-xS-0vE"; */
+"pQh-xS-0vE.title" = "To Do Item";
+
+/* Class = "UIButton"; normalTitle = "CANCEL"; ObjectID = "pQm-Sk-cQZ"; */
+"pQm-Sk-cQZ.normalTitle" = "Cancel";
+
+/* Class = "UINavigationItem"; title = "Favourite Items"; ObjectID = "pxR-a4-Fjy"; */
+"pxR-a4-Fjy.title" = "Favourite Items";
+
+/* Class = "UILabel"; text = "Password:"; ObjectID = "pzd-fQ-KbZ"; */
+"pzd-fQ-KbZ.text" = "Password:";
+
+/* Class = "UILabel"; text = "Caption"; ObjectID = "q2d-c2-ghV"; */
+"q2d-c2-ghV.text" = "Caption";
+
+/* Class = "UINavigationItem"; title = "Sharing History"; ObjectID = "qdB-JZ-ut8"; */
+"qdB-JZ-ut8.title" = "Sharing History";
+
+/* Class = "UIButton"; normalTitle = "Choose profile picture"; ObjectID = "qo6-hd-vcI"; */
+"qo6-hd-vcI.normalTitle" = "Choose profile picture";
+
+/* Class = "UINavigationItem"; title = "Login"; ObjectID = "rpD-za-5Oa"; */
+"rpD-za-5Oa.title" = "Login";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "rwM-eG-4FE"; */
+"rwM-eG-4FE.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "Uncheck All Items"; ObjectID = "srN-Sa-eQO"; */
+"srN-Sa-eQO.normalTitle" = "Uncheck All Items"; // Markierungen aufheben
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "t9d-oR-hyL"; */
+"t9d-oR-hyL.text" = "Name";
+
+/* Class = "UINavigationItem"; title = "Product History"; ObjectID = "tAs-8L-wEM"; */
+"tAs-8L-wEM.title" = "Product History";
+
+/* Class = "UIButton"; normalTitle = "About"; ObjectID = "tX8-Xe-LIf"; */
+"tX8-Xe-LIf.normalTitle" = "About";
+
+/* Class = "UITextField"; placeholder = "Type email of receiver"; ObjectID = "taE-Mh-t3T"; */
+"taE-Mh-t3T.placeholder" = "Type email of receiver";
+
+/* Class = "UITextField"; placeholder = "Type custom category name"; ObjectID = "tnx-me-Ddo"; */
+"tnx-me-Ddo.placeholder" = "Type custom category name";
+
+/* Class = "UITextField"; placeholder = "Add new item..."; ObjectID = "tps-cQ-gJc"; */
+"tps-cQ-gJc.placeholder" = "Type item name";
+
+/* Class = "UITextField"; placeholder = "Add new item..."; ObjectID = "tps-cQ-gJc"; */
+"tps-cQ-gJc.text" = "+ Add item";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "tto-wf-esU"; */
+"tto-wf-esU.text" = "Name";
+
+/* Class = "UILabel"; text = "email"; ObjectID = "uEg-bF-ZyB"; */
+"uEg-bF-ZyB.text" = "email";
+
+/* Class = "UIButton"; normalTitle = "Facebook"; ObjectID = "uYI-sb-JY5"; */
+"uYI-sb-JY5.normalTitle" = "Facebook";
+
+/* Class = "UILabel"; text = "Send password to:"; ObjectID = "ua0-Mt-7f3"; */
+"ua0-Mt-7f3.text" = "Send password to:";
+
+/* Class = "UILabel"; text = "1000 Kg"; ObjectID = "ua3-FC-cv5"; */
+"ua3-FC-cv5.text" = "1000 Kg";
+
+/* Class = "UIButton"; normalTitle = "Register"; ObjectID = "ua4-Ef-d6e"; */
+"ua4-Ef-d6e.normalTitle" = "Register";
+
+/* Class = "UILabel"; text = "Choose color"; ObjectID = "uaU-WV-9YY"; */
+"uaU-WV-9YY.text" = "Choose list color label:";
+
+/* Class = "UILabel"; text = "Choose unit:"; ObjectID = "udR-9L-tg7"; */
+"udR-9L-tg7.text" = "Choose unit:";
+
+/* Class = "UIButton"; normalTitle = "Report User!"; ObjectID = "ulQ-H5-M5w"; */
+"ulQ-H5-M5w.normalTitle" = "Report User!";
+
+/* Class = "UIButton"; normalTitle = "Set the reminder"; ObjectID = "ura-gG-6Nk"; */
+"ura-gG-6Nk.normalTitle" = "Set the reminder";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "uu0-2M-7AM"; */
+"uu0-2M-7AM.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Contacts"; ObjectID = "vUe-TF-z6a"; */
+"vUe-TF-z6a.title" = "Contacts";
+
+/* Class = "UINavigationController"; title = "Recent Events"; ObjectID = "vsp-HP-54E"; */
+"vsp-HP-54E.title" = "Events";
+
+
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "wNK-Oo-ZRz"; */
+"wNK-Oo-ZRz.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Choose currency"; ObjectID = "wbL-qQ-5GH"; */
+"wbL-qQ-5GH.text" = "Choose currency:";
+
+/* Class = "UIButton"; normalTitle = "CANCEL"; ObjectID = "wry-f1-wHL"; */
+"wry-f1-wHL.normalTitle" = "Cancel";
+
+/* Class = "UITextField"; text = "List Name"; ObjectID = "wtT-Va-NEx"; */
+"wtT-Va-NEx.text" = "List Name";
+
+/* Class = "UIButton"; normalTitle = "Favourite Item"; ObjectID = "x5k-9H-YVc"; */
+"x5k-9H-YVc.normalTitle" = " Favourite Item";
+
+
+/* Class = "UIButton"; normalTitle = "Vkontakte"; ObjectID = "x6j-oX-APH"; */
+"x6j-oX-APH.normalTitle" = "Vkontakte";
+
+/* Class = "UITextField"; placeholder = "Your profile name"; ObjectID = "x8B-9Z-7yR"; */
+"x8B-9Z-7yR.placeholder" = "Your profile name";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "xYf-ao-Rbs"; */
+"xYf-ao-Rbs.title" = "Back";
+
+/* Class = "UIBarButtonItem"; title = "Done"; ObjectID = "xlQ-ox-mog"; */
+"xlQ-ox-mog.title" = "Done";
+
+/* Class = "UIButton"; normalTitle = "Units"; ObjectID = "yAL-K0-Nbv"; */
+"yAL-K0-Nbv.normalTitle" = "Units";
+
+/* Class = "UINavigationItem"; title = "Custom Items"; ObjectID = "ySI-gY-Me9"; */
+"ySI-gY-Me9.title" = "Custom Items";
+
+/* Class = "UITextField"; placeholder = "Email (will be used as login name)"; ObjectID = "yWG-cb-oRj"; */
+"yWG-cb-oRj.placeholder" = "Email (will be used as a login name)";
+
+/* Class = "UIButton"; normalTitle = "Set a reminder"; ObjectID = "z4b-3c-IXj"; */
+"z4b-3c-IXj.normalTitle" = "Set a reminder";
+
+/* Class = "UIButton"; normalTitle = "Units"; ObjectID = "zRE-5M-Ong"; */
+"zRE-5M-Ong.normalTitle" = "Units";
+
+/* Class = "UIButton"; normalTitle = "Register"; ObjectID = "zfX-Ty-35i"; */
+"zfX-Ty-35i.normalTitle" = "Register";
+
+/* Class = "UILabel"; text = "150"; ObjectID = "zzm-2f-Ea8"; */
+"zzm-2f-Ea8.text" = "150";
+
+/* Class = "UIButton"; normalTitle = "CLOSE"; ObjectID = "fRl-On-hdV"; */
+"fRl-On-hdV.normalTitle" = " CLOSE";
+
+/* Class = "UIButton"; normalTitle = "Note"; ObjectID = "XIP-f6-MrB"; */
+"XIP-f6-MrB.normalTitle" = " Note";
+
+/* Class = "UIButton"; normalTitle = "Add Contact"; ObjectID = "bvm-W2-lg6"; */
+"bvm-W2-lg6.normalTitle" = " Add Contact";
+
+/* Class = "UIButton"; normalTitle = "Choose from contacts"; ObjectID = "7fc-oj-DVB"; */
+"7fc-oj-DVB.normalTitle" = "Contacts";
+
+/* Class = "UIButton"; normalTitle = "CLOSE"; ObjectID = "DWF-Q7-NFc"; */
+"DWF-Q7-NFc.normalTitle" = " Close";
+
+/* Class = "UIButton"; normalTitle = "CLOSE"; ObjectID = "cNM-cj-gOL"; */
+"cNM-cj-gOL.normalTitle" = " Close";
+
+/* Class = "UIButton"; normalTitle = "CLOSE"; ObjectID = "ONH-dj-wAH"; */
+"ONH-dj-wAH.normalTitle" = " Sort by date";
+
+/* Class = "UIButton"; normalTitle = "CLOSE"; ObjectID = "6SM-sN-4CQ"; */
+"6SM-sN-4CQ.normalTitle" = " Sort by date";
+
+
+
+/* Class = "UITextView"; text = "Send the list to the app user "; ObjectID = "RmZ-ws-CMh"; */
+"RmZ-ws-CMh.text" = "Send the list to the app user"; // Liste mit anderen usern teilen
+
+/* Class = "UITextView"; text = "Or you can send the list via email directly. Just type the address in the respective field.  "; ObjectID = "baM-17-VZM"; */
+"baM-17-VZM.text" = "Send the list via email";
+
+/* Class = "UINavigationItem"; title = "Help"; ObjectID = "woy-0r-b29"; */
+"woy-0r-b29.title" = "Help";
+
+/* WALKTHROUGH */
+
+/* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "KSq-Pk-Oa6"; */
+"KSq-Pk-Oa6.normalTitle" = "Skip"; // Uberspringen
+
+/* Class = "UIButton"; normalTitle = "Next"; ObjectID = "8kD-KM-ETW"; */
+"8kD-KM-ETW.normalTitle" = "Next";
+
+/* Class = "UIButton"; normalTitle = "SIGN UP / LOGIN"; ObjectID = "Tia-hV-2Bg"; */
+"Tia-hV-2Bg.normalTitle" = "Yes! Sign Up / Login";
+
+
+
+/* Class = "UILabel"; text = "150"; ObjectID = "VxA-hb-n7R"; */
+"VxA-hb-n7R.text" = "Create an account?"; // Account erstellen?
+
+
+/* Class = "UILabel"; text = "150"; ObjectID = "I1D-VQ-21e"; */
+"I1D-VQ-21e.text" = "It takes less than a minute and is absolutely free. You can login via social networks";  // Dauert weniger als eine Minute und ist komplett kostenlos. Sie koennen sich ueber Sozialenetzwerke anmelden
+
+/* Class = "UILabel"; text = "150"; ObjectID = "3Zr-DV-IRs"; */
+"3Zr-DV-IRs.text" = "Having an account enables easier connection with your friends, adding contacts, synchronization between devices and other useful features"; // Ein Account erleichtert Kommunikation mit Freunden, Hinzufugen Kontakten, Synchronisation von Geraeten und Zugang zu anderen Optionen.
+
+
+/* Class = "UILabel"; text = "150"; ObjectID = "F9E-sL-Htw"; */
+"F9E-sL-Htw.normalTitle" = "No, thanks. Get started"; // Nein danke. Direkt starten
+
+
+/* Class = "UILabel"; text = "150"; ObjectID = "F9E-sL-Htw"; */
+"miC-cp-ZR8.normalTitle" = "Yes, let's take a look!"; // Ja, anschauen
+
+/* Class = "UILabel"; text = "150"; ObjectID = "F9E-sL-Htw"; */
+"Lhl-OB-L6c.normalTitle" = "No, thanks";
+
+
+/* Class = "UILabel"; text = ""; ObjectID = "lrE-56-6hl"; */
+"lrE-56-6hl.text" = "Get Me Food";
+
+
+/* Class = "UILabel"; text = ""; ObjectID = "gqN-It-vkK"; */
+"gqN-It-vkK.text" = "Version: 3.1";
+
+/* Class = "UILabel"; text = ""; ObjectID = "Si8-O2-jwN"; */
+"Si8-O2-jwN.text" = "Grocery/To Do list app";
+
+/* Class = "UILabel"; text = ""; ObjectID = "bhN-Bs-H9a"; */
+"bhN-Bs-H9a.text" = "The app allows managing your everyday grocery and to do list in a convenient and easy way. Send lists to your friends, notify them about going shopping"; // jeden Tag bequem und einfach deine Einkaufsliste verwalten mit der neuen Get Me Food app. Teile die Einkausfliste mit deinen Freunden und benachrichtige sie wenn du einkaufen gehst.
+
+/* Class = "UILabel"; text = ""; ObjectID = "wMC-tF-aVS"; */
+"wMC-tF-aVS.text" = "The app does not require instant internet connection. Only for synchronization and sending lists and notifications"; // Die App funktioniert auch im Offline Modus und benoetigt Internetzugang nur beim senden der Liste und der Benachrichtigungen.
+
+/* Class = "UILabel"; text = ""; ObjectID = "4Cg-7A-uGG"; */
+"4Cg-7A-uGG.text" = "Contact and feedback:"; // Kontakt und feedback
+
+/* Class = "UILabel"; text = ""; ObjectID = "4Cg-7A-uGG"; */
+"BVy-da-qft.text" = "Created by:"; //
+
+/* Class = "UILabel"; text = ""; ObjectID = "MKN-pr-jQS"; */
+"MKN-pr-jQS.text" = "(c) 2015 Aleksei Petukhov";
+
+
+/* Class = "UIViewController"; title = "Edit categories"; ObjectID = "8RF-Qo-tBG"; */
+"8RF-Qo-tBG.title" = "About";
+
+/* Class = "UILabel"; text = ""; ObjectID = "z6D-Rj-Ei7"; */
+"z6D-Rj-Ei7.text" = "Note";
+
+/* Class = "UILabel"; text = ""; ObjectID = "z6D-Rj-Ei7"; */
+"kcl-9d-m0u.text" = "Share list";
+
+/* Class = "UILabel"; text = ""; ObjectID = "z6D-Rj-Ei7"; */
+"Fzi-vn-q9O.text" = "Options";
+
+/* Class = "UILabel"; text = ""; ObjectID = "z6D-Rj-Ei7"; */
+"qZG-9P-aD7.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = ""; ObjectID = "z6D-Rj-Ei7"; */
+"vYa-W6-jAE.normalTitle" = "Done";
+
+/* Class = "UILabel"; text = ""; ObjectID = "z6D-Rj-Ei7"; */
+"fNZ-sH-88w.text" = "Product icon"; //
+
+/* Class = "UILabel"; text = ""; ObjectID = "z6D-Rj-Ei7"; */
+"B7k-oD-5L8.text" = "Amount";
+
+/* Class = "UILabel"; text = ""; ObjectID = "z6D-Rj-Ei7"; */
+"7VF-BO-cCS.text" = "Choose unit";
+
+/* Class = "UILabel"; text = ""; ObjectID = "z6D-Rj-Ei7"; */
+"SSd-BV-Zql.text" = "Units";
+
+/* Class = "UILabel"; text = ""; ObjectID = "QGg-Bw-fl1"; */
+"QGg-Bw-fl1.text" = "Text message"; // Nachricht
+
+/* Class = "UILabel"; text = ""; ObjectID = "Mw5-ie-G4i"; */
+"Mw5-ie-G4i.text" = "Picture message"; // Bild senden
+
+/* Class = "UILabel"; text = ""; ObjectID = "Mw5-ie-G4i"; */
+"JMp-Al-x4r.text" = "Save into gallery"; // Speichern in Galerie
+
+/* Class = "UILabel"; text = ""; ObjectID = "Mw5-ie-G4i"; */
+"dUe-1d-ZX3.normalTitle" = "Help";
+
+/* Class = "UILabel"; text = ""; ObjectID = "Y07-WO-VkA"; */
+"Y07-WO-VkA.normalTitle" = "Send";
+
+/* Class = "UILabel"; text = ""; ObjectID = "vgq-bE-pRM"; */
+"vgq-bE-pRM.normalTitle" = "Send";
+
+/* Class = "UILabel"; text = ""; ObjectID = "geX-ly-RNp"; */
+"geX-ly-RNp.text" = "Category";
+
+/* Class = "UILabel"; text = ""; ObjectID = "JjQ-Az-eSL"; */
+"JjQ-Az-eSL.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = ""; ObjectID = "cRE-4w-0jo"; */
+"cRE-4w-0jo.normalTitle" = "Done";
+
+/* Class = "UILabel"; text = ""; ObjectID = "lc9-fK-r7g"; */
+"lc9-fK-r7g.text" = "Note";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"SQh-zx-1z9.normalTitle" = "Done";
+
+/* Class = "UILabel"; text = ""; ObjectID = "RWs-O8-Wl7"; */
+"RWs-O8-Wl7.normalTitle" = "Close";

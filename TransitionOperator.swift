@@ -162,7 +162,7 @@ class TransitionOperator: NSObject, UIViewControllerAnimatedTransitioning, UIVie
                 
                 //toViewController.finalizeTransitionWithSnapshot(self.snapshot, senderVC: fromViewController!, isFrom: self.isFromShopList, listid: self.shoplistid, isreceived: self.shoplistisrec)
                // toViewController.finalizeTransitionWithSnapshot(self.snapshot, senderVC: fromViewController!)
-                toViewController.finalizeTransitionWithSnapshot(self.snapshot, senderVC: fromViewController!)
+             //   toViewController.finalizeTransitionWithSnapshot(self.snapshot, senderVC: fromViewController!)
                   print([self.isFromShopList, self.shoplistid, self.shoplistisrec])
                 //isFrom: Bool, listid:String, isreceived: Bool
                 //, listid: toViewController.shoplistid) // I add here info about the sender view controller

@@ -1,0 +1,12 @@
+
+/* Class = "UIButton"; normalTitle = "Add user to contacts"; ObjectID = "2O8-yR-5og"; */
+"2O8-yR-5og.normalTitle" = "Add user to contacts";
+
+/* Class = "UILabel"; text = "This user added you to contacts"; ObjectID = "ISH-Te-Ve9"; */
+"ISH-Te-Ve9.text" = "This user added you to contacts";
+
+/* Class = "UILabel"; text = "Pretty Long Name"; ObjectID = "Tik-RI-bzh"; */
+"Tik-RI-bzh.text" = "Pretty Long Name";
+
+/* Class = "UILabel"; text = "morethanjustalongemail@email.com"; ObjectID = "p7p-uC-m9w"; */
+"p7p-uC-m9w.text" = "morethanjustalongemail@email.com";

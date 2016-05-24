@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  PerfectList
+
+  Created by Aleksei Petukhov on 30/01/16.
+  Copyright © 2016 PekkiPo. All rights reserved.
+*/
+
+CFBundleDisplayName = "Купика";
+
+FacebookDisplayName = "Купика";

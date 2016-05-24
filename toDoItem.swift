@@ -18,6 +18,7 @@ class toDoItem: NSObject {//, Equatable, Hashable, NSCopying {
     var itemnote:String
     var itemimportant:Bool
     var ischecked:Bool
+   
     
     
     init(itemid:String,itemname:String,itemnote:String,itemimportant:Bool,ischecked:Bool) {

@@ -31,6 +31,7 @@ class ItemShopListCell: UITableViewCell {
     @IBAction func deleteButton(sender: AnyObject) {
     }
     
+    @IBOutlet var checkedheight: NSLayoutConstraint!
     
     @IBOutlet var checkedview: UIView!
     
@@ -67,6 +68,9 @@ class ItemShopListCell: UITableViewCell {
         
        // self.heightconstraint.constant = self.frame.size.height
        // self.widthconstraint.constant = self.frame.size.width
+        
+        self.checkedheight.constant = 0
+        
         
         self.layoutMargins = UIEdgeInsetsZero
         

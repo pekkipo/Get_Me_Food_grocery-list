@@ -1,0 +1,880 @@
+/* 
+  Localizable.strings
+  PerfectList
+
+  Created by Aleksei Petukhov on 23/01/16.
+  Copyright © 2016 PekkiPo. All rights reserved.
+*/
+
+/* Dynamic strings */
+
+"TapHere" = "Tap here to register/login";
+
+"Anonymous" = "Anonymous"; // Anonym
+
+"AnonUser" = "Anonymous User"; // Anonymer Benutzer
+
+"DoneExc" = "Done!";
+
+"RemSet" = "Reminder is set";
+
+"Oops" = "Oops!";
+
+"WasError" = "There was an error";
+
+"Search1" = "Search in the catalog";
+
+"Search2" = "Search here...";
+
+"SearchCat" = "Search for category ";
+
+"DoneButton" = "Done";
+
+"EditButton" = "Edit";
+
+"NoConnection" = "No internet connection. Please try again later";
+
+"CantSend" = "Could Not Send Email";
+
+"NoEmailInfo" = "Your device could not send e-mail.  Please check e-mail configuration and try again.";
+
+"reportEmail" = "REPORT: Disturbing user, id:";
+
+"addNotes" = "Additional notes:";
+
+"userDistText" = "User is dusturbing other people. Please check on that.";
+
+"wait" = "Please, wait";
+
+
+"useradded" = "User added";
+
+"useraddedfull" = "User added to your contacts list";
+
+"thisperson" = "This person is now in your contact list";
+
+"errorExc" = "Error!";
+
+"error2" = "An error occured";
+
+"nouser" = "No such user in our database";
+
+"messend" = "Message is sent";
+
+"goingshopping" = "is going shopping! Maybe you need something to buy?";
+
+"findout" = "finds out you go shopping!";
+
+"eventuseradded" = "User was added to contact list";
+
+"useraddedyou" = "This user has added you to contact list";
+
+/* PICTURES STUFF */
+
+"usual" = "Usual pictures";
+
+"artistic" = "Artistic pictures";
+
+"setcolored" = "Colored";
+"setsketchy" = "Sketchy";
+"setbw" = "Black and white";
+"setforcats" = "For categories";
+
+"addingitem" = "Adding item";
+
+"delete" = "Delete";
+
+"deleting" = "Deleting";
+
+"catrem1" = "Category was removed";
+
+"catrem2" = "All items of this category from now on belong to \"Others\" category";
+
+"yourcats" = "My custom categories";
+
+"deletebig" = "DELETE";
+
+"getting" = "Getting lists";
+
+"saving" = "Saving. Please, wait";
+
+"cannotcheck" = "Cannot check incoming lists";
+
+"saveplease" = "Save the list";
+
+"saveplease2" = "Please, first accept the list by tapping Save"; // Bestaetigen Sie die Einkaufsliste indem sie aufspeichern klicken
+
+"close" = " Close"; // Schliessen
+
+"options" = "OPTIONS"; // Optionen
+
+"items" = "Items:"; // Gegenstaende
+
+"accepted" = "Sent. Accepted"; // Gesendet. Angekommen
+
+"notaccepted" = "Sent. Not yet accepted"; // Gesendet. Noch nicht angekommen
+
+"checkemail" = "Check your email for the link"; // Pruefen Sie im email account ob der Link angekommen ist
+
+"accountremoved" = "The account was completely removed."; // Der Account vorllstandig geloescht
+
+"wrongemail" = "Invalid email format"; // Nicht valides email format
+
+"validemail" = "Please enter valid email with \"@\""; // Bitte vervollstandigen Sie Ihre email Adresse mit at
+
+"typename" = "Please type a name"; // Bitte geben Sie eine Name ein
+
+"persdata" = "Your personal data was changed successfully"; // Ihre personlichen Daten wurden erfolgreich aktualieseren
+
+"exccats" = "Existing categories"; // Kategorien
+
+"sending" = "Sending the list"; // Liste wird gesendet
+
+"warning" = "Warning!"; // Warnung!
+
+"wasntsaved" = "This item wasn't saved"; // Dieser Gegenschtand wurde nicht gespeichert
+
+"listwassent" = "The list was sent successfully. Later check the delivery in sharing history"; // Die Liste wurde erfolgreich gesendet
+
+"incomingpush" = "Incoming Shopping list from"; // Eingegangene Einkaufsliste von
+
+"incomingtodopush" = "Incoming To Do list from"; // Eingegangene To-Do-liste Liste von
+
+"unknownemail" = "Unknown email"; // Unbekkante e-mail
+
+"choosecontacts" = "Choose from contacts"; // Waehlen Sie von der Kontaktliste jemanden aus
+
+"loading" = "Loading"; // Wird geladen
+
+"pasting" = "Pasting items"; // Wird eingefuegt
+
+"goshoppingreminder" = "Go shopping"; // Gehe einkaufen
+
+/* SETTINGS VC */
+
+"account" = "Account Info"; // Account Info
+
+"subscription" = "Subscription Info";
+
+"synchronize" = "Synchronize"; // Synchronisieren
+
+"contacts" = "Contacts"; //
+
+"shhistory" = "Sharing History"; // Vergangener (Gesamter) Verlauf
+
+"restorepurch" = "Restore purchases"; //
+
+"logout" = "Logout"; // Logout
+
+"customcats" = "Manage categories"; // Kategorien verwalten
+
+"favgroc" = "Favourite groceries"; // Belliebtest Produkte
+
+"clearhist" = "Clear Events History"; // Gesamtverlauf loeschen
+
+"lang" = "Change Language"; // Sprache wechseln * aendern
+
+"faq" = "F.A.Q."; // FAQ
+
+"sendfeedback" = "Send Feedback"; // Feedback senden
+
+"reportproblem" = "Report a Problem"; // Probleme melden
+
+"rateapp" = "Rate the app"; // Bewerten Sie die App
+
+"feat" = "App Features"; //
+
+"privacy1" = "Privacy Policy"; //
+
+"acknow" = "Acknowledgements"; //  egal
+
+"accdet" = "Account Details"; // Account Details
+
+"appset" = "App Settings"; // App *
+
+"sup" = "Support"; // Support
+
+"about" = "About"; // Ueber
+
+"cancelbutton" = "Cancel"; // Schliessen
+
+
+
+/* */
+
+"synchr" = "Syncronizing";
+
+"unknown" = "Unknown";
+
+"addedyou" = "added you to contact list";
+
+"yourcontacts" = "My contacts";
+
+"trylater" = "Please try again later"; // Bitte versuchen Sie es spaeter noch einmal
+
+"failedlogin" = "Failed login"; // Failed login
+
+"oneerror" = "Error occured:"; // Fehler
+
+"errorinform" = "The error in form"; // Unvollstaendig ausgefuelt
+
+"enternameandpass" = "Please enter a username and password"; // Bitte geben Sie das passwort und benutzer name ein
+
+"failedsignup" = "Failed SignUp"; // Anmelden ist fehlgeschlagen
+
+"loggingin" = "Logging in"; // Einloggen
+
+
+/* CATEGORIES NAME */
+
+"catvegs" = "Vegetables";
+"catfruits" = "Fruits & Berries";
+"catdairy" = "Dairy";
+"catmeat" = "Meat";
+"catseafood" = "Seafood";
+"catbakery" = "Bakery";
+"catsnacks" = "Snacks";
+"catbeverages" = "Beverages";
+"catalcohol" = "Alcohol";
+"catcereals" = "Cereals & Breakfast";
+"catsweets" = "Sweets";
+"catcondiments" = "Condiments/Sauces/Pantry";
+"catcanned" = "Canned food";
+"catberries" = "Berries";
+"catpasta" = "Pasta";
+"catgrains" = "Grains";
+"catfrozen" = "Frozen Food";
+"catdeli" = "Deli";
+"catbaby" = "Baby Care";
+"catpets" = "Pet Supplies";
+"catpersonalcare" = "Personal Care";
+"catpharmacy" = "Pharmacy";
+"cathousehold" = "Household";
+"cattobacco" = "Tobacco";
+"catothers" = "Others";
+
+
+/* ADD ITEM VC */
+
+"units" = ""; // units - Massinhalt
+"un" = "";
+"pieces" = "pieces"; // artikel
+"pcs" = "pcs"; // art
+"dozens" = "dozens"; // dutzend
+"dz" = "dz"; // dz
+"kilograms" = "kilograms"; // egal mm
+"kg" = "Kg";
+"grams" = "grams"; // gramm
+"g" = "g";
+"liters" = "Liters"; //
+"L" = "L";
+"milliliters" = "milliliters";
+"ml" = "ml";
+"flonz" = "fluid ounces"; // (Amer.)
+"floz" = "fl oz";
+"ounces" = "ounces";
+"oz" = "oz";
+"pounds" = "pounds"; //Pfunde
+"lb" = "lb"; //pfd.
+"gallons" = "gallons"; //
+"gal" = "gal";
+"meters" = "meters"; //
+"m" = "m";
+"centimeters" = "centimeters";
+"cm" = "cm";
+"inches" = "inches"; //
+"packages" = "packages"; // Packete
+"packs" = "pkg";  //
+
+"dontmatch" = "Units don't match, sum is not calculated"; // Einhaiten stimmen nicht ueber ein, die Gesamtsumme konnten nicht berechnet werden
+
+"thefollowingitems" = "Added Items"; // Einzugefuegt Produkte
+
+/* CATALOG ITEMS */
+
+
+
+/* VEGETABLES */
+"vegetables" = "Vegetables";
+"tomatoes" = "Tomatoes";
+"cucumbers" = "Cucumbers";
+"brocolli" = "Brocolli";
+"carrot" = "Carrot";
+"lettuce" = "Lettuce";
+"cabbage" = "Cabbage";
+"mushrooms" = "Mushrooms";
+"onion" = "Onion";
+"potato" = "Potato";
+"spinach" = "Spinach";
+"eggplant" = "Eggplant";
+"pumpkin" = "Pumpkin";
+"radish" = "Radish";
+"garlic" = "Garlic";
+"greenbeans" = "Green Beans";
+"bellpepper" = "Bell Pepper";
+"corn" = "Corn";
+"celery" = "Celery";
+"beans" = "Beans";
+"asparagus" = "Asparagus";
+"beetroot" = "Beetroot";
+"cauliflower" = "Cauliflower";
+"cherrytomatoes" = "Cherry Tomatoes";
+"chillies" = "Chillies";
+"chives" = "Chives";
+"cilantro" = "Cilantro";
+"zucchini" = "Zucchini";
+
+
+
+
+/* FRUITS */
+
+"fruits" = "Fruits";
+"apples" = "Apples";
+"oranges" = "Oranges";
+"lemons" = "Lemons";
+"limes" = "Limes";
+"bananas" = "Bananas";
+"cherries" = "Cherries";
+"grapefruits" = "Grapefruits";
+"grapes" = "Grapes";
+"kiwi" = "Kiwi";
+"tangerines" = "Tangerines";
+"mango" = "Mango";
+"avocado" = "Avocado";
+"melons" = "Melon";
+"peaches" = "Peaches";
+"pears" = "Pears";
+"pineapples" = "Pineapples";
+"nectarines" = "Nectarines";
+"plums" = "Plums";
+"papaya" = "Papaya";
+"figs" = "Figs";
+"strawberries" = "Strawberries";
+"blueberries" = "Blueberries";
+"raspberries" = "Raspberries";
+"blackberries" = "Blackberries";
+"watermelon" = "Melon (Watermelon)";
+
+
+/* DAIRY */
+
+"dairy" = "Dairy";
+"milk" = "Milk";
+"butter" = "Butter";
+"cheese" = "Cheese";
+"cream" = "Cream";
+"creamcheese" = "Cream cheese";
+"eggs" = "Eggs";
+"feta" = "Feta";
+"parmesan" = "Parmesan";
+"margarine" = "Margarine";
+"mascarpone" = "Mascarpone";
+"mozarella" = "Mozarella";
+"ricotta" = "Ricotta";
+"sourcream" = "Sour Cream";
+"soymilk" = "Soy Milk";
+"yogurt" = "Yogurts";
+"schreddedcheese" = "Schredded Cheese";
+"pudding" = "Pudding";
+"drinkingyougurt" = "Drinking Yougurt";
+"cottagecheese" = "Cottage cheese";
+"kefir" = "Kefir";
+
+/* MEAT */
+
+"meat" = "Meat";
+"beef" = "Beef";
+"chicken" = "Chicken";
+"groundbeef" = "Ground Beef";
+"steak" = "Steak";
+"turkey" = "Turkey";
+"pork" = "Pork";
+"porkchops" = "Pork Chops";
+"sausages" = "Sausages";
+"duck" = "Duck";
+"bacon" = "Bacon";
+"chickenbreast" = "Chicken breast";
+"ham" = "Ham";
+"prosciutto" = "Prosciutto";
+"salami" = "Salami";
+"veal" = "Veal";
+"barbeque" = "Barbeque";
+
+
+/* SEAFOOD */
+
+
+"seafood" = "Seafood";
+"anchovies" = "Anchovies";
+"fish" = "Fish";
+"salmon" = "Salmon";
+"lobsters" = "Lobsters";
+"schrimps" = "Schrimps";
+"oysters" = "Oysters";
+"tuna" = "Tuna";
+"clams" = "Clams";
+"scallops" = "Scallops";
+"codfish" = "Codfish";
+"pinksalmon" = "Pink Salmon";
+"sprats" = "Sprats";
+"herring" = "Herring";
+
+/* BAKERY */
+
+"bakery" = "Bakery";
+"bread" = "Bread";
+"breadrolls" = "Bread Rolls";
+"hamburgerbuns" = "Hamburger Buns";
+"bagels" = "Bagels";
+"pie" = "Pie";
+"darkbread" = "Dark bread";
+"cookies" = "Cookies";
+"cakes" = "Cake";
+"waffles" = "Waffles";
+"pretzels" = "Pretzels";
+"croissants" = "Croissants";
+"biscuits" = "Biscuits";
+"crispbread" = "Crispbread";
+"muffins" = "Muffins";
+"toasts" = "Toasts";
+"pizzadough" = "Pizza dough";
+"slicedbread" = "Sliced bread";
+"tortillas" = "Tortillas";
+
+/* SNACKS */
+
+"snacks" = "Snacks";
+"chips" = "Chips";
+"driedfruits" = "Dried Fruits";
+"crackers" = "Crackers";
+"nachoes" = "Nachos";
+"popcorn" = "Popcorn";
+"peanuts" = "Peanuts";
+"nuts" = "Nuts";
+"pistachios" = "Pistachios";
+"tortillachips" = "Tortilla Chips";
+"cashews" = "Cashews";
+"greenolives" = "Green Olives";
+"blackolives" = "Black Olives";
+
+/* BEVERAGES */
+
+"beverages" = "Beverages";
+"water" = "Water";
+"mineralwater" = "Mineral Water";
+"juice" = "Juice";
+"orangejuice" = "Orange Juice";
+"applejuice" = "Apple Juice";
+"cherryjuice" = "Cherry Juice";
+"grapejuice" = "Grape Juice";
+"lemonjuice" = "Lemon Juice";
+"cocacola" = "Coca-Cola";
+"pepsi" = "Pepsi";
+"lemonade" = "Lemonade";
+"drpepper" = "Dr. Pepper";
+"soda" = "Soda";
+"5lwater" = "Water 5L";
+"tea" = "Tea";
+"coffee" = "Coffee";
+"icetea" = "Ice Tea";
+"cider" = "Cider";
+"hotchocolate" = "Hot chocolate";
+"energydrink" = "Energy Drink";
+"sportdrink" = "Sport Drink";
+
+/* ALCOHOL */
+
+"alcohol" = "Alcohol";
+"beer" = "Beer";
+"champagne" = "Champagne";
+"vodka" = "Vodka";
+"redrum" = "Red Rum";
+"whiterum" = "White Rum";
+"tequila" = "Tequila";
+"whiskey" = "Whiskey";
+"gin" = "Gin";
+"tonic" = "Tonic";
+"prosecco" = "Prosecco";
+"redwine" = "Red Wine";
+"whitewine" = "White Wine";
+"pinkwine" = "Pink Wine";
+"justwine" = "Wine";
+
+/* CEREALS */
+
+
+"cereals" = "Cereals";
+"honey" = "Honey";
+"oatmeal" = "Oatmeal";
+"cornflakes" = "Corn Flakes";
+"nesquick" = "Nesquick";
+"granola" = "Granola";
+"jam" = "Jam";
+"muesli" = "Muesli";
+"porridge" = "Porridge";
+"pancakes" = "Pancakes";
+
+/* SWEETS */
+
+"sweets" = "Sweets";
+"chocolate" = "Chocolate";
+"candy" = "Candy";
+"chewinggum" = "Chewing Gum";
+"nougatcreme" = "Nougat Crème";
+"chocolatecream" = "Chocolate Cream";
+"dessert" = "Dessert";
+"christmascookies" = "Christmas Cookies";
+
+/* CONDIMENTS */
+
+
+"oil" = "Oil";
+"oliveoil" = "Olive Oil";
+"spices" = "Spices";
+"salt" = "Salt";
+"sugar" = "Sugar";
+"pepper" = "Pepper";
+"mayonnaise" = "Mayonnaise";
+"mustard" = "Mustard";
+"ketchup" = "Ketchup";
+"salsa" = "Salsa";
+"pastasauce" = "Pasta Sauce";
+"seasonings" = "Seasonings";
+"syrup" = "Syrup";
+"soysauce" = "Soy Sauce";
+"brownsugar" = "Brown Sugar";
+"flour" = "Flour";
+"jelly" = "Jelly";
+"peanutbutter" = "Peanut Butter";
+"bbqsauce" = "BBQ Sauce";
+"bakingpowder" = "Baking Powder";
+"balsamicvinegar" = "Balsamic vinegar";
+"soda2" = "Soda";
+"breadcrumbs" = "Breadcrumbs";
+"cinnamon" = "Cinnamon";
+"maplesyrup" = "Maple Syrup";
+"paprika" = "Paprika";
+"saladdressing" = "Salad Dressing";
+"vanilla" = "Vanilla";
+"yeast" = "Yeast";
+
+
+/* CANNED FOOD */
+
+"cannedfood" = "Canned Food";
+"cannedbeans" = "Canned Beans";
+"cannedcorn" = "Canned Corn";
+"cannedfruits" = "Canned Fruits";
+"cannedfish" = "Canned Fish";
+"cannedsoup" = "Canned Soup";
+
+/* PASTA */
+
+
+"pastamacaroni" = "Pasta/Macaroni";
+"spaghetti" = "Spaghetti";
+"noodles" = "Noodles";
+"vermicelli" = "Vermicelli";
+
+/* GRAINS */
+
+"grains" = "Grains";
+"rice" = "Rice";
+"brownrice" = "Brown Rice";
+"couscous" = "Couscous";
+"risottorice" = "Risotto Rice";
+"wildrice" = "Wild Rice";
+
+/* FROZEN FOOD */
+
+
+"frozengoods" = "Frozen Food";
+"icecream" = "Ice Cream";
+"frozenfruits" = "Frozen Fruits";
+"frozenvegetables" = "Frozen Vegetables";
+"frozenpizza" = "Frozen Pizza";
+"frozenmeals" = "Frozen Meals";
+"frozenfish" = "Frozen Fish";
+"frozenfries" = "Frozen Fries";
+"frozennuggets" = "Frozen Nuggets";
+"frozenpancakes" = "Frozen Pancakes";
+
+/* BABY SUPPLIES */
+
+
+"babyfood" = "Baby Food";
+"diapers" = "Diapers"; // Windeln
+"wipes" = "Wipes";
+"babyshampoo" = "Baby Shampoo";
+"babysoap" = "Baby Soap";
+"babyoil" = "Baby Oil";
+"babypowder" = "Baby powder";
+"pacifiers" = "Pacifiers";
+"rashcream" = "Rash Cream";
+"sanitizer" = "Sanitizer";
+"toddler" = "Toddler";
+
+/* PET SUPPLIES */
+
+
+"dogfood" = "Dog Food";
+"catfood" = "Cat Food";
+"birdfood" = "Bird Food";
+"dogtreats" = "Dog Treats"; // Hundefutter
+"cattreats" = "Cat Treats";
+"fishfood" = "Fish Food";
+"catlitter" = "Cat Litter"; //
+
+/* PERSONAL CARE */
+
+"bodylotion" = "Body Lotion";
+"shampoo" = "Shampoo";
+"hairconditioner" = "Hair Conditioner";
+"condoms" = "Condoms";
+"lenssolution" = "Lens Solution";
+"cottonpads" = "Cotton Pads";
+"dentalfloss" = "Dental Floss";
+"cottonswabs" = "Cotton Swabs";
+"deodorant" = "Deodorant";
+"facecream" = "Face Cream";
+"facialtissues" = "Facial Tissues";
+"toothpaste" = "Toothpaste";
+"toothbrush" = "Toothbrush";
+"hairgel" = "Hair Gel";
+"hairspray" = "Hair Spray";
+"handcream" = "Hand Cream";
+"mouthwash" = "Mouthwash";
+"nailpolish" = "Nail Polish";
+"nailpolishremover" = "Nail Polish remover";
+"razor" = "Razor";
+"razorblades" = "Razor Blades";
+"shavingcream" = "Shaving Cream";
+"showergel" = "Shower Gel";
+"soap" = "Soap";
+"sunscreen" = "Sunscreen";
+"tampons" = "Tampons";
+"tissues" = "Tissues";
+"wetwipes" = "Wet Wipes";
+"aftershave" = "After Shave";
+"mascara" = "Mascara";
+"eyeshadow" = "Eye Shadow";
+"lipstick" = "Lipstick";
+"cottonballs" = "Cotton Balls";
+"toothpicks" = "Toothpicks";
+
+/* PHARMACY */
+
+"medications" = "Medications";
+"plasters" = "Plasters";
+"painreliever" = "Pain Reliever"; // Schmerzmittel
+"vitamins" = "Vitamins";
+"antiflewtreatments" = "Anti-Flu Treatments"; // Medikamente gegen Erkaeltung
+"pyretic" = "Pyretic";
+
+/* HOUSEHOLD */
+
+"sponge" = "Sponge";
+"papertowel" = "Paper Towels"; // Zewa
+"toiletpaper" = "Toilet Paper";
+"disinfectant" = "Disinfectant";
+"laundrydetergent" = "Laundry Detergent";
+"washingpowder" = "Laundry Powder";
+"dishsoap" = "Dish Soap";
+"wipes1" = "Wipes";
+"trashbags" = "Trash Bags";
+"bucket" = "Bucket";
+"squeegee" = "Squeegee";
+"liquidsoap" = "Liquid Soap";
+"aluminiumfoil" = "Aluminium Foil";
+"bathroomcleaner" = "Bathroom Cleaner";
+"toiletcleaner" = "Toilet Cleaner";
+"batteries" = "Batteries";
+"candles" = "Candles";
+"charcoal" = "Charcoal";
+"dishwashersalt" = "Dishwasher Salt";
+"dishwashertabs" = "Dishwasher Tabs";
+"dishwashingliquid" = "Dishwashing Liquid";
+"fabricsoftener" = "Fabric Softener";
+"glasscleaner" = "Glass Cleaner";
+"plasticwrap" = "Plastic Wrap";
+"wrappingpaper" = "Wrapping Paper";
+"brazier" = "Brazier";
+"plasticplates" = "Plastic Plates";
+"plasticcups" = "Plastic Cups";
+"ignition" = "Ignition";
+
+/* TOBACCO */
+
+
+"cigarettes" = "Cigarettes";
+"lighter" = "Lighter";
+"tobacco" = "Tobacco";
+
+/* */
+
+"amount" = "Amount"; // Betrag
+
+"copy" = "Copy"; // Kopieren
+
+"paste" = "Paste"; // Einfugen
+
+"itemscopied" = "Items were copied"; // Die Artikeln wurden kopiert
+
+"openthelist" = "Open the list you want to copy items to - Tap \"Edit All\" - \"Paste\""; // Offnen Sie die liste, in die sie die Artikel einfugen mochten
+
+"noitemsto" = "No items to paste"; // Keine Artikel zum kopieren
+
+"pleasecopy" = "Please, copy some items first"; // Bitte kopieren zunachst einige Artikel
+
+"totalsum" = "Total sum:";
+
+"list" = "List"; //
+
+"listshop" = "Shopping List";
+
+"listtodo" = "To Do List";
+
+"hidecats" = "Hide categories"; // Kategorien verbergen
+
+"showcats" = "Show categories"; // Kategorien einzeigen
+
+"helpsh1" = "Sending the list to Get Me Food App user\n\nStart typing users' email in the respective field. The app will start searching for such user in our database. Once the desired user is found and displayed in the drop-menu - choose the user and tap Send button. If nothing shows up in drop menu, most probably such user doesn't exist in our database. If this is the case, the list will be sent via email along with the invitation to install the app.\n\nOther options\n\nYou can send the list via email, via message or as a picture. Message can be sent in text or image format. Also, you can just save the screenshot of a list to the gallery on your device and later send it via messengers or social networks. Please note that in order to send a picture you should first open the list or be already in a list creation screen.";
+// Liste an andere Get Me Food App user senden .. Bitte geben Sie die email adresse des users in das entsprechende Feld ein. Die App wird darauf hin diesen User in der Datenbank suchen. Sobald dieser User gefunden ist, wird er Ihnen im drop-menu angezeigt - waehlen Sie einen User aus und druecken Sie auf  Senden
+
+
+"helpcontact" = "Start typing email in the respective field. Autocomplete will find such user in our database. Once you found desired user - choose him/her from drop menu and tap \"Add Contact\" button."; // ... das Autocomplete wird diesen User in den Datenbank finden.
+
+"wantdelete1" = "Are you sure?"; // Sind Sie sicher?
+
+"wantdelete2" = "All the data related to your account will be completely removed from the device and the server"; // Alle Daten bezuglich ihres Accounts werden von ihren Geraet und dem Server entfernt
+
+"incom" = "Incoming list!"; // Gesendete Liste
+"recfrom" = "Received from:"; // Empfangen von
+"availableapp" = "Get Me Food - grocery list. The app is available on the App Store"; // Get Me Food  - einkaufsliste. Diese App im App Store verfugbar
+
+"emaillistname" = "List:";
+"emaillistnote" = "Note:"; // Notizen
+"inthelist" = "List contains:"; // Die Liste enthaelt
+
+"appname" = "Get Me Food";
+
+"youreceived" = "Incoming list for you";
+
+"todoimportant" = "Important!"; // Wichtig!
+
+
+
+/* HELP */
+"aboutgraphic" = "Starting guide";
+"aboutitems" = "Adding/editing items";
+"aboutapp" = "App functions";
+
+"graphichelp" = "Starting guide";
+
+
+"howcreateshopitem" = "How do I create shop list item?";
+"howedititem" = "How do I edit shop list item?";
+"howcreatetodoitem" = "How do I create to do list item?";
+"howedittodoitem" = "How do I edit to do list item?";
+"howquicklyadd" = "How do I quickly add shop list item?";
+"howaddmultiple" = "How do I add multiple shop list items at once?";
+"howaddtofavs" = "How do I add shop item to favourites?";
+"howreorder" = "How do I re-order shop list items?";
+"howchangeunits" = "How do I change shop items units?";
+"howaddpictures" = "How do I add pictures to shop list items?";
+"howdeleteitems" = "How do I delete items from the list?";
+"howcopy" = "How do I copy/paste/delete items?";
+
+
+
+"howcreateshopitemT" = "When you find yourself in the shop list creation screen, you can:\n1) Tap on the white plus button in the top right corner\n2) Start typing product's name within the section under lists' name and note. The app will find the product in the catalog. Once you see the required item - tap on it and then tap on the red plus icon. Or you can keep typing products' name to create your own item and then also tap on the red plus icon.\nRemember! You can also immediately edit the amount and unit of an item tapping on \"Amount\" icon";
+"howedititemT" = "Just tap on the item within the list. Try to avoid tapping on the right corner of the item in a list, since thus you will mark the item as checked instead of editing it. Anyway, after that you can uncheck an item simply tapping on two white arrows icon";
+"howcreatetodoitemT" = "When you find yourself in the to do list creation screen, you can should tap on the white plus button in the right top corner";
+"howedittodoitemT" = "Just tap on the item within the list. Try to avoid tapping on the right corner of the item in a list, since thus you will mark the item as checked instead of editing it. Anyway, after that you can uncheck an item simply tapping on two white arrows icon";
+"howquicklyaddT" = "Start typing product's name within the section under lists' name and note. The app will find the product in the catalog. Once you see the required item - tap on it and then tap on the red plus icon. Or you can keep typing products' name to create your own item and then also tap on the red plus icon.\nRemember! You can also immediately edit the amount and unit of an item tapping on \"Amount\" icon";
+"howaddmultipleT" = "When you find yourself in the shop list creation screen, you can tap on the first icon (looks like list with a plus) in the top right corner. In the next screen you can:\n1) Create new item on a go\n2) Choose items from the catalog, history or your favourite items.\n Afterwards, you can edit each added item before going back to the shop list creation screen";
+"howaddtofavsT" = "When you edit a product, at the bottom of the screen you will find star-alike button. Just tap on it. Tap on it again to delete the product from favourites.";
+"howreorderT" = "When in the list creation screen, hold the item for a while and then drag it to the desirable position\n Note, that this is only possible when list doesn't show categories, otherwise all items would be sorted according to their categories";
+"howchangeunitsT" = "In the product editing (or creating new one) screen find the \"Units\" section and tap on an empty rectangle - the units choosing screen will show up in the bottom of the screen";
+"howaddpicturesT" = "Tap on the \"Change picture\" (or Photograph icon) and choose picture from defaults or upload your own";
+"howdeleteitemsT" = "Swipe the item to the left and tap on delete button. The same applies to contacts, categories and so on.";
+"howcopyT" = "In the bottom of the list tap on \"Edit All\" button. Check the items you want to copy or delete. Then tap on the respective button on the top panel. If you copied items, then you can paste them to any list you want -> Go to the list -> Tap on \"Edit All\" and tap on \"Paste\"";
+
+
+
+"howcreatecats" = "How do I create my own categories?";
+"howaddcontact" = "How do I add contacts?";
+"howsendlists" = "How do I send the list?";
+"howsendbyemail" = "How do I send the list via messages/email?";
+"howrenameandnote" = "How do I change list name and note?";
+"howturnoncats" = "How do I see categories in a shop list?";
+"howchangecurrency" = "How do I change the currency of a list?";
+"howsynchronize" = "How do I synchronize my data for using on other devices?";
+"howchangeaccountdata" = "How do I change my personal data?";
+
+
+"howcreatecatsT" = "There are two ways:\n 1) When you choose the category for shop item, you can create your own category on the top of the categories screen\n 2) You can create category from Settings -> Manage categories";
+"howaddcontactT" = "Go to Settings -> Contacts -> type email of the desired user, while you are typing, the dropdown menu will show up with list of possible users to add. Once you found the user, tap on the user in drop-down menu and then tap on \"Add contact\" button";
+"howsendlistsT" = "Directly in the list tap on the button \"Send\" in the bottom left corner or from \"My lists\" screen. There is a send button on each list\n In the sending list screen you should type the users' email and then choose the user from drop menu. Then tap on Send button. Or, if you have users in your contact list, then just tap on the green arrow button next to one of them";
+"howsendbyemailT" = "Tap on the \"Send\" button either in the list creation screen or \"My lists\" screen. Find the required way of sharing the list. In case of saving the list into device gallery, you can later find the list in Photos section of your device. In case of messaging or emailing - the usual message screen will show up with the filled list. You can edit what you want there";
+"howrenameandnoteT" = "Just tap on the name or note in the list creation screen";
+"howturnoncatsT" = "In the list creation list, to the right from lists' name there is a button looking like three points. Tap on it -> The screen with options will show up. Change the properties you want.";
+"howchangecurrencyT" = "In the list creation list, to the right from lists' name there is a button looking like three points. Tap on it -> The screen with options will show up. Change the properties you want.";
+"howsynchronizeT" = "Go to Settings and tap on \"Synchronize\". The data will be uploaded to our server. On the other device also go to Settings and tap on Synchronize.\n Please don't forget to tap synchronize button first on the device where the original data is.";
+"howchangeaccountdataT" = "Go to Settings -> Account Info - > Change what you want and tap on \"Save changes\"";
+
+
+
+
+"tutheader1" = "List creation screen"; // Einkaufsliste erstellen
+"tutheader2" = "Manage items"; // Verwalte Artikel
+"tutheader3" = "My lists screen"; // Meine Liste Fenster
+"tutheader4" = "Custom categories and items"; // kundenkategorien und artikel
+"tutheader5" = "";
+"tutheader6" = "Send notification to your friends"; // Benachrichtige deine Freunde
+"tutheader7" = "Send lists"; // Die Liste senden
+"tutheader8" = "";
+
+/* IMAGES NAMES */
+
+"tutimintro" = "TutorialIntroen";
+"tutim1" = "Tutorial1en";
+"tutim2" = "Tutorial2en";
+"tutim3" = "Tutorial3en";
+"tutim4" = "Tutorial4en";
+"tutim5" = "Tutorial5en";
+"tutim6" = "Tutorial6en";
+"tutim7" = "Tutorial7en";
+
+"reportproblem1" = "I found a bug in the app";
+"reportproblem2" = "Description:";
+
+"privacy" = "Get Me Food Privacy Policy\n\nThe app collects the following information (in case of registration or signing-in via soical networks):\n- Contact info; name and email address\n- Password (Not available for developers. When signing-in via social networks, password is completely unavailable for the app)\n- Profile picture\n- Information you add within the app and upload to the server when synchronizing\nThis information is not further used or analyzed.\n\nDeletion of information:\n\nAll data will be removed if you decide to delete the account in Account Info section";
+
+"wrongsendemail" = "If you got this email by mistake, please ignore it";
+
+"newcat" = "Catalog"; // Katalog
+
+"newfavs" = "Favourites"; // Favoriten
+
+"newhist" = "History"; // Verlauf
+
+"savetogal" = "Saved"; // Gespeichert
+"savetogalmes" = "The list is saved into the gallery"; // Die Liste in wurde in Galerie gespeichert
+"notsavetogal" = "Something went wrong"; // Etwas ist schief gelaufen
+"notsavetogalmes" = "The list wasn't saved"; // Die Liste wurde nicht gespeichert
+
+"otheroptions" = "Other options"; // Andere Optionen
+
+"additemtext" = "+ Add item"; // + Artikel hinzufuegen
+
+"autocompleteplchldr" = "Item name"; // Artikel Name
+
+"popcheck" = "Check received lists"; // Liste anschauen
+"popasc" = "Sort by date (asc.)"; // nach Datum sortieren (aufst.)
+"popdesc" = "Sort by date (desc.)"; // nach Datum /// (abst.)
+"popalpha" = "Sort alphabetically"; // Alphabetisch sortieren
+
+"commoncur" = "Commonly used"; //  Haeufig verwendet
+"allcur" = "All currencies"; // Alle Waerungen
