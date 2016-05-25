@@ -688,14 +688,16 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     
     @IBOutlet var smalltopview: UIView!
     
+    @IBOutlet var OpenMenu2: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadTableAfterPush", name: "reloadTableLists", object: nil)
         
         
-        OpenMenu.target = self.revealViewController()
-        OpenMenu.action = Selector("revealToggle:")
+        OpenMenu2.target = self.revealViewController()
+        OpenMenu2.action = Selector("revealToggle:")
         
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
@@ -5643,7 +5645,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
         // DELETE
-        let deleteAction = UITableViewRowAction(style: .Normal, title: "               ") { (action , indexPath ) -> Void in
+        let deleteAction = UITableViewRowAction(style: .Normal, title: "         ") { (action , indexPath ) -> Void in
             
             self.editing = false
            // self.swipedeleteusual(indexPath)
@@ -5657,7 +5659,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         }
         
         // SHARE
-        let shareAction = UITableViewRowAction(style: .Normal, title: "                 ") { (action , indexPath) -> Void in
+        let shareAction = UITableViewRowAction(style: .Normal, title: "         ") { (action , indexPath) -> Void in
             self.editing = false
             
             //self.optionsaction(indexPath)
@@ -5669,7 +5671,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         }
         
         // OPTIONS
-        let optionsAction = UITableViewRowAction(style: .Normal, title: "            ") { (action , indexPath) -> Void in
+        let optionsAction = UITableViewRowAction(style: .Normal, title: "         ") { (action , indexPath) -> Void in
             self.editing = false
             
             //self.optionsaction(indexPath)
@@ -5677,11 +5679,11 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
             
         }
 
-        if let aoptions = UIImage(named: "TestShare") {
-             optionsAction.backgroundColor = UIColor.imageWithBackgroundColor(aoptions, bgColor: UIColorFromRGB(0x7FC2C6))
+        if let aoptions = UIImage(named: "TestShare2") {
+             optionsAction.backgroundColor = UIColor.imageWithBackgroundColor(aoptions, bgColor: UIColor.clearColor())
         }
         
-        let todooptionsAction = UITableViewRowAction(style: .Normal, title: "           ") { (action , indexPath) -> Void in
+        let todooptionsAction = UITableViewRowAction(style: .Normal, title: "         ") { (action , indexPath) -> Void in
             self.editing = false
 
             //self.todooptionsaction(indexPath)
@@ -5690,7 +5692,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         todooptionsAction.backgroundColor = UIColorFromRGB(0x31797D)
         
         // EDIT
-        let editingAction = UITableViewRowAction(style: .Normal, title: "             ") { (action , indexPath) -> Void in
+        let editingAction = UITableViewRowAction(style: .Normal, title: "         ") { (action , indexPath) -> Void in
             self.editing = false
             
             //self.optionsaction(indexPath)
@@ -5698,8 +5700,8 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
             
         }
         
-        if let aedit = UIImage(named: "4DeleteButton") {
-            editingAction.backgroundColor = UIColor.imageWithBackgroundColor(aedit, bgColor: UIColor.blueColor())
+        if let aedit = UIImage(named: "TestShare3") {
+            editingAction.backgroundColor = UIColor.imageWithBackgroundColor(aedit, bgColor: UIColor.clearColor())
         }
         
 

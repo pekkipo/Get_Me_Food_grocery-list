@@ -486,11 +486,15 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         */
         /////// This is for fancy slide-out stuff
         if segue.identifier == "showalllistssegue" {
-            let toViewController = segue.destinationViewController as! AllListsVC
-            //toViewController.showoption = "alllists"
-            self.modalPresentationStyle = UIModalPresentationStyle.Custom
             
-            toViewController.transitioningDelegate = self.transitionOperator
+            
+            let navVC = segue.destinationViewController as! UINavigationController
+            
+            let  toViewController = navVC.viewControllers.first as! AllListsVC
+            
+           // self.modalPresentationStyle = UIModalPresentationStyle.Custom
+            
+           // toViewController.transitioningDelegate = self.transitionOperator
             toViewController.showoption = "alllists"
             
             toViewController.maindelegate = self

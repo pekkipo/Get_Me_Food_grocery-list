@@ -25,17 +25,14 @@ class ShopListNavigation: UINavigationController {
 
         // Do any additional setup after loading the view.
         
-      UINavigationBar.appearance().barTintColor = UIColorFromRGB(0x0B6065)//UIColorFromRGB(0x020811)//(0x2A2F36) //after clculationg adjustments must me : 020811
+      UINavigationBar.appearance().barTintColor = UIColorFromRGB(0xEEEEEE)//UIColorFromRGB(0x020811)//(0x2A2F36) //after clculationg adjustments must me : 020811
         
-      UINavigationBar.appearance().tintColor = UIColorFromRGB(0xF9F9F9) // FAFAFA = F9F9F9 during the rendering
+      UINavigationBar.appearance().tintColor = UIColorFromRGB(0x0B6065) // FAFAFA = F9F9F9 during the rendering
         
-       UIBarButtonItem.appearance().tintColor = UIColorFromRGB(0xF9F9F9)
+       UIBarButtonItem.appearance().tintColor = UIColorFromRGB(0x0B6065)
         
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColorFromRGB(0xF9F9F9),NSFontAttributeName:UIFont(name: "Avenir-Book", size: 18)!]
-       // UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIFont(name: "HelveticaNeue-Light", size: 20)!]
-        
-       
-       // UINavigationBar.trans
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColorFromRGB(0x0B6065),NSFontAttributeName:UIFont(name: "AvenirNext-UltraLight", size: 14)!]
+
         
     }
 
