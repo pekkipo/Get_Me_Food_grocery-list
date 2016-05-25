@@ -721,17 +721,11 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         
         blurredview.layer.cornerRadius = 4
         self.blurredview.clipsToBounds = true
+
         
-        self.view.backgroundColor = UIColorFromRGB(0x31797D)//2a2f36)
+       // toptoolbar.barTintColor = UIColorFromRGB(0x31797D)//2a2f36)
         
-        toptoolbar.barTintColor = UIColorFromRGB(0x31797D)//2a2f36)
-        
-        smalltopview.backgroundColor = UIColorFromRGB(0x31797D)
-        
-        bottomtoolbar.barTintColor = UIColorFromRGB(0x31797D)//2a2f36)
-       /* if(self.tableView.respondsToSelector(Selector("setLayoutMargins:"))){
-            self.tableView.layoutMargins = UIEdgeInsetsZero;
-        }*/
+
         
         self.view.layoutMargins = UIEdgeInsetsZero
         
@@ -5647,48 +5641,71 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .Normal, title: NSLocalizedString("deletebig", comment: "")) { (action , indexPath ) -> Void in
-            
-            
-            // var thissection = indexPath.section
+        
+        // DELETE
+        let deleteAction = UITableViewRowAction(style: .Normal, title: "               ") { (action , indexPath ) -> Void in
             
             self.editing = false
-            self.swipedeleteusual(indexPath)
+           // self.swipedeleteusual(indexPath)
+            print("delete")
             
         }
         
-        deleteAction.backgroundColor = UIColorFromRGB(0xF23D55)
+        if let adelete = UIImage(named: "4DeleteButton") {
+            deleteAction.backgroundColor = UIColor.imageWithBackgroundColor(adelete, bgColor: UIColor.redColor())
         
+        }
         
-        let optionsAction = UITableViewRowAction(style: .Normal, title: NSLocalizedString("options", comment: "")) { (action , indexPath) -> Void in
+        // SHARE
+        let shareAction = UITableViewRowAction(style: .Normal, title: "                 ") { (action , indexPath) -> Void in
             self.editing = false
-            //print("Share button pressed")
-            //self.performSegueWithIdentifier("Alllistsoptions", sender: self)
-            self.optionsaction(indexPath)
+            
+            //self.optionsaction(indexPath)
             
         }
-        optionsAction.backgroundColor = UIColorFromRGB(0x31797D)
         
-        let todooptionsAction = UITableViewRowAction(style: .Normal, title: NSLocalizedString("options", comment: "")) { (action , indexPath) -> Void in
+        if let ashare = UIImage(named: "4ShareButton") {
+            shareAction.backgroundColor = UIColor.imageWithBackgroundColor(ashare, bgColor: UIColorFromRGB(0x7FC2C6))
+        }
+        
+        // OPTIONS
+        let optionsAction = UITableViewRowAction(style: .Normal, title: "            ") { (action , indexPath) -> Void in
             self.editing = false
-            //print("Share button pressed")
-            //self.performSegueWithIdentifier("Alllistsoptions", sender: self)
-            self.todooptionsaction(indexPath)
+            
+            //self.optionsaction(indexPath)
+            print("Settings")
+            
+        }
+
+        if let aoptions = UIImage(named: "TestShare") {
+             optionsAction.backgroundColor = UIColor.imageWithBackgroundColor(aoptions, bgColor: UIColorFromRGB(0x7FC2C6))
+        }
+        
+        let todooptionsAction = UITableViewRowAction(style: .Normal, title: "           ") { (action , indexPath) -> Void in
+            self.editing = false
+
+            //self.todooptionsaction(indexPath)
             
         }
         todooptionsAction.backgroundColor = UIColorFromRGB(0x31797D)
         
-        /*
-        if showoption == "alllists" {
-        notetext = UserLists[indexPath!.row].listnote
-        } else if showoption == "shoplists" {
-        notetext = UserShopLists[indexPath!.row].listnote
-        } else if showoption == "todolists" {
-        notetext = UserToDoLists[indexPath!.row].listnote
-        } else if showoption == "favs" {
-        notetext = UserFavLists[indexPath!.row].listnote
+        // EDIT
+        let editingAction = UITableViewRowAction(style: .Normal, title: "             ") { (action , indexPath) -> Void in
+            self.editing = false
+            
+            //self.optionsaction(indexPath)
+            print("edit")
+            
         }
-        */
+        
+        if let aedit = UIImage(named: "4DeleteButton") {
+            editingAction.backgroundColor = UIColor.imageWithBackgroundColor(aedit, bgColor: UIColor.blueColor())
+        }
+        
+
+
+        
+
         var thislisttype = String()
         if showoption == "alllists" {
             thislisttype = UserLists[indexPath.row].listtype
@@ -5702,9 +5719,9 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         
         if thislisttype == "Shop" {
         
-        return [deleteAction, optionsAction]
+        return [deleteAction, shareAction, editingAction, optionsAction]
         } else if thislisttype == "ToDo" {
-            return [deleteAction, todooptionsAction]
+        return [optionsAction, editingAction, shareAction, deleteAction]
         } else {
             return [deleteAction]
         }
@@ -5873,6 +5890,10 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                     let thiscolor : String = UserLists[indexPath.row].listcolorcode
                     cell.colorcodeviewoutlet.backgroundColor = colorWithHexString(thiscolor)
+                    
+                    cell.storyline.backgroundColor = colorWithHexString(thiscolor)
+                    
+                    cell.newlisttype.tintColor = colorWithHexString(thiscolor)
                     
                   //  let dashcolor: String = UserLists[indexPath.row].listcolorcode
                     

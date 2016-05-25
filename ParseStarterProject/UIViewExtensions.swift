@@ -402,6 +402,30 @@ extension UITableView {
     }
     
 }
+
+extension UIColor {
+    static func imageWithBackgroundColor(image: UIImage, bgColor: UIColor) -> UIColor {
+        let size = CGSize(width: 70, height: 70)
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        let context = UIGraphicsGetCurrentContext()
+        
+        
+        let rectangle = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        
+        CGContextSetFillColorWithColor(context, bgColor.CGColor)
+        CGContextAddRect(context, rectangle)
+        CGContextDrawPath(context, .Fill)
+        
+        CGContextDrawImage(context, rectangle, image.CGImage)
+        
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return UIColor(patternImage: img)
+        
+    }
+}
 /*
 public extension UIDevice {
     

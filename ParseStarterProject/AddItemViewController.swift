@@ -2555,6 +2555,8 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     
     @IBOutlet var noteheight: NSLayoutConstraint!
     
+    
+    
         override func viewDidLoad() {
         super.viewDidLoad()
             
@@ -2600,7 +2602,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             
             let toolbarButtons2 = [flexibleSpace2,done2]
             
-            
+             
             numberToolbar2.sizeToFit()
             numberToolbar2.translucent = true
             numberToolbar2.barTintColor = UIColorFromRGB(0x2A2F36)

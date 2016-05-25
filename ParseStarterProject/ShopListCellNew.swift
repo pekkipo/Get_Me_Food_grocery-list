@@ -44,6 +44,15 @@ class ShopListCellNew: UITableViewCell {
     @IBOutlet var colorcodeviewoutlet: UIView!
     
     
+    @IBOutlet var progresscircle: KDCircularProgress!
+    
+    @IBOutlet var storyline: UIView!
+    
+    
+    @IBOutlet var newlisttype: UIImageView!
+    
+    
+    
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
         return UIColor(
             red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
@@ -56,6 +65,10 @@ class ShopListCellNew: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        
+    
+        
         // Initialization code
        // container.layer.borderWidth = 1
        // container.layer.borderColor = UIColorFromRGB(0xCFCFCF).CGColor

@@ -2134,8 +2134,16 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         
     }
     
+    
+    
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Image tint
+        //testimage.image = testimage.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        //testimage.tintColor = UIColor.redColor() // w
         
               /*
         if UIDevice().screenType == .iPhone4 {
