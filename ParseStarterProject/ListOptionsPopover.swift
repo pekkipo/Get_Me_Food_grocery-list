@@ -93,6 +93,7 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
         
         } else if senderVC == "AllListsVC" {
             
+            print(listtoupdate)
             
             let query = PFQuery(className:"shopLists")
             

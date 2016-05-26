@@ -5547,19 +5547,21 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    
+    @IBOutlet var openmenu: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
+        openmenu.target = self.revealViewController()
+        openmenu.action = Selector("revealToggle:")
         
         
         // menu stuff
         
         gobackoutlet.target = self.revealViewController()
         gobackoutlet.action = Selector("revealToggle:")
-        
-        
-        
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         

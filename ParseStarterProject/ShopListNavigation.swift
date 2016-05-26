@@ -31,6 +31,8 @@ class ShopListNavigation: UINavigationController {
         
        UIBarButtonItem.appearance().tintColor = UIColorFromRGB(0x0B6065)
         
+        
+        
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColorFromRGB(0x0B6065),NSFontAttributeName:UIFont(name: "AvenirNext-UltraLight", size: 14)!]
 
         

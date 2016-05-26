@@ -690,8 +690,35 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     
     @IBOutlet var OpenMenu2: UIBarButtonItem!
     
+    
+    func clickthetitle(button: UIButton) {
+        
+        print("Tapped the title")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        // navigation title as a button
+        
+        let button =  UIButton(type: .Custom)
+        //button.frame = CGRectMake(0, 0, 100, 40) as CGRect
+        button.frame = CGRectMake((((self.view.frame.size.width) / 2) - 80),0,140,40) as CGRect
+        //button.backgroundColor = UIColor.clearColor()
+        button.setTitle("My lists", forState: UIControlState.Normal)
+        //button.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        button.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 16)
+        button.setTitleColor(UIColorFromRGB(0x31797D), forState: .Normal)
+        let spacing: CGFloat = 10; // the amount of spacing to appear between image and title
+        button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
+        button.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
+        let titleimage = UIImage(named: "myliststitle") as UIImage?
+        button.setImage(titleimage, forState: .Normal)
+        button.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.navigationItem.titleView = button
+        
+        //
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadTableAfterPush", name: "reloadTableLists", object: nil)
         
@@ -5671,7 +5698,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         }
         
         // OPTIONS
-        let optionsAction = UITableViewRowAction(style: .Normal, title: "         ") { (action , indexPath) -> Void in
+        let optionsAction = UITableViewRowAction(style: .Normal, title: "          ") { (action , indexPath) -> Void in
             self.editing = false
             
             //self.optionsaction(indexPath)
@@ -5692,7 +5719,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         todooptionsAction.backgroundColor = UIColorFromRGB(0x31797D)
         
         // EDIT
-        let editingAction = UITableViewRowAction(style: .Normal, title: "         ") { (action , indexPath) -> Void in
+        let editingAction = UITableViewRowAction(style: .Normal, title: "          ") { (action , indexPath) -> Void in
             self.editing = false
             
             //self.optionsaction(indexPath)
@@ -5891,6 +5918,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     cell.shownote.addTarget(self, action: "shownotes:", forControlEvents: .TouchUpInside)
                     
                     let thiscolor : String = UserLists[indexPath.row].listcolorcode
+                    
                     cell.colorcodeviewoutlet.backgroundColor = colorWithHexString(thiscolor)
                     
                     cell.storyline.backgroundColor = colorWithHexString(thiscolor)
