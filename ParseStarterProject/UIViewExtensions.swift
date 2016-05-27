@@ -405,7 +405,7 @@ extension UITableView {
 
 extension UIColor {
     static func imageWithBackgroundColor(image: UIImage, bgColor: UIColor) -> UIColor {
-        let size = CGSize(width: 70, height: 70)
+        let size = CGSize(width: 50, height: 70)
         
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         let context = UIGraphicsGetCurrentContext()

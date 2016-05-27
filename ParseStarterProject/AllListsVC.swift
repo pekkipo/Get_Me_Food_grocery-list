@@ -691,6 +691,8 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     @IBOutlet var OpenMenu2: UIBarButtonItem!
     
     
+    
+    
     func clickthetitle(button: UIButton) {
         
         print("Tapped the title")
@@ -711,8 +713,9 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         button.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 16)
         button.setTitleColor(UIColorFromRGB(0x31797D), forState: .Normal)
         let spacing: CGFloat = 10; // the amount of spacing to appear between image and title
-        button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
-        button.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
+        button.imageEdgeInsets = UIEdgeInsetsMake(2, 100, 0, 0); // top left bottom right
+        button.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing); // i switch them
+        
         let titleimage = UIImage(named: "myliststitle") as UIImage?
         button.setImage(titleimage, forState: .Normal)
         button.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
@@ -726,7 +729,12 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         OpenMenu2.target = self.revealViewController()
         OpenMenu2.action = Selector("revealToggle:")
         
-        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        if let revealController = self.revealViewController() {
+           // revealController.panGestureRecognizer()
+            revealController.tapGestureRecognizer()
+        }
+        
+       // self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         
         newclosebuttonoutlet.layer.borderWidth = 1
@@ -987,7 +995,8 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     
         if segue.identifier == "OpenListSegue" {
             
-            
+           // let Nav = segue.destinationViewController as! UINavigationController
+           // let destinationVC = Nav.viewControllers.first as! ShoppingListCreation
             let destinationVC : ShoppingListCreation = segue.destinationViewController as! ShoppingListCreation
             
             
@@ -5672,10 +5681,10 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
         // DELETE
-        let deleteAction = UITableViewRowAction(style: .Normal, title: "         ") { (action , indexPath ) -> Void in
+        let deleteAction = UITableViewRowAction(style: .Normal, title: "    ") { (action , indexPath ) -> Void in
             
             self.editing = false
-           // self.swipedeleteusual(indexPath)
+            self.swipedeleteusual(indexPath)
             print("delete")
             
         }
@@ -5686,7 +5695,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         }
         
         // SHARE
-        let shareAction = UITableViewRowAction(style: .Normal, title: "         ") { (action , indexPath) -> Void in
+        let shareAction = UITableViewRowAction(style: .Normal, title: "    ") { (action , indexPath) -> Void in
             self.editing = false
             
             //self.optionsaction(indexPath)
@@ -5698,19 +5707,19 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         }
         
         // OPTIONS
-        let optionsAction = UITableViewRowAction(style: .Normal, title: "          ") { (action , indexPath) -> Void in
+        let optionsAction = UITableViewRowAction(style: .Normal, title: "    ") { (action , indexPath) -> Void in
             self.editing = false
             
-            //self.optionsaction(indexPath)
+            self.optionsaction(indexPath)
             print("Settings")
             
         }
 
-        if let aoptions = UIImage(named: "TestShare2") {
+        if let aoptions = UIImage(named: "4SettingsButton") {
              optionsAction.backgroundColor = UIColor.imageWithBackgroundColor(aoptions, bgColor: UIColor.clearColor())
         }
         
-        let todooptionsAction = UITableViewRowAction(style: .Normal, title: "         ") { (action , indexPath) -> Void in
+        let todooptionsAction = UITableViewRowAction(style: .Normal, title: "    ") { (action , indexPath) -> Void in
             self.editing = false
 
             //self.todooptionsaction(indexPath)
@@ -5719,7 +5728,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         todooptionsAction.backgroundColor = UIColorFromRGB(0x31797D)
         
         // EDIT
-        let editingAction = UITableViewRowAction(style: .Normal, title: "          ") { (action , indexPath) -> Void in
+        let editingAction = UITableViewRowAction(style: .Normal, title: "    ") { (action , indexPath) -> Void in
             self.editing = false
             
             //self.optionsaction(indexPath)
@@ -5727,7 +5736,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
             
         }
         
-        if let aedit = UIImage(named: "TestShare3") {
+        if let aedit = UIImage(named: "4EditButton") {
             editingAction.backgroundColor = UIColor.imageWithBackgroundColor(aedit, bgColor: UIColor.clearColor())
         }
         
@@ -5782,6 +5791,43 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
             blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
             alpha: CGFloat(1.0)
         )
+    }
+    
+    
+    func changeprogress(overall: Int, checked: Int, thelabel: UILabel) -> (pcol:UIColor, theangle: Double) {
+        
+        if overall > 0 {
+            var percentage : Double = 100.0 * Double(checked)/Double(overall)
+            
+            var theangle : Double = 360.0 * (percentage/100.0)
+            
+            thelabel.text = "\(Int(percentage))%"
+        
+        if (percentage > 0.0) && (percentage <= 25.0) {
+            return (UIColorFromRGB(0xF5A623), theangle)
+            
+        } else if (percentage > 25.0) && (percentage <= 50.0) {
+        return (UIColorFromRGB(0xA2AF36), theangle)
+        } else if (percentage > 50.0) && (percentage <= 75.0) {
+            return (UIColorFromRGB(0x64B320), theangle)
+        } else if (percentage > 75.0) && (percentage <= 90.0) {
+            return (UIColorFromRGB(0x20B343), theangle)
+        } else if (percentage > 90.0) && (percentage <= 100.0) {
+            return (UIColorFromRGB(0x61C791), theangle)
+        } else if (percentage == 0.0) {
+            return (UIColorFromRGB(0xF23D55), 1.0)
+        } else {
+            return (UIColorFromRGB(0xD8D8D8), theangle)
+        }
+        } else {
+            thelabel.text = "0%"
+            return (UIColorFromRGB(0xF23D55), 1.0)
+        }
+    }
+    
+    
+    func randRange (lower: Int , upper: Int) -> Int {
+        return lower + Int(arc4random_uniform(UInt32(upper - lower + 1)))
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -5920,18 +5966,8 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     let thiscolor : String = UserLists[indexPath.row].listcolorcode
                     
                     cell.colorcodeviewoutlet.backgroundColor = colorWithHexString(thiscolor)
-                    
                     cell.storyline.backgroundColor = colorWithHexString(thiscolor)
-                    
                     cell.newlisttype.tintColor = colorWithHexString(thiscolor)
-                    
-                  //  let dashcolor: String = UserLists[indexPath.row].listcolorcode
-                    
-                   // cell.container.addDashedBorder(colorWithHexString(dashcolor).CGColor)
-                    
-                    
-                   // cell.ShopListNote.text = UserLists[indexPath.row].listnote
-                    
                     cell.ShopListNameButton.text = UserLists[indexPath.row].listname
                     
                     if UserLists[indexPath.row].listtype == "Shop" {
@@ -5939,39 +5975,12 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     } else {
                         cell.ListTypeImage.image = todoicon
                     }
-                  
-                    
-                   // cell.ShopListNameButton.tag = indexPath.row
-                    /*
-                    if UserLists[indexPath.row].listtype == "Shop" {
-                        
-                        cell.ShopListNameButton.addTarget(self, action: "openlistbyname:", forControlEvents: .TouchUpInside)
-                    } else if UserLists[indexPath.row].listtype == "ToDo" {
-                        cell.ShopListNameButton.addTarget(self, action: "opentodolistbyname:", forControlEvents: .TouchUpInside)
-                    }
-                    */
-                    
-                  //   cell.ShopListNameButton.addTarget(self, action: "newopenlistbyname:", forControlEvents: .TouchUpInside)
-                    
-                    
-                    
-                    /*
-                    cell.DeleteOutlet.tag = indexPath.row
-                    if UserLists[indexPath.row].listtype == "Shop" {
-                        cell.DeleteOutlet.addTarget(self, action: "deletelist:", forControlEvents: .TouchUpInside)
-                    } else if UserLists[indexPath.row].listtype == "ToDo" {
-                        cell.DeleteOutlet.addTarget(self, action: "deletetodolist:", forControlEvents: .TouchUpInside)
-                    }
-*/
-                   // cell.ShareButtonOutlet.tag = indexPath.row
-                   
-                    
+
                     let dateFormatter = NSDateFormatter()
                     dateFormatter.dateFormat = "dd MMM yyyy"
                     let date = dateFormatter.stringFromDate(UserLists[indexPath.row].listcreationdate)
                     cell.creationDate.text = date
-                    
-                    
+
                     if UserLists[indexPath.row].listisfavourite == true {
                         favimage = UIImage(named: "ICFavStarActive") as UIImage!
                         cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
@@ -5983,6 +5992,12 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     }
                     
                   
+                    // Progress change
+                    
+                    cell.progresscircle.progressColors = [changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).pcol]
+                    cell.progresscircle.angle = changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).theangle
+                    //
+
                     
                     cell.addToFavOutlet.addTarget(self, action: "adddeletefav:", forControlEvents: .TouchUpInside)
                     
@@ -5992,8 +6007,6 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                    // cell.itemscount.text = "Items: \(allcount)/\(checkedcount)"
                     cell.itemscount.text = "\(allcount)/\(checkedcount)"
                     
-                   // cell.itemscount.text = String(UserLists[indexPath.row].listitemscount)
-                   // cell.checkeditemscount.text = String(UserLists[indexPath.row].listcheckeditemscount)
                     
                     return cell
                     

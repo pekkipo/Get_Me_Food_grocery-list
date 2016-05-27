@@ -25,7 +25,7 @@ class ShopListNavigation: UINavigationController {
 
         // Do any additional setup after loading the view.
         
-      UINavigationBar.appearance().barTintColor = UIColorFromRGB(0xEEEEEE)//UIColorFromRGB(0x020811)//(0x2A2F36) //after clculationg adjustments must me : 020811
+      UINavigationBar.appearance().barTintColor = UIColorFromRGB(0xF9F9F9)//UIColorFromRGB(0x020811)//(0x2A2F36) //after clculationg adjustments must me : 020811 EEEEEE = F1F1F1; FAFAFA = F9F9F9
         
       UINavigationBar.appearance().tintColor = UIColorFromRGB(0x0B6065) // FAFAFA = F9F9F9 during the rendering
         
@@ -33,7 +33,7 @@ class ShopListNavigation: UINavigationController {
         
         
         
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColorFromRGB(0x0B6065),NSFontAttributeName:UIFont(name: "AvenirNext-UltraLight", size: 14)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColorFromRGB(0x0B6065),NSFontAttributeName:UIFont(name: "AvenirNext-Regular", size: 16)!]
 
         
     }

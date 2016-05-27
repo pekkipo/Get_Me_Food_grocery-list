@@ -39,7 +39,7 @@ class ShopListCellNew: UITableViewCell {
     
     @IBOutlet var shownote: UIButton!
     
-    
+    @IBOutlet var percents: UILabel!
    
     @IBOutlet var colorcodeviewoutlet: UIView!
     

@@ -5543,11 +5543,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "764"
-            endingLineNumber = "764"
+            startingLineNumber = "772"
+            endingLineNumber = "772"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -5559,11 +5559,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5107"
-            endingLineNumber = "5107"
+            startingLineNumber = "5116"
+            endingLineNumber = "5116"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -5575,11 +5575,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5062"
-            endingLineNumber = "5062"
+            startingLineNumber = "5071"
+            endingLineNumber = "5071"
             landmarkName = "sharereceivedlist(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -5591,11 +5591,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4945"
-            endingLineNumber = "4945"
+            startingLineNumber = "4954"
+            endingLineNumber = "4954"
             landmarkName = "newopenreceivedlistbyname(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -5607,11 +5607,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4898"
-            endingLineNumber = "4898"
+            startingLineNumber = "4907"
+            endingLineNumber = "4907"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -5623,11 +5623,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4885"
-            endingLineNumber = "4885"
+            startingLineNumber = "4894"
+            endingLineNumber = "4894"
             landmarkName = "newopenlistbyname(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -5639,11 +5639,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4869"
-            endingLineNumber = "4869"
+            startingLineNumber = "4878"
+            endingLineNumber = "4878"
             landmarkName = "newopenlistbyname(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -5655,11 +5655,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4839"
-            endingLineNumber = "4839"
+            startingLineNumber = "4848"
+            endingLineNumber = "4848"
             landmarkName = "newopenlistbynameselection(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -5671,11 +5671,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4470"
-            endingLineNumber = "4470"
+            startingLineNumber = "4479"
+            endingLineNumber = "4479"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -5687,11 +5687,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4585"
-            endingLineNumber = "4585"
+            startingLineNumber = "4594"
+            endingLineNumber = "4594"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -5703,11 +5703,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4567"
-            endingLineNumber = "4567"
+            startingLineNumber = "4576"
+            endingLineNumber = "4576"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -5719,11 +5719,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4624"
-            endingLineNumber = "4624"
+            startingLineNumber = "4633"
+            endingLineNumber = "4633"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -5735,11 +5735,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4644"
-            endingLineNumber = "4644"
+            startingLineNumber = "4653"
+            endingLineNumber = "4653"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -5751,11 +5751,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4599"
-            endingLineNumber = "4599"
+            startingLineNumber = "4608"
+            endingLineNumber = "4608"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -5767,11 +5767,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4606"
-            endingLineNumber = "4606"
+            startingLineNumber = "4615"
+            endingLineNumber = "4615"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -5783,11 +5783,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4614"
-            endingLineNumber = "4614"
+            startingLineNumber = "4623"
+            endingLineNumber = "4623"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -5799,11 +5799,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4627"
-            endingLineNumber = "4627"
+            startingLineNumber = "4636"
+            endingLineNumber = "4636"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -5815,11 +5815,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4475"
-            endingLineNumber = "4475"
+            startingLineNumber = "4484"
+            endingLineNumber = "4484"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -7334,11 +7334,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3314"
-            endingLineNumber = "3314"
+            startingLineNumber = "3323"
+            endingLineNumber = "3323"
             landmarkName = "newdeletereceivedlist(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -7350,11 +7350,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3334"
-            endingLineNumber = "3334"
+            startingLineNumber = "3343"
+            endingLineNumber = "3343"
             landmarkName = "newdeletereceivedlist(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -7414,11 +7414,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "802"
-            endingLineNumber = "802"
+            startingLineNumber = "810"
+            endingLineNumber = "810"
             landmarkName = "refreshListsTable(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -7430,11 +7430,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "804"
-            endingLineNumber = "804"
+            startingLineNumber = "812"
+            endingLineNumber = "812"
             landmarkName = "refreshListsTable(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -7462,11 +7462,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "793"
-            endingLineNumber = "793"
+            startingLineNumber = "801"
+            endingLineNumber = "801"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -7478,11 +7478,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "799"
-            endingLineNumber = "799"
+            startingLineNumber = "807"
+            endingLineNumber = "807"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -7494,11 +7494,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3337"
-            endingLineNumber = "3337"
+            startingLineNumber = "3346"
+            endingLineNumber = "3346"
             landmarkName = "newdeletereceivedlist(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -7510,11 +7510,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3338"
-            endingLineNumber = "3338"
+            startingLineNumber = "3347"
+            endingLineNumber = "3347"
             landmarkName = "newdeletereceivedlist(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -7526,11 +7526,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3340"
-            endingLineNumber = "3340"
+            startingLineNumber = "3349"
+            endingLineNumber = "3349"
             landmarkName = "newdeletereceivedlist(_:)"
             landmarkType = "5">
             <Locations>
@@ -7574,11 +7574,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3342"
-            endingLineNumber = "3342"
+            startingLineNumber = "3351"
+            endingLineNumber = "3351"
             landmarkName = "newdeletereceivedlist(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -7590,11 +7590,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3344"
-            endingLineNumber = "3344"
+            startingLineNumber = "3353"
+            endingLineNumber = "3353"
             landmarkName = "newdeletereceivedlist(_:)"
             landmarkType = "5">
             <Locations>
@@ -7638,11 +7638,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3345"
-            endingLineNumber = "3345"
+            startingLineNumber = "3354"
+            endingLineNumber = "3354"
             landmarkName = "newdeletereceivedlist(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -7654,11 +7654,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5128"
-            endingLineNumber = "5128"
+            startingLineNumber = "5137"
+            endingLineNumber = "5137"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -7670,11 +7670,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "801"
-            endingLineNumber = "801"
+            startingLineNumber = "809"
+            endingLineNumber = "809"
             landmarkName = "refreshListsTable(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -7686,11 +7686,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "807"
-            endingLineNumber = "807"
+            startingLineNumber = "815"
+            endingLineNumber = "815"
             landmarkName = "refreshListsTable(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -7718,27 +7718,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485993507.127479"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "692"
-            endingLineNumber = "692"
-            landmarkName = "AllListsVC"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "871"
-            endingLineNumber = "871"
+            startingLineNumber = "879"
+            endingLineNumber = "879"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -7782,11 +7766,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3455"
-            endingLineNumber = "3455"
+            startingLineNumber = "3464"
+            endingLineNumber = "3464"
             landmarkName = "newdeletelist(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -7798,11 +7782,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3466"
-            endingLineNumber = "3466"
+            startingLineNumber = "3475"
+            endingLineNumber = "3475"
             landmarkName = "newdeletelist(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -7814,11 +7798,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3479"
-            endingLineNumber = "3479"
+            startingLineNumber = "3488"
+            endingLineNumber = "3488"
             landmarkName = "newdeletelist(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -7830,11 +7814,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3371"
-            endingLineNumber = "3371"
+            startingLineNumber = "3380"
+            endingLineNumber = "3380"
             landmarkName = "newdeletereceivedlist(_:)"
             landmarkType = "5">
             <Locations>
@@ -7878,11 +7862,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3354"
-            endingLineNumber = "3354"
+            startingLineNumber = "3363"
+            endingLineNumber = "3363"
             landmarkName = "newdeletereceivedlist(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -7894,11 +7878,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "808"
-            endingLineNumber = "808"
+            startingLineNumber = "816"
+            endingLineNumber = "816"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -7910,11 +7894,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "815"
-            endingLineNumber = "815"
+            startingLineNumber = "823"
+            endingLineNumber = "823"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -7926,11 +7910,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "822"
-            endingLineNumber = "822"
+            startingLineNumber = "830"
+            endingLineNumber = "830"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -7974,11 +7958,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5766"
-            endingLineNumber = "5766"
+            startingLineNumber = "5775"
+            endingLineNumber = "5775"
             landmarkName = "colorWithHexString(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -7990,11 +7974,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4894"
-            endingLineNumber = "4894"
+            startingLineNumber = "4903"
+            endingLineNumber = "4903"
             landmarkName = "newopenlistbyname(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -8006,11 +7990,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4641"
-            endingLineNumber = "4641"
+            startingLineNumber = "4650"
+            endingLineNumber = "4650"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -8022,11 +8006,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5042"
-            endingLineNumber = "5042"
+            startingLineNumber = "5051"
+            endingLineNumber = "5051"
             landmarkName = "sharelist(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -8038,11 +8022,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4833"
-            endingLineNumber = "4833"
+            startingLineNumber = "4842"
+            endingLineNumber = "4842"
             landmarkName = "newopenlistbynameselection(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -8054,11 +8038,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3330"
-            endingLineNumber = "3330"
+            startingLineNumber = "3339"
+            endingLineNumber = "3339"
             landmarkName = "newdeletereceivedlist(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -8070,135 +8054,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3313"
-            endingLineNumber = "3313"
-            landmarkName = "newdeletereceivedlist(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3353"
-            endingLineNumber = "3353"
-            landmarkName = "newdeletereceivedlist(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3369"
-            endingLineNumber = "3369"
-            landmarkName = "newdeletereceivedlist(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3448"
-            endingLineNumber = "3448"
-            landmarkName = "newdeletelist(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3450"
-            endingLineNumber = "3450"
-            landmarkName = "newdeletelist(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3453"
-            endingLineNumber = "3453"
-            landmarkName = "newdeletelist(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3333"
-            endingLineNumber = "3333"
-            landmarkName = "newdeletereceivedlist(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3335"
-            endingLineNumber = "3335"
-            landmarkName = "newdeletereceivedlist(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "3322"
@@ -8214,11 +8070,139 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4600"
-            endingLineNumber = "4600"
+            startingLineNumber = "3362"
+            endingLineNumber = "3362"
+            landmarkName = "newdeletereceivedlist(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParseStarterProject/AllListsVC.swift"
+            timestampString = "486073785.51048"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "3378"
+            endingLineNumber = "3378"
+            landmarkName = "newdeletereceivedlist(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParseStarterProject/AllListsVC.swift"
+            timestampString = "486073785.51048"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "3457"
+            endingLineNumber = "3457"
+            landmarkName = "newdeletelist(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParseStarterProject/AllListsVC.swift"
+            timestampString = "486073785.51048"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "3459"
+            endingLineNumber = "3459"
+            landmarkName = "newdeletelist(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParseStarterProject/AllListsVC.swift"
+            timestampString = "486073785.51048"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "3462"
+            endingLineNumber = "3462"
+            landmarkName = "newdeletelist(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParseStarterProject/AllListsVC.swift"
+            timestampString = "486073785.51048"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "3342"
+            endingLineNumber = "3342"
+            landmarkName = "newdeletereceivedlist(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParseStarterProject/AllListsVC.swift"
+            timestampString = "486073785.51048"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "3344"
+            endingLineNumber = "3344"
+            landmarkName = "newdeletereceivedlist(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParseStarterProject/AllListsVC.swift"
+            timestampString = "486073785.51048"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "3331"
+            endingLineNumber = "3331"
+            landmarkName = "newdeletereceivedlist(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParseStarterProject/AllListsVC.swift"
+            timestampString = "486073785.51048"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "4609"
+            endingLineNumber = "4609"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -8230,11 +8214,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4602"
-            endingLineNumber = "4602"
+            startingLineNumber = "4611"
+            endingLineNumber = "4611"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -8246,11 +8230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4848"
-            endingLineNumber = "4848"
+            startingLineNumber = "4857"
+            endingLineNumber = "4857"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -8262,11 +8246,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4855"
-            endingLineNumber = "4855"
+            startingLineNumber = "4864"
+            endingLineNumber = "4864"
             landmarkName = "newopenlistbyname(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -8278,11 +8262,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4531"
-            endingLineNumber = "4531"
+            startingLineNumber = "4540"
+            endingLineNumber = "4540"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -8294,11 +8278,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4534"
-            endingLineNumber = "4534"
+            startingLineNumber = "4543"
+            endingLineNumber = "4543"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -8310,11 +8294,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "916"
-            endingLineNumber = "916"
+            startingLineNumber = "924"
+            endingLineNumber = "924"
             landmarkName = "AllListsVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -8326,11 +8310,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "958"
-            endingLineNumber = "958"
+            startingLineNumber = "966"
+            endingLineNumber = "966"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -8342,11 +8326,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "975"
-            endingLineNumber = "975"
+            startingLineNumber = "983"
+            endingLineNumber = "983"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -8358,11 +8342,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "979"
-            endingLineNumber = "979"
+            startingLineNumber = "987"
+            endingLineNumber = "987"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -8374,11 +8358,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "985"
-            endingLineNumber = "985"
+            startingLineNumber = "993"
+            endingLineNumber = "993"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -8390,11 +8374,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "988"
-            endingLineNumber = "988"
+            startingLineNumber = "996"
+            endingLineNumber = "996"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -8406,11 +8390,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "995"
-            endingLineNumber = "995"
+            startingLineNumber = "1004"
+            endingLineNumber = "1004"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -8422,11 +8406,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1000"
-            endingLineNumber = "1000"
+            startingLineNumber = "1009"
+            endingLineNumber = "1009"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -12061,7 +12045,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "482238793.629304"
+            timestampString = "486058938.903678"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "762"
+            endingLineNumber = "762"
+            landmarkName = "ShoppingListCreation"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParseStarterProject/ShoppingListCreation.swift"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "765"
@@ -12077,11 +12077,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "482238793.629304"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "768"
-            endingLineNumber = "768"
+            startingLineNumber = "778"
+            endingLineNumber = "778"
             landmarkName = "ShoppingListCreation"
             landmarkType = "3">
          </BreakpointContent>
@@ -12093,27 +12093,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "482238793.629304"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "781"
-            endingLineNumber = "781"
-            landmarkName = "ShoppingListCreation"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "482238793.629304"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "788"
-            endingLineNumber = "788"
+            startingLineNumber = "785"
+            endingLineNumber = "785"
             landmarkName = "saveImageLocally(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -12125,11 +12109,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "482238793.629304"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "793"
-            endingLineNumber = "793"
+            startingLineNumber = "790"
+            endingLineNumber = "790"
             landmarkName = "saveImageLocally(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -12253,11 +12237,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1619"
-            endingLineNumber = "1619"
+            startingLineNumber = "1616"
+            endingLineNumber = "1616"
             landmarkName = "ShoppingListCreation"
             landmarkType = "3">
          </BreakpointContent>
@@ -12269,11 +12253,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486081364.150398"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7624"
-            endingLineNumber = "7624"
+            startingLineNumber = "7484"
+            endingLineNumber = "7484"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -12285,11 +12269,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486081364.150398"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7626"
-            endingLineNumber = "7626"
+            startingLineNumber = "7486"
+            endingLineNumber = "7486"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -12301,11 +12285,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486081364.150398"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7627"
-            endingLineNumber = "7627"
+            startingLineNumber = "7487"
+            endingLineNumber = "7487"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -12317,23 +12301,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1624"
-            endingLineNumber = "1624"
-            landmarkName = "ShoppingListCreation"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1621"
@@ -12349,11 +12317,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1623"
-            endingLineNumber = "1623"
+            startingLineNumber = "1618"
+            endingLineNumber = "1618"
             landmarkName = "ShoppingListCreation"
             landmarkType = "3">
          </BreakpointContent>
@@ -12365,11 +12333,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1851"
-            endingLineNumber = "1851"
+            startingLineNumber = "1620"
+            endingLineNumber = "1620"
+            landmarkName = "ShoppingListCreation"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParseStarterProject/ShoppingListCreation.swift"
+            timestampString = "486058938.903678"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1848"
+            endingLineNumber = "1848"
             landmarkName = "sortcategories(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -12381,7 +12365,39 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1858"
+            endingLineNumber = "1858"
+            landmarkName = "sortcategories(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParseStarterProject/ShoppingListCreation.swift"
+            timestampString = "486058938.903678"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1860"
+            endingLineNumber = "1860"
+            landmarkName = "sortcategories(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParseStarterProject/ShoppingListCreation.swift"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1861"
@@ -12397,11 +12413,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1863"
-            endingLineNumber = "1863"
+            startingLineNumber = "1859"
+            endingLineNumber = "1859"
             landmarkName = "sortcategories(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -12413,23 +12429,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1864"
-            endingLineNumber = "1864"
-            landmarkName = "sortcategories(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1862"
@@ -12445,11 +12445,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1865"
-            endingLineNumber = "1865"
+            startingLineNumber = "1864"
+            endingLineNumber = "1864"
             landmarkName = "sortcategories(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -12461,11 +12461,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1867"
-            endingLineNumber = "1867"
+            startingLineNumber = "1868"
+            endingLineNumber = "1868"
             landmarkName = "sortcategories(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -12477,11 +12477,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1871"
-            endingLineNumber = "1871"
+            startingLineNumber = "1870"
+            endingLineNumber = "1870"
             landmarkName = "sortcategories(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -12493,11 +12493,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1873"
-            endingLineNumber = "1873"
+            startingLineNumber = "1872"
+            endingLineNumber = "1872"
             landmarkName = "sortcategories(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -12509,11 +12509,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1875"
-            endingLineNumber = "1875"
+            startingLineNumber = "1962"
+            endingLineNumber = "1962"
             landmarkName = "sortcategories(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -12525,11 +12525,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1965"
-            endingLineNumber = "1965"
+            startingLineNumber = "1964"
+            endingLineNumber = "1964"
             landmarkName = "sortcategories(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -12541,27 +12541,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1967"
             endingLineNumber = "1967"
-            landmarkName = "sortcategories(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1970"
-            endingLineNumber = "1970"
             landmarkName = "createpicture()"
             landmarkType = "5">
          </BreakpointContent>
@@ -12573,11 +12557,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1971"
-            endingLineNumber = "1971"
+            startingLineNumber = "1968"
+            endingLineNumber = "1968"
             landmarkName = "createpicture()"
             landmarkType = "5">
          </BreakpointContent>
@@ -12589,11 +12573,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1976"
-            endingLineNumber = "1976"
+            startingLineNumber = "1973"
+            endingLineNumber = "1973"
             landmarkName = "ShoppingListCreation"
             landmarkType = "3">
          </BreakpointContent>
@@ -12605,11 +12589,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1985"
-            endingLineNumber = "1985"
+            startingLineNumber = "1982"
+            endingLineNumber = "1982"
             landmarkName = "ShoppingListCreation"
             landmarkType = "3">
          </BreakpointContent>
@@ -12621,11 +12605,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1986"
-            endingLineNumber = "1986"
+            startingLineNumber = "1983"
+            endingLineNumber = "1983"
             landmarkName = "ShoppingListCreation"
             landmarkType = "3">
          </BreakpointContent>
@@ -12637,7 +12621,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1984"
+            endingLineNumber = "1984"
+            landmarkName = "ShoppingListCreation"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParseStarterProject/ShoppingListCreation.swift"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1987"
@@ -12653,11 +12653,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1990"
-            endingLineNumber = "1990"
+            startingLineNumber = "1985"
+            endingLineNumber = "1985"
             landmarkName = "ShoppingListCreation"
             landmarkType = "3">
          </BreakpointContent>
@@ -12669,11 +12669,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1988"
-            endingLineNumber = "1988"
+            startingLineNumber = "2011"
+            endingLineNumber = "2011"
             landmarkName = "ShoppingListCreation"
             landmarkType = "3">
          </BreakpointContent>
@@ -12685,11 +12685,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2014"
-            endingLineNumber = "2014"
+            startingLineNumber = "2013"
+            endingLineNumber = "2013"
             landmarkName = "ShoppingListCreation"
             landmarkType = "3">
          </BreakpointContent>
@@ -12701,7 +12701,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2016"
@@ -12717,11 +12717,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2019"
-            endingLineNumber = "2019"
+            startingLineNumber = "2017"
+            endingLineNumber = "2017"
             landmarkName = "ShoppingListCreation"
             landmarkType = "3">
          </BreakpointContent>
@@ -12733,7 +12733,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2018"
+            endingLineNumber = "2018"
+            landmarkName = "ShoppingListCreation"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParseStarterProject/ShoppingListCreation.swift"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2020"
@@ -12749,7 +12765,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2021"
@@ -12765,7 +12781,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2023"
@@ -12781,23 +12797,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2024"
-            endingLineNumber = "2024"
-            landmarkName = "ShoppingListCreation"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2026"
@@ -12813,11 +12813,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2029"
-            endingLineNumber = "2029"
+            startingLineNumber = "2022"
+            endingLineNumber = "2022"
             landmarkName = "ShoppingListCreation"
             landmarkType = "3">
          </BreakpointContent>
@@ -12829,27 +12829,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2025"
-            endingLineNumber = "2025"
-            landmarkName = "ShoppingListCreation"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2074"
-            endingLineNumber = "2074"
+            startingLineNumber = "2077"
+            endingLineNumber = "2077"
             landmarkName = "handlebvTap(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -12861,11 +12845,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2105"
-            endingLineNumber = "2105"
+            startingLineNumber = "2108"
+            endingLineNumber = "2108"
             landmarkName = "ShoppingListCreation"
             landmarkType = "3">
          </BreakpointContent>
@@ -12877,11 +12861,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2106"
-            endingLineNumber = "2106"
+            startingLineNumber = "2109"
+            endingLineNumber = "2109"
             landmarkName = "ShoppingListCreation"
             landmarkType = "3">
          </BreakpointContent>
@@ -12893,11 +12877,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2107"
-            endingLineNumber = "2107"
+            startingLineNumber = "2110"
+            endingLineNumber = "2110"
             landmarkName = "ShoppingListCreation"
             landmarkType = "3">
          </BreakpointContent>
@@ -12909,11 +12893,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2519"
-            endingLineNumber = "2519"
+            startingLineNumber = "2516"
+            endingLineNumber = "2516"
             landmarkName = "pasteitems(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -13629,11 +13613,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2306"
-            endingLineNumber = "2306"
+            startingLineNumber = "2303"
+            endingLineNumber = "2303"
             landmarkName = "checktocopy(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -13645,11 +13629,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2313"
-            endingLineNumber = "2313"
+            startingLineNumber = "2310"
+            endingLineNumber = "2310"
             landmarkName = "checktocopy(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -13661,11 +13645,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2370"
-            endingLineNumber = "2370"
+            startingLineNumber = "2367"
+            endingLineNumber = "2367"
             landmarkName = "checktocopy(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -13677,11 +13661,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2393"
-            endingLineNumber = "2393"
+            startingLineNumber = "2390"
+            endingLineNumber = "2390"
             landmarkName = "displayInfoAlert(_:message:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -13693,11 +13677,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2400"
-            endingLineNumber = "2400"
+            startingLineNumber = "2397"
+            endingLineNumber = "2397"
             landmarkName = "displayFailAlert(_:message:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -13709,27 +13693,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2401"
+            endingLineNumber = "2401"
+            landmarkName = "displayFailAlert(_:message:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParseStarterProject/ShoppingListCreation.swift"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2404"
             endingLineNumber = "2404"
-            landmarkName = "displayFailAlert(_:message:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2407"
-            endingLineNumber = "2407"
             landmarkName = "ShoppingListCreation"
             landmarkType = "3">
          </BreakpointContent>
@@ -13741,11 +13725,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2411"
-            endingLineNumber = "2411"
+            startingLineNumber = "2408"
+            endingLineNumber = "2408"
             landmarkName = "pause()"
             landmarkType = "5">
          </BreakpointContent>
@@ -13757,11 +13741,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2416"
-            endingLineNumber = "2416"
+            startingLineNumber = "2413"
+            endingLineNumber = "2413"
             landmarkName = "pause()"
             landmarkType = "5">
          </BreakpointContent>
@@ -13773,11 +13757,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2631"
-            endingLineNumber = "2631"
+            startingLineNumber = "2628"
+            endingLineNumber = "2628"
             landmarkName = "pasteitems(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -13789,23 +13773,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2627"
-            endingLineNumber = "2627"
-            landmarkName = "pasteitems(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2624"
@@ -13821,11 +13789,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2640"
-            endingLineNumber = "2640"
+            startingLineNumber = "2621"
+            endingLineNumber = "2621"
             landmarkName = "pasteitems(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -13837,11 +13805,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2648"
-            endingLineNumber = "2648"
+            startingLineNumber = "2637"
+            endingLineNumber = "2637"
             landmarkName = "pasteitems(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -13853,11 +13821,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2654"
-            endingLineNumber = "2654"
+            startingLineNumber = "2645"
+            endingLineNumber = "2645"
             landmarkName = "pasteitems(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -13869,11 +13837,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2386"
-            endingLineNumber = "2386"
+            startingLineNumber = "2651"
+            endingLineNumber = "2651"
+            landmarkName = "pasteitems(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParseStarterProject/ShoppingListCreation.swift"
+            timestampString = "486060546.027659"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2383"
+            endingLineNumber = "2383"
             landmarkName = "checktocopy(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -13885,11 +13869,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2376"
-            endingLineNumber = "2376"
+            startingLineNumber = "2373"
+            endingLineNumber = "2373"
             landmarkName = "checktocopy(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -13901,11 +13885,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2398"
-            endingLineNumber = "2398"
+            startingLineNumber = "2395"
+            endingLineNumber = "2395"
             landmarkName = "displayFailAlert(_:message:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -13917,11 +13901,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3176"
-            endingLineNumber = "3176"
+            startingLineNumber = "3046"
+            endingLineNumber = "3046"
             landmarkName = "additemstolistsarrayandsave()"
             landmarkType = "5">
          </BreakpointContent>
@@ -13933,11 +13917,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486074727.086323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3256"
-            endingLineNumber = "3256"
+            startingLineNumber = "3128"
+            endingLineNumber = "3128"
             landmarkName = "additemstolistsarrayandsave()"
             landmarkType = "5">
          </BreakpointContent>
@@ -13949,11 +13933,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486074727.086323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3277"
-            endingLineNumber = "3277"
+            startingLineNumber = "3149"
+            endingLineNumber = "3149"
             landmarkName = "additemstolistsarrayandsave()"
             landmarkType = "5">
          </BreakpointContent>
@@ -13965,11 +13949,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486074727.086323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3280"
-            endingLineNumber = "3280"
+            startingLineNumber = "3152"
+            endingLineNumber = "3152"
             landmarkName = "additemstolistsarrayandsave()"
             landmarkType = "5">
          </BreakpointContent>
@@ -13981,11 +13965,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486074727.086323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3352"
-            endingLineNumber = "3352"
+            startingLineNumber = "3224"
+            endingLineNumber = "3224"
             landmarkName = "newPFObject()"
             landmarkType = "5">
          </BreakpointContent>
@@ -13997,11 +13981,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485789179.157314"
+            timestampString = "486074727.086323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3883"
-            endingLineNumber = "3883"
+            startingLineNumber = "3755"
+            endingLineNumber = "3755"
             landmarkName = "dataretrievallist()"
             landmarkType = "5">
          </BreakpointContent>
@@ -14013,11 +13997,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485789179.157314"
+            timestampString = "486074727.086323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3887"
-            endingLineNumber = "3887"
+            startingLineNumber = "3759"
+            endingLineNumber = "3759"
             landmarkName = "dataretrievallist()"
             landmarkType = "5">
          </BreakpointContent>
@@ -14029,11 +14013,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485789179.157314"
+            timestampString = "486074727.086323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3889"
-            endingLineNumber = "3889"
+            startingLineNumber = "3763"
+            endingLineNumber = "3763"
             landmarkName = "dataretrievallist()"
             landmarkType = "5">
          </BreakpointContent>
@@ -14045,11 +14029,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485789179.157314"
+            timestampString = "486074727.086323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3890"
-            endingLineNumber = "3890"
+            startingLineNumber = "3764"
+            endingLineNumber = "3764"
             landmarkName = "dataretrievallist()"
             landmarkType = "5">
          </BreakpointContent>
@@ -14061,11 +14045,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486074727.086323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3260"
-            endingLineNumber = "3260"
+            startingLineNumber = "3132"
+            endingLineNumber = "3132"
             landmarkName = "additemstolistsarrayandsave()"
             landmarkType = "5">
          </BreakpointContent>
@@ -14077,11 +14061,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486074727.086323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3269"
-            endingLineNumber = "3269"
+            startingLineNumber = "3141"
+            endingLineNumber = "3141"
             landmarkName = "additemstolistsarrayandsave()"
             landmarkType = "5">
          </BreakpointContent>
@@ -14093,11 +14077,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486081364.150398"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "6383"
-            endingLineNumber = "6383"
+            startingLineNumber = "6243"
+            endingLineNumber = "6243"
             landmarkName = "restoreitem(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -14109,11 +14093,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486081364.150398"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "6398"
-            endingLineNumber = "6398"
+            startingLineNumber = "6258"
+            endingLineNumber = "6258"
             landmarkName = "restoreitem(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -14125,11 +14109,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2641"
-            endingLineNumber = "2641"
+            startingLineNumber = "2638"
+            endingLineNumber = "2638"
             landmarkName = "pasteitems(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -14141,11 +14125,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2401"
-            endingLineNumber = "2401"
+            startingLineNumber = "2398"
+            endingLineNumber = "2398"
             landmarkName = "displayFailAlert(_:message:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -14365,11 +14349,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2185"
-            endingLineNumber = "2185"
+            startingLineNumber = "2182"
+            endingLineNumber = "2182"
             landmarkName = "EditAllBarButton(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -14381,23 +14365,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2198"
-            endingLineNumber = "2198"
-            landmarkName = "ShoppingListCreation"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2195"
@@ -14413,11 +14381,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2200"
-            endingLineNumber = "2200"
+            startingLineNumber = "2192"
+            endingLineNumber = "2192"
             landmarkName = "ShoppingListCreation"
             landmarkType = "3">
          </BreakpointContent>
@@ -14429,11 +14397,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "485736744.046875"
+            timestampString = "486060546.027659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2190"
-            endingLineNumber = "2190"
+            startingLineNumber = "2197"
+            endingLineNumber = "2197"
+            landmarkName = "ShoppingListCreation"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParseStarterProject/ShoppingListCreation.swift"
+            timestampString = "486060546.027659"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2187"
+            endingLineNumber = "2187"
             landmarkName = "EditAllBarButton(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -14445,11 +14429,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "479854104.400917"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "527"
-            endingLineNumber = "527"
+            startingLineNumber = "524"
+            endingLineNumber = "524"
             landmarkName = "ShoppingListCreation"
             landmarkType = "3">
          </BreakpointContent>
@@ -14461,11 +14445,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ShoppingListCreation.swift"
-            timestampString = "479854104.400917"
+            timestampString = "486058938.903678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "534"
-            endingLineNumber = "534"
+            startingLineNumber = "531"
+            endingLineNumber = "531"
             landmarkName = "uncheckall()"
             landmarkType = "5">
          </BreakpointContent>
@@ -14701,11 +14685,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "862"
-            endingLineNumber = "862"
+            startingLineNumber = "870"
+            endingLineNumber = "870"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -14717,11 +14701,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/AllListsVC.swift"
-            timestampString = "485998047.75717"
+            timestampString = "486073785.51048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "864"
-            endingLineNumber = "864"
+            startingLineNumber = "872"
+            endingLineNumber = "872"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>

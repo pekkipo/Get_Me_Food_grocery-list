@@ -501,10 +501,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var bottomtoolbar: UIToolbar!
     
     
-    @IBOutlet var createoutlet: UIBarButtonItem!
-    
-    
-    @IBOutlet var additemsoutlet: UIBarButtonItem!
+  
     
     @IBOutlet var alllistsoutlet: UIBarButtonItem!
     
@@ -2036,7 +2033,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         poppresented = false
         
+    
         newquantitybutton.setImage(blackquantity, forState: .Normal)
+        
+        /*
         
         self.quicksmallconstraint.constant = -456
 
@@ -2048,6 +2048,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 // self.quicksmallconstraint.constant = -5
                 self.smallpopover.hidden = true
         })
+        */
+        self.smallpopover.fadeOut()
+        self.smallpopover.hidden = true
         
 
         
@@ -2105,13 +2108,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     
-    @IBAction func ShareBarButton(sender: AnyObject) {
-        
-      // generateImage(tableView)
-        
-       // additemstolistsarrayandsave()
-        
-    }
+   
     
     var myeditingmode = Bool()
     
@@ -2733,7 +2730,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     
-    
+    /*
     @IBAction func endeditname(sender: AnyObject) {
         
         let query = PFQuery(className:"shopLists")
@@ -2745,32 +2742,32 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 print(error)
             } else if let list = list {
                 
-                list["ShopListName"] = self.ShopListNameOutlet.text
+                list["ShopListName"] = self.self.listnameinview.text
                 list.pinInBackground()
                 // list.saveEventually()
             }
         }
         
         if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(self.currentList) {
-            UserLists[foundlist].listname = self.ShopListNameOutlet.text
+            UserLists[foundlist].listname = self.self.listnameinview.text
             
             
         }
         
         if let foundshoplist = UserShopLists.map({ $0.listid }).lazy.indexOf(self.currentList) {
-            UserShopLists[foundshoplist].listname = self.ShopListNameOutlet.text
+            UserShopLists[foundshoplist].listname = self.self.listnameinview.text
             
             
         }
         
         if let foundfavlist = UserFavLists.map({ $0.listid }).lazy.indexOf(self.currentList) {
-            UserFavLists[foundfavlist].listname = self.ShopListNameOutlet.text
+            UserFavLists[foundfavlist].listname = self.self.listnameinview.text
            
             
         }
         
     }
-    
+    */
     
     @IBAction func endeditnote(sender: AnyObject) {
         
@@ -2800,7 +2797,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     func closeCallbackSave() {
         
-        SaveListLocalProcess()
+        
        
     }
     
@@ -2824,7 +2821,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 self.restoresave()
             } else if let shopList = shopList {
                 
-                shopList["ShopListName"] = self.ShopListNameOutlet.text
+                shopList["ShopListName"] = self.self.listnameinview.text
                // shopList["ShopListNote"] = self.ShopListNoteOutlet.text
                 if self.isReceivedList == false {
                     shopList["isReceived"] = false
@@ -2862,142 +2859,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
-    @IBAction func SaveListButton(sender: AnyObject) {
-        
-        pausesave()
-        
-        let updatedate = NSDate()
-        
-        var currencyarray = [String]()
-        
-        let query = PFQuery(className:"shopLists")
-        // query.getObjectInBackgroundWithId(currentList) {
-        query.fromLocalDatastore()
-        
-        query.whereKey("listUUID", equalTo: currentList)
-        // queryfav.getObjectInBackgroundWithId(listtofav!) {
-        query.getFirstObjectInBackgroundWithBlock() {
-            
-            (shopList: PFObject?, error: NSError?) -> Void in
-            if error != nil {
-                print(error)
-                self.restoresave()
-            } else if let shopList = shopList {
-                
-                shopList["ShopListName"] = self.ShopListNameOutlet.text
-               // shopList["ShopListNote"] = self.ShopListNoteOutlet.text
-                //shopList["isFavourite"] = false
-                if self.isReceivedList == false {
-                    shopList["isReceived"] = false
-                } else {
-                    shopList["isReceived"] = true
-                }
-                
-                if self.isReceivedList == false {
-                    shopList["isSaved"] = false
-                } else {
-                    shopList["isSaved"] = true
-                }
-                
-                
-                
-                
-                
-               // print(self.shoppingListItemsIds)
-                
-                self.additemstolistsarray() //works!
-                
-                shopList["ItemsCount"] = self.itemsoverallqty
-                shopList["CheckedItemsCount"] = self.checkeditemsqty
-                //shopList.setObject(self.shoppingListItemsIds, forKey: "ItemsInTheShopList")
-                
-                shopList["creationDate"] = updatedate
-                
-                shopList["updateDate"] = updatedate
-                
-                shopList["ListColorCode"] = self.colorcode
-                
-                //shopList["ItemsInTheShopList"] = self.shoppingListItemsIds
-                
-                currencyarray.append(code)
-                currencyarray.append(symbol)
-                shopList["CurrencyArray"] = currencyarray
-
-                
-                
-                shopList.pinInBackground()
-                
-                self.restoresave()
-              //  shopList.saveInBackground()
-                //shopList.saveEventually()
-            }
-        }
-        
-        
-        ////// NOW SAVE IN ITEMSLIST ARRAY
-        
-       // if let foundlist = find(lazy(UserLists).map({ $0.listid }), currentList) {
-            if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(currentList) {
-            UserLists[foundlist].listname = ShopListNameOutlet.text
-            UserLists[foundlist].listnote = ""//ShopListNoteOutlet.text
-            UserLists[foundlist].listcurrency = [code,symbol]//code //later add array instead of just string currency
-            UserLists[foundlist].listcategories = showcats
-            UserLists[foundlist].listitemscount = itemsoverallqty
-            UserLists[foundlist].listcheckeditemscount = checkeditemsqty
-            UserLists[foundlist].listcreationdate = updatedate
-            UserLists[foundlist].listcolorcode = colorcode
-            
-        }
-        
-        //if let foundshoplist = find(lazy(UserShopLists).map({ $0.listid }), currentList) {
-          if let foundshoplist = UserShopLists.map({ $0.listid }).lazy.indexOf(currentList) {
-            
-            UserShopLists[foundshoplist].listname = ShopListNameOutlet.text
-            UserShopLists[foundshoplist].listnote = ""//ShopListNoteOutlet.text
-            UserShopLists[foundshoplist].listcurrency = [code,symbol]//code //later add array instead of just string currency
-            UserShopLists[foundshoplist].listcategories = showcats
-            UserShopLists[foundshoplist].listitemscount = itemsoverallqty
-            UserShopLists[foundshoplist].listcheckeditemscount = checkeditemsqty
-            UserShopLists[foundshoplist].listcreationdate = updatedate
-            UserShopLists[foundshoplist].listcolorcode = colorcode
-        }
-        
-       // if let foundfavlist = find(lazy(UserFavLists).map({ $0.listid }), currentList) {
-         if let foundfavlist = UserFavLists.map({ $0.listid }).lazy.indexOf(currentList) {
-            
-            UserFavLists[foundfavlist].listname = ShopListNameOutlet.text
-            UserFavLists[foundfavlist].listnote = ""//ShopListNoteOutlet.text
-            UserFavLists[foundfavlist].listcurrency = [code,symbol]//code //later add array instead of just string currency
-            UserFavLists[foundfavlist].listcategories = showcats
-            UserFavLists[foundfavlist].listitemscount = itemsoverallqty
-            UserFavLists[foundfavlist].listcheckeditemscount = checkeditemsqty
-            UserFavLists[foundfavlist].listcreationdate = updatedate
-            UserFavLists[foundfavlist].listcolorcode = colorcode
-        }
-        
-        /*
-        var listId: String?
-        var shopList = PFObject(className:"shopLists")
-        shopList["ShopListName"] = ShopListNameOutlet.text
-        shopList["ShopListNote"] = ShopListNoteOutlet.text
-        shopList.saveInBackgroundWithBlock {
-        (success: Bool, error: NSError?) -> Void in
-        if (success) {
-        // The object has been saved.
-        
-        } else {
-        // Log details of the failure
-        println("Error: \(error!) \(error!.userInfo!)")
-        }
-        }
-        */
-        
-        //HERE MUST GO AN ALERT FIRST
-        
-        // performSegueWithIdentifier("BackToListAfterSave", sender: self)
-        
-    }
-    
+  
     
     
     //the stuff below is about assigning an ItemsList value the value of item
@@ -3046,7 +2908,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     /////////////
     
     
-    
+    /*
     func SaveListLocalProcess() {
         
         let updatedate = NSDate()
@@ -3061,7 +2923,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 print(error)
             } else if let shopList = shopList {
                 
-                shopList["ShopListName"] = self.ShopListNameOutlet.text
+                shopList["ShopListName"] = self.self.listnameinview.text
                 shopList["ShopListNote"] = ""//self.ShopListNoteOutlet.text
                 //shopList["isFavourite"] = false
                 if self.isReceivedList == false {
@@ -3099,7 +2961,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
        // if let foundlist = find(lazy(UserLists).map({ $0.listid }), currentList) {
         if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(currentList) {
 
-            UserLists[foundlist].listname = ShopListNameOutlet.text
+            UserLists[foundlist].listname = self.listnameinview.text
             UserLists[foundlist].listnote = ""//ShopListNoteOutlet.text
             UserLists[foundlist].listcurrency = code //later add array instead of just string currency
             UserLists[foundlist].listcategories = showcats
@@ -3112,7 +2974,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
        // if let foundshoplist = find(lazy(UserShopLists).map({ $0.listid }), currentList) {
           if let foundshoplist = UserShopLists.map({ $0.listid }).lazy.indexOf(currentList) {
             
-            UserShopLists[foundshoplist].listname = ShopListNameOutlet.text
+            UserShopLists[foundshoplist].listname = self.listnameinview.text
             UserShopLists[foundshoplist].listnote = ""//ShopListNoteOutlet.text
             UserShopLists[foundshoplist].listcurrency = code //later add array instead of just string currency
             UserShopLists[foundshoplist].listcategories = showcats
@@ -3124,6 +2986,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         
     }
+    */
+    
     
     func SaveListLocal() {
         
@@ -3169,6 +3033,12 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         // return ItemsCount
     }
     
+    
+    @IBAction func openmenuaction(sender: AnyObject) {
+        
+      //  additemstolistsarrayandsave()
+    }
+    
     func additemstolistsarrayandsave() {
         
         // var idsinthislist = [String]()
@@ -3177,6 +3047,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         for item in itemsDataDict {
             idsinthislist.append(item["ItemId"] as! String)
         }
+        
+        print(idsinthislist)
         
         let updatedate = NSDate()
         
@@ -3241,7 +3113,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         //if let foundlist = find(lazy(UserLists).map({ $0.listid }), currentList) {
          if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(currentList) {
-            UserLists[foundlist].listname = ShopListNameOutlet.text
+            UserLists[foundlist].listname = self.listnameinview.text
             UserLists[foundlist].listnote = self.listnoteinview.text
             UserLists[foundlist].listcurrency = [code,symbol]//code //later add array instead of just string currency
             UserLists[foundlist].listcategories = showcats
@@ -3256,7 +3128,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
          if let foundshoplist = UserShopLists.map({ $0.listid }).lazy.indexOf(currentList) {
             
             
-            UserShopLists[foundshoplist].listname = ShopListNameOutlet.text
+            UserShopLists[foundshoplist].listname = self.listnameinview.text
             UserShopLists[foundshoplist].listnote = self.listnoteinview.text
             UserShopLists[foundshoplist].listcurrency = [code,symbol]//code //later add array instead of just string currency
             UserShopLists[foundshoplist].listcategories = showcats
@@ -3269,7 +3141,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
      //   if let foundfavlist = find(lazy(UserFavLists).map({ $0.listid }), currentList) {
         if let foundfavlist = UserFavLists.map({ $0.listid }).lazy.indexOf(currentList) {
             
-            UserFavLists[foundfavlist].listname = ShopListNameOutlet.text
+            UserFavLists[foundfavlist].listname = self.listnameinview.text
             UserFavLists[foundfavlist].listnote = self.listnoteinview.text
             UserFavLists[foundfavlist].listcurrency = [code,symbol]//code //later add array instead of just string currency
             UserFavLists[foundfavlist].listcategories = showcats
@@ -3303,7 +3175,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         shopListNew["listUUID"] = listuuid
         
-        shopListNew["ShopListName"] = ShopListNameOutlet.text
+        shopListNew["ShopListName"] = self.listnameinview.text
         shopListNew["ShopListNote"] = ""//ShopListNoteOutlet.text
         //for user stuff
         shopListNew["BelongsToUser"] = PFUser.currentUser()!.objectId!
@@ -3342,7 +3214,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         /// ALSO NEED TO PUT IT TO ARRAY OF LISTS
         let listid = listuuid
-        let listname = ShopListNameOutlet.text
+        let listname = self.listnameinview.text
         let listnote = ""//ShopListNoteOutlet.text
         let listcreationdate = creationdate
         let listisfav = false
@@ -3883,9 +3755,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                     
                     for object in list {
                         
-                        self.ShopListNameOutlet.text = object["ShopListName"] as! String
+                        //self.self.listnameinview.text = object["ShopListName"] as! String
                         self.listnoteinview.text = object["ShopListNote"] as! String
                         self.listnameinview.text = object["ShopListName"] as! String
+                        
+                        self.navigationItem.title = object["ShopListName"] as! String
                         
                         //need to know if its received
                         self.isReceivedList = object["isReceived"] as! Bool
@@ -4272,7 +4146,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                     
                     for object in list {
                         
-                        self.ShopListNameOutlet.text = object["ShopListName"] as! String
+                        self.self.listnameinview.text = object["ShopListName"] as! String
                        // self.ShopListNoteOutlet.text = object["ShopListNote"] as! String
                         
                         //need to know if its received
@@ -4992,6 +4866,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
             smallpopover.hidden = false
             
+            //smallpopover.alpha = 1
+            smallpopover.fadeIn()
+            
+            /*
             self.quicksmallconstraint.constant = -5
             
             let yPos : CGFloat = 151
@@ -5002,6 +4880,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             }, completion: { (value: Bool) -> Void in
                // self.quicksmallconstraint.constant = -5
         })
+ */
             
             /*
             UIView.transitionWithView(self.smallpopover, duration: 0.4, options: [], animations: {
@@ -5014,6 +4893,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             poppresented = false
             
             newquantitybutton.setImage(blackquantity, forState: .Normal)
+            /*
             self.quicksmallconstraint.constant = -456
             
            // let yPos : CGFloat = -300
@@ -5026,7 +4906,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                     // self.quicksmallconstraint.constant = -5
                     self.smallpopover.hidden = true
             })
-
+            */
+            smallpopover.fadeOut()
+            self.smallpopover.hidden = true
             
             getinfofrompop(buttontitle, quantity: popqty.text!)
 
@@ -5252,7 +5134,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                
             } else if let list = list {
                 
-                self.ShopListNameOutlet.text = self.listnameinview.text
+                self.self.listnameinview.text = self.listnameinview.text
                 
                 list["ShopListName"] = self.listnameinview.text
                 list["ShopListNote"] = self.listnoteinview.text
@@ -5550,18 +5432,28 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet var openmenu: UIBarButtonItem!
     
+    // MARK: save list info execution
+    override func viewWillDisappear(animated: Bool) {
+        
+         additemstolistsarrayandsave()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+         //UINavigationBar.appearance().backgroundColor = UIColor.clearColor()
+       
+        
+        // not sure
+        itemsDataDict.removeAll(keepCapacity: true)
         
         openmenu.target = self.revealViewController()
+        //openmenu.action = Selector("openmenuaction:")
+       
         openmenu.action = Selector("revealToggle:")
         
-        
-        // menu stuff
-        
-        gobackoutlet.target = self.revealViewController()
-        gobackoutlet.action = Selector("revealToggle:")
+
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         
@@ -5645,34 +5537,17 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         addedindicator.backgroundColor = UIColorFromRGBalpha(0x2a2f36, alp: 1) //2a2f36
         
         autocomplete.delegate = self
+
         
-        ShopListNameOutlet.delegate = self
+
         
-      //  ShopListNoteOutlet.delegate = self
+       // self.view.backgroundColor = UIColorFromRGB(0xF1F1F1)//(0x2a2f36)F1F1F1
         
-        toptoolbar.barTintColor = UIColorFromRGB(0x31797D)//2a2f36)
         
-       self.view.backgroundColor = UIColorFromRGB(0xF1F1F1)//(0x2a2f36)F1F1F1
-        
-        smalltopview.backgroundColor = UIColorFromRGB(0x31797D)//2a2f36)
-        
-        lightbgview.backgroundColor = UIColorFromRGB(0xF1F1F1) // f1
-        
-        tableView.backgroundColor = UIColorFromRGB(0xF1F1F1) //f1
+        //tableView.backgroundColor = UIColorFromRGB(0xF1F1F1) //f1
         
         smallpopover.backgroundColor = UIColorFromRGB(0xFAFAFA)//UIColorFromRGB(0xF7F7F7)
-         //self.view.layoutMargins = UIEdgeInsetsZero
-        
-        // customize toolbar
-        
-        //bottomtoolbar.barStyle
-        //noitemview.layer.borderWidth = 1
-       // noitemview.layer.borderColor = UIColorFromRGB(0xBEBEBE).CGColor
-       
-        
-      //  newquickview.layer.cornerRadius = 4
-        
-     //   tableView.layer.cornerRadius = 4
+
         
         inamountview.layer.cornerRadius = 8
         
@@ -5687,21 +5562,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
        autocomplete.leftTextMargin = 5
         
-    //    sharebaroutlet.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Avenir-Book", size: 17)!, NSForegroundColorAttributeName: UIColorFromRGB(0x44BD7D)], forState: UIControlState.Normal)
-      //  editallbaroutlet.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Avenir-Book", size: 17)!, NSForegroundColorAttributeName: UIColorFromRGB(0xF9F9F9)], forState: UIControlState.Normal)
-      //  savebaroutlet.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Avenir-Book", size: 17)!, NSForegroundColorAttributeName: UIColorFromRGB(0xDAFFA4)], forState: UIControlState.Normal)
-        
-        
-        createoutlet.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Avenir-Book", size: 17)!, NSForegroundColorAttributeName: UIColorFromRGB(0xE0FFB2)], forState: UIControlState.Normal)
-        
-        
-        additemsoutlet.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Avenir-Book", size: 17)!, NSForegroundColorAttributeName: UIColorFromRGB(0x61C791)], forState: UIControlState.Normal)
-        
-        
-       // alllistsoutlet.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 18)!, NSForegroundColorAttributeName: UIColorFromRGB(0xFAFAFA)], forState: UIControlState.Normal)
-        
-        //
-        
+  
         
         myeditingmode = false
         
@@ -5755,13 +5616,12 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             dateFormatter.dateFormat = "dd MMM yyyy"
             let namedate = dateFormatter.stringFromDate(todaydate)
             
-           // self.ShopListNameOutlet.text = "\(NSLocalizedString("list", comment: "")) \(namedate)"
-            
-           // self.listnameinview.text = "\(NSLocalizedString("list", comment: "")) \(namedate)"
-            
-            self.ShopListNameOutlet.text = "\(NSLocalizedString("listshop", comment: ""))"
+
             
             self.listnameinview.text = "\(NSLocalizedString("listshop", comment: ""))"
+            
+            self.navigationItem.title = "\(NSLocalizedString("listshop", comment: ""))"
+            
             
             self.listnoteinview.text = ""
             

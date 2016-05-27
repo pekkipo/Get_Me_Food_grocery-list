@@ -76,6 +76,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         GIDSignIn.sharedInstance().delegate = self
         
+        
+        UINavigationBar.appearance().backgroundColor = UIColorFromHex(0xF9F9F9)
 
         let defaultACL = PFACL();
 

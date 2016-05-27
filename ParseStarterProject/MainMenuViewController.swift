@@ -444,8 +444,8 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
             
             
             ///might need this!
-            
-            itemsDataDict.removeAll(keepCapacity: true)
+            // MARK: commented itemsDataDict removal
+           // itemsDataDict.removeAll(keepCapacity: true)
             HistoryitemsDataDict.removeAll(keepCapacity: true)
             
             for var i = 0;i<catalogitems.count;++i {
@@ -505,13 +505,13 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         //createnewshoplist
 
         if segue.identifier == "createnewshoplist" {
-            let toViewController = segue.destinationViewController as! ShoppingListCreation
-            //let navVC1 = segue.destinationViewController as! UINavigationController
+           // let toViewController = segue.destinationViewController as! ShoppingListCreation
+            let navVC1 = segue.destinationViewController as! UINavigationController
             
-            //let toViewController = navVC1.viewControllers.first as! ShoppingListCreation
+            let toViewController = navVC1.viewControllers.first as! ShoppingListCreation
             
-            self.modalPresentationStyle = UIModalPresentationStyle.Custom
-            toViewController.transitioningDelegate = self.transitionOperator
+          //  self.modalPresentationStyle = UIModalPresentationStyle.Custom
+          //  toViewController.transitioningDelegate = self.transitionOperator
             
 
                 
@@ -527,8 +527,8 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
             let toViewController = segue.destinationViewController as! ShoppingListCreation
 
             
-            self.modalPresentationStyle = UIModalPresentationStyle.Custom
-            toViewController.transitioningDelegate = self.transitionOperator
+            // self.modalPresentationStyle = UIModalPresentationStyle.Custom
+            // toViewController.transitioningDelegate = self.transitionOperator
 
            // if isFromShopList == true {
             
