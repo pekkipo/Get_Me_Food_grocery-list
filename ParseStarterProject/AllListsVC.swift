@@ -705,17 +705,13 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         // navigation title as a button
         
         let button =  UIButton(type: .Custom)
-        //button.frame = CGRectMake(0, 0, 100, 40) as CGRect
         button.frame = CGRectMake((((self.view.frame.size.width) / 2) - 80),0,140,40) as CGRect
-        //button.backgroundColor = UIColor.clearColor()
         button.setTitle("My lists", forState: UIControlState.Normal)
-        //button.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         button.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 16)
         button.setTitleColor(UIColorFromRGB(0x31797D), forState: .Normal)
         let spacing: CGFloat = 10; // the amount of spacing to appear between image and title
         button.imageEdgeInsets = UIEdgeInsetsMake(2, 100, 0, 0); // top left bottom right
-        button.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing); // i switch them
-        
+        button.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
         let titleimage = UIImage(named: "myliststitle") as UIImage?
         button.setImage(titleimage, forState: .Normal)
         button.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)

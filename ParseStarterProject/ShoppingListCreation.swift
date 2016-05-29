@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import ASHorizontalScrollView
 
 import Foundation
 /*
@@ -448,7 +449,7 @@ protocol passListtoMenuDelegate
 var symbol = String()
 var code = String()
 
-class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDataSource, UIPickerViewDelegate, RefreshListDelegate, MPGTextFieldDelegateCatalog, SmallPopupDelegate, UIPopoverPresentationControllerDelegate, OptionsPopupDelegate, UITextFieldDelegate, takepicturedelegate, UIGestureRecognizerDelegate, UITextViewDelegate {//, sendBackParametersToShopDelegate {
+class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDataSource, RefreshListDelegate, MPGTextFieldDelegateCatalog, SmallPopupDelegate, UIPopoverPresentationControllerDelegate, OptionsPopupDelegate, UITextFieldDelegate, takepicturedelegate, UIGestureRecognizerDelegate, UITextViewDelegate {//, sendBackParametersToShopDelegate {
     
     var delegateforlist : passListtoMenuDelegate?
     
@@ -731,6 +732,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     var quickunit : String = ""
+    var quickperunit : String = ""
     var quickqty : String  = ""
     
     
@@ -1031,7 +1033,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         quickaddoutlet.hidden = true
         newquantitybutton.hidden = true
         
-        self.picker.selectRow(0, inComponent: 0, animated: false)
+       // self.picker.selectRow(0, inComponent: 0, animated: false)
 
         self.quickunit = ""
         self.quickqty  = ""
@@ -1274,7 +1276,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             opencatalogoutlet.hidden = false
             newquantitybutton.hidden = true
             
-            self.picker.selectRow(0, inComponent: 0, animated: false)
+           // self.picker.selectRow(0, inComponent: 0, animated: false)
             
             self.quickunit = ""
             self.quickqty  = ""
@@ -1282,7 +1284,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             self.autocomplete.text = NSLocalizedString("additemtext", comment: "")
             
             self.popqty.text = ""
-            self.inunitsfield.text = ""
+            // self.inunitsfield.text = ""
             
             buttontitle = ""
             
@@ -1481,7 +1483,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             opencatalogoutlet.hidden = false
             newquantitybutton.hidden = true
             
-             self.picker.selectRow(0, inComponent: 0, animated: false)
+           //  self.picker.selectRow(0, inComponent: 0, animated: false)
             
             self.quickunit = ""
             self.quickqty  = ""
@@ -1489,7 +1491,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             self.autocomplete.text = NSLocalizedString("additemtext", comment: "")
             
             self.popqty.text = ""
-            self.inunitsfield.text = ""
+            // self.inunitsfield.text = ""
             
             buttontitle = ""
            
@@ -1600,14 +1602,22 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    // MARK: HorizontalScroll
+    
+    
+    @IBOutlet var horscrollview: UIView!
+    
+    @IBOutlet var horscrollviewper: UIView!
+  
+    //var horizontalScrollView: ASHorizontalScrollView = ASHorizontalScrollView(frame:CGRectMake(0, 0, 320, 60))
+    
+  
+    
     
     @IBOutlet var choosecurrency: UIButton!
     
     
-    @IBAction func showcurrency(sender: AnyObject) {
-        
-        showPickerInActionSheet()
-    }
+    
     
     var senderVC : UIViewController?
     //need to find out from which vc was the segue performed
@@ -1891,26 +1901,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                         
                         
                         if category["defaultpicture"] as! Bool == false {
-                            /*
-                            if var imageFile = category["catimage"] as? PFFile {
-                            // if imageFile != nil {
-                            var imageData = imageFile.getData()
-                            
-                            //  print(imageData)
-                            if (imageData != nil) {
-                            var image = UIImage(data: imageData!)
-                            thiscatpicture = image!
-                            
-                            } else {
-                            thiscatpicture = imagestochoose[0].itemimage
-                            }
-                            } else {
-                            thiscatpicture = imagestochoose[0].itemimage
-                            }
-                            */
-                            
-                            
-                            self.loadImageFromLocalStore(category["imagePath"] as! String)
+                                                       self.loadImageFromLocalStore(category["imagePath"] as! String)
                            // thiscatpicture = 
                             self.headerimages.append(self.imageToLoad)
                             
@@ -4999,17 +4990,6 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var popqty: UITextField!
     
     
-    @IBOutlet var picker: UIPickerView!
-    
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    // returns number of rows in each component..
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
-        return units.count
-    }
     
     
     
@@ -5439,11 +5419,121 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
+    func pickedunit(sender: UIButton) {
+        
+        quickunit = sender.titleForState(.Normal)!
+        print(quickunit)
+        
+        
+        // fuck, much easier just to change state to selected and then filter by state :)
+        for button in horizontalScrollView.subviews {
+            
+            if let tappedbutton = button as? UIButton {
+                if tappedbutton.tag == sender.tag {
+                    sender.backgroundColor = UIColorFromRGB(0x31797D)
+                    sender.tintColor = UIColorFromRGB(0xFAFAFA)
+                    sender.titleLabel!.textColor = UIColorFromRGB(0xFAFAFA)
+                    sender.layer.borderWidth = 1
+                    sender.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
+                } else {
+                    tappedbutton.backgroundColor = UIColor.clearColor()
+                    tappedbutton.tintColor = UIColorFromRGB(0x31797D)
+                    tappedbutton.titleLabel!.textColor = UIColorFromRGB(0x31797D)
+                    tappedbutton.layer.borderWidth = 1
+                    tappedbutton.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+                }
+            }
+        }
+        
+        
+    }
+    
+    func pickedperunit(sender: UIButton) {
+        
+        quickperunit = sender.titleForState(.Normal)!
+        print(quickperunit)
+        
+        
+        for button in horizontalScrollViewper.subviews {
+            
+            if let tappedbutton = button as? UIButton {
+                if tappedbutton.tag == sender.tag {
+                sender.backgroundColor = UIColorFromRGB(0x31797D)
+                sender.tintColor = UIColorFromRGB(0xFAFAFA)
+                sender.titleLabel!.textColor = UIColorFromRGB(0xFAFAFA)
+                sender.layer.borderWidth = 1
+                sender.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
+                } else {
+                tappedbutton.backgroundColor = UIColor.clearColor()
+                tappedbutton.tintColor = UIColorFromRGB(0x31797D)
+                tappedbutton.titleLabel!.textColor = UIColorFromRGB(0x31797D)
+                tappedbutton.layer.borderWidth = 1
+                tappedbutton.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+                }
+            }
+        }
+
+    }
+    
+    
+   var horizontalScrollView = ASHorizontalScrollView()
+    var horizontalScrollViewper = ASHorizontalScrollView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
          //UINavigationBar.appearance().backgroundColor = UIColor.clearColor()
-       
+        
+        // SCROLLS
+        horizontalScrollView = ASHorizontalScrollView(frame:CGRectMake(0, 0, horscrollview.frame.width, 42))
+        horizontalScrollViewper = ASHorizontalScrollView(frame:CGRectMake(0, 0, horscrollviewper.frame.width, 42))
+        horizontalScrollView.uniformItemSize = CGSizeMake(52, 42)
+        horizontalScrollViewper.uniformItemSize = CGSizeMake(52, 42)
+        horizontalScrollView.leftMarginPx = 0
+        horizontalScrollViewper.leftMarginPx = 0
+        horizontalScrollView.miniMarginPxBetweenItems = 7
+        horizontalScrollView.miniAppearPxOfLastItem = 10
+        horizontalScrollViewper.miniMarginPxBetweenItems = 7
+        horizontalScrollViewper.miniAppearPxOfLastItem = 10
+        horizontalScrollView.setItemsMarginOnce()
+        horizontalScrollViewper.setItemsMarginOnce()
+        
+        
+        
+        for i in (0..<units.count) {
+
+            var button = UIButton(frame: CGRectZero)
+            button.backgroundColor = UIColor.clearColor()
+            button.setTitle(units[i][1], forState: .Normal)
+            button.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 16)
+            button.tintColor = UIColorFromRGB(0x31797D)
+            button.setTitleColor(UIColorFromRGB(0x31797D), forState: UIControlState.Normal)
+            button.layer.borderWidth = 1
+            button.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+            button.layer.cornerRadius = 8
+            
+            button.addTarget(self, action: "pickedunit:", forControlEvents: UIControlEvents.TouchDown)
+            button.tag = 0 + i
+            
+            var buttonper = UIButton(frame:CGRectMake(0, 0, 52, 42))
+            buttonper.backgroundColor = UIColor.clearColor()
+            buttonper.titleLabel!.font = UIFont(name: "AvenirNext-UltraLight", size: 16)
+            buttonper.tintColor = UIColorFromRGB(0x31797D)
+            buttonper.setTitleColor(UIColorFromRGB(0x31797D), forState: UIControlState.Normal)
+            buttonper.titleLabel!.textColor = UIColorFromRGB(0x31797D)
+            buttonper.layer.borderWidth = 1
+            buttonper.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+            buttonper.layer.cornerRadius = 8
+            buttonper.setTitle(units[i][1], forState: .Normal)
+            buttonper.addTarget(self, action: "pickedperunit:", forControlEvents: UIControlEvents.TouchDown)
+            buttonper.tag = 10 + i
+            
+            horizontalScrollView.addItem(button)
+            horizontalScrollViewper.addItem(buttonper)
+        }
+        
+       self.horscrollview.addSubview(horizontalScrollView)
+        self.horscrollviewper.addSubview(horizontalScrollViewper)
         
         // not sure
         itemsDataDict.removeAll(keepCapacity: true)
@@ -5527,9 +5617,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         popqty.delegate = self
         
-        // Do any additional setup after loading the view.
-        self.picker.delegate = self
-        self.picker.dataSource = self
+      
         
         //addedindicator.hidden = true
         addedindicator.alpha = 0
@@ -5546,7 +5634,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         //tableView.backgroundColor = UIColorFromRGB(0xF1F1F1) //f1
         
-        smallpopover.backgroundColor = UIColorFromRGB(0xFAFAFA)//UIColorFromRGB(0xF7F7F7)
+        smallpopover.backgroundColor = UIColorFromRGB(0xFFFFFF)//UIColorFromRGB(0xF7F7F7)
 
         
         inamountview.layer.cornerRadius = 8
@@ -5554,10 +5642,6 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         inamountview.layer.borderWidth = 1
         inamountview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
         
-        inunitsfield.layer.cornerRadius = 8
-        
-        inunitsfield.layer.borderWidth = 1
-        inunitsfield.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
         
         
        autocomplete.leftTextMargin = 5
@@ -8353,90 +8437,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     }
     */
     
-    
-    
-    ////// CHOOSE CURRENCY STUFF
-    ///// ALERT CODE
-    func showPickerInActionSheet() {
-        // func showPickerInActionSheet() {
-        let title = ""
-        let message = "\n\n\n\n\n\n\n\n\n\n";
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.ActionSheet);
-        alert.modalInPopover = true;
-        
-        
-        //Create a frame (placeholder/wrapper) for the picker and then create the picker
-        let pickerFrame: CGRect = CGRectMake(17, 52, 270, 100); // CGRectMake(left), top, width, height) - left and top are like margins
-        let picker: UIPickerView = UIPickerView(frame: pickerFrame);
-        
-        
-        picker.delegate = self
-        picker.dataSource = self
-        
-        //Add the picker to the alert controller
-        alert.view.addSubview(picker);
-        
-        //Create the toolbar view - the view witch will hold our 2 buttons
-        let toolFrame = CGRectMake(17, 5, 270, 45);
-        let toolView: UIView = UIView(frame: toolFrame);
-        
-        
-        //close this view?
-        
-        
-        
-        //add buttons to the view
-        let buttonCancelFrame: CGRect = CGRectMake(0, 7, 100, 30); //size & position of the button as placed on the toolView
-        
-        //Create the cancel button & set its title
-        let buttonCancel: UIButton = UIButton(frame: buttonCancelFrame);
-        buttonCancel.setTitle("Cancel", forState: UIControlState.Normal);
-        buttonCancel.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal);
-        toolView.addSubview(buttonCancel); //add it to the toolView
-        
-        //Add the target - target, function to call, the event witch will trigger the function call
-        buttonCancel.addTarget(self, action: "cancelSelection:", forControlEvents: UIControlEvents.TouchDown);
-        
-        
-        //add buttons to the view
-        let buttonOkFrame: CGRect = CGRectMake(170, 7, 100, 30); //size & position of the button as placed on the toolView
-        
-        //Create the Select button & set the title
-        let buttonOk: UIButton = UIButton(frame: buttonOkFrame);
-        buttonOk.setTitle("Select", forState: UIControlState.Normal);
-        buttonOk.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal);
-        toolView.addSubview(buttonOk); //add to the subview
-        
-        //Add the tartget. In my case I dynamicly set the target of the select button
-        
-        buttonOk.addTarget(self, action: "saveUnit:", forControlEvents: UIControlEvents.TouchDown);
-        //add the toolbar to the alert controller
-        alert.view.addSubview(toolView);
-        
-        self.presentViewController(alert, animated: true, completion: nil);
-        
-        //
-        
-        
-        
-    }
-    
-    func saveUnit(sender: UIButton){
-        // Your code when select button is tapped
-        
-        // unit = buttontitle
-        choosecurrency.setTitle(String(stringInterpolationSegment: symbol), forState: UIControlState.Normal)
-        
-        print("SaveCurrency")
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    
-    func cancelSelection(sender: UIButton){
-        print("Cancel");
-        self.dismissViewControllerAnimated(true, completion: nil);
-        // We dismiss the alert. Here you can add your additional code to execute when cancel is pressed
-    }
+ 
     
     /*
     func popoverPresentationControllerShouldDismissPopover(popoverPresentationController: UIPopoverPresentationController) -> Bool {
