@@ -4839,6 +4839,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
       //  self.smallpopover.frame.origin.y = self.view.frame.origin.y - 300
     }
     
+    
     @IBOutlet var quicksmallconstraint: NSLayoutConstraint!
     
     @IBOutlet var newquantitybutton: UIButton!
@@ -4853,15 +4854,17 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
         poppresented = true
             
-             self.newquantitybutton.setImage(self.redquantity, forState: .Normal)
+            autocomplete.resignFirstResponder()
+           //  self.newquantitybutton.setImage(self.redquantity, forState: .Normal)
         
+            newquantitybutton.tintColor = UIColorFromRGB(0xA2AF36)
+            
             smallpopover.hidden = false
             
-            //smallpopover.alpha = 1
-            smallpopover.fadeIn()
+
             
-            /*
-            self.quicksmallconstraint.constant = -5
+
+            self.quicksmallconstraint.constant = -6
             
             let yPos : CGFloat = 151
           //  self.smallpopover.frame.origin.y = self.view.frame.origin.y - 300
@@ -4871,7 +4874,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             }, completion: { (value: Bool) -> Void in
                // self.quicksmallconstraint.constant = -5
         })
- */
+
             
             /*
             UIView.transitionWithView(self.smallpopover, duration: 0.4, options: [], animations: {
@@ -4935,24 +4938,34 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     var doublenumber = Double()
     
+    var pricevalue = Double()
+    
     func closenumberpad(sender: UIButton) {
         popqty.resignFirstResponder()
     }
     
+    func closenumberpad2(sender: UIButton) {
+        quickpriceoutlet.resignFirstResponder()
+    }
+    
+    func closenumberpad3(sender: UIButton) {
+        quickpriceoutlet.resignFirstResponder()
+    }
+    
     var closepadimage = UIImage(named: "ClosePad")!
+    var editproductimage = UIImage(named:"4EditProduct")!
+    
     
     @IBAction func decrement(sender: AnyObject) {
         
         var getvalue: Double {
-            // get {return Qfield.text.toInt()!}
-            // get {return (qtyfield.text! as NSString).doubleValue}
+
             get {return popqty.text!.doubleConverter}
         }
         
         doublenumber = getvalue
         
         doublenumber -= 1
-        //qtyfield.text = String(format: "%.2f", (stringInterpolationSegment: doublenumber))
         
         var formatter = NSNumberFormatter()
         formatter.maximumFractionDigits = 4
@@ -4962,14 +4975,14 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         popqty.text = formatter.stringFromNumber(doublenumber)
         
+        multiplication()
     }
     
     
     @IBAction func increment(sender: AnyObject) {
         
         var getvalue: Double {
-            // get {return Qfield.text.toInt()!}
-            //get {return (qtyfield.text! as NSString).doubleValue}
+
             get {return popqty.text!.doubleConverter}
         }
         
@@ -4983,7 +4996,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         formatter.minimumSignificantDigits = 1
         formatter.maximumSignificantDigits = 9
         
-        popqty.text = formatter.stringFromNumber(doublenumber)//String(format: "%.2f", (stringInterpolationSegment: doublenumber))
+        popqty.text = formatter.stringFromNumber(doublenumber)
+    
+        
+        multiplication()
     }
     
     
@@ -5419,10 +5435,139 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
+    // new quick parts
+    
+    
+    
+    
+    @IBOutlet var quickpriceoutlet: UITextField!
+    @IBOutlet var quicksum: UILabel!
+    @IBOutlet var quickcurrency: UILabel!
+    @IBOutlet var categoryview: UIView!
+    @IBOutlet var quickicon: UIImageView!
+    @IBOutlet var quickcategorybutton: UIButton!
+    @IBOutlet var nomatchlabel: UILabel!
+    
+    // PRICE ACTIONS
+    @IBAction func priceendedit(sender: AnyObject) {
+    }
+    
+    
+    @IBAction func pricebeginedit(sender: AnyObject) {
+    }
+    
+    
+    @IBAction func pricevaluechanged(sender: AnyObject) {
+    }
+   
+    
+    // MULTIPLICATION
+    
+    var newvalue = Double()
+    
+    func multiplication(){
+
+        var unit =  quickunit
+        var perunit = quickperunit
+
+        
+        var getvalueofprice: Double {
+
+            get {return quickpriceoutlet.text!.doubleConverter}
+        }
+        
+        var getvalue: Double {
+
+            get {return popqty.text!.doubleConverter}
+        }
+        
+        doublenumber = getvalue
+        
+        pricevalue = getvalueofprice
+        
+
+        var formatter = NSNumberFormatter()
+        formatter.maximumFractionDigits = 4
+        formatter.usesSignificantDigits = false
+        formatter.minimumSignificantDigits = 1
+        formatter.maximumSignificantDigits = 9
+        
+        if unit == perunit {
+
+            newvalue = doublenumber*pricevalue
+
+            self.quicksum.text = formatter.stringFromNumber(newvalue)
+            
+            nomatchlabel.hidden = true
+        } else {
+            
+            if unit == units[3][1] && perunit == units[4][1] {
+                newvalue = (doublenumber)*1000*pricevalue
+                self.quicksum.text = formatter.stringFromNumber(newvalue)
+                nomatchlabel.hidden = true
+            } else if unit == units[4][1] && perunit == units[3][1] {
+                newvalue = (doublenumber)*0.001*pricevalue
+                self.quicksum.text = formatter.stringFromNumber(newvalue)
+                nomatchlabel.hidden = true
+            } else if unit == units[5][1] && perunit == units[6][1] {
+                newvalue = (doublenumber)*1000*pricevalue
+                self.quicksum.text = formatter.stringFromNumber(newvalue)
+                nomatchlabel.hidden = true
+            } else if unit == units[6][1] && perunit == units[5][1] {
+                newvalue = (doublenumber)*0.001*pricevalue
+                self.quicksum.text = formatter.stringFromNumber(newvalue)
+                nomatchlabel.hidden = true
+            } else if unit == units[11][1] && perunit == units[12][1] {
+                newvalue = (doublenumber)*1000*pricevalue
+                self.quicksum.text = formatter.stringFromNumber(newvalue)
+                nomatchlabel.hidden = true
+            } else if unit == units[12][1] && perunit == units[11][1] {
+                newvalue = (doublenumber)*0.001*pricevalue
+                self.quicksum.text = formatter.stringFromNumber(newvalue)
+                nomatchlabel.hidden = true
+            } else if unit == units[9][1] && perunit == units[8][1] {
+                newvalue = (doublenumber)*16.000*pricevalue
+                self.quicksum.text = formatter.stringFromNumber(newvalue)
+                nomatchlabel.hidden = true
+            } else if unit == units[8][1] && perunit == units[9][1] {
+                newvalue = (doublenumber)*0.062*pricevalue
+                self.quicksum.text = formatter.stringFromNumber(newvalue)
+                nomatchlabel.hidden = true
+            } else if unit == units[9][1] && perunit == units[3][1] {
+                newvalue = (doublenumber)*0.453*pricevalue
+                self.quicksum.text = formatter.stringFromNumber(newvalue)
+                nomatchlabel.hidden = true
+            } else if unit == units[3][1] && perunit == units[9][1] {
+                newvalue = (doublenumber)*2.204*pricevalue
+                self.quicksum.text = formatter.stringFromNumber(newvalue)
+                nomatchlabel.hidden = true
+            } else if unit == units[5][1] && perunit == units[7][1] {
+                newvalue = (doublenumber)*33.814*pricevalue
+                self.quicksum.text = formatter.stringFromNumber(newvalue)
+                nomatchlabel.hidden = true
+            } else if unit == units[7][1] && perunit == units[5][1] {
+                newvalue = (doublenumber)*0.029*pricevalue
+                self.quicksum.text = formatter.stringFromNumber(newvalue)
+                nomatchlabel.hidden = true
+            } else {
+                //case when no match
+                nomatchlabel.hidden = false
+                nomatchlabel.text = NSLocalizedString("dontmatch", comment: "")
+            }
+
+            
+        }
+        
+        
+        /// other case
+        
+    }
+    
     func pickedunit(sender: UIButton) {
         
         quickunit = sender.titleForState(.Normal)!
-        print(quickunit)
+        
+        
         
         
         // fuck, much easier just to change state to selected and then filter by state :)
@@ -5432,13 +5577,13 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 if tappedbutton.tag == sender.tag {
                     sender.backgroundColor = UIColorFromRGB(0x31797D)
                     sender.tintColor = UIColorFromRGB(0xFAFAFA)
-                    sender.titleLabel!.textColor = UIColorFromRGB(0xFAFAFA)
+                    sender.setTitleColor(UIColorFromRGB(0xFAFAFA), forState: UIControlState.Normal)
                     sender.layer.borderWidth = 1
                     sender.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
                 } else {
                     tappedbutton.backgroundColor = UIColor.clearColor()
                     tappedbutton.tintColor = UIColorFromRGB(0x31797D)
-                    tappedbutton.titleLabel!.textColor = UIColorFromRGB(0x31797D)
+                    tappedbutton.setTitleColor(UIColorFromRGB(0x31797D), forState: UIControlState.Normal)
                     tappedbutton.layer.borderWidth = 1
                     tappedbutton.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
                 }
@@ -5446,6 +5591,30 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         
+        // doesn't work. check titles
+        
+        if quickperunit == "" {
+        
+        for button in horizontalScrollViewper.subviews {
+            
+            if let tappedbutton = button as? UIButton {
+                if tappedbutton.tag == sender.tag {
+                    sender.backgroundColor = UIColorFromRGB(0x31797D)
+                    sender.tintColor = UIColorFromRGB(0xFAFAFA)
+                    sender.setTitleColor(UIColorFromRGB(0xFAFAFA), forState: UIControlState.Normal)
+                    sender.layer.borderWidth = 1
+                    sender.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
+                } else {
+                    tappedbutton.backgroundColor = UIColor.clearColor()
+                    tappedbutton.tintColor = UIColorFromRGB(0x31797D)
+                    tappedbutton.setTitleColor(UIColorFromRGB(0x31797D), forState: UIControlState.Normal)
+                    tappedbutton.layer.borderWidth = 1
+                    tappedbutton.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+                }
+            }
+        }
+    }
+    
     }
     
     func pickedperunit(sender: UIButton) {
@@ -5460,13 +5629,13 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 if tappedbutton.tag == sender.tag {
                 sender.backgroundColor = UIColorFromRGB(0x31797D)
                 sender.tintColor = UIColorFromRGB(0xFAFAFA)
-                sender.titleLabel!.textColor = UIColorFromRGB(0xFAFAFA)
+                sender.setTitleColor(UIColorFromRGB(0xFAFAFA), forState: UIControlState.Normal)
                 sender.layer.borderWidth = 1
                 sender.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
                 } else {
                 tappedbutton.backgroundColor = UIColor.clearColor()
                 tappedbutton.tintColor = UIColorFromRGB(0x31797D)
-                tappedbutton.titleLabel!.textColor = UIColorFromRGB(0x31797D)
+                tappedbutton.setTitleColor(UIColorFromRGB(0x31797D), forState: UIControlState.Normal)
                 tappedbutton.layer.borderWidth = 1
                 tappedbutton.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
                 }
@@ -5520,7 +5689,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             buttonper.titleLabel!.font = UIFont(name: "AvenirNext-UltraLight", size: 16)
             buttonper.tintColor = UIColorFromRGB(0x31797D)
             buttonper.setTitleColor(UIColorFromRGB(0x31797D), forState: UIControlState.Normal)
-            buttonper.titleLabel!.textColor = UIColorFromRGB(0x31797D)
+            
             buttonper.layer.borderWidth = 1
             buttonper.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
             buttonper.layer.cornerRadius = 8
@@ -5596,26 +5765,48 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         let toolFrame = CGRectMake(0, 0, self.view.frame.size.width, 46);
         let toolView: UIView = UIView(frame: toolFrame);
-        
-        let closepadframe: CGRect = CGRectMake(self.view.frame.size.width - 66, 1, 56, 42); //size & position of the button as placed on the toolView
-        
-        //Create the cancel button & set its title
+        let closepadframe: CGRect = CGRectMake(self.view.frame.size.width - 66, 1, 56, 42);
         let closepad: UIButton = UIButton(frame: closepadframe);
-        // closepad.setTitle("Close", forState: UIControlState.Normal);
-        //closepad.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal);
         closepad.setImage(closepadimage, forState: UIControlState.Normal)
-        toolView.addSubview(closepad); //add it to the toolView
-        
-        //Add the target - target, function to call, the event witch will trigger the function call
+        toolView.addSubview(closepad);
         closepad.addTarget(self, action: "closenumberpad:", forControlEvents: UIControlEvents.TouchDown);
         
         popqty.inputAccessoryView = toolView
+        
+        let toolFrame2 = CGRectMake(0, 0, self.view.frame.size.width, 46);
+        let toolView2: UIView = UIView(frame: toolFrame2);
+        let closepadframe2: CGRect = CGRectMake(self.view.frame.size.width - 66, 1, 56, 42);
+        let closepad2: UIButton = UIButton(frame: closepadframe2);
+        closepad2.setImage(closepadimage, forState: UIControlState.Normal)
+        toolView2.addSubview(closepad2);
+        closepad2.addTarget(self, action: "closenumberpad2:", forControlEvents: UIControlEvents.TouchDown);
+        
+        quickpriceoutlet.inputAccessoryView = toolView2
+        
+        let toolFrame3 = CGRectMake(0, 0, self.view.frame.size.width, 46);
+        let toolView3: UIView = UIView(frame: toolFrame);
+        let closepadframe3: CGRect = CGRectMake(0, 0, self.view.frame.size.width, 46);
+        let editproduct: UIButton = UIButton(frame: closepadframe3);
+        editproduct.setTitle(NSLocalizedString("editproduct", comment: ""), forState: UIControlState.Normal)
+        editproduct.tintColor = UIColorFromRGB(0x979797)
+        editproduct.setImage(editproductimage, forState: UIControlState.Normal)
+        editproduct.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        editproduct.setTitleColor(UIColorFromRGB(0x979797), forState: .Normal)
+        editproduct.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+        editproduct.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
+        toolView3.addSubview(editproduct);
+        editproduct.addTarget(self, action: "closenumberpad3:", forControlEvents: UIControlEvents.TouchDown);
+        
+        autocomplete.inputAccessoryView = toolView3
         
         
         
         popqty.text = ""
         
         popqty.delegate = self
+        
+        quickpriceoutlet.text = ""
+        quickpriceoutlet.delegate = self
         
       
         
