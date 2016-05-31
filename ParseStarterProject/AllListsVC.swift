@@ -5686,7 +5686,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         }
         
         if let adelete = UIImage(named: "4DeleteButton") {
-            deleteAction.backgroundColor = UIColor.imageWithBackgroundColor(adelete, bgColor: UIColor.redColor())
+            deleteAction.backgroundColor = UIColor.imageWithBackgroundColor(adelete, bgColor: UIColor.redColor(), w: 50, h: 70)
         
         }
         
@@ -5699,7 +5699,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         }
         
         if let ashare = UIImage(named: "4ShareButton") {
-            shareAction.backgroundColor = UIColor.imageWithBackgroundColor(ashare, bgColor: UIColorFromRGB(0x7FC2C6))
+            shareAction.backgroundColor = UIColor.imageWithBackgroundColor(ashare, bgColor: UIColorFromRGB(0x7FC2C6), w: 50, h: 70)
         }
         
         // OPTIONS
@@ -5712,7 +5712,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         }
 
         if let aoptions = UIImage(named: "4SettingsButton") {
-             optionsAction.backgroundColor = UIColor.imageWithBackgroundColor(aoptions, bgColor: UIColor.clearColor())
+             optionsAction.backgroundColor = UIColor.imageWithBackgroundColor(aoptions, bgColor: UIColor.clearColor(), w: 50, h: 70)
         }
         
         let todooptionsAction = UITableViewRowAction(style: .Normal, title: "    ") { (action , indexPath) -> Void in
@@ -5733,7 +5733,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         }
         
         if let aedit = UIImage(named: "4EditButton") {
-            editingAction.backgroundColor = UIColor.imageWithBackgroundColor(aedit, bgColor: UIColor.clearColor())
+            editingAction.backgroundColor = UIColor.imageWithBackgroundColor(aedit, bgColor: UIColor.clearColor(), w: 50, h: 70)
         }
         
 

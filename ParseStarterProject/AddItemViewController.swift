@@ -1328,18 +1328,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     
     func detailedItemAdd() {
         
-        //itemImageOutlet.image = chosenPicture
-    
-        
-        
-        //image part
-        
-        
-        //self.totalsumlabel.text = "\((Double(self.value))*((self.itemPriceOutlet.text) as NSString).doubleValue)"
-       // self.totalsumlabel.text = "\((Double(self.numberchanged))*((self.itemPriceOutlet.text) as NSString).doubleValue)"
-        
-        
-        //creation of an itemlist
+
         pause()
         
         multiplication()
@@ -1382,31 +1371,16 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         
         if isdefaultpicture == true {
         shopItem["itemImage"] = NSNull()
-            
-       // shopItem["NewImage"] = NSNull()
-            
         shopItem["defaultpicture"] = true
-        shopItem["OriginalInDefaults"] = defaultpicturename//self.itemImageOutlet.image.
-            
-            shopItem["imageLocalPath"] = ""
+        shopItem["OriginalInDefaults"] = defaultpicturename
+        shopItem["imageLocalPath"] = ""
             
         } else {
-            
-          //  imageResize(self.itemImageOutlet.image!)
-           // let imageData = UIImagePNGRepresentation(scaledpicture)
-            
-            let imageData = UIImagePNGRepresentation(self.itemImageOutlet.image!)
 
-            //let imageData = UIImagePNGRepresentation(chosenPicture)
-            //let imageFile = PFFile(name:"itemImage", data:imageData!)
+        let imageData = UIImagePNGRepresentation(self.itemImageOutlet.image!)
             saveImageLocally(imageData)
-
-            
-            shopItem["itemImage"] = NSNull()//imageFile
-            
+            shopItem["itemImage"] = NSNull()
             shopItem["imageLocalPath"] = self.imagePath
-            
-            //shopItem["NewImage"] = imageFile
             shopItem["defaultpicture"] = false
             shopItem["OriginalInDefaults"] = ""
         }
@@ -1440,16 +1414,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         //in case
         self.newitemid = itemuuid
         
-     //   dispatch_async(dispatch_get_main_queue(), {
-        //shopItem["itemImage"] = imageFile
-            
-                //self.saveImageLocally(imageData)
-               // shopItem["imageLocalPath"] = ""//self.imagePath
-          //  })
 
-      //  print(self.imagePath)
-        //shopItem.saveInBackgroundWithBlock {
-            //shopItem.pinInBackground()
         shopItem.pinInBackgroundWithBlock({ (success, error) -> Void in
             if success {
                 self.restore()
@@ -1460,64 +1425,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                 print("no id found")
             }
         })
-        /*
-            println("Id on local data store is \(shopItem.objectId)")
-            if shopItem.objectId != nil {
-                self.restore()
-                self.newitemid = shopItem.objectId! //WOULDNT WORK
-            } else {
-                println("no id found")
-            }
-            */
-        /*
-        shopItem.saveInBackgroundWithBlock {
-            (success: Bool, error: NSError?) -> Void in
-            if (success) {
-                // The object has been saved.
-            } else {
-                // There was a problem, check error.description
-            }
-        }
-        */
-           // shopItem.saveEventually()
-        /* {
-            //shopItem.saveInBackgroundWithBlock() {
-          //  shopItem.pinInBackground() {
-                //eventually means that it is saved offline first
-            (success: Bool, error: NSError?) -> Void in
-            if (success) {
-                //var dictionary = ["name" : shopItem["itemName"], "note": shopItem["itemNote"], "price": shopItem["itemPrice"]]
-                self.restore()
-               // println(shopItem.objectId)
 
-            } else {
-                // There was a problem, check error.description
-                    }
-                }
-            */
-        
-        
-        
-        //New List Creation
-        /*
-        var shopList = PFObject(className:"ShopLists")
-        
-        shopList["ItemsInTheShopList"] = newitemsArray
-        
-        shopList.saveInBackgroundWithBlock {
-            (success: Bool, error: NSError?) -> Void in
-            if (success) {
-                println(newitemsArray)
-                // The object has been saved.
-                //let dictionary = ["name": number, "string": string]
-                
-            } else {
-                // There was a problem, check error.description
-            }
-        }
-        
-    
-        */
         
         self.itemName = self.itemNameOutlet.text!
         self.itemNote = self.itemNoteOutlet.text!

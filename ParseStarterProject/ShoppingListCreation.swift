@@ -449,10 +449,37 @@ protocol passListtoMenuDelegate
 var symbol = String()
 var code = String()
 
-class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDataSource, RefreshListDelegate, MPGTextFieldDelegateCatalog, SmallPopupDelegate, UIPopoverPresentationControllerDelegate, OptionsPopupDelegate, UITextFieldDelegate, takepicturedelegate, UIGestureRecognizerDelegate, UITextViewDelegate {//, sendBackParametersToShopDelegate {
+class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDataSource, RefreshListDelegate, MPGTextFieldDelegateCatalog, UIPopoverPresentationControllerDelegate, OptionsPopupDelegate, UITextFieldDelegate, takepicturedelegate, UIGestureRecognizerDelegate, UITextViewDelegate, CategoryPopupDelegate, ImagesPopupDelegate {//, sendBackParametersToShopDelegate, SmallPopupDelegate {
     
     var delegateforlist : passListtoMenuDelegate?
     
+    
+    
+    func choosecategory(category:Category) {
+        
+        
+        quickcategorybutton.setTitle(category.catname, forState: .Normal)
+        quickicon.image = category.catimage
+        //itemcategory = category
+        quickcategory = category
+        itemcategoryUUID = category.catId
+    }
+    
+    var defaultpicturename : String = imagestochoose[0].imagename
+    
+    func choosecollectionimage(pict: UIImage, defaultpicture: Bool, picturename: String?) {
+        
+        quickicon.image = pict
+        
+        isdefaultpicture = defaultpicture
+        if picturename != nil {
+            defaultpicturename = picturename!
+        } else {
+            defaultpicturename = ""
+        }
+    }
+
+
     
     /// Text field stuff
     
@@ -723,12 +750,28 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     var quickunit : String = ""
     var quickperunit : String = ""
     var quickqty : String  = ""
+   // var quickprice : String = ""
+    //var quicksum: String = ""
+    var quickcategory: Category = catalogcategories[0]
+    var quickcategoryUUID = catalogcategories[0].catId
+    var isdefaultpicture : Bool = true
+
+    //var quickicon : UIImage = UIImage(named: "DefaultProduct")!
     
     
-    func getinfofrompop(unit: String, quantity: String) {
+    func getinfofrompop(unit: String, quantity: String, perunit: String, price: String, totalsum: String, icon: UIImage, category: Category, catUUID: String) {
         
         quickunit = unit
         quickqty = quantity
+        
+        quickperunit = perunit
+       // quickprice = price
+        //quicksum = totalsum
+        
+        //quickicon = icon
+        quickcategory = category
+        quickcategoryUUID = catUUID
+        
 
         
     }
@@ -813,8 +856,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         if poppresented == true {
             
-            getinfofrompop(buttontitle, quantity: popqty.text!)
+            getinfofrompop(quickunit, quantity: popqty.text!, perunit: quickperunit, price: quickpriceoutlet.text!, totalsum: quicksum.text!, icon: quickcategory.catimage, category: quickcategory, catUUID: quickcategoryUUID)
         }
+        
+      
         
         let shopItem = PFObject(className:"shopItems")
         
@@ -828,15 +873,15 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         shopItem["itemNote"] = ""
         shopItem["itemQuantity"] = quickqty//"0"
-        shopItem["itemPriceS"] = ""//0.0
-        shopItem["TotalSumS"] = ""//0.0
+        shopItem["itemPriceS"] = self.quickpriceoutlet.text//0.0
+        shopItem["TotalSumS"] = self.quicksum.text//0.0
         shopItem["chosenFromHistory"] = false
         shopItem["itemUnit"] = quickunit//""
         shopItem["isChecked"] = false
         shopItem["isCatalog"] = true
         shopItem["isFav"] = false
         shopItem["chosenFromFavs"] = false
-        shopItem["perUnit"] = quickunit//""
+        shopItem["perUnit"] = quickperunit//""
         
         shopItem["defaultpicture"] = false
         shopItem["OriginalInDefaults"] = ""
@@ -857,8 +902,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             shopItem["originalInCatalog"] = chosencatalogitem.itemId
             shopItem["itemName"] = chosencatalogitem.itemname
-           // var imageData = UIImagePNGRepresentation(chosencatalogitem.itemimage)
-          //  saveImageLocally(imageData)
+
             
             shopItem["imageLocalPath"] = ""//imagePath
 
@@ -873,7 +917,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             let itemname = chosencatalogitem.itemname
             let itemnote = ""
             let itemquantity = quickqty//""
-            let itemprice = ""//0.0
+            let itemprice = self.quickpriceoutlet.text!//0.0
             let itemischecked = false
             let itemimagepath = ""//self.imagespaths[indexPathCatalogProduct!.row]//"Banana.png"//self.imagePath
             let itemunit = quickunit//""
@@ -882,11 +926,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             let itemiscatalog = true
             let originalincatalog = chosencatalogitem.itemId
             
-            let itemperunit = quickunit//""
+            let itemperunit = quickperunit//""
             
             let categoryname = chosencatalogitem.itemcategory.catname
             
-            let itemtotalprice = ""//0.0
+            let itemtotalprice = self.quicksum.text!//0.0
             
             let thisitemisfav = false
         
@@ -958,20 +1002,29 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
         }
         
-        //autocomplete.resignFirstResponder()
+
         poppresented = false
         
         opencatalogoutlet.hidden = false
         quickaddoutlet.hidden = true
         newquantitybutton.hidden = true
         
-       // self.picker.selectRow(0, inComponent: 0, animated: false)
 
         self.quickunit = ""
         self.quickqty  = ""
-        
         self.popqty.text = ""
-       // self.inunitsfield.text = ""
+        // GET BACK THE UNIT AND PER UNIT BUTTONS
+        
+        quickpriceoutlet.text = ""
+        quicksum.text = ""
+
+        quickcategory = catalogcategories[0]
+        quickcategoryUUID = catalogcategories[0].catId
+        
+        isdefaultpicture = true
+        defaultpicturename = imagestochoose[0].imagename
+        quickicon.image = imagestochoose[0].itemimage
+       
         
         buttontitle = ""
         
@@ -1032,6 +1085,207 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     var endediting : Bool = false
     
+    
+    func quicknoncatalogitem() {
+        
+        
+            
+            if poppresented == true {
+                
+                getinfofrompop(quickunit, quantity: popqty.text!, perunit: quickperunit, price: quickpriceoutlet.text!, totalsum: quicksum.text!, icon: quickicon.image!, category: quickcategory, catUUID: quickcategoryUUID)
+            }
+            
+            
+            //var itemimage = imagestochoose[0].itemimage//
+            
+            
+            //creation of an itemlist
+            var shopItem = PFObject(className:"shopItems")
+            var uuid = NSUUID().UUIDString
+            var itemuuid = "shopitem\(uuid)"
+            
+            shopItem["itemUUID"] = itemuuid
+            shopItem["itemName"] = autocomplete.text//quickitemadd.text
+            shopItem["itemImage"] = NSNull()//imageFile
+            shopItem["itemNote"] = ""
+            shopItem["itemQuantity"] = quickqty//"0"
+            shopItem["itemPriceS"] = self.quickpriceoutlet.text//0.0
+            shopItem["TotalSumS"] = self.quicksum.text//0.0
+            
+            shopItem["ItemsList"] = currentList
+            shopItem["belongsToUser"] = PFUser.currentUser()!.objectId!
+            shopItem["itemUnit"] = quickunit//""
+            shopItem["perUnit"] = quickperunit//""
+            shopItem["chosenFromHistory"] = false
+            shopItem["isChecked"] = false
+            
+            if isdefaultpicture == true {
+                shopItem["itemImage"] = NSNull()
+                shopItem["defaultpicture"] = true
+                shopItem["OriginalInDefaults"] = defaultpicturename
+                shopItem["imageLocalPath"] = ""
+                
+            } else {
+                
+                let imageData = UIImagePNGRepresentation(self.quickicon.image!)
+                saveImageLocally(imageData)
+                shopItem["itemImage"] = NSNull()
+                shopItem["imageLocalPath"] = self.imagePath
+                shopItem["defaultpicture"] = false
+                shopItem["OriginalInDefaults"] = ""
+            }
+
+            
+           // shopItem["defaultpicture"] = true
+           // shopItem["OriginalInDefaults"] = imagestochoose[0].imagename
+            
+            shopItem["Category"] = itemcategoryUUID//catalogcategories[0].catId
+            shopItem["isCatalog"] = false
+            shopItem["originalInCatalog"] = ""
+            
+            //self.saveImageLocally(imageData)
+           // shopItem["imageLocalPath"] = ""//self.imagePath
+            
+            shopItem["isFav"] = false
+            
+            shopItem["chosenFromFavs"] = false
+            
+            var date = NSDate()
+            
+            shopItem["CreationDate"] = date
+            shopItem["UpdateDate"] = date
+            
+            shopItem["ServerUpdateDate"] = date.dateByAddingTimeInterval(-120)
+            
+            shopItem["isHistory"] = true //for filtering purposes when deleting the list and all its items
+            shopItem["isDeleted"] = false
+            //shopItem["Category"] =
+            
+            var itemid = itemuuid
+            
+            var itemname = autocomplete.text!//quickitemadd.text
+            var itemnote = ""
+            var itemquantity = quickqty//""
+            var itemprice = self.quicksum.text!//0.0
+            var itemoneunitprice = self.quickpriceoutlet.text!//0.0
+            //var itemimage = imageFile
+            var itemischecked = false
+            var itemimagepath = self.imagePath//""//self.imagePath
+            var itemunit = quickunit//""
+            var itemperunit = quickperunit//""
+            //self.loadImageFromLocalStore(itemimagepath)
+            var itemimage2 : UIImage = self.quickicon.image!//itemimage//self.imageToLoad
+            
+            var itemcategory = quickcategory//itemcategoryUUID//catalogcategories[0].catId
+            var itemiscatalog = false
+            var originalincatalog = ""
+            
+            var itemcategoryname = quickcategory.catname//catalogcategories[0].catname
+            
+            var itemisfav = false
+            
+            var isdefaultpict = Bool()//= true
+            var originalindefaults = String()//imagestochoose[0].imagename
+            
+            if isdefaultpicture == true {
+                isdefaultpict = true
+                originalindefaults = defaultpicturename
+                
+            } else {
+                isdefaultpict = false
+                originalindefaults = ""
+            }
+ 
+            self.dictionary = ["ItemId":itemid,"ItemName":itemname,"ItemNote":itemnote, "ItemQuantity":itemquantity,"ItemTotalPrice":itemprice,"ItemImagePath":itemimagepath,"ItemUnit":itemunit,"ItemIsChecked":itemischecked,"ItemImage2":itemimage2,"ItemCategory":itemcategory,"ItemIsCatalog":itemiscatalog,"ItemOriginal":originalincatalog,"ItemCategoryName":itemcategoryname,"ItemOneUnitPrice":itemoneunitprice,"ItemIsFav":itemisfav,"ItemPerUnit":itemperunit,"ItemCreation":date,"ItemUpdate":date,"ItemIsDefPict":isdefaultpict,"ItemOriginalInDefaults":originalindefaults]
+            
+            
+            
+            itemsDataDict.append(self.dictionary)
+            
+            shoppingcheckedtocopy.append(false)
+            
+            self.sortcategories(itemsDataDict)
+            
+            summationPrices()
+            countitems()
+            countchecked()
+            itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
+            
+            tableView.reloadData()
+            
+            
+            shopItem.pinInBackgroundWithBlock({ (success, error) -> Void in
+                if success {
+                    
+                } else {
+                    print("Item wasn't saved")
+                }
+            })
+            
+            
+            if poppresented == true {
+                
+                poppresented = false
+                
+                newquantitybutton.tintColor = UIColorFromRGB(0x979797)
+                
+                dimmerforpopover.hidden = true
+                
+                self.smallpopover.hidden = true
+                
+
+                
+            }
+            
+            poppresented = false
+            endediting = true
+            quickaddoutlet.hidden = true
+            opencatalogoutlet.hidden = false
+            newquantitybutton.hidden = true
+            
+            
+        self.quickunit = ""
+        self.quickqty  = ""
+        self.popqty.text = ""
+        // GET BACK THE UNIT AND PER UNIT BUTTONS
+        
+        quickpriceoutlet.text = ""
+        quicksum.text = ""
+        
+        quickcategory = catalogcategories[0]
+        quickcategoryUUID = catalogcategories[0].catId
+        
+        isdefaultpicture = true
+        defaultpicturename = imagestochoose[0].imagename
+        quickicon.image = imagestochoose[0].itemimage
+        
+        
+        
+            self.autocomplete.text = NSLocalizedString("additemtext", comment: "")
+            
+        
+            catalogitemtochoose = nil
+            
+            buttontitle = ""
+            
+            
+            autocomplete.resignFirstResponder()
+            
+            
+        // END OF USUAL ADD CASE
+        
+        
+        
+        tableViewScrollToBottom(true)
+        
+        addedindicator.alpha = 1
+        addedindicator.fadeOut()
+        
+        
+        
+        
+    }
+    
     @IBAction func doneinviewbutton(sender: AnyObject) {
         
         if (catalogitemtochoose != nil) {
@@ -1040,9 +1294,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
         } else {
             
+            quicknoncatalogitem()
+            /*
             if poppresented == true {
                 
-                getinfofrompop(buttontitle, quantity: popqty.text!)
+               getinfofrompop(quickunit, quantity: popqty.text!, perunit: quickperunit, price: quickpriceoutlet.text!, totalsum: quicksum.text!, icon: quickicon.image!, category: quickcategory, catUUID: quickcategoryUUID)
             }
             
             
@@ -1059,13 +1315,13 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             shopItem["itemImage"] = NSNull()//imageFile
             shopItem["itemNote"] = ""
             shopItem["itemQuantity"] = quickqty//"0"
-            shopItem["itemPriceS"] = ""//0.0
+            shopItem["itemPriceS"] = self.quickpriceoutlet.text//0.0
             shopItem["TotalSumS"] = ""//0.0
             
             shopItem["ItemsList"] = currentList
             shopItem["belongsToUser"] = PFUser.currentUser()!.objectId!
             shopItem["itemUnit"] = quickunit//""
-            shopItem["perUnit"] = quickunit//""
+            shopItem["perUnit"] = quickperunit//""
             shopItem["chosenFromHistory"] = false
             shopItem["isChecked"] = false
             
@@ -1191,7 +1447,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             
             autocomplete.resignFirstResponder()
-
+            */
             
         } // END OF USUAL ADD CASE
         
@@ -1207,9 +1463,21 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    // for non-catalog items
+    //var itemcategory:Category?
+    var itemcategoryUUID = String()
     
     @IBAction func quickaddbutton(sender: AnyObject) {
         
+        if (catalogitemtochoose != nil) {
+            
+            quickaddcatalogitem(catalogitemtochoose!)
+            
+        } else {
+            
+            quicknoncatalogitem()
+        }
+        /*
         if (catalogitemtochoose != nil) {
             
             quickaddcatalogitem(catalogitemtochoose!)
@@ -1222,10 +1490,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             }
 
             
-        var itemimage = imagestochoose[0].itemimage//UIImage(named: "restau.png")
-        //let imageData = UIImagePNGRepresentation(image)
-        //let imageFile = PFFile(name:"itemImage.png", data:imageData)
-        
+        var itemimage = imagestochoose[0].itemimage//
 
         //creation of an itemlist
         var shopItem = PFObject(className:"shopItems")
@@ -1380,7 +1645,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         addedindicator.alpha = 1
         addedindicator.fadeOut()
-        
+        */
     }
     
     
@@ -1781,7 +2046,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     func handleUPSwipe(sender: UISwipeGestureRecognizer) {
         
-        getinfofrompop(buttontitle, quantity: popqty.text!)
+         getinfofrompop(quickunit, quantity: popqty.text!, perunit: quickperunit, price: quickpriceoutlet.text!, totalsum: quicksum.text!, icon: quickcategory.catimage, category: quickcategory, catUUID: quickcategoryUUID)
         
         poppresented = false
         
@@ -2802,7 +3067,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
         }
         
-        
+        /*
         if segue.identifier == "showsmallpopup" {
             let popoverViewController = segue.destinationViewController as! SmallPopover//UIViewController
             popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
@@ -2814,7 +3079,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             
         }
-
+        */
         
         if segue.identifier == "additemmodalsegue" {
           
@@ -4158,7 +4423,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
           
             self.smallpopover.hidden = true
             
-            getinfofrompop(buttontitle, quantity: popqty.text!)
+             getinfofrompop(quickunit, quantity: popqty.text!, perunit: quickperunit, price: quickpriceoutlet.text!, totalsum: quicksum.text!, icon: quickcategory.catimage, category: quickcategory, catUUID: quickcategoryUUID)
 
             
         }
@@ -4267,7 +4532,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func dismisssmallpopup(sender: AnyObject) {
         
         
-        getinfofrompop(buttontitle, quantity: popqty.text!)
+         getinfofrompop(quickunit, quantity: popqty.text!, perunit: quickperunit, price: quickpriceoutlet.text!, totalsum: quicksum.text!, icon: quickcategory.catimage, category: quickcategory, catUUID: quickcategoryUUID)
         
         poppresented = false
         
@@ -5109,6 +5374,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         quickpriceoutlet.text = ""
         quickpriceoutlet.delegate = self
+        
+
+        quickcategorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
+        
+        quickicon.image = imagestochoose[0].itemimage
         
       
         
