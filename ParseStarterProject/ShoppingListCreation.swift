@@ -509,19 +509,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet var gobackoutlet: UIBarButtonItem!
     
-    ///for checking
-    //var checkview = UIView()
-    //var resbutton   = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-    
-    /*
-    func getshopparameters(listid:String, iscreated: Bool, isreceived: Bool) {
-    
-    currentList = listid
-    justCreatedList = iscreated
-    isReceivedList = isreceived
-    
-    }
-    */
+
     
     
     func uncheckall() {
@@ -657,27 +645,28 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         poppresented = true
         
-        self.newquantitybutton.setImage(self.redquantity, forState: .Normal)
+            
+            newquantitybutton.tintColor = UIColorFromRGB(0xA2AF36)
+
         
         smallpopover.hidden = false
+            
+            dimmerforpopover.hidden = false
+        /*
+        self.quicksmallconstraint.constant = -6
         
-        self.quicksmallconstraint.constant = -5
-        
-        let yPos : CGFloat = 151
-        //  self.smallpopover.frame.origin.y = self.view.frame.origin.y - 300
-        UIView.animateWithDuration(0.4, animations: { () -> Void in
-            // self.smallpopover.frame.origin.y = yPos
+             UIView.animateWithDuration(0.2, animations: { () -> Void in
+
             self.view.layoutIfNeeded()
             }, completion: { (value: Bool) -> Void in
-                // self.quicksmallconstraint.constant = -5
+
         })
-     
+     */
             
         } else {
             endediting = false
         }
-      // opencatalogoutlet.hidden = true
-       //quickaddoutlet.hidden = false
+      
         
     }
     
@@ -740,56 +729,22 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         quickunit = unit
         quickqty = quantity
-        
-        /*
-        if (quickqty != "0.0") || (quickqty != "0,0") || (quickqty != "0") || (quickqty != "0.00") {
-            
-            quickquantity.text = "\(quickqty) \(quickunit)"
-        } else {
-             quickquantity.text = NSLocalizedString("amount", comment: "")
-        }
-        */
+
         
     }
     
-   // @IBOutlet var quickitemadd: UITextField!
+
     
     @IBOutlet var quickaddoutlet: UIButton!
     
     var imagePath = String()
-    
-    
-    /*
-    func saveUIImage(image: UIImage) -> String? {
-    
-    let docsPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as String
-    let imageDirPath = (docsPath as NSString).stringByAppendingPathComponent("SwiftDataImages")
-    if !NSFileManager.defaultManager().fileExistsAtPath(imageDirPath) {
-    
-    do{
-    try NSFileManager.defaultManager().createDirectoryAtPath(imageDirPath, withIntermediateDirectories: false, attributes: [:])
-    } catch {
-    print("Error creating SwiftData image folder")
-    return nil
-    }
-    }
-    let imageID = NSUUID().UUIDString
-    let imagePath = (imageDirPath as NSString).stringByAppendingPathComponent(imageID)
-    let imageAsData = UIImagePNGRepresentation(image)
-    if !imageAsData!.writeToFile(imagePath, atomically: true) {
-    print("Error saving image")
-    return nil
-    }
-    return imageID
-    }
-    */
+
     func saveImageLocally(imageData:NSData!) -> String {
         var uuid = NSUUID().UUIDString
-        //let time =  NSDate().timeIntervalSince1970
+
         let fileManager = NSFileManager.defaultManager()
         let dir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
-        //.stringByAppendingPathComponent(subDirForImage) as String
-        
+
         if !fileManager.fileExistsAtPath(dir) {
             do{
                 try NSFileManager.defaultManager().createDirectoryAtPath(dir, withIntermediateDirectories: false, attributes: [:])
@@ -812,30 +767,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         return imagePath//"item\(Int(time)).png"
     }
 
-    /* WORKS, BUT PROBLEM ON IPHONE 5C
-    func loadImageFromLocalStore(imageName: String) -> UIImage {
-        let fileManager = NSFileManager.defaultManager()
-        let dir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        
-        let path = (dir as NSString).stringByAppendingPathComponent(imageName)
-        
-        if(!path.isEmpty){
-            let image = UIImage(contentsOfFile: path)
-            //print(image);
-            if(image != nil){
-                //return image!;
-                self.imageToLoad = image!
-                return imageToLoad
-            } else {
-                self.imageToLoad = imagestochoose[0].itemimage
-            }
-        } else {
-            self.imageToLoad = imagestochoose[0].itemimage//
-        }
-        
-        return imageToLoad//imagestochoose[0].itemimage//UIImage(named: "activity.png")!
-    }
-    */
+ 
     
     func loadImageFromLocalStore(imageName: String) -> UIImage {
         let fileManager = NSFileManager.defaultManager()
@@ -997,23 +929,23 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         })
         
         
-        
-        //shopItem.saveInBackgroundWithBlock {
-       // shopItem.saveEventually()
-        
+ 
         
         if poppresented == true {
             
-          //  getinfofrompop(buttontitle, quantity: popqty.text!)
+
             
             poppresented = false
             
-            newquantitybutton.setImage(blackquantity, forState: .Normal)
+            newquantitybutton.tintColor = UIColorFromRGB(0x979797)
+            
+            dimmerforpopover.hidden = true
 
+            self.smallpopover.hidden = true
+            /*
+            self.quicksmallconstraint.constant = -610
             
-            self.quicksmallconstraint.constant = -456
-            
-            UIView.animateWithDuration(0.4, animations: { () -> Void in
+            UIView.animateWithDuration(0.2, animations: { () -> Void in
                 
                 self.view.layoutIfNeeded()
                 
@@ -1022,7 +954,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                     self.smallpopover.hidden = true
             })
 
-            
+            */
             
         }
         
@@ -1039,7 +971,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         self.quickqty  = ""
         
         self.popqty.text = ""
-        self.inunitsfield.text = ""
+       // self.inunitsfield.text = ""
         
         buttontitle = ""
         
@@ -1114,9 +1046,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             }
             
             
-            var itemimage = imagestochoose[0].itemimage//UIImage(named: "restau.png")
-            //let imageData = UIImagePNGRepresentation(image)
-            //let imageFile = PFFile(name:"itemImage.png", data:imageData)
+            var itemimage = imagestochoose[0].itemimage//
             
             
             //creation of an itemlist
@@ -1210,55 +1140,27 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             shopItem.pinInBackgroundWithBlock({ (success, error) -> Void in
                 if success {
-                    
-                    print("saved item")
-                    // print("IMPORTANT BITCH IS  \(itemuuid)")
-                    
-                    // self.itemid = shopItem.objectId!
-                    // self.itemid = shopItem.objectId!
-                    
-                    
-                    //}
-                    
-                    // print("Items are \(itemsDataDict)")
-                    
-                    
-                    
+
                 } else {
                     print("Item wasn't saved")
                 }
             })
-            
-            
-            //shopItem.saveInBackgroundWithBlock {
-            /*
-            shopItem.saveEventually() {
-            //  shopItem.pinInBackground() {
-            //eventually means that it is saved offline first
-            (success: Bool, error: NSError?) -> Void in
-            if (success) {
-            print("ITEM WAS ALSO SAVED TO SERVER")
-            } else {
-            // There was a problem, check error.description
-            print("Item wasn't saved to server")
-            }
-            
-            
-            }
-            */
+
             
             if poppresented == true {
-                
-                // getinfofrompop(buttontitle, quantity: popqty.text!)
-                
+
                 poppresented = false
                 
-                newquantitybutton.setImage(blackquantity, forState: .Normal)
+               newquantitybutton.tintColor = UIColorFromRGB(0x979797)
                 
+                dimmerforpopover.hidden = true
                 
-                self.quicksmallconstraint.constant = -456
+                self.smallpopover.hidden = true
                 
-                UIView.animateWithDuration(0.4, animations: { () -> Void in
+                /*
+                self.quicksmallconstraint.constant = -610
+                
+                UIView.animateWithDuration(0.2, animations: { () -> Void in
                     
                     self.view.layoutIfNeeded()
                     
@@ -1266,31 +1168,30 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                         
                         self.smallpopover.hidden = true
                 })
-                
+                */
                 
             }
-            //  autocomplete.resignFirstResponder()\
+
             poppresented = false
             endediting = true
             quickaddoutlet.hidden = true
             opencatalogoutlet.hidden = false
             newquantitybutton.hidden = true
-            
-           // self.picker.selectRow(0, inComponent: 0, animated: false)
+
             
             self.quickunit = ""
             self.quickqty  = ""
-            // self.quickquantity.text = NSLocalizedString("amount", comment: "")
+
             self.autocomplete.text = NSLocalizedString("additemtext", comment: "")
             
             self.popqty.text = ""
-            // self.inunitsfield.text = ""
+
             
             buttontitle = ""
             
             
             autocomplete.resignFirstResponder()
-            //self.view.endEditing(true)
+
             
         } // END OF USUAL ADD CASE
         
@@ -1418,54 +1319,28 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         shopItem.pinInBackgroundWithBlock({ (success, error) -> Void in
             if success {
                 
-                print("saved item")
-               // print("IMPORTANT BITCH IS  \(itemuuid)")
-                
-                // self.itemid = shopItem.objectId!
-                // self.itemid = shopItem.objectId!
-               
 
-                //}
-                
-               // print("Items are \(itemsDataDict)")
-                
-                
-                
             } else {
                 print("Item wasn't saved")
             }
         })
         
-        
-        //shopItem.saveInBackgroundWithBlock {
-        /*
-            shopItem.saveEventually() {
-            //  shopItem.pinInBackground() {
-            //eventually means that it is saved offline first
-            (success: Bool, error: NSError?) -> Void in
-            if (success) {
-                print("ITEM WAS ALSO SAVED TO SERVER")
-            } else {
-                // There was a problem, check error.description
-                print("Item wasn't saved to server")
-            }
 
-        
-            }
-        */
             
             if poppresented == true {
                 
-               // getinfofrompop(buttontitle, quantity: popqty.text!)
-                
+
                 poppresented = false
                 
-                newquantitybutton.setImage(blackquantity, forState: .Normal)
+                newquantitybutton.tintColor = UIColorFromRGB(0x979797)
                 
+                dimmerforpopover.hidden = true
                 
-                self.quicksmallconstraint.constant = -456
+                self.smallpopover.hidden = true
+                /*
+                self.quicksmallconstraint.constant = -610
                 
-                UIView.animateWithDuration(0.4, animations: { () -> Void in
+                UIView.animateWithDuration(0.2, animations: { () -> Void in
                     
                     self.view.layoutIfNeeded()
                     
@@ -1473,7 +1348,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                         
                         self.smallpopover.hidden = true
                 })
-                
+                */
                
             }
           //  autocomplete.resignFirstResponder()\
@@ -1482,22 +1357,20 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             quickaddoutlet.hidden = true
             opencatalogoutlet.hidden = false
             newquantitybutton.hidden = true
-            
-           //  self.picker.selectRow(0, inComponent: 0, animated: false)
-            
+
             self.quickunit = ""
             self.quickqty  = ""
-            // self.quickquantity.text = NSLocalizedString("amount", comment: "")
+
             self.autocomplete.text = NSLocalizedString("additemtext", comment: "")
             
             self.popqty.text = ""
-            // self.inunitsfield.text = ""
+
             
             buttontitle = ""
            
             
             autocomplete.resignFirstResponder()
-            //self.view.endEditing(true)
+
             
         } // END OF USUAL ADD CASE
         
@@ -1513,11 +1386,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     
-    func refreshtable() {//table:UITableView) {
-        // categorybutton.setTitle(categoryname, forState: .Normal)
-        //categoryimageoutlet.image = categoryimage
-        
-        //tableView.reloadData() // not enough
+    func refreshtable() {
         
         HistoryitemsDataDict.removeAll(keepCapacity: true)
         
@@ -1529,14 +1398,13 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
         }
         
-        //override func viewWillAppear(animated: Bool) {
+
         
         
         if itemsDataDict.count == 0 {
-            
-          //  noitemview.hidden = false
+
         } else {
-         //   noitemview.hidden = true
+
         }
         
         ///CASE from menu
@@ -1550,10 +1418,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             activeList = currentList
             //currentList = activeList
             if currentList != "" {
-                //     ONLY THAT WAS HERE // dataretrieval()  //MAYBE I NEED IT
-                // fillthedict()
-                
-              //  print("DICT IS \(itemsDataDict)")
+
                 
                 self.sortcategories(itemsDataDict)
                 tableView.reloadData()
@@ -1565,20 +1430,16 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 
             }
-            //here I define active list as current list, it is required in order to avoid an error. I do dataretrieval() because this is a function that is used to get data from just created list rather than getting the data from chosen in TableViewController VC.
+
         } else {
-            //OLD APPROACH
-            //dataretrievallist()
+
             
             if itemsDataDict.count == 0 {
                 dataretrievallist()
-                //dataretrievalinorder()
-                //noitemview.hidden = false
+                
             }
             
-           // print("DICT IS \(itemsDataDict)")
-            
-            //NEW APPROACH
+
             self.sortcategories(itemsDataDict)
             tableView.reloadData()
             
@@ -1608,10 +1469,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var horscrollview: UIView!
     
     @IBOutlet var horscrollviewper: UIView!
-  
-    //var horizontalScrollView: ASHorizontalScrollView = ASHorizontalScrollView(frame:CGRectMake(0, 0, 320, 60))
-    
-  
+
     
     
     @IBOutlet var choosecurrency: UIButton!
@@ -1655,44 +1513,21 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     var notcheckedImageToCopy: UIImage = UIImage(named: "EditModeUncheckIcon")!//UIImage(named: "notchecked.png")!
     
     var imageToLoad = UIImage()
-    
     var itemsoverallqty = Int()
-    
     var checkeditemsqty = Int()
-    
-    // var creationdate = NSDate()
-    
-    // var updatedate = NSDate()
-    
-    
-    
-    
     var checked = [Bool]()
-    
     var showcats = Bool()
-    
     var isSorted = Bool()
     
     @IBOutlet weak var PricesSum: UILabel!
     
-    @IBOutlet var tableView: UITableView! //TO DO THIS IS ALWAYS NECESSARY WHEN USING TABLEVIEW in VC
-    
-    @IBOutlet var ShopListNameOutlet: UITextField!
-    
-    @IBOutlet var ShopListNoteOutlet: UITextField!
-    
+    @IBOutlet var tableView: UITableView!
     @IBOutlet weak var itemsoverall: UILabel!
     
     
     @IBOutlet weak var itemschecked: UILabel!
     
-    
-    // var currencies : [[String]] = []
-    
-    //var itemsDataDict = [Dictionary<String, AnyObject>]()
-    
-    
-    //self.tableView.editing = !self.tableView.editing
+
     
     func contains(values: [String], element: String) -> Bool {
         // Loop over all values in the array.
@@ -1705,20 +1540,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         // The element was not found.
         return false
     }
-    
-    /*
-    func containscat(values: [Dictionary<String, AnyObject>, element: String) -> Bool {
-    // Loop over all values in the array.
-    for value in values {
-    // If a value equals the argument, return true.
-    if value == element {
-    return true
-    }
-    }
-    // The element was not found.
-    return false
-    }
-    */
+
     
     func containsdict(values: [Dictionary<String, AnyObject>], element: Dictionary<String, AnyObject>) -> Bool {
         // Loop over all values in the array.
@@ -1836,39 +1658,29 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func sortcategories(items: [Dictionary<String, AnyObject>]) {
-        /*
-        sections.removeAll(keepCapacity: false)
-        sortedSections.removeAll(keepCapacity: false)
-        headerimages.removeAll(keepCapacity: true)
-        */
-        
+ 
         sections.removeAll(keepCapacity: true)
         sortedSections.removeAll(keepCapacity: true)
         headerimages.removeAll(keepCapacity: true)
-        
-        //for ( var i = 0; i < itemsDataDict.count; i++ ) {
-        
-        // var commoncategory: String = itemsDataDict[i]["ItemCategoryName"] as! String
+
         for ( var i = 0; i < items.count; i++ ) {
             
             let commoncategory: String = items[i]["ItemCategoryName"] as! String
             
             if self.sections.indexForKey(commoncategory) == nil {
-                
-                //self.sections.indexForKey("ItemCategory") = itemsDataDict[i]["ItemCategory"]
-                //self.sections.indexForKey(commoncategory) = itemsDataDict[i]
+
                 self.sections[commoncategory] = [items[i]]
-                // self.sections[commoncategory]?.append(items[i])
+
                 
             }
             else {
-                //self.sectionsindexForKey("ItemCategory")!.append(TableItem(title: name, creationDate: item.creationDate))
+
                 self.sections[commoncategory]?.append(items[i])
                 
                 
             }
         }
-        //print("YO YO SECTIONS ARE \(sections)")
+
         
        print("sects \(sortedSections)")
         
@@ -1928,12 +1740,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             } else {
                 // CASE IF IT IS DEFAULT CATEGORY
                 
-                
-                
-                // Find this object of product type which has property catId = itemcategoryUUID
-                
-                //  if let foundcategory = find(lazy(catalogcategories).map({ $0.catId }), catid) {
-                
+
                 if var foundcategory = catalogcategories.map({ $0.catId }).lazy.indexOf(catid) {
                     
                     var catalogpicture = catalogcategories[foundcategory].catimage
@@ -1970,52 +1777,6 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
    
    
-    /*
-    func generateImage(tblview:UITableView) -> UIImage {
-        /*
-        UIGraphicsBeginImageContext(tblview.contentSize);
-        tblview.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
-        tblview.layer.renderInContext(UIGraphicsGetCurrentContext()!)
-        let row = tblview.numberOfRowsInSection(0)
-        let numberofRowthatShowinscreen = 4
-        var scrollCount = row / numberofRowthatShowinscreen
-        
-        for var i=0;i < scrollCount ; i++ {
-            tblview.scrollToRowAtIndexPath(NSIndexPath(forRow: (i+1)*numberofRowthatShowinscreen, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
-            tblview.layer.renderInContext(UIGraphicsGetCurrentContext()!)
-        }
-        
-        //let image:UIImage = UIGraphicsGetImageFromCurrentImageContext()
-        messageimage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext();
-*/
-        
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(tableView.contentSize.width, tableView.contentSize.height+64+40), true, 0)
-        
-        for section in 0...tableView.numberOfSections-1 {
-            for row in 0...tableView.numberOfRowsInSection(section)-1 {
-                
-               
-                
-                
-                let indexPath = NSIndexPath.init(forRow: row, inSection: section)
-                
-                let cell = tableView.cellForRowAtIndexPath(indexPath)!
-                let height = cell.frame.height
-                
-                print("row:\(indexPath.row), frame:\(cell.frame) height:\(height)")
-                
-                cell.contentView.drawViewHierarchyInRect(cell.frame, afterScreenUpdates: true)
-                tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: row, inSection: section), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
-            }
-        }
-         messageimage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return messageimage;
-    }
-    */
-    
     
     
     func handleUPSwipe(sender: UISwipeGestureRecognizer) {
@@ -2024,23 +1785,22 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         poppresented = false
         
-    
-        newquantitybutton.setImage(blackquantity, forState: .Normal)
+        newquantitybutton.tintColor = UIColorFromRGB(0x979797)
+        
+        dimmerforpopover.hidden = true
         
         /*
-        
-        self.quicksmallconstraint.constant = -456
+        self.quicksmallconstraint.constant = -610
 
-        UIView.animateWithDuration(0.4, animations: { () -> Void in
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
 
             self.view.layoutIfNeeded()
             
             }, completion: { (value: Bool) -> Void in
-                // self.quicksmallconstraint.constant = -5
                 self.smallpopover.hidden = true
         })
         */
-        self.smallpopover.fadeOut()
+        
         self.smallpopover.hidden = true
         
 
@@ -2112,12 +1872,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func EditAllBarButton(sender: AnyObject) {
         
-      //  tableView.editing = true // THIS IS FOR DELETING STUFF
-        
-        /// THIS OS FOR COPYING AND PASTING STUFF
-       // tableView.allowsSelectionDuringEditing = true
-       // tableView.allowsSelection = true
-        //tableView.allowsSelectionDuringEditing = true
+  
         
         temporaryshowcats = showcats
         
@@ -2148,29 +1903,20 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         let pasteItem: UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("paste", comment: ""), style: UIBarButtonItemStyle.Plain, target: self, action: "pasteitems:")
         pasteItem.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Avenir-Book", size: 15)!, NSForegroundColorAttributeName: UIColorFromRGB(0xFAFAFA)], forState: UIControlState.Normal)
         
-       
-       // var toolbarButtons = [UIBarButtonItem]()
-        
-       // if itemsinbuffertopaste != [] {
+
              let toolbarButtons = [pasteItem,deleteItem,copyItem,flexibleSpace,cancelItem]
-       // } else {
-            // toolbarButtons = [cancelItem,flexibleSpace,deleteItem,copyItem]
-       // }
-    
+
         
         toolbar.tag = 8
-      //  toolbar.frame = CGRectMake(0, self.view.frame.size.height - 46, self.view.frame.size.width, 46)
+
         toolbar.frame = CGRectMake(0, 20, self.view.frame.size.width, 46)
         toolbar.sizeToFit()
         toolbar.translucent = false
-        //toolbar.tintColor = UIColorFromRGB(0x2A2F36)
         toolbar.setItems(toolbarButtons, animated: true)
-       
-        
-        //toolbar.backgroundColor = UIColorFromRGB(0x2A2F36)//UIColor.redColor()
-        toolbar.barTintColor = UIColorFromRGB(0x31797D)//2A2F36)
+
+        toolbar.barTintColor = UIColorFromRGB(0x31797D)
         toolbar.alpha = 1
-        //toolbar.
+
         self.view.addSubview(toolbar)
         self.view.bringSubviewToFront(toolbar)
         
@@ -2281,11 +2027,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     func checktocopy(sender: UIButton) {
         
-        
-       // var checkedImageToCopy: UIImage = UIImage(named: "check.png")!
-        
-       // var notcheckedImageToCopy: UIImage = UIImage(named: "notchecked.png")!
-        
+
         if sender.imageForState(.Normal) == notcheckedImageToCopy {
             //means it is unchecked
         
@@ -2299,33 +2041,13 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         //itemtocopy = itemsDataDict[indexPath.row]["ItemId"] as! String
             
             
-        itemtocopy = itemsDataDict[indexPath!.row] // this makes a copy of array element, so basically it is brand new element
-        // I hope it won't change the original array!
-            /*
-            var position: CGPoint = sender.convertPoint(CGPointZero, toView: self.tableView)
-            if let indexPathIteminSection = self.tableView.indexPathForRowAtPoint(position)
-            {
-                var section = indexPathIteminSection.section
-                var rowsect = indexPathIteminSection.row
-                
-                //var tableSection : [Dictionary<String, AnyObject>] = []
-                var tableSection = sections[sortedSections[section]]
-                var tableItem = tableSection![rowsect]
-             
-                itemtocopy = tableItem
-                }
-            }
-*/
-       // var uuid = NSUUID().UUIDString
+        itemtocopy = itemsDataDict[indexPath!.row]
         shoppingcheckedtocopy[indexPath!.row] = true
-            
-       // itemtocopy["ItemId"] = uuid // DO THIS WHEN COPY BUTTON TAPPED!
+
             
         itemsinbuffer.append(itemtocopy)
             
-           
-            //print(itemsinbuffer)
-            
+
         sender.setImage(checkedImageToCopy, forState: .Normal)
         
         } else if sender.imageForState(.Normal) == checkedImageToCopy {
@@ -2341,16 +2063,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
            // print(itemsinbuffer)
             
             shoppingcheckedtocopy[indexPath!.row] = false
-            
-            //itemsinbuffer.removeAtIndex(indexPath!.row)
-            // TRY TO USE ID SOMEHOW!
+
             
             let itemtoremove = itemsDataDict[indexPath!.row]["ItemId"] as! String
-            /*
-            if var founditem = find(lazy(itemsinbuffer).map({ $0.ob }), currentList) {
-                
-            }
-            */
+
             for ( var i = 0; i < itemsinbuffer.count; i++ ) {
                 
                 if itemsinbuffer[i]["ItemId"] as? String == itemtoremove {
@@ -2370,7 +2086,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         }
         
-        //itemtocopy.append
+
         
     }
     
@@ -2379,7 +2095,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         let customIcon = UIImage(named: "SuccessAlert")
         let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "OK", color: UIColorFromHex(0x31797D, alpha: 0.9), iconImage: customIcon)
         alertview.setTextTheme(.Light)
-        // alertview.addAction(cancelCallback)
+
         alertview.addAction(closeCallback)
     }
     
@@ -2535,34 +2251,18 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
          self.optionsoutletbutton.hidden = false
         
         self.restore()
-        
-          //displayInfoAlert("Items pasted!", message: "")
+
    
             tableViewScrollToBottom(true)
             
             addedindicator.alpha = 1
             addedindicator.fadeOut()
-      //  dispatch_async(dispatch_get_main_queue(), { //ALL SAVING GOES IN BG
-        // for var index = 0; index < bufferitems.count; index++ {
+
         for var index = 0; index < itemsinbuffertopaste.count; index++ {
             
             shoppingcheckedtocopy.append(false)
             
-           // var item : String = itemsinbuffer[index]["ItemId"] as! String
-           
-             //var uuid = NSUUID().UUIDString SHOULD HAVE DONE IT EARLIER
-             //var itemid = "shopitem\(uuid)"
-            
-        //   itemsinbuffertopaste[index]["ItemId"] = itemid DIDI IT EARLIER
-          // itemsinbuffertopaste[index]["ItemIsChecked"] = false // change to no checked!
-            
-            //image part
-            //let imageData = UIImagePNGRepresentation(itemsinbuffertopaste[index]["ItemImage2"] as! UIImage)
-            //let imageData = UIImagePNGRepresentation(chosenPicture)
-           // let imageFile = PFFile(name:"itemImage.png", data:imageData)
-           
 
-           // nowcreate pf objects
             var shopItem = PFObject(className:"shopItems")
 
             shopItem["itemUUID"] = itemsinbuffertopaste[index]["ItemId"]//itemid
@@ -2621,10 +2321,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
 
                 
             } else {
-                
-               // let imageData = UIImagePNGRepresentation(itemsinbuffertopaste[index]["ItemImage2"] as! UIImage)
-                //let imageData = UIImagePNGRepresentation(chosenPicture)
-               // let imageFile = PFFile(name:"itemImage.png", data:imageData!)
+
                 
                 shopItem["itemImage"] = NSNull()//imageFile
  
@@ -2647,9 +2344,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
                 
             })
-            //shopItem.saveEventually()
-            // shopItem.saveInBackground()
-           
+
         }
         
         
@@ -2666,40 +2361,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     @IBAction func gobackBar(sender: AnyObject) {
-        /*
-        if senderVC == senderVC as? AllListsVC || senderVC == senderVC as? ChooseListToCreateView {
-            
-            //if senderVC == senderVC as? ChooseListToCreateView {
-            
-           //  SaveListLocal()
-            
-            performSegueWithIdentifier("gobacksegue", sender: self)
-            
-        } else if senderVC == senderVC as? MainMenuViewController {
-            
-            // SaveListLocal()
-            
-            
-            
-            delegateforlist?.getshoplistparameters(true, listid:currentList, isreceived: isReceivedList)
-            
-            // delegateforlist2?.getparameters(true,listid:currentList,isreceived:isReceivedList)
-            
-            globalisFromShopList = true
-            globalshoplistid = currentList
-            gloablshopisreceived = isReceivedList
-            
-           
-            
-           // additemstolistsarray()
-            additemstolistsarrayandsave()
-            
-            dismissViewControllerAnimated(true, completion: nil)
-            
-        }
-        //perfr
-*/
-    }
+          }
     
     
     @IBAction func optionsBar(sender: AnyObject) {
@@ -2721,44 +2383,6 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     
-    /*
-    @IBAction func endeditname(sender: AnyObject) {
-        
-        let query = PFQuery(className:"shopLists")
-        query.fromLocalDatastore()
-        query.whereKey("listUUID", equalTo: currentList)
-        query.getFirstObjectInBackgroundWithBlock() {
-            (list: PFObject?, error: NSError?) -> Void in
-            if error != nil {
-                print(error)
-            } else if let list = list {
-                
-                list["ShopListName"] = self.self.listnameinview.text
-                list.pinInBackground()
-                // list.saveEventually()
-            }
-        }
-        
-        if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(self.currentList) {
-            UserLists[foundlist].listname = self.self.listnameinview.text
-            
-            
-        }
-        
-        if let foundshoplist = UserShopLists.map({ $0.listid }).lazy.indexOf(self.currentList) {
-            UserShopLists[foundshoplist].listname = self.self.listnameinview.text
-            
-            
-        }
-        
-        if let foundfavlist = UserFavLists.map({ $0.listid }).lazy.indexOf(self.currentList) {
-            UserFavLists[foundfavlist].listname = self.self.listnameinview.text
-           
-            
-        }
-        
-    }
-    */
     
     @IBAction func endeditnote(sender: AnyObject) {
         
@@ -2852,36 +2476,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
   
     
-    
-    //the stuff below is about assigning an ItemsList value the value of item
-    /*
-    listId = shopList.objectId
-    //here I create a query for all items and give them the just saved Id as a value in ItemsList column!
-    var querybelong = PFQuery(className:"shopItems")
-    //query.whereKey("objectId", equalTo:"T7MqKFyDbQ")
-    querybelong.findObjectsInBackgroundWithBlock {
-    (objects: [AnyObject]?, error: NSError?) -> Void in
-    
-    if error == nil {
-    
-    println("Successfully retrieved \(objects!.count) scores.")
-    // Do something with the found objects
-    
-    
-    if let listitems = objects as? [PFObject] {
-    
-    //shoppingListItemsIds.removeAll(keepCapacity: true)
-    
-    for object in listitems {
-    
-    object["ItemsList"] = listId //id of just saved list
-    object.saveInBackground()
-    
-    self.tableView.reloadData() // without this thing, table would contain only 1 row
-    }
-    }
-    */
-    
+
     
     
     ///////// COLOR CODER PART
@@ -2899,85 +2494,6 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     /////////////
     
     
-    /*
-    func SaveListLocalProcess() {
-        
-        let updatedate = NSDate()
-        
-        let query = PFQuery(className:"shopLists")
-        query.fromLocalDatastore()
-        query.whereKey("listUUID", equalTo: currentList)
-        query.getFirstObjectInBackgroundWithBlock() {
-            
-            (shopList: PFObject?, error: NSError?) -> Void in
-            if error != nil {
-                print(error)
-            } else if let shopList = shopList {
-                
-                shopList["ShopListName"] = self.self.listnameinview.text
-                shopList["ShopListNote"] = ""//self.ShopListNoteOutlet.text
-                //shopList["isFavourite"] = false
-                if self.isReceivedList == false {
-                    shopList["isReceived"] = false
-                } else {
-                    shopList["isReceived"] = true
-                }
-                
-                if self.isReceivedList == false {
-                    shopList["isSaved"] = false
-                } else {
-                    shopList["isSaved"] = true
-                }
-                
-                
-                self.additemstolistsarray() //works!
-                
-                shopList["ItemsCount"] = self.itemsoverallqty
-                shopList["CheckedItemsCount"] = self.checkeditemsqty
-                
-                
-                shopList["updateDate"] = updatedate
-                
-                
-                
-                shopList.pinInBackground()
-                //shopList.saveInBackground()
-                // shopList.saveEventually() // I DONT DO IT IN THIS CASE
-            }
-        }
-        
-        
-        ////// NOW SAVE IN ITEMSLIST ARRAY
-        
-       // if let foundlist = find(lazy(UserLists).map({ $0.listid }), currentList) {
-        if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(currentList) {
-
-            UserLists[foundlist].listname = self.listnameinview.text
-            UserLists[foundlist].listnote = ""//ShopListNoteOutlet.text
-            UserLists[foundlist].listcurrency = code //later add array instead of just string currency
-            UserLists[foundlist].listcategories = showcats
-            UserLists[foundlist].listitemscount = itemsoverallqty
-            UserLists[foundlist].listcheckeditemscount = checkeditemsqty
-            UserLists[foundlist].listcreationdate = updatedate
-            
-        }
-        
-       // if let foundshoplist = find(lazy(UserShopLists).map({ $0.listid }), currentList) {
-          if let foundshoplist = UserShopLists.map({ $0.listid }).lazy.indexOf(currentList) {
-            
-            UserShopLists[foundshoplist].listname = self.listnameinview.text
-            UserShopLists[foundshoplist].listnote = ""//ShopListNoteOutlet.text
-            UserShopLists[foundshoplist].listcurrency = code //later add array instead of just string currency
-            UserShopLists[foundshoplist].listcategories = showcats
-            UserShopLists[foundshoplist].listitemscount = itemsoverallqty
-            UserShopLists[foundshoplist].listcheckeditemscount = checkeditemsqty
-            UserShopLists[foundshoplist].listcreationdate = updatedate
-            
-        }
-        
-        
-    }
-    */
     
     
     func SaveListLocal() {
@@ -3009,19 +2525,12 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             } else if let shopList = shopList {
                 // shopList["ItemsInTheShopList"] = self.shoppingListItemsIds
                 shopList["ItemsInTheShopList"] = self.idsinthislist
-                // self.additemstolistsarray()
-                
-                //shopList.setObject(self.shoppingListItemsIds, forKey: "ItemsInTheShopList")
-                
-                //shopList["ItemsInTheShopList"] = self.shoppingListItemsIds
+
                 shopList.pinInBackground()
-                //shopList.saveInBackground()
-                //shopList.saveEventually()
+            
             }
         }
-        
-        //ItemsCount = idsinthislist.count
-        // return ItemsCount
+
     }
     
     
@@ -3091,18 +2600,12 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 currencyarray.append(symbol)
                 shopList["CurrencyArray"] = currencyarray
                 
-                
-                
-                //shopList.setObject(self.shoppingListItemsIds, forKey: "ItemsInTheShopList")
-                
-                //shopList["ItemsInTheShopList"] = self.shoppingListItemsIds
+
                 shopList.pinInBackground()
-                //shopList.saveInBackground()
-               // shopList.saveEventually()
+
             }
         }
-        
-        //if let foundlist = find(lazy(UserLists).map({ $0.listid }), currentList) {
+
          if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(currentList) {
             UserLists[foundlist].listname = self.listnameinview.text
             UserLists[foundlist].listnote = self.listnoteinview.text
@@ -3114,8 +2617,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             UserLists[foundlist].listcolorcode = colorcode
             
         }
-        
-       // if let foundshoplist = find(lazy(UserShopLists).map({ $0.listid }), currentList) {
+
          if let foundshoplist = UserShopLists.map({ $0.listid }).lazy.indexOf(currentList) {
             
             
@@ -3249,34 +2751,13 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             listcolorcode:listscolor
             
         )
-        
-       // print("Before \(UserLists.count)")
-       // print("Before todo \(UserShopLists.count)")
-        
+
         UserShopLists.append(userlist)
         UserLists.append(userlist)
         
-       // print("Before \(UserLists.count)")
-       // print("Before todo \(UserShopLists.count)")
         
         shopListNew.pinInBackground()
-      //  shopListNew.saveEventually()
-        //shopListNew.saveInBackgroundWithBlock {
-        /*
-        shopListNew.saveEventually() {
-        (success: Bool, error: NSError?) -> Void in
-        if (success) {
-        // self.currentList = shopListNew.objectId!
-        //self.trycurrent = shopListNew.objectId!
-        //println("Current list is \(self.currentList)")
-        } else {
-        // There was a problem, check error.description
-        }
-        
-        // println("Current list is \(self.currentList)")
-        }
-        */
-        // self.currentList = trycurrent
+      
         
     }
     
@@ -3292,30 +2773,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         let popoverViewController = segue.destinationViewController as! ListOptionsPopover//UIViewController
         popoverViewController.modalPresentationStyle = UIModalPresentationStyle.CurrentContext //Popover
             
-        //popoverViewController.preferredContentSize = CGSizeMake(self.view.frame*0.5, 200)
-          //  popOverViewController.preferredContentSize = CGSize(width: 300, height: yourDataArray.count * Int(popOverViewController.tableView.rowHeight))
             
-            /* FOR POPOVER
-            popoverViewController.preferredContentSize = CGSize(width: 270, height: 420)
-            
-            
-            popoverViewController.popoverPresentationController!.delegate = self
-
-*/
-            //popoverViewController.view.backgroundColor = UIColor.grayColor()
-            //// popoverViewController.view.layer.borderWidth = 1
-           // popoverViewController.view.layer.borderColor = UIColorFromRGB(0x2A2F36).CGColor
-            
-           // popoverViewController.popoverPresentationController!.delegate = self
-            
-        
-           // popoverViewController.frame = self.view.bounds/2
-            //.backgroundColor = UIColor.grayColor()
-            //checkview.alpha = 0.8
-            //cell.addSubview(checkview)
-        
-            popoverViewController.delegate = self //WITHOUT THIS IT WONT WORK
-        //popoverViewController.cattext = self.categorybutton.titleForState(.Normal)
+            popoverViewController.delegate = self
             popoverViewController.showcats = showcats
             popoverViewController.code = code
             popoverViewController.symbol = symbol
@@ -3436,19 +2895,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
 
         
         if segue.identifier == "edititemmodalsegue" {
-            
-            
-         
-            
-            
+
             
             let editVC = segue.destinationViewController as! AddItemViewController//UIViewController
-            // editVC.view.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.85)//UIColorFromRGB(0x1695A3).colorWithAlphaComponent(0.85)
-            //toViewController.view.addSubview(vibrancyView)
-            //  editVC.view.addSubview(blurView)
-            
-            //self.navigationController!.modalPresentationStyle = UIModalPresentationStyle.OverFullScreen
-            
             
             editVC.shopdelegate = self
             
@@ -3501,11 +2950,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 //append(item["ItemTotalPrice"] as! String)
         }
         var sum = itemsprices.reduce(0, combine: +)
-        //var sum = shoppingListItemsPrices.reduce(0, combine: +)
-        //var sum = itemsDataDict["ItemTotalPrice"].reduce
-        //    var sum = +/(shoppingListItemsPrices)
-        
-        
+
         var formatter = NSNumberFormatter()
         formatter.maximumFractionDigits = 4
         formatter.usesSignificantDigits = false
@@ -3516,9 +2961,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         var textsum: String = formatter.stringFromNumber(sum)!
         
-        
-        //PricesSum.text = "\(NSLocalizedString("totalsum", comment: "")) \(symbol)\(textsum)"
-       // PricesSum.text = "\(NSLocalizedString("totalsum", comment: "")) \(textsum)"
+
         var rubsymbol : String = "руб."
         
         if code == "RUB" {
@@ -3528,7 +2971,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                PricesSum.text = "\(NSLocalizedString("totalsum", comment: "")) \(symbol)\(textsum)"
         }
         
-        
+        quickcurrency.text = symbol
     }
     
     
@@ -3537,9 +2980,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     func dataretrievallist(){
         
-        // for activeItems in shoppingListItemsIds
-        // mark
-       // for var i = 0;i<item.count;++i {
+
         
         pauseload()
         
@@ -3637,22 +3078,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                                 self.shoppingListItemsImages2.append(self.imageToLoad)
                                 
                                 
-                                                              /*
-                                var imageFile = object["itemImage"] as? PFFile
-                                if imageFile != nil {
-                                var imageData = imageFile!.getData()
-                                if (imageData != nil) {
-                                var image = UIImage(data: imageData!)
-                                self.shoppingListItemsImages2.append(image!)
-                                    print(image)
-                                } else {
-                                    self.shoppingListItemsImages2.append(imagestochoose[0].itemimage)
-                                }
-                                } else {
-                                    self.shoppingListItemsImages2.append(imagestochoose[0].itemimage)
-                                }
-                                                            */
-
+                              
                             } else {
                                 
                                     var imagename = object["OriginalInDefaults"] as! String
@@ -3666,9 +3092,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                             }
 
                         } else {
-                            //if catalog item
-                            //self.shoppingListItemsImages2.append(
-                          //  if let founditem = find(lazy(catalogitems).map({ $0.itemId }), (object["originalInCatalog"] as! String)) {
+                           
                             
                              if let founditem = catalogitems.map({ $0.itemId }).lazy.indexOf((object["originalInCatalog"] as! String)) {
                             let catalogitem = catalogitems[founditem]
@@ -3762,6 +3186,23 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                         //pass those variables to popup later
                         
                         self.changecodeandsymbol(code, newsymbol: symbol)
+                        
+                        let button =  UIButton(type: .Custom)
+                        button.frame = CGRectMake((((self.view.frame.size.width) / 2) - 80),0,160,40) as CGRect
+                        button.setTitle(object["ShopListName"] as! String, forState: UIControlState.Normal)
+                        button.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
+                        button.setTitleColor(self.UIColorFromRGB(0x31797D), forState: .Normal)
+                        let spacing: CGFloat = 10;
+                        // let textsize : CGSize = button.titleLabel!.attributedText!.
+                        //let textsize : CGFloat = button.titleLabel!.intrinsicContentSize().width
+                        // button.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
+                        let titleimage = UIImage(named: "myliststitle") as UIImage?
+                        button.setImage(titleimage, forState: .Normal)
+
+                        let textsize: CGSize = button.titleLabel!.text!.sizeWithAttributes([NSFontAttributeName:UIFont(name: "AvenirNext-Regular", size: 14.0)!])
+                        button.imageEdgeInsets = UIEdgeInsetsMake(2, textsize.width + 40, 0, 0); // top left bottom right
+                                               button.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
+                        self.navigationItem.titleView = button
                         
                         self.tableView.reloadData()
                         
@@ -3867,27 +3308,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 for object in listitems {
                 
 
-                    /*
-                    if let thislist = list["ItemsInTheShopList"] as? [String] { //used to be username
-                        
-                        println(list["ItemsInTheShopList"])
-                        
-                        itemsarray.extend(list["ItemsInTheShopList"] as! [String])
-                        
-                    }
-                    */
                     self.shoppingListItemsIds.append(object["itemUUID"] as! String)
                     self.shoppingListItemsNames.append(object["itemName"] as! String)
                     self.shoppingListItemsNotes.append(object["itemNote"] as! String)
                     self.shoppingListItemsQuantity.append(object["itemQuantity"] as! String)
-                    /*
-                    if self.isReceivedList == true {
-                    
-                    self.shoppingListItemsImages.append(object["itemImage"] as! PFFile)
-                    } else {
-                    self.shoppingListItemsImages.append("no image on server")
-                    }
-                    */
+                  
                     self.shoppingListOneUnitPrice.append(object["itemPriceS"] as! String)
                     self.shoppingListItemsPrices.append(object["TotalSumS"] as! String)
                     self.shoppingListItemsUnits.append(object["itemUnit"] as! String)
@@ -3976,134 +3401,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 print("Error")
             }
 
-        /*
-        query1.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]?, error: NSError?) -> Void in
-            
-            if error == nil {
-            
-                println("Successfully retrieved \(objects!.count) scores.")
-                // Do something with the found objects
-
-                
-                
-                if let listitems = objects as? [PFObject] {
-                    
-                    //shoppingListItemsIds.removeAll(keepCapacity: true)
-                    
-                    for object in listitems {
-                        println(object.objectId)
-                        //self.shoppingListItemsIds.append(object.objectId!)//["itemName"] as)
-                        
-                        self.shoppingListItemsIds.append(object["itemUUID"] as! String)
-                        self.shoppingListItemsNames.append(object["itemName"] as! String)
-                        self.shoppingListItemsNotes.append(object["itemNote"] as! String)
-                        self.shoppingListItemsQuantity.append(object["itemQuantity"] as! String)
-                        /*
-                        if self.isReceivedList == true {
-                        
-                        self.shoppingListItemsImages.append(object["itemImage"] as! PFFile)
-                        } else {
-                        self.shoppingListItemsImages.append("no image on server")
-                        }
-                        */
-                        self.shoppingListOneUnitPrice.append(object["itemPrice"] as! Double)
-                        self.shoppingListItemsPrices.append(object["TotalSum"] as! Double)
-                        self.shoppingListItemsUnits.append(object["itemUnit"] as! String)
-                        self.shoppingListItemsPerUnit.append(object["perUnit"] as! String)
-                        self.shoppingListItemsIsCatalog.append(object["isCatalog"] as! Bool)
-                        
-                        self.shoppingListItemsIsFav.append(object["isFav"] as! Bool)
-                        
-                        
-                        self.shoppingListItemsIsDefPict.append(object["defaultpicture"] as! Bool)
-                        self.shoppingListItemsDefaultOriginal.append(object["OriginalInDefaults"] as! String)
-                        
-                        if object["isCatalog"] as! Bool == false {
-                            
-                            //self.loadImageFromLocalStore(object["imageLocalPath"] as! String)
-                            
-                            // self.shoppingListItemsImages2.append(self.imageToLoad)
-                            
-                            if object["defaultpicture"] as! Bool == false {
-                                
-                                
-                                var imageFile = object["itemImage"] as? PFFile
-                                if imageFile != nil {
-                                    var imageData = imageFile!.getData()
-                                    if (imageData != nil) {
-                                        var image = UIImage(data: imageData!)
-                                        self.shoppingListItemsImages2.append(image!)
-                                        println(image)
-                                    } else {
-                                        self.shoppingListItemsImages2.append(imagestochoose[0].itemimage)
-                                    }
-                                } else {
-                                    self.shoppingListItemsImages2.append(imagestochoose[0].itemimage)
-                                }
-                                
-                                
-                            } else {
-                                
-                                var imagename = object["OriginalInDefaults"] as! String
-                                
-                                if (UIImage(named: "\(imagename)") != nil) {
-                                    self.shoppingListItemsImages2.append(UIImage(named: "\(imagename)")!)
-                                } else {
-                                    self.shoppingListItemsImages2.append(imagestochoose[0].itemimage)
-                                }
-                                
-                            }
-                            
-                        } else {
-                            //if catalog item
-                            //self.shoppingListItemsImages2.append(
-                            if let founditem = find(lazy(catalogitems).map({ $0.itemId }), (object["originalInCatalog"] as! String)) {
-                                let catalogitem = catalogitems[founditem]
-                                
-                                self.shoppingListItemsImages2.append(catalogitem.itemimage)
-                            }
-                        }
-                        
-                        self.shoppingListItemsImagesPaths.append(object["imageLocalPath"] as! String)
-                        
-                        self.checked.append(false)
-                        
-                        self.shoppingListItemsIsChecked.append(object["isChecked"] as! Bool)
-                        
-                        self.shoppingListItemsCategories.append(object["Category"] as! String)
-                        
-                        self.shoppingListItemsOriginal.append(object["originalInCatalog"] as! String)
-                        
-                        self.shoppingListItemsCreation.append(object["CreationDate"] as! NSDate)
-                        
-                        self.shoppingListItemsUpdate.append(object["UpdateDate"] as! NSDate)
-                        
-                        println("Cats are \(self.shoppingListItemsCategories)")
-                        
-                        shoppingcheckedtocopy.append(false)
-                        
-                        self.summationPrices()
-                        
-                        self.tableView.reloadData() // without this thing, table would contain only 1 row
-                        
-                        
-                        
-                    }
-                }
-                
-              //  self.getcategoriesnames(self.shoppingListItemsCategories)
-               // self.fillthedict()
-                
-                
-                
-            } else {
-                // Log details of the failure
-                println("Error: \(error!) \(error!.userInfo!)")
-            }
-        }
-        */
-    } //end of for loop
+           } //end of for loop
         
         self.getcategoriesnames(self.shoppingListItemsCategories)
         self.fillthedict()
@@ -4249,7 +3547,6 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             let index : Int = 1
             
-            // self.dictionary = ["ItemId":itemId,"ItemName":itemname,"ItemNote":itemnote, "ItemQuantity":itemquantity,"ItemTotalPrice":itemprice,"ItemImagePath":itemimagepath,"ItemUnit":itemunit,"ItemIsChecked":itemischecked,"ItemImage2":itemimage2,"ItemCategory":itemcategory,"ItemIsCatalog":itemiscatalog,"ItemOriginal":originalincatalog,"ItemCategoryName":categoryname]
             
             dictionary = ["ItemId":itemid,"ItemName":itemname,"ItemNote":itemnote, "ItemQuantity":itemquantity,"ItemTotalPrice":itemprice,"ItemImage2":itemimage2,"ItemUnit":itemunit,"ItemIsChecked":itemchecked,"ItemImagePath":itemimagepath,"ItemCategory":itemcategory,"ItemIsCatalog":itemiscatalog,"ItemOriginal":originalincatalog,"ItemCategoryName":itemcategoryname,"ItemOneUnitPrice":itemoneunitprice,"ItemIsFav":itemisfav,"ItemPerUnit":itemperunit,"ItemCreation":itemcreation,"ItemUpdate":itemupdate,"ItemIsDefPict":itemisdefaultpict,"ItemOriginalInDefaults":itemoriginalindefaults,"Index":index]
             // dictionary = ["ItemId":itemid,"ItemName":itemname,"ItemNote":itemnote, "ItemQuantity":itemquantity,"ItemTotalPrice":itemprice,"ItemImage2":itemimage2,"ItemUnit":itemunit,"ItemChecked":itemchecked,"ItemImagePath":itemimagepath,"ItemCategory":itemcategory]
@@ -4390,35 +3687,14 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         return checkeditemsqty
     }
     
-    
-    /*
-    func countchecked(checkeditems : [Bool]) -> Int {
-    
-    var quantityofchecked = [Bool]()
-    
-    for item in checkeditems {
-    if item["ItemIsChecked"] == true {
-    quantityofchecked.append(item)
-    } else {
-    println("Not checked")
-    }
-    }
-    checkeditemsqty = quantityofchecked.count
-    return checkeditemsqty
-    }
-    */
+
     
     func countitems() -> Int {
         //itemsoverallqty = shoppingListItemsIds.count
         itemsoverallqty = itemsDataDict.count
         return itemsoverallqty
     }
-    /*
-    override func viewDidAppear(animated: Bool) {
-    tableView.reloadData()
-    summationPrices()
-    }
-    */
+
     
     
     @IBAction func unwindToCreationOfShopList(sender: UIStoryboardSegue){
@@ -4819,17 +4095,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         //newquickview.frame.height.constant = 0
         super.viewDidLayoutSubviews()
-    // smallpopover.frame = CGRectMake(newquickview.frame.origin.x, 154, newquickview.frame.width, 0)
-        
-       //smallpopover.center.y = self.view.frame.origin.y - 300
-        //smallpopover.center.y - self.view.frame.height
-        
-     //   self.inamountview.frame = CGRectMake(self.smallpopover.frame.origin.x + 8, self.inamountview.frame.origin.y + 32, 149, 0)
-        
-      //  self.inunitsfield.frame = CGRectMake(219, self.inamountview.frame.origin.y + 32, 149, 0)
-       // smallpopover.frame.origin.y = self.view.frame.origin.y
-      //  self.smallpopover.center.y = 150
-       // self.smallpopover.frame.origin.y = self.view.frame.origin.y - 300
+ 
         
     }
     
@@ -4855,53 +4121,41 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         poppresented = true
             
             autocomplete.resignFirstResponder()
-           //  self.newquantitybutton.setImage(self.redquantity, forState: .Normal)
-        
+
             newquantitybutton.tintColor = UIColorFromRGB(0xA2AF36)
             
             smallpopover.hidden = false
             
-
-            
-
-            self.quicksmallconstraint.constant = -6
-            
-            let yPos : CGFloat = 151
-          //  self.smallpopover.frame.origin.y = self.view.frame.origin.y - 300
-        UIView.animateWithDuration(0.4, animations: { () -> Void in
-           // self.smallpopover.frame.origin.y = yPos
-            self.view.layoutIfNeeded()
-            }, completion: { (value: Bool) -> Void in
-               // self.quicksmallconstraint.constant = -5
-        })
-
+            dimmerforpopover.hidden = false
             
             /*
-            UIView.transitionWithView(self.smallpopover, duration: 0.4, options: [], animations: {
-                self.smallpopover.frame.origin.y = 250
-            }, completion: { finished in
-            })
-*/
+            self.quicksmallconstraint.constant = -6
+            
+           
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            self.view.layoutIfNeeded()
+            }, completion: { (value: Bool) -> Void in
+
+        })
+ */
         } else {
             
             poppresented = false
             
-            newquantitybutton.setImage(blackquantity, forState: .Normal)
-            /*
-            self.quicksmallconstraint.constant = -456
+            newquantitybutton.tintColor = UIColorFromRGB(0x979797)
             
-           // let yPos : CGFloat = -300
-          //  self.smallpopover.frame.origin.y = 151
-            UIView.animateWithDuration(0.4, animations: { () -> Void in
-              //  self.smallpopover.frame.origin.y = yPos
-              //  self.quicksmallconstraint.constant = -451
+            dimmerforpopover.hidden = true
+            /*
+            self.quicksmallconstraint.constant = -610
+
+            UIView.animateWithDuration(0.2, animations: { () -> Void in
+
                 self.view.layoutIfNeeded()
                 }, completion: { (value: Bool) -> Void in
-                    // self.quicksmallconstraint.constant = -5
                     self.smallpopover.hidden = true
             })
             */
-            smallpopover.fadeOut()
+          
             self.smallpopover.hidden = true
             
             getinfofrompop(buttontitle, quantity: popqty.text!)
@@ -5007,22 +4261,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     
-    
-    
-    // Return the title of each row in your picker ... In my case that will be the profile name or the username string
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        
-        return units[row][0]
-    }
-    
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        buttontitle = units[row][1]
-        //unitsbuttonoutlet.setTitle(buttontitle, forState: UIControlState.Normal)
-        
-        inunitsfield.text = units[row][1]
-        
-    }
+
 
     
     @IBAction func dismisssmallpopup(sender: AnyObject) {
@@ -5032,30 +4271,24 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         poppresented = false
         
-         newquantitybutton.setImage(blackquantity, forState: .Normal)
         
-       // UIView.animateWithDuration(0.4) { () -> Void in
-            
-            // self.smallpopover.frame = CGRectMake(self.newquickview.frame.origin.x, 154, self.newquickview.frame.width, 0)
-            
-             self.quicksmallconstraint.constant = -456
-            //let yPos : CGFloat = -300
-           // self.smallpopover.frame.origin.y = 151
+        newquantitybutton.tintColor = UIColorFromRGB(0x979797)
+        
+        dimmerforpopover.hidden = true
+        
+        self.smallpopover.hidden = true
+        /*
+             self.quicksmallconstraint.constant = -610
+
             UIView.animateWithDuration(0.4, animations: { () -> Void in
-               // self.smallpopover.frame.origin.y = yPos
-               // self.quicksmallconstraint.constant = -451
+
                 self.view.layoutIfNeeded()
                 
                 }, completion: { (value: Bool) -> Void in
-                    // self.quicksmallconstraint.constant = -5
+  
                     self.smallpopover.hidden = true
             })
-        
-        
-            
-            //  self.inamountview.frame = CGRectMake(self.newquickview.frame.origin.x, 154, self.newquickview.frame.width, 0)
-            
-       // }
+*/
     }
     
     
@@ -5447,19 +4680,70 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var quickicon: UIImageView!
     @IBOutlet var quickcategorybutton: UIButton!
     @IBOutlet var nomatchlabel: UILabel!
+    @IBOutlet var prodiconview: UIView!
     
     // PRICE ACTIONS
     @IBAction func priceendedit(sender: AnyObject) {
+        
+        quickpriceoutlet.text!.doubleConverter
+        multiplication()
     }
     
     
     @IBAction func pricebeginedit(sender: AnyObject) {
+        
+        quickpriceoutlet.text!.doubleConverter
+        multiplication()
     }
     
     
     @IBAction func pricevaluechanged(sender: AnyObject) {
+        
+        quickpriceoutlet.text!.doubleConverter
+        multiplication()
     }
+    
+    // Quantity Field Actions
+    
+    @IBAction func qtyendedit(sender: AnyObject) {
+        
+        popqty.text!.doubleConverter
+        
+        if (popqty.text != nil) {
+
+            doublenumber = popqty.text!.doubleConverter
+        } else {
+            print("no number")
+        }
+        
+        
+        multiplication()
+
+    }
+    
+    
+    @IBAction func qtyeditchanged(sender: AnyObject) {
+        
+        multiplication()
+    }
+    
    
+    @IBAction func qtyvaluechanged(sender: AnyObject) {
+        
+        popqty.text!.doubleConverter
+        
+        if (popqty.text != nil) {
+
+            doublenumber = popqty.text!.doubleConverter
+        } else {
+            print("no number")
+        }
+        
+        
+        multiplication()
+
+        
+    }
     
     // MULTIPLICATION
     
@@ -5645,8 +4929,16 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
+    @IBOutlet var dimmerforpopover: UIView!
+    
    var horizontalScrollView = ASHorizontalScrollView()
     var horizontalScrollViewper = ASHorizontalScrollView()
+    
+    
+    func clickthetitle(button: UIButton) {
+        
+        print("Tapped the title")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -5654,15 +4946,15 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
          //UINavigationBar.appearance().backgroundColor = UIColor.clearColor()
         
         // SCROLLS
-        horizontalScrollView = ASHorizontalScrollView(frame:CGRectMake(0, 0, horscrollview.frame.width, 42))
-        horizontalScrollViewper = ASHorizontalScrollView(frame:CGRectMake(0, 0, horscrollviewper.frame.width, 42))
-        horizontalScrollView.uniformItemSize = CGSizeMake(52, 42)
-        horizontalScrollViewper.uniformItemSize = CGSizeMake(52, 42)
+        horizontalScrollView = ASHorizontalScrollView(frame:CGRectMake(0, 0, horscrollview.frame.width, 34))
+        horizontalScrollViewper = ASHorizontalScrollView(frame:CGRectMake(0, 0, horscrollviewper.frame.width, 34))
+        horizontalScrollView.uniformItemSize = CGSizeMake(40, 34)
+        horizontalScrollViewper.uniformItemSize = CGSizeMake(40, 34)
         horizontalScrollView.leftMarginPx = 0
         horizontalScrollViewper.leftMarginPx = 0
-        horizontalScrollView.miniMarginPxBetweenItems = 7
+        horizontalScrollView.miniMarginPxBetweenItems = 8
         horizontalScrollView.miniAppearPxOfLastItem = 10
-        horizontalScrollViewper.miniMarginPxBetweenItems = 7
+        horizontalScrollViewper.miniMarginPxBetweenItems = 8
         horizontalScrollViewper.miniAppearPxOfLastItem = 10
         horizontalScrollView.setItemsMarginOnce()
         horizontalScrollViewper.setItemsMarginOnce()
@@ -5674,7 +4966,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             var button = UIButton(frame: CGRectZero)
             button.backgroundColor = UIColor.clearColor()
             button.setTitle(units[i][1], forState: .Normal)
-            button.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 16)
+            button.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
             button.tintColor = UIColorFromRGB(0x31797D)
             button.setTitleColor(UIColorFromRGB(0x31797D), forState: UIControlState.Normal)
             button.layer.borderWidth = 1
@@ -5686,7 +4978,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             var buttonper = UIButton(frame:CGRectMake(0, 0, 52, 42))
             buttonper.backgroundColor = UIColor.clearColor()
-            buttonper.titleLabel!.font = UIFont(name: "AvenirNext-UltraLight", size: 16)
+            buttonper.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
             buttonper.tintColor = UIColorFromRGB(0x31797D)
             buttonper.setTitleColor(UIColorFromRGB(0x31797D), forState: UIControlState.Normal)
             
@@ -5731,6 +5023,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         autocomplete.text = NSLocalizedString("additemtext", comment: "")
+        autocomplete.autocorrectionType = .No
        // autocomplete.textAlignment = .Center
         
         cancelviewoutlet.layer.borderWidth = 1
@@ -5785,19 +5078,28 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         let toolFrame3 = CGRectMake(0, 0, self.view.frame.size.width, 46);
         let toolView3: UIView = UIView(frame: toolFrame);
-        let closepadframe3: CGRect = CGRectMake(0, 0, self.view.frame.size.width, 46);
+        toolView3.backgroundColor = UIColorFromRGB(0xFAFAFA)
+        let linetop : UIView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 1))
+        linetop.backgroundColor = UIColorFromRGB(0x31797D)
+        let linebottom : UIView = UIView(frame: CGRectMake(0, 45, self.view.frame.size.width, 1))
+        linebottom.backgroundColor = UIColorFromRGB(0x31797D)
+        let closepadframe3: CGRect = CGRectMake(0, 0, self.view.frame.size.width, 46)
         let editproduct: UIButton = UIButton(frame: closepadframe3);
         editproduct.setTitle(NSLocalizedString("editproduct", comment: ""), forState: UIControlState.Normal)
-        editproduct.tintColor = UIColorFromRGB(0x979797)
+        editproduct.tintColor = UIColorFromRGB(0x31797D)
         editproduct.setImage(editproductimage, forState: UIControlState.Normal)
         editproduct.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
         editproduct.setTitleColor(UIColorFromRGB(0x979797), forState: .Normal)
-        editproduct.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-        editproduct.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
+        editproduct.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 20);
+        editproduct.titleEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 10);
         toolView3.addSubview(editproduct);
+        toolView3.addSubview(linetop);
+        toolView3.addSubview(linebottom);
         editproduct.addTarget(self, action: "closenumberpad3:", forControlEvents: UIControlEvents.TouchDown);
         
         autocomplete.inputAccessoryView = toolView3
+        
+        
         
         
         
@@ -5818,7 +5120,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         autocomplete.delegate = self
 
         
-
+        // TITLE
+     
         
        // self.view.backgroundColor = UIColorFromRGB(0xF1F1F1)//(0x2a2f36)F1F1F1
         
@@ -5826,13 +5129,34 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         //tableView.backgroundColor = UIColorFromRGB(0xF1F1F1) //f1
         
         smallpopover.backgroundColor = UIColorFromRGB(0xFFFFFF)//UIColorFromRGB(0xF7F7F7)
-
+        
+        smallpopover.hidden = true
         
         inamountview.layer.cornerRadius = 8
         
         inamountview.layer.borderWidth = 1
         inamountview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
         
+        
+        quickpriceoutlet.layer.cornerRadius = 8
+        
+        quickpriceoutlet.layer.borderWidth = 1
+        quickpriceoutlet.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+        
+        quicksum.layer.cornerRadius = 8
+        
+        quicksum.layer.borderWidth = 1
+        quicksum.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+        
+        categoryview.layer.cornerRadius = 8
+        
+        categoryview.layer.borderWidth = 1
+        categoryview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+        
+        prodiconview.layer.cornerRadius = 8
+        
+        prodiconview.layer.borderWidth = 1
+        prodiconview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
         
         
        autocomplete.leftTextMargin = 5
@@ -5845,36 +5169,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         self.generateDataAuto()
         autocomplete.mDelegate = self
         
-       // let allcurrencies = NSLocale.ISOCurrencyCodes()
-        
-        /* DO IT IN APP LOAD
-        for currency in allcurrencies { //Currency = "USD" etc
-            let localeComponents = [NSLocaleCurrencyCode: currency]
-            let localeIdentifier = NSLocale.localeIdentifierFromComponents(localeComponents)
-            let locale = NSLocale(localeIdentifier: localeIdentifier)
-            let currencySymbol = locale.objectForKey(NSLocaleCurrencySymbol) as! String
-            
-            currencies.append([currency as! String,currencySymbol])
-            
-        }
-        */
-        
-        /*
-        for uniquecategory in shoppingListItemsCategories {
-        // differentcategories = set
-        //if contains(
-        if contains(differentcategories, element: uniquecategory) {
-        println("Category already loaded")
-        } else {
-        differentcategories.append(uniquecategory)
-        }
-        }
-        */
-        
-        
-        
-        //showcats = true
-       // showcats = false
+
         
         
         
@@ -5908,6 +5203,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                  //Will display "USD", for example
             }
             
+            quickcurrency.text = symbol
+            
            // choosecurrency.setTitle(String(stringInterpolationSegment: symbol), forState: .Normal)
             
             
@@ -5916,8 +5213,41 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
                // noitemview.hidden = false
            
+            let button =  UIButton(type: .Custom)
+            button.frame = CGRectMake((((self.view.frame.size.width) / 2) - 80),0,160,40) as CGRect
+            button.setTitle(NSLocalizedString("listshop", comment: ""), forState: UIControlState.Normal)
+            button.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
+            button.setTitleColor(self.UIColorFromRGB(0x31797D), forState: .Normal)
+           // let spacing: CGFloat = 10;
+           // let textsize : CGSize = button.titleLabel!.attributedText!.
+            //let textsize : CGFloat = button.titleLabel!.intrinsicContentSize().width
+            let titleimage = UIImage(named: "myliststitle") as UIImage?
+            button.setImage(titleimage, forState: .Normal)
+            //let textsize: CGSize = button.titleLabel!.text!.sizeWithAttributes([NSFontAttributeName:UIFont(name: "AvenirNext-Regular", size: 14.0)!])
+            /*
+            button.imageEdgeInsets = UIEdgeInsetsMake(2, 10, 0, 0); // top left bottom right
+            button.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
+            button.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+            button.titleLabel!.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+            button.imageView!.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+            */
+            let spacing : CGFloat = 3;
+            let insetAmount : CGFloat = 0.5 * spacing;
             
+            // First set overall size of the button:
+            button.contentEdgeInsets = UIEdgeInsetsMake(0, insetAmount, 0, insetAmount);
+            button.sizeToFit()
             
+            // Then adjust title and image insets so image is flipped to the right and there is spacing between title and image:
+            button.titleEdgeInsets  = UIEdgeInsetsMake(0, -button.imageView!.frame.size.width - insetAmount, 0,  button.imageView!.frame.size.width  + insetAmount);
+            button.imageEdgeInsets  = UIEdgeInsetsMake(2, button.titleLabel!.frame.size.width + insetAmount, 0, -button.titleLabel!.frame.size.width - insetAmount);
+            
+            button.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
+            self.navigationItem.titleView = button
+            
+           // CGSize textSize = [[label text] sizeWithFont:[label font]];
+            
+           // CGFloat strikeWidth = textSize.width;
             
         } else {
             
@@ -5957,7 +5287,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
             
-            
+            //quickcurrency.text = symbol
             
             tableView.reloadData()
             
@@ -5971,23 +5301,6 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         var shoppingListItemBelongsTo = activeList
         
-        // Do any additional setup after loading the view.
-        /*
-        var rightAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.Plain, target: self, action: "addTapped:")
-        
-        //var rightListsButtonItem: UIBarButtonItem = UIBarButtonItem(image: ListsIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "ListsTapped:")
-        var rightListsButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Lists", style: UIBarButtonItemStyle.Plain, target: self, action: "ListsTapped:")
-        
-        var rightSettingsButtonItem: UIBarButtonItem = UIBarButtonItem(title: "Settings", style: UIBarButtonItemStyle.Plain, target: self, action: "SettingsTapped:")
-        
-        var rightAddMultipleButtonItem: UIBarButtonItem = UIBarButtonItem(title: "Add+", style: UIBarButtonItemStyle.Plain, target: self, action: "addMultipleTapped:")
-        
-        var leftGoBackButtonItem: UIBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "goback:")
-        
-        self.navigationItem.setLeftBarButtonItem(leftGoBackButtonItem, animated: true)
-        
-        self.navigationItem.setRightBarButtonItems([rightAddMultipleButtonItem, rightAddBarButtonItem, rightListsButtonItem, rightSettingsButtonItem], animated: true)
-        */
         
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: Selector("sortArray"), forControlEvents: UIControlEvents.ValueChanged)
@@ -6001,29 +5314,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.addGestureRecognizer(longpress)
         
-        
-        // self.refreshControl = refreshControl
-        
-        //var query = PFUser.query()
-        //query?.findObjectsInBackgroundWithBlock({)
-        
-        /*
-        if (mystring != nil) {
-        dataretrieval()
-        } else {
-        println(self.shoppingListItemsIds)
-        }
-        
-        */
-        /*
-        if (mystring != nil) {
-        dataretrievallist()
-        } else {
-        dataretrieval()
-        }
-        */
-        //dataretrieval()
-        
+
         
         summationPrices()
         
@@ -6156,14 +5447,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func sortArray() {
-        /*
-        let sortedarray = shoppingListItemsIds.reverse()
-        
-       // for (index, element) in enumerate(sortedarray) {
-         for (index, element) in sortedarray.enumerate() {
-            shoppingListItemsIds[index] = element
-        }
-        */
+
         tableView.reloadData()
         refreshControl?.endRefreshing()
     }
@@ -6194,31 +5478,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         addMultipleFunc()
         
     }
-    /*
-    func goback(sender: UIButton) {
-    
-    if senderVC == senderVC as? AllListsVC {
-    
-    performSegueWithIdentifier("gobacksegue", sender: self)
-    } else if senderVC == senderVC as? MainMenuViewController {
-    //gobacktomainmenusegue
-    //performSegueWithIdentifier("gobacktomainmenusegue", sender: self)
-    
-    //  delegateforlist?.getshoplist(true, listid:currentList)
-    
-    dismissViewControllerAnimated(true, completion: nil)
-    //navigationController!.popViewControllerAnimated(true)
-    }
-    //perfr
-    }
-    */
-    /*
-    func tabBarTableauClicked(){
-    performSegueWithIdentifier("tableau", sender: self)
-    }
-    */
-    
-    
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -6235,20 +5495,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         if showcats == true {
             
             let set = NSSet(array: shoppingListItemsCategoriesNames)
-           // print(set.count)
-            /*
-            for uniquecategory in shoppingListItemsCategoriesNames {
-            // differentcategories = set
-            //if contains(
-            if contains(differentcategories, element: uniquecategory) {
-            println("Category already loaded")
-            } else {
-            differentcategories.append(uniquecategory)
-            }
-            }*/
-            // return set.count
-            //return differentcategories.count
-            return sections.count
+                      return sections.count
             
         } else {
             
@@ -6309,11 +5556,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 let tableSection = sections[sortedSections[section]]
                 let tableItem = tableSection![rowsect]
-                
-               // print("SECTION IS \(tableSection)")
-               // print("TABLE ITEM IS \(tableItem)")
-                
-                //cell.itemName.text = (tableItem as NSDictionary).objectForKey("ItemName") as? String
+ 
                 
                 itemtoedit = (tableItem as NSDictionary).objectForKey("ItemId") as! String
                 
@@ -6322,13 +5565,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             }
             
             
-            //let indexPathItem = tableView.indexPathForRowAtPoint()
-            
-            
-            //    itemtoedit = shoppingListItemsIds[indexPathItem!.row]
-            
-            //  performSegueWithIdentifier("EditItem", sender: self)
-            // cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: rowsect, inSection: section))?
+         
             
         }
         
@@ -6357,10 +5594,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         let checkbutton = cell.viewWithTag(70) as! UIButton //checkbuttontag
             
             itemsDataDict[indexPathCheck!.row]["ItemIsChecked"] = false
-            
-            //NOW the same must be done to sorted items dict, so again for loop but for sorted array
-            // In order this to work when go from nocategories to showcategories, so that changes will be saved
-            // var thissectionsname : String = shoppingListItemsCategoriesNames[indexPathCheck!.row]
+ 
             let thissectionsname : String = itemsDataDict[indexPathCheck!.row]["ItemCategoryName"] as! String
             
             // var thisarray : Array<Dictionary<String,AnyObject>> = sections[thissectionsname]!
@@ -6452,16 +5686,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 //var tableSection : [Dictionary<String, AnyObject>] = []
                 var tableSection = sections[sortedSections[section]]
                 var tableItem = tableSection![rowsect]
-                
-              //  print("SORTED SECTIONS \(sortedSections)")
-                
-              //  print("SECTION IS \(tableSection)")
-              //  print("TABLEITEM IS \(tableItem)")
-                
-                //with let it is completely immutable, with var - its fine!
-                //let tableCheck = sortedchecks[rowsect]
-                //let tableCheckItem = tableCheck
-                //cell.itemName.text = (tableItem as NSDictionary).objectForKey("ItemName") as? String
+   
                 
                 var checkedbitch = Bool()
                 
@@ -6546,19 +5771,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                     
                     
                 }
-                
-                // shoppingListItemsIsChecked[indexPathCheck!.row] = false
-                // var newdictionary = tableItem
-                //newdictionary.updateValue(false, forKey: "ItemChecked")
-                //(tableItem as NSMutableDictionary).updateValue(true, forKey: "ItemChecked")
-                
-              
-                
-                
-                //print(tableItem["ItemIsChecked"])
-                
-                //print("SECTION IS \(tableSection)")
-               // print("TABLEITEM IS \(tableItem)")
+
                 
                 
                 checkeditemsqty -= 1
@@ -6648,30 +5861,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 self.activityIndicator.stopAnimating()
                 UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 
-                ///add new view, blur it and add restore button
-                /*
-                var checkview = UIView(frame: cell.bounds)
-                checkview.frame = cell.bounds
-                checkview.backgroundColor = UIColor.grayColor()
-                checkview.alpha = 0.8
-                cell.addSubview(checkview)
-                
-                var resbutton   = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-                var positionx = checkview.frame.size.width * 0.7 - 30
-                var positiony = (checkview.frame.size.height * 0.5) - 20
-                resbutton.frame = CGRectMake(positionx,positiony, 100, 40)
-                //CGRect(x: 0, y: yPos, width: buttonWidth-0.5, height: self.buttonHeight)
-                
-                resbutton.backgroundColor = UIColor.whiteColor()
-                resbutton.layer.borderColor = UIColor.blueColor().CGColor
-                resbutton.layer.cornerRadius = 10
-                resbutton.setTitle("Restore", forState: UIControlState.Normal)
-                resbutton.addTarget(self, action: "restoreitem:", forControlEvents: UIControlEvents.TouchUpInside)
-                // button.addTarget //(cell, action: "restoreitem:", forControlEvents: UIControlEvents.TouchUpInside)
-                checkview.addSubview(resbutton)
-                */
-                
-                /////
+      
                 
                 
                 let attributes = [NSStrikethroughStyleAttributeName : 1]
@@ -6705,71 +5895,6 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
                 
-          //  } else {
-                
-                /* THIS BLOCK GOES TO RESTORE FUNC NOW
-                button.setImage(notcheckedImage, forState: .Normal)
-                
-                
-                let attributes = [NSStrikethroughStyleAttributeName : 0]
-                // var title = NSAttributedString(string: shoppingListItemsNames[indexPathCheck!.row], attributes: attributes)
-                var title = NSAttributedString(string: itemsDataDict[indexPathCheck!.row]["ItemName"] as! String, attributes: attributes)
-                
-                cell.itemName.attributedText = title
-                
-                
-                var querynew = PFQuery(className:"shopItems")
-                querynew.fromLocalDatastore()
-                // querynew.getObjectInBackgroundWithId(itemtocheck) {
-                querynew.whereKey("itemUUID", equalTo: itemtocheck)
-                querynew.getFirstObjectInBackgroundWithBlock() {
-                    (itemList: PFObject?, error: NSError?) -> Void in
-                    if error != nil {
-                        println(error)
-                    } else if let itemList = itemList {
-                        itemList["isChecked"] = false
-                        itemList.pinInBackground()
-                        // itemList.saveInBackground()
-                        itemList.saveEventually()
-                        
-                    }
-                    
-                    
-                }
-                
-                // shoppingListItemsIsChecked[indexPathCheck!.row] = false
-                
-                itemsDataDict[indexPathCheck!.row]["ItemIsChecked"] = false
-                
-                //NOW the same must be done to sorted items dict, so again for loop but for sorted array
-                // In order this to work when go from nocategories to showcategories, so that changes will be saved
-                // var thissectionsname : String = shoppingListItemsCategoriesNames[indexPathCheck!.row]
-                var thissectionsname : String = itemsDataDict[indexPathCheck!.row]["ItemCategoryName"] as! String
-                
-                // var thisarray : Array<Dictionary<String,AnyObject>> = sections[thissectionsname]!
-                
-                // for ( var i = 0; i < thisarray.count; i++ ) {
-                for ( var i = 0; i < sections[thissectionsname]!.count; i++ ) {
-                    
-                    
-                    // if thisarray[i]["ItemId"] as? String == itemtocheck {
-                    if sections[thissectionsname]![i]["ItemId"] as? String == itemtocheck {
-                        
-                        
-                        println(sections[thissectionsname]![i]["ItemIsChecked"])
-                        
-                        sections[thissectionsname]![i]["ItemIsChecked"] = false
-                        
-                        println(sections[thissectionsname]![i]["ItemIsChecked"])
-                        
-                    }
-                }
-                
-                checkeditemsqty -= 1
-                itemschecked.text = String(checkeditemsqty)
-                
-                */
-           // }
             
         } else {
             
@@ -6790,15 +5915,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 var tableSection = sections[sortedSections[section]]
                 var tableItem = tableSection![rowsect]
                 
-              //  print("SORTED SECTIONS \(sortedSections)")
-                
-               // print("SECTION IS \(tableSection)")
-              //  print("TABLEITEM IS \(tableItem)")
-                
-                //with let it is completely immutable, with var - its fine!
-                //let tableCheck = sortedchecks[rowsect]
-                //let tableCheckItem = tableCheck
-                //cell.itemName.text = (tableItem as NSDictionary).objectForKey("ItemName") as? String
+            
                 
                 var checkedbitch = Bool()
                 
@@ -6806,12 +5923,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 itemtocheck = (tableItem as NSDictionary).objectForKey("ItemId") as! String
                 
-                // if checked[indexPathCheck!.row] == false {
-               // if (tableItem as NSDictionary).objectForKey("ItemIsChecked") as! Bool == false {
-                    // if sortedchecks[rowsect] == false {
-                    //button.setTitleColor(UIColor.greenColor(), forState: UIControlState.Selected)
-                    
-                    // checkedbitch = false
+ 
                 
                 print(tableItem["ItemIsChecked"])
                 
@@ -6890,132 +6002,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
 
                     
                     
-               // } else {
-                    
-                    /* THIS BLOCK GOES TO RESTORE FUNC NOW
-                    button.setImage(notcheckedImage, forState: .Normal)
-                    
-                    
-                    let attributes = [NSStrikethroughStyleAttributeName : 0]
-                    var title = NSAttributedString(string: (tableItem as NSDictionary).objectForKey("ItemName") as! String, attributes: attributes)
-                    cell.itemName.attributedText = title
-                    
-                    
-                    var querynew = PFQuery(className:"shopItems")
-                    querynew.fromLocalDatastore()
-                    // querynew.getObjectInBackgroundWithId(itemtocheck) {
-                    querynew.whereKey("itemUUID", equalTo: (tableItem as NSDictionary).objectForKey("ItemId") as! String)
-                    querynew.getFirstObjectInBackgroundWithBlock() {
-                        (itemList: PFObject?, error: NSError?) -> Void in
-                        if error != nil {
-                            println(error)
-                        } else if let itemList = itemList {
-                            itemList["isChecked"] = false
-                            itemList.pinInBackground()
-                            // itemList.saveInBackground()
-                            itemList.saveEventually()
-                            
                         }
-                        
-                        
-                    }
-                    
-                    // shoppingListItemsIsChecked[indexPathCheck!.row] = false
-                    // var newdictionary = tableItem
-                    //newdictionary.updateValue(false, forKey: "ItemChecked")
-                    //(tableItem as NSMutableDictionary).updateValue(true, forKey: "ItemChecked")
-                    
-                    println(tableItem["ItemIsChecked"])
-                    
-                    tableItem.updateValue(false, forKey: "ItemIsChecked")
-                    //tableItem["ItemChecked"] = false
-                    
-                    
-                    
-                    tableSection![rowsect] = tableItem
-                    
-                    sections[sortedSections[section]] = tableSection
-                    
-                    //   sections[sortedSections[section]] //.updateValue
-                    // tableSection.
-                    
-                    //var tableSection = sections[sortedSections[section]]
-                    //var tableItem = tableSection![rowsect]
-                    
-                    //for item in shoppingLis
-                    
-                    for ( var i = 0; i < itemsDataDict.count; i++ ) {
-                        if itemsDataDict[i]["ItemId"] as? String == itemtocheck {
-                            //var newdict = Dictionary<String, AnyObject>()//NSDictionary()
-                            var index = i
-                            //newdict = itemsDataDict[i]
-                            // newdict.updateValue(true, forKey: "ItemChecked")
-                            
-                            //shoppingListItemsIsChecked[index] = false
-                            
-                            println(itemsDataDict[i])
-                            
-                            itemsDataDict[i]["ItemIsChecked"] = false
-                            
-                            println(itemsDataDict[i])
-                        }
-                    }
-                    
-                    /*
-                    for ( var i = 0; i < itemsDataDict.count; i++ ) {
-                    if itemsDataDict[i]["ItemId"] as? String == itemtocheck {
-                    var newdict = Dictionary<String, AnyObject>()//NSDictionary()
-                    var index = i
-                    newdict = itemsDataDict[i]
-                    itemsDataDict.removeAtIndex(index)
-                    newdict.updateValue(false, forKey: "ItemChecked")
-                    itemsDataDict.insert(newdict, atIndex: index)
-                    }
-                    }
-                    */
-                    
-                    
-                    println(tableItem["ItemIsChecked"])
-                    
-                    println("SECTION IS \(tableSection)")
-                    println("TABLEITEM IS \(tableItem)")
-                    
-                    
-                    checkeditemsqty -= 1
-                    itemschecked.text = String(checkeditemsqty)
-                    */
-              //  }
-            }
         }
         
         
     }
-    /*
-    var object : PFObject?
-    
-    func getParseObject(catid : String) -> PFObject {
-    //var object : PFObject?
-    var query5 = PFQuery(className: "shopListsCategory")
-    query5.fromLocalDatastore()
-    query5.whereKey("categoryUUID", equalTo: catid)
-    query5.getFirstObjectInBackgroundWithBlock() {
-    (category: PFObject?, error: NSError?) -> Void in
-    if error != nil {
-    println(error)
-    println("Bitch doesn't work!")
-    } else if let category = category {
-    self.object = category
-    self.shoppingListItemsCategoriesNames.append(category["catname"] as! String)
-    println("The name is\(self.shoppingListItemsCategoriesNames)")
-    
-    }
-    
-    }
-    
-    return object!
-    }
-    */
-    
     
     func getcategoriesnames(categoryIds: [String]) -> [String] {
         
@@ -7041,35 +6032,6 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 } else {
                     print("No custom cats yet")
                 }
-                //self.shoppingListItemsCategoriesNames.append(category1["catname"] as! String)
-                
-                /*{
-                
-                if error != nil {
-                println(error)
-                } else if let category = category {
-                
-                self.shoppingListItemsCategoriesNames.append(category["catname"] as! String)
-                println("The name is\(self.shoppingListItemsCategoriesNames)")
-                }
-                
-                }
-                */
-                
-                //querycat.getFirstObject                }())/*
-                /*
-                querycat.getFirstObjectInBackgroundWithBlock() {
-                (category: PFObject?, error: NSError?) -> Void in
-                if error != nil {
-                println(error)
-                } else if let category = category {
-                
-                self.shoppingListItemsCategoriesNames.append(category["catname"] as! String)
-                println("The name is\(self.shoppingListItemsCategoriesNames)")
-                }
-                
-                }
-                */
                 
             } else {
                 // CASE IF IT IS DEFAULT CATEGORY
@@ -7095,25 +6057,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             
             
-            /*
-            var querycat = PFQuery(className:"shopListsCategory")
-            querycat.fromLocalDatastore()
-            querycat.whereKey("categoryUUID", equalTo: category)//
-            querycat.getFirstObjectInBackgroundWithBlock() {
-            (category: PFObject?, error: NSError?) -> Void in
-            if error != nil {
-            println(error)
-            } else if let category = category {
-            // self.itemcategory = category as? Category
-            //self.loadCatImageFromLocalStore(category["imagePath"] as! String)
-            var categoryname = String()
-            categoryname = category["catname"] as! String
-            // var retrievedcat = Category(catId: category["categoryUUID"] as! String, catname: category["catname"] as! String, catimage: catimageloaded, isCustom: category["isCustom"] as! Bool)
-            self.shoppingListItemsCategoriesNames.append(categoryname)
-            }
-            
-            }*/
-        } // end of for loop
+                 } // end of for loop
         
         return shoppingListItemsCategoriesNames
     }
@@ -7165,36 +6109,6 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         itemsDataDict.removeAtIndex(deleterow.row)
         
-        
-        // tableView.reloadData()
-        
-        
-        
-        /*
-        dispatch_async(dispatch_get_main_queue(), {
-            let querynew = PFQuery(className:"shopItems")
-            //querynew.fromLocalDatastore()
-            //querynew.getObjectInBackgroundWithId(self.itemtodelete!) {
-            querynew.whereKey("itemUUID", equalTo: self.itemtodelete!)
-            querynew.getFirstObjectInBackgroundWithBlock() {
-                (itemList: PFObject?, error: NSError?) -> Void in
-                if error != nil {
-                    print(error)
-                } else if let itemList = itemList {
-                    
-                    
-                    //self.tableView.deleteRowsAtIndexPaths([self.listtodelete!], withRowAnimation: UITableViewRowAnimation.Automatic)
-                    
-                    
-                    
-                   // itemList.deleteInBackground()
-                    
-                }
-                //self.dataretrievallist() no need to do that, otherwise delete and immediately restored since data hasnt been passed to the server by this time
-                
-            }
-        })
-        */
         
         let querynew1 = PFQuery(className:"shopItems")
         querynew1.fromLocalDatastore()
@@ -7254,16 +6168,6 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         //First, I am getting the cell in which the tapped button is contained
         if showcats == false {
             
-          //  let button = sender as UIButton
-          ////  let view = button.superview!
-          ////  let cell = view.superview as! ItemShopListCell
-           // let indexPathDelete = tableView.indexPathForCell(cell)
-            
-            //immediate deletion from the table - works perfectly!
-         //   println(indexPathDelete!.row)
-            
-            // itemtodelete = shoppingListItemsIds[indexPathDelete!.row]
-          //  itemtodelete = itemsDataDict[indexPathDelete!.row]["ItemId"] as? String
             
              itemtodelete = itemsDataDict[deleterow.row]["ItemId"] as? String
             
@@ -7304,33 +6208,6 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             itemsDataDict.removeAtIndex(deleterow.row)
             
             
-            // tableView.reloadData()
-            
-            
-            
-            /*
-           // dispatch_async(dispatch_get_main_queue(), {
-                let querynew = PFQuery(className:"shopItems")
-                //querynew.fromLocalDatastore()
-                //querynew.getObjectInBackgroundWithId(self.itemtodelete!) {
-                querynew.whereKey("itemUUID", equalTo: self.itemtodelete!)
-                querynew.getFirstObjectInBackgroundWithBlock() {
-                    (itemList: PFObject?, error: NSError?) -> Void in
-                    if error != nil {
-                        print(error)
-                    } else if let itemList = itemList {
-                        
-                        
-                        //self.tableView.deleteRowsAtIndexPaths([self.listtodelete!], withRowAnimation: UITableViewRowAnimation.Automatic)
-                        
-                        itemList.deleteInBackground()
-                        
-                    }
-                    //self.dataretrievallist() no need to do that, otherwise delete and immediately restored since data hasnt been passed to the server by this time
-                    
-                }
-           // })
-            */
             
             let querynew1 = PFQuery(className:"shopItems")
             querynew1.fromLocalDatastore()
@@ -7356,8 +6233,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             tableView.reloadData()
             
-            //self.tableView.deleteRowsAtIndexPaths([indexPathDelete!], withRowAnimation: UITableViewRowAnimation.Automatic)
-            //tableView.reloadData()
+          
             summationPrices()
             
             countitems()
@@ -7365,139 +6241,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
         } else {
             // case when showcats == true
-            /*
-            let button = sender as UIButton
-            let view = button.superview!
-            let cell = view.superview as! ItemShopListCell
-            
-            var position: CGPoint = sender.convertPoint(CGPointZero, toView: self.tableView)
-            if let indexPathIteminSection = self.tableView.indexPathForRowAtPoint(position)
-            {
-                var section = indexPathIteminSection.section
-                var rowsect = indexPathIteminSection.row
-                
-                
-                var tableSection = sections[sortedSections[section]]
-                var tableItem = tableSection![rowsect]
-                
-                // itemtodelete = (tableItem as NSDictionary).objectForKey("ItemId") as! String
-                
-                /////////// CODE OF DELETETION
-                //println(indexPathDelete!.row)
-                itemtodelete = (tableItem as NSDictionary).objectForKey("ItemId") as? String
-                // Remains the same
-                dictionary.removeValueForKey("ItemId")
-                dictionary.removeValueForKey("ItemName")
-                dictionary.removeValueForKey("ItemNote")
-                // dictionary.removeValueForKey("ItemImage")
-                dictionary.removeValueForKey("ItemImage2")
-                dictionary.removeValueForKey("ItemImagePath")
-                dictionary.removeValueForKey("ItemQuantity")
-                dictionary.removeValueForKey("ItemTotalPrice")
-                dictionary.removeValueForKey("ItemUnit")
-                dictionary.removeValueForKey("ItemIsChecked")
-                dictionary.removeValueForKey("ItemCategory")
-                dictionary.removeValueForKey("itemCategoryName")
-                dictionary.removeValueForKey("ItemOneUnitPrice")
-                dictionary.removeValueForKey("ItemIsFav")
-                dictionary.removeValueForKey("ItemPerUnit")
-                dictionary.removeValueForKey("ItemCreation")
-                dictionary.removeValueForKey("ItemUpdate")
-                
-                
-                var thissectionsname : String = sortedSections[section]
-                
-                for ( var i = 0; i < sections[thissectionsname]!.count; i++ ) {
-                    
-                    
-                    // if thisarray[i]["ItemId"] as? String == itemtocheck {
-                    if sections[thissectionsname]![i]["ItemId"] as? String == itemtodelete {
-                        
-                        sections[thissectionsname]!.removeAtIndex(i)
-                        
-                        break;
-                        
-                    }
-                }
-                
-                var idtodelete : String = (tableItem as NSDictionary).objectForKey("ItemId") as! String
-                var indextodelete = Int()
-                
-                
-                for ( var i = 0; i < itemsDataDict.count; i++ ) {
-                    
-                    //if let newid : String = itemsDataDict[i]["ItemId"] as? String {
-                    if itemsDataDict[i]["ItemId"] as? String == itemtodelete {
-                        //idtodelete = newid
-                        indextodelete = i
-                        
-                        itemsDataDict.removeAtIndex(i)
-                        
-                    }
-                }
-                println(indextodelete)
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    var querynew = PFQuery(className:"shopItems")
-                    querynew.whereKey("itemUUID", equalTo: idtodelete)
-                    querynew.getFirstObjectInBackgroundWithBlock() {
-                        (itemList: PFObject?, error: NSError?) -> Void in
-                        if error != nil {
-                            println(error)
-                        } else if let itemList = itemList {
-                            
-                            itemList.deleteInBackground()
-                            
-                        }
-                    }
-                })
-                
-                var querynew1 = PFQuery(className:"shopItems")
-                querynew1.fromLocalDatastore()
-                //  querynew1.getObjectInBackgroundWithId(itemtodelete!) {
-                querynew1.whereKey("itemUUID", equalTo: idtodelete)
-                querynew1.getFirstObjectInBackgroundWithBlock() {
-                    (itemList: PFObject?, error: NSError?) -> Void in
-                    if error != nil {
-                        println(error)
-                    } else if let itemList = itemList {
-                        itemList.unpinInBackground()
-                        
-                    }
-                    
-                }
-                
-                
-                self.tableView.deleteRowsAtIndexPaths([indexPathIteminSection], withRowAnimation: UITableViewRowAnimation.Automatic)
-                
-                // NOW IT WORKS!
-                if sections[thissectionsname]! == [] {
-                    //if sections[thissectionsname]!.count == 0 {
-                    sections.removeValueForKey(thissectionsname)
-                    sortedSections.removeAtIndex(section)//[section]
-                    
-                    
-                    
-                    //sections[sortedSections[section]]?.removeAll(keepCapacity: true)
-                    tableView.reloadData()
-                }
-                
-                
-                tableView.reloadData()
-                
-                summationPrices()
-                
-                countitems()
-                itemsoverall.text = String(itemsoverallqty)
-                countchecked()
-                itemschecked.text = String(checkeditemsqty)
-                
-                
-                /////////// END CODE
-            }
-            
-            */
-        }//END OF IF
+                   }//END OF IF
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -7556,24 +6300,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                    
                        
                         if category["defaultpicture"] as! Bool == false {
-                 /*
-                            if var imageFile = category["catimage"] as? PFFile {
-                           // if imageFile != nil {
-                                var imageData = imageFile.getData()
-                                
-                              //  print(imageData)
-                                if (imageData != nil) {
-                                    var image = UIImage(data: imageData!)
-                                   thiscatpicture = image!
-                                    
-                                } else {
-                                    thiscatpicture = imagestochoose[0].itemimage
-                                }
-                            } else {
-                               thiscatpicture = imagestochoose[0].itemimage
-                        }
-                         */
-                            
+  
                             
                             self.loadImageFromLocalStore(category["imagePath"] as! String)
                             thiscatpicture = self.imageToLoad
@@ -7598,14 +6325,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
         } else {
             // CASE IF IT IS DEFAULT CATEGORY
-            
-            
-            
-            // Find this object of product type which has property catId = itemcategoryUUID
-            
-          //  if let foundcategory = find(lazy(catalogcategories).map({ $0.catId }), catid) {
-            
-            if var foundcategory = catalogcategories.map({ $0.catId }).lazy.indexOf(catid) {
+                if var foundcategory = catalogcategories.map({ $0.catId }).lazy.indexOf(catid) {
 
             var catalogpicture = catalogcategories[foundcategory].catimage
                 
@@ -7627,47 +6347,6 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     
-    /*
-    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        
-        
-        
-        var header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.contentView.backgroundColor = UIColorFromRGB(0xf1f1f1)//UIColorFromRGB(0x2a2f36)//(0xE0FFB2)//UIColor(red: 238/255, green: 168/255, blue: 15/255, alpha: 0.8)
-        header.textLabel!.textColor = UIColorFromRGB(0x31797D)//UIColor.whiteColor()
-        header.textLabel!.font = UIFont(name: "Avenir-Book", size: 18)!
-       // header.textLabel!.text?.uppercaseString
-        header.alpha = 1
-        
-        var topline = UIView(frame: CGRectMake(0, 0, header.contentView.frame.size.width, 1))
-        topline.backgroundColor = UIColorFromRGB(0xfafafa)//31797D)
-        
-      //  header.contentView.addSubview(topline)
-        
-        var bottomline = UIView(frame: CGRectMake(0, 30, header.contentView.frame.size.width, 1))
-        bottomline.backgroundColor = UIColorFromRGB(0xfafafa)//31797D)
-        
-        //header.contentView.addSubview(bottomline)
-        
-        var positionx = header.contentView.frame.size.width - 36
-        var positiony = header.contentView.frame.size.height / 10
-        var imageViewGame = UIImageView(frame: CGRectMake(positionx, positiony, 24, 24));
-       // var image = UIImage(named: "Apple");
-        
-       // getcategorypicture(section)
-        
-       // imageViewGame.removeFromSuperview()
-        
-        
-        
-        imageViewGame.image = headerimages[section]//thiscatpicture//image;
-        
-        
-        
-        header.contentView.addSubview(imageViewGame)
-        
-    }
-    */
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
@@ -7686,24 +6365,6 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     }
    
     
-    /*
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-       let header = tableView.dequeueReusableCellWithIdentifier("categoryheader")
-        return header
-    }
-    */
-    /*
-    func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
-        
-        //  if showcats == true {
-        // return sections.map { $0.title }
-        // } else {
-        return nil
-        //  }
-        
-    }
-    */
     
     func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
         
