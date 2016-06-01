@@ -47,6 +47,7 @@ class ItemShopListCell: UITableViewCell {
     @IBOutlet var nametopconstraint: NSLayoutConstraint!
     
     
+    @IBOutlet var checkedwidth: NSLayoutConstraint!
 
     @IBOutlet var amounttopconstraint: NSLayoutConstraint!
     
@@ -56,7 +57,7 @@ class ItemShopListCell: UITableViewCell {
             red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
             green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
             blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-            alpha: CGFloat(0.6) //0.6
+            alpha: CGFloat(0.86) //0.6
         )
     }
 
@@ -64,33 +65,16 @@ class ItemShopListCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        ///add new view, blur it and add restore button
+
         
-       // self.heightconstraint.constant = self.frame.size.height
-       // self.widthconstraint.constant = self.frame.size.width
+       // self.checkedheight.constant = 0
         
-        self.checkedheight.constant = 0
-        
-        
+
         self.layoutMargins = UIEdgeInsetsZero
         
-        copybuttonoutlet.hidden = true
+        // copybuttonoutlet.hidden = true
         
-        checkedview.backgroundColor = UIColorFromRGB(0x2A2F36)//[[UIColor blackColor] colorWithAlphaComponent:.6];
-        
-       // itemImage.layer.borderColor = UIColorFromRGB(0x898989).CGColor
-       // itemImage.layer.borderWidth = 1.0
-      
-        //var positionx = checkedview.frame.size.width * 0.7 - 10
-        //var positiony = (checkedview.frame.size.height * 0.5) - 20
-       // restorebutton.frame = CGRectMake(positionx,positiony, 100, 40)
-        //CGRect(x: 0, y: yPos, width: buttonWidth-0.5, height: self.buttonHeight)
-        
-        //restorebutton.backgroundColor = UIColor.whiteColor()
-       // restorebutton.layer.borderColor = UIColor.blueColor().CGColor
-        //restorebutton.layer.cornerRadius = 10
-        //restorebutton.setTitle("Restore", forState: UIControlState.Normal)
-        
+        checkedview.backgroundColor = UIColorFromRGB(0xFFFFFF)
         self.separatorInset = UIEdgeInsetsZero
         self.preservesSuperviewLayoutMargins = false
         self.layoutMargins = UIEdgeInsetsZero

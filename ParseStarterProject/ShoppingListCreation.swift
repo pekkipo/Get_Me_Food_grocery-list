@@ -1052,9 +1052,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         if refr == false {
         
-        cell.checkedheight.constant = 51
+        cell.checkedheight.constant = 49
         
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
+        UIView.animateWithDuration(0.1, animations: { () -> Void in
             
             self.view.layoutIfNeeded()
             
@@ -1067,7 +1067,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             cell.checkedheight.constant = 0
             
-            UIView.animateWithDuration(0.2, animations: { () -> Void in
+            UIView.animateWithDuration(0.1, animations: { () -> Void in
                 
                 self.view.layoutIfNeeded()
                 
@@ -1139,7 +1139,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
            // shopItem["defaultpicture"] = true
            // shopItem["OriginalInDefaults"] = imagestochoose[0].imagename
             
-            shopItem["Category"] = itemcategoryUUID//catalogcategories[0].catId
+            shopItem["Category"] = quickcategory.catId//itemcategoryUUID//catalogcategories[0].catId
             shopItem["isCatalog"] = false
             shopItem["originalInCatalog"] = ""
             
@@ -1176,7 +1176,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             //self.loadImageFromLocalStore(itemimagepath)
             var itemimage2 : UIImage = self.quickicon.image!//itemimage//self.imageToLoad
             
-            var itemcategory = quickcategory//itemcategoryUUID//catalogcategories[0].catId
+            var itemcategory = quickcategory.catId//quickcategory//itemcategoryUUID//catalogcategories[0].catId
             var itemiscatalog = false
             var originalincatalog = ""
             
@@ -2138,7 +2138,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func EditAllBarButton(sender: AnyObject) {
         
   
-        
+        entereditingmode()
+        /*
         temporaryshowcats = showcats
         
         showcats = false
@@ -2148,9 +2149,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.reloadData()
         
-        self.view.viewWithTag(7)!.hidden = true
+       // self.view.viewWithTag(7)!.hidden = true
         
-        self.optionsoutletbutton.hidden = true
+       // self.optionsoutletbutton.hidden = true
 
         
         let copyItem: UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("copy", comment: ""), style: UIBarButtonItemStyle.Plain, target: self, action: "copyitems:")
@@ -2184,7 +2185,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
 
         self.view.addSubview(toolbar)
         self.view.bringSubviewToFront(toolbar)
-        
+        */
         
     }
     
@@ -2196,7 +2197,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     var itemtocopy = Dictionary<String, AnyObject>()
     
     
-    
+    /*
     func canceleditmode(sender: UIButton!) {
         //tableView.editing = false
         
@@ -2220,7 +2221,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         self.optionsoutletbutton.hidden = false
         
     }
-    
+    */
     func deleteitemsmode(sender: UIButton!) {
         
         
@@ -2267,15 +2268,13 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         }
 
        
-      myeditingmode = false
-        showcats = temporaryshowcats
+       // myeditingmode = false
+       // showcats = temporaryshowcats
         
-        toolbar.removeFromSuperview()
-        self.view.viewWithTag(7)!.hidden = false
+       
         
-      tableView.reloadData()
+        tableView.reloadData()
         
-         self.optionsoutletbutton.hidden = false
         
         summationPrices()
         
@@ -2293,7 +2292,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     func checktocopy(sender: UIButton) {
         
 
-        if sender.imageForState(.Normal) == notcheckedImageToCopy {
+        //if sender.imageForState(.Normal) == notcheckedImageToCopy {
+        //if sender.tintColor == UIColorFromRGB(0xC6C6C6) {
+        if !sender.selected {
             //means it is unchecked
         
         let button = sender as UIButton
@@ -2313,9 +2314,15 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         itemsinbuffer.append(itemtocopy)
             
 
-        sender.setImage(checkedImageToCopy, forState: .Normal)
+       // sender.setImage(checkedImageToCopy, forState: .Normal)
+          //  sender.tintColor = UIColorFromRGB(0xC6C6C6)
         
-        } else if sender.imageForState(.Normal) == checkedImageToCopy {
+       // } else if sender.imageForState(.Normal) == checkedImageToCopy {
+          //} else if sender.tintColor == UIColorFromRGB(0x61C791) {
+            
+            sender.selected = true
+            
+        } else if sender.selected {
             //means it is checked
             
             let button = sender as UIButton
@@ -2325,7 +2332,6 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             let cell = innerview.superview as! ItemShopListCell
             let indexPath = tableView.indexPathForCell(cell)
             
-           // print(itemsinbuffer)
             
             shoppingcheckedtocopy[indexPath!.row] = false
 
@@ -2343,8 +2349,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             }
 
             
-            
-            sender.setImage(notcheckedImageToCopy, forState: .Normal)
+            sender.selected = false
+           // sender.setImage(notcheckedImageToCopy, forState: .Normal)
             
             //itemsDataDict[indexPath!.row]
 
@@ -2473,7 +2479,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.reloadData()
         
-        displayInfoAlert(NSLocalizedString("itemscopied", comment: ""), message: NSLocalizedString("openthelist", comment: ""))
+       // displayInfoAlert(NSLocalizedString("itemscopied", comment: ""), message: NSLocalizedString("openthelist", comment: ""))
         
     }
     
@@ -2501,19 +2507,17 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         self.sortcategories(itemsDataDict)
             
            
-            
-            toolbar.removeFromSuperview()
-            self.view.viewWithTag(7)!.hidden = false
+        
             
         
         
-        myeditingmode = false
+       // myeditingmode = false
         
-        showcats = temporaryshowcats
+       // showcats = temporaryshowcats
         
         tableView.reloadData()
         
-         self.optionsoutletbutton.hidden = false
+         
         
         self.restore()
 
@@ -3451,7 +3455,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                         //pass those variables to popup later
                         
                         self.changecodeandsymbol(code, newsymbol: symbol)
-                        
+                        /*
                         let button =  UIButton(type: .Custom)
                         button.frame = CGRectMake((((self.view.frame.size.width) / 2) - 80),0,160,40) as CGRect
                         button.setTitle(object["ShopListName"] as! String, forState: UIControlState.Normal)
@@ -3468,6 +3472,30 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                         button.imageEdgeInsets = UIEdgeInsetsMake(2, textsize.width + 40, 0, 0); // top left bottom right
                                                button.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
                         self.navigationItem.titleView = button
+                        */
+                        let button =  UIButton(type: .Custom)
+                        button.frame = CGRectMake((((self.view.frame.size.width) / 2) - 80),0,160,40) as CGRect
+                        button.setTitle(object["ShopListName"] as! String, forState: UIControlState.Normal)
+                        button.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
+                        button.setTitleColor(self.UIColorFromRGB(0x31797D), forState: .Normal)
+                        
+                        let titleimage = UIImage(named: "myliststitle") as UIImage?
+                        button.setImage(titleimage, forState: .Normal)
+                        
+                        let spacing : CGFloat = 3;
+                        let insetAmount : CGFloat = 0.5 * spacing;
+                        
+                        // First set overall size of the button:
+                        button.contentEdgeInsets = UIEdgeInsetsMake(0, insetAmount, 0, insetAmount);
+                        button.sizeToFit()
+                        
+                        // Then adjust title and image insets so image is flipped to the right and there is spacing between title and image:
+                        button.titleEdgeInsets  = UIEdgeInsetsMake(0, -button.imageView!.frame.size.width - insetAmount, 0,  button.imageView!.frame.size.width  + insetAmount);
+                        button.imageEdgeInsets  = UIEdgeInsetsMake(2, button.titleLabel!.frame.size.width + insetAmount, 0, -button.titleLabel!.frame.size.width - insetAmount);
+                        
+                        button.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
+                        self.navigationItem.titleView = button
+
                         
                         self.tableView.reloadData()
                         
@@ -5205,10 +5233,114 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         print("Tapped the title")
     }
     
+    
+    /// EDITING MODE PART
+    @IBOutlet var tableconstraintbottom: NSLayoutConstraint! //0 in normal state; 58 in editing mode
+    
+    @IBOutlet var bottomeditingview: NSLayoutConstraint! //-93 in usual mode; 0 in editing mode
+    
+    @IBOutlet var editingview: UIView!
+    
+
+    @IBOutlet var copyoutlet: UIButton!
+    @IBOutlet var pasteoutlet: UIButton!
+    @IBOutlet var deleteoutlet: UIButton!
+    @IBOutlet var canceloutlet: UIButton!
+    
+    func setupButtons(buttons: [UIButton]) {
+        
+        for button in buttons {
+        let spacing: CGFloat = 6.0
+        let imageSize: CGSize = button.imageView!.image!.size
+        button.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height + spacing), 0.0)
+        let labelString = NSString(string: button.titleLabel!.text!)
+        let titleSize = labelString.sizeWithAttributes([NSFontAttributeName: button.titleLabel!.font])
+        button.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height + spacing), 0.0, 0.0, -titleSize.width)
+        let edgeOffset = abs(titleSize.height - imageSize.height) / 2.0;
+        button.contentEdgeInsets = UIEdgeInsetsMake(edgeOffset, 0.0, edgeOffset, 0.0)
+        }
+    }
+    
+    func moveeditview(mode: String) {
+        
+        if mode == "up" {
+            
+            dimmerforpopover.hidden = false
+            
+            tableconstraintbottom.constant = 58
+            bottomeditingview.constant = 0 //-93 in usual mode; 0 in editing mode
+            
+            
+            UIView.animateWithDuration(0.2, animations: { () -> Void in
+                self.view.layoutIfNeeded()
+                }, completion: { (value: Bool) -> Void in
+                    
+            })
+
+            
+        } else if mode == "down" {
+            
+            dimmerforpopover.hidden = true
+        
+            tableconstraintbottom.constant = 0
+            bottomeditingview.constant = -93 //-93 in usual mode; 0 in editing mode
+            
+            
+            UIView.animateWithDuration(0.2, animations: { () -> Void in
+                self.view.layoutIfNeeded()
+                }, completion: { (value: Bool) -> Void in
+                    
+            })
+
+            
+        }
+        
+    }
+    
+    func entereditingmode() {
+        
+        temporaryshowcats = showcats
+        showcats = false
+        myeditingmode = true
+
+        tableView.reloadData()
+        
+        moveeditview("up")
+        
+        // add targets to buttons
+        copyoutlet.addTarget(self, action: Selector("copyitems:"), forControlEvents: UIControlEvents.TouchUpInside)
+        pasteoutlet.addTarget(self, action: Selector("pasteitems:"), forControlEvents: UIControlEvents.TouchUpInside)
+        deleteoutlet.addTarget(self, action: Selector("deleteitemsmode:"), forControlEvents: UIControlEvents.TouchUpInside)
+        canceloutlet.addTarget(self, action: Selector("canceleditmode:"), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        
+    }
+    
+    func canceleditmode(sender: UIButton!) {
+        
+               for var i = 0; i < shoppingcheckedtocopy.count; i++ {
+            shoppingcheckedtocopy[i] = false
+        }
+        
+        itemsinbuffer.removeAll(keepCapacity: true)
+        
+        myeditingmode = false
+        
+        showcats = temporaryshowcats
+        
+        // move the view and table back
+        moveeditview("down")
+        tableView.reloadData()
+
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
          //UINavigationBar.appearance().backgroundColor = UIColor.clearColor()
+        
+        setupButtons([copyoutlet, pasteoutlet, deleteoutlet, canceloutlet])
         
         // SCROLLS
         horizontalScrollView = ASHorizontalScrollView(frame:CGRectMake(0, 0, horscrollview.frame.width, 34))
@@ -5488,19 +5620,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             button.setTitle(NSLocalizedString("listshop", comment: ""), forState: UIControlState.Normal)
             button.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
             button.setTitleColor(self.UIColorFromRGB(0x31797D), forState: .Normal)
-           // let spacing: CGFloat = 10;
-           // let textsize : CGSize = button.titleLabel!.attributedText!.
-            //let textsize : CGFloat = button.titleLabel!.intrinsicContentSize().width
+
             let titleimage = UIImage(named: "myliststitle") as UIImage?
             button.setImage(titleimage, forState: .Normal)
-            //let textsize: CGSize = button.titleLabel!.text!.sizeWithAttributes([NSFontAttributeName:UIFont(name: "AvenirNext-Regular", size: 14.0)!])
-            /*
-            button.imageEdgeInsets = UIEdgeInsetsMake(2, 10, 0, 0); // top left bottom right
-            button.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
-            button.transform = CGAffineTransformMakeScale(-1.0, 1.0);
-            button.titleLabel!.transform = CGAffineTransformMakeScale(-1.0, 1.0);
-            button.imageView!.transform = CGAffineTransformMakeScale(-1.0, 1.0);
-            */
+
             let spacing : CGFloat = 3;
             let insetAmount : CGFloat = 0.5 * spacing;
             
@@ -5514,10 +5637,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             button.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
             self.navigationItem.titleView = button
-            
-           // CGSize textSize = [[label text] sizeWithFont:[label font]];
-            
-           // CGFloat strikeWidth = textSize.width;
+    
             
         } else {
             
@@ -5845,7 +5965,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     func restoreitem(sender: UIButton!) {
         
         
-         self.activityIndicator.startAnimating()
+       //  self.activityIndicator.startAnimating()
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         
         if showcats == false {
@@ -5853,46 +5973,35 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         let button = sender as UIButton
         let view = button.superview!
         let nextview = view.superview!
-        //let cell = view.superview as! ItemShopListCell
+        //let nextview2 = nextview.superview!
         let cell = nextview.superview as! ItemShopListCell
         let indexPathCheck = tableView.indexPathForCell(cell)
 
-        
-        
         itemtocheck = itemsDataDict[indexPathCheck!.row]["ItemId"] as! String
         
-        let checkbutton = cell.viewWithTag(70) as! UIButton //checkbuttontag
+        //let checkbutton = cell.viewWithTag(70) as! UIButton //checkbuttontag
             
             itemsDataDict[indexPathCheck!.row]["ItemIsChecked"] = false
  
             let thissectionsname : String = itemsDataDict[indexPathCheck!.row]["ItemCategoryName"] as! String
             
-            // var thisarray : Array<Dictionary<String,AnyObject>> = sections[thissectionsname]!
-            
-            // for ( var i = 0; i < thisarray.count; i++ ) {
+
             for ( var i = 0; i < sections[thissectionsname]!.count; i++ ) {
                 
-                
-                // if thisarray[i]["ItemId"] as? String == itemtocheck {
+
                 if sections[thissectionsname]![i]["ItemId"] as? String == itemtocheck {
-                    
-                    
-                  //  print(sections[thissectionsname]![i]["ItemIsChecked"])
-                    
+
                     sections[thissectionsname]![i]["ItemIsChecked"] = false
-                    
-                   // print(sections[thissectionsname]![i]["ItemIsChecked"])
+
                     
                 }
             }
         
         
-        checkbutton.setImage(notcheckedImage, forState: .Normal) // PERFECT, WORKS!
-        
-        
-        
-       // button.hidden = true
-        movechecked(true, cell: cell)
+        //checkbutton.setImage(notcheckedImage, forState: .Normal) // PERFECT, WORKS!
+           
+
+           // movechecked(true, cell: cell)
             
             view.hidden = true
             
@@ -5903,7 +6012,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             cell.itemName.attributedText = title
             
             
-            self.activityIndicator.stopAnimating()
+            //self.activityIndicator.stopAnimating()
             UIApplication.sharedApplication().endIgnoringInteractionEvents()
         
         let querynew = PFQuery(className:"shopItems")
@@ -5933,19 +6042,14 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             countitems()
         
             itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
-           // itemsoverall.text = "\(String(itemsoverallqty))/\(String(checkeditemsqty))"
-       // itemschecked.text = String(checkeditemsqty)
-        
-        //button.removeFromSuperview()
-        //view.removeFromSuperview()
+
         
     } else {
-            //showcats = true
+           
             let button = sender as UIButton
             let view = button.superview!
             let nextview = view.superview!
             let cell = nextview.superview as! ItemShopListCell
-           // let cell = view.superview as! ItemShopListCell
             
             let position: CGPoint = sender.convertPoint(CGPointZero, toView: self.tableView)
             if let indexPathIteminSection = self.tableView.indexPathForRowAtPoint(position)
@@ -5958,74 +6062,48 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 var tableItem = tableSection![rowsect]
    
                 
-                var checkedbitch = Bool()
-                
-                //itemtocheck = shoppingListItemsIds[indexPathCheck!.row]
-                
+               
                 itemtocheck = (tableItem as NSDictionary).objectForKey("ItemId") as! String
+
+              //  let checkbutton = cell.viewWithTag(70) as! UIButton //checkbuttontag
                 
-               // button.setImage(notcheckedImage, forState: .Normal)
-                
-                let checkbutton = cell.viewWithTag(70) as! UIButton //checkbuttontag
-                
-                
-                print(tableItem["ItemIsChecked"])
+
                 
                 tableItem.updateValue(false, forKey: "ItemIsChecked")
-                //tableItem["ItemChecked"] = false
-                
-                
-                
+
                 tableSection![rowsect] = tableItem
                 
                 sections[sortedSections[section]] = tableSection
-                
-                //   sections[sortedSections[section]] //.updateValue
-                // tableSection.
-                
-                //var tableSection = sections[sortedSections[section]]
-                //var tableItem = tableSection![rowsect]
-                
-                //for item in shoppingLis
-                
+
                 for ( var i = 0; i < itemsDataDict.count; i++ ) {
                     if itemsDataDict[i]["ItemId"] as? String == itemtocheck {
-                        //var newdict = Dictionary<String, AnyObject>()//NSDictionary()
+
                         var index = i
-                        //newdict = itemsDataDict[i]
-                        // newdict.updateValue(true, forKey: "ItemChecked")
-                        
-                        //shoppingListItemsIsChecked[index] = false
-                        
-                       // print(itemsDataDict[i])
-                        
+
                         itemsDataDict[i]["ItemIsChecked"] = false
-                        
-                      //  print(itemsDataDict[i])
+
                     }
                 }
 
                 
-                checkbutton.setImage(notcheckedImage, forState: .Normal) // PERFECT, WORKS!
+               // checkbutton.setImage(notcheckedImage, forState: .Normal) // PERFECT, WORKS!
                 
-                
-                
-               // button.hidden = true
+
                 view.hidden = true
                 
-                
-                
+               // movechecked(true, cell: cell)
+
                 let attributes = [NSStrikethroughStyleAttributeName : 0]
                 let title = NSAttributedString(string: (tableItem as NSDictionary).objectForKey("ItemName") as! String, attributes: attributes)
                 cell.itemName.attributedText = title
                 
-                self.activityIndicator.stopAnimating()
+                //self.activityIndicator.stopAnimating()
                 UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 
                 
                 let querynew = PFQuery(className:"shopItems")
                 querynew.fromLocalDatastore()
-                // querynew.getObjectInBackgroundWithId(itemtocheck) {
+
                 querynew.whereKey("itemUUID", equalTo: (tableItem as NSDictionary).objectForKey("ItemId") as! String)
                 querynew.getFirstObjectInBackgroundWithBlock() {
                     (itemList: PFObject?, error: NSError?) -> Void in
@@ -6034,18 +6112,15 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                     } else if let itemList = itemList {
                         itemList["isChecked"] = false
                         itemList.pinInBackground()
-                        // itemList.saveInBackground()
-                        // itemList.saveEventually()
+
                         
                     }
                     
                     
                 }
 
-                
-                
                 checkeditemsqty -= 1
-                //itemschecked.text = String(checkeditemsqty)
+
                 countitems()
                 
                 itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
@@ -6058,90 +6133,59 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     
-    func checkitem(sender: UIButton!) {
+    func checkitem(indexPathCheck: NSIndexPath) {
         
-        self.activityIndicator.startAnimating()
+        //self.activityIndicator.startAnimating()
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        
+        let cell = tableView.cellForRowAtIndexPath(indexPathCheck) as! ItemShopListCell
         
         if showcats == false {
             
-            
+            /*
             let button = sender as UIButton
             let view = button.superview!
             let innerview = view.superview!
-            //let cell = view.superview as! ItemShopListCell
             let cell = innerview.superview as! ItemShopListCell
             let indexPathCheck = tableView.indexPathForCell(cell)
-            
-            
-            // itemtocheck = shoppingListItemsIds[indexPathCheck!.row]
-            itemtocheck = itemsDataDict[indexPathCheck!.row]["ItemId"] as! String
-            
+            */
 
-            // shoppingListItemsIsChecked[indexPathCheck!.row] = true
+            itemtocheck = itemsDataDict[indexPathCheck.row]["ItemId"] as! String
             
-            itemsDataDict[indexPathCheck!.row]["ItemIsChecked"] = true
-            // AND HERE It is possible to directly change the value! WTF?!
+            print(itemsDataDict[indexPathCheck.row]["ItemName"])
+
+            itemsDataDict[indexPathCheck.row]["ItemIsChecked"] = true
             
-            // var thissectionsname : String = shoppingListItemsCategoriesNames[indexPathCheck!.row]
-            let thissectionsname : String = itemsDataDict[indexPathCheck!.row]["ItemCategoryName"] as! String
-           // print(thissectionsname)
-            
-            
-            // var thisarray : Array<Dictionary<String,AnyObject>> = sections[thissectionsname]!
-            //this array is just to help me understand what's what
-            //  println("Array of this section is \(thisarray)")
-            
-            //for ( var i = 0; i < thisarray.count; i++ ) {
+            print(itemsDataDict[indexPathCheck.row]["ItemIsChecked"])
+
+            let thissectionsname : String = itemsDataDict[indexPathCheck.row]["ItemCategoryName"] as! String
+
             for ( var i = 0; i < sections[thissectionsname]!.count; i++ ) {
-                
-                
-                //if thisarray[i]["ItemId"] as? String == itemtocheck {
+
                 if sections[thissectionsname]![i]["ItemId"] as? String == itemtocheck {
-                    
-                    
-                    //print(sections[thissectionsname]![i]["ItemId"])
-                   // print(sections[thissectionsname]![i]["ItemIsChecked"])
-                    
+
                     sections[thissectionsname]![i]["ItemIsChecked"] = true
-                    
-                   // print(sections[thissectionsname]![i]["ItemId"])
-                   // print(sections[thissectionsname]![i]["ItemIsChecked"])
-                    
+
                 }
             }
-
             
             
-           // if itemsDataDict[indexPathCheck!.row]["ItemIsChecked"] as! Bool == false {
-            
-                button.setImage(checkedImage, forState: .Normal)
-                
-               // cell.bringSubviewToFront(cell.checkedview)
-            
-               // cell.checkedview.bringSubviewToFront(cell.restorebutton)
+                //button.setImage(checkedImage, forState: .Normal)
                 
                 cell.checkedview.hidden = false
             
-                movechecked(false, cell: cell)
-            
-            //new stuf
-            //cell.contentView.alpha = 0.6
-            
-                self.activityIndicator.stopAnimating()
+             //   movechecked(false, cell: cell)
+
+              //  self.activityIndicator.stopAnimating()
                 UIApplication.sharedApplication().endIgnoringInteractionEvents()
-                
-      
-                
-                
+
                 let attributes = [NSStrikethroughStyleAttributeName : 1]
-                // var title = NSAttributedString(string: shoppingListItemsNames[indexPathCheck!.row], attributes: attributes)
-                let title = NSAttributedString(string: itemsDataDict[indexPathCheck!.row]["ItemName"] as! String, attributes: attributes)
+
+                let title = NSAttributedString(string: itemsDataDict[indexPathCheck.row]["ItemName"] as! String, attributes: attributes)
                 cell.itemName.attributedText = title
                 
                 let querynew = PFQuery(className:"shopItems")
                 querynew.fromLocalDatastore()
-                // querynew.getObjectInBackgroundWithId(itemtocheck) {
                 querynew.whereKey("itemUUID", equalTo: itemtocheck)
                 querynew.getFirstObjectInBackgroundWithBlock() {
                     (itemList: PFObject?, error: NSError?) -> Void in
@@ -6150,17 +6194,13 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                     } else if let itemList = itemList {
                         itemList["isChecked"] = true
                         itemList.pinInBackground()
-                        // itemList.saveInBackground()
-                        // itemList.saveEventually()
-                        
+
                     }
                     
                     
                 }
-                
             
                 checkeditemsqty += 1
-                //itemschecked.text = String(checkeditemsqty)
             countitems()
             
             itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
@@ -6168,68 +6208,40 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
         } else {
             
-            
+            /*
             let button = sender as UIButton
             let view = button.superview!
             let innerview = view.superview!
             let cell = innerview.superview as! ItemShopListCell
-            //let cell = view.superview as! ItemShopListCell
+            */
             
-            let position: CGPoint = sender.convertPoint(CGPointZero, toView: self.tableView)
-            if let indexPathIteminSection = self.tableView.indexPathForRowAtPoint(position)
-            {
-                let section = indexPathIteminSection.section
-                let rowsect = indexPathIteminSection.row
-                
-                //var tableSection : [Dictionary<String, AnyObject>] = []
+           // let position: CGPoint = sender.convertPoint(CGPointZero, toView: self.tableView)
+           // if let indexPathIteminSection = self.tableView.indexPathForRowAtPoint(position)
+           // {
+                let section = indexPathCheck.section//indexPathIteminSection.section
+                let rowsect = indexPathCheck.row//indexPathIteminSection.row
+
                 var tableSection = sections[sortedSections[section]]
                 var tableItem = tableSection![rowsect]
-                
-            
-                
+
                 var checkedbitch = Bool()
                 
-                //itemtocheck = shoppingListItemsIds[indexPathCheck!.row]
-                
                 itemtocheck = (tableItem as NSDictionary).objectForKey("ItemId") as! String
-                
- 
-                
-                print(tableItem["ItemIsChecked"])
-                
-                //tableItem.updateValue(true, forKey: "ItemChecked")
+
                 tableItem.updateValue(true, forKey: "ItemIsChecked")
                 tableSection![rowsect] = tableItem
                 sections[sortedSections[section]] = tableSection
                 
                 for ( var i = 0; i < itemsDataDict.count; i++ ) {
                     if itemsDataDict[i]["ItemId"] as? String == itemtocheck {
-                        //var newdict = Dictionary<String, AnyObject>()//NSDictionary()
                         var index = i
-                        //newdict = itemsDataDict[i]
-                        // newdict.updateValue(true, forKey: "ItemChecked")
-                        
-                        // shoppingListItemsIsChecked[index] = true
-                        
-                        print(itemsDataDict[i])
-                        
                         itemsDataDict[i]["ItemIsChecked"] = true
-                        
-                        print(itemsDataDict[i])
-                        
+
                     }
                 }
-
-                
-                    button.setImage(checkedImage, forState: .Normal)
-                
-                   // cell.bringSubviewToFront(cell.checkedview)
-                
-                    //cell.checkedview.bringSubviewToFront(cell.restorebutton)
-                
+                    //button.setImage(checkedImage, forState: .Normal)
                     cell.checkedview.hidden = false
-                
-                    self.activityIndicator.stopAnimating()
+                    //self.activityIndicator.stopAnimating()
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 
                 
@@ -6239,7 +6251,6 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                     
                     let querynew = PFQuery(className:"shopItems")
                     querynew.fromLocalDatastore()
-                    // querynew.getObjectInBackgroundWithId(itemtocheck) {
                     querynew.whereKey("itemUUID", equalTo: (tableItem as NSDictionary).objectForKey("ItemId") as! String)
                     querynew.getFirstObjectInBackgroundWithBlock() {
                         (itemList: PFObject?, error: NSError?) -> Void in
@@ -6248,32 +6259,19 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                         } else if let itemList = itemList {
                             itemList["isChecked"] = true
                             itemList.pinInBackground()
-                            // itemList.saveInBackground()
-                          //  itemList.saveEventually()
                             
                         }
                         
                         
                     }
-                    
-                    
-                
- 
-                    print(tableItem["ItemIsChecked"])
-                    
-                  //  print("SECTION IS \(tableSection)")
-                  //  print("TABLEITEM IS \(tableItem)")
-                    
-                    checkeditemsqty += 1
+
+                checkeditemsqty += 1
                 countitems()
                 
                 itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
-                   // itemschecked.text = String(checkeditemsqty)
 
-                    
-                    
-                        }
-        }
+                //}
+            }
         
         
     }
@@ -6721,9 +6719,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
           
             cell.copybuttonoutlet.hidden = true
-            cell.copybuttonoutlet.setImage(notcheckedImageToCopy, forState: .Normal)
+           // cell.copybuttonoutlet.setImage(notcheckedImageToCopy, forState: .Normal)
+            cell.copybuttonoutlet.selected = false
            // cell.editItemOutlet.hidden = false
-            cell.checkedButtonOutlet.hidden = false
+          //  cell.checkedButtonOutlet.hidden = false
             cell.itemPrice.hidden = false
             cell.itemQuantity.hidden = false
             
@@ -6731,7 +6730,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 
                
                 
-                cell.checkedButtonOutlet.setImage(checkedImage, forState: .Normal)
+               // cell.checkedButtonOutlet.setImage(checkedImage, forState: .Normal)
                 
                 
                 let attributes = [NSStrikethroughStyleAttributeName : 1]
@@ -6757,7 +6756,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
 
                 
             } else {
-                cell.checkedButtonOutlet.setImage(notcheckedImage, forState: .Normal)
+                //cell.checkedButtonOutlet.setImage(notcheckedImage, forState: .Normal)
                 
                 let attributes = [NSStrikethroughStyleAttributeName : 0]
                 // var title = NSAttributedString(string: shoppingListItemsNames[indexPathCheck!.row], attributes: attributes)
@@ -6795,7 +6794,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
            // cell.editItemOutlet.addTarget(self, action: "edititem:", forControlEvents: .TouchUpInside)
             
            // cell.deleteItemOutlet.tag = indexPath.row
-            cell.checkedButtonOutlet.addTarget(self, action: "checkitem:", forControlEvents: .TouchUpInside)
+           // cell.checkedButtonOutlet.addTarget(self, action: "checkitem:", forControlEvents: .TouchUpInside)
             
             
         }//end of showcats if
@@ -6858,9 +6857,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             
             cell.copybuttonoutlet.hidden = true
-            cell.copybuttonoutlet.setImage(notcheckedImageToCopy, forState: .Normal)
+            //cell.copybuttonoutlet.setImage(notcheckedImageToCopy, forState: .Normal)
+            cell.copybuttonoutlet.selected = false
             //cell.editItemOutlet.hidden = false
-            cell.checkedButtonOutlet.hidden = false
+            //cell.checkedButtonOutlet.hidden = false
             
             
             cell.itemPrice.hidden = false
@@ -6870,7 +6870,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 
-                cell.checkedButtonOutlet.setImage(checkedImage, forState: .Normal)
+               // cell.checkedButtonOutlet.setImage(checkedImage, forState: .Normal)
                 
                 let attributes = [NSStrikethroughStyleAttributeName : 1]
                 // var title = NSAttributedString(string: shoppingListItemsNames[indexPathCheck!.row], attributes: attributes)
@@ -6894,7 +6894,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 
             } else {
-                cell.checkedButtonOutlet.setImage(notcheckedImage, forState: .Normal)
+               // cell.checkedButtonOutlet.setImage(notcheckedImage, forState: .Normal)
                 
                 let attributes = [NSStrikethroughStyleAttributeName : 0]
                 // var title = NSAttributedString(string: shoppingListItemsNames[indexPathCheck!.row], attributes: attributes)
@@ -6915,7 +6915,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             //cell.editItemOutlet.addTarget(self, action: "edititem:", forControlEvents: .TouchUpInside)
             
             //cell.deleteItemOutlet.tag = tableSection![indexPath.row]
-            cell.checkedButtonOutlet.addTarget(self, action: "checkitem:", forControlEvents: .TouchUpInside)
+           // cell.checkedButtonOutlet.addTarget(self, action: "checkitem:", forControlEvents: .TouchUpInside)
             
             
         }
@@ -6932,7 +6932,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     //when editing mode
                 
                 
-                cell.selectionStyle = UITableViewCellSelectionStyle.None
+                // cell.selectionStyle = UITableViewCellSelectionStyle.None
                 
                 if showcats == false {
                     
@@ -6952,18 +6952,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                     let unit : String = ((itemsDataDict[indexPath.row] as NSDictionary).objectForKey("ItemUnit")) as! String
                     
                     cell.itemQuantity.text = "\(qty) \(unit)"
-                    
-                    /*
-                    cell.itemQuantity.text = ((itemsDataDict[indexPath.row] as NSDictionary).objectForKey("ItemQuantity")) as? String
-                    
-                    cell.itemUnit.text = ((itemsDataDict[indexPath.row] as NSDictionary).objectForKey("ItemUnit")) as? String
-                    */
-                   // let doubleprice = ((itemsDataDict[indexPath.row] as NSDictionary).objectForKey("ItemTotalPrice")) as! Double
-                    
-                   // cell.itemPrice.text = "\(doubleprice)"//((itemsDataDict[indexPath.row] as NSDictionary).objectForKey("ItemTotalPrice")) as? Double//as? String
-                    
-                    //cell.editItemOutlet.hidden = true
-                    cell.checkedButtonOutlet.hidden = true
+
+                   // cell.checkedButtonOutlet.hidden = true
                     cell.itemPrice.hidden = true
                     cell.itemQuantity.hidden = true
                     cell.checkedview.hidden = true
@@ -6974,23 +6964,20 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                     cell.copybuttonoutlet.hidden = false
                     
                     if shoppingcheckedtocopy[indexPath.row] == false {
-                     cell.copybuttonoutlet.setImage(notcheckedImageToCopy, forState: .Normal)
+                    // cell.copybuttonoutlet.setImage(notcheckedImageToCopy, forState: .Normal)
+                        //cell.copybuttonoutlet.tintColor = UIColorFromRGB(0xC6C6C6)
+                        cell.copybuttonoutlet.selected = false
                     } else {
-                        cell.copybuttonoutlet.setImage(checkedImageToCopy, forState: .Normal)
+                       // cell.copybuttonoutlet.setImage(checkedImageToCopy, forState: .Normal)
+                        //cell.copybuttonoutlet.tintColor = UIColorFromRGB(0x61C791)
+                        cell.copybuttonoutlet.selected = true
                     }
                    // cell.copybuttonoutlet.setImage(notcheckedImageToCopy, forState: .Normal) // not sure if needed
                     cell.copybuttonoutlet.addTarget(self, action: "checktocopy:", forControlEvents: .TouchUpInside)
                     
                 }//end of showcats if
                 else {
-                    //if showcats == true
-                    
-                    //cell.textLabel?.text = array[sections[indexPath.section].index + indexPath.row]
-                    
-                    //     cell.itemName.text = ((itemsDataDict[sections[indexPath.section].index + indexPath.row] as NSDictionary).objectForKey("ItemName")) as? String
-                    
-                    //   cell.itemNote.text = ((itemsDataDict[sections[indexPath.section].index + indexPath.row] as NSDictionary).objectForKey("ItemNote")) as? String
-                    
+
                     
                     let tableSection = sections[sortedSections[indexPath.section]]
                     let tableItem = tableSection![indexPath.row]
@@ -7006,24 +6993,17 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                     
                     cell.itemQuantity.text = "\(qty) \(unit)"
                     
-                    /*
-                    cell.itemQuantity.text = (tableItem as NSDictionary).objectForKey("ItemQuantity") as? String
-                    
-                    cell.itemUnit.text = (tableItem as NSDictionary).objectForKey("ItemUnit") as? String
-                    */
-                   // let doubleprice = (tableItem as NSDictionary).objectForKey("ItemTotalPrice") as! Double
-                    
-                    //cell.itemPrice.text = "\(doubleprice)"
-                    
-                    //cell.editItemOutlet.hidden = true
-                    cell.checkedButtonOutlet.hidden = true
+
+                   // cell.checkedButtonOutlet.hidden = true
                     cell.itemPrice.hidden = true
                     cell.itemQuantity.hidden = true
                     cell.checkedview.hidden = true
                     
                    
                     cell.copybuttonoutlet.hidden = false
-                    cell.copybuttonoutlet.setImage(notcheckedImageToCopy, forState: .Normal)
+                    //cell.copybuttonoutlet.setImage(notcheckedImageToCopy, forState: .Normal)
+                   // cell.copybuttonoutlet.tintColor = UIColorFromRGB(0xC6C6C6)
+                    cell.copybuttonoutlet.selected = false
                     cell.copybuttonoutlet.addTarget(self, action: "checktocopy:", forControlEvents: .TouchUpInside)
                     
                 }
@@ -7046,6 +7026,54 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
+        let ItemCellIdentifier = "NewListItem"
+        let cell = tableView.dequeueReusableCellWithIdentifier(ItemCellIdentifier, forIndexPath: indexPath) as! ItemShopListCell
+        
+        if myeditingmode == false {
+        
+        checkitem(indexPath)
+            
+        } else {
+
+ 
+            let checkbutton = cell.copybuttonoutlet
+            
+            if !checkbutton.selected {
+                //means it is unchecked
+
+                itemtocopy = itemsDataDict[indexPath.row]
+                shoppingcheckedtocopy[indexPath.row] = true
+
+                
+                itemsinbuffer.append(itemtocopy)
+
+            } else if checkbutton.selected {
+                //means it is checked
+    
+                
+                shoppingcheckedtocopy[indexPath.row] = false
+                
+                
+                let itemtoremove = itemsDataDict[indexPath.row]["ItemId"] as! String
+                
+                for ( var i = 0; i < itemsinbuffer.count; i++ ) {
+                    
+                    if itemsinbuffer[i]["ItemId"] as? String == itemtoremove {
+                        
+                        itemsinbuffer.removeAtIndex(i)
+                        
+                    }
+                }
+
+                
+            }
+            
+
+            
+            
+        }
+        
+        /*
         if myeditingmode == false {
         
         if showcats == false {
@@ -7072,17 +7100,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 let tableSection = sections[sortedSections[section]]
                 let tableItem = tableSection![rowsect]
-                
-              //  print("SECTION IS \(tableSection)")
-               // print("TABLE ITEM IS \(tableItem)")
-                
-                //cell.itemName.text = (tableItem as NSDictionary).objectForKey("ItemName") as? String
             
                 if (tableItem as NSDictionary).objectForKey("ItemIsChecked") as! Bool == false {
             
                 itemtoedit = (tableItem as NSDictionary).objectForKey("ItemId") as! String
                 
-                // performSegueWithIdentifier("EditItem", sender: self)
                 performSegueWithIdentifier("edititemmodalsegue", sender: self)
             
                 } else {
@@ -7096,8 +7118,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             print("editing mode enabled")
         }
-        let row = indexPath.row
-        //println(self.shoppingListItemsIds[row])
+       */
+
     }
     
     
@@ -7317,34 +7339,21 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
         let deleteAction = UITableViewRowAction(style: .Normal, title: NSLocalizedString("delete", comment: "")) { (action , indexPath ) -> Void in
             
             
-            // var thissection = indexPath.section
-            
             self.editing = false
             if self.showcats == false {
-                //self.swipedeleteitem(indexPath)
-                //tryusual stuff 
+
                 self.deleteitem(indexPath)
             } else {
-                //showcats == true case
-                
-                // let button = sender as UIButton
-                // let view = button.superview!
-                // let cell = view.superview as! ItemShopListCell
-                
-                // var position: CGPoint = sender.convertPoint(CGPointZero, toView: self.tableView)
-                // if let indexPathIteminSection = self.tableView.indexPathForRowAtPoint(position)
-                //{
                 let section = indexPath.section//indexPathIteminSection.section
                 let rowsect = indexPath.row//indexPathIteminSection.row
                 
                 
                 var tableSection = self.sections[self.sortedSections[section]]
                 let tableItem = tableSection![rowsect]
-                
-                // itemtodelete = (tableItem as NSDictionary).objectForKey("ItemId") as! String
                 
                 /////////// CODE OF DELETETION
                 //println(indexPathDelete!.row)
@@ -7400,23 +7409,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                         
                     }
                 }
-                print(indextodelete)
-                /*
-                dispatch_async(dispatch_get_main_queue(), {
-                    let querynew = PFQuery(className:"shopItems")
-                    querynew.whereKey("itemUUID", equalTo: idtodelete)
-                    querynew.getFirstObjectInBackgroundWithBlock() {
-                        (itemList: PFObject?, error: NSError?) -> Void in
-                        if error != nil {
-                            print(error)
-                        } else if let itemList = itemList {
-                            
-                            itemList.deleteInBackground()
-                            
-                        }
-                    }
-                })
-                */
+              
+
                 let querynew1 = PFQuery(className:"shopItems")
                 querynew1.fromLocalDatastore()
                 //  querynew1.getObjectInBackgroundWithId(itemtodelete!) {
@@ -7437,13 +7431,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 // NOW IT WORKS!
                 if self.sections[thissectionsname]! == [] {
-                    //if sections[thissectionsname]!.count == 0 {
+                    
                     self.sections.removeValueForKey(thissectionsname)
                     self.sortedSections.removeAtIndex(section)//[section]
-                    
-                    
-                    
-                    //sections[sortedSections[section]]?.removeAll(keepCapacity: true)
+
                     tableView.reloadData()
                 }
                 
@@ -7455,39 +7446,68 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 self.countitems()
                 self.countchecked()
                 self.itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(self.itemsoverallqty))/\(String(self.checkeditemsqty))"
-                
-                
-                /////////// END CODE
-                //}
-                
+
                 
                 
             }
         }
         
-        deleteAction.backgroundColor = UIColorFromRGB(0xF23D55)
-        // deleteAction.backgroundColor = UIColor(patternImage: UIImage(named: "ButtonTrash.png")!)
-        
-        //let shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Share") { (action , indexPath) -> Void in
-        /*
-        let shareAction = UITableViewRowAction(style: .Normal, title: "Share") { (action , indexPath) -> Void in
-        self.editing = false
-        print("Share button pressed")
+        if let adelete = UIImage(named: "4DeleteButton50") {
+            deleteAction.backgroundColor = UIColor.imageWithBackgroundColor(adelete, bgColor: UIColorFromRGB(0xF23D55), w: 50, h: 50)
         }
-        */
-        //DOESNT WORK with colors rgb
-        //deleteAction.backgroundColor = UIColor(red: 22, green: 149, blue: 163, alpha: 100)
-        //shareAction.backgroundColor = UIColor(red: 34, green: 83, blue: 120, alpha: 100)
+         deleteAction.backgroundColor = UIColorFromRGB(0xF23D55)
+
         
-        // deleteAction.backgroundColor = UIColor.magentaColor()
+        // EDIT
+         let editAction = UITableViewRowAction(style: .Normal, title: "    ") { (action , indexPath ) -> Void in
+            
+            if self.myeditingmode == false {
+                
+                if self.showcats == false {
+                    
+                    if itemsDataDict[indexPath.row]["ItemIsChecked"] as! Bool == false {
+                        
+                        self.itemtoedit = itemsDataDict[indexPath.row]["ItemId"] as! String
+                        
+                        self.performSegueWithIdentifier("edititemmodalsegue", sender: self)
+                        
+                    } else {
+                        
+                    }
+                    
+                    
+                } else {
+
+                    let section = indexPath.section
+                    let rowsect = indexPath.row
+                    
+                    let tableSection = self.sections[self.sortedSections[section]]
+                    let tableItem = tableSection![rowsect]
+                    
+                    if (tableItem as NSDictionary).objectForKey("ItemIsChecked") as! Bool == false {
+                        
+                        self.itemtoedit = (tableItem as NSDictionary).objectForKey("ItemId") as! String
+                        
+                        self.performSegueWithIdentifier("edititemmodalsegue", sender: self)
+                        
+                    } else {
+                        
+                    }
+                    
+                    
+                    
+                }
+                
+            } else {
+                print("editing mode enabled")
+            }
+            
+        }
         
-        
-        // deleteAction.backgroundColor = UIColorFromRGB(0x1695A3)
-        //  deleteAction.backgroundColor = UIColor( red: CGFloat(22/255.0), green: CGFloat(149/255.0), blue: CGFloat(163/255.0), alpha: CGFloat(1.0) ) Possible Optin
-        //shareAction.backgroundColor = UIColor.blueColor()
-        
-        
-        return [deleteAction]//, shareAction]
+        if let editpict = UIImage(named: "4EditButton50") {
+        editAction.backgroundColor = UIColor.imageWithBackgroundColor(editpict, bgColor: UIColorFromRGB(0xF23D55), w: 50, h: 50)
+        }
+        return [deleteAction, editAction]//, shareAction]
     }
     /*
     func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
