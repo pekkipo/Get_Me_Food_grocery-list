@@ -79,6 +79,7 @@ class ItemShopListCell: UITableViewCell {
         self.preservesSuperviewLayoutMargins = false
         self.layoutMargins = UIEdgeInsetsZero
 
+        
 
         
     }

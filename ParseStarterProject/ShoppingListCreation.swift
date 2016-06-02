@@ -660,12 +660,40 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         autocomplete.placeholder = NSLocalizedString("autocompleteplchldr", comment: "")
         
+        if catalogitemtochoose != nil {
+            
+            quickcaticon.image = catalogcategories[0].catimage
+            quickcategorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
+            
+            quickicon.image = imagestochoose[0].itemimage
+            
+        }
+        
     }
     
     func textFieldDidEndEditing(textField: Catalog_Autocomplete, withSelection data: Dictionary<String,AnyObject>){
+        
         print("Dictionary received = \(data)")
         catalogitemtochoose = data["CustomObject"] as? CatalogItem
         //I think here I assign to my new variable the chosen catalog item
+        
+        //popover settings
+        //image, category
+        if catalogitemtochoose != nil {
+            
+            quickcategorybutton.setTitle(catalogitemtochoose?.itemcategory.catname, forState: .Normal)
+            
+            quickcaticon.image = catalogitemtochoose?.itemcategory.catimage
+            
+            quickicon.image = catalogitemtochoose?.itemimage
+            
+            
+        }
+        
+        // small workaround due to a bug
+        if newquantitybutton.tintColor == UIColorFromRGB(0x979797) {
+             poppresented = false
+        }
         
         
         if endediting == false {
@@ -977,9 +1005,12 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         if poppresented == true {
             
-
+            // marking
+            
             
             poppresented = false
+            
+            //endediting = false // CAREFUL HERE
             
             newquantitybutton.tintColor = UIColorFromRGB(0x979797)
             
@@ -1011,6 +1042,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
 
         self.quickunit = ""
+        self.quickperunit = ""
         self.quickqty  = ""
         self.popqty.text = ""
         // GET BACK THE UNIT AND PER UNIT BUTTONS
@@ -1020,10 +1052,17 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
 
         quickcategory = catalogcategories[0]
         quickcategoryUUID = catalogcategories[0].catId
+        quickcaticon.image = catalogcategories[0].catimage
+        
+        quickcategorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
+        
         
         isdefaultpicture = true
         defaultpicturename = imagestochoose[0].imagename
         quickicon.image = imagestochoose[0].itemimage
+        
+        resetunitsback(horizontalScrollView)
+        resetunitsback(horizontalScrollViewper)
        
         
         buttontitle = ""
@@ -1245,6 +1284,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             
         self.quickunit = ""
+        self.quickperunit = ""
         self.quickqty  = ""
         self.popqty.text = ""
         // GET BACK THE UNIT AND PER UNIT BUTTONS
@@ -1254,10 +1294,15 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         quickcategory = catalogcategories[0]
         quickcategoryUUID = catalogcategories[0].catId
+        quickcaticon.image = catalogcategories[0].catimage
+        quickcategorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
         
         isdefaultpicture = true
         defaultpicturename = imagestochoose[0].imagename
         quickicon.image = imagestochoose[0].itemimage
+        
+        resetunitsback(horizontalScrollView)
+        resetunitsback(horizontalScrollViewper)
         
         
         
@@ -2081,9 +2126,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         dimmer.removeFromSuperview()
         
         
-         notetopconstraint.constant = -300
+         notetopconstraint.constant = -520
         
-        UIView.animateWithDuration(0.4, animations: { () -> Void in
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
             self.view.layoutIfNeeded()
             }) { (value: Bool) -> Void in
                 
@@ -2094,12 +2139,89 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
 
     }
     
+    
+    @IBOutlet var listsettingsoutlet: UIButton!
+    @IBOutlet var listcategoriesoutlet: UIButton!
+    @IBOutlet var listeditsoutlet: UIButton!
+    @IBOutlet var sharelistoutlet: UIButton!
+    
+    
+    
+    func showhidecats() {
+        
+        
+    }
+   
+    
+    func closesettings() {
+        
+       
+       closesets()
+       settingsopen = false
+    }
+    
+    func closesets() {
+        
+        dimmer.removeFromSuperview()
+        
+        
+        notetopconstraint.constant = -520
+        /*
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.view.layoutIfNeeded()
+        }) { (value: Bool) -> Void in
+            self.shownoteview.hidden = true
+        }
+ */
+        view.endEditing(true)
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            
+            self.view.layoutIfNeeded()
+            }, completion: { (value: Bool) -> Void in
+                self.shownoteview.hidden = true
+        })
+        
+        //self.shownoteview.hidden = true
+    }
+    
+    func showsettings() {
+        
+        view.endEditing(true)
+        
+       // slidedown
+        shownoteview.hidden = false
+        
+        dimmer.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
+        dimmer.backgroundColor = UIColorFromRGBalpha(0x2a2f36, alp: 0.3)
+        
+        
+        let blurredtap = UITapGestureRecognizer(target: self, action: Selector("handlebvTap:"))
+        blurredtap.delegate = self
+        dimmer.userInteractionEnabled = true
+        dimmer.addGestureRecognizer(blurredtap)
+        
+        self.view.addSubview(dimmer)
+        
+        notetopconstraint.constant = 0
+        
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            
+            self.view.layoutIfNeeded()
+            }, completion: { (value: Bool) -> Void in
+                
+        })
+        
+        self.view.bringSubviewToFront(shownoteview)
+        
+    }
+    
+    
     @IBAction func newshownoteaction(sender: AnyObject) {
         
         shownoteview.hidden = false
         
         dimmer.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
-        dimmer.backgroundColor = UIColorFromRGBalpha(0x2a2f36, alp: 0.5)
+        dimmer.backgroundColor = UIColorFromRGBalpha(0x2a2f36, alp: 0.3)
         
         
         let blurredtap = UITapGestureRecognizer(target: self, action: Selector("handlebvTap:"))
@@ -2294,6 +2416,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
 
         //if sender.imageForState(.Normal) == notcheckedImageToCopy {
         //if sender.tintColor == UIColorFromRGB(0xC6C6C6) {
+        
+        if showcats == false {
+        
         if !sender.selected {
             //means it is unchecked
         
@@ -2357,7 +2482,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         }
         
-
+        } else {
+            // showcats true
+            
+            
+        }
         
     }
     
@@ -3038,6 +3167,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         //listoptionsshow
         if segue.identifier == "listoptionsshow" {
+            
+            // temporary solution!
+            canceledits()
         
         let popoverViewController = segue.destinationViewController as! ListOptionsPopover//UIViewController
         popoverViewController.modalPresentationStyle = UIModalPresentationStyle.CurrentContext //Popover
@@ -4421,16 +4553,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             dimmerforpopover.hidden = false
             
-            /*
-            self.quicksmallconstraint.constant = -6
-            
-           
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
-            self.view.layoutIfNeeded()
-            }, completion: { (value: Bool) -> Void in
 
-        })
- */
         } else {
             
             poppresented = false
@@ -4438,16 +4561,6 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             newquantitybutton.tintColor = UIColorFromRGB(0x979797)
             
             dimmerforpopover.hidden = true
-            /*
-            self.quicksmallconstraint.constant = -610
-
-            UIView.animateWithDuration(0.2, animations: { () -> Void in
-
-                self.view.layoutIfNeeded()
-                }, completion: { (value: Bool) -> Void in
-                    self.smallpopover.hidden = true
-            })
-            */
           
             self.smallpopover.hidden = true
             
@@ -4606,7 +4719,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var listnoteinview: UITextView!
     
     
-    @IBOutlet var cancelviewoutlet: UIButton!
+
     
     
     @IBAction func cancelview(sender: AnyObject) {
@@ -4629,7 +4742,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
-    @IBOutlet var doneinviewoutlet: UIButton!
+   
     
    
     @IBAction func doneinview(sender: AnyObject) {
@@ -4971,6 +5084,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var quickcurrency: UILabel!
     @IBOutlet var categoryview: UIView!
     @IBOutlet var quickicon: UIImageView!
+    @IBOutlet var quickcaticon: UIImageView!
     @IBOutlet var quickcategorybutton: UIButton!
     @IBOutlet var nomatchlabel: UILabel!
     @IBOutlet var prodiconview: UIView!
@@ -5140,6 +5254,30 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    func resetunitsback(scroller: ASHorizontalScrollView) {
+        
+        for button in scroller.subviews {
+            
+            if let tappedbutton = button as? UIButton {
+                if tappedbutton.titleForState(.Normal) == "" {
+                    tappedbutton.backgroundColor = UIColorFromRGB(0x31797D)
+                    tappedbutton.tintColor = UIColorFromRGB(0xFAFAFA)
+                    tappedbutton.setTitleColor(UIColorFromRGB(0xFAFAFA), forState: UIControlState.Normal)
+                    tappedbutton.layer.borderWidth = 1
+                    tappedbutton.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
+                } else {
+                    tappedbutton.backgroundColor = UIColor.clearColor()
+                    tappedbutton.tintColor = UIColorFromRGB(0x31797D)
+                    tappedbutton.setTitleColor(UIColorFromRGB(0x31797D), forState: UIControlState.Normal)
+                    tappedbutton.layer.borderWidth = 1
+                    tappedbutton.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+                }
+            }
+        }
+        
+    }
+    
+    
     func pickedunit(sender: UIButton) {
         
         quickunit = sender.titleForState(.Normal)!
@@ -5170,17 +5308,17 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         // doesn't work. check titles
         
-        if quickperunit == "" {
+        if (sender.titleForState(.Normal)! != "") && (quickperunit == "") {
         
         for button in horizontalScrollViewper.subviews {
             
             if let tappedbutton = button as? UIButton {
-                if tappedbutton.tag == sender.tag {
-                    sender.backgroundColor = UIColorFromRGB(0x31797D)
-                    sender.tintColor = UIColorFromRGB(0xFAFAFA)
-                    sender.setTitleColor(UIColorFromRGB(0xFAFAFA), forState: UIControlState.Normal)
-                    sender.layer.borderWidth = 1
-                    sender.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
+                if tappedbutton.titleForState(.Normal) == quickunit { //tappedbutton.tag == sender.tag {
+                    tappedbutton.backgroundColor = UIColorFromRGB(0x31797D)
+                    tappedbutton.tintColor = UIColorFromRGB(0xFAFAFA)
+                    tappedbutton.setTitleColor(UIColorFromRGB(0xFAFAFA), forState: UIControlState.Normal)
+                    tappedbutton.layer.borderWidth = 1
+                    tappedbutton.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
                 } else {
                     tappedbutton.backgroundColor = UIColor.clearColor()
                     tappedbutton.tintColor = UIColorFromRGB(0x31797D)
@@ -5190,6 +5328,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
         }
+            
+            quickperunit = quickunit
+            
     }
     
     }
@@ -5228,9 +5369,24 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     var horizontalScrollViewper = ASHorizontalScrollView()
     
     
+    var settingsopen : Bool = false
+    
     func clickthetitle(button: UIButton) {
         
-        print("Tapped the title")
+        if !settingsopen {
+            
+            navbutton.imageView!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+            showsettings()
+            settingsopen = true
+            
+        } else if settingsopen {
+            navbutton.imageView!.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI))
+            closesets()
+            settingsopen = false
+            
+        }
+        
+        
     }
     
     
@@ -5299,6 +5455,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     func entereditingmode() {
         
+        // autocomplete.resignFirstResponder()
+        
         temporaryshowcats = showcats
         showcats = false
         myeditingmode = true
@@ -5335,12 +5493,36 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    func canceledits() {
+        
+        for var i = 0; i < shoppingcheckedtocopy.count; i++ {
+            shoppingcheckedtocopy[i] = false
+        }
+        
+        itemsinbuffer.removeAll(keepCapacity: true)
+        
+        myeditingmode = false
+        
+        showcats = temporaryshowcats
+        
+        // move the view and table back
+        moveeditview("down")
+        tableView.reloadData()
+        
+        
+    }
+
+    let navbutton =  UIButton(type: .Custom)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
          //UINavigationBar.appearance().backgroundColor = UIColor.clearColor()
         
         setupButtons([copyoutlet, pasteoutlet, deleteoutlet, canceloutlet])
+        
+        resetunitsback(horizontalScrollView)
+        resetunitsback(horizontalScrollViewper)
         
         // SCROLLS
         horizontalScrollView = ASHorizontalScrollView(frame:CGRectMake(0, 0, horscrollview.frame.width, 34))
@@ -5422,12 +5604,12 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         autocomplete.text = NSLocalizedString("additemtext", comment: "")
         autocomplete.autocorrectionType = .No
        // autocomplete.textAlignment = .Center
-        
+        /*
         cancelviewoutlet.layer.borderWidth = 1
         cancelviewoutlet.layer.borderColor = UIColorFromRGB(0xF23D55).CGColor
         cancelviewoutlet.layer.cornerRadius = 4
-        
-        doneinviewoutlet.layer.cornerRadius = 4
+        */
+        //doneinviewoutlet.layer.cornerRadius = 4
         
         listnameinview.layer.borderWidth = 1
         listnameinview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
@@ -5512,12 +5694,16 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         quickicon.image = imagestochoose[0].itemimage
         
+        quickcaticon.image = catalogcategories[0].catimage
+        
+        
+        
       
         
         //addedindicator.hidden = true
         addedindicator.alpha = 0
         addedindicator.layer.cornerRadius = 8
-        addedindicator.backgroundColor = UIColorFromRGBalpha(0x2a2f36, alp: 1) //2a2f36
+        addedindicator.backgroundColor = UIColorFromRGBalpha(0x31797D, alp: 1) //2a2f36
         
         autocomplete.delegate = self
 
@@ -5615,28 +5801,28 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
                // noitemview.hidden = false
            
-            let button =  UIButton(type: .Custom)
-            button.frame = CGRectMake((((self.view.frame.size.width) / 2) - 80),0,160,40) as CGRect
-            button.setTitle(NSLocalizedString("listshop", comment: ""), forState: UIControlState.Normal)
-            button.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
-            button.setTitleColor(self.UIColorFromRGB(0x31797D), forState: .Normal)
+           // let button =  UIButton(type: .Custom)
+            navbutton.frame = CGRectMake((((self.view.frame.size.width) / 2) - 80),0,160,40) as CGRect
+            navbutton.setTitle(NSLocalizedString("listshop", comment: ""), forState: UIControlState.Normal)
+            navbutton.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
+            navbutton.setTitleColor(self.UIColorFromRGB(0x31797D), forState: .Normal)
 
             let titleimage = UIImage(named: "myliststitle") as UIImage?
-            button.setImage(titleimage, forState: .Normal)
+            navbutton.setImage(titleimage, forState: .Normal)
 
             let spacing : CGFloat = 3;
             let insetAmount : CGFloat = 0.5 * spacing;
             
             // First set overall size of the button:
-            button.contentEdgeInsets = UIEdgeInsetsMake(0, insetAmount, 0, insetAmount);
-            button.sizeToFit()
+            navbutton.contentEdgeInsets = UIEdgeInsetsMake(0, insetAmount, 0, insetAmount);
+            navbutton.sizeToFit()
             
             // Then adjust title and image insets so image is flipped to the right and there is spacing between title and image:
-            button.titleEdgeInsets  = UIEdgeInsetsMake(0, -button.imageView!.frame.size.width - insetAmount, 0,  button.imageView!.frame.size.width  + insetAmount);
-            button.imageEdgeInsets  = UIEdgeInsetsMake(2, button.titleLabel!.frame.size.width + insetAmount, 0, -button.titleLabel!.frame.size.width - insetAmount);
+            navbutton.titleEdgeInsets  = UIEdgeInsetsMake(0, -navbutton.imageView!.frame.size.width - insetAmount, 0,  navbutton.imageView!.frame.size.width  + insetAmount);
+            navbutton.imageEdgeInsets  = UIEdgeInsetsMake(2, navbutton.titleLabel!.frame.size.width + insetAmount, 0, -navbutton.titleLabel!.frame.size.width - insetAmount);
             
-            button.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
-            self.navigationItem.titleView = button
+            navbutton.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
+            self.navigationItem.titleView = navbutton
     
             
         } else {
@@ -6671,9 +6857,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             if myeditingmode == false {
                 
                 cell.userInteractionEnabled = true
-                cell.selectionStyle = UITableViewCellSelectionStyle.Default
+                cell.selectionStyle = UITableViewCellSelectionStyle.None//Default
         
-        if showcats == false {
+                if showcats == false {
             
             
             cell.itemImage.image = ((itemsDataDict[indexPath.row] as NSDictionary).objectForKey("ItemImage2")) as? UIImage
@@ -6931,7 +7117,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     } else {
     //when editing mode
                 
-                
+                // cell.userInteractionEnabled = true
+                cell.selectionStyle = UITableViewCellSelectionStyle.Default
                 // cell.selectionStyle = UITableViewCellSelectionStyle.None
                 
                 if showcats == false {
@@ -6947,6 +7134,14 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                     
                     cell.itemNote.text = ((itemsDataDict[indexPath.row] as NSDictionary).objectForKey("ItemNote")) as? String
                     
+                    if ((itemsDataDict[indexPath.row] as NSDictionary).objectForKey("ItemNote")) as? String == ""
+                    {
+                        cell.nametopconstraint.constant = 14
+                    } else {
+                        cell.nametopconstraint.constant = 9
+                    }
+                    
+                    
                     let qty : String = ((itemsDataDict[indexPath.row] as NSDictionary).objectForKey("ItemQuantity")) as! String
                     
                     let unit : String = ((itemsDataDict[indexPath.row] as NSDictionary).objectForKey("ItemUnit")) as! String
@@ -6960,8 +7155,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                     //fucking
                     
                     
-                   
+                
                     cell.copybuttonoutlet.hidden = false
+                    
+                    
                     
                     if shoppingcheckedtocopy[indexPath.row] == false {
                     // cell.copybuttonoutlet.setImage(notcheckedImageToCopy, forState: .Normal)
@@ -6972,6 +7169,14 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                         //cell.copybuttonoutlet.tintColor = UIColorFromRGB(0x61C791)
                         cell.copybuttonoutlet.selected = true
                     }
+                    
+                    if cell.copybuttonoutlet.selected {
+                        cell.copybuttonoutlet.tintColor = UIColorFromRGB(0x61C791)
+                    } else {
+                        cell.copybuttonoutlet.tintColor = UIColorFromRGB(0xC6C6C6)
+                    }
+                    
+                    
                    // cell.copybuttonoutlet.setImage(notcheckedImageToCopy, forState: .Normal) // not sure if needed
                     cell.copybuttonoutlet.addTarget(self, action: "checktocopy:", forControlEvents: .TouchUpInside)
                     
@@ -7026,17 +7231,20 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        let ItemCellIdentifier = "NewListItem"
-        let cell = tableView.dequeueReusableCellWithIdentifier(ItemCellIdentifier, forIndexPath: indexPath) as! ItemShopListCell
+       // let ItemCellIdentifier = "NewListItem"
+       // let cell = tableView.dequeueReusableCellWithIdentifier(ItemCellIdentifier, forIndexPath: indexPath) as! ItemShopListCell
         
         if myeditingmode == false {
         
         checkitem(indexPath)
             
         } else {
+            
+            
 
- 
-            let checkbutton = cell.copybuttonoutlet
+            var cell = tableView.cellForRowAtIndexPath(indexPath) as! ItemShopListCell
+            
+            var checkbutton = cell.copybuttonoutlet
             
             if !checkbutton.selected {
                 //means it is unchecked
@@ -7046,6 +7254,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
 
                 
                 itemsinbuffer.append(itemtocopy)
+                
+                checkbutton.selected = true
+                
+                tableView.reloadData()
 
             } else if checkbutton.selected {
                 //means it is checked
@@ -7054,7 +7266,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 shoppingcheckedtocopy[indexPath.row] = false
                 
                 
-                let itemtoremove = itemsDataDict[indexPath.row]["ItemId"] as! String
+                var itemtoremove = itemsDataDict[indexPath.row]["ItemId"] as! String
                 
                 for ( var i = 0; i < itemsinbuffer.count; i++ ) {
                     
@@ -7064,13 +7276,16 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                         
                     }
                 }
+                
+                checkbutton.selected = false
+                
+                tableView.reloadData()
 
                 
             }
             
 
-            
-            
+        
         }
         
         /*
@@ -7300,8 +7515,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         cell.copybuttonoutlet.hidden = false
         }
         */ //DOESN'T WORK LIKE THIS
-        
+        if myeditingmode == false {
         return true
+        } else {
+            return false
+        }
     }
     
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
@@ -7340,7 +7558,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
-        let deleteAction = UITableViewRowAction(style: .Normal, title: NSLocalizedString("delete", comment: "")) { (action , indexPath ) -> Void in
+        let deleteAction = UITableViewRowAction(style: .Normal, title: "    ") { (action , indexPath ) -> Void in
             
             
             self.editing = false
@@ -7455,7 +7673,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         if let adelete = UIImage(named: "4DeleteButton50") {
             deleteAction.backgroundColor = UIColor.imageWithBackgroundColor(adelete, bgColor: UIColorFromRGB(0xF23D55), w: 50, h: 50)
         }
-         deleteAction.backgroundColor = UIColorFromRGB(0xF23D55)
+        
 
         
         // EDIT
@@ -7465,15 +7683,15 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 if self.showcats == false {
                     
-                    if itemsDataDict[indexPath.row]["ItemIsChecked"] as! Bool == false {
+                   // if itemsDataDict[indexPath.row]["ItemIsChecked"] as! Bool == false {
                         
                         self.itemtoedit = itemsDataDict[indexPath.row]["ItemId"] as! String
                         
                         self.performSegueWithIdentifier("edititemmodalsegue", sender: self)
                         
-                    } else {
+                    //} else {
                         
-                    }
+                   // }
                     
                     
                 } else {
@@ -7484,15 +7702,15 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                     let tableSection = self.sections[self.sortedSections[section]]
                     let tableItem = tableSection![rowsect]
                     
-                    if (tableItem as NSDictionary).objectForKey("ItemIsChecked") as! Bool == false {
+                   // if (tableItem as NSDictionary).objectForKey("ItemIsChecked") as! Bool == false {
                         
                         self.itemtoedit = (tableItem as NSDictionary).objectForKey("ItemId") as! String
                         
                         self.performSegueWithIdentifier("edititemmodalsegue", sender: self)
                         
-                    } else {
+                   // } else {
                         
-                    }
+                  //  }
                     
                     
                     
@@ -7507,7 +7725,12 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         if let editpict = UIImage(named: "4EditButton50") {
         editAction.backgroundColor = UIColor.imageWithBackgroundColor(editpict, bgColor: UIColorFromRGB(0xF23D55), w: 50, h: 50)
         }
+        
+       // if self.myeditingmode == false {
         return [deleteAction, editAction]//, shareAction]
+       // } else {
+       //     return []
+       // }
     }
     /*
     func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
