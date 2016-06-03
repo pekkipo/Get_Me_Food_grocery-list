@@ -869,3 +869,8 @@
 
 "commoncur" = "Часто используемые";
 "allcur" = "Весь список";
+
+// MAY STUFF
+
+"qeditproduct" = "Редактировать";
+"qaddproduct" = "Добавить";

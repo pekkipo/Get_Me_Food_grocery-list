@@ -878,3 +878,9 @@
 
 "commoncur" = "Commonly used"; //  Haeufig verwendet
 "allcur" = "All currencies"; // Alle Waerungen
+
+
+// MAY STUFF
+
+"qeditproduct" = "Edit";
+"qaddproduct" = "Add product";

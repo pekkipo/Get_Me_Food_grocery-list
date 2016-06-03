@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1400D5BA1BB94F2C007E2C8C /* UnitsPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1400D5B91BB94F2C007E2C8C /* UnitsPopover.swift */; };
+		141F04FC1D01CB720014AFDF /* B68UIFloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141F04FB1D01CB720014AFDF /* B68UIFloatLabelTextField.swift */; };
 		14339EDC1BE9553500722440 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14339EDB1BE9553500722440 /* MainMenuViewController.swift */; };
 		14339EDE1BE960A000722440 /* LoginInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14339EDD1BE960A000722440 /* LoginInfoCell.swift */; };
 		1439C1BB1BAF3BBD0015A086 /* ReceivedListOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1439C1B91BAF3BBD0015A086 /* ReceivedListOld.swift */; };
@@ -188,6 +189,7 @@
 
 /* Begin PBXFileReference section */
 		1400D5B91BB94F2C007E2C8C /* UnitsPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitsPopover.swift; sourceTree = "<group>"; };
+		141F04FB1D01CB720014AFDF /* B68UIFloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = B68UIFloatLabelTextField.swift; sourceTree = "<group>"; };
 		14339EDB1BE9553500722440 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		14339EDD1BE960A000722440 /* LoginInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInfoCell.swift; sourceTree = "<group>"; };
 		1439C1B91BAF3BBD0015A086 /* ReceivedListOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReceivedListOld.swift; path = ../ReceivedListOld.swift; sourceTree = "<group>"; };
@@ -626,6 +628,7 @@
 				14ADB9961BB97B0A00CDF260 /* AddItemWithOptions.swift */,
 				14339EDD1BE960A000722440 /* LoginInfoCell.swift */,
 				147BA56C1B5DB68D007FAABB /* ShoppingListCreation.swift */,
+				141F04FB1D01CB720014AFDF /* B68UIFloatLabelTextField.swift */,
 				1480CE2B1CB9029200F1C36C /* File1.swift */,
 				14861A2F1C4979E400F08728 /* HelperVC.swift */,
 				1493DE501BFFE43D00F6211A /* SmallPopover.swift */,
@@ -919,6 +922,7 @@
 				148040111C6A8C9600ED2C2D /* WalkthroughViewController.swift in Sources */,
 				148C79341BD59D260086794B /* CatalogCell.swift in Sources */,
 				14A878211C05FA5300FAD1AF /* menublackbutton.swift in Sources */,
+				141F04FC1D01CB720014AFDF /* B68UIFloatLabelTextField.swift in Sources */,
 				147331AF1BF2C19F007C94DD /* AddToDoItemViewController.swift in Sources */,
 				14A8781F1C05F9E000FAD1AF /* createtodocell.swift in Sources */,
 				149455B01C1F3B780075996B /* SortPopup.swift in Sources */,

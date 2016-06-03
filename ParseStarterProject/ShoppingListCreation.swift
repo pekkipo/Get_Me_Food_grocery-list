@@ -522,7 +522,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         symbol = newsymbol
         //and change here the sum title!
         summationPrices()
-        
+        summationcheckedPrices()
     }
   
     
@@ -536,7 +536,12 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet var gobackoutlet: UIBarButtonItem!
     
-
+    
+    @IBAction func uncheckbutton(sender: AnyObject) {
+        
+        uncheckall()
+        
+    }
     
     
     func uncheckall() {
@@ -590,7 +595,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                         
                     }
                     
-                    
+                    self.addedindicator.alpha = 1
+                    self.addedindicator.fadeOut()
                     
                 }
                 
@@ -604,6 +610,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         checkeditemsqty = 0
+        
+        summationcheckedPrices()
+        
+        showprogress()
         
         tableView.reloadData()
         
@@ -690,10 +700,6 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
         }
         
-        // small workaround due to a bug
-        if newquantitybutton.tintColor == UIColorFromRGB(0x979797) {
-             poppresented = false
-        }
         
         
         if endediting == false {
@@ -979,9 +985,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         self.sortcategories(itemsDataDict)
         
         summationPrices()
+        summationcheckedPrices()
         countitems()
         countchecked()
         itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
+        showprogress()
         
         tableView.reloadData()
         
@@ -1005,7 +1013,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         if poppresented == true {
             
-            // marking
+           
             
             
             poppresented = false
@@ -1246,10 +1254,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             self.sortcategories(itemsDataDict)
             
             summationPrices()
+            summationcheckedPrices()
             countitems()
             countchecked()
             itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
-            
+            showprogress()
             tableView.reloadData()
             
             
@@ -1733,9 +1742,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 self.sortcategories(itemsDataDict)
                 tableView.reloadData()
                 summationPrices()
+                summationcheckedPrices()
                 countitems()
                 countchecked()
                 itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
+                showprogress()
             } else {
                 
                 
@@ -1756,10 +1767,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             //tableView.reloadData()
             summationPrices()
+            summationcheckedPrices()
             countitems()
             countchecked()
             itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
-            
+            showprogress()
         }
         
         
@@ -1830,6 +1842,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     var isSorted = Bool()
     
     @IBOutlet weak var PricesSum: UILabel!
+    
+    @IBOutlet var PricescheckedSum: UILabel!
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var itemsoverall: UILabel!
@@ -2129,13 +2143,14 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
          notetopconstraint.constant = -520
         
         UIView.animateWithDuration(0.3, animations: { () -> Void in
+            
             self.view.layoutIfNeeded()
-            }) { (value: Bool) -> Void in
-                
-                        }
+            }, completion: { (value: Bool) -> Void in
+                self.shownoteview.hidden = true
+        })
         view.endEditing(true)
         
-        self.shownoteview.hidden = true
+        //self.shownoteview.hidden = true
 
     }
     
@@ -2146,17 +2161,44 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var sharelistoutlet: UIButton!
     
     
+    @IBAction func changecats(sender: AnyObject) {
+        
+       
+        
+        showhidecats()
+    }
+    
+    
     
     func showhidecats() {
+      
+        if myeditingmode == true {
+            print("can't change")
+        }
         
+        if showcats == true {
         
+            showcats = false
+            self.tableView.reloadData()
+            listcategoriesoutlet.setTitle(NSLocalizedString("showcats", comment: ""), forState: UIControlState.Normal)
+            
+        } else if showcats == false {
+            showcats = true
+            self.tableView.reloadData()
+            listcategoriesoutlet.setTitle(NSLocalizedString("hidecats", comment: ""), forState: UIControlState.Normal)
+        }
+      
     }
    
+    @IBAction func closesetsarrowbutton(sender: AnyObject) {
+        closesettings()
+    }
     
     func closesettings() {
         
        
        closesets()
+        navbutton.imageView!.transform = CGAffineTransformMakeRotation(CGFloat(2*M_PI))
        settingsopen = false
     }
     
@@ -2399,11 +2441,12 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         summationPrices()
+        summationcheckedPrices()
         
         countitems()
         countchecked()
         itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
-        
+        showprogress()
         itemsinbuffertopaste.removeAll(keepCapacity: true)
         
         
@@ -2629,9 +2672,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
 
         
         summationPrices()
+            summationcheckedPrices()
             countitems()
             countchecked()
             itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
+            showprogress()
         
         self.sortcategories(itemsDataDict)
             
@@ -3317,9 +3362,15 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         if segue.identifier == "ShareFromListCreation" {
             
-            let shareNav = segue.destinationViewController as! UINavigationController
+           // let shareNav = segue.destinationViewController as! UINavigationController
             
-            let shareVC = shareNav.viewControllers.first as! SharingViewController
+           // let shareVC = shareNav.viewControllers.first as! SharingViewController
+            if myeditingmode == true {
+                canceledits()
+            }
+            
+            
+            let shareVC = segue.destinationViewController as! SharingViewController
             
             additemstolistsarrayandsave()
             
@@ -3374,6 +3425,43 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         quickcurrency.text = symbol
     }
+    
+    func summationcheckedPrices() {
+        
+        var itemsprices = [Double]()
+        
+        for item in itemsDataDict {
+            if (item["ItemIsChecked"] as! Bool) == true {
+            var doublevalue = (item["ItemTotalPrice"] as! String).doubleConverter
+            itemsprices.append(doublevalue)
+            }
+            
+        }
+        var sum = itemsprices.reduce(0, combine: +)
+        
+        var formatter = NSNumberFormatter()
+        formatter.maximumFractionDigits = 4
+        formatter.usesSignificantDigits = false
+        formatter.minimumSignificantDigits = 1
+        formatter.maximumSignificantDigits = 9
+        // formatter.numberStyle = .CurrencyStyle
+        
+        
+        var textsum: String = formatter.stringFromNumber(sum)!
+        
+        
+        var rubsymbol : String = "руб."
+        
+        if code == "RUB" {
+            
+            PricescheckedSum.text = "\(NSLocalizedString("spentsum", comment: "")) \(textsum) \(rubsymbol)"
+        } else {
+            PricescheckedSum.text = "\(NSLocalizedString("spentsum", comment: "")) \(symbol)\(textsum)"
+        }
+        
+        quickcurrency.text = symbol
+    }
+
     
     
     
@@ -3523,6 +3611,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                         shoppingcheckedtocopy.append(false)
                         
                         self.summationPrices()
+                        self.summationcheckedPrices()
                         
                         self.tableView.reloadData() // without this thing, table would contain only 1 row
                         
@@ -3605,28 +3694,27 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                                                button.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
                         self.navigationItem.titleView = button
                         */
-                        let button =  UIButton(type: .Custom)
-                        button.frame = CGRectMake((((self.view.frame.size.width) / 2) - 80),0,160,40) as CGRect
-                        button.setTitle(object["ShopListName"] as! String, forState: UIControlState.Normal)
-                        button.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
-                        button.setTitleColor(self.UIColorFromRGB(0x31797D), forState: .Normal)
+                        self.navbutton.frame = CGRectMake((((self.view.frame.size.width) / 2) - 80),0,160,40) as CGRect
+                        self.navbutton.setTitle(object["ShopListName"] as! String, forState: UIControlState.Normal)
+                        self.navbutton.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
+                        self.navbutton.setTitleColor(self.UIColorFromRGB(0x31797D), forState: .Normal)
                         
                         let titleimage = UIImage(named: "myliststitle") as UIImage?
-                        button.setImage(titleimage, forState: .Normal)
+                        self.navbutton.setImage(titleimage, forState: .Normal)
                         
                         let spacing : CGFloat = 3;
                         let insetAmount : CGFloat = 0.5 * spacing;
                         
                         // First set overall size of the button:
-                        button.contentEdgeInsets = UIEdgeInsetsMake(0, insetAmount, 0, insetAmount);
-                        button.sizeToFit()
+                        self.navbutton.contentEdgeInsets = UIEdgeInsetsMake(0, insetAmount, 0, insetAmount);
+                        self.navbutton.sizeToFit()
                         
                         // Then adjust title and image insets so image is flipped to the right and there is spacing between title and image:
-                        button.titleEdgeInsets  = UIEdgeInsetsMake(0, -button.imageView!.frame.size.width - insetAmount, 0,  button.imageView!.frame.size.width  + insetAmount);
-                        button.imageEdgeInsets  = UIEdgeInsetsMake(2, button.titleLabel!.frame.size.width + insetAmount, 0, -button.titleLabel!.frame.size.width - insetAmount);
+                        self.navbutton.titleEdgeInsets  = UIEdgeInsetsMake(0, -self.navbutton.imageView!.frame.size.width - insetAmount, 0,  self.navbutton.imageView!.frame.size.width  + insetAmount);
+                        self.navbutton.imageEdgeInsets  = UIEdgeInsetsMake(2, self.navbutton.titleLabel!.frame.size.width + insetAmount, 0, -self.navbutton.titleLabel!.frame.size.width - insetAmount);
                         
-                        button.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
-                        self.navigationItem.titleView = button
+                        self.navbutton.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
+                        self.navigationItem.titleView = self.navbutton
 
                         
                         self.tableView.reloadData()
@@ -3645,7 +3733,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.reloadData()
         summationPrices() // THIS GUY SAVES THE DAY
-        
+        summationcheckedPrices()
+        showprogress()
     }
     
     
@@ -3817,6 +3906,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                     shoppingcheckedtocopy.append(false)
                     
                     self.summationPrices()
+                    self.summationcheckedPrices()
                     
                   //  self.tableView.reloadData()
                     
@@ -3887,7 +3977,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         //tableView.reloadData()
         summationPrices() // THIS GUY SAVES THE DAY
-        
+        summationcheckedPrices()
     }
     
         
@@ -4053,10 +4143,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         ////
         
         summationPrices()
-        
+        summationcheckedPrices()
         countitems()
         countchecked()
         itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
+        showprogress()
     }
     
     
@@ -4104,6 +4195,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         for item in itemsDataDict {
             if item["ItemIsChecked"] as! Bool == true {
                 quantityofchecked.append(item["ItemIsChecked"] as! Bool)
+                
             } else {
                 print("Not checked")
             }
@@ -4540,6 +4632,13 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func slidesmallpopover(sender: AnyObject) {
         //
+        
+        // small workaround due to a bug
+        if newquantitybutton.tintColor == UIColorFromRGB(0x979797) {
+            poppresented = false
+        }
+        
+        
         if poppresented == false {
         
             
@@ -4613,7 +4712,21 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     var closepadimage = UIImage(named: "ClosePad")!
-    var editproductimage = UIImage(named:"4EditProduct")!
+    var editproductimage = UIImage(named:"4EditProduct20")!
+    var addproductimage = UIImage(named:"4AddProduct20")!
+    /*
+    func resizeImage(image: UIImage, newHeight: CGFloat) -> UIImage {
+        let scale = newHeight / image.size.height
+        let newWidth = image.size.width * scale
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    */
+   // var addproductimage
     
     
     @IBAction func decrement(sender: AnyObject) {
@@ -4742,7 +4855,51 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    var starteditname : Bool = false
+    
+    
    
+    @IBAction func endeditlistname(sender: AnyObject) {
+        
+        
+        
+        let query = PFQuery(className:"shopLists")
+        query.fromLocalDatastore()
+        query.whereKey("listUUID", equalTo: currentList)
+        query.getFirstObjectInBackgroundWithBlock() {
+            (list: PFObject?, error: NSError?) -> Void in
+            if error != nil {
+                print(error)
+            } else if let list = list {
+                list["ShopListName"] = self.listnameinview.text
+                list.pinInBackground()
+
+                if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(self.currentList) {
+                    UserLists[foundlist].listname = self.listnameinview.text
+                   
+                    
+                }
+                if let foundshoplist = UserShopLists.map({ $0.listid }).lazy.indexOf(self.currentList) {
+                    UserShopLists[foundshoplist].listname = self.listnameinview.text
+                   
+                    
+                }
+                if let foundfavlist = UserFavLists.map({ $0.listid }).lazy.indexOf(self.currentList) {
+                    UserFavLists[foundfavlist].listname = self.listnameinview.text
+                    
+                }
+
+                self.view.endEditing(true)
+  
+            }
+        }
+    
+        
+        navbutton.setTitle(self.listnameinview.text, forState: UIControlState.Normal)
+        
+    }
+    
+    
     
    
     @IBAction func doneinview(sender: AnyObject) {
@@ -4821,11 +4978,48 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
-        shiftview(true)
+        //shiftview(true)
     }
     
     func textViewDidEndEditing(textView: UITextView) {
-        shiftview(false)
+        //shiftview(false)
+        
+        
+        let query = PFQuery(className:"shopLists")
+        query.fromLocalDatastore()
+        query.whereKey("listUUID", equalTo: currentList)
+        query.getFirstObjectInBackgroundWithBlock() {
+            (list: PFObject?, error: NSError?) -> Void in
+            if error != nil {
+                print(error)
+            } else if let list = list {
+                list["ShopListName"] = self.listnoteinview.text
+                list.pinInBackground()
+                
+                if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(self.currentList) {
+                    
+                    UserLists[foundlist].listnote = self.listnoteinview.text
+                    
+                }
+                if let foundshoplist = UserShopLists.map({ $0.listid }).lazy.indexOf(self.currentList) {
+                    
+                    UserShopLists[foundshoplist].listnote = self.listnoteinview.text
+                    
+                }
+                if let foundfavlist = UserFavLists.map({ $0.listid }).lazy.indexOf(self.currentList) {
+                    
+                    UserFavLists[foundfavlist].listnote = self.listnoteinview.text
+                    
+                }
+                
+                self.view.endEditing(true)
+                
+            }
+        }
+        
+        
+        navbutton.setTitle(self.listnameinview.text, forState: UIControlState.Normal)
+        
     }
     
     
@@ -4965,7 +5159,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                         
                         itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
                         
-                
+                showprogress()
                         
                     } else {
                         
@@ -5050,7 +5244,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                             countitems()
                             
                             itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
-                
+                            showprogress()
                         
                     }
                     
@@ -5332,13 +5526,15 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             quickperunit = quickunit
             
     }
+        
+        multiplication()
     
     }
     
     func pickedperunit(sender: UIButton) {
         
         quickperunit = sender.titleForState(.Normal)!
-        print(quickperunit)
+        
         
         
         for button in horizontalScrollViewper.subviews {
@@ -5359,6 +5555,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
         }
+        
+        multiplication()
 
     }
     
@@ -5380,7 +5578,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             settingsopen = true
             
         } else if settingsopen {
-            navbutton.imageView!.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI))
+            navbutton.imageView!.transform = CGAffineTransformMakeRotation(CGFloat(2*M_PI))
             closesets()
             settingsopen = false
             
@@ -5391,7 +5589,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     /// EDITING MODE PART
-    @IBOutlet var tableconstraintbottom: NSLayoutConstraint! //0 in normal state; 58 in editing mode
+    @IBOutlet var tableconstraintbottom: NSLayoutConstraint! //3 in normal state; 50 in editing mode
     
     @IBOutlet var bottomeditingview: NSLayoutConstraint! //-93 in usual mode; 0 in editing mode
     
@@ -5423,7 +5621,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             dimmerforpopover.hidden = false
             
-            tableconstraintbottom.constant = 58
+            tableconstraintbottom.constant = 50
             bottomeditingview.constant = 0 //-93 in usual mode; 0 in editing mode
             
             
@@ -5438,7 +5636,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             dimmerforpopover.hidden = true
         
-            tableconstraintbottom.constant = 0
+            tableconstraintbottom.constant = 3
             bottomeditingview.constant = -93 //-93 in usual mode; 0 in editing mode
             
             
@@ -5452,6 +5650,18 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
     }
+    
+    
+    
+    @IBAction func editsbutton(sender: AnyObject) {
+        
+        navbutton.imageView!.transform = CGAffineTransformMakeRotation(CGFloat(2*M_PI))
+        closesets()
+        settingsopen = false
+        
+        entereditingmode()
+    }
+    
     
     func entereditingmode() {
         
@@ -5513,6 +5723,58 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     let navbutton =  UIButton(type: .Custom)
+    
+    
+    
+    
+    //Progress stuff
+    @IBOutlet var progressbar: KDCircularProgress!
+    
+    func changeprogress(overall: Int, checked: Int) -> (pcol:UIColor, theangle: Double) {
+        
+        if overall > 0 {
+            var percentage : Double = 100.0 * Double(checked)/Double(overall)
+            
+            var theangle : Double = 360.0 * (percentage/100.0)
+            
+            //thelabel.text = "\(Int(percentage))%"
+            
+            if (percentage > 0.0) && (percentage <= 25.0) {
+                return (UIColorFromRGB(0xF5A623), theangle)
+                
+            } else if (percentage > 25.0) && (percentage <= 50.0) {
+                return (UIColorFromRGB(0xA2AF36), theangle)
+            } else if (percentage > 50.0) && (percentage <= 75.0) {
+                return (UIColorFromRGB(0x64B320), theangle)
+            } else if (percentage > 75.0) && (percentage <= 90.0) {
+                return (UIColorFromRGB(0x20B343), theangle)
+            } else if (percentage > 90.0) && (percentage <= 100.0) {
+                return (UIColorFromRGB(0x61C791), theangle)
+            } else if (percentage == 0.0) {
+                return (UIColorFromRGB(0xF23D55), 1.0)
+            } else {
+                return (UIColorFromRGB(0xD8D8D8), theangle)
+            }
+        } else {
+            
+            return (UIColorFromRGB(0xF23D55), 1.0)
+        }
+        
+        //itemsoverallqty))/\(String(checkeditemsqty)
+        
+    }
+    
+    func showprogress() {
+        
+        progressbar.progressColors = [changeprogress(itemsoverallqty, checked: checkeditemsqty).pcol]
+        progressbar.angle = changeprogress(itemsoverallqty, checked: checkeditemsqty).theangle
+    }
+    
+    /*
+     cell.progresscircle.progressColors = [changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).pcol]
+     cell.progresscircle.angle = changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).theangle
+ 
+    */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -5619,9 +5881,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         listnoteinview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
         listnoteinview.layer.cornerRadius = 4
         
-        listnameinview.leftTextMargin = 10
+        listnameinview.leftTextMargin = 6
         
-        shownoteview.layer.cornerRadius = 4
+        //listnoteinview.l
+        
+       // shownoteview.layer.cornerRadius = 4
         
         shownoteview.hidden = true
         
@@ -5655,26 +5919,37 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         quickpriceoutlet.inputAccessoryView = toolView2
         
-        let toolFrame3 = CGRectMake(0, 0, self.view.frame.size.width, 46);
+        let toolFrame3 = CGRectMake(0, 0, self.view.frame.size.width, 46); // x y w h
         let toolView3: UIView = UIView(frame: toolFrame);
         toolView3.backgroundColor = UIColorFromRGB(0xFAFAFA)
         let linetop : UIView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 1))
-        linetop.backgroundColor = UIColorFromRGB(0x31797D)
+        linetop.backgroundColor = UIColorFromRGB(0xE0E0E0)
         let linebottom : UIView = UIView(frame: CGRectMake(0, 45, self.view.frame.size.width, 1))
         linebottom.backgroundColor = UIColorFromRGB(0x31797D)
-        let closepadframe3: CGRect = CGRectMake(0, 0, self.view.frame.size.width, 46)
+        let closepadframe3: CGRect = CGRectMake(0, 0, self.view.frame.size.width / 2, 46)
+        let closepadframe4: CGRect = CGRectMake(self.view.frame.size.width / 2, 0, self.view.frame.size.width / 2, 46)
         let editproduct: UIButton = UIButton(frame: closepadframe3);
-        editproduct.setTitle(NSLocalizedString("editproduct", comment: ""), forState: UIControlState.Normal)
-        editproduct.tintColor = UIColorFromRGB(0x31797D)
+        let addproduct: UIButton = UIButton(frame: closepadframe4);
+        editproduct.setTitle(NSLocalizedString("qeditproduct", comment: ""), forState: UIControlState.Normal)
+        addproduct.setTitle(NSLocalizedString("qaddproduct", comment: ""), forState: UIControlState.Normal)
+        editproduct.tintColor = UIColorFromRGB(0xA2AF36)
+        addproduct.tintColor = UIColorFromRGB(0x31797D)
         editproduct.setImage(editproductimage, forState: UIControlState.Normal)
-        editproduct.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
-        editproduct.setTitleColor(UIColorFromRGB(0x979797), forState: .Normal)
+        addproduct.setImage(addproductimage, forState: UIControlState.Normal)
+        editproduct.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 12)
+        addproduct.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 12)
+        editproduct.setTitleColor(UIColorFromRGB(0xA2AF36), forState: .Normal)
         editproduct.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 20);
         editproduct.titleEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 10);
+        addproduct.setTitleColor(UIColorFromRGB(0x31797D), forState: .Normal)
+        addproduct.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 20);
+        addproduct.titleEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 10);
         toolView3.addSubview(editproduct);
+        toolView3.addSubview(addproduct);
         toolView3.addSubview(linetop);
-        toolView3.addSubview(linebottom);
+       // toolView3.addSubview(linebottom);
         editproduct.addTarget(self, action: "closenumberpad3:", forControlEvents: UIControlEvents.TouchDown);
+        addproduct.addTarget(self, action: "closenumberpad3:", forControlEvents: UIControlEvents.TouchDown);
         
         autocomplete.inputAccessoryView = toolView3
         
@@ -5802,7 +6077,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                // noitemview.hidden = false
            
            // let button =  UIButton(type: .Custom)
-            navbutton.frame = CGRectMake((((self.view.frame.size.width) / 2) - 80),0,160,40) as CGRect
+            navbutton.frame = CGRectMake((((self.view.frame.size.width) / 2) - 120),0,240,40) as CGRect
             navbutton.setTitle(NSLocalizedString("listshop", comment: ""), forState: UIControlState.Normal)
             navbutton.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
             navbutton.setTitleColor(self.UIColorFromRGB(0x31797D), forState: .Normal)
@@ -5823,7 +6098,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             navbutton.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
             self.navigationItem.titleView = navbutton
-    
+            
+            showprogress()
             
         } else {
             
@@ -5863,6 +6139,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
             
+            
+            
             //quickcurrency.text = symbol
             
             tableView.reloadData()
@@ -5893,11 +6171,12 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
 
         
         summationPrices()
-        
+        summationcheckedPrices()
         countitems()
         countchecked()
         //itemsoverall.text = "\(String(itemsoverallqty))/\(String(checkeditemsqty))"
         itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
+        showprogress()
     }
     
     
@@ -6226,10 +6505,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         checkeditemsqty -= 1
             countitems()
-        
+        summationcheckedPrices()
             itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
 
-        
+        showprogress()
     } else {
            
             let button = sender as UIButton
@@ -6308,8 +6587,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 checkeditemsqty -= 1
 
                 countitems()
-                
+                summationcheckedPrices()
                 itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
+                
+                showprogress()
             }
             
         }
@@ -6388,9 +6669,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
                 checkeditemsqty += 1
             countitems()
+            summationcheckedPrices()
             
             itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
-                
+                showprogress()
             
         } else {
             
@@ -6453,9 +6735,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
 
                 checkeditemsqty += 1
                 countitems()
-                
+                summationcheckedPrices()
                 itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
-
+                showprogress()
                 //}
             }
         
@@ -6591,13 +6873,13 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         //self.tableView.deleteRowsAtIndexPaths([indexPathDelete!], withRowAnimation: UITableViewRowAnimation.Automatic)
         //tableView.reloadData()
         summationPrices()
-        
+        summationcheckedPrices()
      
        
         countitems()
         countchecked()
         itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
-        
+        showprogress()
         //IF SHOWCATS == TRUE
         
         
@@ -6689,10 +6971,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
           
             summationPrices()
-            
+            summationcheckedPrices()
             countitems()
             countchecked()
             itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
+            showprogress()
         } else {
             // case when showcats == true
                    }//END OF IF
@@ -7480,11 +7763,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                     tableView.reloadData()
                     
                     self.summationPrices()
-                    
+                    self.summationcheckedPrices()
                     self.countitems()
                     self.countchecked()
                     self.itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(self.itemsoverallqty))/\(String(self.checkeditemsqty))"
-                    
+                    self.showprogress()
                     //self.itemschecked.text = String(self.checkeditemsqty)
                     
                     
@@ -7660,11 +7943,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 tableView.reloadData()
                 
                 self.summationPrices()
-                
+                self.summationcheckedPrices()
                 self.countitems()
                 self.countchecked()
                 self.itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(self.itemsoverallqty))/\(String(self.checkeditemsqty))"
-
+                self.showprogress()
                 
                 
             }
