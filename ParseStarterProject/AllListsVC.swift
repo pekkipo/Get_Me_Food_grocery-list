@@ -922,18 +922,35 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         
     
     var idforoptions = String()
+    var codeforoptions = String()
+    var symbolforoptions = String()
     
     func optionsaction(indexPath: NSIndexPath) {
         
+     
         
         if showoption == "alllists" {
+            
             idforoptions = UserLists[indexPath.row].listid
+            var currencyarray = UserLists[indexPath.row].listcurrency as! [AnyObject]
+            codeforoptions = UserLists[indexPath.row].listcurrency![0] as! String
+            symbolforoptions = UserLists[indexPath.row].listcurrency![1] as! String
+            
         } else if showoption == "shoplists" {
             idforoptions = UserShopLists[indexPath.row].listid
+            var currencyarray = UserShopLists[indexPath.row].listcurrency as! [AnyObject]
+            codeforoptions = UserShopLists[indexPath.row].listcurrency![0] as! String
+            symbolforoptions = UserShopLists[indexPath.row].listcurrency![1] as! String
         } else if showoption == "todolists" {
             idforoptions = UserToDoLists[indexPath.row].listid
+            var currencyarray = UserToDoLists[indexPath.row].listcurrency as! [AnyObject]
+            codeforoptions = UserToDoLists[indexPath.row].listcurrency![0] as! String
+            symbolforoptions = UserToDoLists[indexPath.row].listcurrency![1] as! String
         } else if showoption == "favs" {
             idforoptions = UserFavLists[indexPath.row].listid
+            var currencyarray = UserFavLists[indexPath.row].listcurrency as! [AnyObject]
+            codeforoptions = UserFavLists[indexPath.row].listcurrency![0] as! String
+            symbolforoptions = UserFavLists[indexPath.row].listcurrency![1] as! String
         }
         
         self.performSegueWithIdentifier("Alllistsoptions", sender: self)
@@ -1157,6 +1174,8 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
 
             optionsVC.senderVC = "AllListsVC"
             optionsVC.listtoupdate = idforoptions
+            optionsVC.code = codeforoptions
+            optionsVC.symbol = symbolforoptions
             
             
         }

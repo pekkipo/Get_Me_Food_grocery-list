@@ -1340,6 +1340,67 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    
+    @IBAction func cancelquickadding(sender: AnyObject) {
+        
+        if poppresented == true {
+            
+            
+            
+            
+          //  poppresented = false
+            
+            //endediting = false // CAREFUL HERE
+            
+            newquantitybutton.tintColor = UIColorFromRGB(0x979797)
+            
+            dimmerforpopover.hidden = true
+            
+            self.smallpopover.hidden = true
+
+        }
+        
+        
+        poppresented = false
+        
+        opencatalogoutlet.hidden = false
+        quickaddoutlet.hidden = true
+        newquantitybutton.hidden = true
+        
+        self.quickunit = ""
+        self.quickperunit = ""
+        self.quickqty  = ""
+        self.popqty.text = ""
+        // GET BACK THE UNIT AND PER UNIT BUTTONS
+        
+        quickpriceoutlet.text = ""
+        quicksum.text = ""
+        
+        quickcategory = catalogcategories[0]
+        quickcategoryUUID = catalogcategories[0].catId
+        quickcaticon.image = catalogcategories[0].catimage
+        
+        quickcategorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
+        
+        
+        isdefaultpicture = true
+        defaultpicturename = imagestochoose[0].imagename
+        quickicon.image = imagestochoose[0].itemimage
+        
+        resetunitsback(horizontalScrollView)
+        resetunitsback(horizontalScrollViewper)
+        
+        
+        buttontitle = ""
+
+        self.view.endEditing(true)
+        //autocomplete.re
+        catalogitemtochoose = nil // make it nil after adding
+        //  quickquantity.text = NSLocalizedString("amount", comment: "")
+        autocomplete.text = NSLocalizedString("additemtext", comment: "")
+    }
+    
+    
     @IBAction func doneinviewbutton(sender: AnyObject) {
         
         if (catalogitemtochoose != nil) {
@@ -2927,11 +2988,16 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     var red:String = "F23D55"
     var dgreen:String = "31797D"
-    var lgreen:String = "61C791"
-    var yellow:String = "DAFFA4"
-    var black:String = "2A2F36"
     var gold:String = "A2AF36"
+    var black:String = "2A2F36"
     var grey:String = "838383"
+    var magenta:String = "1EB2BB"
+    var lgreen:String = "61C791"
+    var lightmagenta: String = "7FC2C6"
+    var pink: String = "E88996"
+    var orange: String = "E18C16"
+    var violet:String = "7D3169"
+    var darkred:String = "713D3D"
     
     
     /////////////
@@ -3213,15 +3279,17 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         //listoptionsshow
         if segue.identifier == "listoptionsshow" {
             
-            // temporary solution!
-            canceledits()
+            
+           // canceledits() // NOT SURE IF NEEDED
+            
+            closesettings()
         
         let popoverViewController = segue.destinationViewController as! ListOptionsPopover//UIViewController
-        popoverViewController.modalPresentationStyle = UIModalPresentationStyle.CurrentContext //Popover
+       // popoverViewController.modalPresentationStyle = UIModalPresentationStyle.CurrentContext //Popover
             
             
             popoverViewController.delegate = self
-            popoverViewController.showcats = showcats
+           // popoverViewController.showcats = showcats
             popoverViewController.code = code
             popoverViewController.symbol = symbol
             
@@ -3694,7 +3762,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                                                button.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
                         self.navigationItem.titleView = button
                         */
-                        self.navbutton.frame = CGRectMake((((self.view.frame.size.width) / 2) - 80),0,160,40) as CGRect
+                        self.navbutton.frame = CGRectMake((((self.view.frame.size.width) / 2) - 130),0,260,40) as CGRect
                         self.navbutton.setTitle(object["ShopListName"] as! String, forState: UIControlState.Normal)
                         self.navbutton.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
                         self.navbutton.setTitleColor(self.UIColorFromRGB(0x31797D), forState: .Normal)
@@ -4630,9 +4698,62 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     let redquantity: UIImage = UIImage(named:"CloseQuantityB")!
     
-    @IBAction func slidesmallpopover(sender: AnyObject) {
+    
+    func slidepopover() {
         //
         
+        // small workaround due to a bug
+        if newquantitybutton.tintColor == UIColorFromRGB(0x979797) {
+            poppresented = false
+        }
+        
+        
+        if poppresented == false {
+            
+            
+            poppresented = true
+            
+            autocomplete.resignFirstResponder()
+            
+            newquantitybutton.tintColor = UIColorFromRGB(0xA2AF36)
+            
+            smallpopover.hidden = false
+            
+            dimmerforpopover.hidden = false
+            
+            
+        } else {
+            
+            poppresented = false
+            
+            newquantitybutton.tintColor = UIColorFromRGB(0x979797)
+            
+            dimmerforpopover.hidden = true
+            
+            self.smallpopover.hidden = true
+            
+            getinfofrompop(quickunit, quantity: popqty.text!, perunit: quickperunit, price: quickpriceoutlet.text!, totalsum: quicksum.text!, icon: quickcategory.catimage, category: quickcategory, catUUID: quickcategoryUUID)
+            
+            
+        }
+        
+        
+        var pulseAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.scale");
+        pulseAnimation.duration = 1.0;
+        pulseAnimation.fromValue = NSNumber(float: 0.9)
+        pulseAnimation.toValue = NSNumber(float: 1.0);
+        pulseAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut);
+        pulseAnimation.autoreverses = true;
+        pulseAnimation.repeatCount = FLT_MAX;
+        quickaddoutlet.layer.addAnimation(pulseAnimation, forKey: nil)
+    }
+    
+    
+    @IBAction func slidesmallpopover(sender: AnyObject) {
+        //
+        slidepopover()
+        
+        /*
         // small workaround due to a bug
         if newquantitybutton.tintColor == UIColorFromRGB(0x979797) {
             poppresented = false
@@ -4667,6 +4788,17 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
 
             
         }
+        
+        
+        var pulseAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.scale");
+        pulseAnimation.duration = 1.0;
+        pulseAnimation.fromValue = NSNumber(float: 0.8)
+        pulseAnimation.toValue = NSNumber(float: 1.0);
+        pulseAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut);
+        pulseAnimation.autoreverses = true;
+        pulseAnimation.repeatCount = FLT_MAX;
+        quickaddoutlet.layer.addAnimation(pulseAnimation, forKey: nil)
+        */
     }
     
     
@@ -4707,8 +4839,25 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         quickpriceoutlet.resignFirstResponder()
     }
     
-    func closenumberpad3(sender: UIButton) {
+    func addproductfromkeyboard(sender: UIButton) {
         quickpriceoutlet.resignFirstResponder()
+        
+        if (catalogitemtochoose != nil) {
+            
+            quickaddcatalogitem(catalogitemtochoose!)
+            
+        } else {
+            
+            quicknoncatalogitem()
+        }
+
+        
+    }
+    
+    func editproductfromkeyboard(sender: UIButton) {
+        quickpriceoutlet.resignFirstResponder()
+        
+        slidepopover()
     }
     
     var closepadimage = UIImage(named: "ClosePad")!
@@ -4896,6 +5045,16 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
         
         navbutton.setTitle(self.listnameinview.text, forState: UIControlState.Normal)
+        
+        let spacing : CGFloat = 3;
+        let insetAmount : CGFloat = 0.5 * spacing;
+        
+        navbutton.contentEdgeInsets = UIEdgeInsetsMake(0, insetAmount, 0, insetAmount);
+        navbutton.sizeToFit()
+        
+
+        navbutton.titleEdgeInsets  = UIEdgeInsetsMake(0, -navbutton.imageView!.frame.size.width - insetAmount, 0,  navbutton.imageView!.frame.size.width  + insetAmount);
+        navbutton.imageEdgeInsets  = UIEdgeInsetsMake(2, navbutton.titleLabel!.frame.size.width + insetAmount, 0, -navbutton.titleLabel!.frame.size.width - insetAmount);
         
     }
     
@@ -5667,6 +5826,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         // autocomplete.resignFirstResponder()
         
+        navbutton.userInteractionEnabled = false
+        navbutton.imageView?.hidden = true
+        
         temporaryshowcats = showcats
         showcats = false
         myeditingmode = true
@@ -5696,6 +5858,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         showcats = temporaryshowcats
         
+        navbutton.userInteractionEnabled = true
+        navbutton.imageView?.hidden = false
+        
         // move the view and table back
         moveeditview("down")
         tableView.reloadData()
@@ -5715,6 +5880,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         showcats = temporaryshowcats
         
+        
+        navbutton.userInteractionEnabled = true
+        navbutton.imageView?.hidden = false
         // move the view and table back
         moveeditview("down")
         tableView.reloadData()
@@ -5932,13 +6100,13 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         let addproduct: UIButton = UIButton(frame: closepadframe4);
         editproduct.setTitle(NSLocalizedString("qeditproduct", comment: ""), forState: UIControlState.Normal)
         addproduct.setTitle(NSLocalizedString("qaddproduct", comment: ""), forState: UIControlState.Normal)
-        editproduct.tintColor = UIColorFromRGB(0xA2AF36)
+        editproduct.tintColor = UIColorFromRGB(0x1695A3)
         addproduct.tintColor = UIColorFromRGB(0x31797D)
         editproduct.setImage(editproductimage, forState: UIControlState.Normal)
         addproduct.setImage(addproductimage, forState: UIControlState.Normal)
         editproduct.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 12)
         addproduct.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 12)
-        editproduct.setTitleColor(UIColorFromRGB(0xA2AF36), forState: .Normal)
+        editproduct.setTitleColor(UIColorFromRGB(0x1695A3), forState: .Normal)
         editproduct.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 20);
         editproduct.titleEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 10);
         addproduct.setTitleColor(UIColorFromRGB(0x31797D), forState: .Normal)
@@ -5948,8 +6116,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         toolView3.addSubview(addproduct);
         toolView3.addSubview(linetop);
        // toolView3.addSubview(linebottom);
-        editproduct.addTarget(self, action: "closenumberpad3:", forControlEvents: UIControlEvents.TouchDown);
-        addproduct.addTarget(self, action: "closenumberpad3:", forControlEvents: UIControlEvents.TouchDown);
+        editproduct.addTarget(self, action: "editproductfromkeyboard:", forControlEvents: UIControlEvents.TouchDown);
+        addproduct.addTarget(self, action: "addproductfromkeyboard:", forControlEvents: UIControlEvents.TouchDown);
         
         autocomplete.inputAccessoryView = toolView3
         
@@ -6077,7 +6245,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                // noitemview.hidden = false
            
            // let button =  UIButton(type: .Custom)
-            navbutton.frame = CGRectMake((((self.view.frame.size.width) / 2) - 120),0,240,40) as CGRect
+            navbutton.frame = CGRectMake((((self.view.frame.size.width) / 2) - 130),0,260,40) as CGRect
             navbutton.setTitle(NSLocalizedString("listshop", comment: ""), forState: UIControlState.Normal)
             navbutton.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
             navbutton.setTitleColor(self.UIColorFromRGB(0x31797D), forState: .Normal)
@@ -6133,6 +6301,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 // part about code here
                 if (UserLists[foundlist].listcolorcode != nil) {
                     colorcode = UserLists[foundlist].listcolorcode!
+                    
+                    //Doing this in order to compensate for deleted color in previous versions
+                    if (UserLists[foundlist].listcolorcode) as! String == "DAFFA4" {
+                        colorcode = gold
+                    }
                     
                 } else {
                     colorcode = dgreen

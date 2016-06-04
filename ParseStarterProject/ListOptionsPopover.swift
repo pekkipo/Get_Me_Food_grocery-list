@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 protocol OptionsPopupDelegate
 {
@@ -158,10 +159,9 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
     
    
     
-    @IBOutlet var showcatsoutlet: UIButton!
     
   
-    
+    /*
     @IBOutlet var uncheckalloutlet: UIButton!
     
    
@@ -256,7 +256,7 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
         delegate!.popshowcategories(showcats)
         }
     }
-
+    */
     
     
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
@@ -283,34 +283,43 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
     
     var red:String = "F23D55"
     var dgreen:String = "31797D"
-    var lgreen:String = "61C791"
-    var yellow:String = "DAFFA4"
-    var black:String = "2A2F36"
     var gold:String = "A2AF36"
+    var black:String = "2A2F36"
     var grey:String = "838383"
+    var magenta:String = "1EB2BB"
+    var lgreen:String = "61C791"
+    var lightmagenta: String = "7FC2C6"
+    var pink: String = "E88996"
+    var orange: String = "E18C16"
+    var violet:String = "7D3169"
+    var darkred:String = "713D3D"
+   
+
     
     @IBOutlet var redcolor: UIButton!
     @IBOutlet var darkgreencolor: UIButton!
     @IBOutlet var lightgreencolor: UIButton!
-    @IBOutlet var yellowcolor: UIButton!
     @IBOutlet var blackcolor: UIButton!
     @IBOutlet var greycolor: UIButton!
     @IBOutlet var goldcolor: UIButton!
+    @IBOutlet var magentacolor: UIButton!
+    @IBOutlet var lightmagentacolor: UIButton!
+   
+    @IBOutlet var pinkcolor: UIButton!
+    @IBOutlet var orangecolor: UIButton!
+    @IBOutlet var violetcolor: UIButton!
+    @IBOutlet var darkredcolor: UIButton!
+    
     
     var colorchanged : Bool = false
     
     
-    @IBAction func redaction(sender: AnyObject) {
+    @IBAction func redaction(sender: UIButton) {
         
         colorcode = red
-        redcolor.alpha = 1
-        darkgreencolor.alpha = 0.4
-        lightgreencolor.alpha = 0.4
-        yellowcolor.alpha = 0.4
-        blackcolor.alpha = 0.4
-        greycolor.alpha = 0.4
-        goldcolor.alpha = 0.4
         
+        choosethecolor(sender)
+
         colorchanged = true
         
         delegate?.changecolor(colorcode)
@@ -318,17 +327,12 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
         
     }
     
-    @IBAction func darkgreenaction(sender: AnyObject) {
+    @IBAction func darkgreenaction(sender: UIButton) {
         
         colorcode = dgreen
-        redcolor.alpha = 0.4
-        darkgreencolor.alpha = 1
-        lightgreencolor.alpha = 0.4
-        yellowcolor.alpha = 0.4
-        blackcolor.alpha = 0.4
-        greycolor.alpha = 0.4
-        goldcolor.alpha = 0.4
         
+        choosethecolor(sender)
+
         colorchanged = true
         
         delegate?.changecolor(colorcode)
@@ -336,69 +340,49 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     
-    @IBAction func lightgreenaction(sender: AnyObject) {
+    @IBAction func lightgreenaction(sender: UIButton) {
         
         colorcode = lgreen
-        redcolor.alpha = 0.4
-        darkgreencolor.alpha = 0.4
-        lightgreencolor.alpha = 1
-        yellowcolor.alpha = 0.4
-        blackcolor.alpha = 0.4
-        greycolor.alpha = 0.4
-        goldcolor.alpha = 0.4
         
+        choosethecolor(sender)
+
         colorchanged = true
         
         delegate?.changecolor(colorcode)
         
     }
     
-    @IBAction func yellowaction(sender: AnyObject) {
+  
+    @IBAction func violetaction(sender: UIButton) {
         
-        colorcode = yellow
-        redcolor.alpha = 0.4
-        darkgreencolor.alpha = 0.4
-        lightgreencolor.alpha = 0.4
-        yellowcolor.alpha = 1
-        blackcolor.alpha = 0.4
-        greycolor.alpha = 0.4
-        goldcolor.alpha = 0.4
+        colorcode = violet
         
+        choosethecolor(sender)
+
         colorchanged = true
         
         delegate?.changecolor(colorcode)
-        
     }
     
     
-    @IBAction func blackaction(sender: AnyObject) {
+    @IBAction func blackaction(sender: UIButton) {
         
         colorcode = black
-        redcolor.alpha = 0.4
-        darkgreencolor.alpha = 0.4
-        lightgreencolor.alpha = 0.4
-        yellowcolor.alpha = 0.4
-        blackcolor.alpha = 1
-        greycolor.alpha = 0.4
-        goldcolor.alpha = 0.4
         
+        choosethecolor(sender)
+
         colorchanged = true
         
         delegate?.changecolor(colorcode)
         
     }
     
-    @IBAction func greyaction(sender: AnyObject) {
+    @IBAction func greyaction(sender: UIButton) {
         
         colorcode = grey
-        redcolor.alpha = 0.4
-        darkgreencolor.alpha = 0.4
-        lightgreencolor.alpha = 0.4
-        yellowcolor.alpha = 0.4
-        blackcolor.alpha = 0.4
-        greycolor.alpha = 1
-        goldcolor.alpha = 0.4
         
+        choosethecolor(sender)
+
         colorchanged = true
         
         delegate?.changecolor(colorcode)
@@ -406,16 +390,11 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     
-    @IBAction func goldaction(sender: AnyObject) {
+    @IBAction func goldaction(sender: UIButton) {
         
         colorcode = gold
-        redcolor.alpha = 0.4
-        darkgreencolor.alpha = 0.4
-        lightgreencolor.alpha = 0.4
-        yellowcolor.alpha = 0.4
-        blackcolor.alpha = 0.4
-        greycolor.alpha = 0.4
-        goldcolor.alpha = 1
+        
+        choosethecolor(sender)
         
         colorchanged = true
         
@@ -423,115 +402,211 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
         
     }
     
+    
+    @IBAction func magentaaction(sender: UIButton) {
+        
+        colorcode = magenta
+        
+        choosethecolor(sender)
+        
+        colorchanged = true
+        
+        delegate?.changecolor(colorcode)
+    }
+    
+    
+    @IBAction func lightmagentaaction(sender: UIButton) {
+        
+        colorcode = lightmagenta
+        
+        choosethecolor(sender)
+        
+        colorchanged = true
+        
+        delegate?.changecolor(colorcode)
+    }
+    
+
+    @IBAction func pinkaction(sender: UIButton) {
+        
+        colorcode = pink
+        
+        choosethecolor(sender)
+        
+        colorchanged = true
+        
+        delegate?.changecolor(colorcode)
+    }
+    
+    @IBAction func orangeaction(sender: UIButton) {
+        
+        colorcode = orange
+        
+        choosethecolor(sender)
+        
+        colorchanged = true
+        
+        delegate?.changecolor(colorcode)
+    }
+    
+    @IBAction func darkredaction(sender: UIButton) {
+        
+        colorcode = darkred
+        
+        choosethecolor(sender)
+        
+        colorchanged = true
+        
+        delegate?.changecolor(colorcode)
+    }
+    
+    
+    
+    
     /////////////
+    
+    var arrayofbuttonoutlets = [UIButton]()
+    
+    func setroundness() {
+        for button in arrayofbuttonoutlets {
+            button.layer.cornerRadius = 8
+
+        }
+    }
+    
+    func choosethecolor(button: UIButton) {
+        
+        for b in arrayofbuttonoutlets {
+            if b == button {
+                b.alpha = 1.0
+            } else {
+                b.alpha = 0.5
+            }
+        }
+        
+        colorchanged = true
+        
+        if senderVC == "ShopList" {
+        delegate?.changecolor(colorcode)
+        } else if senderVC == "AllListsVC" {
+            
+            let query = PFQuery(className:"shopLists")
+            query.fromLocalDatastore()
+            query.whereKey("listUUID", equalTo: listtoupdate)
+            query.getFirstObjectInBackgroundWithBlock() {
+                (shopList: PFObject?, error: NSError?) -> Void in
+                if error != nil {
+                } else if let shopList = shopList {
+
+                        shopList["ListColorCode"] = self.colorcode
+
+                    shopList.pinInBackground()
+   
+                }
+                
+            }
+            
+            
+            if let foundshoplist = UserShopLists.map({ $0.listid }).lazy.indexOf(listtoupdate) {
+
+                    UserShopLists[foundshoplist].listcolorcode = colorcode
+
+                
+            }
+            
+            if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(listtoupdate) {
+
+                    UserLists[foundlist].listcolorcode = colorcode
+                
+                
+            }
+            
+            if let foundfavlist = UserFavLists.map({ $0.listid }).lazy.indexOf(listtoupdate) {
+
+                    UserFavLists[foundfavlist].listcolorcode = colorcode
+              
+                
+            }
+            
+        }
+    }
+    
+    func setcurrentcolor(button: UIButton) {
+        for b in arrayofbuttonoutlets {
+            if b == button {
+                b.alpha = 1.0
+            } else {
+                b.alpha = 0.5
+            }
+        }
+
+    }
     
     
     override func viewWillAppear(animated: Bool) {
         currencylabel.text = "\(code) - \(symbol)"
         
-        if showcats == false {
-            
-            //self.showcatsoutlet.setTitle("Show categories", forState: UIControlState.Normal)
-            
-            
-            showcatsoutlet.setTitle(NSLocalizedString("showcats", comment: ""), forState: UIControlState.Normal)
-            /*
-            showcatsoutlet.titleLabel!.textColor = UIColorFromRGB(0x61C791)
-            showcatsoutlet.layer.borderWidth = 1
-            showcatsoutlet.layer.borderColor = UIColorFromRGB(0x61C791).CGColor
-            */
-        } else {
-            
-            // self.showcatsoutlet.setTitle("Hide categories", forState: UIControlState.Normal)
-            
-            showcatsoutlet.setTitle(NSLocalizedString("hidecats", comment: ""), forState: UIControlState.Normal)
-            
-            // self.showcatsoutlet.titleLabel!.font = UIFont(name: "HelveticaNeue-UltraLight", size: 18)
-           
-        }
+        
         
         if colorcode == red {
-            
             colorcode = red
-            redcolor.alpha = 1
-            darkgreencolor.alpha = 0.6
-            lightgreencolor.alpha = 0.6
-            yellowcolor.alpha = 0.6
-            blackcolor.alpha = 0.6
-            greycolor.alpha = 0.6
-            goldcolor.alpha = 0.6
-        } else if colorcode == yellow {
-            
-            colorcode = yellow
-            redcolor.alpha = 0.6
-            darkgreencolor.alpha = 0.6
-            lightgreencolor.alpha = 0.6
-            yellowcolor.alpha = 1
-            blackcolor.alpha = 0.6
-            greycolor.alpha = 0.6
-            goldcolor.alpha = 0.6
+            setcurrentcolor(redcolor)
             
         } else if colorcode == dgreen {
             
             colorcode = dgreen
-            redcolor.alpha = 0.6
-            darkgreencolor.alpha = 1
-            lightgreencolor.alpha = 0.6
-            yellowcolor.alpha = 0.6
-            blackcolor.alpha = 0.6
-            greycolor.alpha = 0.6
-            goldcolor.alpha = 0.6
+            setcurrentcolor(darkgreencolor)
+        } else if colorcode == gold {
             
-        } else if colorcode == lgreen {
-            
-            colorcode = lgreen
-            redcolor.alpha = 0.6
-            darkgreencolor.alpha = 0.6
-            lightgreencolor.alpha = 1
-            yellowcolor.alpha = 0.6
-            blackcolor.alpha = 0.6
-            greycolor.alpha = 0.6
-            goldcolor.alpha = 0.6
+            colorcode = gold
+            setcurrentcolor(goldcolor)
             
         } else if colorcode == black {
             
             colorcode = black
-            redcolor.alpha = 0.6
-            darkgreencolor.alpha = 0.6
-            lightgreencolor.alpha = 0.6
-            yellowcolor.alpha = 0.6
-            blackcolor.alpha = 1
-            greycolor.alpha = 0.6
-            goldcolor.alpha = 0.6
+            setcurrentcolor(blackcolor)
             
         } else if colorcode == grey {
             
             colorcode = grey
-            redcolor.alpha = 0.6
-            darkgreencolor.alpha = 0.6
-            lightgreencolor.alpha = 0.6
-            yellowcolor.alpha = 0.6
-            blackcolor.alpha = 0.6
-            greycolor.alpha = 1
-            goldcolor.alpha = 0.6
+            setcurrentcolor(greycolor)
             
-        } else if colorcode == gold {
+        } else if colorcode == magenta {
             
-            colorcode = gold
-            redcolor.alpha = 0.6
-            darkgreencolor.alpha = 0.6
-            lightgreencolor.alpha = 0.6
-            yellowcolor.alpha = 0.6
-            blackcolor.alpha = 0.6
-            greycolor.alpha = 0.6
-            goldcolor.alpha = 1
+            colorcode = magenta
+            setcurrentcolor(magentacolor)
+            
+        } else if colorcode == lgreen {
+            
+            colorcode = lgreen
+            setcurrentcolor(lightgreencolor)
+            
+        } else if colorcode == lightmagenta {
+            
+            colorcode = lightmagenta
+            setcurrentcolor(lightmagentacolor)
+            
+        } else if colorcode == pink {
+            
+            colorcode = pink
+            setcurrentcolor(pinkcolor)
+            
+        } else if colorcode == orange {
+            
+            colorcode = orange
+            setcurrentcolor(orangecolor)
+            
+        } else if colorcode == violet {
+            
+            colorcode = violet
+            setcurrentcolor(violetcolor)
+            
+        } else if colorcode == darkred {
+            
+            colorcode = darkred
+            setcurrentcolor(darkredcolor)
             
         }
-
-
-
-
-
 
     }
     
@@ -583,7 +658,24 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
         return 30
     }
     
+  
     
+    func tableView(tableView: UITableView!, viewForHeaderInSection section: Int) -> UIView!
+    {
+        let headerView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, 30))
+        
+            headerView.backgroundColor = UIColorFromRGB(0xFFFFFF)//UIColor.clearColor()
+        
+        let headerLabel = UILabel(frame: CGRectMake(12, 8, tableView.frame.width, 30))
+        headerLabel.font = UIFont(name: "AvenirNext-Regular", size: 15)
+        headerLabel.textColor = UIColorFromRGB(0x31797D)
+        headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
+        headerLabel.sizeToFit()
+        
+        headerView.addSubview(headerLabel)
+        
+        return headerView
+    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -592,9 +684,27 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
         
         if indexPath.section == 0 {
             cell.curlabel.text = "\(commoncurrencies[indexPath.row][0]) (\(commoncurrencies[indexPath.row][1]))"
+            
+            
+                if commoncurrencies[indexPath.row][0] == code {
+                    cell.accessoryType = .Checkmark
+                } else {
+                    cell.accessoryType = .None
+            }
+            
+            
         } else {
             cell.curlabel.text = "\(currencies[indexPath.row][0]) (\(currencies[indexPath.row][1]))"
+            
+            if currencies[indexPath.row][0] == code {
+                cell.accessoryType = .Checkmark
+            } else {
+                cell.accessoryType = .None
+            }
+
+            
         }
+        
         
       //  cell.curlabel.text = "\(currencies[indexPath.row][0]) (\(currencies[indexPath.row][1]))"
         
@@ -605,108 +715,95 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
+        // let ItemCellIdentifier = "NewListItem"
+        // let cell = tableView.dequeueReusableCellWithIdentifier(ItemCellIdentifier, forIndexPath: indexPath) as! ItemShopListCell
+        
+        var cell = tableView.cellForRowAtIndexPath(indexPath) as! currencycellTableViewCell
+        cell.tintColor = UIColorFromRGB(0x31797D)
+        
         if indexPath.section == 0 {
             symbol = commoncurrencies[indexPath.row][1]
             code = commoncurrencies[indexPath.row][0]
             
             currencylabel.text = "\(code) (\(symbol))"
+            cell.accessoryType = .Checkmark
+            
+            
         } else {
             symbol = currencies[indexPath.row][1]
             code = currencies[indexPath.row][0]
             
             currencylabel.text = "\(code) (\(symbol))"
+            cell.accessoryType = .Checkmark
         }
-        /*
-        symbol = currencies[indexPath.row][1]
-        code = currencies[indexPath.row][0]
         
-        currencylabel.text = "\(code) (\(symbol))"
-        */
+        if senderVC == "ShopList" {
+            
+        delegate?.changecodeandsymbol(code, newsymbol: symbol)
+            
+        } else if senderVC == "AllListsVC" {
+
+            let query = PFQuery(className:"shopLists")
+            query.fromLocalDatastore()
+            query.whereKey("listUUID", equalTo: listtoupdate)
+            query.getFirstObjectInBackgroundWithBlock() {
+                (shopList: PFObject?, error: NSError?) -> Void in
+                if error != nil {
+                    print(error)
+                } else if let shopList = shopList {
+
+                    var currencyarray = [String]()
+                    currencyarray.append(self.code)
+                    currencyarray.append(self.symbol)
+                    shopList["CurrencyArray"] = currencyarray
+                    shopList.pinInBackground()
+
+                }
+                
+            }
+
+            if let foundshoplist = UserShopLists.map({ $0.listid }).lazy.indexOf(listtoupdate) {
+               
+                UserShopLists[foundshoplist].listcurrency = [code,symbol]
+                
+            }
+            
+            if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(listtoupdate) {
+                
+                UserLists[foundlist].listcurrency = [code,symbol]
+                
+            }
+            
+            if let foundfavlist = UserFavLists.map({ $0.listid }).lazy.indexOf(listtoupdate) {
+
+                UserFavLists[foundfavlist].listcurrency = [code,symbol]
+
+            }
+            
+        }
+        
+        tableView.reloadData()
+
     }
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*
-        if senderVC == "AllListsVC" {
-            
-            let visuaEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
-            visuaEffectView.frame = self.view.bounds
-            
-            visuaEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]//.FlexibleWidth | .FlexibleHeight
-            visuaEffectView.translatesAutoresizingMaskIntoConstraints = true//setTranslatesAutoresizingMaskIntoConstraints(true)
-            self.view.addSubview(visuaEffectView)
-            
-        }
-        */
         
+       
         
-        cancelb.layer.borderWidth = 1
-        cancelb.layer.borderColor = UIColorFromRGB(0xF23D55).CGColor
-        cancelb.layer.cornerRadius = 8
+        arrayofbuttonoutlets  = [redcolor, darkgreencolor, goldcolor, blackcolor, greycolor, magentacolor, lightgreencolor, lightmagentacolor, pinkcolor, orangecolor, violetcolor, darkredcolor]
         
+         setroundness()
         
-        doneb.layer.cornerRadius = 8
-        
+        print(senderVC)
         
         addedindicator.alpha = 0
         addedindicator.layer.cornerRadius = 8
-        addedindicator.backgroundColor = UIColorFromRGBalpha(0x2a2f36, alp: 1)
-        
-        self.view.backgroundColor = UIColorFromRGBalpha(0xFAFAFA, alp: 0.5)
-        
-        uncheckalloutlet.layer.borderWidth = 1
-        uncheckalloutlet.layer.borderColor = UIColorFromRGB(0x2A2F36).CGColor
-        
-        
-        showcatsoutlet.layer.borderWidth = 1
-        showcatsoutlet.layer.borderColor = UIColorFromRGB(0x2A2F36).CGColor
-        
-      //  self.picker.delegate = self
-     //   self.picker.dataSource = self
-        //self.currencybuttonoutlet.setTitle(String(stringInterpolationSegment: symbol), forState: UIControlState.Normal)
-        /*
-        currencylabel.text = "\(code) - \(symbol)"
-        
-        if showcats == false {
-            
-            //self.showcatsoutlet.setTitle("Show categories", forState: UIControlState.Normal)
-            
-            
-            self.showcatsoutlet.setTitle("Show categories", forState: UIControlState.Normal)
-            
-            self.showcatsoutlet.titleLabel!.textColor = UIColorFromRGB(0x61C791)
-            
-            showcatsview.layer.borderColor = UIColorFromRGB(0x61C791).CGColor
-            
-        } else {
-            
-           // self.showcatsoutlet.setTitle("Hide categories", forState: UIControlState.Normal)
-            
-            self.showcatsoutlet.setTitle("Hide categories", forState: UIControlState.Normal)
-            
-            // self.showcatsoutlet.titleLabel!.font = UIFont(name: "HelveticaNeue-UltraLight", size: 18)
-            self.showcatsoutlet.titleLabel!.textColor = UIColorFromRGB(0xF23D55)
-            showcatsview.layer.borderColor = UIColorFromRGB(0xF23D55).CGColor
-        }
-*/
-        
-        
-        
-        //view.layer.cornerRadius = 10
-        /*
-        var blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
-        var blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        view.addSubview(blurEffectView)
-        view.sendSubviewToBack(blurEffectView)
-        */
-        //view.alpha = 0.70
-        
+        addedindicator.backgroundColor = UIColorFromRGBalpha(0x31797D, alp: 1)
+
         view.backgroundColor = UIColorFromRGB(0xFAFAFA)
-       // view.layer.borderWidth = 1
-       // view.layer.borderColor = UIColorFromRGB(0x2A2F36).CGColor
-        
+
        
         // Do any additional setup after loading the view.
     }

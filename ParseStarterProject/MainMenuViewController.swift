@@ -767,7 +767,10 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
                                 
                         var listscolor = object["ListColorCode"] as! String
                             
-                        
+                            //Doing this in order to compensate for deleted color in previous versions
+                            if listscolor == "DAFFA4" {
+                                listscolor = "A2AF36"
+                            }
                         
                         
                         var userlist : UserList = UserList(
