@@ -236,6 +236,8 @@ class ManageCategoriesVC: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         
         newcatname.delegate = self
+        
+        newcatname.text = ""
 
         newcatname.leftTextMargin = 5
         

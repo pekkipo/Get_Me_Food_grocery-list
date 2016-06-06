@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import Foundation
+import ASHorizontalScrollView
 
 
 var customcategories = [Category]()
@@ -225,8 +226,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     
     @IBOutlet weak var stepper: UIStepper!
     
-    
-    @IBOutlet weak var categorybutton: UIButton!
+
     
     @IBOutlet weak var categoryimageoutlet: UIImageView!
     
@@ -1569,7 +1569,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             
             
             popoverViewController.delegate = self //WITHOUT THIS IT WONT WORK
-            popoverViewController.cattext = self.categorybutton.titleForState(.Normal)
+           
             //popoverViewController.delegate = self
          //   popoverViewController.sourceView = sender
             //popoverViewController.cattext = self.categorybutton.titleForState(.Normal)
@@ -1612,7 +1612,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
        // categorybutton.setTitle(categoryname, forState: .Normal)
         //categoryimageoutlet.image = categoryimage
         
-        categorybutton.setTitle(category.catname, forState: .Normal)
+      //  categorybutton.setTitle(category.catname, forState: .Normal)
         categoryimageoutlet.image = category.catimage
         itemcategory = category
         itemcategoryUUID = category.catId
@@ -1945,11 +1945,11 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                 
                 if self.itemiscatalog == true {
                     
-                    self.categorybutton.enabled = false
+                   // self.categorybutton.enabled = false
                     self.chooseitemimageoutlet.enabled = false
                     self.itemNameOutlet.enabled = false
                     
-                    self.categorybutton.alpha = 0.6
+                   // self.categorybutton.alpha = 0.6
                     self.chooseitemimageoutlet.alpha = 0.6
                     self.itemNameOutlet.alpha = 0.6
                 }
@@ -2083,7 +2083,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                     
                     self.itemcategoryUUID = catalogcategory.catId
                     
-                    self.categorybutton.setTitle(catalogcategory.catname, forState: .Normal)
+                   // self.categorybutton.setTitle(catalogcategory.catname, forState: .Normal)
                     
                     self.categoryimageoutlet.image = catalogcategory.catimage
                     }
@@ -2101,7 +2101,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                         
                         self.itemcategoryUUID = catalogcategory.catId
                         
-                        self.categorybutton.setTitle(catalogcategory.catname, forState: .Normal)
+                       // self.categorybutton.setTitle(catalogcategory.catname, forState: .Normal)
                         
                         self.categoryimageoutlet.image = catalogcategory.catimage
                     }
@@ -2443,10 +2443,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet var amountview: UIView!
     
     
-    @IBOutlet var categoryview: UIView!
    
-    
-    @IBOutlet var cancelbuttonoutlet: UIButton!
     
     
     @IBOutlet var changeconstr1: NSLayoutConstraint!
@@ -2464,10 +2461,173 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet var noteheight: NSLayoutConstraint!
     
     
+    // MARK: New categories stuff
+    
+    @IBOutlet var viewforcats: UIView!
+    
+    var horizontalScrollView = ASHorizontalScrollView()
+    
+    func setupButton(button: UIButton) {
+        
+            //Customize the button
+            button.titleLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
+            button.backgroundColor = UIColor.clearColor()
+            button.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 9)
+            button.setTitleColor(UIColorFromRGB(0x979797), forState: UIControlState.Normal)
+           // button.layer.borderWidth = 1
+           // button.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+            button.tintColor = UIColorFromRGB(0x31797D)
+            button.layer.cornerRadius = 8
+        
+      
+        
+        if button.titleLabel!.text != nil {
+        let spacing: CGFloat = 1.0
+        let imageSize: CGSize = button.imageView!.image!.size
+       // button.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height + spacing), 0.0)
+            button.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height - 20), 0.0)
+        let labelString = NSString(string: button.titleLabel!.text!)
+        let titleSize = labelString.sizeWithAttributes([NSFontAttributeName: button.titleLabel!.font])
+        button.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height - 12), 0.0, 0.0, -titleSize.width)
+        let edgeOffset = abs(titleSize.height - imageSize.height) / 2.0;
+        button.contentEdgeInsets = UIEdgeInsetsMake(edgeOffset, 0.0, edgeOffset, 0.0)
+            
+            button.imageView?.frame.size = CGSizeMake(24,24)
+            button.imageView?.contentMode = .ScaleAspectFit
+        }
+
+    
+        /*
+            //button.titleLabel!.frame = CGRectMake(0,0,70,28)
+            button.titleLabel?.textAlignment = .Center
+            button.contentHorizontalAlignment = .Center
+            button.contentVerticalAlignment = .Center
+             // top left bottom right
+
+           // button.imageView?.frame = CGRectMake(0,0,26,26)
+            button.imageView?.frame.size = CGSizeMake(26,26)
+            button.imageEdgeInsets = UIEdgeInsetsMake(0,21,28,0)
+            button.titleEdgeInsets = UIEdgeInsetsMake(34,-26,0,0)
+            */
+           // button.imageView?.contentMode = .ScaleAspectFit
+            
+        
+        print(button.titleLabel!.text)
+        print( button.imageView?.image)
+        
+        
+            // Center the image
+        /*
+        let buttonSize :CGSize = button.frame.size
+         if button.titleLabel!.text != nil {
+        let buttonTitle = NSString(string: button.titleLabel!.text!)
+        let titleSize :CGSize = buttonTitle.sizeWithAttributes([NSFontAttributeName: button.titleLabel!.font])
+        let buttonImage : UIImage = button.imageView!.image!;
+        let buttonImageSize : CGSize = buttonImage.size;
+        
+        let offsetBetweenImageAndText : CGFloat = 6; //vertical space between image and text
+        
+        button.imageEdgeInsets = UIEdgeInsetsMake((buttonSize.height - (titleSize.height + buttonImageSize.height)) / 2 - offsetBetweenImageAndText,
+        (buttonSize.width - buttonImageSize.width) / 2,
+        0,0)
+        button.titleEdgeInsets = UIEdgeInsetsMake((buttonSize.height - (titleSize.height + buttonImageSize.height)) / 2 + buttonImageSize.height + offsetBetweenImageAndText,
+        titleSize.width + button.imageEdgeInsets.left > buttonSize.width ? -buttonImage.size.width  +  (buttonSize.width - titleSize.width) / 2 : (buttonSize.width - titleSize.width) / 2 - buttonImage.size.width,
+        0,0);
+        }
+        */
+        /*
+            let spacing: CGFloat = 4.0
+            let imageSize: CGSize =
+                button.imageView!.image!.size
+            button.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height + spacing), 0.0) // top left bottom right
+            if button.titleLabel!.text != nil {
+            let labelString = NSString(string: button.titleLabel!.text!)
+            let titleSize = labelString.sizeWithAttributes([NSFontAttributeName: button.titleLabel!.font])
+           // button.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height + spacing), 0.0, 0.0, -titleSize.width)
+                 button.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height - spacing), 0.0, 0.0, -titleSize.width)
+                
+            let edgeOffset = abs(titleSize.height - imageSize.height) / 2.0;
+            button.contentEdgeInsets = UIEdgeInsetsMake(edgeOffset, 0.0, edgeOffset, 0.0)
+        }
+        */
+    }
+    
+    func choosecategoryhere(sender:UIButton) {
+       
+        var category : Category = catalogcategories[sender.tag]
+        
+        //categorybutton.setTitle(category.catname, forState: .Normal)
+       // categoryimageoutlet.image = category.catimage
+        itemcategory = category
+        itemcategoryUUID = category.catId
+        
+        
+        for button in horizontalScrollView.subviews {
+            
+            if let tappedbutton = button as? UIButton {
+                if tappedbutton.tag == sender.tag {
+                    
+                    sender.tintColor = UIColorFromRGB(0x31797D)
+                    sender.setTitleColor(UIColorFromRGB(0x31797D), forState: UIControlState.Normal)
+                    sender.layer.borderWidth = 1
+                    sender.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
+                } else {
+                    
+                    tappedbutton.tintColor = UIColorFromRGB(0x979797)
+                    tappedbutton.setTitleColor(UIColorFromRGB(0x979797), forState: UIControlState.Normal)
+                    tappedbutton.layer.borderWidth = 0
+                    tappedbutton.layer.borderColor = UIColor.clearColor().CGColor
+                }
+            }
+        }
+    }
+    
+    func addcustomhere() {
+        
+        //segue to manage custom cats
+        
+    }
+
+    
     
         override func viewDidLoad() {
         super.viewDidLoad()
             
+            // SETUP CATEGORIES SCROLLER
+            
+            horizontalScrollView = ASHorizontalScrollView(frame:CGRectMake(12, 0, viewforcats.frame.width, 70))//viewforcats.frame.height - 5))
+            horizontalScrollView.uniformItemSize = CGSizeMake(70, 70)
+            horizontalScrollView.leftMarginPx = 0
+            horizontalScrollView.miniMarginPxBetweenItems = 0
+            horizontalScrollView.miniAppearPxOfLastItem = 10
+            horizontalScrollView.setItemsMarginOnce()
+
+
+            
+                // add custom cat button
+            var addcustomcatbutton = UIButton(frame: CGRectZero)
+            addcustomcatbutton.setTitle(NSLocalizedString("something", comment: ""), forState: .Normal)
+            addcustomcatbutton.setImage(UIImage(named: "4Share"), forState: .Normal)
+            addcustomcatbutton.addTarget(self, action: "addcustomhere:", forControlEvents: UIControlEvents.TouchDown)
+            setupButton(addcustomcatbutton)
+            horizontalScrollView.addItem(addcustomcatbutton)
+            
+            //categories setup
+            for i in (0..<catalogcategories.count) {
+                
+                var button = UIButton(frame: CGRectZero)
+                button.setTitle(catalogcategories[i].catname, forState: .Normal)
+                button.setImage(catalogcategories[i].catimage, forState: .Normal)
+                
+                button.tag = i
+                
+                button.addTarget(self, action: "choosecategoryhere:", forControlEvents: UIControlEvents.TouchDown)
+                setupButton(button)
+                horizontalScrollView.addItem(button)
+                
+            }
+            print(catalogcategories)
+            self.viewforcats.addSubview(horizontalScrollView)
             
             curcodelabel.text = symbol
            // if UIDevice().screenType == UIDevice.ScreenType.iPhone4 {
@@ -2479,46 +2639,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                 changeconstr2.constant = 8
             }
             
-            
-         //   NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-            
-          //  NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide", name: UIKeyboardWillHideNotification, object: nil)
-            
-            
-            
-            /*
-            
-            UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
-            numberToolbar.barStyle = UIBarStyleBlackTranslucent;
-            numberToolbar.items = @[[[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelNumberPad)],
-            [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-            [[UIBarButtonItem alloc]initWithTitle:@"Apply" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithNumberPad)]];
-            [numberToolbar sizeToFit];
-            numberTextField.inputAccessoryView = numberToolbar;
-            
-            
-            */
-            
-           
-            /*
-            var numberToolbar2 = UIToolbar(frame: CGRectMake(0, 0, 320, 50))
-            
-            let flexibleSpace2 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-            
-            let done2: UIBarButtonItem = UIBarButtonItem(title: "DONE", style: UIBarButtonItemStyle.Plain, target: self, action: "closenumberpad2:")
-            done2.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!, NSForegroundColorAttributeName: UIColorFromRGB(0xFAFAFA)], forState: UIControlState.Normal)
-            
-            let toolbarButtons2 = [flexibleSpace2,done2]
-            
-             
-            numberToolbar2.sizeToFit()
-            numberToolbar2.translucent = true
-            numberToolbar2.barTintColor = UIColorFromRGB(0x2A2F36)
-            numberToolbar2.alpha = 1
-            numberToolbar2.setItems(toolbarButtons2, animated: true)
-            */
-            
-            
+
             
             let toolFrame = CGRectMake(0, 0, self.view.frame.size.width, 46);
             let toolView: UIView = UIView(frame: toolFrame);
@@ -2553,15 +2674,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             closepad2.addTarget(self, action: "closenumberpad:", forControlEvents: UIControlEvents.TouchDown);
             
            itemPriceOutlet.inputAccessoryView = toolView2
-            
-            /*
-            var numberFormatter = NSNumberFormatter()
-            numberFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-            numberFormatter.currencyCode = code
-            maximumFractionDigits = numberFormatter.maximumFractionDigits
-            decimalSeparator = numberFormatter.decimalSeparator!
-            */
-           // itemNameOutlet.layer.sublayerTransform = CATransform3DMakeTranslation(2, 0, 0)
+
             itemNameOutlet.leftTextMargin = 8
             
             itemNameOutlet.delegate = self
@@ -2570,12 +2683,9 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             itemPriceOutlet.delegate = self
             
             
-            self.view.backgroundColor = UIColorFromRGB(0xF1F1F1)
+            // self.view.backgroundColor = UIColorFromRGB(0xF1F1F1)
             
             
-            cancelbuttonoutlet.layer.borderWidth = 1
-            cancelbuttonoutlet.layer.borderColor = UIColorFromRGB(0xF23D55).CGColor
-            cancelbuttonoutlet.layer.cornerRadius = 4
             
             changepictview.layer.borderWidth = 1
             changepictview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
@@ -2585,15 +2695,13 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             pictview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
             pictview.layer.cornerRadius = 4
            
-            DoneButtonOutlet.layer.cornerRadius = 4
+            
             
             amountview.layer.borderWidth = 1
             amountview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
             amountview.layer.cornerRadius = 4
             
-            categoryview.layer.borderWidth = 1
-            categoryview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-            categoryview.layer.cornerRadius = 4
+          
 
             UnitsButton.layer.borderWidth = 1
             UnitsButton.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
@@ -2617,24 +2725,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             itemPriceOutlet.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
             itemPriceOutlet.layer.cornerRadius = 4
           
-       // stepper.addTarget(self, action: "stepperValueChanged:", forControlEvents: .ValueChanged)
-        // Do any additional setup after loading the view.
-        /*
-        catalogcategories = [
-            Category(catId:"DefaultOthers",catname:"Others",catimage:UIImage(named: "restau.png")!,isCustom:false),
-            Category(catId:"DefaultVegetables",catname:"Vegetables",catimage:UIImage(named: "veg_icon.jpg")!,isCustom:false),
-            Category(catId:"DefaultFruits",catname:"Fruits",catimage:UIImage(named: "fruits_icon.jpg")!,isCustom:false),
-            Category(catId:"DefaultBeverages",catname:"Beverages",catimage:UIImage(named: "check.png")!,isCustom:false),
-            Category(catId:"DefaultPoultry",catname:"Poultry",catimage:UIImage(named: "testimage.png")!,isCustom:false),
-            Category(catId:"DefaultDomesticStuff",catname:"Domestic stuff",catimage:UIImage(named: "testimage.png")!,isCustom:false)
-        ]
-        */
 
-        
-       // categorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
-        
-       // categoryimageoutlet.image = catalogcategories[0].catimage
-        
         
                print("Controller is \(sendercontroller)")
             
@@ -2649,38 +2740,24 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                        
             
         } else {
-           // ProductHistoryOutlet.hidden = false
-          //  pricevalue = 0
-          //  newvalue = 0
+
             
             itemcategory = catalogcategories[0]
             itemcategoryUUID = catalogcategories[0].catId
-            categorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
+            //categorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
             
-            categoryimageoutlet.image = catalogcategories[0].catimage
+          //  categoryimageoutlet.image = catalogcategories[0].catimage
             
             self.isFavouriteItem = false
             self.UnitsButton.setTitle(NSLocalizedString("units", comment: ""), forState: .Normal)
             self.perUnitOutlet.setTitle(NSLocalizedString("units", comment: ""), forState: .Normal)
-            
-            
-            
+
             isdefaultpicture = true
-           // defaultpicturename = imagestochoose[0].imagename
+
 
             
         }
-        /*
-        if isFavouriteItem == true {
-            favimage = UIImage(named: "FavStar.png") as UIImage!
-            additemtofav.setImage(favimage, forState: UIControlState.Normal)
-            additemtofav.addTarget(self, action: "delfromfav:", forControlEvents: .TouchUpInside)
-        } else {
-            notfavimage = UIImage(named: "GrayStar.png") as UIImage!
-            additemtofav.setImage(notfavimage, forState: UIControlState.Normal)
-            additemtofav.addTarget(self, action: "addtofav:", forControlEvents: .TouchUpInside)
-        }
-        */
+
     
         
     }

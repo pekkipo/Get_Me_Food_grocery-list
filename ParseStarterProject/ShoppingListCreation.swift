@@ -4288,11 +4288,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
-    @IBOutlet var toptoolbar: UIToolbar!
+
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
+    
     
     
     func containslistid(values: [String], element: String) -> Bool {
@@ -5943,6 +5941,12 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
      cell.progresscircle.angle = changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).theangle
  
     */
+    
+    
+    @IBAction func additembutton(sender: AnyObject) {
+        
+        performSegueWithIdentifier("additemmodalsegue", sender: sender)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
