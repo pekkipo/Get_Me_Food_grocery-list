@@ -1884,6 +1884,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     var itemtoedit = String()
     
+    var itemtofavs = String()
+    
     var itemtocheck = String()
     
     var checkedImage: UIImage = UIImage(named: "EditModeCheckIcon")!
@@ -8013,7 +8015,12 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
 */
   
     
-    
+    func addtofavs(itemid: String) {
+        
+        
+        addedindicator.alpha = 1
+        addedindicator.fadeOut()
+    }
     
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
@@ -8183,11 +8190,46 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         if let editpict = UIImage(named: "4EditButton50") {
-        editAction.backgroundColor = UIColor.imageWithBackgroundColor(editpict, bgColor: UIColorFromRGB(0xF23D55), w: 50, h: 50)
+        editAction.backgroundColor = UIColor.imageWithBackgroundColor(editpict, bgColor: UIColorFromRGB(0x7ED0A5), w: 50, h: 50)
+        }
+        
+        // Add to favourites
+        let favAction = UITableViewRowAction(style: .Normal, title: "    ") { (action , indexPath ) -> Void in
+            
+            if self.myeditingmode == false {
+                
+                if self.showcats == false {
+                    
+                    self.itemtofavs = itemsDataDict[indexPath.row]["ItemId"] as! String
+                    
+                    self.addtofavs(self.itemtofavs)
+                    
+                } else {
+                    
+                    let section = indexPath.section
+                    let rowsect = indexPath.row
+                    
+                    let tableSection = self.sections[self.sortedSections[section]]
+                    let tableItem = tableSection![rowsect]
+  
+                    self.itemtofavs = (tableItem as NSDictionary).objectForKey("ItemId") as! String
+                    
+                    self.addtofavs(self.itemtofavs)
+                    
+                }
+                
+            } else {
+                print("editing mode enabled")
+            }
+            
+        }
+        
+        if let favpict = UIImage(named: "4AddFav50") {
+            favAction.backgroundColor = UIColor.imageWithBackgroundColor(favpict, bgColor: UIColorFromRGB(0xA2AF36), w: 50, h: 50)
         }
         
        // if self.myeditingmode == false {
-        return [deleteAction, editAction]//, shareAction]
+        return [deleteAction, editAction, favAction]//, shareAction]
        // } else {
        //     return []
        // }

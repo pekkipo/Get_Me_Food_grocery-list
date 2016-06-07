@@ -14,6 +14,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SRKControls-SRKControls.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SRKControls.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>VK-ios-sdk.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,12 +37,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5059DC94562DADCB7BB00C1598F37B3D</key>
+		<key>1FFDED0E91BD4A445E3A218BE097AEB6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E253D9871BAA66FEEF73E48999C31F94</key>
+		<key>619E91FC0D0A77BB939D8EBE4DA957ED</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>85C42C38FB8E12665400D602C983485B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BCC1BEDEF8CE5E837F3105EE4FBF7525</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -1024,7 +1024,6 @@ static const CGFloat kAttachmentsViewSize = 100.0f;
 }
 
 - (void)vkSdkShouldPresentViewController:(UIViewController *)controller {
-    
     if ([SFSafariViewController class] && [controller isKindOfClass:[SFSafariViewController class]]) {
         [self.navigationController presentViewController:controller animated:YES completion:nil];
     } else if ([controller isKindOfClass:[UINavigationController class]]) {
@@ -1035,7 +1034,6 @@ static const CGFloat kAttachmentsViewSize = 100.0f;
     } else {
         [self.navigationController pushViewController:controller animated:YES];
     }
-   
 }
 
 - (void)vkSdkAccessAuthorizationFinishedWithResult:(VKAuthorizationResult *)result {

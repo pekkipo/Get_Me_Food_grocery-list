@@ -188,11 +188,6 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     
     var itemtofav = String()
 
-    //
-    //for image
-   // let imageData = UIImagePNGRepresentation(itemImageOutlet.image)
-    //let imageFile = PFFile(name:"itemImage.png", data:imageData)
-    
     
     
     @IBOutlet weak var nomatchlabel: UILabel!
@@ -202,22 +197,18 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     
     @IBOutlet weak var perUnitOutlet: UIButton!
     
-    @IBOutlet weak var additemtofav: UIButton!
-    
     
     @IBAction func addtofavaction(sender: AnyObject) {
         
         
         if isFavouriteItem == true {
 
-        additemtofav.setImage(notfavimage, forState: UIControlState.Normal)
-       // additemtofav.setTitle("Add Item to Favourites", forState: UIControlState.Normal)
+       
             
             isFavouriteItem = false
             
         } else {
-              additemtofav.setImage(favimage, forState: UIControlState.Normal)
-           // additemtofav.setTitle("Remove from Favourites", forState: UIControlState.Normal)
+            
             isFavouriteItem = true
         }
         
@@ -227,8 +218,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var stepper: UIStepper!
     
 
-    
-    @IBOutlet weak var categoryimageoutlet: UIImageView!
+
     
     @IBOutlet weak var UnitsButton: UIButton!
    
@@ -238,22 +228,18 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     
     @IBOutlet weak var QuantityStepper: UIStepper!
   
-    @IBAction func showCategoryButton(sender: AnyObject) {
-        
-        
-        
-    }
+
     
     @IBAction func showUnitsButton(sender: AnyObject) {
         
-        showPickerInActionSheet(sender as! UIButton)
-      //  showPickerInActionSheet()
+        showunitsview("unit")
+        
     }
     
     
     @IBAction func showPerUnitsPicker(sender: AnyObject) {
         
-         showPickerInActionSheet(sender as! UIButton)
+         showunitsview("perunit")
     }
     
     
@@ -358,84 +344,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         
     }
     
-    
-    //////////CATEGORY PART
-    
-      
-    //////////CATEGORY PART END
-    
-    
-    
-    //// Start save to local
-    /*
-    func saveImageLocally(imageData:NSData!) -> String {
-        var uuid = NSUUID().UUIDString
-        //let time =  NSDate().timeIntervalSince1970
-        let fileManager = NSFileManager.defaultManager()
-        let dir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
-            //.stringByAppendingPathComponent(subDirForImage) as String
-        
-        if !fileManager.fileExistsAtPath(dir) {
-            var error: NSError?
-            if !fileManager.createDirectoryAtPath(dir, withIntermediateDirectories: true, attributes: nil, error: &error) {
-                print("Unable to create directory: \(error)")
-                return ""
-            }
-        }
-        
-        let pathToSaveImage = dir.stringByAppendingPathComponent("item\(uuid).png")
-        //("item\(Int(time)).png")
-        
-        imageData.writeToFile(pathToSaveImage, atomically: true)
-        
-        imagePath = "item\(uuid).png"
-        
-        return imagePath//"item\(Int(time)).png"
-    }
-    
-    
-    //// retrieve image from local
-    func loadImageFromLocalStore(imageName: String) -> UIImage {
-        let fileManager = NSFileManager.defaultManager()
-        let dir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
-        
-        let path = dir.stringByAppendingPathComponent(imageName)
-        
-        if(!path.isEmpty){
-            let image = UIImage(contentsOfFile: path)
-            print(image);
-            if(image != nil){
-                //return image!;
-                self.imageToLoad = image!
-                return imageToLoad
-            }
-        }
-        
-        return UIImage(named: "activity.png")!
-    }
-    
-    func loadCatImageFromLocalStore(imageName1: String) -> UIImage {
-        let fileManager1 = NSFileManager.defaultManager()
-        let dir1 = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
-        
-        let path1 = dir1.stringByAppendingPathComponent(imageName1)
-        
-        if(!path1.isEmpty){
-            let image1 = UIImage(contentsOfFile: path1)
-            print(image1);
-            if(image1 != nil) {
-                //return image!;
-                self.catimageToLoad = image1!
-                return catimageToLoad
-            }
-        }
-        self.catimageToLoad = UIImage(named: "activity.png")!
-        return UIImage(named: "activity.png")!
-        
-    }
-    */
-    
-    //// END save to local
+
     
     
     //IMAGE PART
@@ -471,12 +380,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         
     }
     
-    // itemImageOutlet.image = chosenimage
-    
-   // var isdefaultpicture = Bool()
-    //var defaultpicturename = String()
-    
-   // var isdefaultpicture : Bool = true
+
     var isdefaultpicture = Bool()
     var defaultpicturename : String = imagestochoose[0].imagename
     
@@ -494,10 +398,6 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
 
     
     @IBAction func editchangedquantity(sender: AnyObject) {
-        
-        
-         //   (Qfield.text! as NSString).stringByReplacingOccurrencesOfString(",", withString: ".")
-        
         
          multiplication()
     }
@@ -559,10 +459,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         numberchangeddouble = getvalue
         
         numberchangeddouble += 1
-        //Qfield.text = String(stringInterpolationSegment: numberchangeddouble)
-      //  Qfield.text = String(format: "%.2f", (stringInterpolationSegment: numberchangeddouble))
-      //  Qfield.text = String(format: "%.##", (stringInterpolationSegment: numberchangeddouble))
-       //  Qfield.text = String(stringInterpolationSegment: numberchangeddouble)
+
         
         var formatter = NSNumberFormatter()
         formatter.maximumFractionDigits = 4
@@ -579,36 +476,13 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         multiplication()
     }
     
-    /*
-    var initialValue : Int = 5//Qfield.text.toInt()
-    
-    var value : Int = initialValue {//value = 0 {
-        
-        didSet {
-            
-            //number = oldValue
-           
-            //value = numberchanged
-            //quantitylabel.text = String(value)
-            Qfield.text = String(value)
-        }
-    }
-    
-    */
+
     
     var pricevalue = Double()
     
     var newvalue = Double()
     
     func multiplication() {
-       // self.totalsumlabel.text = "\((Double(value))*((itemPriceOutlet.text) as NSString).doubleValue)"
-        
-        
-           // (itemPriceOutlet.text! as NSString).stringByReplacingOccurrencesOfString(",", withString: ".")
-      
-       
-           // (itemPriceOutlet.text! as NSString).stringByReplacingOccurrencesOfString(",", withString: ".")
-       
 
         
         var unit =  self.UnitsButton.titleForState(.Normal)
@@ -643,29 +517,15 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         formatter.maximumSignificantDigits = 9
 
         if unit == perunit {
-            
-            //self.totalsumlabel.text = "\((Double(numberchanged))*((itemPriceOutlet.text) as NSString).doubleValue)"
-          //  self.totalsumlabel.text = "\((numberchangeddouble)*((itemPriceOutlet.text)! as NSString).doubleValue)"
-            
-         //   self.totalsumlabel.text = "\((numberchangeddouble)*pricevalue)"
-           // String(format: "%.2f", (stringInterpolationSegment: numberchangeddouble)
-            
+
             newvalue = numberchangeddouble*pricevalue
-            
-           
-            
-           // self.totalsumlabel.text = String(format: "%.2f", (stringInterpolationSegment: newvalue))
-            
+
             self.totalsumlabel.text = formatter.stringFromNumber(newvalue)
             
             nomatchlabel.hidden = true
         } else {
             
-            //DEAL WITH UNITS/PER UNITS
-            
-            //var units : [[String]] = [["",""],["pieces","pcs"],["Dozens","dz"],["kilograms","Kg"], ["grams","g"], ["liters","L"], ["milliliters","ml"],["fluid ounces","fl oz"], ["ounces","oz"], ["pounds","lb"],["gallons","gal"],["meters","m"],["centimeters","cm"],["inches","\""]]
-            
-            if unit == units[3][1] && perunit == units[4][1] {
+                    if unit == units[3][1] && perunit == units[4][1] {
                 newvalue = (numberchangeddouble)*1000*pricevalue
                 self.totalsumlabel.text = formatter.stringFromNumber(newvalue)
                 nomatchlabel.hidden = true
@@ -719,231 +579,6 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                 nomatchlabel.text = NSLocalizedString("dontmatch", comment: "")
             }
             
-            /*
-            if unit == units[3][1] && perunit == units[4][1] {
-                
-                self.totalsumlabel.text = "\((numberchangeddouble)*1000*pricevalue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[4][1] && perunit == units[3][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*0.001*pricevalue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[5][1] && perunit == units[6][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*1000*pricevalue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[6][1] && perunit == units[5][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*0.001*pricevalue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[11][1] && perunit == units[12][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*1000*pricevalue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[12][1] && perunit == units[11][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*0.001*pricevalue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[9][1] && perunit == units[8][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*16.0*pricevalue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[8][1] && perunit == units[9][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*0.0625*pricevalue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[9][1] && perunit == units[3][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*0.453*pricevalue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[3][1] && perunit == units[9][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*2.204*pricevalue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[5][1] && perunit == units[7][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*33.814*pricevalue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[7][1] && perunit == units[5][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*0.029*pricevalue)"
-                nomatchlabel.hidden = true
-            } else {
-                //case when no match
-                nomatchlabel.hidden = false
-                nomatchlabel.text = NSLocalizedString("dontmatch", comment: "")
-            }
-        */
-            /*
-
-            if unit == units[3][1] && perunit == units[4][1] {
-            
-            self.totalsumlabel.text = "\((numberchangeddouble)*1000*pricevalue)"
-            nomatchlabel.hidden = true
-            } else if unit == units[4][1] && perunit == units[3][1] {
-            self.totalsumlabel.text = "\((numberchangeddouble)*0.001*pricevalue)"
-            nomatchlabel.hidden = true
-            } else if unit == units[5][1] && perunit == units[6][1] {
-            self.totalsumlabel.text = "\((numberchangeddouble)*1000*pricevalue)"
-            nomatchlabel.hidden = true
-            } else if unit == units[6][1] && perunit == units[5][1] {
-            self.totalsumlabel.text = "\((numberchangeddouble)*0.001*pricevalue)"
-            nomatchlabel.hidden = true
-            } else if unit == units[11][1] && perunit == units[12][1] {
-            self.totalsumlabel.text = "\((numberchangeddouble)*1000*pricevalue)"
-            nomatchlabel.hidden = true
-            } else if unit == units[12][1] && perunit == units[11][1] {
-            self.totalsumlabel.text = "\((numberchangeddouble)*0.001*pricevalue)"
-            nomatchlabel.hidden = true
-            } else if unit == units[9][1] && perunit == units[8][1] {
-            self.totalsumlabel.text = "\((numberchangeddouble)*16.0*pricevalue)"
-            nomatchlabel.hidden = true
-            } else if unit == units[8][1] && perunit == units[9][1] {
-            self.totalsumlabel.text = "\((numberchangeddouble)*0.0625*pricevalue)"
-            nomatchlabel.hidden = true
-            } else if unit == units[9][1] && perunit == units[3][1] {
-            self.totalsumlabel.text = "\((numberchangeddouble)*0.453*pricevalue)"
-            nomatchlabel.hidden = true
-            } else if unit == units[3][1] && perunit == units[9][1] {
-            self.totalsumlabel.text = "\((numberchangeddouble)*2.204*pricevalue)"
-            nomatchlabel.hidden = true
-            } else if unit == units[5][1] && perunit == units[7][1] {
-            self.totalsumlabel.text = "\((numberchangeddouble)*33.814*pricevalue)"
-            nomatchlabel.hidden = true
-            } else if unit == units[7][1] && perunit == units[5][1] {
-            self.totalsumlabel.text = "\((numberchangeddouble)*0.029*pricevalue)"
-            nomatchlabel.hidden = true
-            } else {
-            //case when no match
-            nomatchlabel.hidden = false
-            nomatchlabel.text = NSLocalizedString("dontmatch", comment: "")
-            }
-
-*/
-            
-        /*
-        if unit == perunit {
-        
-        //self.totalsumlabel.text = "\((Double(numberchanged))*((itemPriceOutlet.text) as NSString).doubleValue)"
-            self.totalsumlabel.text = "\((numberchangeddouble)*((itemPriceOutlet.text)! as NSString).doubleValue)"
-        } else {
-        
-        //DEAL WITH UNITS/PER UNITS
-            
-              //var units : [[String]] = [["",""],["pieces","pcs"],["Dozens","dz"],["kilograms","Kg"], ["grams","g"], ["liters","L"], ["milliliters","ml"],["fluid ounces","fl oz"], ["ounces","oz"], ["pounds","lb"],["gallons","gal"],["meters","m"],["centimeters","cm"],["inches","\""]]
-        
-            
-            if unit == units[3][1] && perunit == units[4][1] {
-                
-                self.totalsumlabel.text = "\((numberchangeddouble)*1000*((itemPriceOutlet.text)! as NSString).doubleValue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[4][1] && perunit == units[3][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*0.001*((itemPriceOutlet.text)! as NSString).doubleValue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[5][1] && perunit == units[6][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*1000*((itemPriceOutlet.text)! as NSString).doubleValue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[6][1] && perunit == units[5][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*0.001*((itemPriceOutlet.text)! as NSString).doubleValue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[11][1] && perunit == units[12][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*1000*((itemPriceOutlet.text)! as NSString).doubleValue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[12][1] && perunit == units[11][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*0.001*((itemPriceOutlet.text)! as NSString).doubleValue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[9][1] && perunit == units[8][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*16.0*((itemPriceOutlet.text)! as NSString).doubleValue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[8][1] && perunit == units[9][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*0.0625*((itemPriceOutlet.text)! as NSString).doubleValue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[9][1] && perunit == units[3][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*0.453*((itemPriceOutlet.text)! as NSString).doubleValue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[3][1] && perunit == units[9][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*2.204*((itemPriceOutlet.text)! as NSString).doubleValue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[5][1] && perunit == units[7][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*33.814*((itemPriceOutlet.text)! as NSString).doubleValue)"
-                nomatchlabel.hidden = true
-            } else if unit == units[7][1] && perunit == units[5][1] {
-                self.totalsumlabel.text = "\((numberchangeddouble)*0.029*((itemPriceOutlet.text)! as NSString).doubleValue)"
-                nomatchlabel.hidden = true
-            } else {
-                //case when no match
-                nomatchlabel.hidden = false
-                nomatchlabel.text = NSLocalizedString("dontmatch", comment: "")
-            }
-            */
-            /*
-
-            if unit == "Kg" && perunit == "g" {
-            
-            self.totalsumlabel.text = "\((numberchangeddouble)*1000*((itemPriceOutlet.text)! as NSString).doubleValue)"
-            nomatchlabel.hidden = true
-            } else if unit == "g" && perunit == "Kg" {
-            self.totalsumlabel.text = "\((numberchangeddouble)*0.001*((itemPriceOutlet.text)! as NSString).doubleValue)"
-            nomatchlabel.hidden = true
-            } else if unit == "L" && perunit == "ml" {
-            self.totalsumlabel.text = "\((numberchangeddouble)*1000*((itemPriceOutlet.text)! as NSString).doubleValue)"
-            nomatchlabel.hidden = true
-            } else if unit == "ml" && perunit == "L" {
-            self.totalsumlabel.text = "\((numberchangeddouble)*0.001*((itemPriceOutlet.text)! as NSString).doubleValue)"
-            nomatchlabel.hidden = true
-            } else if unit == "m" && perunit == "cm" {
-            self.totalsumlabel.text = "\((numberchangeddouble)*1000*((itemPriceOutlet.text)! as NSString).doubleValue)"
-            nomatchlabel.hidden = true
-            } else if unit == "cm" && perunit == "m" {
-            self.totalsumlabel.text = "\((numberchangeddouble)*0.001*((itemPriceOutlet.text)! as NSString).doubleValue)"
-            nomatchlabel.hidden = true
-            } else if unit == "lb" && perunit == "oz" {
-            self.totalsumlabel.text = "\((numberchangeddouble)*16.0*((itemPriceOutlet.text)! as NSString).doubleValue)"
-            nomatchlabel.hidden = true
-            } else if unit == "oz" && perunit == "lb" {
-            self.totalsumlabel.text = "\((numberchangeddouble)*0.0625*((itemPriceOutlet.text)! as NSString).doubleValue)"
-            nomatchlabel.hidden = true
-            } else if unit == "lb" && perunit == "Kg" {
-            self.totalsumlabel.text = "\((numberchangeddouble)*0.453*((itemPriceOutlet.text)! as NSString).doubleValue)"
-            nomatchlabel.hidden = true
-            } else if unit == "Kg" && perunit == "lb" {
-            self.totalsumlabel.text = "\((numberchangeddouble)*2.204*((itemPriceOutlet.text)! as NSString).doubleValue)"
-            nomatchlabel.hidden = true
-            } else if unit == "L" && perunit == "fl oz" {
-            self.totalsumlabel.text = "\((numberchangeddouble)*33.814*((itemPriceOutlet.text)! as NSString).doubleValue)"
-            nomatchlabel.hidden = true
-            } else if unit == "fl oz" && perunit == "L" {
-            self.totalsumlabel.text = "\((numberchangeddouble)*0.029*((itemPriceOutlet.text)! as NSString).doubleValue)"
-            nomatchlabel.hidden = true
-            } else {
-            //case when no match
-            nomatchlabel.hidden = false
-            nomatchlabel.text = "Units don't match, sum is not calculated"
-            }
-
-*/
-            
-            /*
-            if unit == "Kg" && perunit == "g" {
-            
-               self.totalsumlabel.text = "\((Double(numberchanged))*1000*((itemPriceOutlet.text) as NSString).doubleValue)"
-            } else if unit == "g" && perunit == "Kg" {
-                self.totalsumlabel.text = "\((Double(numberchanged))*0.001*((itemPriceOutlet.text) as NSString).doubleValue)"
-            } else if unit == "L" && perunit == "ml" {
-                self.totalsumlabel.text = "\((Double(numberchanged))*1000*((itemPriceOutlet.text) as NSString).doubleValue)"
-            } else if unit == "ml" && perunit == "L" {
-                self.totalsumlabel.text = "\((Double(numberchanged))*0.001*((itemPriceOutlet.text) as NSString).doubleValue)"
-            } else if unit == "m" && perunit == "cm" {
-                self.totalsumlabel.text = "\((Double(numberchanged))*1000*((itemPriceOutlet.text) as NSString).doubleValue)"
-            } else if unit == "cm" && perunit == "m" {
-                self.totalsumlabel.text = "\((Double(numberchanged))*0.001*((itemPriceOutlet.text) as NSString).doubleValue)"
-            } else if unit == "lb" && perunit == "oz" {
-                self.totalsumlabel.text = "\((Double(numberchanged))*16*((itemPriceOutlet.text) as NSString).doubleValue)"
-            } else if unit == "oz" && perunit == "lb" {
-                self.totalsumlabel.text = "\((Double(numberchanged))*0.0625*((itemPriceOutlet.text) as NSString).doubleValue)"
-            } else if unit == "lb" && perunit == "Kg" {
-                self.totalsumlabel.text = "\((Double(numberchanged))*0.453*((itemPriceOutlet.text) as NSString).doubleValue)"
-            } else if unit == "Kg" && perunit == "lb" {
-                self.totalsumlabel.text = "\((Double(numberchanged))*2.204*((itemPriceOutlet.text) as NSString).doubleValue)"
-            } else if unit == "L" && perunit == "fl oz" {
-                self.totalsumlabel.text = "\((Double(numberchanged))*33.814*((itemPriceOutlet.text) as NSString).doubleValue)"
-            } else if unit == "fl oz" && perunit == "L" {
-                self.totalsumlabel.text = "\((Double(numberchanged))*0.029*((itemPriceOutlet.text) as NSString).doubleValue)"
-            } else {
-                //case when no match
-                nomatchlabel.text = "Units don't match, sum is not calculated"
-            }
-            */
-
             
             
         }
@@ -1016,9 +651,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     
     @IBAction func textfieldedit(sender: UITextField) {
         
-       // if (itemPriceOutlet.text! as NSString).containsString(",") {
-           // (itemPriceOutlet.text! as NSString).stringByReplacingOccurrencesOfString(",", withString: ".")
-      //  }
+
         itemPriceOutlet.text!.doubleConverter
         
         multiplication()
@@ -1026,10 +659,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     
     
     @IBAction func pricevaluechanged(sender: AnyObject) {
-        
-      //  if (itemPriceOutlet.text! as NSString).containsString(",") {
-          //  (itemPriceOutlet.text! as NSString).stringByReplacingOccurrencesOfString(",", withString: ".")
-       // }
+
         
         itemPriceOutlet.text!.doubleConverter
         
@@ -1039,16 +669,11 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     
     @IBAction func qtychanged(sender: AnyObject) {
        
-        //if (Qfield.text! as NSString).containsString(",") {
-           // (Qfield.text! as NSString).stringByReplacingOccurrencesOfString(",", withString: ".")
-      //  }
         
         itemPriceOutlet.text!.doubleConverter
-        
-       // if (Qfield.text.toInt() != nil) {
+
         if (Qfield.text != nil) {
-       // numberchanged = Qfield.text.toInt()!
-            //numberchangeddouble = (Qfield.text! as NSString).doubleValue
+
             numberchangeddouble = Qfield.text!.doubleConverter
         } else {
             print("no number")
@@ -1061,19 +686,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     @IBAction func qtyedit(sender: AnyObject) {
-        /*
-        //number = (Qfield.text).toInt()!
-        if (Qfield.text.toInt() != nil) {
-            numberchanged = Qfield.text.toInt()!
-        } else {
-            println("no number")
-        }
-*/
-        
-       // if (Qfield.text! as NSString).containsString(",") {
-         //   (Qfield.text! as NSString).stringByReplacingOccurrencesOfString(",", withString: ".")
-      //  }
-
+       
         Qfield.text!.doubleConverter
         
         if (Qfield.text != nil) {
@@ -1088,46 +701,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         multiplication()
     }
     
-        //var itemsData:NSDictionary = NSDictionary()
-    
-    /*
-    func additemstolistarray() {
-        // var userquery = PF
-        var query = PFQuery(className:"shopLists")
-        query.whereKey("objectId", equalTo: getcurrentlist!)
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]?, error: NSError?) -> Void in
-            if error == nil {
-                println("Successfully retrieved \(objects!.count) scores.")
-                // Do something with the found objects
-                //self.arrayofItemsNames.removeAll(keepCapacity: true)
-                
-                if let lists = objects as? [PFObject] {
-                    
-                    //var arrayofobjects = [AnyObject]()
-                    
-                    for object in lists {
-                        println(object.objectId)
-                        //arrayofobjects.append()
-                        
-                        //arrayofobjects.append(arra)
-                        object.setObject(self.arrayofItemsNames, forKey: "ItemsInTheShopList")
-                        object.saveInBackground()
-                        /*
-                        var array = object.objectForKey("ItemsInTheShopList") as! [PFObject]
-                        for obj in array {
-                            self.ar.append(obj as String)
-                        } */
-                    }
-                }
-            } else {
-                // Log details of the failuself.re
-                println("Error: \(error!) \(error!.userInfo!)")
-            }
-        }
-    } */
-    
-    func pause() {
+          func pause() {
         activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
@@ -1240,56 +814,6 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         return imagePath//"item\(Int(time)).png"
     }
     
-    /* apparently problem on iPhone 5C
-    func loadImageFromLocalStore(imageName: String) -> UIImage {
-        let fileManager = NSFileManager.defaultManager()
-        let dir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        
-        let path = (dir as NSString).stringByAppendingPathComponent(imageName)
-        
-        if(!path.isEmpty){
-            let image = UIImage(contentsOfFile: path)
-            print(image);
-            if(image != nil){
-                //return image!;
-                self.imageToLoad = image!
-                return imageToLoad
-            }
-        }
-        
-        return UIImage(named: "activity.png")!
-    }
-    */
-    /*
-    func loadImageFromLocalStore(imageName: String) -> UIImage {
-        let fileManager = NSFileManager.defaultManager()
-        let dir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        
-        //try for ios9.2
-        let path = NSURL(fileURLWithPath: dir).URLByAppendingPathComponent(imageName)
-        
-        // if(!path.isEmpty){
-        if path != "" {
-            
-            let data = NSData(contentsOfURL:path)
-            
-            let image = UIImage(data:data!)
-            
-            print(image);
-            if(image != nil){
-                //return image!;
-                self.imageToLoad = image!
-                // return imageToLoad
-            } else {
-                self.imageToLoad = imagestochoose[0].itemimage
-            }
-        } else {
-            self.imageToLoad = imagestochoose[0].itemimage
-        }
-        
-        return imageToLoad
-    }
-    */
     
     func loadImageFromLocalStore(imageName: String) -> UIImage {
         let fileManager = NSFileManager.defaultManager()
@@ -1481,9 +1005,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         
         newitemdictionary = ["ItemId":newitemid,"ItemName":itemName,"ItemNote":itemNote, "ItemQuantity":itemQty,"ItemTotalPrice":totalprice,"ItemImagePath":itemimagepath,"ItemUnit":itemUnit,"ItemIsChecked":itemischecked,"ItemImage2":itemImage2,"ItemCategory":thisitemcategory,"ItemIsCatalog":itemiscatalog,"ItemOriginal":originalincatalog,"ItemCategoryName":categoryname,"ItemOneUnitPrice":oneitemprice,"ItemIsFav":isFav,"ItemPerUnit":itemperunit,"ItemCreation":date,"ItemUpdate":date,"ItemIsDefPict":isdefaultpict,"ItemOriginalInDefaults":originalindefaults]
         
-       // self.dictionary = ["ItemId":itemId,"ItemName":itemname,"ItemNote":itemnote, "ItemQuantity":itemquantity,"ItemTotalPrice":itemprice,"ItemImagePath":itemimagepath,"ItemUnit":itemunit,"ItemIsChecked":itemischecked,"ItemImage2":itemimage2,"ItemCategory":itemcategory,"ItemIsCatalog":itemiscatalog,"ItemOriginal":originalincatalog]
-       // dictionary = ["ItemId":itemid,"ItemName":itemname,"ItemNote":itemnote, "ItemQuantity":itemquantity,"ItemTotalPrice":itemprice,"ItemImage2":itemimage2,"ItemUnit":itemunit,"ItemChecked":itemchecked,"ItemImagePath":itemimagepath,"ItemCategory":itemcategory,"ItemCategoryName":itemcategoryname]
-       // itemsDataDict.append(newitemdictionary)
+
         
         itemsDataDict.append(newitemdictionary)
         
@@ -1491,39 +1013,10 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         
         itemsorderarray.append(itemuuid)
         
-        //self.receivedarrayofdicts.append(newitemdictionary)
-       // println(self.receivedarrayofdicts)
         
-        
-        // now update the itemsintheshoplist field
-        
-       
-        
+    }
+    
 
-        
-    }
-    
-    /*
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        //here I will prepare the data for my list
-        
-        
-            let destination : ShoppingListCreation = segue.destinationViewController as! ShoppingListCreation
-            // now this variable destinationVC holds everything that this VC comprises and can be used in shoplistcreation VC
-            
-        
-                destination.justCreatedList = false
-        
-            
-            
-    
-    }
- */
-    /*
-    func stepperValueChanged(stepper: Stepper) {
-        println(stepper.value)
-    }
-   */
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         //here I will prepare the data for my list
@@ -1548,13 +1041,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         
                
         if segue.identifier == "AddingDone" {
-            
-          //  let destinationVC : ShoppingListCreation = segue.destinationViewController as! ShoppingListCreation
-           // destinationVC.itemsDataDict = receivedarrayofdicts
-            //here I pass the current lists id to product history tableViewController
-            
-            
-            
+
         }
         
         if segue.identifier == "categoryPopover" {
@@ -1569,51 +1056,19 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             
             
             popoverViewController.delegate = self //WITHOUT THIS IT WONT WORK
-           
-            //popoverViewController.delegate = self
-         //   popoverViewController.sourceView = sender
-            //popoverViewController.cattext = self.categorybutton.titleForState(.Normal)
-            
-           // popoverViewController.mDelegate = self
-            
+
             
         }
 
-        /*
-        if segue.identifier == "DoneAddingItem" {
-            let destination : ShoppingListCreation = segue.destinationViewController as! ShoppingListCreation
-            
-            destination.currentList = getcurrentlist
-            
+    }
 
-            //here I pass the current lists id to product history tableViewController
-            
-            
-            
-        }
-*/
-    }
-    
-    /*
-    func category(name:String) {
-         categorybutton.setTitle(name, forState: .Normal)
-    }
-*/
-    
-    ///for popover
-    /*
-    func choosecategory(categoryname:String, categoryimage:UIImage) {
-        categorybutton.setTitle(categoryname, forState: .Normal)
-        categoryimageoutlet.image = categoryimage
-    }
-*/
     
     func choosecategory(category:Category) {
        // categorybutton.setTitle(categoryname, forState: .Normal)
         //categoryimageoutlet.image = categoryimage
         
       //  categorybutton.setTitle(category.catname, forState: .Normal)
-        categoryimageoutlet.image = category.catimage
+       
         itemcategory = category
         itemcategoryUUID = category.catId
     }
@@ -1634,11 +1089,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
        
     
     func saveexistingitem() {
-        
-       // let imageDataexisting = UIImagePNGRepresentation(self.itemImageOutlet.image)
-        //let imageData = UIImagePNGRepresentation(chosenPicture)
-        //let imageFileexisting = PFFile(name:"itemImage.png", data:imageDataexisting)
-        
+
         var query1 = PFQuery(className:"shopItems")
         query1.fromLocalDatastore()
         query1.whereKey("itemUUID", equalTo: currentitem)
@@ -1690,15 +1141,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                     itemch["imageLocalPath"] = ""
                 }
                 
-                //itemch["itemImage"] = NSNull()
-                
-                // })
-                
-                //image part
-                //  dispatch_async(dispatch_get_main_queue(), {
-               // self.saveImageLocally(imageDataexisting)
-                //self.imagePath
-                // })
+     
                 
                 self.multiplication()
                 
@@ -1796,7 +1239,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                             itemsDataDict[i]["ItemIsDefPict"] = self.isdefaultpicture
                             itemsDataDict[i]["ItemOriginalInDefaults"] = self.defaultpicturename
                             
-                            //dictionary = ["ItemId":self.itemid,"ItemName":itemname,"ItemNote":itemnote, "ItemQuantity":itemquantity,"ItemTotalPrice":itemprice,"ItemImagePath":itemimagepath,"ItemUnit":itemunit,"ItemIsChecked":itemischecked,"ItemImage2":itemimage2,"ItemCategory":itemcategory,"ItemIsCatalog":itemiscatalog,"ItemOriginal":originalincatalog,"ItemCategoryName":itemcategoryname]
+   
                             
                             print(itemsDataDict[i])
                             
@@ -1934,7 +1377,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                 self.itemNameOutlet.text = itemsDataDict[i]["ItemName"] as! String
                 self.itemNoteOutlet.text = itemsDataDict[i]["ItemNote"] as! String
                 
-               // ["ItemId":newitemid,"ItemName":itemName,"ItemNote":itemNote, "ItemQuantity":itemQty,"ItemTotalPrice":itemPrice,"ItemImagePath":itemimagepath,"ItemUnit":itemUnit,"ItemIsChecked":itemischecked,"ItemImage2":itemImage2,"ItemCategory":thisitemcategory,"ItemIsCatalog":itemiscatalog,"ItemOriginal":originalincatalog,"ItemCategoryName":categoryname]
+
 
                 
                 self.itemiscatalog = itemsDataDict[i]["ItemIsCatalog"] as! Bool
@@ -1946,11 +1389,11 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                 if self.itemiscatalog == true {
                     
                    // self.categorybutton.enabled = false
-                    self.chooseitemimageoutlet.enabled = false
+                  //  self.chooseitemimageoutlet.enabled = false
                     self.itemNameOutlet.enabled = false
                     
                    // self.categorybutton.alpha = 0.6
-                    self.chooseitemimageoutlet.alpha = 0.6
+                   // self.chooseitemimageoutlet.alpha = 0.6
                     self.itemNameOutlet.alpha = 0.6
                 }
                 
@@ -1962,47 +1405,8 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                 self.isFavouriteItem = itemsDataDict[i]["ItemIsFav"] as! Bool
                 
                 
-                if isFavouriteItem == true {
-                   // favimage = UIImage(named: "FavStar.png") as UIImage!
-                    additemtofav.setImage(favimage, forState: UIControlState.Normal)
-                   // additemtofav.setTitle("Remove from favourites", forState: .Normal)
-                   // additemtofav.addTarget(self, action: "delfromfav:", forControlEvents: .TouchUpInside)
-                } else {
-                   // notfavimage = UIImage(named: "GrayStar.png") as UIImage!
-                    additemtofav.setImage(notfavimage, forState: UIControlState.Normal)
-                   // additemtofav.setTitle("Add to favourites", forState: .Normal)
-                    //additemtofav.addTarget(self, action: "addtofav:", forControlEvents: .TouchUpInside)
-                    }
                 
-                
-                /*
-                if self.itemiscatalog == true {
-                    
-                    self.categorybutton.enabled = false
-                    self.chooseitemimageoutlet.enabled = false
-                    self.itemNameOutlet.enabled = false
-                    
-                    var originalincatalog = itemsDataDict[i]["ItemOriginal"] as! String
-                    
-                    self.getcatalogitemimage(originalincatalog)
-                    self.itemImageOutlet.image = self.catalogitemimage
-                    
-                } else {
-                    // new approach to load image
-                    self.loadImageFromLocalStore(itemsDataDict[i]["ItemImagePath"] as! String)
-                    self.itemImageOutlet.image = self.imageToLoad
-                    //
-                    println("Custom Item")
-                }
-                */
-                
-                
-             //PROBLEM!   self.itemPriceOutlet.text = String(stringInterpolationSegment: itemsDataDict[i]["itemPrice"] as! Double)
-                //althouth I know how to handle this easy...just divide total sum by the quantity
-                //self.itemPriceOutlet.text = String(stringInterpolationSegment: ((itemsDataDict[i]["ItemTotalPrice"] as! Double)/(NSNumberFormatter().numberFromString(itemsDataDict[i]["ItemQuantity"] as! String)!.doubleValue)))
-                //workaround for now. if item quanity = 0 then Im fucked
-                
-               // self.itemPriceOutlet.text = String(stringInterpolationSegment: itemsDataDict[i]["ItemOneUnitPrice"] as! Double)
+             
                 
                 if itemsDataDict[i]["ItemUnit"] as? String != "" {
                 self.UnitsButton.setTitle(itemsDataDict[i]["ItemUnit"] as? String, forState: UIControlState.Normal)
@@ -2017,11 +1421,6 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                 }
                 
        
-                
-               // self.itemPriceOutlet.text = String(stringInterpolationSegment: itemsDataDict[i]["ItemOneUnitPrice"] as! Double)
-                
-              
-                     //self.itemPriceOutlet.text = String(stringInterpolationSegment: itemsDataDict[i]["ItemOneUnitPrice"] as! Double)
                 
                 print(itemsDataDict[i]["ItemOneUnitPrice"])
                 
@@ -2042,39 +1441,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                 
                 // if category["isCustom"] as! Bool == true {
                 if (self.itemcategoryUUID as NSString).containsString("custom") {
-                    //CASE IF CATEGORY IS CUSTOM
-                    /* ALREADY IN MENU I LOAD ALL CUSTOMCATS AND ADD THEM TO THE CATEGOIRES ARRAY, SO DON'T NEED WHAT IS BELOW
-                    var querycat = PFQuery(className:"shopListsCategory")
-                    querycat.fromLocalDatastore()
-                    querycat.whereKey("categoryUUID", equalTo: self.itemcategoryUUID)//
-                    querycat.getFirstObjectInBackgroundWithBlock() {
-                        (category: PFObject?, error: NSError?) -> Void in
-                        if error != nil {
-                            println(error)
-                        } else if let category = category {
-
-                            //var thiscatimagepath: String = category["imagePath"] as! String
-                            //println(thiscatimagepath)
-                            //self.loadCatImageFromLocalStore(thiscatimagepath)
-
-                            //println(self.catimageToLoad)
-
-                            //var retrievedcat = Category(catId: self.itemcategoryUUID, catname: category["catname"] as! String, catimage: self.catimageToLoad, isCustom: category["isCustom"] as! Bool)
-                            //self.itemcategory =
-                            
-                            
-                            self.categorybutton.setTitle(retrievedcat.catname, forState: .Normal)
-                            
-                            self.categoryimageoutlet.image = retrievedcat.catimage
-
-                        }
-                        
-                        
-                        
-                        
-                    }
-                    */
-                   // if let foundcategory = find(lazy(catalogcategories).map({ $0.catId }), self.itemcategoryUUID) {
+   
                     
                     if let foundcategory = catalogcategories.map({ $0.catId }).lazy.indexOf(self.itemcategoryUUID) {
                     let catalogcategory = catalogcategories[foundcategory]
@@ -2085,15 +1452,51 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                     
                    // self.categorybutton.setTitle(catalogcategory.catname, forState: .Normal)
                     
-                    self.categoryimageoutlet.image = catalogcategory.catimage
+                    /// HERE PUT CODE EDITING SCROLLER
+                    ///    TODO
+                        for view in horizontalScrollView.subviews {
+                            
+                            //if let tappedview = view as? UIButton {
+                            if view.tag == foundcategory {
+                                
+                                view.tintColor = UIColorFromRGB(0x31797D)
+                                for subview in view.subviews {
+                                    subview.tintColor = UIColorFromRGB(0x31797D)
+                                    //if let labelview : UILabel = subview as! UILabel {
+                                    if subview == subview as? UILabel {
+                                        // that's how one finds out the type
+                                        (subview as! UILabel).textColor = UIColorFromRGB(0x31797D)
+                                    }
+                                }
+                                view.layer.borderWidth = 1
+                                view.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
+                            } else {
+                                
+                                view.tintColor = UIColorFromRGB(0x979797)
+                                for subview in view.subviews {
+                                    subview.tintColor = UIColorFromRGB(0x979797)
+                                    // if let labelview : UILabel == subview as? UILabel {
+                                    if subview == subview as? UILabel {
+                                        (subview as! UILabel).textColor = UIColorFromRGB(0x979797)
+                                    }
+                                }
+                                
+                                view.layer.borderWidth = 0
+                                view.layer.borderColor = UIColor.clearColor().CGColor
+                            }
+                            // }
+                        }
+                        
+
+                        var vel: CGPoint = CGPointMake(horizontalScrollView.finditem(foundcategory, inScrollView: horizontalScrollView), 0.0)
+                        horizontalScrollView.contentOffset = vel
+
                     }
 
                     
                 } else {
 
-                    
-                    //if let foundcategory = find(lazy(catalogcategories).map({ $0.catId }), self.itemcategoryUUID) {
-                    
+
                     if let foundcategory = catalogcategories.map({ $0.catId }).lazy.indexOf(self.itemcategoryUUID) {
                     let catalogcategory = catalogcategories[foundcategory]
                         
@@ -2103,7 +1506,45 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                         
                        // self.categorybutton.setTitle(catalogcategory.catname, forState: .Normal)
                         
-                        self.categoryimageoutlet.image = catalogcategory.catimage
+                        /// TODO
+                        for view in horizontalScrollView.subviews {
+                            
+                            //if let tappedview = view as? UIButton {
+                            if view.tag == foundcategory {
+                                
+                                view.tintColor = UIColorFromRGB(0x31797D)
+                                for subview in view.subviews {
+                                    subview.tintColor = UIColorFromRGB(0x31797D)
+                                    //if let labelview : UILabel = subview as! UILabel {
+                                    if subview == subview as? UILabel {
+                                        // that's how one finds out the type
+                                        (subview as! UILabel).textColor = UIColorFromRGB(0x31797D)
+                                    }
+                                }
+                                view.layer.borderWidth = 1
+                                view.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
+                            } else {
+                                
+                                view.tintColor = UIColorFromRGB(0x979797)
+                                for subview in view.subviews {
+                                    subview.tintColor = UIColorFromRGB(0x979797)
+                                    // if let labelview : UILabel == subview as? UILabel {
+                                    if subview == subview as? UILabel {
+                                        (subview as! UILabel).textColor = UIColorFromRGB(0x979797)
+                                    }
+                                }
+                                
+                                view.layer.borderWidth = 0
+                                view.layer.borderColor = UIColor.clearColor().CGColor
+                            }
+                            // }
+                        }
+                        
+
+                     
+                        var vel: CGPoint = CGPointMake(horizontalScrollView.finditem(foundcategory, inScrollView: horizontalScrollView), 0.0)
+                        horizontalScrollView.contentOffset = vel
+                       
                     }
                     
                     
@@ -2118,173 +1559,6 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         
     }
     
-    /*
-    func retrieveexistingitem(current:String) {
-    
-        var query = PFQuery(className:"shopItems")
-        query.whereKey("itemUUID", equalTo: current)
-        //query.whereKey("objectId", equalTo:"T7MqKFyDbQ")
-        //if let item = query.getObjectWithId(currentitem) {
-            
-        //just get object was calling an error of blicking main thread
-        //query.getObjectInBackgroundWithId(currentitem) {
-            
-          //  (objects:PFObject?, error:NSError?) -> Void in
-            
-           // if let item: AnyObject = objects as? AnyObject {
-        
-        query.fromLocalDatastore()
-        //query.getObjectInBackgroundWithId(current) {
-        query.getFirstObjectInBackgroundWithBlock() {
-            (item: PFObject?, error: NSError?) -> Void in
-            if error != nil {
-                println(error)
-            } else if let item = item {
-        
-            
-            self.itemNameOutlet.text = item["itemName"] as! String
-            self.itemNoteOutlet.text = item["itemNote"] as! String
-            
-                /*
-            item.objectForKey("itemImage")!.getDataInBackgroundWithBlock { (data, error) -> Void in
-                if let downloadedImage = UIImage(data: data!) {
-                    self.itemImageOutlet.image = downloadedImage
-                }
-                
-            }
-            */
-                
-                // new approach to load image
-               // self.loadImageFromLocalStore(item["imageLocalPath"] as! String)
-               // self.itemImageOutlet.image = self.imageToLoad
-                //
-                
-            self.itemiscatalog = item["isCatalog"] as! Bool
-                
-                if self.itemiscatalog == true {
-                    
-                    self.categorybutton.enabled = false
-                    self.chooseitemimageoutlet.enabled = false
-                    self.itemNameOutlet.enabled = false
-                    
-                    var originalincatalog = item["originalInCatalog"] as! String
-                    
-                    self.getcatalogitemimage(originalincatalog)
-                    self.itemImageOutlet.image = self.catalogitemimage
-                    
-                } else {
-                    // new approach to load image
-                    self.loadImageFromLocalStore(item["imageLocalPath"] as! String)
-                    self.itemImageOutlet.image = self.imageToLoad
-                    //
-                    println("Custom Item")
-                }
-
-                
-            self.itemPriceOutlet.text = String(stringInterpolationSegment: item["itemPrice"] as! Double)
-            
-            self.UnitsButton.setTitle(item["itemUnit"] as? String, forState: UIControlState.Normal)
-            
-            self.totalsumlabel.text = String(stringInterpolationSegment: item["TotalSum"] as! Double)
-            
-            self.Qfield.text = item["itemQuantity"] as! String
-                
-                self.itemcategoryUUID = item["Category"] as! String
-                
-               // if category["isCustom"] as! Bool == true {
-                if (self.itemcategoryUUID as NSString).containsString("custom") {
-                //CASE IF CATEGORY IS CUSTOM
-                var querycat = PFQuery(className:"shopListsCategory")
-                querycat.fromLocalDatastore()
-                querycat.whereKey("categoryUUID", equalTo: self.itemcategoryUUID)//
-                querycat.getFirstObjectInBackgroundWithBlock() {
-                    (category: PFObject?, error: NSError?) -> Void in
-                    if error != nil {
-                        println(error)
-                    } else if let category = category {
-                       // self.itemcategory = category as? Category
-                       // if category["isCustom"] as! Bool == true {
-                            //dispatch_async(dispatch_get_main_queue(), {
-                            var thiscatimagepath: String = category["imagePath"] as! String
-                        println(thiscatimagepath)
-                        self.loadCatImageFromLocalStore(thiscatimagepath)
-                                //})
-                       // var catimageloaded = UIImage()
-                            //var catimageloaded : UIImage = self.catimageToLoad
-                        
-                       // println(catimageloaded)
-                        println(self.catimageToLoad)
-                                
-                            
-                           //NOT SURE IF NEEDED self.itemcategoryUUID = category["categoryUUID"] as! String
-                       var retrievedcat = Category(catId: self.itemcategoryUUID, catname: category["catname"] as! String, catimage: self.catimageToLoad, isCustom: category["isCustom"] as! Bool)
-                        //self.itemcategory =
-                            
-                            self.categorybutton.setTitle(retrievedcat.catname, forState: .Normal)
-                            
-                            self.categoryimageoutlet.image = retrievedcat.catimage
-
-                        
-                       // self.categorybutton.setTitle(retrievedcat.catname, forState: .Normal)
-                        
-                        // self.categoryimageoutlet.image = retrievedcat.catimage
-                   
-                        // shopList.pinInBackground()
-                        //shopList.saveInBackground()
-                            }
-                    
-                    
-                    
-                    
-                }
-                
-            } else {
-                // CASE IF IT IS DEFAULT CATEGORY
-                
-                
-                
-                // Find this object of product type which has property catId = itemcategoryUUID
-                
-                if let foundcategory = find(lazy(catalogcategories).map({ $0.catId }), self.itemcategoryUUID) {
-                    let catalogcategory = catalogcategories[foundcategory]
-                    
-                    println(catalogcategory)
-                    
-                    self.itemcategoryUUID = catalogcategory.catId
-                    
-                    self.categorybutton.setTitle(catalogcategory.catname, forState: .Normal)
-                    
-                    self.categoryimageoutlet.image = catalogcategory.catimage
-                }
-                
-                
-            }
-            
-          
-            
-                }
-        
-        }
-    }
-    */
-    /*
-     override func viewDidAppear(animated: Bool) {
-
-        println(existingitem)
-        println(currentitem)
-
-        if existingitem == true {
-            retrieveexistingitem(currentitem)
-            ProductHistoryOutlet.hidden = true
-            
-            
-        } else {
-            ProductHistoryOutlet.hidden = false
-        }
-        
-        
-    }
-*/
     
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
         return UIColor(
@@ -2310,38 +1584,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     
     
     @IBOutlet var plusoutlet: UIButton!
-    /*
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        var selectedRange: UITextRange = textField.selectedTextRange!
-        var start: UITextPosition = textField.beginningOfDocument
-        var cursorOffset = textField.offsetFromPosition(start, toPosition: selectedRange.start)
-        // Update the string in the text input
-        var currentString: NSMutableString = NSMutableString(string: textField.text)
-        var currentLength: UInt = UInt(currentString.length)
-        currentString.replaceCharactersInRange(range, withString: string)
-        // Strip out the decimal seperator
-        let r = NSRange(location: 0, length: currentString.length)
-        currentString.replaceOccurrencesOfString(decimalSeparator as String, withString: "", options: NSStringCompareOptions.LiteralSearch, range: r)
-        // Generate a new string for the text input
-        var currentValue: Int = currentString.integerValue
-        var format: NSString = NSString(format: "%%.%df", maximumFractionDigits)
-        var minotUnitsPerMajor: Double = pow(10.00, Double(maximumFractionDigits))
-        var m = Double(currentValue) / minotUnitsPerMajor
-        var newString: NSString = NSString(format: format, m).stringByReplacingOccurrencesOfString(".", withString: decimalSeparator as String)
-        if newString.length <= 7 {
-            textField.text = newString as String
-            // if the cursor was not at the end of the string being entered, restore cursor position
-            if UInt(cursorOffset) != currentLength {
-                var lengthDelta: Int = UInt(newString.length) - currentLength
-                var newCursorOffset: Int = max(0, min(newString.length, cursorOffset + lengthDelta))
-                var newPosition: UITextPosition = textField.positionFromPosition(textField.beginningOfDocument, offset: newCursorOffset)!
-                var newRange = textField.textRangeFromPosition(newPosition, toPosition: newPosition)
-                textField.selectedTextRange = newRange  
-            }  
-        }  
-    }
-    */
-    var maximumFractionDigits: Int = 0
+        var maximumFractionDigits: Int = 0
     var decimalSeparator: NSString = NSString()
     
     
@@ -2361,11 +1604,14 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
     }
-    
+    /*
     func textFieldDidBeginEditing(textField: UITextField) {
+        //return
+        
+        
         return
     }
-    
+     */
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
         return true
     }
@@ -2374,47 +1620,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         textField.resignFirstResponder()
         return true
     }
-    /*
-    var kbHeight: CGFloat!
-    
-    override func viewWillAppear(animated:Bool) {
-        super.viewWillAppear(animated)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
-    }
-    
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    func keyboardWillShow(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-                kbHeight = keyboardSize.height
-                self.animateTextField(true)
-            }
-        }
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        self.animateTextField(false)
-    }
-    
-    func animateTextField(up: Bool) {
-        var movement = (up ? -kbHeight : kbHeight)
-        
-        UIView.animateWithDuration(0.3, animations: {
-            self.view.frame = CGRectOffset(self.view.frame, 0, movement)
-        })
-    }
-    */
-    //myTextField.delegate = self
-    ///
-    func closenumberpad(sender: UIButton) {
+       func closenumberpad(sender: UIButton) {
     itemPriceOutlet.resignFirstResponder()
     }
     
@@ -2454,7 +1660,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet var curcodelabel: UILabel!
     
     
-    @IBOutlet var changepictview: UIView!
+
     
     @IBOutlet var pictview: UIView!
     
@@ -2467,94 +1673,38 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     
     var horizontalScrollView = ASHorizontalScrollView()
     
-    func setupButton(button: UIButton) {
+    func setupbuttonview(buttonview: UIView, buttonimage: UIImageView, buttonlabel: UILabel) {
+        
+            buttonview.layer.cornerRadius = 8
+        
+            buttonlabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+            buttonlabel.numberOfLines = 2
+            buttonlabel.font = UIFont(name: "AvenirNext-Regular", size: 9)
+            buttonlabel.textColor = UIColorFromRGB(0x979797)
+            buttonlabel.textAlignment = .Center
+        
+            buttonimage.tintColor = UIColorFromRGB(0x979797)
         
             //Customize the button
-            button.titleLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
-            button.backgroundColor = UIColor.clearColor()
-            button.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 9)
-            button.setTitleColor(UIColorFromRGB(0x979797), forState: UIControlState.Normal)
+           // button.titleLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
+           // button.backgroundColor = UIColor.clearColor()
+           // button.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 9)
+           // button.setTitleColor(UIColorFromRGB(0x979797), forState: UIControlState.Normal)
            // button.layer.borderWidth = 1
            // button.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-            button.tintColor = UIColorFromRGB(0x31797D)
-            button.layer.cornerRadius = 8
+          //  button.tintColor = UIColorFromRGB(0x31797D)
+          //  button.layer.cornerRadius = 8
         
       
         
-        if button.titleLabel!.text != nil {
-        let spacing: CGFloat = 1.0
-        let imageSize: CGSize = button.imageView!.image!.size
-       // button.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height + spacing), 0.0)
-            button.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height - 20), 0.0)
-        let labelString = NSString(string: button.titleLabel!.text!)
-        let titleSize = labelString.sizeWithAttributes([NSFontAttributeName: button.titleLabel!.font])
-        button.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height - 12), 0.0, 0.0, -titleSize.width)
-        let edgeOffset = abs(titleSize.height - imageSize.height) / 2.0;
-        button.contentEdgeInsets = UIEdgeInsetsMake(edgeOffset, 0.0, edgeOffset, 0.0)
-            
-            button.imageView?.frame.size = CGSizeMake(24,24)
-            button.imageView?.contentMode = .ScaleAspectFit
-        }
-
-    
-        /*
-            //button.titleLabel!.frame = CGRectMake(0,0,70,28)
-            button.titleLabel?.textAlignment = .Center
-            button.contentHorizontalAlignment = .Center
-            button.contentVerticalAlignment = .Center
-             // top left bottom right
-
-           // button.imageView?.frame = CGRectMake(0,0,26,26)
-            button.imageView?.frame.size = CGSizeMake(26,26)
-            button.imageEdgeInsets = UIEdgeInsetsMake(0,21,28,0)
-            button.titleEdgeInsets = UIEdgeInsetsMake(34,-26,0,0)
-            */
-           // button.imageView?.contentMode = .ScaleAspectFit
-            
-        
-        print(button.titleLabel!.text)
-        print( button.imageView?.image)
-        
-        
-            // Center the image
-        /*
-        let buttonSize :CGSize = button.frame.size
-         if button.titleLabel!.text != nil {
-        let buttonTitle = NSString(string: button.titleLabel!.text!)
-        let titleSize :CGSize = buttonTitle.sizeWithAttributes([NSFontAttributeName: button.titleLabel!.font])
-        let buttonImage : UIImage = button.imageView!.image!;
-        let buttonImageSize : CGSize = buttonImage.size;
-        
-        let offsetBetweenImageAndText : CGFloat = 6; //vertical space between image and text
-        
-        button.imageEdgeInsets = UIEdgeInsetsMake((buttonSize.height - (titleSize.height + buttonImageSize.height)) / 2 - offsetBetweenImageAndText,
-        (buttonSize.width - buttonImageSize.width) / 2,
-        0,0)
-        button.titleEdgeInsets = UIEdgeInsetsMake((buttonSize.height - (titleSize.height + buttonImageSize.height)) / 2 + buttonImageSize.height + offsetBetweenImageAndText,
-        titleSize.width + button.imageEdgeInsets.left > buttonSize.width ? -buttonImage.size.width  +  (buttonSize.width - titleSize.width) / 2 : (buttonSize.width - titleSize.width) / 2 - buttonImage.size.width,
-        0,0);
-        }
-        */
-        /*
-            let spacing: CGFloat = 4.0
-            let imageSize: CGSize =
-                button.imageView!.image!.size
-            button.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height + spacing), 0.0) // top left bottom right
-            if button.titleLabel!.text != nil {
-            let labelString = NSString(string: button.titleLabel!.text!)
-            let titleSize = labelString.sizeWithAttributes([NSFontAttributeName: button.titleLabel!.font])
-           // button.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height + spacing), 0.0, 0.0, -titleSize.width)
-                 button.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height - spacing), 0.0, 0.0, -titleSize.width)
-                
-            let edgeOffset = abs(titleSize.height - imageSize.height) / 2.0;
-            button.contentEdgeInsets = UIEdgeInsetsMake(edgeOffset, 0.0, edgeOffset, 0.0)
-        }
-        */
     }
     
-    func choosecategoryhere(sender:UIButton) {
+    func choosecategoryhere(sender: UITapGestureRecognizer? = nil) {
+        
+        var senderview : UIView = (sender?.view)!
+        var sendertag : Int = (sender?.view!.tag)!
        
-        var category : Category = catalogcategories[sender.tag]
+        var category : Category = catalogcategories[sendertag]
         
         //categorybutton.setTitle(category.catname, forState: .Normal)
        // categoryimageoutlet.image = category.catimage
@@ -2562,23 +1712,37 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         itemcategoryUUID = category.catId
         
         
-        for button in horizontalScrollView.subviews {
+        for view in horizontalScrollView.subviews {
             
-            if let tappedbutton = button as? UIButton {
-                if tappedbutton.tag == sender.tag {
+            //if let tappedview = view as? UIButton {
+                if view.tag == sendertag {
                     
-                    sender.tintColor = UIColorFromRGB(0x31797D)
-                    sender.setTitleColor(UIColorFromRGB(0x31797D), forState: UIControlState.Normal)
-                    sender.layer.borderWidth = 1
-                    sender.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
+                    senderview.tintColor = UIColorFromRGB(0x31797D)
+                    for subview in senderview.subviews {
+                        subview.tintColor = UIColorFromRGB(0x31797D)
+                        //if let labelview : UILabel = subview as! UILabel {
+                        if subview == subview as? UILabel {
+                            // that's how one finds out the type
+                            (subview as! UILabel).textColor = UIColorFromRGB(0x31797D)
+                        }
+                    }
+                    senderview.layer.borderWidth = 1
+                    senderview.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
                 } else {
                     
-                    tappedbutton.tintColor = UIColorFromRGB(0x979797)
-                    tappedbutton.setTitleColor(UIColorFromRGB(0x979797), forState: UIControlState.Normal)
-                    tappedbutton.layer.borderWidth = 0
-                    tappedbutton.layer.borderColor = UIColor.clearColor().CGColor
+                    view.tintColor = UIColorFromRGB(0x979797)
+                    for subview in view.subviews {
+                        subview.tintColor = UIColorFromRGB(0x979797)
+                       // if let labelview : UILabel == subview as? UILabel {
+                        if subview == subview as? UILabel {
+                            (subview as! UILabel).textColor = UIColorFromRGB(0x979797)
+                        }
+                    }
+
+                    view.layer.borderWidth = 0
+                    view.layer.borderColor = UIColor.clearColor().CGColor
                 }
-            }
+           // }
         }
     }
     
@@ -2588,10 +1752,158 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         
     }
 
+    /// NEW UNITS STUFF WITH SRK
+    
+    
+    @IBOutlet var picker: UIPickerView!
+    
+    var chosenunit = String()
+    var chosenperunit = String()
+
+    @IBAction func confirmunit(sender: AnyObject) {
+        
+        saveUnit()
+   
+    }
+    
+    
+    @IBAction func cancelunit(sender: AnyObject) {
+        
+        // show view constr = -8
+         dimmerview.hidden = true
+        
+        unitviewbottomconstraint.constant = -283
+        
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            
+            self.view.layoutIfNeeded()
+            }, completion: { (value: Bool) -> Void in
+                
+        })
+        
+        self.picker.selectRow(0, inComponent: 0, animated: false)
+        //self.pickerView(self.myPickerView, didSelectRow: 0, inComponent: 0)
+        
+    }
+    
+    
+    func saveUnit(){
+        
+        if currenttype == "unit" {
+            if (chosenunit != "") && (perUnitOutlet.titleForState(.Normal) == "") {
+                UnitsButton.setTitle(chosenunit, forState: .Normal)
+                perUnitOutlet.setTitle(chosenunit, forState: .Normal)
+            } else {
+                UnitsButton.setTitle(chosenunit, forState: .Normal)
+            }
+            
+            
+        } else if currenttype == "perunit" {
+            
+            perUnitOutlet.setTitle(chosenperunit, forState: .Normal)
+        }
+        
+        multiplication()
+        
+        dimmerview.hidden = true
+        
+        unitviewbottomconstraint.constant = -283
+        
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            
+            self.view.layoutIfNeeded()
+            }, completion: { (value: Bool) -> Void in
+                
+        })
+        
+    }
+    
+
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // returns number of rows in each component..
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        return units.count
+    }
+    
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        
+        return units[row][0]//[1]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        if currenttype == "unit" {
+            
+                chosenunit = units[row][1]
+               // chosenperunit = units[row][1]
+            
+        
+        } else if currenttype == "perunit" {
+        
+        chosenperunit = units[row][1]
+        }
+        
+    }
+    
+    var currenttype : String = "unit"
+    
+    @IBOutlet var dimmerview: UIView!
+    
+    
+    func showunitsview(buttontype: String) {
+        
+        
+        if buttontype == "unit" {
+            
+            currenttype = "unit"
+            
+            
+        } else if buttontype == "perunit" {
+            
+            currenttype = "perunit"
+            
+        }
+        
+        dimmerview.hidden = false
+        
+        unitviewbottomconstraint.constant = -8
+        
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            
+            self.view.layoutIfNeeded()
+            }, completion: { (value: Bool) -> Void in
+                
+        })
+
+        
+        
+    }
+    
+    @IBOutlet var unitsview: UIView!
+    
+    @IBOutlet var unitviewbottomconstraint: NSLayoutConstraint!
+    
+    
+    //// UNITS STUFF END
+    
     
     
         override func viewDidLoad() {
         super.viewDidLoad()
+            
+          dimmerview.hidden = true
+            
+            unitsview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+            unitsview.layer.borderWidth = 1
+            
+            picker.delegate = self
+            picker.dataSource = self
             
             // SETUP CATEGORIES SCROLLER
             
@@ -2605,25 +1917,46 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
 
             
                 // add custom cat button
-            var addcustomcatbutton = UIButton(frame: CGRectZero)
-            addcustomcatbutton.setTitle(NSLocalizedString("something", comment: ""), forState: .Normal)
-            addcustomcatbutton.setImage(UIImage(named: "4Share"), forState: .Normal)
-            addcustomcatbutton.addTarget(self, action: "addcustomhere:", forControlEvents: UIControlEvents.TouchDown)
-            setupButton(addcustomcatbutton)
-            horizontalScrollView.addItem(addcustomcatbutton)
+            let addcustom = UIView(frame: CGRectZero)
+            let labelview = UILabel(frame: CGRectMake(2, 36, 66, 31))
+            let imageview = UIImageView(frame: CGRectMake(21, 8, 28, 28))
+            
+            labelview.text = "Add Custom"
+            imageview.image = UIImage(named: "4Share")
+            
+            addcustom.addSubview(labelview)
+            addcustom.addSubview(imageview)
+            
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("addcustomhere:"))
+            addcustom.userInteractionEnabled = true
+            addcustom.addGestureRecognizer(tapGestureRecognizer)
+            
+            setupbuttonview(addcustom, buttonimage: imageview, buttonlabel: labelview)
+            horizontalScrollView.addItem(addcustom)
             
             //categories setup
             for i in (0..<catalogcategories.count) {
                 
-                var button = UIButton(frame: CGRectZero)
-                button.setTitle(catalogcategories[i].catname, forState: .Normal)
-                button.setImage(catalogcategories[i].catimage, forState: .Normal)
+                let addcat = UIView(frame: CGRectZero)
+                let labelview = UILabel(frame: CGRectMake(2, 36, 66, 31))
+                let imageview = UIImageView(frame: CGRectMake(21, 8, 28, 28))
                 
-                button.tag = i
+                labelview.text = catalogcategories[i].catname
+                imageview.image = catalogcategories[i].catimage
                 
-                button.addTarget(self, action: "choosecategoryhere:", forControlEvents: UIControlEvents.TouchDown)
-                setupButton(button)
-                horizontalScrollView.addItem(button)
+                addcat.addSubview(labelview)
+                addcat.addSubview(imageview)
+                
+                addcat.tag = i
+                //"addcustomhere:"
+                
+                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("choosecategoryhere:"))
+                addcat.userInteractionEnabled = true
+                addcat.addGestureRecognizer(tapGestureRecognizer)
+                
+                
+                setupbuttonview(addcat, buttonimage: imageview, buttonlabel: labelview)
+                horizontalScrollView.addItem(addcat)
                 
             }
             print(catalogcategories)
@@ -2683,13 +2016,8 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             itemPriceOutlet.delegate = self
             
             
-            // self.view.backgroundColor = UIColorFromRGB(0xF1F1F1)
             
             
-            
-            changepictview.layer.borderWidth = 1
-            changepictview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-            changepictview.layer.cornerRadius = 4
             
             pictview.layer.borderWidth = 1
             pictview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
@@ -2700,6 +2028,11 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             amountview.layer.borderWidth = 1
             amountview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
             amountview.layer.cornerRadius = 4
+            
+            
+            totalsumlabel.layer.borderWidth = 1
+            totalsumlabel.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+            totalsumlabel.layer.cornerRadius = 4
             
           
 
@@ -2767,217 +2100,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         // Dispose of any resources that can be recreated.
     }
     
-    
-    ///// ALERT CODE
-    func showPickerInActionSheet(sentBy: UIButton!) {
-        // func showPickerInActionSheet() {
-        let title = ""
-        let message = "\n\n\n\n\n\n\n\n\n\n";
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.ActionSheet);
-        alert.modalInPopover = true;
-        
-        // height was 80
-        //Create a frame (placeholder/wrapper) for the picker and then create the picker
-        let pickerFrame: CGRect = CGRectMake(17, 42, 270, 120); // CGRectMake(left), top, width, height) - left and top are like margins //17 52 270 80
-        let picker: UIPickerView = UIPickerView(frame: pickerFrame);
-        picker.backgroundColor = UIColor.clearColor()//UIColorFromRGBalpha(0xFAFAFA, alp: 1)
 
-/* If there will be 2 or 3 pickers on this view, I am going to use the tag as a way
-to identify them in the delegate and datasource.  This part with the tags is not required.
-I am doing it this way, because I have a variable, witch knows where the Alert has been invoked from. */
-        
-if(sentBy.tag == 77) {
-picker.tag = 1;
-} else if (sentBy.tag == 78) {
-picker.tag = 2;
-} else {
-picker.tag = 1;
-}
-// I decided to mark two buttons with tags 77 and 78 to distinguish them
-
-//set the pickers datasource and delegate
-picker.delegate = self
-picker.dataSource = self
-
-//Add the picker to the alert controller
-alert.view.addSubview(picker);
-
-//Create the toolbar view - the view witch will hold our 2 buttons
-//let toolFrame = CGRectMake(17, 5, 270, 45);
-        let toolFrame = CGRectMake(0, 2, alert.view.frame.size.width, 46);
-let toolView: UIView = UIView(frame: toolFrame);
-        
-        
-//close this view?
-        
-        
-
-//add buttons to the view
-//let buttonCancelFrame: CGRect = CGRectMake(0, 7, 100, 30); //size & position of the button as placed on the toolView
-        
-        let buttonCancelFrame: CGRect = CGRectMake(toolView.frame.size.width - 82, 2, 56, 42); //size & position of the button as placed on the toolView
-        
-        //Create the cancel button & set its title
-       // let closepad: UIButton = UIButton(frame: buttonCancelFrame);
-
-
-//Create the cancel button & set its title
-let buttonCancel: UIButton = UIButton(frame: buttonCancelFrame);
-        //buttonCancel.imageEdgeInsets = UIEdgeInsetsMake(0,35,0,35);
-//buttonCancel.setTitle("Cancel", forState: UIControlState.Normal);
-//buttonCancel.setTitleColor(UIColorFromRGB(0xF23D55), forState: UIControlState.Normal);
-buttonCancel.setImage(closepadimage, forState: UIControlState.Normal)
-        
-toolView.addSubview(buttonCancel); //add it to the toolView
-
-//Add the target - target, function to call, the event witch will trigger the function call
-//buttonCancel.addTarget(self, action: "cancelSelection:", forControlEvents: UIControlEvents.TouchDown);
-
-
-//add buttons to the view
-//let buttonOkFrame: CGRect = CGRectMake(190, 7, 30, 30); //size & position of the button as placed on the toolView
-  //      let buttonOkFrame: CGRect = CGRectMake(190, 7, 100, 30);
-
-//Create the Select button & set the title
-//let buttonOk: UIButton = UIButton(frame: buttonOkFrame);
-//        buttonOk.imageEdgeInsets = UIEdgeInsetsMake(0,35,0,35)
-//buttonOk.setTitle("Submit", forState: UIControlState.Normal);
-//buttonOk.setTitleColor(UIColorFromRGB(0x31797D), forState: UIControlState.Normal);
-//buttonOk.setImage(submitimage, forState: UIControlState.Normal)
-//toolView.addSubview(buttonOk); //add to the subview
-
-//Add the tartget. In my case I dynamicly set the target of the select button
-if(sentBy.tag == 77 ){
-buttonCancel.addTarget(self, action: "saveUnit:", forControlEvents: UIControlEvents.TouchDown);
-} else if (sentBy.tag == 78){
-buttonCancel.addTarget(self, action: "savePerUnit:", forControlEvents: UIControlEvents.TouchDown);
-}
-
-//add the toolbar to the alert controller
-alert.view.addSubview(toolView);
-
-self.presentViewController(alert, animated: true, completion: nil);
-        
-        //
-        
-        
-        
-}
-
-func saveUnit(sender: UIButton){
-// Your code when select button is tapped
-   
-   // unit = buttontitle
-    UnitsButton.setTitle(buttontitle, forState: UIControlState.Normal)
-    perUnitOutlet.setTitle(buttontitle, forState: UIControlState.Normal)
-    multiplication()
-    print("SaveUnit")
-    self.dismissViewControllerAnimated(true, completion: nil)
-}
-    
-func savePerUnit(sender: UIButton){
-        // Your code when select button is tapped
-        
-        // unit = buttontitle
-        perUnitOutlet.setTitle(perbuttontitle, forState: UIControlState.Normal)
-        print("SaveUnit")
-        multiplication()
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-
-func saveUser(sender: UIButton){
-// Your code when select button is tapped
-}
-
-func cancelSelection(sender: UIButton){
-print("Cancel");
-self.dismissViewControllerAnimated(true, completion: nil);
-// We dismiss the alert. Here you can add your additional code to execute when cancel is pressed
-}
-
-    /*
-    func popoverPresentationControllerShouldDismissPopover(popoverPresentationController: UIPopoverPresentationController) -> Bool {
-        
-    }
-    */
-    
-    
-
-    
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-// returns number of rows in each component..
-func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-/*
-    if(pickerView.tag == 1){
-return self.profilesList.count;
-} else if(pickerView.tag == 2){
-return self.usersList.count;
-} else  {
-return 0;
-}
-*/
-    return units.count
-}
-    
-    
-
-// Return the title of each row in your picker ... In my case that will be the profile name or the username string
-func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-//if(pickerView.tag == 1){
-
-//var selectedProfile: Profiles = self.profilesList[row] as Profiles;
-//return selectedProfile.profileName;
-
-//} else if(pickerView.tag == 2){
-
-//var selectedUser: Users = self.usersList[row] as Users;
-//return selectedUser.username;
-
-//} else  {
-
-//return "";
-
-//}
-    return units[row][0]//[1]
-}
-
-func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {/*
-if(pickerView.tag == 1){
-var choosenProfile: Profiles = profilesList[row] as Profiles;
-self.selectedProfile = choosenProfile.profileName;
-} else if (pickerView.tag == 2){
-var choosenUser: Profiles = usersList[row] as Users;
-self.selectedUsername = choosenUser.username;
-}
-*/
-    if(pickerView.tag == 1){
-    buttontitle = units[row][1]
-    UnitsButton.setTitle(buttontitle, forState: UIControlState.Normal)
-    } else if (pickerView.tag == 2){
-        perbuttontitle = units[row][1]
-        perUnitOutlet.setTitle(perbuttontitle, forState: UIControlState.Normal)
-    }
-    
-    if buttontitle == perbuttontitle {
-        nomatchlabel.hidden = true
-    }
-    }
-
-    ///// END ALERT CODE
-
-        /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
     
 
 }

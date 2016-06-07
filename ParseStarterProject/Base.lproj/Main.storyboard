@@ -4050,7 +4050,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose unit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0R-Zz-E1Q">
-                                <rect key="frame" x="182" y="138" width="130" height="21"/>
+                                <rect key="frame" x="178" y="138" width="130" height="21"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
                                 <color key="textColor" red="0.19215686269999999" green="0.47450980390000003" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -4063,24 +4063,13 @@
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ahb-2i-qJ4">
                                 <rect key="frame" x="0.0" y="364" width="320" height="78"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="1Ok-hg-YQx">
-                                        <rect key="frame" x="228" y="8" width="70" height="70"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="10"/>
-                                        <inset key="titleEdgeInsets" minX="-26" minY="34" maxX="0.0" maxY="7"/>
-                                        <inset key="imageEdgeInsets" minX="21" minY="0.0" maxX="0.0" maxY="28"/>
-                                        <state key="normal" title="Fruits and berries" image="TestCats">
-                                            <color key="titleColor" red="0.19215686269999999" green="0.47450980390000003" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xJV-rU-g83">
                                 <rect key="frame" x="0.0" y="94" width="327" height="40"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Item Name" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="90k-Xn-cpg" customClass="CustomTextField" customModule="ParseStarterProject" customModuleProvider="target">
-                                        <rect key="frame" x="12" y="3" width="300" height="34"/>
+                                        <rect key="frame" x="12" y="3" width="296" height="34"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
@@ -4139,7 +4128,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <button opaque="NO" tag="77" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zRE-5M-Ong">
-                                        <rect key="frame" x="182" y="6" width="130" height="34"/>
+                                        <rect key="frame" x="178" y="6" width="130" height="34"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                         <state key="normal" title="Units">
@@ -4162,20 +4151,8 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uqK-8v-pXV">
                                 <rect key="frame" x="0.0" y="229" width="320" height="104"/>
                                 <subviews>
-                                    <button opaque="NO" tag="78" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAL-K0-Nbv">
-                                        <rect key="frame" x="182" y="11" width="130" height="34"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                        <state key="normal" title="Units">
-                                            <color key="titleColor" red="0.19215686269999999" green="0.47450980390000003" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="showPerUnitsPicker:" destination="E2m-eE-0gQ" eventType="touchUpInside" id="uN6-3R-D4B"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="per" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="VKA-3f-f5u">
-                                        <rect key="frame" x="141" y="17" width="41" height="21"/>
+                                        <rect key="frame" x="141" y="17" width="33" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                                         <color key="textColor" red="0.19215686269999999" green="0.47450980390000003" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -4219,15 +4196,41 @@
                                         <color key="textColor" red="0.19215686269999999" green="0.47450980390000003" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" tag="78" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAL-K0-Nbv">
+                                        <rect key="frame" x="178" y="11" width="130" height="34"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                        <state key="normal" title="Units">
+                                            <color key="titleColor" red="0.19215686269999999" green="0.47450980390000003" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showPerUnitsPicker:" destination="E2m-eE-0gQ" eventType="touchUpInside" id="uN6-3R-D4B"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rI2-e1-ecb">
-                                <rect key="frame" x="0.0" y="471" width="320" height="99"/>
+                                <rect key="frame" x="0.0" y="465" width="320" height="104"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r20-Ar-ks1">
+                                        <rect key="frame" x="12" y="11" width="42" height="42"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="DefaultProduct" translatesAutoresizingMaskIntoConstraints="NO" id="G91-t9-KmG">
+                                                <rect key="frame" x="1" y="1" width="40" height="40"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19d-m1-8Yt">
+                                        <rect key="frame" x="63" y="15" width="46" height="34"/>
+                                        <color key="tintColor" red="0.19215686269999999" green="0.47450980390000003" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="4Photo"/>
+                                    </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="XCR-Pm-i1B">
-                                        <rect key="frame" x="148" y="9" width="164" height="74"/>
-                                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="148" y="11" width="160" height="74"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="0.1647058824" green="0.1843137255" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
@@ -4236,19 +4239,6 @@
                                             <outlet property="delegate" destination="E2m-eE-0gQ" id="XAL-sf-KT8"/>
                                         </connections>
                                     </textView>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EXO-ca-ppY">
-                                        <rect key="frame" x="58" y="9" width="42" height="42"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r20-Ar-ks1">
-                                        <rect key="frame" x="12" y="9" width="42" height="42"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="DefaultProduct" translatesAutoresizingMaskIntoConstraints="NO" id="G91-t9-KmG">
-                                                <rect key="frame" x="0.0" y="1" width="40" height="40"/>
-                                            </imageView>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -4270,8 +4260,47 @@
                                 <color key="textColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kh8-fe-SGu">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" red="0.16470588235294117" green="0.18431372549019609" blue="0.21176470588235294" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3UH-Fn-MUC">
+                                <rect key="frame" x="8" y="580" width="304" height="271"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yg5-vR-Bht">
+                                        <rect key="frame" x="0.0" y="48" width="296" height="216"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </pickerView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NE4-He-JuQ">
+                                        <rect key="frame" x="0.0" y="6" width="153" height="37"/>
+                                        <inset key="imageEdgeInsets" minX="12" minY="5" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="4Close"/>
+                                        <connections>
+                                            <action selector="cancelunit:" destination="E2m-eE-0gQ" eventType="touchUpInside" id="Sgm-fX-fYV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Uk-8E-peV">
+                                        <rect key="frame" x="161" y="6" width="135" height="37"/>
+                                        <color key="tintColor" red="0.19215686269999999" green="0.47450980390000003" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="5" maxX="12" maxY="0.0"/>
+                                        <state key="normal" image="4Done"/>
+                                        <connections>
+                                            <action selector="confirmunit:" destination="E2m-eE-0gQ" eventType="touchUpInside" id="Yot-xn-G2R"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="271" id="KNN-1i-90v"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0jF-mp-m2V" firstAttribute="top" secondItem="3UH-Fn-MUC" secondAttribute="bottom" constant="-283" id="BYg-P6-pDD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3UH-Fn-MUC" secondAttribute="trailing" constant="-8" id="ISO-jd-1Mg"/>
+                            <constraint firstItem="3UH-Fn-MUC" firstAttribute="leading" secondItem="2Gg-Ih-O50" secondAttribute="leadingMargin" constant="-8" id="neh-NB-rB1"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Adding New Item" id="jK4-ZU-UUm"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -4279,8 +4308,8 @@
                         <outlet property="Qfield" destination="Ed5-YU-JwW" id="op3-6f-BoR"/>
                         <outlet property="UnitsButton" destination="zRE-5M-Ong" id="xzR-KX-Kwa"/>
                         <outlet property="amountview" destination="hXY-cv-TAs" id="eaH-EJ-jHw"/>
-                        <outlet property="changepictview" destination="EXO-ca-ppY" id="jbr-21-nln"/>
                         <outlet property="curcodelabel" destination="fIO-0X-1FC" id="xi9-fn-2c0"/>
+                        <outlet property="dimmerview" destination="kh8-fe-SGu" id="TRK-tL-Ukd"/>
                         <outlet property="itemImageOutlet" destination="G91-t9-KmG" id="qpn-nb-Sg7"/>
                         <outlet property="itemNameOutlet" destination="90k-Xn-cpg" id="zIO-ml-kLL"/>
                         <outlet property="itemNoteOutlet" destination="XCR-Pm-i1B" id="WUR-eG-G5L"/>
@@ -4288,9 +4317,12 @@
                         <outlet property="minusoutlet" destination="aBe-WM-2at" id="FKt-Ns-4X9"/>
                         <outlet property="nomatchlabel" destination="KnV-D6-Zf7" id="u6I-ln-A3e"/>
                         <outlet property="perUnitOutlet" destination="yAL-K0-Nbv" id="NLc-am-VJX"/>
+                        <outlet property="picker" destination="yg5-vR-Bht" id="OVC-5Y-xeQ"/>
                         <outlet property="pictview" destination="r20-Ar-ks1" id="Vr6-fD-jdu"/>
                         <outlet property="plusoutlet" destination="Laa-Ju-7uk" id="F7x-F0-TEd"/>
                         <outlet property="totalsumlabel" destination="qIT-oN-SS2" id="bwB-ag-Eq1"/>
+                        <outlet property="unitsview" destination="3UH-Fn-MUC" id="kKs-O4-S9h"/>
+                        <outlet property="unitviewbottomconstraint" destination="BYg-P6-pDD" id="gM1-rL-0S6"/>
                         <outlet property="viewforcats" destination="ahb-2i-qJ4" id="xVv-Gx-kJk"/>
                         <segue destination="3rs-hL-hbS" kind="unwind" identifier="gobacktocreationshoplist" unwindAction="unwindToCreationOfShopList:" id="37C-4k-GK2"/>
                         <segue destination="3rs-hL-hbS" kind="unwind" identifier="gobacktoaddwithoptions" unwindAction="unwindToAddWithOptions:" id="riD-vW-jyB"/>
@@ -7780,12 +7812,14 @@ DHSmartScreenshot
         <image name="4Cancel" width="24" height="24"/>
         <image name="4Catalog" width="30" height="29"/>
         <image name="4Categories" width="26" height="26"/>
+        <image name="4Close" width="29" height="29"/>
         <image name="4ClosePopover" width="35" height="22"/>
         <image name="4Copy" width="20" height="24"/>
         <image name="4CopyCheck" width="26" height="26"/>
         <image name="4Copysmall" width="26" height="26"/>
         <image name="4Currency" width="29" height="29"/>
         <image name="4Delete" width="22" height="24"/>
+        <image name="4Done" width="41" height="29"/>
         <image name="4EditProduct" width="26" height="26"/>
         <image name="4MenuPlus" width="25" height="24"/>
         <image name="4Minus" width="33" height="2"/>
@@ -7853,7 +7887,6 @@ DHSmartScreenshot
         <image name="SuccessAlert" width="108" height="84"/>
         <image name="SwitcherOff" width="102" height="62"/>
         <image name="SwitcherOn" width="102" height="62"/>
-        <image name="TestCats" width="26" height="26"/>
         <image name="TutorialIntro" width="686" height="1077"/>
         <image name="UserIcon" width="57" height="57"/>
         <image name="VKlogo" width="77" height="45"/>

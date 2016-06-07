@@ -7,5 +7,5 @@ target 'ParseStarterProject' do
 pod 'Google/SignIn'
 pod "VK-ios-sdk"
 pod 'ASHorizontalScrollView', '~> 1.1'
+pod 'SRKControls', '~> 3.0.1'
 end
-
