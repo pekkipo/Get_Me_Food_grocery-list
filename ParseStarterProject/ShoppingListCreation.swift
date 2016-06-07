@@ -3361,9 +3361,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         if segue.identifier == "NewAddItemWithOptions" {
             
-            let navVC = segue.destinationViewController as! UINavigationController
+           // let navVC = segue.destinationViewController as! UINavigationController
             
-            let additemsVC = navVC.viewControllers.first as! NewOptionsController
+           // let additemsVC = navVC.viewControllers.first as! NewOptionsController
+            
+             let additemsVC = segue.destinationViewController as! NewOptionsController
             
             additemsVC.currentlist = currentList
             

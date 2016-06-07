@@ -79,7 +79,7 @@ var units : [[String]] = [
 
 
 
-class AddItemViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UIPopoverPresentationControllerDelegate, CategoryPopupDelegate, ImagesPopupDelegate, UITextFieldDelegate, UITextViewDelegate {
+class AddItemViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UIPopoverPresentationControllerDelegate, CategoryPopupDelegate, ImagesPopupDelegate, UITextFieldDelegate, UITextViewDelegate, ManageCatsDelegate {
 
     
     var withoptionsdelegete : RefreshAddWithOptions?
@@ -87,6 +87,32 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     var shopdelegate : RefreshListDelegate?
     
     var sendercontroller = String()
+    
+    
+    func handlecustomcat(added: Bool) {
+        // 
+        /*
+        if acttype == "add" {
+            
+             for i in (0..<catalogcategories.count) {
+            categorysetup(i)
+            }
+            
+            var vel: CGPoint = CGPointMake(horizontalScrollView.finditem(indexes.last!, inScrollView: horizontalScrollView), 0.0)
+            horizontalScrollView.contentOffset = vel
+        } else if acttype == "delete" {
+            
+            
+        }*/
+        if added == true {
+        horizontalScrollView.removeAllItems()
+        categoriessetup()
+        
+        var lastcatitem : Int = catalogcategories.count - 1
+        var vel: CGPoint = CGPointMake(horizontalScrollView.finditem(lastcatitem - 1, inScrollView: horizontalScrollView), 0.0)
+        horizontalScrollView.contentOffset = vel
+        }
+    }
     
     
     func getscaninfo() {
@@ -1040,10 +1066,14 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
 
         }
         
-        if segue.identifier == "categoryPopover" {
+        if segue.identifier == "createcustomcategory" {
            // let popoverViewController = segue.destinationViewController as! CategoryPopup//UIViewController
             
-            let popoverViewController = segue.destinationViewController as! CategoryPopup
+           // let addnavVC = segue.destinationViewController as! UINavigationController
+            
+           // let popoverViewController = addnavVC.viewControllers.first as! ManageCategoriesVC
+            
+            let popoverViewController = segue.destinationViewController as! ManageCategoriesVC
             //popoverViewController.preferredContentSize = CGSize(width: 300, height: 400)
             
            // popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
@@ -1051,7 +1081,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             
             
             
-            popoverViewController.delegate = self //WITHOUT THIS IT WONT WORK
+            popoverViewController.additemdelegate = self //WITHOUT THIS IT WONT WORK
 
             
         }
@@ -1742,9 +1772,10 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         }
     }
     
-    func addcustomhere() {
+    func addcustomhere(sender: UITapGestureRecognizer? = nil) {
         
         //segue to manage custom cats
+        performSegueWithIdentifier("createcustomcategory", sender: self)
         
     }
 
@@ -1888,6 +1919,58 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     
     //// UNITS STUFF END
     
+    func categoriessetup() {
+        //categories setup
+        
+        // add custom cat button
+        let addcustom = UIView(frame: CGRectZero)
+        let labelview = UILabel(frame: CGRectMake(2, 36, 66, 31))
+        let imageview = UIImageView(frame: CGRectMake(21, 8, 28, 28))
+        
+        labelview.text = "Add Custom"
+        imageview.image = UIImage(named: "4EmptyImage")
+        
+        addcustom.addSubview(labelview)
+        addcustom.addSubview(imageview)
+        
+        addcustom.tag = catalogcategories.count + 10
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("addcustomhere:"))
+        addcustom.userInteractionEnabled = true
+        addcustom.addGestureRecognizer(tapGestureRecognizer)
+        
+        setupbuttonview(addcustom, buttonimage: imageview, buttonlabel: labelview)
+        horizontalScrollView.addItem(addcustom)
+        
+      
+        for i in (0..<catalogcategories.count) {
+
+            let addcat = UIView(frame: CGRectZero)
+            let labelview = UILabel(frame: CGRectMake(2, 36, 66, 31))
+            let imageview = UIImageView(frame: CGRectMake(21, 8, 28, 28))
+            
+            labelview.text = catalogcategories[i].catname
+            imageview.image = catalogcategories[i].catimage
+            
+            addcat.addSubview(labelview)
+            addcat.addSubview(imageview)
+            
+            addcat.tag = i
+            //"addcustomhere:"
+            
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("choosecategoryhere:"))
+            addcat.userInteractionEnabled = true
+            addcat.addGestureRecognizer(tapGestureRecognizer)
+            
+            
+            setupbuttonview(addcat, buttonimage: imageview, buttonlabel: labelview)
+            horizontalScrollView.addItem(addcat)
+        }
+        
+        self.viewforcats.addSubview(horizontalScrollView)
+        
+    }
+ 
     
     
         override func viewDidLoad() {
@@ -1903,15 +1986,16 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             
             // SETUP CATEGORIES SCROLLER
             
-            horizontalScrollView = ASHorizontalScrollView(frame:CGRectMake(12, 0, viewforcats.frame.width, 70))//viewforcats.frame.height - 5))
+            horizontalScrollView = ASHorizontalScrollView(frame:CGRectMake(12, 0, viewforcats.frame.width - 12, 70))//viewforcats.frame.height - 5))
             horizontalScrollView.uniformItemSize = CGSizeMake(70, 70)
             horizontalScrollView.leftMarginPx = 0
             horizontalScrollView.miniMarginPxBetweenItems = 0
             horizontalScrollView.miniAppearPxOfLastItem = 10
             horizontalScrollView.setItemsMarginOnce()
 
+            categoriessetup()
 
-            
+            /*
                 // add custom cat button
             let addcustom = UIView(frame: CGRectZero)
             let labelview = UILabel(frame: CGRectMake(2, 36, 66, 31))
@@ -1929,7 +2013,8 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             
             setupbuttonview(addcustom, buttonimage: imageview, buttonlabel: labelview)
             horizontalScrollView.addItem(addcustom)
-            
+            */
+            /*
             //categories setup
             for i in (0..<catalogcategories.count) {
                 
@@ -1957,7 +2042,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             }
             print(catalogcategories)
             self.viewforcats.addSubview(horizontalScrollView)
-            
+            */
             curcodelabel.text = symbol
            // if UIDevice().screenType == UIDevice.ScreenType.iPhone4 {
           //  if UIScreen.mainScreen().sizeType == .iPhone4 {

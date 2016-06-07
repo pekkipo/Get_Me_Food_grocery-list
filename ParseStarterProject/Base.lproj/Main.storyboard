@@ -4023,7 +4023,7 @@
                         <segue destination="E2m-eE-0gQ" kind="show" identifier="additemmodalsegue" id="0X5-ZI-vRx"/>
                         <segue destination="E2m-eE-0gQ" kind="show" identifier="edititemmodalsegue" id="Q21-0i-0kd"/>
                         <segue destination="Ucy-tb-L35" kind="unwind" identifier="gobacktomainmenusegue" unwindAction="unwindToMainMenu:" id="ZOF-2U-fgn"/>
-                        <segue destination="BRo-FN-DIz" kind="show" identifier="NewAddItemWithOptions" id="a2v-3B-Oem"/>
+                        <segue destination="k3H-Yy-Q4l" kind="show" identifier="NewAddItemWithOptions" id="gPG-dq-Uwr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oum-I4-nrZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4329,6 +4329,7 @@
                         <outlet property="viewforcats" destination="ahb-2i-qJ4" id="xVv-Gx-kJk"/>
                         <segue destination="3rs-hL-hbS" kind="unwind" identifier="gobacktocreationshoplist" unwindAction="unwindToCreationOfShopList:" id="37C-4k-GK2"/>
                         <segue destination="3rs-hL-hbS" kind="unwind" identifier="gobacktoaddwithoptions" unwindAction="unwindToAddWithOptions:" id="riD-vW-jyB"/>
+                        <segue destination="5ci-3X-Dkp" kind="show" identifier="createcustomcategory" id="wkr-um-RJS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zcK-MF-kxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5314,7 +5315,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jia-bJ-6Yd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4593" y="-1834"/>
+            <point key="canvasLocation" x="5125" y="-1834"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Cwy-BZ-GqO">
@@ -5499,7 +5500,7 @@
                         <outlet property="tableView" destination="fBz-d0-ptn" id="CVS-Ql-G40"/>
                         <segue destination="WsM-PF-Lfg" kind="unwind" identifier="closesettings" unwindAction="unwindToMainMenu:" id="j3m-xN-ipc"/>
                         <segue destination="PTg-Ey-tS8" kind="show" identifier="sharinghistoryfromsettings" id="Hhb-Pb-Sw9"/>
-                        <segue destination="5ci-3X-Dkp" kind="show" identifier="editcategories" id="8qB-hQ-Vnl"/>
+                        <segue destination="Pkh-gh-NPi" kind="show" identifier="editcategories" id="8qB-hQ-Vnl"/>
                         <segue destination="bWf-F7-xnB" kind="show" identifier="showfavouritesinfo" id="MrN-Kt-neG"/>
                         <segue destination="NDa-bl-Vmf" kind="show" identifier="showaccountdetails" id="YVT-VG-W79"/>
                         <segue destination="NiF-Vz-03W" kind="show" identifier="OpenContacts" id="Yyy-Rf-C7z"/>
@@ -6126,7 +6127,7 @@ DHSmartScreenshot
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uMD-Wi-UfN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1668" y="-2003"/>
+            <point key="canvasLocation" x="2200" y="-2003"/>
         </scene>
         <!--Custom Items-->
         <scene sceneID="NE2-yp-i46">
@@ -6293,7 +6294,7 @@ DHSmartScreenshot
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5u4-eP-Nkv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2346" y="-2009"/>
+            <point key="canvasLocation" x="2878" y="-2009"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="07A-dz-nPc">
@@ -7471,7 +7472,7 @@ DHSmartScreenshot
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Juw-Ga-0UX">
                                 <rect key="frame" x="0.0" y="118" width="320" height="450"/>
-                                <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="optcell" rowHeight="50" id="fxy-j4-t5J" customClass="NewOptCell" customModule="ParseStarterProject" customModuleProvider="target">
@@ -7483,6 +7484,7 @@ DHSmartScreenshot
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Shf-hf-k3O">
                                                     <rect key="frame" x="8" y="4" width="41" height="41"/>
+                                                    <color key="tintColor" red="0.19215686269999999" green="0.47450980390000003" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="41" id="Eez-EF-CN8"/>
                                                         <constraint firstAttribute="width" constant="41" id="Qcw-X9-lBr"/>
@@ -7515,7 +7517,7 @@ DHSmartScreenshot
                                                 <constraint firstAttribute="trailingMargin" secondItem="gp5-jq-x4G" secondAttribute="trailing" constant="4" id="sii-PX-IQr"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="plusimage" destination="gp5-jq-x4G" id="aoq-qg-dzi"/>
                                             <outlet property="prodname" destination="UVk-gw-zzg" id="L61-NP-d8T"/>
@@ -7545,7 +7547,7 @@ DHSmartScreenshot
                                         </connections>
                                     </segmentedControl>
                                 </subviews>
-                                <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Lb8-1s-E8B" firstAttribute="top" secondItem="tUr-fV-qnm" secondAttribute="top" constant="9" id="ImK-fb-ECG"/>
                                     <constraint firstAttribute="trailing" secondItem="Lb8-1s-E8B" secondAttribute="trailing" constant="8" id="W3y-fd-gCv"/>
@@ -7554,7 +7556,7 @@ DHSmartScreenshot
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="syo-BU-UsU" firstAttribute="top" secondItem="Juw-Ga-0UX" secondAttribute="bottom" id="5DM-6C-QVN"/>
                             <constraint firstItem="Juw-Ga-0UX" firstAttribute="top" secondItem="tUr-fV-qnm" secondAttribute="bottom" constant="3" id="GGm-Zj-DVc"/>
@@ -7651,25 +7653,6 @@ DHSmartScreenshot
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u0e-ll-4WS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-108" y="-1024"/>
-        </scene>
-        <!--Shop List Navigation-->
-        <scene sceneID="1gd-cg-wW3">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BRo-FN-DIz" customClass="ShopListNavigation" customModule="ParseStarterProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XrI-FQ-XVf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="k3H-Yy-Q4l" kind="relationship" relationship="rootViewController" id="bgo-B2-2O4"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZUT-FN-biB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4361" y="733"/>
         </scene>
         <!--Sub Catalog Table View Controller-->
         <scene sceneID="wdH-zM-VkD">
@@ -7802,6 +7785,24 @@ DHSmartScreenshot
             </objects>
             <point key="canvasLocation" x="2653" y="1497"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="v22-xl-pHX">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zno-E8-xRe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pkh-gh-NPi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bdv-bP-edz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5ci-3X-Dkp" kind="relationship" relationship="rootViewController" id="NdN-94-QUo"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="1668" y="-2003"/>
+        </scene>
     </scenes>
     <resources>
         <image name="4AddFav" width="35" height="33"/>
@@ -7896,14 +7897,15 @@ DHSmartScreenshot
         <image name="savetogallery" width="69" height="58"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jDi-bs-Hfh"/>
+        <segue reference="wkr-um-RJS"/>
+        <segue reference="0X5-ZI-vRx"/>
         <segue reference="hMp-eo-PHr"/>
         <segue reference="1oe-ui-M36"/>
         <segue reference="4HM-tt-P7g"/>
         <segue reference="r1m-jf-Tg0"/>
-        <segue reference="0X5-ZI-vRx"/>
-        <segue reference="J0h-cX-YAx"/>
+        <segue reference="jDi-bs-Hfh"/>
         <segue reference="gmU-gn-6FW"/>
         <segue reference="wQt-nB-Pe2"/>
+        <segue reference="J0h-cX-YAx"/>
     </inferredMetricsTieBreakers>
 </document>

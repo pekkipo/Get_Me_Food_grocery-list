@@ -8,9 +8,21 @@
 
 import UIKit
 
+protocol ManageCatsDelegate
+{
+    
+    func handlecustomcat(added: Bool)
+    //func handlecustomcat(acttype: String, indexes: [Int])
+    //acttype - "add" or "delete"
+    
+    //delete all items and add them again in AddItemVC
+}
+
 class ManageCategoriesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate,ImagesPopupDelegate,UIPopoverPresentationControllerDelegate, UITextFieldDelegate {
     
     var chosencategory : Category?
+    
+    var additemdelegate: ManageCatsDelegate?
 
     
     @IBOutlet var newcatimage: UIImageView!
@@ -75,6 +87,19 @@ class ManageCategoriesVC: UIViewController, UITableViewDelegate, UITableViewData
         
         tableView.reloadData()
         
+        waschanged = true
+        
+    }
+    
+    var waschanged : Bool = false
+    // this is to find out if anything was changed
+    
+    override func viewWillDisappear(animated: Bool) {
+        if waschanged == true {
+        if additemdelegate != nil {
+            additemdelegate?.handlecustomcat(true)
+        }
+        }
     }
     
     
@@ -408,6 +433,8 @@ class ManageCategoriesVC: UIViewController, UITableViewDelegate, UITableViewData
         self.tableView.deleteRowsAtIndexPaths([deleterow], withRowAnimation: UITableViewRowAnimation.Automatic)
         
         tableView.reloadData()
+        
+        waschanged = true
         
         
         //now I have to find all items with this category as Category field and change it to DefaultOthers

@@ -1127,6 +1127,10 @@ class NewOptionsController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet var segmview: UIView!
     
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
