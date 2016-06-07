@@ -183,8 +183,14 @@ class ImagesCollectionVC: UIViewController,UICollectionViewDelegateFlowLayout, U
         chosenimage.allowsEditing = false
         
         self.presentViewController(chosenimage, animated: true, completion: nil)
+        
+        
+        addthisimageoutlet.alpha = 1.0
+        addthisimageoutlet.enabled = true
+        
     }
     
+    @IBOutlet var addthisimageoutlet: UIButton!
     
     @IBOutlet var headerviewforcollection: UIView!
     
@@ -221,7 +227,8 @@ class ImagesCollectionVC: UIViewController,UICollectionViewDelegateFlowLayout, U
         
         chosenimage.drawInRect(CGRectMake(0,0, 50, 50))
         
-        self.newimage.image = chosenimage
+       // self.newimage.image = chosenimage
+        self.choosenewpicture.setImage(chosenimage, forState: .Normal)
         
         self.defaultpicture = false
         
@@ -253,7 +260,8 @@ class ImagesCollectionVC: UIViewController,UICollectionViewDelegateFlowLayout, U
     
     @IBAction func savenewpicture(sender: AnyObject) {
         
-        imageResize(self.newimage.image!)
+       // imageResize(self.newimage.image!)
+        imageResize(self.choosenewpicture.imageForState(.Normal)!)
         
        // delegate?.choosecollectionimage(self.newimage.image!, defaultpicture: false, picturename: nil)
          delegate?.choosecollectionimage(scaledpicture, defaultpicture: false, picturename: nil)
@@ -273,9 +281,15 @@ class ImagesCollectionVC: UIViewController,UICollectionViewDelegateFlowLayout, U
     
     @IBOutlet var collectionView: UICollectionView!
     
+    var emptyImage = UIImage(named: "4EmptyImage")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addthisimageoutlet.enabled = false
+        addthisimageoutlet.alpha = 0.3
+        
+        self.choosenewpicture.setImage(emptyImage, forState: .Normal)
         /*
         let topline = UIView(frame: CGRectMake(0, 0, headerviewforcollection.frame.size.width, 1))
         topline.backgroundColor = UIColorFromRGB(0x2A2F36)

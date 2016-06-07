@@ -1026,13 +1026,9 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             
             let popoverViewController = segue.destinationViewController as! ImagesCollectionVC//UIViewController
             
+       
             
-            popoverViewController.preferredContentSize = CGSize(width: 280, height: 380)
-            
-            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover//FullScreen //.Popover
-            popoverViewController.popoverPresentationController!.delegate = self
-            
-            popoverViewController.view.backgroundColor = UIColorFromRGBalpha(0xFAFAFA, alp: 1) // F7F7F7
+           // popoverViewController.view.backgroundColor = UIColorFromRGBalpha(0xFAFAFA, alp: 1) // F7F7F7
             
             popoverViewController.delegate = self
             
