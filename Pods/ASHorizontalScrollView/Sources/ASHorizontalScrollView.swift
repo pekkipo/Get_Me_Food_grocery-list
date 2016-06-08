@@ -222,5 +222,23 @@ public class ASHorizontalScrollView: UIScrollView, UIScrollViewDelegate {
         return item.frame.origin.x
     }
     
+    public func finditem(index: Int, inScrollView scrollView:ASHorizontalScrollView) -> CGFloat {
+        
+        var xPosition : CGFloat = 0
+        
+        
+        for i in (0..<self.items.count) {
+            if i < index {
+                xPosition += items[i].frame.width + self.miniMarginPxBetweenItems
+            } else {
+                break;
+            }
+            
+        }
+        
+        return xPosition
+        
+    }
+    
     
 }

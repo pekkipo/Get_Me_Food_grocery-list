@@ -112,6 +112,8 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         var vel: CGPoint = CGPointMake(horizontalScrollView.finditem(lastcatitem - 1, inScrollView: horizontalScrollView), 0.0)
         horizontalScrollView.contentOffset = vel
         }
+        
+        // Mark the current cat!
     }
     
     
@@ -1317,35 +1319,21 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                     }
                     
                     ////segue stuff 
-                    if self.sendercontroller == "EditWithOptions" {
-                        
-                        if((self.withoptionsdelegete) != nil)
-                        {
-                            self.withoptionsdelegete?.refreshaddoptions()
-                            
-                            //refreshtable
-                            
-                        }
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                        //self.performSegueWithIdentifier("gobacktoaddwithoptions", sender: self)
-                        
-                        
-                    } else if self.sendercontroller == "ShopListCreation" {
+                   if self.sendercontroller == "ShopListCreation" {
                         
                         if((self.shopdelegate) != nil)
                         {
                             self.shopdelegate?.refreshtable()
-                            //refreshtable in shoplist view!
+
                             
                         }
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                       // self.performSegueWithIdentifier("gobacktocreationshoplist", sender: self)
+
+                    self.performSegueWithIdentifier("gobacktocreationshoplist", sender: self)
                         
                     } else {
                         
                         self.dismissViewControllerAnimated(true, completion: nil)
-                      //  self.performSegueWithIdentifier("gobacktocreationshoplist", sender: self) // FOR NOW
-                        
+    
                         
                     }
                     
@@ -1394,6 +1382,8 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     
+    @IBOutlet var prodnamelabel: UILabel!
+    @IBOutlet var photobuttonoutlet: UIButton!
     
     func retrieveexistingitemfromdictionary(current:String) {
         
@@ -1417,10 +1407,11 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                    // self.categorybutton.enabled = false
                   //  self.chooseitemimageoutlet.enabled = false
                     self.itemNameOutlet.enabled = false
-                    
-                   // self.categorybutton.alpha = 0.6
-                   // self.chooseitemimageoutlet.alpha = 0.6
+                    self.prodnamelabel.textColor = UIColorFromRGB(0xC6C6C6)
+
                     self.itemNameOutlet.alpha = 0.6
+                    self.photobuttonoutlet.alpha = 0.3
+                    
                 }
                 
                 
@@ -1973,8 +1964,56 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
  
     
     
+    @IBOutlet var cancelbaroutlet: UIBarButtonItem!
+    @IBOutlet var savebaroutlet: UIBarButtonItem!
+  
+    @IBAction func cancelbar(sender: AnyObject) {
+        
+        performSegueWithIdentifier("gobacktocreationshoplist", sender: self)
+    }
+    
+    
+    @IBAction func donebar(sender: AnyObject) {
+        
+        
+        if existingitem == false
+        {
+            detailedItemAdd()
+            
+            if sendercontroller == "ShopListCreation" {
+                
+                if((self.shopdelegate) != nil)
+                {
+                    shopdelegate?.refreshtable()
+
+                }
+                performSegueWithIdentifier("gobacktocreationshoplist", sender: self)
+                
+            } else {
+                
+                
+                performSegueWithIdentifier("gobacktocreationshoplist", sender: self) // FOR NOW
+                
+                
+            }
+            
+        }
+        else {
+            saveexistingitem()
+            
+            ///SEGUE AND RELOAD DATA STUFF IS WITHIN savex function!
+        }
+    }
+    
+    
         override func viewDidLoad() {
         super.viewDidLoad()
+            
+            cancelbaroutlet.tintColor = UIColorFromRGB(0xF23D55)
+            savebaroutlet.tintColor = UIColorFromRGB(0x31797D)
+            
+          //  navigationItem.titleView?. tintColor = UIColorFromRGB(0x979797)
+            UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColorFromRGB(0x979797),NSFontAttributeName:UIFont(name: "AvenirNext-Regular", size: 16)!]
             
           dimmerview.hidden = true
             
@@ -2141,12 +2180,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
           
 
         
-               print("Controller is \(sendercontroller)")
             
-        print("LIST IS \(getcurrentlist)")
-        print(existingitem)
-        print(currentitem)
-        
         if existingitem == true {
             //retrieveexistingitem(currentitem)
             retrieveexistingitemfromdictionary(currentitem)
@@ -2167,6 +2201,44 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             self.perUnitOutlet.setTitle(NSLocalizedString("units", comment: ""), forState: .Normal)
 
             isdefaultpicture = true
+            
+            for view in horizontalScrollView.subviews {
+                
+                //if let tappedview = view as? UIButton {
+                if view.tag == 0 {
+                    
+                    view.tintColor = UIColorFromRGB(0x31797D)
+                    for subview in view.subviews {
+                        subview.tintColor = UIColorFromRGB(0x31797D)
+                        //if let labelview : UILabel = subview as! UILabel {
+                        if subview == subview as? UILabel {
+                            // that's how one finds out the type
+                            (subview as! UILabel).textColor = UIColorFromRGB(0x31797D)
+                        }
+                    }
+                    view.layer.borderWidth = 1
+                    view.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
+                    
+                    break;
+                } /*else {
+                    
+                    view.tintColor = UIColorFromRGB(0x979797)
+                    for subview in view.subviews {
+                        subview.tintColor = UIColorFromRGB(0x979797)
+                        // if let labelview : UILabel == subview as? UILabel {
+                        if subview == subview as? UILabel {
+                            (subview as! UILabel).textColor = UIColorFromRGB(0x979797)
+                        }
+                    }
+                    
+                    view.layer.borderWidth = 0
+                    view.layer.borderColor = UIColor.clearColor().CGColor
+                }*/
+                 }
+           
+            
+            
+           
 
 
             

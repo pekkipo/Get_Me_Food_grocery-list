@@ -449,16 +449,27 @@ protocol passListtoMenuDelegate
 var symbol = String()
 var code = String()
 
-class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDataSource, RefreshListDelegate, MPGTextFieldDelegateCatalog, UIPopoverPresentationControllerDelegate, OptionsPopupDelegate, UITextFieldDelegate, takepicturedelegate, UIGestureRecognizerDelegate, UITextViewDelegate, CategoryPopupDelegate, ImagesPopupDelegate {//, sendBackParametersToShopDelegate, SmallPopupDelegate {
+class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDataSource, RefreshListDelegate, MPGTextFieldDelegateCatalog, UIPopoverPresentationControllerDelegate, OptionsPopupDelegate, UITextFieldDelegate, takepicturedelegate, UIGestureRecognizerDelegate, UITextViewDelegate, CategoryPopupDelegate, ImagesPopupDelegate, UIPickerViewDataSource, UIPickerViewDelegate, ManageCatsDelegate {//, sendBackParametersToShopDelegate, SmallPopupDelegate {
     
     var delegateforlist : passListtoMenuDelegate?
     
-    
+    func handlecustomcat(added: Bool) {
+        //
+
+        if added == true {
+            horizontalScrollView.removeAllItems()
+            categoriessetup()
+            
+            var lastcatitem : Int = catalogcategories.count - 1
+            var vel: CGPoint = CGPointMake(horizontalScrollView.finditem(lastcatitem - 1, inScrollView: horizontalScrollView), 0.0)
+            horizontalScrollView.contentOffset = vel
+        }
+    }
     
     func choosecategory(category:Category) {
         
         
-        quickcategorybutton.setTitle(category.catname, forState: .Normal)
+       // quickcategorybutton.setTitle(category.catname, forState: .Normal)
         quickicon.image = category.catimage
         //itemcategory = category
         quickcategory = category
@@ -662,9 +673,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     @IBAction func editingbegin(sender: AnyObject) {
-        opencatalogoutlet.hidden = true
-        quickaddoutlet.hidden = false
-        newquantitybutton.hidden = false
+      //  opencatalogoutlet.hidden = true
+      //  quickaddoutlet.hidden = false
+      //  newquantitybutton.hidden = false
         
         autocomplete.text = ""
         
@@ -672,47 +683,82 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         if catalogitemtochoose != nil {
             
-            quickcaticon.image = catalogcategories[0].catimage
-            quickcategorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
+          //  quickcaticon.image = catalogcategories[0].catimage
+            //quickcategorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
             
-            quickicon.image = imagestochoose[0].itemimage
+            //setcategoryinscroller("usual", catindex: nil)
             
+            //quickicon.image = imagestochoose[0].itemimage
+            
+            restoredatainpopover()
         }
         
     }
     
+    
+    func restoredatainpopover() {
+       
+        
+        quickcategory = catalogcategories[0]
+        quickcategoryUUID = catalogcategories[0].catId
+
+        setcategoryinscroller("usual", catindex: nil)
+        
+        isdefaultpicture = true
+        defaultpicturename = imagestochoose[0].imagename
+        quickicon.image = imagestochoose[0].itemimage
+        
+        
+        catalogitemtochoose = nil
+        
+        changepicture.enabled = true
+        changepicture.alpha = 1.0
+
+    }
+    
+    @IBOutlet var changepicture: UIButton!
+    
     func textFieldDidEndEditing(textField: Catalog_Autocomplete, withSelection data: Dictionary<String,AnyObject>){
         
-        print("Dictionary received = \(data)")
+      //  print("Dictionary received = \(data)")
         catalogitemtochoose = data["CustomObject"] as? CatalogItem
         //I think here I assign to my new variable the chosen catalog item
+
         
-        //popover settings
-        //image, category
+        
         if catalogitemtochoose != nil {
             
-            quickcategorybutton.setTitle(catalogitemtochoose?.itemcategory.catname, forState: .Normal)
+           // quickcategorybutton.setTitle(catalogitemtochoose?.itemcategory.catname, forState: .Normal)
             
-            quickcaticon.image = catalogitemtochoose?.itemcategory.catimage
+           // quickcaticon.image = catalogitemtochoose?.itemcategory.catimage
+            
+            if let foundcategory = catalogcategories.map({ $0.catId }).lazy.indexOf((self.catalogitemtochoose?.itemcategory.catId)!) {
+                
+                setcategoryinscroller("catalog", catindex: foundcategory)
+                
+            }
             
             quickicon.image = catalogitemtochoose?.itemimage
             
+            changepicture.enabled = false
+            changepicture.alpha = 0.2
             
         }
         
+       
+        showproperties()
         
+       // if endediting == false {
         
-        if endediting == false {
-        
-        poppresented = true
+       // poppresented = true
         
             
-            newquantitybutton.tintColor = UIColorFromRGB(0xA2AF36)
+           // newquantitybutton.tintColor = UIColorFromRGB(0xA2AF36)
 
         
-        smallpopover.hidden = false
+         // smallpopover.hidden = false
             
-            dimmerforpopover.hidden = false
+           // dimmerforpopover.hidden = false
         /*
         self.quicksmallconstraint.constant = -6
         
@@ -723,11 +769,14 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
 
         })
      */
-            
+          /*
         } else {
+            quickaddoutlet.hidden = true
+            opencatalogoutlet.hidden = false
+            newquantitybutton.hidden = true
             endediting = false
         }
-      
+        */
         
     }
     
@@ -941,7 +990,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             shopItem["imageLocalPath"] = ""//imagePath
 
         
-        shopItem["Category"] = chosencatalogitem.itemcategory.catId
+        shopItem["Category"] = quickcategoryUUID//chosencatalogitem.itemcategory.catId
         
        
         
@@ -956,13 +1005,13 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             let itemimagepath = ""//self.imagespaths[indexPathCatalogProduct!.row]//"Banana.png"//self.imagePath
             let itemunit = quickunit//""
             let itemimage2 = chosencatalogitem.itemimage
-            let itemcategory = chosencatalogitem.itemcategory.catId
+            let itemcategory = quickcategoryUUID//chosencatalogitem.itemcategory.catId
             let itemiscatalog = true
             let originalincatalog = chosencatalogitem.itemId
             
             let itemperunit = quickperunit//""
             
-            let categoryname = chosencatalogitem.itemcategory.catname
+            let categoryname = quickcategory.catname//chosencatalogitem.itemcategory.catname
             
             let itemtotalprice = self.quicksum.text!//0.0
             
@@ -1010,7 +1059,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         
  
-        
+        /*
         if poppresented == true {
             
            
@@ -1025,19 +1074,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             dimmerforpopover.hidden = true
 
             self.smallpopover.hidden = true
-            /*
-            self.quicksmallconstraint.constant = -610
-            
-            UIView.animateWithDuration(0.2, animations: { () -> Void in
-                
-                self.view.layoutIfNeeded()
-                
-                }, completion: { (value: Bool) -> Void in
-               
-                    self.smallpopover.hidden = true
-            })
 
-            */
             
         }
         
@@ -1047,7 +1084,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         opencatalogoutlet.hidden = false
         quickaddoutlet.hidden = true
         newquantitybutton.hidden = true
+        */
         
+        hideproperties()
 
         self.quickunit = ""
         self.quickperunit = ""
@@ -1060,30 +1099,35 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
 
         quickcategory = catalogcategories[0]
         quickcategoryUUID = catalogcategories[0].catId
-        quickcaticon.image = catalogcategories[0].catimage
+       // quickcaticon.image = catalogcategories[0].catimage
         
-        quickcategorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
-        
+       // quickcategorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
+        setcategoryinscroller("usual", catindex: nil)
         
         isdefaultpicture = true
         defaultpicturename = imagestochoose[0].imagename
         quickicon.image = imagestochoose[0].itemimage
+        changepicture.enabled = true
+        changepicture.alpha = 1.0
         
-        resetunitsback(horizontalScrollView)
-        resetunitsback(horizontalScrollViewper)
+        resetunitsback()
+        
        
         
         buttontitle = ""
         
         
         
-        self.view.endEditing(true)
+      //  self.view.endEditing(true) CAREFUL
         //autocomplete.re
         catalogitemtochoose = nil // make it nil after adding
        //  quickquantity.text = NSLocalizedString("amount", comment: "")
         autocomplete.text = NSLocalizedString("additemtext", comment: "")
         
+        
+        if showcats == false {
         tableViewScrollToBottom(true)
+        }
         
         addedindicator.alpha = 1
         addedindicator.fadeOut()
@@ -1270,7 +1314,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             })
             
-            
+            /*
             if poppresented == true {
                 
                 poppresented = false
@@ -1279,7 +1323,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 dimmerforpopover.hidden = true
                 
-                self.smallpopover.hidden = true
+                smallpopover.hidden = true
                 
 
                 
@@ -1290,7 +1334,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             quickaddoutlet.hidden = true
             opencatalogoutlet.hidden = false
             newquantitybutton.hidden = true
-            
+            */
             
         self.quickunit = ""
         self.quickperunit = ""
@@ -1303,16 +1347,20 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         quickcategory = catalogcategories[0]
         quickcategoryUUID = catalogcategories[0].catId
-        quickcaticon.image = catalogcategories[0].catimage
-        quickcategorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
+       // quickcaticon.image = catalogcategories[0].catimage
+       // quickcategorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
+        
+         setcategoryinscroller("usual", catindex: nil)
         
         isdefaultpicture = true
         defaultpicturename = imagestochoose[0].imagename
         quickicon.image = imagestochoose[0].itemimage
+        changepicture.enabled = true
+        changepicture.alpha = 1.0
         
-        resetunitsback(horizontalScrollView)
-        resetunitsback(horizontalScrollViewper)
+        resetunitsback()
         
+        hideproperties()
         
         
             self.autocomplete.text = NSLocalizedString("additemtext", comment: "")
@@ -1322,15 +1370,16 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             buttontitle = ""
             
-            
-            autocomplete.resignFirstResponder()
+          //  self.view.endEditing(true) CAREFUL
+           // autocomplete.resignFirstResponder()
             
             
         // END OF USUAL ADD CASE
         
         
-        
+        if showcats == false {
         tableViewScrollToBottom(true)
+        }
         
         addedindicator.alpha = 1
         addedindicator.fadeOut()
@@ -1342,7 +1391,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     @IBAction func cancelquickadding(sender: AnyObject) {
-        
+        /*
         if poppresented == true {
             
             
@@ -1366,6 +1415,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         opencatalogoutlet.hidden = false
         quickaddoutlet.hidden = true
         newquantitybutton.hidden = true
+        */
+        
         
         self.quickunit = ""
         self.quickperunit = ""
@@ -1378,22 +1429,22 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         quickcategory = catalogcategories[0]
         quickcategoryUUID = catalogcategories[0].catId
-        quickcaticon.image = catalogcategories[0].catimage
+       // quickcaticon.image = catalogcategories[0].catimage
         
-        quickcategorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
+       // quickcategorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
         
         
         isdefaultpicture = true
         defaultpicturename = imagestochoose[0].imagename
         quickicon.image = imagestochoose[0].itemimage
         
-        resetunitsback(horizontalScrollView)
-        resetunitsback(horizontalScrollViewper)
+       resetunitsback()
+       hideproperties()
         
         
         buttontitle = ""
 
-        self.view.endEditing(true)
+      //  self.view.endEditing(true)
         //autocomplete.re
         catalogitemtochoose = nil // make it nil after adding
         //  quickquantity.text = NSLocalizedString("amount", comment: "")
@@ -2043,6 +2094,51 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         }
   
     }
+    
+    /// FOR FUTURE 
+    /*
+    var checkedsections = Dictionary<String, Array<Dictionary<String, AnyObject>>>()
+    
+    var sortedCheckedSections = [String]()
+    
+    func sortchecked(items: [Dictionary<String, AnyObject>]) {
+        
+        checkedsections.removeAll(keepCapacity: true)
+        sortedCheckedSections.removeAll(keepCapacity: true)
+        
+        
+        var checkedcats: String = "Checked"
+        var notcheckedcats: String = "NotChecked"
+        
+        for ( var i = 0; i < items.count; i++ ) {
+            
+           // let commoncategory: String = items[i]["ItemCategoryName"] as! String
+            
+           // if self.sections.indexForKey(checkedcats) == nil {
+            if (items[i]["ItemIsChecked"] as! Bool) == true {
+                
+                //self.sections[commoncategory] = [items[i]]
+                self.checkedsections[checkedcats] = [items[i]]
+                
+                
+            }
+            else {
+                
+              //  self.sections[commoncategory]?.append(items[i])
+                self.checkedsections[notcheckedcats] = [items[i]]
+
+                
+                
+            }
+        }
+        
+         self.sortedCheckedSections = self.checkedsections.keys.elements.sort(>)
+        
+        print(checkedsections)
+        print(sortedCheckedSections)
+        
+    }
+    */
     
     func sortcategories(items: [Dictionary<String, AnyObject>]) {
  
@@ -3318,19 +3414,18 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
         }
         
-        /*
-        if segue.identifier == "showsmallpopup" {
-            let popoverViewController = segue.destinationViewController as! SmallPopover//UIViewController
-            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
-            popoverViewController.popoverPresentationController!.delegate = self
-            popoverViewController.preferredContentSize = CGSize(width: 270, height: 320)
-            popoverViewController.delegate = self //WITHOUT THIS IT WONT WORK
         
+        if segue.identifier == "createcustomcategoryfromlist" {
+          
             
+            let popoverViewController = segue.destinationViewController as! ManageCategoriesVC
+  
+            
+            popoverViewController.additemdelegate = self
             
             
         }
-        */
+        
         
         if segue.identifier == "additemmodalsegue" {
           
@@ -3454,6 +3549,17 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             
         }
+        
+        if segue.identifier == "showimagesfromshoplist" {
+            
+            let popoverViewController = segue.destinationViewController as! ImagesCollectionVC//UIViewController
+            
+
+            
+            popoverViewController.delegate = self
+            
+        }
+        
         
         
         
@@ -4690,6 +4796,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         //self.smallpopover.frame.origin.y = self.view.frame.origin.y - 300
       //  self.smallpopover.frame.origin.y = self.view.frame.origin.y - 300
+       // sortchecked(itemsDataDict)
     }
     
     
@@ -4701,9 +4808,49 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     let redquantity: UIImage = UIImage(named:"CloseQuantityB")!
     
     
+    func showproperties() {
+        
+        //autocomplete.resignFirstResponder() // self.view.endEditing(true) - might be better
+        //self.view.endEditing(true)
+        smallpopover.hidden = false
+        dimmerforpopover.hidden = false
+        
+        opencatalogoutlet.hidden = true
+        newquantitybutton.hidden = true
+        quickaddoutlet.hidden = false
+        
+        var pulseAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.scale");
+        pulseAnimation.duration = 1.0;
+        pulseAnimation.fromValue = NSNumber(float: 0.9)
+        pulseAnimation.toValue = NSNumber(float: 1.0);
+        pulseAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut);
+        pulseAnimation.autoreverses = true;
+        pulseAnimation.repeatCount = FLT_MAX;
+        quickaddoutlet.layer.addAnimation(pulseAnimation, forKey: nil)
+        
+    }
+    
+    func hideproperties() {
+        
+        //autocomplete.resignFirstResponder()
+        self.view.endEditing(true)
+        smallpopover.hidden = true
+        dimmerforpopover.hidden = true
+        
+        opencatalogoutlet.hidden = false
+        newquantitybutton.hidden = true
+        quickaddoutlet.hidden = true
+        
+        
+        quickaddoutlet.layer.removeAllAnimations()
+    }
+    
+    
     func slidepopover() {
         //
         
+        
+       // newquantitybutton.hidden = true
         // small workaround due to a bug
         if newquantitybutton.tintColor == UIColorFromRGB(0x979797) {
             poppresented = false
@@ -4753,7 +4900,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func slidesmallpopover(sender: AnyObject) {
         //
-        slidepopover()
+      //  slidepopover()
+        self.view.endEditing(true)
+        showproperties()
         
         /*
         // small workaround due to a bug
@@ -4857,9 +5006,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func editproductfromkeyboard(sender: UIButton) {
-        quickpriceoutlet.resignFirstResponder()
+       // quickpriceoutlet.resignFirstResponder()
+        self.view.endEditing(true)
+       showproperties()
         
-        slidepopover()
+       
     }
     
     var closepadimage = UIImage(named: "ClosePad")!
@@ -4941,6 +5092,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         poppresented = false
         
+        newquantitybutton.hidden = false
         
         newquantitybutton.tintColor = UIColorFromRGB(0x979797)
         
@@ -5439,8 +5591,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var quickcurrency: UILabel!
     @IBOutlet var categoryview: UIView!
     @IBOutlet var quickicon: UIImageView!
-    @IBOutlet var quickcaticon: UIImageView!
-    @IBOutlet var quickcategorybutton: UIButton!
+
     @IBOutlet var nomatchlabel: UILabel!
     @IBOutlet var prodiconview: UIView!
     
@@ -5609,6 +5760,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    /*
     func resetunitsback(scroller: ASHorizontalScrollView) {
         
         for button in scroller.subviews {
@@ -5630,6 +5782,168 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
         
+    }
+    */
+    
+    @IBOutlet var picker: UIPickerView!
+    
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // returns number of rows in each component..
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        return units.count
+    }
+    
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        
+        return units[row][0]//[1]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        if currenttype == "unit" {
+            
+            chosenunit = units[row][1]
+            // chosenperunit = units[row][1]
+            
+            
+        } else if currenttype == "perunit" {
+            
+            chosenperunit = units[row][1]
+        }
+        
+    }
+    
+    func showunitsview(buttontype: String) {
+        
+        
+        if buttontype == "unit" {
+            
+            currenttype = "unit"
+            
+            
+        } else if buttontype == "perunit" {
+            
+            currenttype = "perunit"
+            
+        }
+        
+        unitsview.hidden = false
+        
+        unitviewbottomconstraint.constant = 2
+        
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            
+            self.view.layoutIfNeeded()
+            }, completion: { (value: Bool) -> Void in
+                
+        })
+        
+        
+        
+    }
+
+    func saveUnit(){
+        
+        if currenttype == "unit" {
+            if (chosenunit != "") && (perunitsbutton.titleForState(.Normal) == "") {
+                unitsbutton.setTitle(chosenunit, forState: .Normal)
+                perunitsbutton.setTitle(chosenunit, forState: .Normal)
+                
+                quickunit = chosenunit
+                quickperunit = chosenunit
+            } else {
+                unitsbutton.setTitle(chosenunit, forState: .Normal)
+                quickunit = chosenunit
+            }
+            
+            
+        } else if currenttype == "perunit" {
+            
+            perunitsbutton.setTitle(chosenperunit, forState: .Normal)
+            quickperunit = chosenperunit
+        }
+        
+        multiplication()
+        
+        
+        
+        unitviewbottomconstraint.constant = -347
+        
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            
+            self.view.layoutIfNeeded()
+            }, completion: { (value: Bool) -> Void in
+                self.unitsview.hidden = true
+        })
+        
+    }
+
+    
+     var currenttype : String = "unit"
+    
+    var chosenunit = String()
+    var chosenperunit = String()
+    
+    @IBOutlet var unitsbutton: UIButton!
+    @IBOutlet var perunitsbutton: UIButton!
+    @IBOutlet var unitviewbottomconstraint: NSLayoutConstraint!
+
+    @IBOutlet var unitsview: UIView!
+    
+    @IBAction func showunits(sender: AnyObject) {
+        
+         showunitsview("unit")
+    }
+    
+    
+    @IBAction func showperunits(sender: AnyObject) {
+        
+         showunitsview("perunit")
+    }
+    
+    
+    @IBAction func saveunits(sender: AnyObject) {
+        
+        saveUnit()
+    }
+    
+    
+    @IBAction func cancelunits(sender: AnyObject) {
+        
+        // show view constr = -8
+        
+        
+        unitviewbottomconstraint.constant = -347
+        
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            
+            self.view.layoutIfNeeded()
+            }, completion: { (value: Bool) -> Void in
+                self.unitsview.hidden = true
+        })
+        
+        self.picker.selectRow(0, inComponent: 0, animated: false)
+        
+        chosenunit = ""
+        chosenperunit = ""
+
+    }
+   
+    func resetunitsback() {
+        
+         self.picker.selectRow(0, inComponent: 0, animated: false)
+        
+        chosenunit = ""
+        chosenperunit = ""
+        
+        unitsbutton.setTitle("", forState: .Normal)
+        perunitsbutton.setTitle("", forState: .Normal)
     }
     
     
@@ -5952,17 +6266,243 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         performSegueWithIdentifier("additemmodalsegue", sender: sender)
     }
     
+    
+    ///
+    
+    func addcustomhere(sender: UITapGestureRecognizer? = nil) {
+        performSegueWithIdentifier("createcustomcategoryfromlist", sender: self)
+    }
+    
+    func choosecategoryhere(sender: UITapGestureRecognizer? = nil) {
+        
+        var senderview : UIView = (sender?.view)!
+        var sendertag : Int = (sender?.view!.tag)!
+        
+        var category : Category = catalogcategories[sendertag]
+        
+        //categorybutton.setTitle(category.catname, forState: .Normal)
+        // categoryimageoutlet.image = category.catimage
+        quickcategory = category
+        quickcategoryUUID = category.catId
+        
+        
+        for view in horizontalScrollView.subviews {
+            
+            //if let tappedview = view as? UIButton {
+            if view.tag == sendertag {
+                
+                senderview.tintColor = UIColorFromRGB(0x31797D)
+                for subview in senderview.subviews {
+                    subview.tintColor = UIColorFromRGB(0x31797D)
+                    //if let labelview : UILabel = subview as! UILabel {
+                    if subview == subview as? UILabel {
+                        // that's how one finds out the type
+                        (subview as! UILabel).textColor = UIColorFromRGB(0x31797D)
+                    }
+                }
+                senderview.layer.borderWidth = 1
+                senderview.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
+            } else {
+                
+                view.tintColor = UIColorFromRGB(0x979797)
+                for subview in view.subviews {
+                    subview.tintColor = UIColorFromRGB(0x979797)
+                    // if let labelview : UILabel == subview as? UILabel {
+                    if subview == subview as? UILabel {
+                        (subview as! UILabel).textColor = UIColorFromRGB(0x979797)
+                    }
+                }
+                
+                view.layer.borderWidth = 0
+                view.layer.borderColor = UIColor.clearColor().CGColor
+            }
+            // }
+        }
+    }
+    
+    
+    func setcategoryinscroller(type: String, catindex: Int?) {
+        // catalog or usual
+        
+        if type == "catalog" {
+            
+                
+                
+                for view in horizontalScrollView.subviews {
+                    
+                    //if let tappedview = view as? UIButton {
+                    if view.tag == catindex {
+                        
+                        view.tintColor = UIColorFromRGB(0x31797D)
+                        for subview in view.subviews {
+                            subview.tintColor = UIColorFromRGB(0x31797D)
+                            //if let labelview : UILabel = subview as! UILabel {
+                            if subview == subview as? UILabel {
+                                // that's how one finds out the type
+                                (subview as! UILabel).textColor = UIColorFromRGB(0x31797D)
+                            }
+                        }
+                        view.layer.borderWidth = 1
+                        view.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
+                    } else {
+                        
+                        view.tintColor = UIColorFromRGB(0x979797)
+                        for subview in view.subviews {
+                            subview.tintColor = UIColorFromRGB(0x979797)
+                            // if let labelview : UILabel == subview as? UILabel {
+                            if subview == subview as? UILabel {
+                                (subview as! UILabel).textColor = UIColorFromRGB(0x979797)
+                            }
+                        }
+                        
+                        view.layer.borderWidth = 0
+                        view.layer.borderColor = UIColor.clearColor().CGColor
+                    }
+                    // }
+                }
+                
+                
+                var vel: CGPoint = CGPointMake(horizontalScrollView.finditem(catindex!, inScrollView: horizontalScrollView), 0.0)
+                horizontalScrollView.contentOffset = vel
+            
+        } else if type == "usual" {
+            
+            for view in horizontalScrollView.subviews {
+                
+                //if let tappedview = view as? UIButton {
+                if view.tag == 0 {
+                    
+                    view.tintColor = UIColorFromRGB(0x31797D)
+                    for subview in view.subviews {
+                        subview.tintColor = UIColorFromRGB(0x31797D)
+                        //if let labelview : UILabel = subview as! UILabel {
+                        if subview == subview as? UILabel {
+                            // that's how one finds out the type
+                            (subview as! UILabel).textColor = UIColorFromRGB(0x31797D)
+                        }
+                    }
+                    view.layer.borderWidth = 1
+                    view.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
+                    
+                    
+                } else {
+                    view.tintColor = UIColorFromRGB(0x979797)
+                    for subview in view.subviews {
+                        subview.tintColor = UIColorFromRGB(0x979797)
+                        // if let labelview : UILabel == subview as? UILabel {
+                        if subview == subview as? UILabel {
+                            (subview as! UILabel).textColor = UIColorFromRGB(0x979797)
+                        }
+                    }
+                    
+                    view.layer.borderWidth = 0
+                    view.layer.borderColor = UIColor.clearColor().CGColor
+                }
+            
+            }
+            
+            var vel: CGPoint = CGPointMake(horizontalScrollView.finditem(0, inScrollView: horizontalScrollView), 0.0)
+            horizontalScrollView.contentOffset = vel
+        }
+    }
+    
+    
+    func setupbuttonview(buttonview: UIView, buttonimage: UIImageView, buttonlabel: UILabel) {
+        
+        buttonview.layer.cornerRadius = 8
+        
+        buttonlabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        buttonlabel.numberOfLines = 2
+        buttonlabel.font = UIFont(name: "AvenirNext-Regular", size: 9)
+        buttonlabel.textColor = UIColorFromRGB(0x979797)
+        buttonlabel.textAlignment = .Center
+        
+        buttonimage.tintColor = UIColorFromRGB(0x979797)
+        
+        
+    }
+    
+    
+    func categoriessetup() {
+        //categories setup
+        
+        // add custom cat button
+        let addcustom = UIView(frame: CGRectZero)
+        let labelview = UILabel(frame: CGRectMake(2, 36, 66, 31))
+        let imageview = UIImageView(frame: CGRectMake(21, 8, 28, 28)) // left top widht height
+        
+        labelview.text = "Add Custom"
+        imageview.image = UIImage(named: "4EmptyImage")
+        
+        addcustom.addSubview(labelview)
+        addcustom.addSubview(imageview)
+        
+        addcustom.tag = catalogcategories.count + 10
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("addcustomhere:"))
+        addcustom.userInteractionEnabled = true
+        addcustom.addGestureRecognizer(tapGestureRecognizer)
+        
+        setupbuttonview(addcustom, buttonimage: imageview, buttonlabel: labelview)
+        horizontalScrollView.addItem(addcustom)
+        
+        
+        for i in (0..<catalogcategories.count) {
+            
+            let addcat = UIView(frame: CGRectZero)
+            let labelview = UILabel(frame: CGRectMake(2, 36, 66, 31))
+            let imageview = UIImageView(frame: CGRectMake(21, 8, 28, 28))
+            
+            labelview.text = catalogcategories[i].catname
+            imageview.image = catalogcategories[i].catimage
+            
+            addcat.addSubview(labelview)
+            addcat.addSubview(imageview)
+            
+            addcat.tag = i
+            //"addcustomhere:"
+            
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("choosecategoryhere:"))
+            addcat.userInteractionEnabled = true
+            addcat.addGestureRecognizer(tapGestureRecognizer)
+            
+            
+            setupbuttonview(addcat, buttonimage: imageview, buttonlabel: labelview)
+            horizontalScrollView.addItem(addcat)
+        }
+        
+        self.categoryview.addSubview(horizontalScrollView)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
          //UINavigationBar.appearance().backgroundColor = UIColor.clearColor()
         
+        unitsview.hidden = true
+        
+        unitsview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+        unitsview.layer.borderWidth = 1
+        
+        picker.delegate = self
+        picker.dataSource = self
+        
         setupButtons([copyoutlet, pasteoutlet, deleteoutlet, canceloutlet])
         
-        resetunitsback(horizontalScrollView)
-        resetunitsback(horizontalScrollViewper)
+        resetunitsback()
+        //resetunitsback(horizontalScrollViewper)
         
         // SCROLLS
+        horizontalScrollView = ASHorizontalScrollView(frame:CGRectMake(12, 0, categoryview.frame.width - 12, 70))//viewforcats.frame.height - 5))
+        horizontalScrollView.uniformItemSize = CGSizeMake(70, 70)
+        horizontalScrollView.leftMarginPx = 0
+        horizontalScrollView.miniMarginPxBetweenItems = 0
+        horizontalScrollView.miniAppearPxOfLastItem = 10
+        horizontalScrollView.setItemsMarginOnce()
+        
+        categoriessetup()
+        /*
         horizontalScrollView = ASHorizontalScrollView(frame:CGRectMake(0, 0, horscrollview.frame.width, 34))
         horizontalScrollViewper = ASHorizontalScrollView(frame:CGRectMake(0, 0, horscrollviewper.frame.width, 34))
         horizontalScrollView.uniformItemSize = CGSizeMake(40, 34)
@@ -6009,9 +6549,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             horizontalScrollView.addItem(button)
             horizontalScrollViewper.addItem(buttonper)
         }
+        */
         
-       self.horscrollview.addSubview(horizontalScrollView)
-        self.horscrollviewper.addSubview(horizontalScrollViewper)
+      // self.horscrollview.addSubview(horizontalScrollView)
+       // self.horscrollviewper.addSubview(horizontalScrollViewper)
         
         // not sure
         itemsDataDict.removeAll(keepCapacity: true)
@@ -6029,11 +6570,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
          var popoverup = UISwipeGestureRecognizer(target: self, action: Selector("handleUPSwipe:"))
          popoverup.direction = .Up
             smallpopover.addGestureRecognizer(popoverup)
-        
+        /*
         var swipecell = UISwipeGestureRecognizer(target: self, action: "didSwipeCell:")
         swipecell.direction = .Right
         self.tableView.addGestureRecognizer(swipecell)
-        
+        */
         
         let nib = UINib(nibName: "TableSectionHeader", bundle: nil)
         tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "TableSectionHeader")
@@ -6049,13 +6590,15 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         */
         //doneinviewoutlet.layer.cornerRadius = 4
         
-        listnameinview.layer.borderWidth = 1
-        listnameinview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-        listnameinview.layer.cornerRadius = 4
         
-        listnoteinview.layer.borderWidth = 1
-        listnoteinview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-        listnoteinview.layer.cornerRadius = 4
+        
+        unitsbutton.layer.borderWidth = 1
+        unitsbutton.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+        unitsbutton.layer.cornerRadius = 8
+        
+        perunitsbutton.layer.borderWidth = 1
+        perunitsbutton.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+        perunitsbutton.layer.cornerRadius = 8
         
         listnameinview.leftTextMargin = 6
         
@@ -6068,6 +6611,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         quickaddoutlet.hidden = true
         opencatalogoutlet.hidden = false
         newquantitybutton.hidden = true
+        
+        smallpopover.hidden = true
+        dimmerforpopover.hidden = true
+        
+
         
         listnameinview.delegate = self
         listnoteinview.delegate = self
@@ -6141,11 +6689,13 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         quickpriceoutlet.delegate = self
         
 
-        quickcategorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
+      //  quickcategorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
+        
+         setcategoryinscroller("usual", catindex: nil)
         
         quickicon.image = imagestochoose[0].itemimage
         
-        quickcaticon.image = catalogcategories[0].catimage
+       // quickcaticon.image = catalogcategories[0].catimage
         
         
         
@@ -6187,10 +6737,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         quicksum.layer.borderWidth = 1
         quicksum.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
         
-        categoryview.layer.cornerRadius = 8
         
-        categoryview.layer.borderWidth = 1
-        categoryview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+        
+        
         
         prodiconview.layer.cornerRadius = 8
         

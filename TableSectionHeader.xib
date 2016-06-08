@@ -25,6 +25,7 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Eh-WI-AEp">
                             <rect key="frame" x="264" y="3" width="24" height="24"/>
+                            <color key="tintColor" red="0.19215686269999999" green="0.47450980390000003" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="IoT-Pv-0EA"/>
                                 <constraint firstAttribute="width" constant="24" id="LBE-fr-r88"/>
