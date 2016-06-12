@@ -90,20 +90,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     
     
     func handlecustomcat(added: Bool) {
-        // 
-        /*
-        if acttype == "add" {
-            
-             for i in (0..<catalogcategories.count) {
-            categorysetup(i)
-            }
-            
-            var vel: CGPoint = CGPointMake(horizontalScrollView.finditem(indexes.last!, inScrollView: horizontalScrollView), 0.0)
-            horizontalScrollView.contentOffset = vel
-        } else if acttype == "delete" {
-            
-            
-        }*/
+
         if added == true {
         horizontalScrollView.removeAllItems()
         categoriessetup()
@@ -114,6 +101,31 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         }
         
         // Mark the current cat!
+          if let foundcategory = catalogcategories.map({ $0.catId }).lazy.indexOf((self.itemcategory!.catId)) {
+        
+        for view in horizontalScrollView.subviews {
+
+            if view.tag == foundcategory {
+                
+                view.tintColor = UIColorFromRGB(0x31797D)
+                for subview in view.subviews {
+                    subview.tintColor = UIColorFromRGB(0x31797D)
+                    //if let labelview : UILabel = subview as! UILabel {
+                    if subview == subview as? UILabel {
+                        // that's how one finds out the type
+                        (subview as! UILabel).textColor = UIColorFromRGB(0x31797D)
+                    }
+                }
+                view.layer.borderWidth = 1
+                view.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
+                
+                break;
+            }
+            // }
+        }
+    }
+    
+
     }
     
     
@@ -285,7 +297,65 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     
     @IBOutlet var itemPriceOutlet: UITextField!
     @IBOutlet var itemImageOutlet: UIImageView!
-    @IBOutlet var totalsumlabel: UILabel!
+    //@IBOutlet var totalsumlabel: UILabel!
+    
+    @IBOutlet var totalsumlabel: UITextField!
+    
+    
+    @IBAction func sumbegin(sender: AnyObject) {
+        
+        sumline.backgroundColor = UIColorFromRGB(0x31797D)
+        totalsumlabel.textColor = UIColorFromRGB(0x31797D)
+        totalsumlabel.textInputView.tintColor = UIColorFromRGB(0x31797D)
+    }
+    
+    @IBAction func sumeditchanged(sender: AnyObject) {
+        
+        if totalsumlabel.text! != "0" && totalsumlabel.text! != "" {
+            sumline.backgroundColor = UIColorFromRGB(0x31797D)
+            totalsumlabel.textColor = UIColorFromRGB(0x31797D)
+            totalsumlabel.textInputView.tintColor = UIColorFromRGB(0x31797D)
+        } else {
+            sumline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            totalsumlabel.textColor = UIColorFromRGB(0xE0E0E0)
+            totalsumlabel.textInputView.tintColor = UIColorFromRGB(0xE0E0E0)
+        }
+   
+    }
+    
+    @IBAction func sumchanged(sender: AnyObject) {
+    
+        
+    
+    
+    
+        if totalsumlabel.text! != "0" && totalsumlabel.text! != "" {
+            sumline.backgroundColor = UIColorFromRGB(0x31797D)
+            totalsumlabel.textColor = UIColorFromRGB(0x31797D)
+            totalsumlabel.textInputView.tintColor = UIColorFromRGB(0x31797D)
+        } else {
+            sumline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            totalsumlabel.textColor = UIColorFromRGB(0xE0E0E0)
+            totalsumlabel.textInputView.tintColor = UIColorFromRGB(0xE0E0E0)
+        }
+
+    }
+    
+    @IBAction func sumend(sender: AnyObject) {
+        
+        if totalsumlabel.text! != "0" && totalsumlabel.text! != "" {
+            sumline.backgroundColor = UIColorFromRGB(0x31797D)
+            totalsumlabel.textColor = UIColorFromRGB(0x31797D)
+            totalsumlabel.textInputView.tintColor = UIColorFromRGB(0x31797D)
+        } else {
+            sumline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            totalsumlabel.textColor = UIColorFromRGB(0xE0E0E0)
+            totalsumlabel.textInputView.tintColor = UIColorFromRGB(0xE0E0E0)
+        }
+    }
+    
+    
+    
     
     @IBAction func DoneButton(sender: AnyObject) {
         
@@ -516,6 +586,8 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         var unit =  self.UnitsButton.titleForState(.Normal)
         var perunit = self.perUnitOutlet.titleForState(.Normal)
         
+        
+        
         //itemPriceOutlet.text!.doubleConverter
         
        // Qfield.text!.doubleConverter
@@ -551,9 +623,16 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             self.totalsumlabel.text = formatter.stringFromNumber(newvalue)
             
             nomatchlabel.hidden = true
+        } else if (unit != "") && perunit == "" {
+            
+            nomatchlabel.hidden = true
+            newvalue = numberchangeddouble*pricevalue
+            
+            self.totalsumlabel.text = formatter.stringFromNumber(newvalue)
+            
         } else {
             
-                    if unit == units[3][1] && perunit == units[4][1] {
+                if unit == units[3][1] && perunit == units[4][1] {
                 newvalue = (numberchangeddouble)*1000*pricevalue
                 self.totalsumlabel.text = formatter.stringFromNumber(newvalue)
                 nomatchlabel.hidden = true
@@ -611,7 +690,14 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             
         }
         
-        
+        if totalsumlabel.text! != "0" && totalsumlabel.text! != "" {
+            sumline.backgroundColor = UIColorFromRGB(0x31797D)
+            totalsumlabel.textColor = UIColorFromRGB(0x31797D)
+        } else {
+            sumline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            totalsumlabel.textColor = UIColorFromRGB(0xE0E0E0)
+        }
+
         /// other case
         
     }
@@ -626,6 +712,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         shiftview(false)
     }
     
+    
     @IBOutlet var thetopconstraint: NSLayoutConstraint!
     
     
@@ -633,7 +720,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         
         if up == true {
             
-            thetopconstraint.constant = -100
+            thetopconstraint.constant = -250
             
             UIView.animateWithDuration(0.2, animations: { () -> Void in
 
@@ -645,7 +732,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             
         } else if up == false {
             
-            thetopconstraint.constant = 8
+            thetopconstraint.constant = 9
            
             
             UIView.animateWithDuration(0.2, animations: { () -> Void in
@@ -662,6 +749,10 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     @IBAction func texfielddidstart(sender: UITextField) {
        // shiftview(true)
         // animateViewMoving(true, moveValue: 300)
+        
+        priceline.backgroundColor = UIColorFromRGB(0x31793D)
+        itemPriceOutlet.textInputView.tintColor = UIColorFromRGB(0x31797D)
+        
     }
     
     @IBAction func textfieldend(sender: AnyObject) {
@@ -672,9 +763,21 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             //(itemPriceOutlet.text! as NSString).stringByReplacingOccurrencesOfString(",", withString: ".")
        // }
         
+        if itemPriceOutlet.text! != "0" && itemPriceOutlet.text! != "" {
+            priceline.backgroundColor = UIColorFromRGB(0x31797D)
+            itemPriceOutlet.textColor = UIColorFromRGB(0x31797D)
+            itemPriceOutlet.textInputView.tintColor = UIColorFromRGB(0x31797D)
+        } else {
+             priceline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+             itemPriceOutlet.textColor = UIColorFromRGB(0x31797D)
+             itemPriceOutlet.textInputView.tintColor = UIColorFromRGB(0xE0E0E0)
+        }
+        
         itemPriceOutlet.text!.doubleConverter
         
          multiplication()
+        
+        
     }
     
     @IBAction func textfieldedit(sender: UITextField) {
@@ -686,7 +789,37 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     
+    @IBAction func pricevalueditchanged(sender: AnyObject) {
+        
+        if itemPriceOutlet.text! != "0" && itemPriceOutlet.text! != "" {
+            priceline.backgroundColor = UIColorFromRGB(0x31793D)
+            itemPriceOutlet.textInputView.tintColor = UIColorFromRGB(0x31797D)
+            itemPriceOutlet.textColor = UIColorFromRGB(0x31797D)
+        } else {
+            priceline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            itemPriceOutlet.textInputView.tintColor = UIColorFromRGB(0xE0E0E0)
+            itemPriceOutlet.textColor = UIColorFromRGB(0xE0E0E0)
+        }
+        
+        
+        itemPriceOutlet.text!.doubleConverter
+        
+        multiplication()
+    }
+    
+    
     @IBAction func pricevaluechanged(sender: AnyObject) {
+
+        
+        if itemPriceOutlet.text! != "0" && itemPriceOutlet.text! != "" {
+            priceline.backgroundColor = UIColorFromRGB(0x31793D)
+            itemPriceOutlet.textInputView.tintColor = UIColorFromRGB(0x31797D)
+            itemPriceOutlet.textColor = UIColorFromRGB(0x31797D)
+        } else {
+            priceline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            itemPriceOutlet.textInputView.tintColor = UIColorFromRGB(0xE0E0E0)
+            itemPriceOutlet.textColor = UIColorFromRGB(0xE0E0E0)
+        }
 
         
         itemPriceOutlet.text!.doubleConverter
@@ -883,7 +1016,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
 
         pause()
         
-        multiplication()
+       // multiplication() // not sure if need this
         
         var shopItem = PFObject(className:"shopItems")
         var uuid = NSUUID().UUIDString
@@ -1171,7 +1304,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                 
      
                 
-                self.multiplication()
+               // self.multiplication() // NO NEED
                 
                 itemch["itemNote"] = self.itemNoteOutlet.text
                 itemch["itemQuantity"] = self.Qfield.text
@@ -1258,8 +1391,10 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                           //  print( itemsDataDict[i]["ItemOneUnitPrice"])
                             
                             itemsDataDict[i]["ItemIsFav"] = self.isFavouriteItem
-                            if self.perUnitOutlet.titleForState(.Normal) == "Units" || self.UnitsButton.titleForState(.Normal) == "" {
+                            
+                            if self.perUnitOutlet.titleForState(.Normal) == "Units" || self.perUnitOutlet.titleForState(.Normal) == "" {
                              itemsDataDict[i]["ItemPerUnit"] = ""
+                                
                             } else {
                             itemsDataDict[i]["ItemPerUnit"] = self.perUnitOutlet.titleForState(.Normal)
                             }
@@ -1427,14 +1562,19 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                 
                 if itemsDataDict[i]["ItemUnit"] as? String != "" {
                 self.UnitsButton.setTitle(itemsDataDict[i]["ItemUnit"] as? String, forState: UIControlState.Normal)
+                self.unline.backgroundColor = UIColorFromRGB(0x31797D)
+                    
                 } else {
                      self.UnitsButton.setTitle(NSLocalizedString("units", comment: ""), forState: UIControlState.Normal)
+                    self.unline.backgroundColor = UIColorFromRGB(0xE0E0E0)
                 }
                 
                 if itemsDataDict[i]["ItemPerUnit"] as? String != "" {
                 self.perUnitOutlet.setTitle(itemsDataDict[i]["ItemPerUnit"] as? String, forState: UIControlState.Normal)
+                    self.perunline.backgroundColor = UIColorFromRGB(0x31797D)
                 } else {
                      self.perUnitOutlet.setTitle(NSLocalizedString("units", comment: ""), forState: UIControlState.Normal)
+                    self.perunline.backgroundColor = UIColorFromRGB(0xE0E0E0)
                 }
                 
        
@@ -1445,9 +1585,25 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                
                 self.itemPriceOutlet.text = itemsDataDict[i]["ItemOneUnitPrice"] as! String
                 
+                if self.itemPriceOutlet.text != "" && self.itemPriceOutlet.text != "0" {
+                    
+                self.priceline.backgroundColor = UIColorFromRGB(0x31797D)
+                } else {
+                    self.priceline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+                }
+                
                 self.Qfield.text = itemsDataDict[i]["ItemQuantity"] as! String
                 
+                
                 self.totalsumlabel.text = itemsDataDict[i]["ItemTotalPrice"] as! String
+                
+                if self.totalsumlabel.text != "" && self.itemPriceOutlet.text != "0" {
+                    
+                    self.sumline.backgroundColor = UIColorFromRGB(0x31797D)
+                } else {
+                    self.sumline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+                }
+                
                 //self.totalsumlabel.text = String(stringInterpolationSegment: itemsDataDict[i]["ItemTotalPrice"] as! Double)
                 
                 
@@ -1645,6 +1801,10 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         Qfield.resignFirstResponder()
     }
     
+    func closenumberpad3(sender: UIButton) {
+        totalsumlabel.resignFirstResponder()
+    }
+    
     
     func animateViewMoving (up:Bool, moveValue :CGFloat){
         var movementDuration:NSTimeInterval = 0.3
@@ -1801,24 +1961,66 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         
         self.picker.selectRow(0, inComponent: 0, animated: false)
         //self.pickerView(self.myPickerView, didSelectRow: 0, inComponent: 0)
+        chosenunit = ""
+        chosenperunit = ""
         
+    
+        if UnitsButton.titleForState(.Normal) == "" {
+            
+            unline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            
+            
+        }
+        
+        
+        if perUnitOutlet.titleForState(.Normal) == "" {
+            
+            perunline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            
+            
+        }
+    
     }
     
     
     func saveUnit(){
         
         if currenttype == "unit" {
+            
             if (chosenunit != "") && (perUnitOutlet.titleForState(.Normal) == "") {
                 UnitsButton.setTitle(chosenunit, forState: .Normal)
                 perUnitOutlet.setTitle(chosenunit, forState: .Normal)
+                
+                if chosenunit != "" {
+                    unline.backgroundColor = UIColorFromRGB(0x31797D)
+                    perunline.backgroundColor = UIColorFromRGB(0x31797D)
+                } else {
+                    unline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+                    perunline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+                }
+                
             } else {
                 UnitsButton.setTitle(chosenunit, forState: .Normal)
+                 if chosenunit != "" {
+                  unline.backgroundColor = UIColorFromRGB(0x31797D)
+                 } else {
+                     unline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+                }
             }
             
             
         } else if currenttype == "perunit" {
             
             perUnitOutlet.setTitle(chosenperunit, forState: .Normal)
+            
+            if chosenperunit != "" {
+                
+                perunline.backgroundColor = UIColorFromRGB(0x31797D)
+            } else {
+               
+                perunline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            }
+
         }
         
         multiplication()
@@ -1833,6 +2035,11 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             }, completion: { (value: Bool) -> Void in
                 
         })
+        
+        //restore
+         self.picker.selectRow(0, inComponent: 0, animated: false)
+        chosenunit = ""
+        chosenperunit = ""
         
     }
     
@@ -1849,7 +2056,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         return units[row][0]//[1]
     }
@@ -1881,11 +2088,13 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             
             currenttype = "unit"
             
+            unline.backgroundColor = UIColorFromRGB(0x31797D)
             
         } else if buttontype == "perunit" {
             
             currenttype = "perunit"
             
+            perunline.backgroundColor = UIColorFromRGB(0x31797D)
         }
         
         dimmerview.hidden = false
@@ -2006,6 +2215,15 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     
+    
+    
+    @IBOutlet var unline: UIView!
+    @IBOutlet var priceline: UIView!
+    @IBOutlet var perunline: UIView!
+    @IBOutlet var sumline: UIView!
+    
+    
+    
         override func viewDidLoad() {
         super.viewDidLoad()
             
@@ -2025,7 +2243,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             
             // SETUP CATEGORIES SCROLLER
             
-            horizontalScrollView = ASHorizontalScrollView(frame:CGRectMake(12, 0, viewforcats.frame.width - 12, 70))//viewforcats.frame.height - 5))
+            horizontalScrollView = ASHorizontalScrollView(frame:CGRectMake(12, 4, viewforcats.frame.width - 12, 70))//viewforcats.frame.height - 5))
             horizontalScrollView.uniformItemSize = CGSizeMake(70, 70)
             horizontalScrollView.leftMarginPx = 0
             horizontalScrollView.miniMarginPxBetweenItems = 0
@@ -2126,19 +2344,37 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             //Add the target - target, function to call, the event witch will trigger the function call
             closepad2.addTarget(self, action: "closenumberpad:", forControlEvents: UIControlEvents.TouchDown);
             
-           itemPriceOutlet.inputAccessoryView = toolView2
+            itemPriceOutlet.inputAccessoryView = toolView2
+            
+            let toolFrame3 = CGRectMake(0, 0, self.view.frame.size.width, 46);
+            let toolView3: UIView = UIView(frame: toolFrame3);
+            
+            let closepadframe3: CGRect = CGRectMake(self.view.frame.size.width - 66, 2, 56, 42); //size & position of the button as placed on the toolView
+            
+            //Create the cancel button & set its title
+            let closepad3: UIButton = UIButton(frame: closepadframe3);
+            // closepad.setTitle("Close", forState: UIControlState.Normal);
+            //closepad.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal);
+            closepad3.setImage(closepadimage, forState: UIControlState.Normal)
+            toolView3.addSubview(closepad3); //add it to the toolView
+            
+            //Add the target - target, function to call, the event witch will trigger the function call
+            closepad3.addTarget(self, action: "closenumberpad3:", forControlEvents: UIControlEvents.TouchDown);
+            
+            totalsumlabel.inputAccessoryView = toolView3
 
-            itemNameOutlet.leftTextMargin = 8
+            itemNameOutlet.leftTextMargin = 1
             
             itemNameOutlet.delegate = self
             itemNoteOutlet.delegate = self
             Qfield.delegate = self
             itemPriceOutlet.delegate = self
+            totalsumlabel.delegate = self
             
             
             
             
-            
+            /*
             pictview.layer.borderWidth = 1
             pictview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
             pictview.layer.cornerRadius = 4
@@ -2177,7 +2413,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             itemPriceOutlet.layer.borderWidth = 1
             itemPriceOutlet.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
             itemPriceOutlet.layer.cornerRadius = 4
-          
+            */
 
         
             

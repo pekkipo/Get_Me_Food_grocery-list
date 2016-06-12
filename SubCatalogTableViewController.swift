@@ -996,13 +996,13 @@ class SubCatalogTableViewController: UITableViewController, UISearchResultsUpdat
             if thiscategoryitems[indexPath.row].itemischecked == true {
             
        // cell.addinglabel.hidden = false
-        let checkimage = UIImage(named: "CheckPath") as UIImage!
+        let checkimage = UIImage(named: "4CheckMark") as UIImage!
         cell.addbutton.setImage(checkimage, forState: UIControlState.Normal)
                 
        // cell.addbutton.enabled = false
         } else {
        // cell.addinglabel.hidden = true
-        let notcheckimage = UIImage(named: "BlackPlus") as UIImage!
+        let notcheckimage = UIImage(named: "4AddPlus") as UIImage!
         cell.addbutton.setImage(notcheckimage, forState: UIControlState.Normal)
        // cell.addbutton.enabled = true
         }

@@ -37,15 +37,7 @@ class ManageCategoriesVC: UIViewController, UITableViewDelegate, UITableViewData
     
     
     @IBAction func newcatimagechoose(sender: AnyObject) {
-        /*
-        var chosenimage = UIImagePickerController()
-        chosenimage.delegate = self//self
-        chosenimage.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        chosenimage.allowsEditing = false
-        
-        self.presentViewController(chosenimage, animated: true, completion: nil)
-*/
-        
+  
         performSegueWithIdentifier("showimagesfrommanagecats", sender: self)
     }
     
@@ -84,6 +76,11 @@ class ManageCategoriesVC: UIViewController, UITableViewDelegate, UITableViewData
         addedindicator.alpha = 1
         addedindicator.fadeOut()
         
+        // Restore default
+        newcatname.text = ""
+        newcatimage.image = catalogcategories[0].catimage
+        
+        textline.backgroundColor = UIColorFromRGB(0xE0E0E0)
         
         tableView.reloadData()
         
@@ -159,12 +156,6 @@ class ManageCategoriesVC: UIViewController, UITableViewDelegate, UITableViewData
             let popoverViewController = segue.destinationViewController as! ImagesCollectionVC//UIViewController
             
             
-            popoverViewController.preferredContentSize = CGSize(width: 266, height: 480)
-            
-            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
-            popoverViewController.popoverPresentationController!.delegate = self
-            
-            
             
             popoverViewController.delegate = self
             
@@ -238,6 +229,11 @@ class ManageCategoriesVC: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
+        
+        //here
+        textline.backgroundColor = UIColorFromRGB(0x31797D)
+        newcatname.textInputView.tintColor = UIColorFromRGB(0x31797D)
+        
         return
     }
     
@@ -246,16 +242,27 @@ class ManageCategoriesVC: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        //here
+        if newcatname.text! == "" {
+            textline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            
+        } else {
+            textline.backgroundColor = UIColorFromRGB(0x31797D)
+        }
+        
         textField.resignFirstResponder()
         return true
     }
     //myTextField.delegate = self
     ///
-    
+    /*
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
+    */
     
+    @IBOutlet var textline: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -264,7 +271,14 @@ class ManageCategoriesVC: UIViewController, UITableViewDelegate, UITableViewData
         
         newcatname.text = ""
 
-        newcatname.leftTextMargin = 5
+        newcatname.leftTextMargin = 1
+        
+       
+        
+        //newcatname.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+        //newcatname.layer.borderWidth = 1
+        //newcatname.layer.cornerRadius = 4
+        
         
         addedindicator.alpha = 0
         addedindicator.layer.cornerRadius = 8
@@ -681,7 +695,7 @@ class ManageCategoriesVC: UIViewController, UITableViewDelegate, UITableViewData
         return [deleteAction]//, shareAction]
     }
     */
-    
+    /*
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
        return 30
         
@@ -710,7 +724,7 @@ class ManageCategoriesVC: UIViewController, UITableViewDelegate, UITableViewData
    
         
     }
-
+    */
     
     func tableView(tableView: UITableView,
         willDisplayCell cell: UITableViewCell,

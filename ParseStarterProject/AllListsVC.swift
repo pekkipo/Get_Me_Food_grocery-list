@@ -690,13 +690,37 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     
     @IBOutlet var OpenMenu2: UIBarButtonItem!
     
+ 
     
+    func backfromsort() {
+       // navbutton.imageView!.transform = CGAffineTransformMakeRotation(CGFloat(2*M_PI))
+    }
     
-    
+    @IBAction func tapsettings(sender: AnyObject) {
+        
+        performSegueWithIdentifier("sortpopup", sender: self)
+        
+    }
     func clickthetitle(button: UIButton) {
         
-        print("Tapped the title")
+
+           // navbutton.imageView!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+        performSegueWithIdentifier("sortpopup", sender: self)
+
+          //  navbutton.imageView!.transform = CGAffineTransformMakeRotation(CGFloat(2*M_PI))
+
+        
     }
+
+    
+    @IBAction func addlist(sender: AnyObject) {
+        //testview.hidden = false
+    }
+    
+    @IBOutlet var testview: UIView!
+    
+    
+    let navbutton =  UIButton(type: .Custom)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -704,18 +728,35 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         
         // navigation title as a button
         
-        let button =  UIButton(type: .Custom)
-        button.frame = CGRectMake((((self.view.frame.size.width) / 2) - 80),0,140,40) as CGRect
-        button.setTitle("My lists", forState: UIControlState.Normal)
-        button.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 16)
-        button.setTitleColor(UIColorFromRGB(0x31797D), forState: .Normal)
+        /*
+        navbutton.frame = CGRectMake((((self.view.frame.size.width) / 2) - 80),0,140,40) as CGRect
+        navbutton.setTitle("My lists", forState: UIControlState.Normal)
+        navbutton.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        navbutton.setTitleColor(UIColorFromRGB(0x31797D), forState: .Normal)
+        /*
         let spacing: CGFloat = 10; // the amount of spacing to appear between image and title
-        button.imageEdgeInsets = UIEdgeInsetsMake(2, 100, 0, 0); // top left bottom right
-        button.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
+        navbutton.imageEdgeInsets = UIEdgeInsetsMake(2, 100, 0, 0); // top left bottom right
+        navbutton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
+ */
         let titleimage = UIImage(named: "myliststitle") as UIImage?
-        button.setImage(titleimage, forState: .Normal)
-        button.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.navigationItem.titleView = button
+        navbutton.setImage(titleimage, forState: .Normal)
+        navbutton.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        
+        let spacing : CGFloat = 3;
+        let insetAmount : CGFloat = 0.5 * spacing;
+        
+        // First set overall size of the button:
+        navbutton.contentEdgeInsets = UIEdgeInsetsMake(0, insetAmount, 0, insetAmount);
+        navbutton.sizeToFit()
+        
+        // Then adjust title and image insets so image is flipped to the right and there is spacing between title and image:
+        navbutton.titleEdgeInsets  = UIEdgeInsetsMake(0, -navbutton.imageView!.frame.size.width - insetAmount, 0,  navbutton.imageView!.frame.size.width  + insetAmount);
+        navbutton.imageEdgeInsets  = UIEdgeInsetsMake(2, navbutton.titleLabel!.frame.size.width + insetAmount, 0, -navbutton.titleLabel!.frame.size.width - insetAmount);
+        */
+        
+        //self.navigationItem.titleView = navbutton
+        self.navigationItem.title = "My lists"
         
         //
         
@@ -732,7 +773,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         
        // self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
-        
+        /*
         newclosebuttonoutlet.layer.borderWidth = 1
         newclosebuttonoutlet.layer.borderColor = UIColorFromRGB(0xF23D55).CGColor
         newclosebuttonoutlet.layer.cornerRadius = 4
@@ -754,7 +795,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         
         blurredview.layer.cornerRadius = 4
         self.blurredview.clipsToBounds = true
-
+        */
         
        // toptoolbar.barTintColor = UIColorFromRGB(0x31797D)//2a2f36)
         
@@ -769,7 +810,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         
       //  showoption = "alllists"
         
-        showalloutlet.tintColor = UIColorFromRGB(0xE0FFB2)
+       // showalloutlet.tintColor = UIColorFromRGB(0xE0FFB2)
         
         /*
         print("all [\(UserLists), \(UserLists.count)]")
@@ -840,7 +881,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
        // checkreceivedlists()
         
       //  showoption = "alllists"
-        
+        /*
         if showoption == "alllists" {
             showalloutlet.tintColor = UIColorFromRGB(0xE0FFB2)
             showshopsoutlet.tintColor = UIColorFromRGB(0xFAFAFA)
@@ -862,7 +903,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
             showtodosoutlet.tintColor = UIColorFromRGB(0xFAFAFA)
             favsbaroutlet.tintColor = UIColorFromRGB(0xE0FFB2)
         }
-        
+        */
         
         
         
@@ -922,8 +963,9 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         
     
     var idforoptions = String()
-    var codeforoptions = String()
-    var symbolforoptions = String()
+    var codeforoptions = ""//String()
+    var symbolforoptions = ""//String()
+    var colorcodeforoptions = String()
     
     func optionsaction(indexPath: NSIndexPath) {
         
@@ -932,25 +974,34 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         if showoption == "alllists" {
             
             idforoptions = UserLists[indexPath.row].listid
+            
+            print(UserLists[indexPath.row])
+            
+            print(UserLists[indexPath.row].listcurrency)
+            
             var currencyarray = UserLists[indexPath.row].listcurrency as! [AnyObject]
             codeforoptions = UserLists[indexPath.row].listcurrency![0] as! String
             symbolforoptions = UserLists[indexPath.row].listcurrency![1] as! String
+            colorcodeforoptions = UserLists[indexPath.row].listcolorcode
             
         } else if showoption == "shoplists" {
             idforoptions = UserShopLists[indexPath.row].listid
             var currencyarray = UserShopLists[indexPath.row].listcurrency as! [AnyObject]
             codeforoptions = UserShopLists[indexPath.row].listcurrency![0] as! String
             symbolforoptions = UserShopLists[indexPath.row].listcurrency![1] as! String
+            colorcodeforoptions = UserShopLists[indexPath.row].listcolorcode
         } else if showoption == "todolists" {
             idforoptions = UserToDoLists[indexPath.row].listid
             var currencyarray = UserToDoLists[indexPath.row].listcurrency as! [AnyObject]
             codeforoptions = UserToDoLists[indexPath.row].listcurrency![0] as! String
             symbolforoptions = UserToDoLists[indexPath.row].listcurrency![1] as! String
+            colorcodeforoptions = UserToDoLists[indexPath.row].listcolorcode
         } else if showoption == "favs" {
             idforoptions = UserFavLists[indexPath.row].listid
             var currencyarray = UserFavLists[indexPath.row].listcurrency as! [AnyObject]
             codeforoptions = UserFavLists[indexPath.row].listcurrency![0] as! String
             symbolforoptions = UserFavLists[indexPath.row].listcurrency![1] as! String
+            colorcodeforoptions = UserFavLists[indexPath.row].listcolorcode
         }
         
         self.performSegueWithIdentifier("Alllistsoptions", sender: self)
@@ -1153,9 +1204,11 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         
         if segue.identifier == "shareListSegue" {
             
-            let shareNav = segue.destinationViewController as! UINavigationController
+           // let shareNav = segue.destinationViewController as! UINavigationController
             
-            let shareVC = shareNav.viewControllers.first as! SharingViewController
+           // let shareVC = shareNav.viewControllers.first as! SharingViewController
+            
+            let shareVC = segue.destinationViewController as! SharingViewController
             
             
             shareVC.listToShare = listtoshare
@@ -1176,6 +1229,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
             optionsVC.listtoupdate = idforoptions
             optionsVC.code = codeforoptions
             optionsVC.symbol = symbolforoptions
+            optionsVC.colorcode = colorcodeforoptions
             
             
         }
@@ -5048,31 +5102,33 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         }
     }
     
-    func sharelist(sender: UIButton!) {
+    //func sharelist(sender: UIButton!) {
+    func sharelist(indexPath: NSIndexPath!) {
         
         
-        
+        /*
         let button = sender as UIButton
         let view = button.superview!
         let innerview = view.superview!
         let cell = innerview.superview as! ShopListCellNew
         let indexPathShare = tableView.indexPathForCell(cell)
+ */
         
         if showoption == "alllists" {
-            listtoshare = UserLists[indexPathShare!.row].listid
-            listtosharetype = UserLists[indexPathShare!.row].listtype
+            listtoshare = UserLists[indexPath.row].listid
+            listtosharetype = UserLists[indexPath.row].listtype
         }
         else if showoption == "shoplists" {
-            listtoshare = UserShopLists[indexPathShare!.row].listid
-            listtosharetype = UserShopLists[indexPathShare!.row].listtype
+            listtoshare = UserShopLists[indexPath.row].listid
+            listtosharetype = UserShopLists[indexPath.row].listtype
         }
         else if showoption == "todolists" {
-            listtoshare = UserToDoLists[indexPathShare!.row].listid
-            listtosharetype = UserToDoLists[indexPathShare!.row].listtype
+            listtoshare = UserToDoLists[indexPath.row].listid
+            listtosharetype = UserToDoLists[indexPath.row].listtype
         }
         else if showoption == "favs" {
-            listtoshare = UserFavLists[indexPathShare!.row].listid
-            listtosharetype = UserFavLists[indexPathShare!.row].listtype
+            listtoshare = UserFavLists[indexPath.row].listid
+            listtosharetype = UserFavLists[indexPath.row].listtype
         }
 
         
@@ -5232,181 +5288,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     @IBOutlet var newdonebutton: UIButton!
     
     
-    @IBAction func newdone(sender: AnyObject) {
-        
-        if listtosharetype == "Shop" {
-        
-        let query = PFQuery(className:"shopLists")
-        query.fromLocalDatastore()
-        query.whereKey("listUUID", equalTo: listtoshare!)
-        query.getFirstObjectInBackgroundWithBlock() {
-            (list: PFObject?, error: NSError?) -> Void in
-            if error != nil {
-                print(error)
-                
-                self.dimmer.removeFromSuperview()
-                
-                
-                self.mytopconstr.constant = -370
-                
-                UIView.animateWithDuration(0.4, animations: { () -> Void in
-                    self.view.layoutIfNeeded()
-                    }) { (value: Bool) -> Void in
-                        self.newnotetextview.text = ""
-                        self.listtoshare = ""
-                        self.listtosharetype = ""
-                        self.idforoptions = ""
-                        self.blurredview.hidden = true
-                }
-                
-                
-                self.tableView.reloadData()
-            } else if let list = list {
-                
-                list["ShopListName"] = self.newlistname.text
-                list["ShopListNote"] = self.newnotetextview.text
-                list.pinInBackground()
-                // list.saveEventually()
-                
-                
-                if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(self.listtoshare!) {
-                    UserLists[foundlist].listname = self.newlistname.text
-                    UserLists[foundlist].listnote = self.newnotetextview.text
-                    
-                }
-                
-                if let foundshoplist = UserShopLists.map({ $0.listid }).lazy.indexOf(self.listtoshare!) {
-                    UserShopLists[foundshoplist].listname = self.newlistname.text
-                    UserShopLists[foundshoplist].listnote = self.newnotetextview.text
-                    
-                }
-                
-                if let foundfavlist = UserFavLists.map({ $0.listid }).lazy.indexOf(self.listtoshare!) {
-                    UserFavLists[foundfavlist].listname = self.newlistname.text
-                    UserFavLists[foundfavlist].listnote = self.newnotetextview.text
-                    
-                }
-                
-                self.dimmer.removeFromSuperview()
-                
-                
-                self.mytopconstr.constant = -370
-                
-                UIView.animateWithDuration(0.4, animations: { () -> Void in
-                    self.view.layoutIfNeeded()
-                    }) { (value: Bool) -> Void in
-                        self.newnotetextview.text = ""
-                        self.listtoshare = ""
-                        self.listtosharetype = ""
-                        self.idforoptions = ""
-                        self.blurredview.hidden = true
-                }
-                
-                
-                self.tableView.reloadData()
-                
-            }
-        }
-        
-    } else {
-            
-            let query = PFQuery(className:"toDoLists")
-            query.fromLocalDatastore()
-            query.whereKey("listUUID", equalTo: listtoshare!)
-            query.getFirstObjectInBackgroundWithBlock() {
-                (list: PFObject?, error: NSError?) -> Void in
-                if error != nil {
-                    print(error)
-                    
-                    self.dimmer.removeFromSuperview()
-                    
-                    
-                    self.mytopconstr.constant = -370
-                    
-                    UIView.animateWithDuration(0.4, animations: { () -> Void in
-                        self.view.layoutIfNeeded()
-                        }) { (value: Bool) -> Void in
-                            self.newnotetextview.text = ""
-                            self.listtoshare = ""
-                            self.listtosharetype = ""
-                            self.idforoptions = ""
-                            self.blurredview.hidden = true
-                    }
-                    
-                    
-                    self.tableView.reloadData()
-                    
-                } else if let list = list {
-                    
-                    list["ToDoListName"] = self.newlistname.text
-                    list["ToDoListNote"] = self.newnotetextview.text
-                    list.pinInBackground()
-                    // list.saveEventually()
-                    
-                    
-                    if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(self.listtoshare!) {
-                        UserLists[foundlist].listname = self.newlistname.text
-                        UserLists[foundlist].listnote = self.newnotetextview.text
-                        
-                    }
-                    
-                    if let foundtodolist = UserShopLists.map({ $0.listid }).lazy.indexOf(self.listtoshare!) {
-                        UserToDoLists[foundtodolist].listname = self.newlistname.text
-                        UserToDoLists[foundtodolist].listnote = self.newnotetextview.text
-                        
-                    }
-                    
-                    if let foundfavlist = UserFavLists.map({ $0.listid }).lazy.indexOf(self.listtoshare!) {
-                        UserFavLists[foundfavlist].listname = self.newlistname.text
-                        UserFavLists[foundfavlist].listnote = self.newnotetextview.text
-                        
-                    }
-                    
-                    self.dimmer.removeFromSuperview()
-                    
-                    
-                    self.mytopconstr.constant = -370
-                    
-                    UIView.animateWithDuration(0.4, animations: { () -> Void in
-                        self.view.layoutIfNeeded()
-                        }) { (value: Bool) -> Void in
-                            self.newnotetextview.text = ""
-                            self.listtoshare = ""
-                            self.listtosharetype = ""
-                            self.idforoptions = ""
-                            self.blurredview.hidden = true
-                    }
-                    
-                    
-                    self.tableView.reloadData()
-                    
-                }
-            }
-    
-    }
-    
-        // saveinfo
-        /*
-        dimmer.removeFromSuperview()
-        
-        
-        mytopconstr.constant = -370
-        
-        UIView.animateWithDuration(0.4, animations: { () -> Void in
-            self.view.layoutIfNeeded()
-            }) { (value: Bool) -> Void in
-                self.newnotetextview.text = ""
-                self.listtoshare = ""
-                self.listtosharetype = ""
-                self.idforoptions = ""
-                self.blurredview.hidden = true
-        }
 
-        
-        tableView.reloadData()
-        */
-    }
-    
     
     @IBOutlet var newclosebuttonoutlet: UIButton!
     
@@ -5700,7 +5582,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
             
             self.editing = false
             self.swipedeleteusual(indexPath)
-            print("delete")
+            
             
         }
         
@@ -5714,6 +5596,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
             self.editing = false
             
             //self.optionsaction(indexPath)
+            self.sharelist(indexPath)
             
         }
         
@@ -5758,7 +5641,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
 
 
         
-
+        /*
         var thislisttype = String()
         if showoption == "alllists" {
             thislisttype = UserLists[indexPath.row].listtype
@@ -5769,7 +5652,8 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         } else if showoption == "favs" {
             thislisttype = UserFavLists[indexPath.row].listtype
         }
-        
+        */
+        /*
         if thislisttype == "Shop" {
         
         return [deleteAction, shareAction, editingAction, optionsAction]
@@ -5778,7 +5662,9 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         } else {
             return [deleteAction]
         }
-        
+        */
+        return [deleteAction, shareAction, editingAction, optionsAction]
+
     }
 
     
@@ -5984,6 +5870,9 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     cell.storyline.backgroundColor = colorWithHexString(thiscolor)
                     cell.newlisttype.tintColor = colorWithHexString(thiscolor)
                     cell.ShopListNameButton.text = UserLists[indexPath.row].listname
+                    
+                    cell.ShopListNameButton.textColor = colorWithHexString(thiscolor)
+
                     
                     if UserLists[indexPath.row].listtype == "Shop" {
                         cell.ListTypeImage.image = shopicon

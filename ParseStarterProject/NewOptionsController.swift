@@ -1300,9 +1300,9 @@ class NewOptionsController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
-    var checkimage = UIImage(named: "CheckPath") as UIImage!
+    let checkimage = UIImage(named: "4CheckMark") as UIImage!
     
-    let notcheckimage = UIImage(named: "BlackPlus") as UIImage!
+    let notcheckimage = UIImage(named: "4AddPlus") as UIImage!
     
     
     var catwaschosen: Category?

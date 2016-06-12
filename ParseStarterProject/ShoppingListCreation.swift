@@ -1096,7 +1096,12 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         quickpriceoutlet.text = ""
         quicksum.text = ""
-
+        
+        unline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+        perunline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+        sumline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+        priceline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+        
         quickcategory = catalogcategories[0]
         quickcategoryUUID = catalogcategories[0].catId
        // quickcaticon.image = catalogcategories[0].catimage
@@ -1345,6 +1350,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         quickpriceoutlet.text = ""
         quicksum.text = ""
         
+        unline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+        perunline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+        sumline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+        priceline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+        
         quickcategory = catalogcategories[0]
         quickcategoryUUID = catalogcategories[0].catId
        // quickcaticon.image = catalogcategories[0].catimage
@@ -1437,6 +1447,14 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         isdefaultpicture = true
         defaultpicturename = imagestochoose[0].imagename
         quickicon.image = imagestochoose[0].itemimage
+        
+        unline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+        perunline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+        sumline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+        priceline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+        
+        setcategoryinscroller("usual", catindex: nil)
+        
         
        resetunitsback()
        hideproperties()
@@ -3207,6 +3225,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 currencyarray.append(symbol)
                 shopList["CurrencyArray"] = currencyarray
                 
+                shopList["ShowCats"] = self.showcats
+                
 
                 shopList.pinInBackground()
 
@@ -3257,6 +3277,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func newPFObject() {
+
         
         let uuid = NSUUID().UUIDString
         let listuuid = "shoplist\(uuid)"
@@ -4841,6 +4862,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         newquantitybutton.hidden = true
         quickaddoutlet.hidden = true
         
+       // isdefaultpicture = true
+       // defaultpicturename = imagestochoose[0].imagename
+       // quickicon.image = imagestochoose[0].itemimage
+        
         
         quickaddoutlet.layer.removeAllAnimations()
     }
@@ -4989,6 +5014,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     func closenumberpad2(sender: UIButton) {
         quickpriceoutlet.resignFirstResponder()
     }
+    
+    func closenumberpad5(sender: UIButton) {
+        quicksum.resignFirstResponder()
+    }
+    
     
     func addproductfromkeyboard(sender: UIButton) {
         quickpriceoutlet.resignFirstResponder()
@@ -5587,7 +5617,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     @IBOutlet var quickpriceoutlet: UITextField!
-    @IBOutlet var quicksum: UILabel!
+
+    @IBOutlet var quicksum: UITextField!
+    
     @IBOutlet var quickcurrency: UILabel!
     @IBOutlet var categoryview: UIView!
     @IBOutlet var quickicon: UIImageView!
@@ -5595,8 +5627,76 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var nomatchlabel: UILabel!
     @IBOutlet var prodiconview: UIView!
     
+    
+    //SUM ACTIONS
+    
+    @IBAction func sumbegin(sender: AnyObject) {
+        
+        sumline.backgroundColor = UIColorFromRGB(0x31797D)
+        quicksum.textColor = UIColorFromRGB(0x31797D)
+        quicksum.textInputView.tintColor = UIColorFromRGB(0x31797D)
+    }
+    
+    
+    @IBAction func sumend(sender: AnyObject) {
+        
+        if quicksum.text! != "0" && quicksum.text! != "" {
+            sumline.backgroundColor = UIColorFromRGB(0x31797D)
+            quicksum.textColor = UIColorFromRGB(0x31797D)
+            quicksum.textInputView.tintColor = UIColorFromRGB(0x31797D)
+        } else {
+            sumline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            quicksum.textColor = UIColorFromRGB(0xE0E0E0)
+            quicksum.textInputView.tintColor = UIColorFromRGB(0xE0E0E0)
+        }
+
+    }
+    
+    
+    @IBAction func sumeditchanged(sender: AnyObject) {
+        
+        if quicksum.text! != "0" && quicksum.text! != "" {
+            sumline.backgroundColor = UIColorFromRGB(0x31797D)
+            quicksum.textColor = UIColorFromRGB(0x31797D)
+            quicksum.textInputView.tintColor = UIColorFromRGB(0x31797D)
+        } else {
+            sumline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            quicksum.textColor = UIColorFromRGB(0xE0E0E0)
+            quicksum.textInputView.tintColor = UIColorFromRGB(0xE0E0E0)
+        }
+
+    }
+    
+    
+    @IBAction func sumvaluechanged(sender: AnyObject) {
+        
+        if quicksum.text! != "0" && quicksum.text! != "" {
+            sumline.backgroundColor = UIColorFromRGB(0x31797D)
+            quicksum.textColor = UIColorFromRGB(0x31797D)
+            quicksum.textInputView.tintColor = UIColorFromRGB(0x31797D)
+        } else {
+            sumline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            quicksum.textColor = UIColorFromRGB(0xE0E0E0)
+            quicksum.textInputView.tintColor = UIColorFromRGB(0xE0E0E0)
+        }
+        
+
+    }
+    
+    
     // PRICE ACTIONS
     @IBAction func priceendedit(sender: AnyObject) {
+        
+        if quickpriceoutlet.text! != "0" && quickpriceoutlet.text! != "" {
+            priceline.backgroundColor = UIColorFromRGB(0x31793D)
+            quickpriceoutlet.textInputView.tintColor = UIColorFromRGB(0x31797D)
+            quickpriceoutlet.textColor = UIColorFromRGB(0x31797D)
+        } else {
+            priceline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            quickpriceoutlet.textInputView.tintColor = UIColorFromRGB(0xE0E0E0)
+            quickpriceoutlet.textColor = UIColorFromRGB(0xE0E0E0)
+        }
+
         
         quickpriceoutlet.text!.doubleConverter
         multiplication()
@@ -5605,6 +5705,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func pricebeginedit(sender: AnyObject) {
         
+        priceline.backgroundColor = UIColorFromRGB(0x31793D)
+       quickpriceoutlet.textInputView.tintColor = UIColorFromRGB(0x31797D)
+        
         quickpriceoutlet.text!.doubleConverter
         multiplication()
     }
@@ -5612,8 +5715,41 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func pricevaluechanged(sender: AnyObject) {
         
+        if quickpriceoutlet.text! != "0" && quickpriceoutlet.text! != "" {
+            priceline.backgroundColor = UIColorFromRGB(0x31793D)
+            quickpriceoutlet.textInputView.tintColor = UIColorFromRGB(0x31797D)
+            quickpriceoutlet.textColor = UIColorFromRGB(0x31797D)
+        } else {
+            priceline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            quickpriceoutlet.textInputView.tintColor = UIColorFromRGB(0xE0E0E0)
+            quickpriceoutlet.textColor = UIColorFromRGB(0xE0E0E0)
+        }
+
+        
+        
         quickpriceoutlet.text!.doubleConverter
         multiplication()
+    }
+    
+    
+    @IBAction func priceeditchanged(sender: AnyObject) {
+        
+        if quickpriceoutlet.text! != "0" && quickpriceoutlet.text! != "" {
+            priceline.backgroundColor = UIColorFromRGB(0x31793D)
+            quickpriceoutlet.textInputView.tintColor = UIColorFromRGB(0x31797D)
+            quickpriceoutlet.textColor = UIColorFromRGB(0x31797D)
+        } else {
+            priceline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            quickpriceoutlet.textInputView.tintColor = UIColorFromRGB(0xE0E0E0)
+            quickpriceoutlet.textColor = UIColorFromRGB(0xE0E0E0)
+        }
+        
+        
+        
+        quickpriceoutlet.text!.doubleConverter
+        multiplication()
+        
+        
     }
     
     // Quantity Field Actions
@@ -5658,6 +5794,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    
+    
     // MULTIPLICATION
     
     var newvalue = Double()
@@ -5696,6 +5834,13 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             self.quicksum.text = formatter.stringFromNumber(newvalue)
             
             nomatchlabel.hidden = true
+        } else if (unit != "") && perunit == "" {
+            
+            nomatchlabel.hidden = true
+            newvalue = doublenumber*pricevalue
+            
+            self.quicksum.text = formatter.stringFromNumber(newvalue)
+            
         } else {
             
             if unit == units[3][1] && perunit == units[4][1] {
@@ -5755,7 +5900,14 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
         }
         
-        
+        if quicksum.text! != "0" && quicksum.text! != "" {
+            sumline.backgroundColor = UIColorFromRGB(0x31797D)
+            quicksum.textColor = UIColorFromRGB(0x31797D)
+        } else {
+            sumline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            quicksum.textColor = UIColorFromRGB(0xE0E0E0)
+        }
+
         /// other case
         
     }
@@ -5857,9 +6009,25 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 quickunit = chosenunit
                 quickperunit = chosenunit
+                
+                if chosenunit != "" {
+                    unline.backgroundColor = UIColorFromRGB(0x31797D)
+                    perunline.backgroundColor = UIColorFromRGB(0x31797D)
+                } else {
+                    unline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+                    perunline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+                }
+
+                
             } else {
                 unitsbutton.setTitle(chosenunit, forState: .Normal)
                 quickunit = chosenunit
+                
+                if chosenunit != "" {
+                    unline.backgroundColor = UIColorFromRGB(0x31797D)
+                } else {
+                    unline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+                }
             }
             
             
@@ -5867,6 +6035,15 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             perunitsbutton.setTitle(chosenperunit, forState: .Normal)
             quickperunit = chosenperunit
+            
+            if chosenperunit != "" {
+                
+                perunline.backgroundColor = UIColorFromRGB(0x31797D)
+            } else {
+                
+                perunline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            }
+            
         }
         
         multiplication()
@@ -5881,6 +6058,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             }, completion: { (value: Bool) -> Void in
                 self.unitsview.hidden = true
         })
+        
+        //restore
+        self.picker.selectRow(0, inComponent: 0, animated: false)
+        chosenunit = ""
+        chosenperunit = ""
         
     }
 
@@ -5932,6 +6114,22 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         chosenunit = ""
         chosenperunit = ""
+        
+        if unitsbutton.titleForState(.Normal) == "" {
+            
+            unline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            
+            
+        }
+        
+        
+        if perunitsbutton.titleForState(.Normal) == "" {
+            
+            perunline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            
+            
+        }
+
 
     }
    
@@ -6475,6 +6673,15 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    @IBOutlet var unline: UIView!
+    
+    @IBOutlet var perunline: UIView!
+    
+    @IBOutlet var priceline: UIView!
+    
+    @IBOutlet var sumline: UIView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -6494,7 +6701,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         //resetunitsback(horizontalScrollViewper)
         
         // SCROLLS
-        horizontalScrollView = ASHorizontalScrollView(frame:CGRectMake(12, 0, categoryview.frame.width - 12, 70))//viewforcats.frame.height - 5))
+        horizontalScrollView = ASHorizontalScrollView(frame:CGRectMake(12, 4, categoryview.frame.width - 24, 70))//viewforcats.frame.height - 5))
         horizontalScrollView.uniformItemSize = CGSizeMake(70, 70)
         horizontalScrollView.leftMarginPx = 0
         horizontalScrollView.miniMarginPxBetweenItems = 0
@@ -6591,7 +6798,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         //doneinviewoutlet.layer.cornerRadius = 4
         
         
-        
+        /*
         unitsbutton.layer.borderWidth = 1
         unitsbutton.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
         unitsbutton.layer.cornerRadius = 8
@@ -6599,8 +6806,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         perunitsbutton.layer.borderWidth = 1
         perunitsbutton.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
         perunitsbutton.layer.cornerRadius = 8
-        
-        listnameinview.leftTextMargin = 6
+        */
+        listnameinview.leftTextMargin = 1
         
         //listnoteinview.l
         
@@ -6678,7 +6885,15 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         autocomplete.inputAccessoryView = toolView3
         
         
+        let toolFrame5 = CGRectMake(0, 0, self.view.frame.size.width, 46);
+        let toolView5: UIView = UIView(frame: toolFrame5);
+        let closepadframe5: CGRect = CGRectMake(self.view.frame.size.width - 66, 1, 56, 42);
+        let closepad5: UIButton = UIButton(frame: closepadframe5);
+        closepad5.setImage(closepadimage, forState: UIControlState.Normal)
+        toolView5.addSubview(closepad5);
+        closepad5.addTarget(self, action: "closenumberpad5:", forControlEvents: UIControlEvents.TouchDown);
         
+        quicksum.inputAccessoryView = toolView5
         
         
         popqty.text = ""
@@ -6687,6 +6902,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         quickpriceoutlet.text = ""
         quickpriceoutlet.delegate = self
+        
+        quicksum.delegate = self
         
 
       //  quickcategorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
@@ -6720,7 +6937,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         smallpopover.backgroundColor = UIColorFromRGB(0xFFFFFF)//UIColorFromRGB(0xF7F7F7)
         
         smallpopover.hidden = true
-        
+        /*
         inamountview.layer.cornerRadius = 8
         
         inamountview.layer.borderWidth = 1
@@ -6736,16 +6953,16 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         quicksum.layer.borderWidth = 1
         quicksum.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+        */
         
         
         
-        
-        
+        /*
         prodiconview.layer.cornerRadius = 8
         
         prodiconview.layer.borderWidth = 1
         prodiconview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-        
+        */
         
        autocomplete.leftTextMargin = 5
         
@@ -6774,7 +6991,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             dateFormatter.dateFormat = "dd MMM yyyy"
             let namedate = dateFormatter.stringFromDate(todaydate)
             
-
+            
             
             self.listnameinview.text = "\(NSLocalizedString("listshop", comment: ""))"
             
@@ -8568,6 +8785,97 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     func addtofavs(itemid: String) {
         
+
+        for item in itemsDataDict {
+            if item["ItemId"] as! String == itemid {
+                
+                var shopItem = PFObject(className:"shopItems")
+                var uuid = NSUUID().UUIDString
+                var itemid = "shopitem\(uuid)"
+                
+                shopItem["itemUUID"] = itemid
+                shopItem["itemName"] = item["ItemName"]
+                shopItem["itemNote"] = item["ItemNote"]
+                
+                //shopItem["itemQuantity"] = itemQuantityOutlet.text
+                shopItem["itemQuantity"] = item["ItemQuantity"]
+                shopItem["itemPriceS"] = item["ItemOneUnitPrice"]
+                shopItem["TotalSumS"] = item["ItemTotalPrice"]
+                
+                shopItem["ItemsList"] = ""
+                
+                shopItem["belongsToUser"] = PFUser.currentUser()!.objectId!
+                
+                
+                shopItem["itemUnit"] = item["ItemUnit"]
+                
+                shopItem["perUnit"] = item["ItemPerUnit"]
+                
+                
+                shopItem["chosenFromHistory"] = false
+                shopItem["itemImage"] = NSNull()
+                shopItem["isChecked"] = false
+                
+                shopItem["Category"] = item["ItemCategory"]
+                
+                shopItem["isCatalog"] = item["ItemIsCatalog"]
+                
+                shopItem["originalInCatalog"] = item["ItemOriginal"]
+                
+                shopItem["isFav"] = true
+                
+                shopItem["chosenFromFavs"] = false
+                
+                var date = NSDate()
+                
+                shopItem["CreationDate"] = date
+                shopItem["UpdateDate"] = date
+                
+                shopItem["ServerUpdateDate"] = date.dateByAddingTimeInterval(-120)
+                
+                shopItem["isHistory"] = false //for filtering purposes when deleting the list and all its items
+                shopItem["isDeleted"] = false
+                
+                // self.saveImageLocally(imageData)
+                
+                
+                shopItem["defaultpicture"] = item["ItemIsDefPict"]
+                shopItem["OriginalInDefaults"] = item["ItemOriginalInDefaults"]
+                
+                
+                if item["ItemIsDefPict"] as! Bool == true {
+                    shopItem["itemImage"] = NSNull()
+                    
+                    
+                    
+                } else {
+                    
+                    
+                    shopItem["itemImage"] = NSNull()//imageFile
+                    
+                }
+                
+                
+                shopItem["imageLocalPath"] = item["ItemImagePath"]
+                //self.imagePath
+                
+                shopItem.pinInBackgroundWithBlock({ (success, error) -> Void in
+                    if success {
+                        
+                        print("saved item")
+                        
+                    } else {
+                        print("no id found")
+                    }
+                    
+                    
+                    
+                    
+                })
+
+                break;
+            }
+        }
         
         addedindicator.alpha = 1
         addedindicator.fadeOut()
@@ -8753,6 +9061,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                     
                     self.itemtofavs = itemsDataDict[indexPath.row]["ItemId"] as! String
                     
+                    print(self.itemtofavs)
+                    
                     self.addtofavs(self.itemtofavs)
                     
                 } else {
@@ -8762,6 +9072,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                     
                     let tableSection = self.sections[self.sortedSections[section]]
                     let tableItem = tableSection![rowsect]
+                    
+                    print(self.itemtofavs)
   
                     self.itemtofavs = (tableItem as NSDictionary).objectForKey("ItemId") as! String
                     

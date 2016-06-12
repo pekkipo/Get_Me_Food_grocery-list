@@ -335,6 +335,13 @@ class CustomItemsPopup: UIViewController, UITableViewDelegate, UITableViewDataSo
         
        // self.displayAlert(NSLocalizedString("DoneExc", comment: ""), message: "Item added")
         dispatch_async(dispatch_get_main_queue(), {
+            
+            // Restore default
+            self.newitemname.text = ""
+            self.newitemimage.image = imagestochoose[0].itemimage
+            
+             self.textline.backgroundColor = self.UIColorFromRGB(0xE0E0E0)
+            
         self.tableView.reloadData()
         })
         
@@ -523,12 +530,6 @@ class CustomItemsPopup: UIViewController, UITableViewDelegate, UITableViewDataSo
             let popoverViewController = segue.destinationViewController as! ImagesCollectionVC//UIViewController
             
             
-            popoverViewController.preferredContentSize = CGSize(width: 266, height: 480)
-            
-            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
-            popoverViewController.popoverPresentationController!.delegate = self
-            
-            
             
             popoverViewController.delegate = self
             
@@ -548,6 +549,9 @@ class CustomItemsPopup: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
+        
+        textline.backgroundColor = UIColorFromRGB(0x31797D)
+        
         return
     }
     
@@ -556,6 +560,14 @@ class CustomItemsPopup: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        if newitemname.text! == "" {
+            textline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            
+        } else {
+            textline.backgroundColor = UIColorFromRGB(0x31797D)
+        }
+        
         textField.resignFirstResponder()
         return true
     }
@@ -584,13 +596,22 @@ class CustomItemsPopup: UIViewController, UITableViewDelegate, UITableViewDataSo
             
         })
     }
+    
+    
+    @IBOutlet var textline: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         finditems()
         
-        newitemname.leftTextMargin = 5
+        newitemname.leftTextMargin = 1
+        
+        newitemname.textInputView.tintColor = UIColorFromRGB(0x31797D)
+        
+        newitemname.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+        newitemname.layer.borderWidth = 1
+        newitemname.layer.cornerRadius = 4
         
         newitemname.delegate = self
         

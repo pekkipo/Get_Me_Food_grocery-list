@@ -12,6 +12,7 @@ protocol sortlistsDelegate
 {
     func sortandrefreshlists()
     func refreshlists()
+    func backfromsort()
 }
 
 class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
@@ -29,10 +30,19 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     // TABLE STUFF
     
-    var tablelabels = [NSLocalizedString("popcheck", comment: ""),
+    var tablelabels1 = [
         NSLocalizedString("popasc", comment: ""),
         NSLocalizedString("popdesc", comment: ""),
         NSLocalizedString("popalpha", comment: ""),
+        ]
+    
+    var tablelabels2 = [
+    NSLocalizedString("popcheck", comment: ""),
+    NSLocalizedString("calculatesumlists", comment: ""),
+    NSLocalizedString("statistics", comment: ""),
+    ]
+    
+    var tablelabels3 = [
         NSLocalizedString("close", comment: ""),
     ]
     
@@ -43,7 +53,7 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
        
-        return 1
+        return 3
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -55,15 +65,23 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             //if search is active
             cell = tableView.dequeueReusableCellWithIdentifier("popupcell", forIndexPath: indexPath) as! sortpopupcell
         
-        if indexPath.row == 4 {
-         //   cell.backgroundColor = UIColorFromRGB(0xF23D55, alp: 1.0)
-            cell.caption.textColor = UIColorFromRGB(0xF23D55, alp: 1.0)
-        } else {
-         //   cell.backgroundColor = UIColorFromRGB(0xFAFAFA, alp: 1.0)
+
             cell.caption.textColor = UIColorFromRGB(0x31797D, alp: 1.0)
+
+        
+        if indexPath.section == 2 {
+            cell.caption.textColor = UIColorFromRGB(0xF23D55, alp: 1.0)
         }
-            
-        cell.caption.text = tablelabels[indexPath.row]
+        
+        if indexPath.section == 0 {
+            cell.caption.text = tablelabels1[indexPath.row]
+        } else if indexPath.section == 1 {
+            cell.caption.text = tablelabels2[indexPath.row]
+        } else if indexPath.section == 2 {
+            cell.caption.text = tablelabels3[indexPath.row]
+        }
+        
+        //cell.caption.text = tablelabels[indexPath.row]
             
             
             return cell
@@ -76,7 +94,7 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
+        /*
         if indexPath.row == 0 {
             delegate?.refreshlists()
         } else if indexPath.row == 1 {
@@ -88,22 +106,63 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         } else if indexPath.row == 4 {
             close()
         }
-        
+        */
+        if indexPath.section == 0 {
+            
+            if indexPath.row == 0 {
+                sortbydateasc()
+            } else if indexPath.row == 1 {
+                sortbydate()
+            } else if indexPath.row == 2 {
+                sortalphabetically()
+            }
+            
+        } else if indexPath.section == 1 {
+            
+            if indexPath.row == 0 {
+                delegate?.refreshlists()
+            } else if indexPath.row == 1 {
+                print("Sums")
+            } else if indexPath.row == 2 {
+                print("Statistics")
+            }
+            
+        } else if indexPath.section == 2 {
+            close()
+        }
         
         
     }
     
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        if section == 0 {
+            return NSLocalizedString("sortoptions", comment: "")
+        } else if section == 1 {
+            return NSLocalizedString("listsoptions", comment: "")
+        } else {
+        return ""
+        }
+            }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-      return tablelabels.count
+      //return tablelabels.count
+        if section == 0 || section == 1 {
+        return 3
+        } else {
+            return 1
+        }
     }
     
     ///
     
     func close() {
         
+        delegate?.backfromsort()
         self.dismissViewControllerAnimated(true, completion: nil)
+        
     }
     
     
@@ -153,7 +212,8 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     func handlebvTap(sender: UITapGestureRecognizer? = nil) {
         
-       self.dismissViewControllerAnimated(true, completion: nil)
+        close()
+      // self.dismissViewControllerAnimated(true, completion: nil)
         
     }
     
@@ -177,6 +237,8 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         viewtap.delegate = self
         backview.userInteractionEnabled = true
         backview.addGestureRecognizer(viewtap)
+        
+        tableView.layer.cornerRadius = 8
         
         
         

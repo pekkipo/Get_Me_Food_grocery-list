@@ -61,7 +61,7 @@ var imagestochoose : [UIImage] = [
 
 var defaultcatimages : [DefaultPicture] = [
     DefaultPicture(itemimage: UIImage(named: "DefaultProduct")!, imagename: "DefaultProduct"),
-    DefaultPicture(itemimage: UIImage(named: "UserIcon")!, imagename: "UserIcon")
+    DefaultPicture(itemimage: UIImage(named: "4UserIcon")!, imagename: "4UserIcon")
     
 ]
 

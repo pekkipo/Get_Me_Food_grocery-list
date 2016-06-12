@@ -1818,10 +1818,10 @@ class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableView
         if segue.identifier == "sharinghistory" {
             
             //let toViewController = segue.destinationViewController as! SettingsViewController
-            let navVC = segue.destinationViewController as! UINavigationController
+           // let navVC = segue.destinationViewController as! UINavigationController
             
-            let shareVC = navVC.viewControllers.first as! SharingHistoryTableViewController
-            
+           // let shareVC = navVC.viewControllers.first as! SharingHistoryTableViewController
+            let shareVC = segue.destinationViewController as! SharingHistoryTableViewController
             shareVC.sendercontroller = "SharingVC"
             
             
@@ -2611,6 +2611,11 @@ func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo
         name.delegate = self
        name.leftTextMargin = 5
         
+        name.layer.borderWidth = 1
+        name.layer.borderColor = UIColorFromRGB(0xE8E8E8).CGColor
+        name.layer.cornerRadius = 4
+        
+        
        // self.generateData()
         name.mDelegate = self
         
@@ -2635,15 +2640,15 @@ func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         
-        return 6//3
+        return 5//3
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        if section == 5 {
+       /* if section == 5 {
             return usercontacts.count//contactsemails.count
-        }
+        }*/
         return 1
     }
     
@@ -2652,17 +2657,12 @@ func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo
     {
         
         
-          if (indexPath.section == 5) {
-                
-                return 59
-            } else {
-                return 44
-            }
+          return 52
         
 
     }
 
-    
+    /*
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
         if section == 5 {
@@ -2672,6 +2672,7 @@ func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo
         }
                 return nil
     }
+ */
     
     
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
@@ -2683,7 +2684,7 @@ func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo
             // alpha: CGFloat(0.3)
         )
     }
-    
+    /*
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 5 {
         return 30
@@ -2693,7 +2694,7 @@ func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo
             return 0
         }
     }
-    
+    */
     func tableView(tableView: UITableView,
         willDisplayCell cell: UITableViewCell,
         forRowAtIndexPath indexPath: NSIndexPath)
@@ -2704,7 +2705,7 @@ func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo
     }
     
     
-    
+    /*
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if section == 5 {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
@@ -2743,116 +2744,85 @@ func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo
         }
         
     }
-
+    */
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell: UITableViewCell!
-        var cell2: UITableViewCell!
-        var cell3: picmescell!
-        var cell4: savegalcell!
-        var contactscell : NewShareContactCell!
+        var sharecell: UITableViewCell!
+        var textmescell: messagelistcell!
+        var pictmescell: picmescell!
+        var galcell: savegalcell!
         var emailcell: Sendbyemailcell!
        
-       if (indexPath.section == 4) {
-            cell = tableView.dequeueReusableCellWithIdentifier("sharinghistory", forIndexPath: indexPath) 
-        } else if (indexPath.section == 0) {
+      
+        if (indexPath.section == 0) {
             emailcell = tableView.dequeueReusableCellWithIdentifier("printthelist", forIndexPath: indexPath) as! Sendbyemailcell
-            
-        //    emailcell.sendemailbutton.addTarget(self, action: "sendemail:", forControlEvents: .TouchUpInside)
-            
-            
+
         } else if (indexPath.section == 1) {
-  cell2 = tableView.dequeueReusableCellWithIdentifier("messagelist", forIndexPath: indexPath)
+  textmescell = tableView.dequeueReusableCellWithIdentifier("messagelist", forIndexPath: indexPath) as! messagelistcell
     
-    //    emailcell.sendemailbutton.addTarget(self, action: "sendemail:", forControlEvents: .TouchUpInside)
-    
-    
-       } else if (indexPath.section == 3) {
-        cell4 = tableView.dequeueReusableCellWithIdentifier("savetogallery", forIndexPath: indexPath) as! savegalcell
-        
-        //    emailcell.sendemailbutton.addTarget(self, action: "sendemail:", forControlEvents: .TouchUpInside)
-        if senderVC == "AllListsVC" {
-            cell4.userInteractionEnabled = false
-            cell4.alpha = 0.4
-            cell4.label.alpha = 0.4
-            cell4.picture.alpha = 0.4
-        } else if senderVC == "ShopCreationVC" {
-            cell4.userInteractionEnabled = true
-            cell4.alpha = 1
-            cell4.label.alpha = 1
-            cell4.picture.alpha = 1
-        }
-        
-       } else if (indexPath.section == 2) {
-        cell3 = tableView.dequeueReusableCellWithIdentifier("messagepictcell", forIndexPath: indexPath) as! picmescell
-        
-        //    emailcell.sendemailbutton.addTarget(self, action: "sendemail:", forControlEvents: .TouchUpInside)
-        if senderVC == "AllListsVC" {
-            cell3.userInteractionEnabled = false
-            cell3.alpha = 0.4
-            cell3.label.alpha = 0.4
-            cell3.picture.alpha = 0.4
-        } else if senderVC == "ShopCreationVC" {
-           cell3.userInteractionEnabled = true
-            cell3.alpha = 1
-            cell3.label.alpha = 1
-            cell3.picture.alpha = 1
-        }
-        
-        
-       } else if (indexPath.section == 5) {
-            contactscell = tableView.dequeueReusableCellWithIdentifier("contactcell", forIndexPath: indexPath) as! NewShareContactCell
+
+        } else if (indexPath.section == 2) {
+            pictmescell = tableView.dequeueReusableCellWithIdentifier("messagepictcell", forIndexPath: indexPath) as! picmescell
             
-           // contactscell.contactname.text = contactsnames[indexPath.row]
-           // contactscell.contactemail.text = contactsemails[indexPath.row]
             
-            contactscell.contactname.text = usercontacts[indexPath.row].contactname
-            contactscell.contactemail.text = usercontacts[indexPath.row].contactemail
-            contactscell.contactimage.image = usercontacts[indexPath.row].contactimage
-            
-            contactscell.sharebutton.addTarget(self, action: "sharewithcontact:", forControlEvents: .TouchUpInside)
-            
-           /* contactsarray[indexPath.row][2].getDataInBackgroundWithBlock { (data, error) -> Void in
-                if let downloadedImage = UIImage(data: data!) {
-                    contactscell.contactimage.image = downloadedImage
-                } else {
-                    contactscell.contactimage.image = UIImage(named: "checkeduser.png")!
-                }
-                
+            if senderVC == "AllListsVC" {
+                pictmescell.userInteractionEnabled = false
+                pictmescell.alpha = 0.4
+                pictmescell.label.alpha = 0.4
+                pictmescell.picture.alpha = 0.4
+            } else if senderVC == "ShopCreationVC" {
+                pictmescell.userInteractionEnabled = true
+                pictmescell.alpha = 1
+                pictmescell.label.alpha = 1
+                pictmescell.picture.alpha = 1
             }
-            */
             
+            
+        } else if (indexPath.section == 3) {
+        galcell = tableView.dequeueReusableCellWithIdentifier("savetogallery", forIndexPath: indexPath) as! savegalcell
+        
+
+        if senderVC == "AllListsVC" {
+            galcell.userInteractionEnabled = false
+            galcell.alpha = 0.4
+            galcell.label.alpha = 0.4
+            galcell.picture.alpha = 0.4
+        } else if senderVC == "ShopCreationVC" {
+            galcell.userInteractionEnabled = true
+            galcell.alpha = 1
+            galcell.label.alpha = 1
+            galcell.picture.alpha = 1
         }
         
-        if indexPath.section == 5 {
+       }  else if (indexPath.section == 4) {
+            sharecell = tableView.dequeueReusableCellWithIdentifier("sharinghistory", forIndexPath: indexPath)
+        }
+        
+       if indexPath.section == 0 {
             
-            return contactscell
+            return emailcell
             
-        } else if indexPath.section == 4 {
-            
-            return cell
-            
-        } else if indexPath.section == 0 {
+        } else if indexPath.section == 1 {
                 
-                return emailcell
+                return textmescell
             
         } else if indexPath.section == 2 {
             
-            return cell3
+            return pictmescell
             
         } else if indexPath.section == 3 {
             
-            return cell4
+            return galcell
             
-        } else if indexPath.section == 1 {
+        } else if indexPath.section == 4 {
             
-            return cell2
+            return sharecell
             
         } else {
     
-       return cell
+       return sharecell
         }
      
     }

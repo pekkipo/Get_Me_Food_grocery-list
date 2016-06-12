@@ -12,7 +12,7 @@ class Sendbyemailcell: UITableViewCell, UITextFieldDelegate {
     
     
    
-    
+    /*
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
         self.superview!.superview?.superview!.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
@@ -30,7 +30,7 @@ class Sendbyemailcell: UITableViewCell, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-
+    */
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

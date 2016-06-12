@@ -3,7 +3,7 @@
 "0WZ-mL-in8.text" = "Not registered yet?";
 
 /* Class = "UILabel"; text = "Product Note:"; ObjectID = "0ah-T9-eaL"; */
-"0ah-T9-eaL.text" = "Note";
+"0ah-T9-eaL.text" = "DESCRIPTION";
 
 /* Class = "UILabel"; text = "Send via email"; ObjectID = "0kd-XU-7B0"; */
 "0kd-XU-7B0.text" = "Send via email";
@@ -12,7 +12,12 @@
 "1Sq-ay-MJI.placeholder" = "Type item name";
 
 /* Class = "UILabel"; text = "Price:"; ObjectID = "26f-dg-EOZ"; */
-"26f-dg-EOZ.text" = "Price";
+"26f-dg-EOZ.text" = "PRICE";
+
+/* Class = "UILabel"; text = "Price:"; ObjectID = "l1A-Ta-EOi"; */
+"l1A-Ta-EOi.text" = "PER UNIT";
+
+
 
 /* Class = "UIButton"; normalTitle = "I forgot my password"; ObjectID = "2Lr-q6-KRy"; */
 "2Lr-q6-KRy.normalTitle" = "I forgot my password";
@@ -286,10 +291,10 @@
 "T3O-2E-lwt.text" = "Catalog Item Name";
 
 /* Class = "UILabel"; text = "Product Name"; ObjectID = "TXc-ZY-Xip"; */
-"TXc-ZY-Xip.text" = "Product Name";
+"TXc-ZY-Xip.text" = "ITEM NAME";
 
 /* Class = "UILabel"; text = "Quantity:"; ObjectID = "TXs-bT-eWS"; */
-"TXs-bT-eWS.text" = "Amount";
+"TXs-bT-eWS.text" = "AMOUNT";
 
 /* Class = "UIBarButtonItem"; title = "Done"; ObjectID = "TbB-pY-TgC"; */
 "TbB-pY-TgC.title" = "Done";
@@ -384,7 +389,7 @@
 "arr-9B-nRe.text" = "Shared List name";
 
 /* Class = "UILabel"; text = "Choose unit:"; ObjectID = "b0R-Zz-E1Q"; */
-"b0R-Zz-E1Q.text" = "Choose unit";
+"b0R-Zz-E1Q.text" = "UNITS";
 
 /* Class = "UILabel"; text = "Change display name:"; ObjectID = "bAn-3g-vCW"; */
 "bAn-3g-vCW.text" = "Profile name:";
@@ -426,7 +431,7 @@
 "cxn-Ia-iuU.text" = "Tell people you are going shopping:";
 
 /* Class = "UILabel"; text = "Total sum: "; ObjectID = "d3O-MX-n6g"; */
-"d3O-MX-n6g.text" = "Total sum";
+"d3O-MX-n6g.text" = "TOTAL SUM";
 
 /* Class = "UIButton"; normalTitle = "Plus"; ObjectID = "dHl-j2-uo1"; */
 "dHl-j2-uo1.normalTitle" = "Plus";
@@ -845,7 +850,7 @@
 "vYa-W6-jAE.normalTitle" = "Done";
 
 /* Class = "UILabel"; text = ""; ObjectID = "z6D-Rj-Ei7"; */
-"fNZ-sH-88w.text" = "Product icon";
+"fNZ-sH-88w.text" = "ICON";
 
 /* Class = "UILabel"; text = ""; ObjectID = "z6D-Rj-Ei7"; */
 "B7k-oD-5L8.text" = "Amount";
@@ -875,7 +880,7 @@
 "vgq-bE-pRM.normalTitle" = "Send";
 
 /* Class = "UILabel"; text = ""; ObjectID = "geX-ly-RNp"; */
-"geX-ly-RNp.text" = "Category";
+"geX-ly-RNp.text" = "CATEGORY";
 
 /* Class = "UILabel"; text = ""; ObjectID = "JjQ-Az-eSL"; */
 "JjQ-Az-eSL.normalTitle" = "Cancel";

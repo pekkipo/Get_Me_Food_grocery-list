@@ -168,6 +168,7 @@
 		14D849951BFA8E2200DC30CE /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D849921BFA8E2200DC30CE /* FBSDKCoreKit.framework */; };
 		14D849961BFA8E2200DC30CE /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D849931BFA8E2200DC30CE /* FBSDKLoginKit.framework */; };
 		14D849971BFA8E2200DC30CE /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D849941BFA8E2200DC30CE /* FBSDKShareKit.framework */; };
+		14DD6FC11D09E020007977ED /* messagelistcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DD6FC01D09E020007977ED /* messagelistcell.swift */; };
 		14EBAC731C696B8E00D74A98 /* HelpNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EBAC721C696B8E00D74A98 /* HelpNew.swift */; };
 		14EC0EF41BFD39FD007D15A6 /* CatalogAutocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EC0EF31BFD39FD007D15A6 /* CatalogAutocomplete.swift */; };
 		14F2234A1BE80DCD00529FA8 /* TransitionOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F223491BE80DCD00529FA8 /* TransitionOperator.swift */; };
@@ -366,6 +367,7 @@
 		14D849931BFA8E2200DC30CE /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../../Documents/FacebookSDKs-iOS-20150813/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		14D849941BFA8E2200DC30CE /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../../Documents/FacebookSDKs-iOS-20150813/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		14D849981BFA8E2900DC30CE /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBAudienceNetwork.framework; path = "../../../../../Documents/FacebookSDKs-iOS-20150813/FBAudienceNetwork.framework"; sourceTree = "<group>"; };
+		14DD6FC01D09E020007977ED /* messagelistcell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = messagelistcell.swift; sourceTree = "<group>"; };
 		14EBAC721C696B8E00D74A98 /* HelpNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpNew.swift; sourceTree = "<group>"; };
 		14EC0EF31BFD39FD007D15A6 /* CatalogAutocomplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogAutocomplete.swift; sourceTree = "<group>"; };
 		14F223491BE80DCD00529FA8 /* TransitionOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransitionOperator.swift; path = ../TransitionOperator.swift; sourceTree = "<group>"; };
@@ -510,6 +512,7 @@
 				14C58B5A1CF615B6000E72BF /* KDCircularProgress.swift */,
 				147FBC921CA185D700F6BD9B /* TableSectionHeader.xib */,
 				147FBC941CA1864F00F6BD9B /* TableSectionHeader.swift */,
+				14DD6FC01D09E020007977ED /* messagelistcell.swift */,
 				147AEFA61C01F43600C1BAA4 /* GoogleService-Info.plist */,
 				81BA814A1A49DA1800E65899 /* AppDelegate.swift */,
 				14BECE491BE1712000A70F53 /* FavouriteItems.swift */,
@@ -891,6 +894,7 @@
 				1493DE4F1BFF872400F6211A /* AccountDetailsVC.swift in Sources */,
 				14A685131C0FAC7400ADA1C0 /* CategoriesHeader.swift in Sources */,
 				14965ED01C15F2DA0009D130 /* EventsVC.swift in Sources */,
+				14DD6FC11D09E020007977ED /* messagelistcell.swift in Sources */,
 				146C77371BF7E07800A64CF2 /* Sendbyemailcell.swift in Sources */,
 				149890931C43C626005A9843 /* MPG_Events.swift in Sources */,
 				14861A301C4979E500F08728 /* HelperVC.swift in Sources */,
