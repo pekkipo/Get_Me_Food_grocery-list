@@ -18,7 +18,7 @@ class ReminderPopover: UIViewController, UITextFieldDelegate {
     var todocaption = String()
     
     
-    @IBOutlet var remindernote: UITextField!
+    @IBOutlet var remindernote: CustomTextField!
     
     
     @IBOutlet var datePicker: UIDatePicker!
@@ -78,35 +78,7 @@ class ReminderPopover: UIViewController, UITextFieldDelegate {
     
     @IBAction func savereminder(sender: AnyObject) {
         
-        /*
-        self.eventStore.requestAccessToEntityType(EKEntityType.Reminder) { (granted: Bool, error: NSError?) -> Void in
-            
-            if granted{
-                
-                print("access granted")
-                /*
-                let reminder = EKReminder(eventStore: self.eventStore)
-                reminder.title = self.remindernote.text!
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                let dueDateComponents = appDelegate.dateComponentFromNSDate(self.datePicker.date)
-                reminder.dueDateComponents = dueDateComponents
-                reminder.calendar = self.eventStore.defaultCalendarForNewReminders()
-                do {
-                    try self.eventStore.saveReminder(reminder, commit: true)
-                    //dismissViewControllerAnimated(true, completion: nil)
-                    self.displaySuccessAlert("Done!", message: "Reminder is set")
-                }catch{
-                    self.displayFailAlert("Oops", message: "There was an error")
-                    print("Error creating and saving new reminder : \(error)")
-                }
-*/
-                
-            }else{
-                print("The app is not permitted to access reminders, make sure to grant permission in the settings and try again")
-            }
-        }
-        */
-        
+
         let reminder = EKReminder(eventStore: self.eventStore)
         reminder.title = remindernote.text!
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -137,22 +109,7 @@ class ReminderPopover: UIViewController, UITextFieldDelegate {
             if granted{
                 
                 print("access granted")
-                /*
-                let reminder = EKReminder(eventStore: self.eventStore)
-                reminder.title = self.remindernote.text!
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                let dueDateComponents = appDelegate.dateComponentFromNSDate(self.datePicker.date)
-                reminder.dueDateComponents = dueDateComponents
-                reminder.calendar = self.eventStore.defaultCalendarForNewReminders()
-                do {
-                try self.eventStore.saveReminder(reminder, commit: true)
-                //dismissViewControllerAnimated(true, completion: nil)
-                self.displaySuccessAlert("Done!", message: "Reminder is set")
-                }catch{
-                self.displayFailAlert("Oops", message: "There was an error")
-                print("Error creating and saving new reminder : \(error)")
-                }
-                */
+
                 
             }else{
                 print("The app is not permitted to access reminders, make sure to grant permission in the settings and try again")
@@ -165,6 +122,8 @@ class ReminderPopover: UIViewController, UITextFieldDelegate {
             
         } else if senderVC == "ShopOptions" {
             remindernote.text = NSLocalizedString("goshoppingreminder", comment: "Oops")
+        } else if senderVC == "ToDoOptions" {
+            remindernote.text = ""
         }
         
         
@@ -201,13 +160,14 @@ class ReminderPopover: UIViewController, UITextFieldDelegate {
         
         remindernote.delegate = self
         
+        remindernote.leftTextMargin = 18
+        
         datePicker.datePickerMode = UIDatePickerMode.DateAndTime
         // dateTextField.inputView = datePicker
         
         // Do any additional setup after loading the view.
         
-        reminderoutlet.layer.borderWidth = 1
-        reminderoutlet.layer.borderColor = UIColorFromRGB(0x61C791).CGColor
+        
     }
 
     override func didReceiveMemoryWarning() {

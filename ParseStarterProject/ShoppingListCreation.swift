@@ -3415,6 +3415,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             popoverViewController.colorcode = colorcode
             
             popoverViewController.senderVC = "ShopList"
+            
+            popoverViewController.listtype = "Shop"
+            
+            
         
         }
     
@@ -6789,29 +6793,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         autocomplete.text = NSLocalizedString("additemtext", comment: "")
         autocomplete.autocorrectionType = .No
-       // autocomplete.textAlignment = .Center
-        /*
-        cancelviewoutlet.layer.borderWidth = 1
-        cancelviewoutlet.layer.borderColor = UIColorFromRGB(0xF23D55).CGColor
-        cancelviewoutlet.layer.cornerRadius = 4
-        */
-        //doneinviewoutlet.layer.cornerRadius = 4
-        
-        
-        /*
-        unitsbutton.layer.borderWidth = 1
-        unitsbutton.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-        unitsbutton.layer.cornerRadius = 8
-        
-        perunitsbutton.layer.borderWidth = 1
-        perunitsbutton.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-        perunitsbutton.layer.cornerRadius = 8
-        */
+
         listnameinview.leftTextMargin = 1
-        
-        //listnoteinview.l
-        
-       // shownoteview.layer.cornerRadius = 4
         
         shownoteview.hidden = true
         

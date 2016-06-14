@@ -18,33 +18,20 @@ protocol OptionsPopupDelegate
     func uncheckall()
 }
 
+
+
 class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
-    /*
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.None
-    }
-*/
+
     
     var delegate: OptionsPopupDelegate?
+    
+    var listtype = String()
     
     var listtoupdate = String()
     
     var senderVC = String()
-    /*
-    func displayInfoAlert(title: String, message: String) {
-        
-        let customIcon = UIImage(named: "plus.png")
-        let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "BACK", color: UIColorFromHex(0x9b59b6, alpha: 1), iconImage: customIcon)
-        alertview.setTextTheme(.Light)
-        // alertview.addAction(cancelCallback)
-        alertview.addAction(closeCallback)
-    }
-    
-    func closeCallback() {
-        print("Closed")
-    }
-    */
+
     let progressHUD = ProgressHUD(text: NSLocalizedString("wait", comment: ""))
     
     
@@ -96,6 +83,9 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
             
             print(listtoupdate)
             
+            
+            if senderVC == "ToDoList" {
+            
             let query = PFQuery(className:"shopLists")
             
             query.fromLocalDatastore()
@@ -132,24 +122,83 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
                 }
                 
             }
-            
-            if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(listtoupdate) {
-                UserLists[foundlist].listcategories = showcats
-                UserLists[foundlist].listcurrency = [code,symbol]
-                if self.colorchanged == true {
-                UserLists[foundlist].listcolorcode = colorcode
+                
+                if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(listtoupdate) {
+                    UserLists[foundlist].listcategories = showcats
+                    UserLists[foundlist].listcurrency = [code,symbol]
+                    if self.colorchanged == true {
+                        UserLists[foundlist].listcolorcode = colorcode
+                    }
+                    
                 }
                 
-            }
+                if let foundfavlist = UserFavLists.map({ $0.listid }).lazy.indexOf(listtoupdate) {
+                    UserFavLists[foundfavlist].listcategories = showcats
+                    UserFavLists[foundfavlist].listcurrency = [code,symbol]
+                    if self.colorchanged == true {
+                        UserFavLists[foundfavlist].listcolorcode = colorcode
+                    }
+                    
+                }
             
-            if let foundfavlist = UserFavLists.map({ $0.listid }).lazy.indexOf(listtoupdate) {
-                UserFavLists[foundfavlist].listcategories = showcats
-                UserFavLists[foundfavlist].listcurrency = [code,symbol]
+            } else {
+                // if to do list
+                
+                
                 if self.colorchanged == true {
-                UserFavLists[foundfavlist].listcolorcode = colorcode
+                    
+                    
+                    let query = PFQuery(className:"toDoLists")
+                    
+                    query.fromLocalDatastore()
+                    query.whereKey("listUUID", equalTo: listtoupdate)
+                    
+                    query.getFirstObjectInBackgroundWithBlock() {
+                        (shopList: PFObject?, error: NSError?) -> Void in
+                        if error != nil {
+                            print(error)
+                        } else if let shopList = shopList {
+                            
+                                shopList["ListColorCode"] = self.colorcode
+
+                            shopList.pinInBackground()
+
+                        }
+                        
+                    }
+                    
+                    
+                
+                if let foundtodolist = UserToDoLists.map({ $0.listid }).lazy.indexOf(listtoupdate) {
+                    
+                    
+                    
+                        UserShopLists[foundtodolist].listcolorcode = colorcode
+                    
+                    
                 }
                 
+                if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(listtoupdate) {
+                    
+                    
+                    
+                        UserLists[foundlist].listcolorcode = colorcode
+                    
+                    
+                }
+                
+                if let foundfavlist = UserFavLists.map({ $0.listid }).lazy.indexOf(listtoupdate) {
+                    
+                    
+                        UserFavLists[foundfavlist].listcolorcode = colorcode
+                    
+                    
+                }
             }
+            
+            }
+        
+           
             
         }
         
@@ -158,106 +207,7 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
    
-    
-    
   
-    /*
-    @IBOutlet var uncheckalloutlet: UIButton!
-    
-   
-    @IBAction func uncheckaction(sender: AnyObject) {
-        
-        
-        
-        if senderVC == "AllListsVC" {
-            
-            print(listtoupdate)
-         
-                pause()
-                
-                
-                let query = PFQuery(className:"shopItems")
-                query.fromLocalDatastore()
-                // querynew.getObjectInBackgroundWithId(itemtocheck) {
-                query.whereKey("ItemsList", equalTo: listtoupdate)
-                query.findObjectsInBackgroundWithBlock {
-                    (objects: [AnyObject]?, error: NSError?) -> Void in
-                    
-                    if error == nil {
-                        
-                        
-                        
-                        if let listitems = objects as? [PFObject] {
-                            
-                            
-                            for object in listitems {
-                                
-                                object["isChecked"] = false
-                                
-                                object.pinInBackground()
-                            }
-                            
-                            self.restore()
-                             //JSSAlertView().show(self, title: "Done!")
-                        }
-                        
-                        
-                        
-                    } else {
-                        // Log details of the failure
-                         self.restore()
-                        print("Error: \(error!) \(error!.userInfo)")
-                    }
-                }
-                
-            
-            
-        } else if senderVC == "ShopList" {
-            
-            delegate!.uncheckall()
-        }
-        
-        addedindicator.alpha = 1
-        addedindicator.fadeOut()
-        
-    }
-    
-    
- 
-    @IBAction func showcatsaction(sender: AnyObject) {
-        
-        if showcats == false {
-            
-            showcats = true
-            
-            self.showcatsoutlet.setTitle(NSLocalizedString("hidecats", comment: ""), forState: UIControlState.Normal)
-            
-             // self.showcatsoutlet.titleLabel!.font = UIFont(name: "HelveticaNeue-UltraLight", size: 18)
-           // showcatsoutlet.titleLabel!.textColor = UIColorFromRGB(0xF23D55)
-           // showcatsoutlet.layer.borderWidth = 1
-           // showcatsoutlet.layer.borderColor = UIColorFromRGB(0xF23D55).CGColor
-            
-            //self.showcatsoutlet.setImage(UIImage(named: "HideCatsButton")!, forState: UIControlState.Normal)
-            
-            
-        } else {
-            
-            showcats = false
-            
-            showcatsoutlet.setTitle(NSLocalizedString("showcats", comment: ""), forState: UIControlState.Normal)
-            
-            //showcatsoutlet.titleLabel!.textColor = UIColorFromRGB(0x61C791)
-           // showcatsoutlet.layer.borderWidth = 1
-           // showcatsoutlet.layer.borderColor = UIColorFromRGB(0x61C791).CGColor
-            
-            // self.showcatsoutlet.setImage(UIImage(named: "ShowCatsButton")!, forState: UIControlState.Normal)
-        }
-        if senderVC == "ShopList" {
-        delegate!.popshowcategories(showcats)
-        }
-    }
-    */
-    
     
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
         return UIColor(
@@ -544,7 +494,11 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
     
     
     override func viewWillAppear(animated: Bool) {
+        
+       
+        if listtype == "Shop" {
         currencylabel.text = "\(code) - \(symbol)"
+        }
         
         
         
@@ -828,7 +782,23 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
             
             popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
             popoverViewController.popoverPresentationController!.delegate = self
+            
+            if senderVC == "ShopList" {
+            
             popoverViewController.senderVC = "ShopOptions"
+                
+            } else if senderVC == "ToDoList" {
+               popoverViewController.senderVC = "ToDoOptions"
+            } else if senderVC == "AllListsVC" {
+                
+                if listtype == "Shop" {
+                    popoverViewController.senderVC = "ShopOptions"
+                } else if listtype == "ToDo" {
+                    popoverViewController.senderVC = "ToDoOptions"
+                } else {
+                    popoverViewController.senderVC = "ToDoOptions"
+                }
+            }
             
             
             //popoverViewController.delegate = self

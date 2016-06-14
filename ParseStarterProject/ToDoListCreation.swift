@@ -18,7 +18,7 @@ protocol passtodoListtoMenuDelegate
 }
 
 
-class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSource, RefreshToDoListDelegate, UITextFieldDelegate, ToDoOptionsPopupDelegate, takepicturedelegate, UITextViewDelegate {
+class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSource, RefreshToDoListDelegate, UITextFieldDelegate, OptionsPopupDelegate, takepicturedelegate, UITextViewDelegate {
     
     
     func createpicture() {
@@ -40,6 +40,19 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         colorcode = code
         
+    }
+    
+    
+    func popshowcategories(show: Bool) {
+        //
+    }
+    
+    func uncheckall() {
+        //
+    }
+    
+    func changecodeandsymbol(newcode: String, newsymbol: String) {
+        //
     }
     
     
@@ -275,11 +288,16 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var red:String = "F23D55"
     var dgreen:String = "31797D"
-    var lgreen:String = "61C791"
-    var yellow:String = "DAFFA4"
-    var black:String = "2A2F36"
     var gold:String = "A2AF36"
+    var black:String = "2A2F36"
     var grey:String = "838383"
+    var magenta:String = "1EB2BB"
+    var lgreen:String = "61C791"
+    var lightmagenta: String = "7FC2C6"
+    var pink: String = "E88996"
+    var orange: String = "E18C16"
+    var violet:String = "7D3169"
+    var darkred:String = "713D3D"
     
     
     /////////////
@@ -825,43 +843,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             //itemsoverall.text = "\(String(self.itemsquantity))/\(String(self.checkeditemsquantity))"
             
         } else {
-            
-            /*
-            button.setImage(notcheckedImage, forState: .Normal)
-            
-            
-            let attributes = [NSStrikethroughStyleAttributeName : 0]
-            var title = NSAttributedString(string: toDoItems[indexPathCheck!.row].itemname, attributes: attributes)
-            
-            cell.itemname.attributedText = title
-            
-            
-            var querynew = PFQuery(className:"toDoItems")
-            querynew.fromLocalDatastore()
-            querynew.whereKey("itemUUID", equalTo: itemtocheck)
-            querynew.getFirstObjectInBackgroundWithBlock() {
-                (itemList: PFObject?, error: NSError?) -> Void in
-                if error != nil {
-                    println(error)
-                } else if let itemList = itemList {
-                    itemList["isChecked"] = false
-                    itemList.pinInBackground()
-                    itemList.saveEventually()
-                    
-                }
-                
-                
-            }
-
-            
-            toDoItems[indexPathCheck!.row].ischecked = false
-            
-     
-            
-            checkeditemsquantity -= 1
-            itemschecked.text = String(checkeditemsquantity)
-            
-            */
+          
         }
 
         
@@ -870,29 +852,6 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     func countchecked() -> Int {
-        /*
-        var checkeditems : Int {
-            
-            get{return 0}
-            set{0}
-            
-            
-        }
-        */
-      
-        /*
-        var quantityofchecked = [Bool]()
-        
-        for item in itemsDataDict {
-        if item["ItemIsChecked"] as! Bool == true {
-        quantityofchecked.append(item["ItemIsChecked"] as! Bool)
-        } else {
-        print("Not checked")
-        }
-        }
-        checkeditemsqty = quantityofchecked.count
-        return checkeditemsqty
-*/
         
         var quantityofchecked = [Bool]()
         
@@ -930,12 +889,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             activelist = currenttodolist
             if currenttodolist != "" {
 
-/*
-                countitems()
-                itemsoverall.text = String(itemsquantity)
-                countchecked()
-                itemschecked.text = String(checkeditemsquantity)
-*/
+
                 countitems()
                 countchecked()
                 itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsquantity))/\(String(checkeditemsquantity))"
@@ -947,12 +901,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             }
 
         } else {
-        /*
-        countitems()
-        itemsoverall.text = String(itemsquantity)
-        countchecked()
-        itemschecked.text = String(checkeditemsquantity)
-        */
+
             countitems()
             countchecked()
             itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsquantity))/\(String(checkeditemsquantity))"
@@ -961,20 +910,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     
-    /*
-    func configurenavigation() {
-        var rightAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.Plain, target: self, action: "addButtonTapped:")
-        
-        //var rightListsButtonItem: UIBarButtonItem = UIBarButtonItem(image: ListsIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "ListsTapped:")
-        var rightListsButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Lists", style: UIBarButtonItemStyle.Plain, target: self, action: "ListsTapped:")
-        
-        var rightSettingsButtonItem: UIBarButtonItem = UIBarButtonItem(title: "Settings", style: UIBarButtonItemStyle.Plain, target: self, action: "SettingsTapped:")
-      
-        
-        
-        self.navigationItem.setRightBarButtonItems([rightAddBarButtonItem, rightListsButtonItem, rightSettingsButtonItem], animated: true)
-    }
-    */
+
     
     func addButtonTapped(sender:UIButton) {
          performSegueWithIdentifier("addtodoitemsegue", sender: self)
@@ -996,7 +932,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         if segue.identifier == "showtodooptions" {
             
-            let popoverViewController = segue.destinationViewController as! OptionsToDo//
+            let popoverViewController = segue.destinationViewController as! ListOptionsPopover//
             
             popoverViewController.delegate = self //
             
@@ -1004,6 +940,8 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             popoverViewController.colorcode = colorcode
             
             popoverViewController.senderVC = "ToDoList"
+            
+            popoverViewController.listtype = "ToDo"
             
         }
 
@@ -1718,25 +1656,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.view.backgroundColor = UIColorFromRGB(0x31797D)//2a2f36)
         
        
-        
-       
 
-         //Navigation configuration
-        /*
-        var rightAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.Plain, target: self, action: "addButtonTapped:")
-        
-        //var rightListsButtonItem: UIBarButtonItem = UIBarButtonItem(image: ListsIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "ListsTapped:")
-        var rightListsButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Lists", style: UIBarButtonItemStyle.Plain, target: self, action: "ListsTapped:")
-        
-        var rightSettingsButtonItem: UIBarButtonItem = UIBarButtonItem(title: "Settings", style: UIBarButtonItemStyle.Plain, target: self, action: "SettingsTapped:")
-        
-        
-        
-        self.navigationItem.setRightBarButtonItems([rightAddBarButtonItem, rightListsButtonItem, rightSettingsButtonItem], animated: true)
-        */
-        //configurenavigation()
-        
-        // Do any additional setup after loading the view.
         
         if justCreated == true {
             
@@ -1746,7 +1666,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             let namedate = dateFormatter.stringFromDate(todaydate)
             
             self.listname.text = "\(NSLocalizedString("listtodo", comment: ""))"
-            colorcode = lgreen
+            colorcode = magenta
             
             newPFObject()
             
@@ -1765,7 +1685,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
                 colorcode = UserLists[foundlist].listcolorcode!
                 
             } else {
-                colorcode = black
+                colorcode = magenta
             }
             }
             

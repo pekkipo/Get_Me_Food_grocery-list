@@ -967,9 +967,11 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     var symbolforoptions = ""//String()
     var colorcodeforoptions = String()
     
+    var listtypeforoptions = String()
+    
     func optionsaction(indexPath: NSIndexPath) {
         
-     
+     listtypeforoptions = "Shop"
         
         if showoption == "alllists" {
             
@@ -1009,18 +1011,24 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     }
     
      var todoidforoptions = String()
+    var todocolorcodeforoptions = String()
     
     func todooptionsaction(indexPath: NSIndexPath) {
         
+        listtypeforoptions = "ToDo"
         
         if showoption == "alllists" {
             todoidforoptions = UserLists[indexPath.row].listid
+            todocolorcodeforoptions = UserFavLists[indexPath.row].listcolorcode
         } else if showoption == "shoplists" {
             todoidforoptions = UserShopLists[indexPath.row].listid
+            todocolorcodeforoptions = UserFavLists[indexPath.row].listcolorcode
         } else if showoption == "todolists" {
             todoidforoptions = UserToDoLists[indexPath.row].listid
+            todocolorcodeforoptions = UserFavLists[indexPath.row].listcolorcode
         } else if showoption == "favs" {
             todoidforoptions = UserFavLists[indexPath.row].listid
+            todocolorcodeforoptions = UserFavLists[indexPath.row].listcolorcode
         }
         
         self.performSegueWithIdentifier("todooptionssegue", sender: self)
@@ -1231,18 +1239,21 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
             optionsVC.symbol = symbolforoptions
             optionsVC.colorcode = colorcodeforoptions
             
-            
+            optionsVC.listtype = "Shop"
         }
         
         if segue.identifier == "todooptionssegue" {
             
-            let optionsVC = segue.destinationViewController as! OptionsToDo
+            let optionsVC = segue.destinationViewController as! ListOptionsPopover
             
             // optionsVC.view.backgroundColor = UIColorFromRGBalpha(0xFAFAFA, alp: 0.8)
             
             optionsVC.senderVC = "AllListsVC"
             optionsVC.listtoupdate = todoidforoptions
             
+            optionsVC.colorcode = colorcodeforoptions
+            
+            optionsVC.listtype = "ToDo"
             
         }
         
@@ -5620,7 +5631,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         let todooptionsAction = UITableViewRowAction(style: .Normal, title: "    ") { (action , indexPath) -> Void in
             self.editing = false
 
-            //self.todooptionsaction(indexPath)
+            self.todooptionsaction(indexPath)
             
         }
         todooptionsAction.backgroundColor = UIColorFromRGB(0x31797D)
@@ -5663,7 +5674,45 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
             return [deleteAction]
         }
         */
+        
+        var thislisttype = String()
+        if showoption == "alllists" {
+            thislisttype = UserLists[indexPath.row].listtype
+        } else if showoption == "shoplists" {
+            thislisttype = UserShopLists[indexPath.row].listtype
+        } else if showoption == "todolists" {
+            thislisttype = UserToDoLists[indexPath.row].listtype
+        } else if showoption == "favs" {
+            thislisttype = UserFavLists[indexPath.row].listtype
+        }
+        
+        var thisisreceived = Bool()
+        var confirm = Bool()
+        if showoption == "alllists" {
+            thisisreceived = UserLists[indexPath.row].listisreceived
+            confirm = UserLists[indexPath.row].listissaved
+        } else if showoption == "shoplists" {
+            thisisreceived = UserShopLists[indexPath.row].listisreceived
+            confirm = UserShopLists[indexPath.row].listissaved
+        } else if showoption == "todolists" {
+            thisisreceived = UserToDoLists[indexPath.row].listisreceived
+            confirm = UserToDoLists[indexPath.row].listissaved
+        } else if showoption == "favs" {
+            thisisreceived = UserFavLists[indexPath.row].listisreceived
+            confirm = UserFavLists[indexPath.row].listissaved
+        }
+        
+        if thisisreceived && confirm {
+            return [deleteAction]
+        } else {
+            if thislisttype == "Shop" {
         return [deleteAction, shareAction, editingAction, optionsAction]
+            } else if thislisttype == "ToDo" {
+                return [deleteAction, shareAction, editingAction, todooptionsAction]
+            } else {
+                return [deleteAction]
+            }
+        }
 
     }
 
