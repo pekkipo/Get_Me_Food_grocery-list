@@ -745,7 +745,7 @@ class ManageCategoriesVC: UIViewController, UITableViewDelegate, UITableViewData
         
         cell.categoryimage.image = customcategories[indexPath.row].catimage
         cell.categoryname.text = customcategories[indexPath.row].catname
-        
+        /*
         if customcategories[indexPath.row].isAllowed == true {
             
             cell.categoryshowcatalog.on = true
@@ -754,9 +754,9 @@ class ManageCategoriesVC: UIViewController, UITableViewDelegate, UITableViewData
             cell.categoryshowcatalog.on = false
 
         }
+        */
 
-
-            cell.categoryshowcatalog.addTarget(self, action: "changeallowed:", forControlEvents: .ValueChanged)
+          //  cell.categoryshowcatalog.addTarget(self, action: "changeallowed:", forControlEvents: .ValueChanged)
         
            // cell.categorydelete.addTarget(self, action: "deletecustomcategory:", forControlEvents: .TouchUpInside)
         

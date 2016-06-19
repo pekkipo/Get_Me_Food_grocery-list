@@ -312,6 +312,13 @@ class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableView
  //AUTOCOMPLETE PART ENDS HERE
     
     
+    func showindicator() {
+        
+        
+        
+    }
+    
+    
     let progressHUD = ProgressHUD(text: NSLocalizedString("sending", comment: ""))
     
     func pause() {

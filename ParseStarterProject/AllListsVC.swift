@@ -34,8 +34,9 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         tableView.reloadData()
     }
     
-    var shopicon : UIImage = UIImage(named: "BlackCart")!//UIImage(named: "ShoppingCart")!
-    var todoicon : UIImage = UIImage(named: "BlackDoH25")!
+    var shopicon : UIImage = UIImage(named: "4ShopType")!//UIImage(named: "ShoppingCart")!
+    var todoicon : UIImage = UIImage(named: "4ToDoType")!
+    var receivedicon : UIImage = UIImage(named: "4ReceivedType")!
     
    //var showoption = String()
     
@@ -47,72 +48,23 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     var maindelegate : refreshmainviewDelegate?
     
     
-    @IBOutlet var showalloutlet: UIBarButtonItem!
-    
-    @IBOutlet var showshopsoutlet: UIBarButtonItem!
-    
-    @IBOutlet var showtodosoutlet: UIBarButtonItem!
-    
-    @IBOutlet var favsbaroutlet: UIBarButtonItem!
-    
-    @IBAction func showAll(sender: AnyObject) {
-        
-        showoption = "alllists"
-        showalloutlet.tintColor = UIColorFromRGB(0xE0FFB2)
-        showshopsoutlet.tintColor = UIColorFromRGB(0xFAFAFA)
-        showtodosoutlet.tintColor = UIColorFromRGB(0xFAFAFA)
-        favsbaroutlet.tintColor = UIColorFromRGB(0xFAFAFA)
-        
-       // UserLists.sort(self.sortListsDESC)
-       // UserShopLists.sort(self.sortListsDESC)
-       // UserToDoLists.sort(self.sortListsDESC)
-
-        tableView.reloadData()
-      
-
-    }
-    
-    @IBAction func showShops(sender: AnyObject) {
-        showoption = "shoplists"
-        
-      //// UserLists.sort(self.sortListsDESC)
-        //UserShopLists.sort(self.sortListsDESC)
-       // UserToDoLists.sort(self.sortListsDESC)
-        
-        showalloutlet.tintColor = UIColorFromRGB(0xFAFAFA)
-        showshopsoutlet.tintColor = UIColorFromRGB(0xE0FFB2)
-        showtodosoutlet.tintColor = UIColorFromRGB(0xFAFAFA)
-        favsbaroutlet.tintColor = UIColorFromRGB(0xFAFAFA)
-
-        tableView.reloadData()
-        
-       
-
+    func changeshowoptions(option: String) {
+        if option == "alllists" {
+            showoption = "alllists"
+            tableView.reloadData()
+        } else if option == "shoplists" {
+            showoption = "shoplists"
+            tableView.reloadData()
+        } else if option == "todolists" {
+            showoption = "todolists"
+            tableView.reloadData()
+        } else if option == "favs" {
+            showoption = "favs"
+            tableView.reloadData()
+        }
     }
     
     
-    @IBAction func showToDos(sender: AnyObject) {
-        showoption = "todolists"
-        
-       // UserLists.sort(self.sortListsDESC)
-       // UserShopLists.sort(self.sortListsDESC)
-      //  UserToDoLists.sort(self.sortListsDESC)
-        
-        showalloutlet.tintColor = UIColorFromRGB(0xFAFAFA)
-        showshopsoutlet.tintColor = UIColorFromRGB(0xFAFAFA)
-        showtodosoutlet.tintColor = UIColorFromRGB(0xE0FFB2)
-        favsbaroutlet.tintColor = UIColorFromRGB(0xFAFAFA)
-
-        tableView.reloadData()
-        /*
-        println("all [\(UserLists), \(UserLists.count)]")
-        println("Shops [\(UserShopLists), \(UserShopLists.count)]")
-        println("ToDo [\(UserToDoLists), \(UserToDoLists.count)]")
-        */
-       
-
-
-    }
     
     
     @IBOutlet var OpenMenu: UIBarButtonItem!
@@ -144,31 +96,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     }
     
     
-    @IBAction func FavsBar(sender: AnyObject) {
-        
-        //showoption = "favs"
-        //wait a bit
-        
-        if showoption != "favs" {
-        
-        showalloutlet.tintColor = UIColorFromRGB(0xFAFAFA)
-        showshopsoutlet.tintColor = UIColorFromRGB(0xFAFAFA)
-        showtodosoutlet.tintColor = UIColorFromRGB(0xFAFAFA)
-        favsbaroutlet.tintColor = UIColorFromRGB(0xE0FFB2)
-        
-        showoption = "favs"
-        } else {
-            showoption = "alllists"
-            
-            showalloutlet.tintColor = UIColorFromRGB(0xE0FFB2)
-            showshopsoutlet.tintColor = UIColorFromRGB(0xFAFAFA)
-            showtodosoutlet.tintColor = UIColorFromRGB(0xFAFAFA)
-            favsbaroutlet.tintColor = UIColorFromRGB(0xFAFAFA)
-        }
-        tableView.reloadData()
-        
-        
-    }
+    
     
     @IBAction func AddBar(sender: AnyObject) {
         
@@ -916,21 +844,22 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         
         
         //badgestuff
-        
+        /*
         let label = UILabel()
         label.clipsToBounds = true
         label.layer.cornerRadius = label.font.pointSize * 1.2 / 2
         label.backgroundColor = UIColor.orangeColor()
         label.textColor = UIColor.whiteColor()
         label.text = String(receivedcount)
-        
+ **/
+        /*
         if receivedcount > 0 {
         let toolbar = self.view.viewWithTag(999) as? UIToolbar
         //let menubar = self.view.viewWithTag(99) as? UIButton
             let menubar = toolbar!.viewWithTag(99) as? UIButton
         menubar?.addSubview(label)
         }
-        
+        */
         
         
         
@@ -1019,13 +948,13 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         
         if showoption == "alllists" {
             todoidforoptions = UserLists[indexPath.row].listid
-            todocolorcodeforoptions = UserFavLists[indexPath.row].listcolorcode
+            todocolorcodeforoptions = UserLists[indexPath.row].listcolorcode
         } else if showoption == "shoplists" {
             todoidforoptions = UserShopLists[indexPath.row].listid
-            todocolorcodeforoptions = UserFavLists[indexPath.row].listcolorcode
+            todocolorcodeforoptions = UserShopLists[indexPath.row].listcolorcode
         } else if showoption == "todolists" {
             todoidforoptions = UserToDoLists[indexPath.row].listid
-            todocolorcodeforoptions = UserFavLists[indexPath.row].listcolorcode
+            todocolorcodeforoptions = UserToDoLists[indexPath.row].listcolorcode
         } else if showoption == "favs" {
             todoidforoptions = UserFavLists[indexPath.row].listid
             todocolorcodeforoptions = UserFavLists[indexPath.row].listcolorcode
@@ -1251,7 +1180,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
             optionsVC.senderVC = "AllListsVC"
             optionsVC.listtoupdate = todoidforoptions
             
-            optionsVC.colorcode = colorcodeforoptions
+            optionsVC.colorcode = todocolorcodeforoptions
             
             optionsVC.listtype = "ToDo"
             
@@ -1262,7 +1191,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         
     }
     
-    
+    /*
     func adddeletefav(sender: UIButton!) {
         
         let button = sender as UIButton
@@ -1270,19 +1199,23 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         let innerview = view.superview!
         let cell = innerview.superview as! ShopListCellNew
         let indexPathFav = tableView.indexPathForCell(cell)
-        
-        //listfromfav = ListsIds[indexPathFav!.row]
-        
+        */
+    
+        func adddeletefav(indexPathFav: NSIndexPath) {
+    
+         let cell = tableView.cellForRowAtIndexPath(indexPathFav) as! ShopListCellNew
+            
+            
         if showoption == "alllists" {
-            listfromfav = UserLists[indexPathFav!.row].listid
+            listfromfav = UserLists[indexPathFav.row].listid
             
             //////ALL
             
-            if UserLists[indexPathFav!.row].listisfavourite == true {
+            if UserLists[indexPathFav.row].listisfavourite == true {
                 //delete from favs
                 
                 pause()
-                if UserLists[indexPathFav!.row].listtype == "Shop" {
+                if UserLists[indexPathFav.row].listtype == "Shop" {
                     
                     let queryfav = PFQuery(className:"shopLists")
                     // queryfav.getObjectInBackgroundWithId(listtofav!) {
@@ -1301,7 +1234,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                           //  shopList.saveEventually()
                             
                             
-                            UserLists[indexPathFav!.row].listisfavourite = false
+                            UserLists[indexPathFav.row].listisfavourite = false
                             
                             
                             self.restore()
@@ -1310,27 +1243,25 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         //self.listsretrieval()
                         
                     }
-                    
-                   // if let foundshoplist = find(lazy(UserShopLists).map({ $0.listid }), listfromfav!) {
+
                     if let foundshoplist = UserShopLists.map({ $0.listid }).lazy.indexOf(listfromfav!) {
                     UserShopLists[foundshoplist].listisfavourite = false
                         
                     }
-                    
-                    //if let foundlistinfav = find(lazy(UserFavLists).map({ $0.listid }), listfromfav!) {
+
                     if let foundlistinfav = UserFavLists.map({ $0.listid }).lazy.indexOf(listfromfav!) {
                        UserFavLists.removeAtIndex(foundlistinfav)
                         
                     }
 
                     
-                } else if UserLists[indexPathFav!.row].listtype == "ToDo" {
+                } else if UserLists[indexPathFav.row].listtype == "ToDo" {
                     
                     let queryfav1 = PFQuery(className:"toDoLists")
-                    // queryfav.getObjectInBackgroundWithId(listtofav!) {
+
                     queryfav1.fromLocalDatastore()
                     queryfav1.whereKey("listUUID", equalTo: listfromfav!)
-                    // queryfav.getObjectInBackgroundWithId(listtofav!) {
+
                     queryfav1.getFirstObjectInBackgroundWithBlock() {
                         (todoList: PFObject?, error: NSError?) -> Void in
                         if error != nil {
@@ -1339,11 +1270,9 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         } else if let todoList = todoList {
                             todoList["isFavourite"] = false
                             todoList.pinInBackground()
-                            // shopList.saveInBackground()
-                           // todoList.saveEventually()
+
                             
-                            
-                            UserLists[indexPathFav!.row].listisfavourite = false
+                            UserLists[indexPathFav.row].listisfavourite = false
                             
                             
                             
@@ -1353,13 +1282,12 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         //self.listsretrieval()
                         
                     }
-                    
-                    //if let foundtodolist = find(lazy(UserToDoLists).map({ $0.listid }), listfromfav!) {
+
                     if let foundtodolist = UserToDoLists.map({ $0.listid }).lazy.indexOf(listfromfav!) {
                     UserToDoLists[foundtodolist].listisfavourite = false
                     }
                     
-                    //if let foundlistinfav = find(lazy(UserFavLists).map({ $0.listid }), listfromfav!) {
+
                     if let foundlistinfav = UserFavLists.map({ $0.listid }).lazy.indexOf(listfromfav!) {
                     UserFavLists.removeAtIndex(foundlistinfav)
                         
@@ -1368,10 +1296,11 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
 
                 }
                 
-                notfavimage = UIImage(named: "ICFavStar") as UIImage!
-                cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
+                //notfavimage = UIImage(named: "ICFavStar") as UIImage!
+               // cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
+               // cell.addToFavOutlet.imageForState(.Normal).
                 
-                
+                cell.addToFavOutlet.tintColor = UIColorFromRGB(0xD9D9D9)
                 
                 
             } else {
@@ -1379,7 +1308,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                 
                 pause()
                 
-                if UserLists[indexPathFav!.row].listtype == "Shop" {
+                if UserLists[indexPathFav.row].listtype == "Shop" {
                     
                     let queryfav = PFQuery(className:"shopLists")
                     // queryfav.getObjectInBackgroundWithId(listtofav!) {
@@ -1394,12 +1323,9 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         } else if let shopList = shopList {
                             shopList["isFavourite"] = true
                             shopList.pinInBackground()
-                            // shopList.saveInBackground()
-                           // shopList.saveEventually()
+
                             
-                            
-                            
-                            UserLists[indexPathFav!.row].listisfavourite = true
+                            UserLists[indexPathFav.row].listisfavourite = true
                             
                             
                             
@@ -1407,11 +1333,9 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                             self.restore()
                         }
                         self.tableView.reloadData()
-                        //self.listsretrieval()
                         
                     }
-                    
-                   // if let foundshoplist = find(lazy(UserShopLists).map({ $0.listid }), listfromfav!) {
+
                     
                      if let foundshoplist = UserShopLists.map({ $0.listid }).lazy.indexOf(listfromfav!) {
                         UserShopLists[foundshoplist].listisfavourite = true
@@ -1420,13 +1344,13 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                     
                     
-                } else if UserLists[indexPathFav!.row].listtype == "ToDo" {
+                } else if UserLists[indexPathFav.row].listtype == "ToDo" {
                     
                     let queryfav1 = PFQuery(className:"toDoLists")
-                    // queryfav.getObjectInBackgroundWithId(listtofav!) {
+
                     queryfav1.fromLocalDatastore()
                     queryfav1.whereKey("listUUID", equalTo: listfromfav!)
-                    // queryfav.getObjectInBackgroundWithId(listtofav!) {
+
                     queryfav1.getFirstObjectInBackgroundWithBlock() {
                         (todoList: PFObject?, error: NSError?) -> Void in
                         if error != nil {
@@ -1439,7 +1363,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                            // todoList.saveEventually()
                             
                             
-                            UserLists[indexPathFav!.row].listisfavourite = true
+                            UserLists[indexPathFav.row].listisfavourite = true
                             
                             
                             self.restore()
@@ -1448,16 +1372,16 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         //self.listsretrieval()
                         
                     }
-                    
-                    //if let foundtodolist = find(lazy(UserToDoLists).map({ $0.listid }), listfromfav!) {
+
                     if let foundtodolist = UserToDoLists.map({ $0.listid }).lazy.indexOf(listfromfav!) {
                             UserToDoLists[foundtodolist].listisfavourite = true
                             UserFavLists.append(UserToDoLists[foundtodolist])
                         }
                 }
                 
-                favimage = UIImage(named: "ICFavStarActive") as UIImage!
-                cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
+                //favimage = UIImage(named: "ICFavStarActive") as UIImage!
+                //cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
+                cell.addToFavOutlet.tintColor = UIColorFromRGB(0xA2AF36)
             }
 
             
@@ -1466,32 +1390,27 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
             
             /////// SHOPS ONLY
         else if showoption == "shoplists" {
-             listfromfav = UserShopLists[indexPathFav!.row].listid
+             listfromfav = UserShopLists[indexPathFav.row].listid
             
             
             
-            if UserShopLists[indexPathFav!.row].listisfavourite == true {
+            if UserShopLists[indexPathFav.row].listisfavourite == true {
                 //delete from favs
                 
                 pause()
-                
-               // if let foundshoplist = find(lazy(UserLists).map({ $0.listid }), listfromfav!) {
+
                 if let foundshoplist = UserLists.map({ $0.listid }).lazy.indexOf(listfromfav!) {
                 UserLists[foundshoplist].listisfavourite = false
                 }
-                
-                //if let foundlistinfav = find(lazy(UserFavLists).map({ $0.listid }), listfromfav!) {
+
                 if let foundlistinfav = UserFavLists.map({ $0.listid }).lazy.indexOf(listfromfav!) {
                 UserFavLists.removeAtIndex(foundlistinfav)
                     
                 }
 
-                
-                
-               // if UserShopLists[indexPathFav!.row].listtype == "Shop" {
                     
                     let queryfav = PFQuery(className:"shopLists")
-                    // queryfav.getObjectInBackgroundWithId(listtofav!) {
+
                     queryfav.fromLocalDatastore()
                     queryfav.whereKey("listUUID", equalTo: listfromfav!)
                     // queryfav.getObjectInBackgroundWithId(listtofav!) {
@@ -1503,11 +1422,9 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         } else if let shopList = shopList {
                             shopList["isFavourite"] = false
                             shopList.pinInBackground()
-                            // shopList.saveInBackground()
-                           // shopList.saveEventually()
+
                             
-                            
-                            UserShopLists[indexPathFav!.row].listisfavourite = false
+                            UserShopLists[indexPathFav.row].listisfavourite = false
                             
                             
                             self.restore()
@@ -1519,25 +1436,20 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                // } else if UserShopLists[indexPathFav!.row].listtype == "ToDo"
                 
-                notfavimage = UIImage(named: "ICFavStar") as UIImage!
-                cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
-                
+               // notfavimage = UIImage(named: "ICFavStar") as UIImage!
+               // cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
+                cell.addToFavOutlet.tintColor = UIColorFromRGB(0xD9D9D9)
                 
             } else {
                 //add to favs
                 
                  pause()
-                
-               // if let foundshoplist = find(lazy(UserLists).map({ $0.listid }), listfromfav!) {
+
                 if let foundshoplist = UserLists.map({ $0.listid }).lazy.indexOf(listfromfav!) {
                     UserLists[foundshoplist].listisfavourite = true
                     UserFavLists.append(UserLists[foundshoplist])
                 }
-                
-               
-                
-              //  if UserShopLists[indexPathFav!.row].listtype == "Shop" {
-                    
+
                     let queryfav = PFQuery(className:"shopLists")
                     // queryfav.getObjectInBackgroundWithId(listtofav!) {
                     queryfav.fromLocalDatastore()
@@ -1556,7 +1468,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                             
                             
                             
-                            UserShopLists[indexPathFav!.row].listisfavourite = true
+                            UserShopLists[indexPathFav.row].listisfavourite = true
                             
                             
                             
@@ -1564,42 +1476,37 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                             self.restore()
                         }
                         self.tableView.reloadData()
-                        //self.listsretrieval()
+
                         
                     }
-                    
-              //  } else if UserShopLists[indexPathFav!.row].listtype == "ToDo"
+
                 
-                favimage = UIImage(named: "ICFavStarActive") as UIImage!
-                cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
+                //favimage = UIImage(named: "ICFavStarActive") as UIImage!
+               // cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
+                cell.addToFavOutlet.tintColor = UIColorFromRGB(0xA2AF36)
             }
             ////// END SHOPS ONLY
             
         }
         else if showoption == "todolists" {
-             listfromfav = UserToDoLists[indexPathFav!.row].listid
+             listfromfav = UserToDoLists[indexPathFav.row].listid
             
             ///// TO DO ONLY
             
-            if UserToDoLists[indexPathFav!.row].listisfavourite == true {
+            if UserToDoLists[indexPathFav.row].listisfavourite == true {
                 //delete from favs
                 
                 pause()
-                
-               // if let foundshoplist = find(lazy(UserLists).map({ $0.listid }), listfromfav!) {
+
                 if let foundshoplist = UserLists.map({ $0.listid }).lazy.indexOf(listfromfav!) {
                 UserLists[foundshoplist].listisfavourite = false
                 }
-                
-               // if let foundlistinfav = find(lazy(UserFavLists).map({ $0.listid }), listfromfav!) {
+
                 if let foundlistinfav = UserFavLists.map({ $0.listid }).lazy.indexOf(listfromfav!) {
                 UserFavLists.removeAtIndex(foundlistinfav)
                     
                 }
 
-                
-                
-              //  if UserToDoLists[indexPathFav!.row].listtype == "Shop" {
                     
                     let queryfav = PFQuery(className:"toDoLists")
                     // queryfav.getObjectInBackgroundWithId(listtofav!) {
@@ -1614,11 +1521,9 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         } else if let todoList = todoList {
                             todoList["isFavourite"] = false
                             todoList.pinInBackground()
-                            // shopList.saveInBackground()
-                           // todoList.saveEventually()
+
                             
-                            
-                            UserToDoLists[indexPathFav!.row].listisfavourite = false
+                            UserToDoLists[indexPathFav.row].listisfavourite = false
                             
                             
                             self.restore()
@@ -1627,25 +1532,22 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         //self.listsretrieval()
                         
                     }
-                    
-              //  } else if UserToDoLists[indexPathFav!.row].listtype == "ToDo"
+
                 
-                notfavimage = UIImage(named: "ICFavStar") as UIImage!
-                cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
-                
+                //notfavimage = UIImage(named: "ICFavStar") as UIImage!
+               // cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
+                cell.addToFavOutlet.tintColor = UIColorFromRGB(0xD9D9D9)
                 
             } else {
                 //add to favs
                 
                 pause()
-                
-               // if let foundtodolist = find(lazy(UserLists).map({ $0.listid }), listfromfav!) {
+
                 if let foundtodolist = UserLists.map({ $0.listid }).lazy.indexOf(listfromfav!) {
                 UserLists[foundtodolist].listisfavourite = true
                     UserFavLists.append(UserLists[foundtodolist])
                 }
                 
-                //else if UserToDoLists[indexPathFav!.row].listtype == "ToDo" {
                     
                     let queryfav1 = PFQuery(className:"toDoLists")
                     // queryfav.getObjectInBackgroundWithId(listtofav!) {
@@ -1660,11 +1562,9 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         } else if let todoList = todoList {
                             todoList["isFavourite"] = true
                             todoList.pinInBackground()
-                            // shopList.saveInBackground()
-                           // todoList.saveEventually()
+
                             
-                            
-                            UserToDoLists[indexPathFav!.row].listisfavourite = true
+                            UserToDoLists[indexPathFav.row].listisfavourite = true
                             
                             
                             self.restore()
@@ -1677,8 +1577,9 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                 
                 
-                favimage = UIImage(named: "ICFavStarActive") as UIImage!
-                cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
+               // favimage = UIImage(named: "ICFavStarActive") as UIImage!
+               // cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
+                cell.addToFavOutlet.tintColor = UIColorFromRGB(0xA2AF36)
             }
 
             
@@ -1692,7 +1593,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         
     }
     
-    
+    /*
     func adddeletereceivedfav(sender: UIButton!) {
         
         let button = sender as UIButton
@@ -1700,19 +1601,22 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         let innerview = view.superview!
         let cell = innerview.superview as! ReceivedListOld
         let indexPathFav = tableView.indexPathForCell(cell)
-        
+       */
         //listfromfav = ListsIds[indexPathFav!.row]
+    func adddeletereceivedfav(indexPathFav: NSIndexPath) {
         
+        let cell = tableView.cellForRowAtIndexPath(indexPathFav) as! ReceivedListOld
+    
         if showoption == "alllists" {
-            listfromfav = UserLists[indexPathFav!.row].listid
+            listfromfav = UserLists[indexPathFav.row].listid
             
             //////ALL
             
-            if UserLists[indexPathFav!.row].listisfavourite == true {
+            if UserLists[indexPathFav.row].listisfavourite == true {
                 //delete from favs
                 
                 pause()
-                if UserLists[indexPathFav!.row].listtype == "Shop" {
+                if UserLists[indexPathFav.row].listtype == "Shop" {
                     
                     let queryfav = PFQuery(className:"shopLists")
                     // queryfav.getObjectInBackgroundWithId(listtofav!) {
@@ -1731,7 +1635,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                             //shopList.saveEventually()
                             
                             
-                            UserLists[indexPathFav!.row].listisfavourite = false
+                            UserLists[indexPathFav.row].listisfavourite = false
                             
                             
                             self.restore()
@@ -1753,7 +1657,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     }
 
                     
-                } else if UserLists[indexPathFav!.row].listtype == "ToDo" {
+                } else if UserLists[indexPathFav.row].listtype == "ToDo" {
                     
                     let queryfav1 = PFQuery(className:"toDoLists")
                     // queryfav.getObjectInBackgroundWithId(listtofav!) {
@@ -1772,7 +1676,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                            // todoList.saveEventually()
                             
                             
-                            UserLists[indexPathFav!.row].listisfavourite = false
+                            UserLists[indexPathFav.row].listisfavourite = false
                             
                             
                             
@@ -1797,9 +1701,9 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                 }
                 
-                notfavimage = UIImage(named: "ICFavStar") as UIImage!
-                cell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
-                
+               // notfavimage = UIImage(named: "ICFavStar") as UIImage!
+               // cell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
+                cell.addtofavs.tintColor = UIColorFromRGB(0xD9D9D9)
                 
                 
                 
@@ -1808,7 +1712,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                 
                 pause()
                 
-                if UserLists[indexPathFav!.row].listtype == "Shop" {
+                if UserLists[indexPathFav.row].listtype == "Shop" {
                     
                     let queryfav = PFQuery(className:"shopLists")
                     // queryfav.getObjectInBackgroundWithId(listtofav!) {
@@ -1828,7 +1732,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                             
                             
                             
-                            UserLists[indexPathFav!.row].listisfavourite = true
+                            UserLists[indexPathFav.row].listisfavourite = true
                             
                             
                             
@@ -1846,7 +1750,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         UserFavLists.append(UserShopLists[foundshoplist])
                     }
                     
-                } else if UserLists[indexPathFav!.row].listtype == "ToDo" {
+                } else if UserLists[indexPathFav.row].listtype == "ToDo" {
                     
                     let queryfav1 = PFQuery(className:"toDoLists")
                     // queryfav.getObjectInBackgroundWithId(listtofav!) {
@@ -1865,7 +1769,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                            // todoList.saveEventually()
                             
                             
-                            UserLists[indexPathFav!.row].listisfavourite = true
+                            UserLists[indexPathFav.row].listisfavourite = true
                             
                             
                             self.restore()
@@ -1882,8 +1786,9 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     }
                 }
                 
-                favimage = UIImage(named: "ICFavStarActive") as UIImage!
-                cell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
+               // favimage = UIImage(named: "ICFavStarActive") as UIImage!
+               // cell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
+                cell.addtofavs.tintColor = UIColorFromRGB(0xA2AF36)
             }
             
             
@@ -1892,11 +1797,11 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
             
             /////// SHOPS ONLY
         else if showoption == "shoplists" {
-            listfromfav = UserShopLists[indexPathFav!.row].listid
+            listfromfav = UserShopLists[indexPathFav.row].listid
             
             
             
-            if UserShopLists[indexPathFav!.row].listisfavourite == true {
+            if UserShopLists[indexPathFav.row].listisfavourite == true {
                 //delete from favs
                 
                 pause()
@@ -1934,7 +1839,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                       //  shopList.saveEventually()
                         
                         
-                        UserShopLists[indexPathFav!.row].listisfavourite = false
+                        UserShopLists[indexPathFav.row].listisfavourite = false
                         
                         
                         self.restore()
@@ -1946,8 +1851,10 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                 
                 // } else if UserShopLists[indexPathFav!.row].listtype == "ToDo"
                 
-                notfavimage = UIImage(named: "ICFavStar") as UIImage!
-                cell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
+               // notfavimage = UIImage(named: "ICFavStar") as UIImage!
+               // cell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
+                
+                cell.addtofavs.tintColor = UIColorFromRGB(0xD9D9D9)
                 
                 
             } else {
@@ -1984,7 +1891,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         
                         
                         
-                        UserShopLists[indexPathFav!.row].listisfavourite = true
+                        UserShopLists[indexPathFav.row].listisfavourite = true
                         
                         
                         
@@ -1998,18 +1905,19 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                 
                 //  } else if UserShopLists[indexPathFav!.row].listtype == "ToDo"
                 
-                favimage = UIImage(named: "ICFavStarActive") as UIImage!
-                cell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
+               // favimage = UIImage(named: "ICFavStarActive") as UIImage!
+               // cell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
+                cell.addtofavs.tintColor = UIColorFromRGB(0xA2AF36)
             }
             ////// END SHOPS ONLY
             
         }
         else if showoption == "todolists" {
-            listfromfav = UserToDoLists[indexPathFav!.row].listid
+            listfromfav = UserToDoLists[indexPathFav.row].listid
             
             ///// TO DO ONLY
             
-            if UserToDoLists[indexPathFav!.row].listisfavourite == true {
+            if UserToDoLists[indexPathFav.row].listisfavourite == true {
                 //delete from favs
                 
                 pause()
@@ -2047,7 +1955,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                        // todoList.saveEventually()
                         
                         
-                        UserToDoLists[indexPathFav!.row].listisfavourite = false
+                        UserToDoLists[indexPathFav.row].listisfavourite = false
                         
                         
                         self.restore()
@@ -2059,8 +1967,9 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                 
                 //  } else if UserToDoLists[indexPathFav!.row].listtype == "ToDo"
                 
-                notfavimage = UIImage(named: "ICFavStar") as UIImage!
-                cell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
+               // notfavimage = UIImage(named: "ICFavStar") as UIImage!
+               // cell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
+                cell.addtofavs.tintColor = UIColorFromRGB(0xD9D9D9)
                 
                 
             } else {
@@ -2094,7 +2003,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         //todoList.saveEventually()
                         
                         
-                        UserToDoLists[indexPathFav!.row].listisfavourite = true
+                        UserToDoLists[indexPathFav.row].listisfavourite = true
                         
                         
                         self.restore()
@@ -2107,8 +2016,9 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                 
                 
                 
-                favimage = UIImage(named: "ICFavStarActive") as UIImage!
-                cell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
+               // favimage = UIImage(named: "ICFavStarActive") as UIImage!
+               // cell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
+                cell.addtofavs.tintColor = UIColorFromRGB(0xA2AF36)
             }
             
             
@@ -2602,344 +2512,19 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         
         receivedcount -= 1
         
-        //cell.sharereceivedlist.enabled = false
-        //cell.sharereceivedlist.hidden = true
-        
+
         cell.addtofavs.hidden = false
         
         cell.acceptlist.hidden = true
-        cell.listnote.hidden = false
+        cell.acceptlabel.hidden = true
+        
+        
         
         
         
     }
 
-    /*
-    func savereceivedlist(sender: UIButton!) {
-        
-        let button = sender as UIButton
-        let view = button.superview!
-        let cell = view.superview as! ReceivedListOld
-        let indexPathSave = tableView.indexPathForCell(cell)
-        
-        if showoption == "alllists" {
-            listtosave = UserLists[indexPathSave!.row].listid
-            
-        }
-        else if showoption == "shoplists" {
-            listtosave = UserShopLists[indexPathSave!.row].listid
-        }
-        else if showoption == "todolists" {
-            listtosave = UserToDoLists[indexPathSave!.row].listid
-        }
-        
-        if var foundlist = find(lazy(UserLists).map({ $0.listid }), listtosave!) {
-            UserLists[foundlist].listissaved = true
-            UserLists[foundlist].listconfirmreception = true
-        }
-        if var foundshoplist = find(lazy(UserShopLists).map({ $0.listid }), listtosave!) {
-            UserShopLists[foundshoplist].listissaved = true
-            UserShopLists[foundshoplist].listconfirmreception = true
-        }
-        
-        
-        var querysave = PFQuery(className:"shopLists")
-        querysave.whereKey("listUUID", equalTo: listtosave!)
-        querysave.getFirstObjectInBackgroundWithBlock() {
-            (shopList: PFObject?, error: NSError?) -> Void in
-            if error != nil {
-                println(error)
-            } else if let shopList = shopList {
-                
-                self.ItemsInReceivedList = shopList["ItemsInTheShopList"] as! [String]
-                
-                println("List to load for changing \(self.ItemsInReceivedList)")
-                
-                self.changinglistimages(self.ItemsInReceivedList)
-                
-                shopList["isSaved"] = true
-                
-                /////////
-                
-                cell.receivedlistnamebutton.enabled = true
-                
-                shopList["confirmReception"] = true // WTF, I already had isSaved!
-                
-                
-                /////////
-                
-                shopList.pinInBackground()
-                shopList.saveEventually()
-                // shopList.saveInBackground()
-                //shopList.saveEventually()
-            }
-            //self.listsretrieval()
-            
-        }
-        
-        tableView.reloadData()
-        
-    }
-    
-    
-    func savereceivedtodolist(sender: UIButton!) {
-        
-        let button = sender as UIButton
-        let view = button.superview!
-        let cell = view.superview as! ReceivedListOld
-        let indexPathSave = tableView.indexPathForCell(cell)
-        
-       // listtosave = ListsIds[indexPathSave!.row]
-        
-        if showoption == "alllists" {
-            listtosave = UserLists[indexPathSave!.row].listid
 
-
-        }
-        else if showoption == "shoplists" {
-            listtosave = UserShopLists[indexPathSave!.row].listid
-        }
-        else if showoption == "todolists" {
-            listtosave = UserToDoLists[indexPathSave!.row].listid
-        }
-        
-        if var foundlist = find(lazy(UserLists).map({ $0.listid }), listtosave!) {
-            UserLists[foundlist].listissaved = true
-            UserLists[foundlist].listconfirmreception = true
-        }
-        if var foundtodolist = find(lazy(UserToDoLists).map({ $0.listid }), listtosave!) {
-            UserToDoLists[foundtodolist].listissaved = true
-            UserToDoLists[foundtodolist].listconfirmreception = true
-        }
-
-
-        
-        
-        var querysave = PFQuery(className:"toDoLists")
-        
-        querysave.whereKey("listUUID", equalTo: listtosave!)
-        querysave.getFirstObjectInBackgroundWithBlock() {
-            (todoList: PFObject?, error: NSError?) -> Void in
-            if error != nil {
-                println(error)
-            } else if let todoList = todoList {
-                
-                
-                todoList["isSaved"] = true
-                
-                /////////
-                
-                cell.receivedlistnamebutton.enabled = true
-                
-                todoList["confirmReception"] = true // WTF, I already had isSaved!
-                
-                
-                /////////
-                
-                todoList.pinInBackground()
-                todoList.saveEventually()
-                
-            }
-            
-            
-        }
-        
-        tableView.reloadData()
-    }
-*/
-
-    /*
-    func deletereceivedlist(sender: UIButton!) {
-        
-        //WORKS!!!
-        //First, I am getting the cell in which the tapped button is contained
-        
-        let button = sender as UIButton
-        let view = button.superview!
-        let cell = view.superview as! ReceivedListOld
-        //let innerview = view.superview!
-       // let cell = innerview.superview as! ShopListCellNew
-        let indexPathReceivedDelete = tableView.indexPathForCell(cell)
-        
-        if showoption == "alllists" {
-            listtodelete = UserLists[indexPathReceivedDelete!.row].listid
-            UserLists.removeAtIndex(indexPathReceivedDelete!.row)
-            
-            if var foundshoplist = find(lazy(UserShopLists).map({ $0.listid }), listtodelete!) {
-                UserShopLists.removeAtIndex(foundshoplist)
-            }
-            if var foundtodolist = find(lazy(UserToDoLists).map({ $0.listid }), listtodelete!) {
-                UserToDoLists.removeAtIndex(foundtodolist)
-            }
-            
-        }
-        else if showoption == "shoplists" {
-            listtodelete = UserShopLists[indexPathReceivedDelete!.row].listid
-            UserShopLists.removeAtIndex(indexPathReceivedDelete!.row)
-            
-            if var foundlist = find(lazy(UserLists).map({ $0.listid }), listtodelete!) {
-                UserLists.removeAtIndex(foundlist)
-            }
-          ///  if var foundtodolist = find(lazy(UserToDoLists).map({ $0.listid }), listtodelete!) {
-             //   UserToDoLists.removeAtIndex(foundtodolist)
-            //}
-            
-        }
-        else if showoption == "todolists" {
-            listtodelete = UserToDoLists[indexPathReceivedDelete!.row].listid
-            UserToDoLists.removeAtIndex(indexPathReceivedDelete!.row)
-            
-            if var foundlist = find(lazy(UserLists).map({ $0.listid }), listtodelete!) {
-                UserLists.removeAtIndex(foundlist)
-            }
-            //if var foundshoplist = find(lazy(UserShopLists).map({ $0.listid }), listtodelete!) {
-              //  UserShopLists.removeAtIndex(foundshoplist)
-           // }
-            
-        }
-        
-
-        
-        
-        //var arrayofusers = ListsBelongsToUsers[indexPathDelete!.row]
-        dispatch_async(dispatch_get_main_queue(), {
-            var query = PFQuery(className:"shopLists")
-            query.fromLocalDatastore()
-            //query.getObjectInBackgroundWithId(self.listtodelete!) {
-            
-            query.whereKey("listUUID", equalTo: self.listtodelete!)
-            // queryfav.getObjectInBackgroundWithId(listtofav!) {
-            query.getFirstObjectInBackgroundWithBlock() {
-                (shopList: PFObject?, error: NSError?) -> Void in
-                if error != nil {
-                    println(error)
-                } else if let shopList = shopList {
-                    //shopList.deleteInBackground()
-                    shopList["isDeleted"] = true
-                    shopList.saveEventually()
-                    
-                    
-                }
-                
-            }
-        })
-        var query2 = PFQuery(className:"shopLists")
-        query2.fromLocalDatastore()
-        //  query2.getObjectInBackgroundWithId(listtodelete!) {
-        query2.whereKey("listUUID", equalTo: self.listtodelete!)
-        // queryfav.getObjectInBackgroundWithId(listtofav!) {
-        query2.getFirstObjectInBackgroundWithBlock() {
-            
-            (shopList: PFObject?, error: NSError?) -> Void in
-            if error != nil {
-                println(error)
-            } else if let shopList = shopList {
-                shopList.unpinInBackground()
-            }
-            
-        }
-        
-        self.tableView.deleteRowsAtIndexPaths([indexPathReceivedDelete!], withRowAnimation: UITableViewRowAnimation.Automatic)
-        
- 
-    }
-    
-    
-    func deletereceivedtodolist(sender: UIButton!) {
-        
-        pausedeleting()
-        
-        
-        let button = sender as UIButton
-        let view = button.superview!
-        let cell = view.superview as! ReceivedListOld
-        let indexPathReceivedDelete = tableView.indexPathForCell(cell)
-        
-       
-        
-        if showoption == "alllists" {
-            listtodelete = UserLists[indexPathReceivedDelete!.row].listid
-            UserLists.removeAtIndex(indexPathReceivedDelete!.row)
-            
-            if var foundshoplist = find(lazy(UserShopLists).map({ $0.listid }), listtodelete!) {
-                UserShopLists.removeAtIndex(foundshoplist)
-            }
-            if var foundtodolist = find(lazy(UserToDoLists).map({ $0.listid }), listtodelete!) {
-                UserToDoLists.removeAtIndex(foundtodolist)
-            }
-            
-        }
-        else if showoption == "shoplists" {
-            listtodelete = UserShopLists[indexPathReceivedDelete!.row].listid
-            UserShopLists.removeAtIndex(indexPathReceivedDelete!.row)
-            
-            if var foundlist = find(lazy(UserLists).map({ $0.listid }), listtodelete!) {
-                UserLists.removeAtIndex(foundlist)
-            }
-            if var foundtodolist = find(lazy(UserToDoLists).map({ $0.listid }), listtodelete!) {
-                UserToDoLists.removeAtIndex(foundtodolist)
-            }
-            
-        }
-        else if showoption == "todolists" {
-            listtodelete = UserToDoLists[indexPathReceivedDelete!.row].listid
-            UserToDoLists.removeAtIndex(indexPathReceivedDelete!.row)
-            
-            if var foundlist = find(lazy(UserLists).map({ $0.listid }), listtodelete!) {
-                UserLists.removeAtIndex(foundlist)
-            }
-            if var foundshoplist = find(lazy(UserShopLists).map({ $0.listid }), listtodelete!) {
-                UserShopLists.removeAtIndex(foundshoplist)
-            }
-            
-        }
-        
-        
-        
-        //var arrayofusers = ListsBelongsToUsers[indexPathDelete!.row]
-        dispatch_async(dispatch_get_main_queue(), {
-            var query = PFQuery(className:"toDoLists")
-            query.fromLocalDatastore()
-            //query.getObjectInBackgroundWithId(self.listtodelete!) {
-            
-            query.whereKey("listUUID", equalTo: self.listtodelete!)
-            // queryfav.getObjectInBackgroundWithId(listtofav!) {
-            query.getFirstObjectInBackgroundWithBlock() {
-                (todoList: PFObject?, error: NSError?) -> Void in
-                if error != nil {
-                    println(error)
-                } else if let todoList = todoList {
-                    //shopList.deleteInBackground()
-                    todoList["isDeleted"] = true
-                    todoList.saveEventually()
-                    
-                    
-                }
-                
-            }
-        })
-        var query2 = PFQuery(className:"toDoLists")
-        query2.fromLocalDatastore()
-        //  query2.getObjectInBackgroundWithId(listtodelete!) {
-        query2.whereKey("listUUID", equalTo: self.listtodelete!)
-        // queryfav.getObjectInBackgroundWithId(listtofav!) {
-        query2.getFirstObjectInBackgroundWithBlock() {
-            
-            (todoList: PFObject?, error: NSError?) -> Void in
-            if error != nil {
-                println(error)
-            } else if let todoList = todoList {
-                todoList.unpinInBackground()
-            }
-            
-        }
-        
-        self.tableView.deleteRowsAtIndexPaths([indexPathReceivedDelete!], withRowAnimation: UITableViewRowAnimation.Automatic)
-        
-        restoredel()
-        
-    }
-    */
     
     func newdeletereceivedlist(sender: UIButton!) {
         
@@ -4558,245 +4143,10 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
-    
-    /*
-    func deletelist(sender: UIButton!) {
-        
-        //WORKS!!!
-        //First, I am getting the cell in which the tapped button is contained
-        
-        pausedeleting()
-        
-        var button = sender as UIButton
-        var view = button.superview!
-        var innerview = view.superview!
-        var cell = innerview.superview as! ShopListCellNew
-        var indexPathDelete = tableView.indexPathForCell(cell)
-        println(indexPathDelete)
-
-        //let cell = view.superview as! ShopListCellNew
-        
-       // let nextvview = view.subview
-       
-        
-        if showoption == "alllists" {
-            
-            
-            println(indexPathDelete)
-            
-            println(indexPathDelete!.row)
-            
-            
-            listtodelete = UserLists[indexPathDelete!.row].listid
-            
-            UserLists.removeAtIndex(indexPathDelete!.row)
-            
-            if var foundshoplist = find(lazy(UserShopLists).map({ $0.listid }), listtodelete!) {
-                UserShopLists.removeAtIndex(foundshoplist)
-            }
-            if var foundtodolist = find(lazy(UserToDoLists).map({ $0.listid }), listtodelete!) {
-                UserToDoLists.removeAtIndex(foundtodolist)
-            }
-            
-            
-            
-        }
-        else if showoption == "shoplists" {
-
-            listtodelete = UserShopLists[indexPathDelete!.row].listid
-            UserShopLists.removeAtIndex(indexPathDelete!.row)
-            
-            if var foundlist = find(lazy(UserLists).map({ $0.listid }), listtodelete!) {
-                UserLists.removeAtIndex(foundlist)
-            }
-            if var foundtodolist = find(lazy(UserToDoLists).map({ $0.listid }), listtodelete!) {
-                UserToDoLists.removeAtIndex(foundtodolist)
-            }
-            
-         
-
-            
-        }
-        else if showoption == "todolists" {
-
-            listtodelete = UserToDoLists[indexPathDelete!.row].listid
-            UserToDoLists.removeAtIndex(indexPathDelete!.row)
-            
-            if var foundlist = find(lazy(UserLists).map({ $0.listid }), listtodelete!) {
-                UserLists.removeAtIndex(foundlist)
-            }
-            if var foundshoplist = find(lazy(UserShopLists).map({ $0.listid }), listtodelete!) {
-                UserShopLists.removeAtIndex(foundshoplist)
-            }
-            
-           
-
-            
-        }
-        
-        
-        dispatch_async(dispatch_get_main_queue(), {
-            var query = PFQuery(className:"shopLists")
-            query.fromLocalDatastore()
-            // query.getObjectInBackgroundWithId(self.listtodelete!) {
-            query.whereKey("listUUID", equalTo: self.listtodelete!)
-            // queryfav.getObjectInBackgroundWithId(listtofav!) {
-            query.getFirstObjectInBackgroundWithBlock() {
-                
-                (shopList: PFObject?, error: NSError?) -> Void in
-                if error != nil {
-                    println(error)
-                } else if let shopList = shopList {
-                    
-                    //shopList.deleteInBackground()
-                    shopList["isDeleted"] = true
-                    shopList.saveEventually()
-                    
-                }
-                
-            }
-        })
-        
-        var query2 = PFQuery(className:"shopLists")
-        query2.fromLocalDatastore()
-        // query2.getObjectInBackgroundWithId(listtodelete!) {
-        query2.whereKey("listUUID", equalTo: self.listtodelete!)
-        // queryfav.getObjectInBackgroundWithId(listtofav!) {
-        query2.getFirstObjectInBackgroundWithBlock() {
-            
-            (shopList: PFObject?, error: NSError?) -> Void in
-            if error != nil {
-                println(error)
-            } else if let shopList = shopList {
-                
-                shopList.unpinInBackground()
-                
-                
-            }
-            
-        }
-        
-        self.tableView.deleteRowsAtIndexPaths([indexPathDelete!], withRowAnimation: UITableViewRowAnimation.Automatic)
-
-      self.tableView.reloadData()
-        self.restoredel()
-        
-        println(UserLists.map({ $0.listtype }))
-        println(UserShopLists.map({ $0.listtype }))
-        println(UserToDoLists.map({ $0.listtype }))
-
+        return .Default
     }
     
 
-    
-  
-    func deletetodolist(sender: UIButton!) {
-        pausedeleting()
-        var button = sender as UIButton
-        var view = button.superview!
-       // let cell = view.superview as! ShopListCellNew
-        var innerview = view.superview!
-        var cell = innerview.superview as! ShopListCellNew
-        var indexPathToDoDelete = tableView.indexPathForCell(cell)
-        
-        println(indexPathToDoDelete)
-        
-        println(indexPathToDoDelete!.row)
-        
-        if showoption == "alllists" {
-            listtodelete = UserLists[indexPathToDoDelete!.row].listid
-             UserLists.removeAtIndex(indexPathToDoDelete!.row)
-            
-            if var foundshoplist = find(lazy(UserShopLists).map({ $0.listid }), listtodelete!) {
-                UserShopLists.removeAtIndex(foundshoplist)
-            }
-            if var foundtodolist = find(lazy(UserToDoLists).map({ $0.listid }), listtodelete!) {
-                UserToDoLists.removeAtIndex(foundtodolist)
-            }
-            
-        }
-        else if showoption == "shoplists" {
-            listtodelete = UserShopLists[indexPathToDoDelete!.row].listid
-             UserShopLists.removeAtIndex(indexPathToDoDelete!.row)
-            
-            if var foundlist = find(lazy(UserLists).map({ $0.listid }), listtodelete!) {
-                UserLists.removeAtIndex(foundlist)
-            }
-            if var foundtodolist = find(lazy(UserToDoLists).map({ $0.listid }), listtodelete!) {
-                UserToDoLists.removeAtIndex(foundtodolist)
-            }
-
-        }
-        else if showoption == "todolists" {
-          listtodelete = UserToDoLists[indexPathToDoDelete!.row].listid
-            UserToDoLists.removeAtIndex(indexPathToDoDelete!.row)
-            
-            if var foundlist = find(lazy(UserLists).map({ $0.listid }), listtodelete!) {
-                UserLists.removeAtIndex(foundlist)
-            }
-            if var foundshoplist = find(lazy(UserShopLists).map({ $0.listid }), listtodelete!) {
-                UserShopLists.removeAtIndex(foundshoplist)
-            }
-
-        }
-        
-        
-        
-        dispatch_async(dispatch_get_main_queue(), {
-            var query = PFQuery(className:"toDoLists")
-            query.fromLocalDatastore()
-            // query.getObjectInBackgroundWithId(self.listtodelete!) {
-            query.whereKey("listUUID", equalTo: self.listtodelete!)
-            // queryfav.getObjectInBackgroundWithId(listtofav!) {
-            query.getFirstObjectInBackgroundWithBlock() {
-                
-                (toDoList: PFObject?, error: NSError?) -> Void in
-                if error != nil {
-                    println(error)
-                } else if let toDoList = toDoList {
-                    
-                    //shopList.deleteInBackground()
-                    toDoList["isDeleted"] = true
-                    toDoList.saveEventually()
-                    
-                }
-                
-            }
-        })
-        
-        var query2 = PFQuery(className:"toDoLists")
-        query2.fromLocalDatastore()
-        // query2.getObjectInBackgroundWithId(listtodelete!) {
-        query2.whereKey("listUUID", equalTo: self.listtodelete!)
-        // queryfav.getObjectInBackgroundWithId(listtofav!) {
-        query2.getFirstObjectInBackgroundWithBlock() {
-            
-            (toDoList: PFObject?, error: NSError?) -> Void in
-            if error != nil {
-                println(error)
-            } else if let toDoList = toDoList {
-                
-                toDoList.unpinInBackground()
-                
-                
-            }
-            
-        }
-        
-        self.tableView.deleteRowsAtIndexPaths([indexPathToDoDelete!], withRowAnimation: UITableViewRowAnimation.Automatic)
-
-         self.tableView.reloadData()
-        self.restoredel()
-        
-        println(UserLists.map({ $0.listtype }))
-        println(UserShopLists.map({ $0.listtype }))
-        println(UserToDoLists.map({ $0.listtype }))
-
-    }
-
-*/
     
     func newopenlistbynameselection(indexPathOpen: NSIndexPath) {
         
@@ -5588,6 +4938,33 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
+        var thislisttype = String()
+        if showoption == "alllists" {
+            thislisttype = UserLists[indexPath.row].listtype
+        } else if showoption == "shoplists" {
+            thislisttype = UserShopLists[indexPath.row].listtype
+        } else if showoption == "todolists" {
+            thislisttype = UserToDoLists[indexPath.row].listtype
+        } else if showoption == "favs" {
+            thislisttype = UserFavLists[indexPath.row].listtype
+        }
+        
+        var thisisreceived = Bool()
+        var confirm = Bool()
+        if showoption == "alllists" {
+            thisisreceived = UserLists[indexPath.row].listisreceived
+            confirm = UserLists[indexPath.row].listissaved
+        } else if showoption == "shoplists" {
+            thisisreceived = UserShopLists[indexPath.row].listisreceived
+            confirm = UserShopLists[indexPath.row].listissaved
+        } else if showoption == "todolists" {
+            thisisreceived = UserToDoLists[indexPath.row].listisreceived
+            confirm = UserToDoLists[indexPath.row].listissaved
+        } else if showoption == "favs" {
+            thisisreceived = UserFavLists[indexPath.row].listisreceived
+            confirm = UserFavLists[indexPath.row].listissaved
+        }
+        
         // DELETE
         let deleteAction = UITableViewRowAction(style: .Normal, title: "    ") { (action , indexPath ) -> Void in
             
@@ -5636,17 +5013,23 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         }
         todooptionsAction.backgroundColor = UIColorFromRGB(0x31797D)
         
-        // EDIT
-        let editingAction = UITableViewRowAction(style: .Normal, title: "    ") { (action , indexPath) -> Void in
+        // FAV
+        let favAction = UITableViewRowAction(style: .Normal, title: "    ") { (action , indexPath) -> Void in
             self.editing = false
             
+            
+            if !thisisreceived {
+                self.adddeletefav(indexPath)
+            } else {
+                self.adddeletereceivedfav(indexPath)
+            }
             //self.optionsaction(indexPath)
             print("edit")
             
         }
         
-        if let aedit = UIImage(named: "4EditButton") {
-            editingAction.backgroundColor = UIColor.imageWithBackgroundColor(aedit, bgColor: UIColor.clearColor(), w: 50, h: 70)
+        if let afav = UIImage(named: "4FavlistButton") {
+            favAction.backgroundColor = UIColor.imageWithBackgroundColor(afav, bgColor: UIColor.clearColor(), w: 50, h: 70)
         }
         
 
@@ -5675,40 +5058,15 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         }
         */
         
-        var thislisttype = String()
-        if showoption == "alllists" {
-            thislisttype = UserLists[indexPath.row].listtype
-        } else if showoption == "shoplists" {
-            thislisttype = UserShopLists[indexPath.row].listtype
-        } else if showoption == "todolists" {
-            thislisttype = UserToDoLists[indexPath.row].listtype
-        } else if showoption == "favs" {
-            thislisttype = UserFavLists[indexPath.row].listtype
-        }
         
-        var thisisreceived = Bool()
-        var confirm = Bool()
-        if showoption == "alllists" {
-            thisisreceived = UserLists[indexPath.row].listisreceived
-            confirm = UserLists[indexPath.row].listissaved
-        } else if showoption == "shoplists" {
-            thisisreceived = UserShopLists[indexPath.row].listisreceived
-            confirm = UserShopLists[indexPath.row].listissaved
-        } else if showoption == "todolists" {
-            thisisreceived = UserToDoLists[indexPath.row].listisreceived
-            confirm = UserToDoLists[indexPath.row].listissaved
-        } else if showoption == "favs" {
-            thisisreceived = UserFavLists[indexPath.row].listisreceived
-            confirm = UserFavLists[indexPath.row].listissaved
-        }
         
-        if thisisreceived && confirm {
+        if thisisreceived && !confirm {
             return [deleteAction]
         } else {
             if thislisttype == "Shop" {
-        return [deleteAction, shareAction, editingAction, optionsAction]
+        return [deleteAction, shareAction, optionsAction, favAction]
             } else if thislisttype == "ToDo" {
-                return [deleteAction, shareAction, editingAction, todooptionsAction]
+                return [deleteAction, shareAction, todooptionsAction, favAction]
             } else {
                 return [deleteAction]
             }
@@ -5792,52 +5150,38 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                     let receivedcell  = tableView.dequeueReusableCellWithIdentifier("receivedlist", forIndexPath: indexPath) as! ReceivedListOld
                     
-                    receivedcell.listnote.addTarget(self, action: "showreceivednotes:", forControlEvents: .TouchUpInside)
+                   
                     
                     let thiscolor : String = UserLists[indexPath.row].listcolorcode
                     receivedcell.colorcodeviewoutlet.backgroundColor = colorWithHexString(thiscolor)
+                    receivedcell.storyline.backgroundColor = colorWithHexString(thiscolor)
+                    receivedcell.newlisttype.tintColor = colorWithHexString(thiscolor)
                     
                     
-                    
-                    
-                   // receivedcell.receivedlistname.text = UserLists[indexPath.row].listname
-                   // receivedcell.receivedlistnote.text = UserLists[indexPath.row].listname
+                    receivedcell.receivedlistnamebutton.textColor = colorWithHexString(thiscolor)
                     
                     receivedcell.receivedlistnamebutton.text = UserLists[indexPath.row].listname
                     receivedcell.receivedlistnamebutton.tag = indexPath.row
                     
-                    
-                  //  receivedcell.receivedlistnamebutton.addTarget(self, action: "newopenreceivedlistbyname:", forControlEvents: .TouchUpInside)
-                   
-                    
-                    if UserLists[indexPath.row].listtype == "Shop" {
-                        receivedcell.iconimage.image = shopicon
-                    } else {
-                        receivedcell.iconimage.image = todoicon
-                    }
-                    
-                    /*
-                    if UserLists[indexPath.row].listtype == "Shop"
-                    {
-                        receivedcell.receivedlistnamebutton.addTarget(self, action: "openreceivedlistbyname:", forControlEvents: .TouchUpInside)
-                    } else {
-                        receivedcell.receivedlistnamebutton.addTarget(self, action: "openreceivedtodolistbyname:", forControlEvents: .TouchUpInside)
-                    }
-                    */
-                    /*
-                    if UserLists[indexPath.row].listissaved == false {
-                        receivedcell.receivedlistnamebutton.enabled = false
-                    } else {
-                        receivedcell.receivedlistnamebutton.enabled = true
+                   /*
+                    if UserLists[indexPath.row].listconfirmreception == true {
                         
+                        if UserLists[indexPath.row].listtype == "Shop" {
+                            receivedcell.newlisttype.image = shopicon
+                        } else {
+                            receivedcell.newlisttype.image = todoicon
+                        }
+                    } else {
+                            receivedcell.newlisttype.image = receivedicon
                     }
                     */
+                    receivedcell.newlisttype.image = receivedicon
+                    
                     var email = String()
                     if UserLists[indexPath.row].listreceivedfrom[2] != "default@default.com" {
-                        //receivedcell.senderemail.text = UserLists[indexPath.row].listreceivedfrom[2] //email
+
                         email = UserLists[indexPath.row].listreceivedfrom[2]
                     } else {
-                       // receivedcell.senderemail.text = "Anonymous"
                         email = NSLocalizedString("Anonymous", comment: "")
                     }
 
@@ -5847,18 +5191,19 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                    
                     
                     if UserLists[indexPath.row].listisfavourite == true {
-                        favimage = UIImage(named: "ICFavStarActive") as UIImage!
-                        receivedcell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
-                        // cell.addToFavOutlet.addTarget(self, action: "delfromfav:", forControlEvents: .TouchUpInside)
+                        //favimage = UIImage(named: "ICFavStarActive") as UIImage!
+                        //receivedcell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
+                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xA2AF36)
+
                     } else {
-                        notfavimage = UIImage(named: "ICFavStar") as UIImage!
-                        receivedcell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
-                        // cell.addToFavOutlet.addTarget(self, action: "addtofav:", forControlEvents: .TouchUpInside)
+                       // notfavimage = UIImage(named: "ICFavStar") as UIImage!
+                       // receivedcell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
+                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xD9D9D9)
                     }
                     
                    
                     
-                    receivedcell.addtofavs.addTarget(self, action: "adddeletereceivedfav:", forControlEvents: .TouchUpInside)
+                    //receivedcell.addtofavs.addTarget(self, action: "adddeletereceivedfav:", forControlEvents: .TouchUpInside)
                     
                    
                 
@@ -5868,27 +5213,19 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                     if UserLists[indexPath.row].listconfirmreception == true {
                         
-                        receivedcell.listnote.hidden = false
+
                         receivedcell.addtofavs.hidden  = false
                         receivedcell.acceptlist.hidden = true
+                        receivedcell.acceptlabel.hidden = true
                       
                         
                     } else {
-                        receivedcell.listnote.hidden = true
+
                         receivedcell.addtofavs.hidden  = true
                         receivedcell.acceptlist.hidden = false
+                        receivedcell.acceptlabel.hidden = false
+                    }
 
-                    }
-                    
-                    /*
-                    receivedcell.sharereceivedlist.tag = indexPath.row
-                    if UserLists[indexPath.row].listtype == "Shop" {
-                        
-                        receivedcell.sharereceivedlist.addTarget(self, action: "savereceivedlist:", forControlEvents: .TouchUpInside)
-                    } else if UserLists[indexPath.row].listtype == "ToDo" {
-                        receivedcell.sharereceivedlist.addTarget(self, action: "savereceivedtodolist:", forControlEvents: .TouchUpInside)
-                    }
-                    */
                     let dateFormatter1 = NSDateFormatter()
                     dateFormatter1.dateFormat = "dd MMM yyyy"
                     let date1 = dateFormatter1.stringFromDate(UserLists[indexPath.row].listcreationdate)
@@ -5897,10 +5234,14 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     let allcount : String = String(UserLists[indexPath.row].listitemscount)
                     let checkedcount : String = String(UserLists[indexPath.row].listcheckeditemscount)
                     
-                    receivedcell.itemscount.text = "\(allcount)/\(checkedcount)"//"\(NSLocalizedString("items", comment: "")) \(allcount)/\(checkedcount)"
-                   // receivedcell.itemscount.text = "Items: \(allcount)/\(checkedcount)"
-                    //receivedcell.itemscount.text = String(UserLists[indexPath.row].listitemscount)
-                    //receivedcell.checkeditemscount.text = String(UserLists[indexPath.row].listcheckeditemscount)
+                    receivedcell.itemscount.text = "\(allcount)/\(checkedcount)"
+                    
+                    // Progress change
+                    
+                    receivedcell.progresscircle.progressColors = [changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).pcol]
+                    receivedcell.progresscircle.angle = changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).theangle
+                    //
+                    
                     
                     return receivedcell
                     
@@ -5910,8 +5251,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                     let cellIdentifier1 = "userlist"
                     let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier1, forIndexPath: indexPath) as!  ShopListCellNew
-                    
-                    cell.shownote.addTarget(self, action: "shownotes:", forControlEvents: .TouchUpInside)
+
                     
                     let thiscolor : String = UserLists[indexPath.row].listcolorcode
                     
@@ -5924,9 +5264,9 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
 
                     
                     if UserLists[indexPath.row].listtype == "Shop" {
-                        cell.ListTypeImage.image = shopicon
+                        cell.newlisttype.image = shopicon
                     } else {
-                        cell.ListTypeImage.image = todoicon
+                        cell.newlisttype.image = todoicon
                     }
 
                     let dateFormatter = NSDateFormatter()
@@ -5935,13 +5275,15 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     cell.creationDate.text = date
 
                     if UserLists[indexPath.row].listisfavourite == true {
-                        favimage = UIImage(named: "ICFavStarActive") as UIImage!
-                        cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
-                        // cell.addToFavOutlet.addTarget(self, action: "delfromfav:", forControlEvents: .TouchUpInside)
+                       // favimage = UIImage(named: "ICFavStarActive") as UIImage!
+                        //cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
+                        
+                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xA2AF36)
                     } else {
-                        notfavimage = UIImage(named: "ICFavStar") as UIImage!
-                        cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
-                        // cell.addToFavOutlet.addTarget(self, action: "addtofav:", forControlEvents: .TouchUpInside)
+                       // notfavimage = UIImage(named: "ICFavStar") as UIImage!
+                       // cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
+                        
+                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xD9D9D9)
                     }
                     
                   
@@ -5952,12 +5294,11 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     //
 
                     
-                    cell.addToFavOutlet.addTarget(self, action: "adddeletefav:", forControlEvents: .TouchUpInside)
+                  //  cell.addToFavOutlet.addTarget(self, action: "adddeletefav:", forControlEvents: .TouchUpInside)
                     
                     let allcount : String = String(UserLists[indexPath.row].listitemscount)
                     let checkedcount : String = String(UserLists[indexPath.row].listcheckeditemscount)
-                    
-                   // cell.itemscount.text = "Items: \(allcount)/\(checkedcount)"
+
                     cell.itemscount.text = "\(allcount)/\(checkedcount)"
                     
                     
@@ -5973,81 +5314,72 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                      let receivedcell  = tableView.dequeueReusableCellWithIdentifier("receivedlist", forIndexPath: indexPath) as! ReceivedListOld
                     
-                   // receivedcell.bounds.size.height = 136.0
-                   // receivedcell.receivedlistname.text = UserShopLists[indexPath.row].listname
-                   // receivedcell.receivedlistnote.text = UserShopLists[indexPath.row].listname
+ 
                     
                     receivedcell.receivedlistnamebutton.text = UserShopLists[indexPath.row].listname                   // receivedcell.receivedlistnamebutton.tag = indexPath.row
                     
                     let thiscolor : String = UserShopLists[indexPath.row].listcolorcode
                     receivedcell.colorcodeviewoutlet.backgroundColor = colorWithHexString(thiscolor)
+                    receivedcell.storyline.backgroundColor = colorWithHexString(thiscolor)
+                    receivedcell.newlisttype.tintColor = colorWithHexString(thiscolor)
                     
-                  //  receivedcell.receivedlistnamebutton.addTarget(self, action: "newopenreceivedlistbyname:", forControlEvents: .TouchUpInside)
                     
-                    receivedcell.listnote.addTarget(self, action: "showreceivednotes:", forControlEvents: .TouchUpInside)
+                    receivedcell.receivedlistnamebutton.textColor = colorWithHexString(thiscolor)
                     
-                        receivedcell.iconimage.image = shopicon
-                 
+              
                     /*
-                    if UserShopLists[indexPath.row].listissaved == false {
-                        receivedcell.receivedlistnamebutton.enabled = false
-                    } else {
-                        receivedcell.receivedlistnamebutton.enabled = true
-                        
-                    }
+                     if UserLists[indexPath.row].listconfirmreception == true {
+                        receivedcell.newlisttype.image = shopicon
+                     } else {
+                        receivedcell.newlisttype.image = receivedicon
+                        }
                     */
+                    
+                    receivedcell.newlisttype.image = receivedicon
                     
                     receivedcell.acceptlist.addTarget(self, action: "newsavereceivedlist:", forControlEvents: .TouchUpInside)
                     
                     if UserShopLists[indexPath.row].listconfirmreception == true {
                         
-                        receivedcell.listnote.hidden = false
+ 
                         receivedcell.addtofavs.hidden  = false
                         receivedcell.acceptlist.hidden = true
-                        
+                        receivedcell.acceptlabel.hidden = true
                         
                     } else {
-                        receivedcell.listnote.hidden = true
+
                         receivedcell.addtofavs.hidden  = true
                         receivedcell.acceptlist.hidden = false
-                        
+                        receivedcell.acceptlabel.hidden = false
                     }
                     
                     if UserShopLists[indexPath.row].listisfavourite == true {
-                        favimage = UIImage(named: "ICFavStarActive") as UIImage!
-                        receivedcell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
-                        // cell.addToFavOutlet.addTarget(self, action: "delfromfav:", forControlEvents: .TouchUpInside)
+                       // favimage = UIImage(named: "ICFavStarActive") as UIImage!
+                       // receivedcell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
+                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xA2AF36)
+                        
                     } else {
-                        notfavimage = UIImage(named: "ICFavStar") as UIImage!
-                        receivedcell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
-                        // cell.addToFavOutlet.addTarget(self, action: "addtofav:", forControlEvents: .TouchUpInside)
+                      //  notfavimage = UIImage(named: "ICFavStar") as UIImage!
+                      //  receivedcell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
+                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xD9D9D9)
+                        
                     }
                     
                     
-                    receivedcell.addtofavs.addTarget(self, action: "adddeletereceivedfav:", forControlEvents: .TouchUpInside)
+                  //  receivedcell.addtofavs.addTarget(self, action: "adddeletereceivedfav:", forControlEvents: .TouchUpInside)
                     
                     var email = String()
                     if UserShopLists[indexPath.row].listreceivedfrom[2] != "default@default.com" {
-                        //receivedcell.senderemail.text = UserLists[indexPath.row].listreceivedfrom[2] //email
+
                         email = UserShopLists[indexPath.row].listreceivedfrom[2]
                     } else {
-                        // receivedcell.senderemail.text = "Anonymous"
+
                         email = NSLocalizedString("Anonymous", comment: "")
                     }
                     
                     
                     receivedcell.sendername.text = "\(UserShopLists[indexPath.row].listreceivedfrom[1]) (\(email))" //name
-                    
-                    
-                    
-                    //receivedcell.deletereceivedlist.tag = indexPath.row
-                    
-                   
-                    
-                    
-                    //receivedcell.sharereceivedlist.tag = indexPath.row
-                  //
-                   // receivedcell.sharereceivedlist.addTarget(self, action: "newsavereceivedlist:", //forControlEvents: .TouchUpInside)
+
                     
                     let dateFormatter1 = NSDateFormatter()
                     dateFormatter1.dateFormat = "dd MMM yyyy"
@@ -6057,10 +5389,16 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     let allcount : String = String(UserShopLists[indexPath.row].listitemscount)
                     let checkedcount : String = String(UserShopLists[indexPath.row].listcheckeditemscount)
                     
-                    receivedcell.itemscount.text = "\(allcount)/\(checkedcount)"//"\(NSLocalizedString("items", comment: "")) \(allcount)/\(checkedcount)"
+                    receivedcell.itemscount.text = "\(allcount)/\(checkedcount)"
                     
-                    //receivedcell.itemscount.text = String(UserShopLists[indexPath.row].listitemscount)
-                    //receivedcell.checkeditemscount.text = String(UserShopLists[indexPath.row].listcheckeditemscount)
+                    
+                    // Progress change
+                    
+                    receivedcell.progresscircle.progressColors = [changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).pcol]
+                    receivedcell.progresscircle.angle = changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).theangle
+                    //
+
+                    
                     
                     return receivedcell
                     
@@ -6070,31 +5408,21 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     let cellIdentifier1 = "userlist"
                     let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier1, forIndexPath: indexPath) as!  ShopListCellNew
                     
-                   // cell.ShopListNote.text = UserShopLists[indexPath.row].listnote
-                    
                     cell.ShopListNameButton.text = UserShopLists[indexPath.row].listname
                     let thiscolor : String = UserShopLists[indexPath.row].listcolorcode
+                    
                     cell.colorcodeviewoutlet.backgroundColor = colorWithHexString(thiscolor)
+                    cell.storyline.backgroundColor = colorWithHexString(thiscolor)
+                    cell.newlisttype.tintColor = colorWithHexString(thiscolor)
+                    cell.ShopListNameButton.text = UserLists[indexPath.row].listname
                     
-                    cell.shownote.addTarget(self, action: "shownotes:", forControlEvents: .TouchUpInside)
+                    cell.ShopListNameButton.textColor = colorWithHexString(thiscolor)
+                    
+                  //  cell.shownote.addTarget(self, action: "shownotes:", forControlEvents: .TouchUpInside)
                    
-                        cell.ListTypeImage.image = shopicon
+                        cell.newlisttype.image = shopicon
                    
-                  
-                    
-                  //  cell.ShopListNameButton.tag = indexPath.row
-                    
-                    
-                   // cell.ShopListNameButton.addTarget(self, action: "openlistbyname:", forControlEvents: .TouchUpInside)
-                    
-                  //    cell.ShopListNameButton.addTarget(self, action: "newopenlistbyname:", forControlEvents: .TouchUpInside)
-                    
-                  //  cell.DeleteOutlet.tag = indexPath.row
-                    
-                   // cell.DeleteOutlet.addTarget(self, action: "deletelist:", forControlEvents: .TouchUpInside)
-                   
-                    
-                    
+
                     
                     let dateFormatter = NSDateFormatter()
                     dateFormatter.dateFormat = "dd MMM yyyy"
@@ -6103,26 +5431,31 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                     
                     if UserShopLists[indexPath.row].listisfavourite == true {
-                        favimage = UIImage(named: "ICFavStarActive") as UIImage!
-                        cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
-                        // cell.addToFavOutlet.addTarget(self, action: "delfromfav:", forControlEvents: .TouchUpInside)
+                      //  favimage = UIImage(named: "ICFavStarActive") as UIImage!
+                      //  cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
+                        
+                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xA2AF36)
                     } else {
-                        notfavimage = UIImage(named: "ICFavStar") as UIImage!
-                        cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
-                        // cell.addToFavOutlet.addTarget(self, action: "addtofav:", forControlEvents: .TouchUpInside)
+                       // notfavimage = UIImage(named: "ICFavStar") as UIImage!
+                       // cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
+                       
+                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xD9D9D9)
                     }
                     
                     
-                    cell.addToFavOutlet.addTarget(self, action: "adddeletefav:", forControlEvents: .TouchUpInside)
+                   // cell.addToFavOutlet.addTarget(self, action: "adddeletefav:", forControlEvents: .TouchUpInside)
                     
                     let allcount : String = String(UserShopLists[indexPath.row].listitemscount)
                     let checkedcount : String = String(UserShopLists[indexPath.row].listcheckeditemscount)
                     
-                    cell.itemscount.text = "\(allcount)/\(checkedcount)"//"\(NSLocalizedString("items", comment: "")) \(allcount)/\(checkedcount)"
+                    cell.itemscount.text = "\(allcount)/\(checkedcount)"
                     
-                    //cell.itemscount.text = String(UserShopLists[indexPath.row].listitemscount)
-                    //cell.checkeditemscount.text = String(UserShopLists[indexPath.row].listcheckeditemscount)
+                    // Progress change
                     
+                    cell.progresscircle.progressColors = [changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).pcol]
+                    cell.progresscircle.angle = changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).theangle
+                    //
+
                     
                     return cell
                 }
@@ -6136,61 +5469,63 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                     let receivedcell  = tableView.dequeueReusableCellWithIdentifier("receivedlist", forIndexPath: indexPath) as! ReceivedListOld
                    
-                   // receivedcell.receivedlistname.text = UserToDoLists[indexPath.row].listname
-                   // receivedcell.receivedlistnote.text = UserToDoLists[indexPath.row].listname
+
                     
-                    receivedcell.receivedlistnamebutton.text = UserToDoLists[indexPath.row].listname                    //receivedcell.receivedlistnamebutton.tag = indexPath.row
+                    receivedcell.receivedlistnamebutton.text = UserToDoLists[indexPath.row].listname
                     
                     let thiscolor : String = UserToDoLists[indexPath.row].listcolorcode
                     receivedcell.colorcodeviewoutlet.backgroundColor = colorWithHexString(thiscolor)
                     
-                    receivedcell.listnote.addTarget(self, action: "showreceivednotes:", forControlEvents: .TouchUpInside)
+                    receivedcell.storyline.backgroundColor = colorWithHexString(thiscolor)
+                    receivedcell.newlisttype.tintColor = colorWithHexString(thiscolor)
                     
-                   // receivedcell.receivedlistnamebutton.addTarget(self, action: "newopenreceivedlistbyname:", forControlEvents: .TouchUpInside)
                     
+                    receivedcell.receivedlistnamebutton.textColor = colorWithHexString(thiscolor)
                     
+                  
+
                 receivedcell.acceptlist.addTarget(self, action: "newsavereceivedlist:", forControlEvents: .TouchUpInside)
                     
                  
                     if UserToDoLists[indexPath.row].listconfirmreception == true {
-                        
-                        receivedcell.listnote.hidden = false
+
                         receivedcell.addtofavs.hidden  = false
                         receivedcell.acceptlist.hidden = true
-                        
+                        receivedcell.acceptlabel.hidden = true
                         
                     } else {
-                        receivedcell.listnote.hidden = true
+
                         receivedcell.addtofavs.hidden  = true
                         receivedcell.acceptlist.hidden = false
-                        
+                        receivedcell.acceptlabel.hidden = false
                     }
-                    
-                  
-                        receivedcell.iconimage.image = todoicon
-                   
                     /*
-                    if UserToDoLists[indexPath.row].listissaved == false {
-                        receivedcell.receivedlistnamebutton.enabled = false
-                    } else {
-                        receivedcell.receivedlistnamebutton.enabled = true
-                        
+                  if UserLists[indexPath.row].listconfirmreception == true {
+                        receivedcell.newlisttype.image = todoicon
+                  } else {
+                    receivedcell.newlisttype.image = receivedicon
                     }
                     */
                     
+                    receivedcell.newlisttype.image = receivedicon
+                    
                     if UserToDoLists[indexPath.row].listisfavourite == true {
-                        favimage = UIImage(named: "ICFavStarActive") as UIImage!
-                        receivedcell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
+                       // favimage = UIImage(named: "ICFavStarActive") as UIImage!
+                       // receivedcell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
                         // cell.addToFavOutlet.addTarget(self, action: "delfromfav:", forControlEvents: .TouchUpInside)
+                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xA2AF36)
+                        
                     } else {
-                        notfavimage = UIImage(named: "ICFavStar") as UIImage!
-                        receivedcell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
+                       // notfavimage = UIImage(named: "ICFavStar") as UIImage!
+                       // receivedcell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
                         // cell.addToFavOutlet.addTarget(self, action: "addtofav:", forControlEvents: .TouchUpInside)
+                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xD9D9D9)
+                        
                     }
                     
                     
                     
-                    receivedcell.addtofavs.addTarget(self, action: "adddeletereceivedfav:", forControlEvents: .TouchUpInside)
+                   // receivedcell.addtofavs.addTarget(self, action: "adddeletereceivedfav:", forControlEvents: .TouchUpInside)
                     
                     
                     var email = String()
@@ -6204,25 +5539,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                     
                     receivedcell.sendername.text = "\(UserToDoLists[indexPath.row].listreceivedfrom[1]) (\(email))" //name
-                    
-                    //
-                    /*
-                    receivedcell.sendername.text = UserToDoLists[indexPath.row].listreceivedfrom[1] //name
-                    if UserToDoLists[indexPath.row].listreceivedfrom[2] != "default@default.com" {
-                        receivedcell.senderemail.text = UserToDoLists[indexPath.row].listreceivedfrom[2] //email
-                    } else {
-                        receivedcell.senderemail.text = "Anonymous"
-                    }
-                    */
-                   // receivedcell.deletereceivedlist.tag = indexPath.row
-                    
-                   
-                 
-                    
-                    
-                  //  receivedcell.sharereceivedlist.tag = indexPath.row
-                    
-                   // receivedcell.sharereceivedlist.addTarget(self, action: "newsavereceivedlist:", forControlEvents: .TouchUpInside)
+  
                     
                     let dateFormatter1 = NSDateFormatter()
                     dateFormatter1.dateFormat = "dd MMM yyyy"
@@ -6232,10 +5549,14 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     let allcount : String = String(UserToDoLists[indexPath.row].listitemscount)
                     let checkedcount : String = String(UserToDoLists[indexPath.row].listcheckeditemscount)
                     
-                    receivedcell.itemscount.text = "\(allcount)/\(checkedcount)"//"\(NSLocalizedString("items", comment: "")) \(allcount)/\(checkedcount)"
+                    receivedcell.itemscount.text = "\(allcount)/\(checkedcount)"
                     
-                   // receivedcell.itemscount.text = String(UserToDoLists[indexPath.row].listitemscount)
-                   // receivedcell.checkeditemscount.text = String(UserToDoLists[indexPath.row].listcheckeditemscount)
+                    // Progress change
+                    
+                    receivedcell.progresscircle.progressColors = [changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).pcol]
+                    receivedcell.progresscircle.angle = changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).theangle
+                    //
+
                     
                     return receivedcell
                     
@@ -6244,30 +5565,21 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     let cellIdentifier1 = "userlist"
                     let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier1, forIndexPath: indexPath) as!  ShopListCellNew
                     
-                   // cell.ShopListNote.text = UserToDoLists[indexPath.row].listnote
                     
                     cell.ShopListNameButton.text = UserToDoLists[indexPath.row].listname
                     let thiscolor : String = UserToDoLists[indexPath.row].listcolorcode
                     cell.colorcodeviewoutlet.backgroundColor = colorWithHexString(thiscolor)
+                    cell.storyline.backgroundColor = colorWithHexString(thiscolor)
+                    cell.newlisttype.tintColor = colorWithHexString(thiscolor)
+  
                     
-                    cell.shownote.addTarget(self, action: "shownotes:", forControlEvents: .TouchUpInside)
+                    cell.ShopListNameButton.textColor = colorWithHexString(thiscolor)
+                    
+                   // cell.shownote.addTarget(self, action: "shownotes:", forControlEvents: .TouchUpInside)
                
-                        cell.ListTypeImage.image = todoicon
+                        cell.newlisttype.image = todoicon
                
-                    
-                 //   cell.ShopListNameButton.tag = indexPath.row
-                    
-                    
-                   // cell.ShopListNameButton.addTarget(self, action: "opentodolistbyname:", forControlEvents: .TouchUpInside)
-                    
-                   //   cell.ShopListNameButton.addTarget(self, action: "newopenlistbyname:", forControlEvents: .TouchUpInside)
-                    
-                   // cell.DeleteOutlet.tag = indexPath.row
-                    
-                   // cell.DeleteOutlet.addTarget(self, action: "deletetodolist:", forControlEvents: .TouchUpInside)
-                    
-                   
-                    
+
                  
                     
                     let dateFormatter = NSDateFormatter()
@@ -6277,26 +5589,32 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                     
                     if UserToDoLists[indexPath.row].listisfavourite == true {
-                        favimage = UIImage(named: "ICFavStarActive") as UIImage!
-                        cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
-                        // cell.addToFavOutlet.addTarget(self, action: "delfromfav:", forControlEvents: .TouchUpInside)
+                       // favimage = UIImage(named: "ICFavStarActive") as UIImage!
+                       // cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
+                        
+                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xA2AF36)
                     } else {
-                        notfavimage = UIImage(named: "ICFavStar") as UIImage!
-                        cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
-                        // cell.addToFavOutlet.addTarget(self, action: "addtofav:", forControlEvents: .TouchUpInside)
+                       // notfavimage = UIImage(named: "ICFavStar") as UIImage!
+                       // cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
+                        
+                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xD9D9D9)
                     }
                     
                     
-                    cell.addToFavOutlet.addTarget(self, action: "adddeletefav:", forControlEvents: .TouchUpInside)
+                   // cell.addToFavOutlet.addTarget(self, action: "adddeletefav:", forControlEvents: .TouchUpInside)
                     
                     let allcount : String = String(UserToDoLists[indexPath.row].listitemscount)
                     let checkedcount : String = String(UserToDoLists[indexPath.row].listcheckeditemscount)
                     
-                    cell.itemscount.text = "\(allcount)/\(checkedcount)"//"\(NSLocalizedString("items", comment: "")) \(allcount)/\(checkedcount)"
+                    cell.itemscount.text = "\(allcount)/\(checkedcount)"
                     
-                    //cell.itemscount.text = String(UserToDoLists[indexPath.row].listitemscount)
-                    //cell.checkeditemscount.text = String(UserToDoLists[indexPath.row].listcheckeditemscount)
+                    // Progress change
+                    
+                    cell.progresscircle.progressColors = [changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).pcol]
+                    cell.progresscircle.angle = changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).theangle
+                    //
 
+                    
                     return cell
                     
                 }
@@ -6310,67 +5628,66 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                     let receivedcell  = tableView.dequeueReusableCellWithIdentifier("receivedlist", forIndexPath: indexPath) as! ReceivedListOld
                     
-                    
+                    /*
+                    if UserLists[indexPath.row].listconfirmreception == true {
+
                     if UserFavLists[indexPath.row].listtype == "Shop" {
-                        receivedcell.iconimage.image = shopicon
+                        receivedcell.newlisttype.image = shopicon
                     } else {
-                        receivedcell.iconimage.image = todoicon
+                        receivedcell.newlisttype.image = todoicon
                     }
+                    } else {
+                         receivedcell.newlisttype.image = receivedicon
+                    }
+                    */
+                    receivedcell.newlisttype.image = receivedicon
                     
-                    // receivedcell.bounds.size.height = 136.0
-                    // receivedcell.receivedlistname.text = UserShopLists[indexPath.row].listname
-                    // receivedcell.receivedlistnote.text = UserShopLists[indexPath.row].listname
-                    
-                    receivedcell.receivedlistnamebutton.text = UserFavLists[indexPath.row].listname                    // receivedcell.receivedlistnamebutton.tag = indexPath.row
+                    receivedcell.receivedlistnamebutton.text = UserFavLists[indexPath.row].listname
                     
                     let thiscolor : String = UserFavLists[indexPath.row].listcolorcode
                     receivedcell.colorcodeviewoutlet.backgroundColor = colorWithHexString(thiscolor)
+                    receivedcell.storyline.backgroundColor = colorWithHexString(thiscolor)
+                    receivedcell.newlisttype.tintColor = colorWithHexString(thiscolor)
                     
-                  //  receivedcell.receivedlistnamebutton.addTarget(self, action: "newopenreceivedlistbyname:", forControlEvents: .TouchUpInside)
                     
-                    receivedcell.listnote.addTarget(self, action: "showreceivednotes:", forControlEvents: .TouchUpInside)
+                    receivedcell.receivedlistnamebutton.textColor = colorWithHexString(thiscolor)
+                    
+                   
                     
                     receivedcell.acceptlist.addTarget(self, action: "newsavereceivedlist:", forControlEvents: .TouchUpInside)
                     
                     if UserFavLists[indexPath.row].listconfirmreception == true {
-                        
-                        receivedcell.listnote.hidden = false
+
                         receivedcell.addtofavs.hidden  = false
                         receivedcell.acceptlist.hidden = true
-                        
+                        receivedcell.acceptlabel.hidden = true
                         
                     } else {
-                        receivedcell.listnote.hidden = true
+
                         receivedcell.addtofavs.hidden  = true
                         receivedcell.acceptlist.hidden = false
+                        receivedcell.acceptlabel.hidden = false
+                    }
+                    
+                   // receivedcell.newlisttype.image = shopicon
+
+                    
+                    if UserFavLists[indexPath.row].listisfavourite == true {
+                       // favimage = UIImage(named: "ICFavStarActive") as UIImage!
+                       // receivedcell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
+                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xA2AF36)
+                        
+
+                    } else {
+                       // notfavimage = UIImage(named: "ICFavStar") as UIImage!
+                       // receivedcell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
+                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xD9D9D9)
                         
                     }
                     
-                    receivedcell.iconimage.image = shopicon
-                    
-                    /*
-                    if UserShopLists[indexPath.row].listissaved == false {
-                    receivedcell.receivedlistnamebutton.enabled = false
-                    } else {
-                    receivedcell.receivedlistnamebutton.enabled = true
-                    
-                    }
-                    */
                     
                     
-                    if UserFavLists[indexPath.row].listisfavourite == true {
-                        favimage = UIImage(named: "ICFavStarActive") as UIImage!
-                        receivedcell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
-                        // cell.addToFavOutlet.addTarget(self, action: "delfromfav:", forControlEvents: .TouchUpInside)
-                    } else {
-                        notfavimage = UIImage(named: "ICFavStar") as UIImage!
-                        receivedcell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
-                        // cell.addToFavOutlet.addTarget(self, action: "addtofav:", forControlEvents: .TouchUpInside)
-                    }
-                    
-                    
-                    
-                    receivedcell.addtofavs.addTarget(self, action: "adddeletereceivedfav:", forControlEvents: .TouchUpInside)
+                   // receivedcell.addtofavs.addTarget(self, action: "adddeletereceivedfav:", forControlEvents: .TouchUpInside)
                     
                     var email = String()
                     if UserFavLists[indexPath.row].listreceivedfrom[2] != "default@default.com" {
@@ -6382,18 +5699,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     }
                     
                     
-                    receivedcell.sendername.text = "\(UserFavLists[indexPath.row].listreceivedfrom[1]) (\(email))" //name
-                    
-                    
-                    
-                    //receivedcell.deletereceivedlist.tag = indexPath.row
-                    
-                    
-                    
-                    
-                    //receivedcell.sharereceivedlist.tag = indexPath.row
-                    //
-                    // receivedcell.sharereceivedlist.addTarget(self, action: "newsavereceivedlist:", //forControlEvents: .TouchUpInside)
+                    receivedcell.sendername.text = "\(UserFavLists[indexPath.row].listreceivedfrom[1]) (\(email))"
                     
                     let dateFormatter1 = NSDateFormatter()
                     dateFormatter1.dateFormat = "dd MMM yyyy"
@@ -6403,10 +5709,13 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     let allcount : String = String(UserFavLists[indexPath.row].listitemscount)
                     let checkedcount : String = String(UserFavLists[indexPath.row].listcheckeditemscount)
                     
-                    receivedcell.itemscount.text = "\(allcount)/\(checkedcount)"//"\(NSLocalizedString("items", comment: "")) \(allcount)/\(checkedcount)"
+                    receivedcell.itemscount.text = "\(allcount)/\(checkedcount)"
                     
-                    //receivedcell.itemscount.text = String(UserShopLists[indexPath.row].listitemscount)
-                    //receivedcell.checkeditemscount.text = String(UserShopLists[indexPath.row].listcheckeditemscount)
+                    // Progress change
+                    
+                    receivedcell.progresscircle.progressColors = [changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).pcol]
+                    receivedcell.progresscircle.angle = changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).theangle
+                    //
                     
                     return receivedcell
                     
@@ -6415,35 +5724,29 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                     let cellIdentifier1 = "userlist"
                     let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier1, forIndexPath: indexPath) as!  ShopListCellNew
-                    
-                    // cell.ShopListNote.text = UserShopLists[indexPath.row].listnote
+
                     
                     let thiscolor : String = UserFavLists[indexPath.row].listcolorcode
                     cell.colorcodeviewoutlet.backgroundColor = colorWithHexString(thiscolor)
                     
-                    cell.ShopListNameButton.text = UserFavLists[indexPath.row].listname
-                    cell.shownote.addTarget(self, action: "shownotes:", forControlEvents: .TouchUpInside)
+                    cell.storyline.backgroundColor = colorWithHexString(thiscolor)
+                    cell.newlisttype.tintColor = colorWithHexString(thiscolor)
                     
-                    //cell.ListTypeImage.image = shopicon
+                    
+                    cell.ShopListNameButton.textColor = colorWithHexString(thiscolor)
+                    
+                    cell.ShopListNameButton.text = UserFavLists[indexPath.row].listname
+                   // cell.shownote.addTarget(self, action: "shownotes:", forControlEvents: .TouchUpInside)
+                    
+                    //cell.newlisttype.image = shopicon
                     
                     if UserFavLists[indexPath.row].listtype == "Shop" {
-                        cell.ListTypeImage.image = shopicon
+                        cell.newlisttype.image = shopicon
                     } else {
-                        cell.ListTypeImage.image = todoicon
+                        cell.newlisttype.image = todoicon
                     }
                     
-                    
-                    //  cell.ShopListNameButton.tag = indexPath.row
-                    
-                    
-                    // cell.ShopListNameButton.addTarget(self, action: "openlistbyname:", forControlEvents: .TouchUpInside)
-                    
-                   // cell.ShopListNameButton.addTarget(self, action: "newopenlistbyname:", forControlEvents: .TouchUpInside)
-                    
-                    //  cell.DeleteOutlet.tag = indexPath.row
-                    
-                    // cell.DeleteOutlet.addTarget(self, action: "deletelist:", forControlEvents: .TouchUpInside)
-                   
+
                    
                     
                     let dateFormatter = NSDateFormatter()
@@ -6453,26 +5756,31 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                     
                     if UserFavLists[indexPath.row].listisfavourite == true {
-                        favimage = UIImage(named: "ICFavStarActive") as UIImage!
-                        cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
-                        // cell.addToFavOutlet.addTarget(self, action: "delfromfav:", forControlEvents: .TouchUpInside)
+                        //favimage = UIImage(named: "ICFavStarActive") as UIImage!
+                        //cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
+                        
+                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xA2AF36)
                     } else {
-                        notfavimage = UIImage(named: "ICFavStar") as UIImage!
-                        cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
-                        // cell.addToFavOutlet.addTarget(self, action: "addtofav:", forControlEvents: .TouchUpInside)
+                        //notfavimage = UIImage(named: "ICFavStar") as UIImage!
+                       // cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
+                        
+                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xD9D9D9)
                     }
                     
                     
-                    cell.addToFavOutlet.addTarget(self, action: "adddeletefav:", forControlEvents: .TouchUpInside)
+                   // cell.addToFavOutlet.addTarget(self, action: "adddeletefav:", forControlEvents: .TouchUpInside)
                     
                     let allcount : String = String(UserFavLists[indexPath.row].listitemscount)
                     let checkedcount : String = String(UserFavLists[indexPath.row].listcheckeditemscount)
                     
-                    cell.itemscount.text = "\(allcount)/\(checkedcount)"//"\(NSLocalizedString("items", comment: "")) \(allcount)/\(checkedcount)"
+                    cell.itemscount.text = "\(allcount)/\(checkedcount)"
                     
-                    //cell.itemscount.text = String(UserShopLists[indexPath.row].listitemscount)
-                    //cell.checkeditemscount.text = String(UserShopLists[indexPath.row].listcheckeditemscount)
+                    // Progress change
                     
+                    cell.progresscircle.progressColors = [changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).pcol]
+                    cell.progresscircle.angle = changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).theangle
+                    //
+
                     
                     return cell
                 }
@@ -6488,119 +5796,87 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                      let receivedcell  = tableView.dequeueReusableCellWithIdentifier("receivedlist", forIndexPath: indexPath) as! ReceivedListOld
                    
-                    //receivedcell.receivedlistname.text = UserLists[indexPath.row].listname
-                   // receivedcell.receivedlistnote.text = UserLists[indexPath.row].listname
-                    
-                    receivedcell.receivedlistnamebutton.text = UserLists[indexPath.row].listname                   // receivedcell.receivedlistnamebutton.tag = indexPath.row
+
+                    receivedcell.receivedlistnamebutton.text = UserLists[indexPath.row].listname
                     
                     let thiscolor : String = UserLists[indexPath.row].listcolorcode
                     receivedcell.colorcodeviewoutlet.backgroundColor = colorWithHexString(thiscolor)
                     
-                    receivedcell.listnote.addTarget(self, action: "showreceivednotes:", forControlEvents: .TouchUpInside)
+                    receivedcell.colorcodeviewoutlet.backgroundColor = colorWithHexString(thiscolor)
+                    receivedcell.storyline.backgroundColor = colorWithHexString(thiscolor)
+                    receivedcell.newlisttype.tintColor = colorWithHexString(thiscolor)
                     
-                //    receivedcell.receivedlistnamebutton.addTarget(self, action: "newopenreceivedlistbyname:", forControlEvents: .TouchUpInside)
                     
+                    receivedcell.receivedlistnamebutton.textColor = colorWithHexString(thiscolor)
+
+                    
+                
                     
                     receivedcell.acceptlist.addTarget(self, action: "newsavereceivedlist:", forControlEvents: .TouchUpInside)
                     
+                    /*
                     if UserLists[indexPath.row].listconfirmreception == true {
                         
-                        receivedcell.listnote.hidden = false
+                        if UserLists[indexPath.row].listtype == "Shop" {
+                            receivedcell.newlisttype.image = shopicon
+                        } else {
+                            receivedcell.newlisttype.image = todoicon
+                        }
+                    } else {
+                        receivedcell.newlisttype.image = receivedicon
+                    }
+                    */
+                    
+                    receivedcell.newlisttype.image = receivedicon
+                    
+                    if UserLists[indexPath.row].listconfirmreception == true {
+                        
+
                         receivedcell.addtofavs.hidden  = false
                         receivedcell.acceptlist.hidden = true
-                        
+                        receivedcell.acceptlabel.hidden = true
                         
                     } else {
-                        receivedcell.listnote.hidden = true
+
                         receivedcell.addtofavs.hidden  = true
                         receivedcell.acceptlist.hidden = false
-                        
+                        receivedcell.acceptlabel.hidden = false
                     }
                     
                     
                     if UserLists[indexPath.row].listisfavourite == true {
-                        favimage = UIImage(named: "ICFavStarActive") as UIImage!
-                        receivedcell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
-                        // cell.addToFavOutlet.addTarget(self, action: "delfromfav:", forControlEvents: .TouchUpInside)
+                        //favimage = UIImage(named: "ICFavStarActive") as UIImage!
+                        //receivedcell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
+                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xA2AF36)
+                        
                     } else {
-                        notfavimage = UIImage(named: "ICFavStar") as UIImage!
-                        receivedcell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
-                        // cell.addToFavOutlet.addTarget(self, action: "addtofav:", forControlEvents: .TouchUpInside)
-                    }
-                    
-                    
-                    
-                    receivedcell.addtofavs.addTarget(self, action: "adddeletereceivedfav:", forControlEvents: .TouchUpInside)
-                    
-                    /*
-                    if UserLists[indexPath.row].listtype == "Shop" {
-                        receivedcell.iconimage.image = shopicon
-                    } else {
-                        receivedcell.iconimage.image = todoicon
-                    }
-                    */
-                    
-                    /*
-                    if UserLists[indexPath.row].listtype == "Shop"
-                    {
-                        receivedcell.receivedlistnamebutton.addTarget(self, action: "openreceivedlistbyname:", forControlEvents: .TouchUpInside)
-                    } else {
-                        receivedcell.receivedlistnamebutton.addTarget(self, action: "openreceivedtodolistbyname:", forControlEvents: .TouchUpInside)
-                    }
-                    */
-                    if UserLists[indexPath.row].listissaved == false {
-                        receivedcell.receivedlistnamebutton.enabled = false
-                    } else {
-                        receivedcell.receivedlistnamebutton.enabled = true
+                       // notfavimage = UIImage(named: "ICFavStar") as UIImage!
+                       // receivedcell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
+                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xD9D9D9)
                         
                     }
+                    
+                    
+                    
+                   // receivedcell.addtofavs.addTarget(self, action: "adddeletereceivedfav:", forControlEvents: .TouchUpInside)
+
+            
                     
                     
                     var email = String()
                     if UserLists[indexPath.row].listreceivedfrom[2] != "default@default.com" {
-                        //receivedcell.senderemail.text = UserLists[indexPath.row].listreceivedfrom[2] //email
+
                         email = UserLists[indexPath.row].listreceivedfrom[2]
                     } else {
-                        // receivedcell.senderemail.text = "Anonymous"
+
                         email = NSLocalizedString("Anonymous", comment: "")
                     }
                     
                     
-                    receivedcell.sendername.text = "\(UserLists[indexPath.row].listreceivedfrom[1]) (\(email))" //name
+                    receivedcell.sendername.text = "\(UserLists[indexPath.row].listreceivedfrom[1]) (\(email))"
                     
-                    /*
-                    receivedcell.sendername.text = UserLists[indexPath.row].listreceivedfrom[1] //name
-                    if UserLists[indexPath.row].listreceivedfrom[2] != "default@default.com" {
-                        receivedcell.senderemail.text = UserLists[indexPath.row].listreceivedfrom[2] //email
-                    } else {
-                        receivedcell.senderemail.text = "Anonymous"
-                    }
-                    */
-                  
+
                     
-                    
-                    /*
-                    receivedcell.deletereceivedlist.tag = indexPath.row
-                    if UserLists[indexPath.row].listtype == "Shop" {
-                        receivedcell.deletereceivedlist.addTarget(self, action: "deletereceivedlist:", forControlEvents: .TouchUpInside)
-                    } else if UserLists[indexPath.row].listtype == "ToDo" {
-                        receivedcell.deletereceivedlist.addTarget(self, action: "deletereceivedtodolist:", forControlEvents: .TouchUpInside)
-                    }
-                    */
-                    
-                   
-                    
-                  //  receivedcell.sharereceivedlist.addTarget(self, action: "newsavereceivedlist:", forControlEvents: .TouchUpInside)
-                    
-                    /*
-                    receivedcell.sharereceivedlist.tag = indexPath.row
-                    if UserLists[indexPath.row].listtype == "Shop" {
-                        
-                        receivedcell.sharereceivedlist.addTarget(self, action: "savereceivedlist:", forControlEvents: .TouchUpInside)
-                    } else if UserLists[indexPath.row].listtype == "ToDo" {
-                        receivedcell.sharereceivedlist.addTarget(self, action: "savereceivedtodolist:", forControlEvents: .TouchUpInside)
-                    }
-                    */
                     let dateFormatter1 = NSDateFormatter()
                     dateFormatter1.dateFormat = "dd MMM yyyy"
                     let date1 = dateFormatter1.stringFromDate(UserLists[indexPath.row].listcreationdate)
@@ -6609,10 +5885,14 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     let allcount : String = String(UserLists[indexPath.row].listitemscount)
                     let checkedcount : String = String(UserLists[indexPath.row].listcheckeditemscount)
                     
-                    receivedcell.itemscount.text = "\(allcount)/\(checkedcount)"//"\(NSLocalizedString("items", comment: "")) \(allcount)/\(checkedcount)"
+                    receivedcell.itemscount.text = "\(allcount)/\(checkedcount)"
                     
-                   // receivedcell.itemscount.text = String(UserLists[indexPath.row].listitemscount)
-                   // receivedcell.checkeditemscount.text = String(UserLists[indexPath.row].listcheckeditemscount)
+                    
+                    // Progress change
+                    
+                    receivedcell.progresscircle.progressColors = [changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).pcol]
+                    receivedcell.progresscircle.angle = changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).theangle
+                    //
                     
                     return receivedcell
                     
@@ -6622,42 +5902,31 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     let cellIdentifier1 = "userlist"
                     let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier1, forIndexPath: indexPath) as!  ShopListCellNew
                     
-                   // cell.ShopListNote.text = UserLists[indexPath.row].listnote
+                  
                     
                     cell.ShopListNameButton.text = UserLists[indexPath.row].listname
-                  //    cell.ShopListNameButton.addTarget(self, action: "newopenlistbyname:", forControlEvents: .TouchUpInside)
+                 
                     
                     let thiscolor : String = UserLists[indexPath.row].listcolorcode
                     cell.colorcodeviewoutlet.backgroundColor = colorWithHexString(thiscolor)
                     
-                    cell.shownote.addTarget(self, action: "shownotes:", forControlEvents: .TouchUpInside)
+                    cell.storyline.backgroundColor = colorWithHexString(thiscolor)
+                    cell.newlisttype.tintColor = colorWithHexString(thiscolor)
+                    
+                    
+                    cell.ShopListNameButton.textColor = colorWithHexString(thiscolor)
+
+                    
+                   // cell.shownote.addTarget(self, action: "shownotes:", forControlEvents: .TouchUpInside)
                     
                     
                     if UserLists[indexPath.row].listtype == "Shop" {
-                        cell.ListTypeImage.image = shopicon
+                        cell.newlisttype.image = shopicon
                     } else {
-                        cell.ListTypeImage.image = todoicon
+                        cell.newlisttype.image = todoicon
                     }
                  
-                    /*
-                    cell.ShopListNameButton.tag = indexPath.row
-                    
-                    if UserLists[indexPath.row].listtype == "Shop" {
-                        
-                        cell.ShopListNameButton.addTarget(self, action: "openlistbyname:", forControlEvents: .TouchUpInside)
-                    } else if UserLists[indexPath.row].listtype == "ToDo" {
-                        cell.ShopListNameButton.addTarget(self, action: "opentodolistbyname:", forControlEvents: .TouchUpInside)
-                    }
-                    */
-                  
-                    /*
-                    cell.DeleteOutlet.tag = indexPath.row
-                    if UserLists[indexPath.row].listtype == "Shop" {
-                        cell.DeleteOutlet.addTarget(self, action: "deletelist:", forControlEvents: .TouchUpInside)
-                    } else {
-                        cell.DeleteOutlet.addTarget(self, action: "deletetodolist:", forControlEvents: .TouchUpInside)
-                    }
-                    */
+            
                     
                     
                     let dateFormatter = NSDateFormatter()
@@ -6667,25 +5936,32 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                     
                     if UserLists[indexPath.row].listisfavourite == true {
-                        favimage = UIImage(named: "ICFavStarActive") as UIImage!
-                        cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
-                        // cell.addToFavOutlet.addTarget(self, action: "delfromfav:", forControlEvents: .TouchUpInside)
+                      //  favimage = UIImage(named: "ICFavStarActive") as UIImage!
+                      //  cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
+                        
+                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xA2AF36)
                     } else {
-                        notfavimage = UIImage(named: "ICFavStar") as UIImage!
-                        cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
-                        // cell.addToFavOutlet.addTarget(self, action: "addtofav:", forControlEvents: .TouchUpInside)
+                      //  notfavimage = UIImage(named: "ICFavStar") as UIImage!
+                      //  cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
+                        
+                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xD9D9D9)
                     }
                     
                     
-                    cell.addToFavOutlet.addTarget(self, action: "adddeletefav:", forControlEvents: .TouchUpInside)
+                   // cell.addToFavOutlet.addTarget(self, action: "adddeletefav:", forControlEvents: .TouchUpInside)
                     
                     let allcount : String = String(UserLists[indexPath.row].listitemscount)
                     let checkedcount : String = String(UserLists[indexPath.row].listcheckeditemscount)
                     
-                    cell.itemscount.text = "\(allcount)/\(checkedcount)"//"\(NSLocalizedString("items", comment: "")) \(allcount)/\(checkedcount)"
+                    cell.itemscount.text = "\(allcount)/\(checkedcount)"
                     
-                  //  cell.itemscount.text = String(UserLists[indexPath.row].listitemscount)
-                   // cell.checkeditemscount.text = String(UserLists[indexPath.row].listcheckeditemscount)
+                    // Progress change
+                    
+                    cell.progresscircle.progressColors = [changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).pcol]
+                    cell.progresscircle.angle = changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).theangle
+                    //
+
+                    
                     
                     return cell
                     
@@ -6695,333 +5971,6 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         
         }
     }
-    
-        
-        //////////////////////////////////////
-        
-        
-        
-        /* OLD CODE
-                if showoption == "alllists" {
-                
-            receivedcell.receivedlistname.text = UserLists[indexPath.row].listname
-            receivedcell.receivedlistnote.text = UserLists[indexPath.row].listname
-            
-            receivedcell.receivedlistnamebutton.setTitle(UserLists[indexPath.row].listname, forState: .Normal)
-            receivedcell.receivedlistnamebutton.tag = indexPath.row
-            
-            if UserLists[indexPath.row].listtype == "Shop"
-            {
-                receivedcell.receivedlistnamebutton.addTarget(self, action: "openreceivedlistbyname:", forControlEvents: .TouchUpInside)
-            } else {
-                receivedcell.receivedlistnamebutton.addTarget(self, action: "openreceivedtodolistbyname:", forControlEvents: .TouchUpInside)
-            }
-            
-            if UserLists[indexPath.row].listissaved == false {
-                receivedcell.receivedlistnamebutton.enabled = false
-            } else {
-                receivedcell.receivedlistnamebutton.enabled = true
-                
-            }
-            
-            
-            receivedcell.sendername.text = UserLists[indexPath.row].listreceivedfrom[1] //name
-            if UserLists[indexPath.row].listreceivedfrom[2] != "default@default.com" {
-                receivedcell.senderemail.text = UserLists[indexPath.row].listreceivedfrom[2] //email
-            } else {
-                receivedcell.senderemail.text = "Anonymous"
-            }
-            
-            receivedcell.deletereceivedlist.tag = indexPath.row
-            if UserLists[indexPath.row].listtype == "Shop" {
-                receivedcell.deletereceivedlist.addTarget(self, action: "deletereceivedlist:", forControlEvents: .TouchUpInside)
-            } else if UserLists[indexPath.row].listtype == "ToDo" {
-                receivedcell.deletereceivedlist.addTarget(self, action: "deletereceivedtodolist:", forControlEvents: .TouchUpInside)
-            }
-            
-            
-            receivedcell.sharereceivedlist.tag = indexPath.row
-            if UserLists[indexPath.row].listtype == "Shop" {
-                
-                receivedcell.sharereceivedlist.addTarget(self, action: "savereceivedlist:", forControlEvents: .TouchUpInside)
-            } else if UserLists[indexPath.row].listtype == "ToDo" {
-                receivedcell.sharereceivedlist.addTarget(self, action: "savereceivedtodolist:", forControlEvents: .TouchUpInside)
-            }
-            
-            let dateFormatter1 = NSDateFormatter()
-            dateFormatter1.dateFormat = "dd.MM.yyyy"
-            let date1 = dateFormatter1.stringFromDate(UserLists[indexPath.row].listcreationdate)
-            receivedcell.receivedlistdate.text = date1
-            
-            receivedcell.itemscount.text = String(UserLists[indexPath.row].listitemscount)
-            receivedcell.checkeditemscount.text = String(UserLists[indexPath.row].listcheckeditemscount)
-            
-            } ////// END OF ALL LISTS CASE
-            
-            
-             else  if showoption == "shoplists" {
-                
-                
-                receivedcell.receivedlistname.text = UserShopLists[indexPath.row].listname
-                receivedcell.receivedlistnote.text = UserShopLists[indexPath.row].listname
-                
-                receivedcell.receivedlistnamebutton.setTitle(UserShopLists[indexPath.row].listname, forState: .Normal)
-                receivedcell.receivedlistnamebutton.tag = indexPath.row
 
-                receivedcell.receivedlistnamebutton.addTarget(self, action: "openreceivedlistbyname:", forControlEvents: .TouchUpInside)
-            
-                
-                if UserShopLists[indexPath.row].listissaved == false {
-                    receivedcell.receivedlistnamebutton.enabled = false
-                } else {
-                    receivedcell.receivedlistnamebutton.enabled = true
-                    
-                }
-                
-                
-                receivedcell.sendername.text = UserShopLists[indexPath.row].listreceivedfrom[1] //name
-                if UserShopLists[indexPath.row].listreceivedfrom[2] != "default@default.com" {
-                    receivedcell.senderemail.text = UserShopLists[indexPath.row].listreceivedfrom[2] //email
-                } else {
-                    receivedcell.senderemail.text = "Anonymous"
-                }
-                
-                receivedcell.deletereceivedlist.tag = indexPath.row
-            
-                receivedcell.deletereceivedlist.addTarget(self, action: "deletereceivedlist:", forControlEvents: .TouchUpInside)
-             
-                
-                
-                receivedcell.sharereceivedlist.tag = indexPath.row
-                
-                receivedcell.sharereceivedlist.addTarget(self, action: "savereceivedlist:", forControlEvents: .TouchUpInside)
-            
-                let dateFormatter1 = NSDateFormatter()
-                dateFormatter1.dateFormat = "dd.MM.yyyy"
-                let date1 = dateFormatter1.stringFromDate(UserShopLists[indexPath.row].listcreationdate)
-                receivedcell.receivedlistdate.text = date1
-                
-                receivedcell.itemscount.text = String(UserShopLists[indexPath.row].listitemscount)
-                receivedcell.checkeditemscount.text = String(UserShopLists[indexPath.row].listcheckeditemscount)
-                
-            } //// END OF ONLY SHOPS CASE
-            
-            else  if showoption == "todolists" {
-                
-                
-                receivedcell.receivedlistname.text = UserToDoLists[indexPath.row].listname
-                receivedcell.receivedlistnote.text = UserToDoLists[indexPath.row].listname
-                
-                receivedcell.receivedlistnamebutton.setTitle(UserToDoLists[indexPath.row].listname, forState: .Normal)
-                receivedcell.receivedlistnamebutton.tag = indexPath.row
-                
-                receivedcell.receivedlistnamebutton.addTarget(self, action: "openreceivedtodolistbyname:", forControlEvents: .TouchUpInside)
-                
-                
-                if UserToDoLists[indexPath.row].listissaved == false {
-                    receivedcell.receivedlistnamebutton.enabled = false
-                } else {
-                    receivedcell.receivedlistnamebutton.enabled = true
-                    
-                }
-                
-                
-                receivedcell.sendername.text = UserToDoLists[indexPath.row].listreceivedfrom[1] //name
-                if UserToDoLists[indexPath.row].listreceivedfrom[2] != "default@default.com" {
-                    receivedcell.senderemail.text = UserToDoLists[indexPath.row].listreceivedfrom[2] //email
-                } else {
-                    receivedcell.senderemail.text = "Anonymous"
-                }
-                
-                receivedcell.deletereceivedlist.tag = indexPath.row
-                
-                receivedcell.deletereceivedlist.addTarget(self, action: "deletereceivedtodolist:", forControlEvents: .TouchUpInside)
-                
-                
-                
-                receivedcell.sharereceivedlist.tag = indexPath.row
-                
-                receivedcell.sharereceivedlist.addTarget(self, action: "savereceivedtodolist:", forControlEvents: .TouchUpInside)
-                
-                let dateFormatter1 = NSDateFormatter()
-                dateFormatter1.dateFormat = "dd.MM.yyyy"
-                let date1 = dateFormatter1.stringFromDate(UserToDoLists[indexPath.row].listcreationdate)
-                receivedcell.receivedlistdate.text = date1
-                
-                receivedcell.itemscount.text = String(UserToDoLists[indexPath.row].listitemscount)
-                receivedcell.checkeditemscount.text = String(UserToDoLists[indexPath.row].listcheckeditemscount)
-                
-            } //// END OF ONLY TO DO LISTS CASE
-            
-            //////
-            
-            return receivedcell
-            
-            
-        
-            /*
-            let cellIdentifier1 = "userlist"
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier1, forIndexPath: indexPath) as!  ShopListCellNew
-            */
-            
-            // Configure the cell...
-            
-            //cell.ShopListName.text = UserLists[indexPath.row].listname
-                
-            if showoption == "alllists" { /////ALL LISTS CASE
-            
-            cell.ShopListNote.text = UserLists[indexPath.row].listnote
-            
-            cell.ShopListNameButton.setTitle(UserLists[indexPath.row].listname, forState: .Normal)
-            
-            
-            cell.ShopListNameButton.tag = indexPath.row
-            
-            if UserLists[indexPath.row].listtype == "Shop" {
-                
-                cell.ShopListNameButton.addTarget(self, action: "openlistbyname:", forControlEvents: .TouchUpInside)
-            } else if UserLists[indexPath.row].listtype == "ToDo" {
-                cell.ShopListNameButton.addTarget(self, action: "opentodolistbyname:", forControlEvents: .TouchUpInside)
-            }
-            
-            cell.DeleteOutlet.tag = indexPath.row
-            if UserLists[indexPath.row].listtype == "Shop" {
-                cell.DeleteOutlet.addTarget(self, action: "deletelist:", forControlEvents: .TouchUpInside)
-            } else {
-                cell.DeleteOutlet.addTarget(self, action: "deletetodolist:", forControlEvents: .TouchUpInside)
-            }
-            cell.ShareButtonOutlet.tag = indexPath.row
-            cell.ShareButtonOutlet.addTarget(self, action: "sharelist:", forControlEvents: .TouchUpInside)
-            
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "dd.MM.yyyy"
-            let date = dateFormatter.stringFromDate(UserLists[indexPath.row].listcreationdate)
-            cell.creationDate.text = date
-            
-            
-            if UserLists[indexPath.row].listisfavourite == true {
-                favimage = UIImage(named: "FavStar.png") as UIImage!
-                cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
-                // cell.addToFavOutlet.addTarget(self, action: "delfromfav:", forControlEvents: .TouchUpInside)
-            } else {
-                notfavimage = UIImage(named: "GrayStar.png") as UIImage!
-                cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
-                // cell.addToFavOutlet.addTarget(self, action: "addtofav:", forControlEvents: .TouchUpInside)
-            }
-            
-            
-            cell.addToFavOutlet.addTarget(self, action: "adddeletefav:", forControlEvents: .TouchUpInside)
-            
-            cell.itemscount.text = String(UserLists[indexPath.row].listitemscount)
-            cell.checkeditemscount.text = String(UserLists[indexPath.row].listcheckeditemscount)
-            
-        } //// END OF ALL LISTS CASE
-            else  if showoption == "shoplists" { /// ONLY SHOPS LISTS CASE
-                
-                
-                cell.ShopListNote.text = UserShopLists[indexPath.row].listnote
-                
-                cell.ShopListNameButton.setTitle(UserShopLists[indexPath.row].listname, forState: .Normal)
-                
-                
-                cell.ShopListNameButton.tag = indexPath.row
-                
-                    
-                cell.ShopListNameButton.addTarget(self, action: "openlistbyname:", forControlEvents: .TouchUpInside)
-                    
-                cell.DeleteOutlet.tag = indexPath.row
-                
-                cell.DeleteOutlet.addTarget(self, action: "deletelist:", forControlEvents: .TouchUpInside)
-             
-                cell.ShareButtonOutlet.tag = indexPath.row
-                cell.ShareButtonOutlet.addTarget(self, action: "sharelist:", forControlEvents: .TouchUpInside)
-                
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "dd.MM.yyyy"
-                let date = dateFormatter.stringFromDate(UserShopLists[indexPath.row].listcreationdate)
-                cell.creationDate.text = date
-                
-                
-                if UserShopLists[indexPath.row].listisfavourite == true {
-                    favimage = UIImage(named: "FavStar.png") as UIImage!
-                    cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
-                    // cell.addToFavOutlet.addTarget(self, action: "delfromfav:", forControlEvents: .TouchUpInside)
-                } else {
-                    notfavimage = UIImage(named: "GrayStar.png") as UIImage!
-                    cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
-                    // cell.addToFavOutlet.addTarget(self, action: "addtofav:", forControlEvents: .TouchUpInside)
-                }
-                
-                
-                cell.addToFavOutlet.addTarget(self, action: "adddeletefav:", forControlEvents: .TouchUpInside)
-                
-                cell.itemscount.text = String(UserShopLists[indexPath.row].listitemscount)
-                cell.checkeditemscount.text = String(UserShopLists[indexPath.row].listcheckeditemscount)
-                
-            }
-            else  if showoption == "todolists" { /// ONLY TODOS LISTS CASE
-                
-                cell.ShopListNote.text = UserToDoLists[indexPath.row].listnote
-                
-                cell.ShopListNameButton.setTitle(UserToDoLists[indexPath.row].listname, forState: .Normal)
-                
-                
-                cell.ShopListNameButton.tag = indexPath.row
-                
-                
-                cell.ShopListNameButton.addTarget(self, action: "opentodolistbyname:", forControlEvents: .TouchUpInside)
-                
-                cell.DeleteOutlet.tag = indexPath.row
-                
-                cell.DeleteOutlet.addTarget(self, action: "deletetodolist:", forControlEvents: .TouchUpInside)
-                
-                cell.ShareButtonOutlet.tag = indexPath.row
-                cell.ShareButtonOutlet.addTarget(self, action: "sharelist:", forControlEvents: .TouchUpInside)
-                
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "dd.MM.yyyy"
-                let date = dateFormatter.stringFromDate(UserToDoLists[indexPath.row].listcreationdate)
-                cell.creationDate.text = date
-                
-                
-                if UserToDoLists[indexPath.row].listisfavourite == true {
-                    favimage = UIImage(named: "FavStar.png") as UIImage!
-                    cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
-                    // cell.addToFavOutlet.addTarget(self, action: "delfromfav:", forControlEvents: .TouchUpInside)
-                } else {
-                    notfavimage = UIImage(named: "GrayStar.png") as UIImage!
-                    cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
-                    // cell.addToFavOutlet.addTarget(self, action: "addtofav:", forControlEvents: .TouchUpInside)
-                }
-                
-                
-                cell.addToFavOutlet.addTarget(self, action: "adddeletefav:", forControlEvents: .TouchUpInside)
-                
-                cell.itemscount.text = String(UserToDoLists[indexPath.row].listitemscount)
-                cell.checkeditemscount.text = String(UserToDoLists[indexPath.row].listcheckeditemscount)
-                
-            }
-        
-            
-            return cell
-            
-        */ /// OLD CODE
-    
-    
-
-    
-    
-    //////// END TABLE CONFIGURATION
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

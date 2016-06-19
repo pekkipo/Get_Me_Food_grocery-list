@@ -1317,9 +1317,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
     //myTextField.delegate = self
     ///
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
+    
     
     
     @IBOutlet var logview: UIView!
@@ -1327,9 +1325,18 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
     
     @IBOutlet var passview: UIView!
     
+    @IBOutlet var openmenu: UIBarButtonItem!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        openmenu.target = self.revealViewController()
+        
+        openmenu.action = Selector("revealToggle:")
+        
+        
+        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         LoginField.delegate = self
         

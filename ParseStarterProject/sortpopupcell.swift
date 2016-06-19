@@ -7,12 +7,19 @@
 //
 
 import UIKit
+//import NVActivityIndicatorView
 
 class sortpopupcell: UITableViewCell {
     
+    @IBOutlet var actindicator: NVActivityIndicatorView!
     
     @IBOutlet var caption: UILabel!
 
+    @IBOutlet var checkmark: UIImageView!
+    
+    
+    @IBOutlet var errormark: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

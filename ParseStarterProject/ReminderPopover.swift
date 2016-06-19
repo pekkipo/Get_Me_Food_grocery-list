@@ -71,7 +71,7 @@ class ReminderPopover: UIViewController, UITextFieldDelegate {
         
         //self.tableView.reloadData()
         
-        print("JUST CLOSED")
+        dismissViewControllerAnimated(true, completion: nil)
         
     }
     
@@ -93,6 +93,7 @@ class ReminderPopover: UIViewController, UITextFieldDelegate {
             displayFailAlert(NSLocalizedString("Oops", comment: "Oops"), message: NSLocalizedString("WasError", comment: "WasError"))
             print("Error creating and saving new reminder : \(error)")
         }
+        
         
 
     }
@@ -157,6 +158,8 @@ class ReminderPopover: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        view.backgroundColor = UIColor.clearColor()
         
         remindernote.delegate = self
         

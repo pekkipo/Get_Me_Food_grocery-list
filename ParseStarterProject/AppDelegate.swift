@@ -123,6 +123,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             
            // var settings = UIUserNotificationSettings(forTypes: UIUserNotificationType([.Alert, .Badge, .Sound]), categories: nil)
         }
+        
+        
+      
+        
+       
+        
 
         return true
     }

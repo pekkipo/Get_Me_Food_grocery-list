@@ -15,16 +15,16 @@ class ShopListCellNew: UITableViewCell {
     
    
     
-    @IBOutlet var addToFavOutlet: UIButton!
+    //@IBOutlet var addToFavOutlet: UIButton!
     
+    @IBOutlet var addToFavOutlet: UIImageView!
     
     
     @IBOutlet var ShopListNameButton: UILabel!
     
     
    
-    
-    @IBOutlet var ShopListNote: UILabel!
+
     
     
     @IBOutlet var creationDate: UILabel!
@@ -36,8 +36,7 @@ class ShopListCellNew: UITableViewCell {
 
     @IBOutlet var container: UIView!
     
-    
-    @IBOutlet var shownote: UIButton!
+
     
     @IBOutlet var percents: UILabel!
    

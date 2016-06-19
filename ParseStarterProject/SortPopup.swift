@@ -13,6 +13,7 @@ protocol sortlistsDelegate
     func sortandrefreshlists()
     func refreshlists()
     func backfromsort()
+    func changeshowoptions(option: String)
 }
 
 class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
@@ -29,6 +30,13 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     }
     
     // TABLE STUFF
+    
+    var tablelabels0 = [
+        NSLocalizedString("showalllists", comment: ""),
+        NSLocalizedString("showonlyshops", comment: ""),
+        NSLocalizedString("showonlytodos", comment: ""),
+        NSLocalizedString("showonlyfavs", comment: ""),
+    ]
     
     var tablelabels1 = [
         NSLocalizedString("popasc", comment: ""),
@@ -53,7 +61,7 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
        
-        return 3
+        return 4
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -69,15 +77,17 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             cell.caption.textColor = UIColorFromRGB(0x31797D, alp: 1.0)
 
         
-        if indexPath.section == 2 {
+        if indexPath.section == 3 {
             cell.caption.textColor = UIColorFromRGB(0xF23D55, alp: 1.0)
         }
         
         if indexPath.section == 0 {
-            cell.caption.text = tablelabels1[indexPath.row]
+            cell.caption.text = tablelabels0[indexPath.row]
         } else if indexPath.section == 1 {
-            cell.caption.text = tablelabels2[indexPath.row]
+            cell.caption.text = tablelabels1[indexPath.row]
         } else if indexPath.section == 2 {
+            cell.caption.text = tablelabels2[indexPath.row]
+        } else if indexPath.section == 3 {
             cell.caption.text = tablelabels3[indexPath.row]
         }
         
@@ -90,6 +100,263 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
     }
 
+    func containslistid(values: [String], element: String) -> Bool {
+        // Loop over all values in the array.
+        for value in values {
+            // If a value equals the argument, return true.
+            if value == element {
+                return true
+            }
+        }
+        // The element was not found.
+        return false
+    }
+    
+    func checkreceivedlists(indexPath: NSIndexPath) {
+        
+        // activate indicator
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! sortpopupcell
+        
+        cell.actindicator.hidden = false
+        cell.actindicator.startAnimation()
+        
+        // var receivedcount : Int = 0
+        
+        //CHECK SHOP LISTS
+        var query = PFQuery(className:"shopLists")
+        query.whereKey("BelongsToUser", equalTo: PFUser.currentUser()!.objectId!)
+        query.whereKey("isReceived", equalTo: true)
+        query.whereKey("isSaved", equalTo: false)
+        query.whereKey("isDeleted", equalTo: false)
+        query.whereKey("confirmReception", equalTo: false)
+        query.orderByDescending("updateDate")
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                
+                print("Successfully retrieved \(objects!.count) scores.")
+                
+                
+                if let lists = objects as? [PFObject] {
+                    
+                    for object in lists {
+                        print(object.objectId)
+                        if self.containslistid(UserLists.map({ $0.listid }), element: object["listUUID"] as! String) || self.containslistid(UserShopLists.map({ $0.listid }), element: object["listUUID"] as! String){
+                            
+                            print("object is already retrieved from local datastore")
+                        } else {
+                            
+                            var listid = object["listUUID"] as! String
+                            var listname = object["ShopListName"] as! String
+                            var listnote = object["ShopListNote"] as! String
+                            var listcreationdate = object["updateDate"] as! NSDate
+                            var listisfav = object["isFavourite"] as! Bool
+                            var listisreceived = object["isReceived"] as! Bool
+                            var listbelongsto = object["BelongsToUser"] as! String
+                            var listissentfrom = object["sentFromArray"] as! [(String)]
+                            var listissaved = object["isSaved"] as! Bool
+                            
+                            var listconfirm = object["confirmReception"] as! Bool
+                            var listisdeleted = object["isDeleted"] as! Bool
+                            var listisshared = object["isShared"] as! Bool
+                            var listsharewitharray = object["ShareWithArray"] as! [[AnyObject]]
+                            
+                            var listitemscount = object["ItemsCount"] as! Int
+                            var listcheckeditems = object["CheckedItemsCount"] as! Int
+                            var listtype = "Shop"
+                            var listcurrency = object["ListCurrency"] as! String
+                            var listshowcats = object["ShowCats"] as! Bool
+                            var listscolor = object["ListColorCode"] as! String
+                            
+                            
+                            var receivedshoplist : UserList = UserList(
+                                listid:listid,
+                                listname:listname,
+                                listnote:listnote,
+                                listcreationdate:listcreationdate,
+                                listisfavourite:listisfav,
+                                listisreceived:listisreceived,
+                                listbelongsto:listbelongsto,
+                                listreceivedfrom:listissentfrom,
+                                listissaved:listissaved,
+                                listconfirmreception:listconfirm,
+                                listisdeleted:listisdeleted,
+                                listisshared:listisshared,
+                                listsharedwith:listsharewitharray,
+                                listitemscount:listitemscount,
+                                listcheckeditemscount:listcheckeditems,
+                                listtype:listtype,
+                                listcurrency:listcurrency,
+                                listcategories:listshowcats,
+                                listcolorcode:listscolor
+                                
+                            )
+                            
+                            UserShopLists.append(receivedshoplist)
+                            
+                            //UserLists.extend(UserShopLists)
+                            UserLists.append(receivedshoplist)
+                            
+                            
+                            //self.tableView.reloadData() // without this thing, table would contain only 1 row
+                            
+                            receivedcount += 1
+                            
+                        }
+                        
+                        //receivedcount += 1
+                        
+                        //object.pinInBackground()
+                        //I think I do it later when saving
+                    }
+                    
+                    UserLists.sortInPlace({ $0.listcreationdate.compare($1.listcreationdate) == NSComparisonResult.OrderedDescending })
+                    UserShopLists.sortInPlace({ $0.listcreationdate.compare($1.listcreationdate) == NSComparisonResult.OrderedDescending })
+                    UserToDoLists.sortInPlace({ $0.listcreationdate.compare($1.listcreationdate) == NSComparisonResult.OrderedDescending })
+                    UserFavLists.sortInPlace({ $0.listcreationdate.compare($1.listcreationdate) == NSComparisonResult.OrderedDescending })
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.delegate?.sortandrefreshlists()
+                        cell.actindicator.stopAnimation()
+                        cell.actindicator.hidden = true
+                        self.fadecheck(indexPath, err: false)
+                    })
+                    
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                cell.actindicator.stopAnimation()
+                cell.actindicator.hidden = true
+                self.fadecheck(indexPath, err: true)
+            }
+        }
+        
+        
+        
+        //CHECK TODO LISTS
+        var querytodo = PFQuery(className:"toDoLists")
+        querytodo.whereKey("BelongsToUser", equalTo: PFUser.currentUser()!.objectId!)
+        querytodo.whereKey("isReceived", equalTo: true)
+        querytodo.whereKey("isSaved", equalTo: false)
+        querytodo.whereKey("isDeleted", equalTo: false)
+        querytodo.whereKey("confirmReception", equalTo: false)
+        querytodo.orderByDescending("updateDate")
+        querytodo.findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                
+                print("Successfully retrieved \(objects!.count) scores.")
+                
+                
+                if let lists = objects as? [PFObject] {
+                    
+                    for object in lists {
+                        print(object.objectId)
+                        
+                        if self.containslistid(UserLists.map({ $0.listid }), element: object["listUUID"] as! String) || self.containslistid(UserToDoLists.map({ $0.listid }), element: object["listUUID"] as! String){
+                            
+                            print("object is already retrieved from local datastore")
+                        } else {
+                            
+                            var listid = object["listUUID"] as! String
+                            var listname = object["ToDoListName"] as! String
+                            var listnote = object["ToDoListNote"] as! String
+                            var listcreationdate = object["updateDate"] as! NSDate
+                            var listisfav = object["isFavourite"] as! Bool
+                            var listisreceived = object["isReceived"] as! Bool
+                            var listbelongsto = object["BelongsToUser"] as! String
+                            var listissentfrom = object["SentFromArray"] as! [(String)]
+                            var listissaved = object["isSaved"] as! Bool
+                            
+                            var listconfirm = object["confirmReception"] as! Bool
+                            var listisdeleted = object["isDeleted"] as! Bool
+                            var listisshared = object["isShared"] as! Bool
+                            var listsharewitharray = object["ShareWithArray"] as! [[AnyObject]]
+                            
+                            var listitemscount = object["ItemsCount"] as! Int
+                            var listcheckeditems = object["CheckedItemsCount"] as! Int
+                            var listtype = "ToDo"
+                            var listscolor = object["ListColorCode"] as! String
+                            // var listcurrency = object["ListCurrency"] as! String
+                            // var listshowcats = object["ShowCats"] as! Bool
+                            
+                            
+                            var receivedtodolist : UserList = UserList(
+                                listid:listid,
+                                listname:listname,
+                                listnote:listnote,
+                                listcreationdate:listcreationdate,
+                                listisfavourite:listisfav,
+                                listisreceived:listisreceived,
+                                listbelongsto:listbelongsto,
+                                listreceivedfrom:listissentfrom,
+                                listissaved:listissaved,
+                                listconfirmreception:listconfirm,
+                                listisdeleted:listisdeleted,
+                                listisshared:listisshared,
+                                listsharedwith:listsharewitharray,
+                                listitemscount:listitemscount,
+                                listcheckeditemscount:listcheckeditems,
+                                listtype:listtype,
+                                listcolorcode:listscolor
+                                
+                            )
+                            
+                            UserToDoLists.append(receivedtodolist)
+                            UserLists.append(receivedtodolist)
+                            
+                            
+                            // self.tableView.reloadData() // without this thing, table would contain only 1 row
+                            
+                            receivedcount += 1
+                            
+                        }
+                    }
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.delegate?.sortandrefreshlists()
+                        cell.actindicator.stopAnimation()
+                        cell.actindicator.hidden = true
+                        self.fadecheck(indexPath, err: false)
+                    })
+                    
+                    
+                    
+                    
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                cell.actindicator.stopAnimation()
+                cell.actindicator.hidden = true
+                self.fadecheck(indexPath, err: true)
+            }
+        }
+        
+    }
+    
+    func fadecheck(indexPath: NSIndexPath, err: Bool) {
+        
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! sortpopupcell
+        if !err {
+        cell.checkmark.alpha = 1
+        cell.checkmark.fadeOut()
+        } else {
+            cell.errormark.alpha = 1
+            cell.errormark.fadeOut()
+        }
+    }
+    
+    func displayFailAlert(title: String, message: String) {
+        
+        let customIcon = UIImage(named: "FailAlert")
+        let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "OK", color: UIColorFromHex(0xF23D55, alpha: 0.9), iconImage: customIcon)
+        alertview.setTextTheme(.Light)
+        // alertview.addAction(cancelCallback)
+        //alertview.addCancelAction(closeCallback)
+    }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -110,24 +377,51 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         if indexPath.section == 0 {
             
             if indexPath.row == 0 {
-                sortbydateasc()
+                delegate?.changeshowoptions("alllists")
+                fadecheck(indexPath, err: false)
             } else if indexPath.row == 1 {
-                sortbydate()
+                delegate?.changeshowoptions("shoplists")
+                fadecheck(indexPath, err: false)
             } else if indexPath.row == 2 {
-                sortalphabetically()
+                delegate?.changeshowoptions("todolists")
+                fadecheck(indexPath, err: false)
+            } else if indexPath.row == 3 {
+                delegate?.changeshowoptions("favs")
+                fadecheck(indexPath, err: false)
             }
+            
+            
             
         } else if indexPath.section == 1 {
             
             if indexPath.row == 0 {
-                delegate?.refreshlists()
+                sortbydateasc()
+                fadecheck(indexPath, err: false)
+            } else if indexPath.row == 1 {
+                sortbydate()
+                fadecheck(indexPath, err: false)
+            } else if indexPath.row == 2 {
+                sortalphabetically()
+                fadecheck(indexPath, err: false)
+            }
+            
+        } else if indexPath.section == 2 {
+            
+            if indexPath.row == 0 {
+                //delegate?.refreshlists()
+                if CheckConnection.isConnectedToNetwork() {
+                checkreceivedlists(indexPath)
+                } else {
+                fadecheck(indexPath, err: true)
+                    displayFailAlert(NSLocalizedString("NoConnection", comment: ""), message: NSLocalizedString("cannotcheck", comment: ""))
+                }
             } else if indexPath.row == 1 {
                 print("Sums")
             } else if indexPath.row == 2 {
                 print("Statistics")
             }
             
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 3 {
             close()
         }
         
@@ -135,22 +429,29 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
+        /*
         if section == 0 {
             return NSLocalizedString("sortoptions", comment: "")
         } else if section == 1 {
             return NSLocalizedString("listsoptions", comment: "")
         } else {
         return ""
-        }
+        }*/
+        return ""
             }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
       //return tablelabels.count
-        if section == 0 || section == 1 {
-        return 3
+        if section == 0 {
+            return tablelabels0.count
+        } else if section == 1 {
+            return tablelabels1.count
+        } else if section == 2 {
+            return tablelabels2.count
+        } else if section == 3 {
+            return tablelabels3.count
         } else {
             return 1
         }
@@ -177,7 +478,7 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         delegate?.sortandrefreshlists()
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        //self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     
@@ -190,7 +491,7 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         delegate?.sortandrefreshlists()
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+       // self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     
@@ -204,7 +505,7 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         delegate?.sortandrefreshlists()
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+       // self.dismissViewControllerAnimated(true, completion: nil)
 
     }
     
@@ -238,7 +539,7 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         backview.userInteractionEnabled = true
         backview.addGestureRecognizer(viewtap)
         
-        tableView.layer.cornerRadius = 8
+       // tableView.layer.cornerRadius = 8
         
         
         

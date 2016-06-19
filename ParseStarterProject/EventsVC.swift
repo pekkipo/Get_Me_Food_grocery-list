@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import Foundation
 
-class EventsVC: UIViewController, ContactsPopupDelegate, UIPopoverPresentationControllerDelegate,MPGEventsTextFieldDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class EventsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
     var chosencontact : Contact?
     
@@ -30,128 +30,10 @@ class EventsVC: UIViewController, ContactsPopupDelegate, UIPopoverPresentationCo
     var contentsnames = [String]()
     var dictionary = Dictionary<String, AnyObject>()
     
-    func generateData(tempprefix: String){
-        /*
-        var err : NSErrorPointer?
-        var dataPath = NSBundle.mainBundle().pathForResource("sample_data", ofType: "json")
-        var data = NSData.dataWithContentsOfFile(dataPath!, options: NSDataReadingOptions.DataReadingUncached, error: err!)
-        */
-        
-        sampleData.removeAll(keepCapacity: true) 
-        
-        var query:PFQuery = PFUser.query()!//:PFQuery = PFUser.query()!
-        //query.whereKey("authData", notEqualTo: Ano) //dont need anonymous user
-        query.whereKey("email", hasPrefix: tempprefix)
-        query.limit = 1000
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]?, error: NSError?) -> Void in
-            
-            if error == nil {
-                // The find succeeded.
-                print("Successfully retrieved \(objects!.count) scores.")
-                // Do something with the found objects
-                if let users = objects as? [PFObject] {
-                    for object in users {
-                        if object["email"] != nil {
-                            //self.contentsnames.append(object["username"] as! String)
-                            self.contentsnames.append(object["name"] as! String)
-                            self.contentsemails.append(object["email"] as! String)//(object.email as! String)
-                        } else {
-                            print("skip anonymous")
-                        }
-                        
-                    }
-                }
-            } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
-            }
-        }
-        
-        for var i = 0;i<contentsnames.count;++i {
-            var name = contentsnames[i] as String//["username"] as! String
-            //name += " " + lName
-            var email = contentsemails[i] as String
-            dictionary = ["DisplayText":email,"DisplaySubText":name, "CustomObject":contentsnames[i]]
-            
-            sampleData.append(dictionary)
-            
-        }
-        print("Users are \(sampleData)")
-        print("names are \(dictionary)")
-        print("names in contents are \(contentsnames)")
-        
-    }
-    
-    
-    func dataForPopoverInTextField(textfield: MPG_Events) -> [Dictionary<String, AnyObject>]
-    {
-        return sampleData
-    }
-    
-    func textFieldShouldSelect(textField: MPG_Events) -> Bool{
-        return true
-    }
-    
-    func textFieldDidEndEditing(textField: MPG_Events, withSelection data: Dictionary<String,AnyObject>){
-        print("Dictionary received = \(data)")
-    }
-    
-    
-    @IBAction func emailedtitingchanged(sender: AnyObject) {
-        
-        var string : String = receiveremail.text!
-        
-        print(string)
-        
-        var length = string.characters.count
-        
-        print(length)
-        
-        //if length >= 6 {
-        if length == 4 || length == 6 {
-            
-        
-           // sampleData.removeAll(keepCapacity: true) // might need it
-            
-            print(length)
-            print(string)
-            // dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            self.generateData(string)
-              //  })
-           // print(sampleData)
-            
-        }
-        
-       // print(sampleData)
-    }
-    
 
-    
-    ///// AUTOCOMPLETE PART END
-    
-    let progressHUD = ProgressHUD(text: NSLocalizedString("wait", comment: ""))
-    
-    func pause() {
-        
-        
-        self.view.addSubview(progressHUD)
-        
-        progressHUD.setup()
-        progressHUD.show()
-        
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-    }
-    
-    
-    func restore() {
-        
-        progressHUD.hide()
-        
-        
-        UIApplication.sharedApplication().endIgnoringInteractionEvents()
-    }
-    
+
+
+
     
     func displayContactAlert(title: String, message: String) {
         
@@ -162,21 +44,12 @@ class EventsVC: UIViewController, ContactsPopupDelegate, UIPopoverPresentationCo
         alertview.addCancelAction(closeCallback)
     }
     
-    func displaySuccessAlert(title: String, message: String) {
+    func displayFailAlert(title: String, message: String) {
         
-        let customIcon = UIImage(named: "SuccessAlert")
+        let customIcon = UIImage(named: "AddContactAlert")
         let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "OK", color: UIColorFromHex(0x31797D, alpha: 0.9), iconImage: customIcon)
         alertview.setTextTheme(.Light)
         //alertview.addAction(closeCallback)
-        alertview.addCancelAction(closeCallback)
-    }
-    
-    func displayFailAlert(title: String, message: String) {
-        
-        let customIcon = UIImage(named: "FailAlert")
-        let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "OK", color: UIColorFromHex(0xF23D55, alpha: 0.9), iconImage: customIcon)
-        alertview.setTextTheme(.Light)
-        // alertview.addAction(cancelCallback)
         alertview.addCancelAction(closeCallback)
     }
     
@@ -207,16 +80,7 @@ class EventsVC: UIViewController, ContactsPopupDelegate, UIPopoverPresentationCo
         let cell = innerview.superview as! ContactEventCell
         
         let indexPath = tableView.indexPathForCell(cell)
-        
-        
-        /*
-        let recname : String = userevents[indexPath.row].eventuser[2] as! String
-        let recemail: String = userevents[indexPath.row].eventuser[1] as! String
-        cell.nameandevent.text = recname
-        cell.receiveremail.text = recemail
-        cell.receiverimage.image = userevents[indexPath.row].eventreceiverimage!
-        */
-        
+
         var query:PFQuery = PFUser.query()!
         query.getObjectInBackgroundWithId(PFUser.currentUser()!.objectId!) {
             (thisuser: PFObject?, error: NSError?) -> Void in
@@ -241,29 +105,24 @@ class EventsVC: UIViewController, ContactsPopupDelegate, UIPopoverPresentationCo
                 
                 thisuser.pinInBackgroundWithBlock({ (success, error) -> Void in
                     if success {
-                        //self.restore()
-                       // self.restore()
-                       
+
                        
                         
                     } else {
-                        self.restore()
+                       
                         print("error")
                     }
                 })//pinInBackground()
                 thisuser.saveInBackgroundWithBlock({ (success, error) -> Void in
                     if success {
                         
-                        
-                        //self.restore()
+
                         
                         print("saved user to server")
                         self.displayContactAlert(NSLocalizedString("useradded", comment: ""), message: NSLocalizedString("thisperson", comment: ""))
-                        self.restore()
-                        //self.tableView.reloadData()
-                        // self.displayAlert("User added!", message: "Everything went fine!")
+
                     } else {
-                        self.restore()
+                       
                         self.displayFailAlert(NSLocalizedString("errorExc", comment: ""), message: "\(NSLocalizedString("error2", comment: "")) \(error)")
                         print("error")
                         
@@ -271,288 +130,28 @@ class EventsVC: UIViewController, ContactsPopupDelegate, UIPopoverPresentationCo
                     
                     self.tableView.reloadData()
                 })
-                /*thisuser.saveEventually({ (success, error) -> Void in
-                if success {
-                println("saved user to server")
-                } else {
-                println("error server")
-                }
-                })//saveEventually()
-                */
-                //self.tableView.reloadData()
-            }
-        }
-        
-        
-        
-    }
-    
-    
-    
-    @IBOutlet var receiveremail: MPG_Events!
-    
-    
-    
-    @IBAction func sendbutton(sender: AnyObject) {
-        
-        if CheckConnection.isConnectedToNetwork() {
-        
-        self.pause()
-        var exist = Bool()
-        var receiverid = String()
-        var receivername = String()
-        /// get user info
-        var contactimagequery:PFQuery = PFUser.query()!
-        contactimagequery.whereKey("email", equalTo: receiveremail.text!)
-        contactimagequery.limit = 1
-        var users = contactimagequery.findObjects()
-        if (users != nil) {
-            
-            for user in users! {
-                //if let userid = user. { //objectId! { //{user["objectId"] as? String {
-                    receiverid = user.objectId!! //["objectId"] as! String
-                
-                if receiverid != "" {
-                    exist = true
-                } else {
-                    exist = false
-                    
-                }
-                
-               // }//used to be username
-                if let uname = user["name"] as? String {
-                    receivername = user["name"] as! String
-                } else {
-                    receivername = "Unknown"
-                }
-                //}
- 
-            }
-        } else {
-            exist = false
-             self.restore()
-            displayFailAlert(NSLocalizedString("Oops", comment: "Oops"), message: NSLocalizedString("nouser", comment: ""))
-            
-            print("No such user!")
-        }
 
-        /*
-        ///
-        var currentuseremail = String()
-        // get currentuser email
-            var emailquery:PFQuery = PFUser.query()!
-            emailquery.fromLocalDatastore()
-            emailquery.whereKey("objectId", equalTo: PFUser.currentUser()!.objectId!)
-            emailquery.limit = 1
-            var curusers = emailquery.findObjects()
-            if (curusers != nil) {
-                for user in curusers! {
-                     if let mail = user["email"] as? String {
-                        currentuseremail = user["email"] as! String //used to be username
-                     } else {
-                        currentuseremail = "Anonymous"
-                    }
-                    
-                }
-            } else {
-                println("No such user?!")
             }
-            ///// 
-            */
-            
-            if exist == true {
-            
-            var currentuseremail = String()
-            var currentusername = String()
-            ///
-             if PFUser.currentUser()?["email"] != nil {
-                currentuseremail = PFUser.currentUser()?["email"] as! String
-             } else {
-                currentuseremail = NSLocalizedString("Anonymous", comment: "")
-            }
-            
-            if PFUser.currentUser()?["name"] != nil {
-                currentusername = PFUser.currentUser()?["name"] as! String
-            } else {
-                currentusername = NSLocalizedString("Anonymous", comment: "")
-            }
+        }
+        
+        
+        
+    }
+    
+    
 
-            
-            
-        var event = PFObject(className:"UsersEvents")
-        
-            
-        var uuid = NSUUID().UUIDString
-            
-        event["EventText"] = ""
-        event["EventType"] = "GoShop"
-        event["SenderId"] = PFUser.currentUser()!.objectId!
-        event["receiverEmail"] = receiveremail.text
-        event["ReceiverId"] = receiverid
-        event["isReceived"] = false
-        event["senderInfo"] = [(PFUser.currentUser()!.objectId!),currentuseremail,currentusername]
-        event["receiverInfo"] = [receiverid, receiveremail.text!, receivername]
-        event["eventUUID"] = uuid
-            
-            /*
-            let file : PFFile = (PFUser.currentUser()?["Avatar"] as? PFFile)!
-            
-            event["senderavatar"] = file
-            
-           
-            
-            var senderimage = UIImage()
-            
-          
-                var imageData = file.getData()
-                if (imageData != nil) {
-                    var image = UIImage(data: imageData!)
-                    senderimage = image!
-                } else {
-                    senderimage = UIImage(named: "checkeduser.png")!
-                }
-            */
-            
-            
-            
-            let acl = PFACL()
-            //acl.setPublicReadAccess(true)
-            //acl.setPublicWriteAccess(true)
-            acl.setReadAccess(true, forUserId: receiverid)
-            acl.setReadAccess(true, forUserId: PFUser.currentUser()!.objectId!)
-            acl.setWriteAccess(true, forUserId: receiverid)
-            acl.setWriteAccess(true, forUserId: PFUser.currentUser()!.objectId!)
-            event.ACL = acl
-        
-         event.pinInBackground()
-         event.saveInBackgroundWithBlock {
-                (success: Bool, error: NSError?) -> Void in
-                if (success) {
-                    // The object has been saved.
-                    self.restore()
-                    
-                    var date = NSDate()
-                    
-                    userevents.append(Event(eventtype: "GoShop", eventnote: "", eventdate: date, eventuser: [(PFUser.currentUser()!.objectId!),currentuseremail,currentusername], eventreceiver: [receiverid, self.receiveremail.text!,receivername], eventid: uuid))
-                     //userevents.append(Event(eventtype: etype, eventnote: enote, eventdate: edate!, eventuser: euser, eventreceiver: erecuser, eventid: eid, eventreceiverimage: senderimage))
-                   // userevents.append(Event(eventtype: "GoShop", eventnote: "", eventdate: date, eventuser: [(PFUser.currentUser()!.objectId!),currentuseremail,currentusername], eventreceiver: [receiverid, self.receiveremail.text!,receivername], eventid: uuid, eventreceiverimage: senderimage))
-                    
-                     self.displaySuccessAlert(NSLocalizedString("DoneExc", comment: ""), message: NSLocalizedString("messend", comment: ""))
-                    print("event was sent")
-                    
-                    
-                    
-                    
-                    dispatch_async(dispatch_get_main_queue(), {
-                        userevents.sortInPlace({ $0.eventdate.compare($1.eventdate) == NSComparisonResult.OrderedDescending })
-                        self.tableView.reloadData()
-                    })
-                } else {
-                    self.restore()
-                    self.displayFailAlert(NSLocalizedString("Oops", comment: ""), message: "\(error)")
-                     self.restore()
-                    // There was a problem, check error.description
-                }
-        }
-            
-            
-            let userQuery = PFUser.query()
-            userQuery!.whereKey("objectId", equalTo: receiverid)
-            let pushQuery = PFInstallation.query()
-            pushQuery!.whereKey("user", matchesQuery: userQuery!)
-            
-            var push:PFPush = PFPush()
-            push.setQuery(pushQuery)
-            //push.setChannel("Reload")
-            
-            //var alert : NSString = "\(currentusername) is going shopping! Maybe you need something to buy?"
-          //  var alert : String = "\(currentusername) is going shopping! Maybe you need something to buy?"
-                
-                  var alert : String = "\(currentusername) \(NSLocalizedString("goingshopping", comment: ""))"
-          //  var data:NSDictionary = ["alert":alert,"badge":"0","content-available":"1","sound":""]
-            //var data:NSDictionary = ["alert":alert,"badge":"Increment"]
-           // push.setMessage("\(currentusername) is going shopping! Maybe you need something to buy?")
-            //push.setData(data as [NSObject : AnyObject])
-                var data:NSDictionary = ["alert":alert,"badge":"Increment", "sound":"default"]
-                // push.setMessage(alert)
-                push.setData(data as [NSObject : AnyObject])
-            push.sendPushInBackground()
-            
-            } else {
-                 self.restore()
-                displayFailAlert(NSLocalizedString("Oops", comment: ""), message: NSLocalizedString("nouser", comment: ""))
-                print("no such user")
-            }
-        
-        } else {
-             self.restore()
-             self.displayFailAlert(NSLocalizedString("Oops", comment: ""), message: NSLocalizedString("NoConnection", comment: ""))
-             print("No internet connection found")
-        }
-    }
-    
-    @IBAction func choosefromcontacts(sender: AnyObject) {
-        
-        performSegueWithIdentifier("showcontactspopup", sender: self)
-    }
-    
-    
-    
     
     
     @IBOutlet var tableView: UITableView!
     
     
-    func choosecontact(chosenuser:Contact) {
-        
-        chosencontact = chosenuser
-        receiveremail.text = chosenuser.contactemail
-        
-    }
-    
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.None
-    }
-    
+   
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        //here I will prepare the data for my list
         
         delegate?.refreshmainview()
         
-        
-        if segue.identifier == "showcontactspopup" {
-            
-            let popoverViewController = segue.destinationViewController as! ContactsPopup
-            
-            
-            popoverViewController.preferredContentSize = CGSize(width: 300, height: self.view.frame.height*0.6)
-            popoverViewController.view.backgroundColor = UIColor.whiteColor()
-            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
-            popoverViewController.popoverPresentationController!.delegate = self
-            
-            
-            
-            popoverViewController.delegate = self
-            
-        }
-        
-        if segue.identifier == "showreport" {
-            
-            let popoverViewController = segue.destinationViewController as! ReportPopup
-            
-            
-           // popoverViewController.preferredContentSize = CGSize(width: 200, height: 150)
-            
-            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-            //popoverViewController.popoverPresentationController!.delegate = self
-            
-            
-            
-            popoverViewController.userid = useridtoblock
-            
-            popoverViewController.useremail = useremailtoblock
-            
-        }
+
     }
     
     
@@ -569,46 +168,8 @@ class EventsVC: UIViewController, ContactsPopupDelegate, UIPopoverPresentationCo
     
     var listarray = [AnyObject]()
     
-    func blockuser(sender: UIButton!) {
-        
-        let button = sender as UIButton
-        let view = button.superview!
-        let nextview = view.superview!
-        //let cell = view.superview as! ItemShopListCell
-        let cell = nextview.superview as! EventCell
-        let indexPathBlock = tableView.indexPathForCell(cell)
-        
-        useridtoblock = userevents[indexPathBlock!.row].eventuser[0] as! String
-        
-        useremailtoblock = userevents[indexPathBlock!.row].eventuser[1] as! String
-        
-     
-        performSegueWithIdentifier("showreport", sender: self)
-    
-        
-    
-    }
-    
-    func blockuser2(sender: UIButton!) {
-        
-        let button = sender as UIButton
-        let view = button.superview!
-        let nextview = view.superview!
-        //let cell = view.superview as! ItemShopListCell
-        let cell = nextview.superview as! ContactEventCell
-        let indexPathBlock = tableView.indexPathForCell(cell)
-        
-        useridtoblock = userevents[indexPathBlock!.row].eventuser[0] as! String
-        
-        useremailtoblock = userevents[indexPathBlock!.row].eventuser[1] as! String
-        
-        
-        performSegueWithIdentifier("showreport", sender: self)
-        
-        
-        
-    }
-    
+
+
     
     
 
@@ -646,27 +207,20 @@ class EventsVC: UIViewController, ContactsPopupDelegate, UIPopoverPresentationCo
             cell.receiverimage.layer.borderWidth = 0.7
             cell.receiverimage.layer.borderColor = UIColorFromRGB(0x979797).CGColor
             
-            //cell.userimage.layer.cornerRadius = cell.userimage.frame.size.width / 2
-           // cell.userimage.layer.masksToBounds = true
-           // cell.userimage.layer.borderWidth = 2
-           // cell.userimage.layer.borderColor = UIColorFromRGB(0x2A2F36).CGColor
-            //if PFUser.currentUser()?["UserContacts"] != nil
-            
-          //  if let founduser = find(lazy(usercontacts).map({ $0.contactid }), userevents[indexPath.row].eventreceiver[0] as! String) {
+
             if let founduser = usercontacts.map({ $0.contactid }).indexOf(userevents[indexPath.row].eventreceiver[0] as! String) {
                 let contactuser = usercontacts[founduser]
                 
                 cell.receiverimage.image = contactuser.contactimage
                
             } else {
-                cell.receiverimage.image = defaultcatimages[1].itemimage//UIImage(named: "checkeduser.png")!
-            }
+                cell.receiverimage.image = defaultcatimages[1].itemimage            }
 
-            //cell.userimage.image = loggeduserimage
+
             
             cell.eventtext.text = NSLocalizedString("findout", comment: "")
             
-            cell.blockuseroutlet.hidden = true
+            
             
         } else {
             // case if someone sends event to me
@@ -711,8 +265,6 @@ class EventsVC: UIViewController, ContactsPopupDelegate, UIPopoverPresentationCo
             
             cell.eventtext.text = NSLocalizedString("goingshopping", comment: "")
             
-            cell.blockuseroutlet.hidden = false
-            cell.blockuseroutlet.addTarget(self, action: "blockuser:", forControlEvents: UIControlEvents.TouchUpInside)
             
         }
         
@@ -769,7 +321,7 @@ class EventsVC: UIViewController, ContactsPopupDelegate, UIPopoverPresentationCo
                 
                 cell.eventtext.text = NSLocalizedString("eventuseradded", comment: "")
                 
-                cell.blockuseroutlet.hidden = true
+               
                 
                 cell.addcontact.hidden = true
                 
@@ -811,8 +363,7 @@ class EventsVC: UIViewController, ContactsPopupDelegate, UIPopoverPresentationCo
                 
                 cell.eventtext.text = NSLocalizedString("useraddedyou", comment: "")
                 
-                cell.blockuseroutlet.hidden = false
-                cell.blockuseroutlet.addTarget(self, action: "blockuser2:", forControlEvents: UIControlEvents.TouchUpInside)
+                
                 
                 if let founduser = usercontacts.map({ $0.contactid }).indexOf(userevents[indexPath.row].eventuser[0] as! String) {
                     
@@ -887,19 +438,7 @@ class EventsVC: UIViewController, ContactsPopupDelegate, UIPopoverPresentationCo
     }
     
     func checkreceivedevents() {
-        /*
-        var query1 = PFQuery(className:"UsersEvents")
-        query1.whereKey("SenderId", equalTo: PFUser.currentUser()!.objectId!)
-        query1.whereKey("isReceived", equalTo: false)
-        
-        
-        var query2 = PFQuery(className:"UsersEvents")
-        query2.whereKey("ReceiverId", equalTo: PFUser.currentUser()!.objectId!)
-        query2.whereKey("isReceived", equalTo: false)
-        
-        
-        let query = PFQuery.orQueryWithSubqueries([query1, query2])
-        */
+
         var query = PFQuery(className:"UsersEvents")
         
         query.whereKey("ReceiverId", equalTo: PFUser.currentUser()!.objectId!)
@@ -1103,7 +642,7 @@ class EventsVC: UIViewController, ContactsPopupDelegate, UIPopoverPresentationCo
         
          NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadTableAfterPush", name: "reloadTable", object: nil)
         
-        receiveremail.delegate = self
+        
         
       //  messagecontainer.layer.borderWidth = 1
       //   messagecontainer.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
@@ -1112,9 +651,7 @@ class EventsVC: UIViewController, ContactsPopupDelegate, UIPopoverPresentationCo
         
         receivedeventscount = 0
 
-        receiveremail.mDelegate = self
-        
-        receiveremail.leftTextMargin = 5
+       
         
         self.view.backgroundColor = UIColorFromRGB(0xF1F1F1)
         

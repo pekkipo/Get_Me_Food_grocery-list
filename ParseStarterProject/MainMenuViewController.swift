@@ -651,13 +651,14 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         if segue.identifier == "showeventssegue" {
             
             //let toViewController = segue.destinationViewController as! SettingsViewController
-         let navVC = segue.destinationViewController as! UINavigationController
+         let tabVC = segue.destinationViewController as! UITabBarController//UINavigationController
             
-            let eventsVC = navVC.viewControllers.first as! EventsVC
+            let eventsVC = tabVC.viewControllers!.first as! UINavigationController //EventsVC
+            
+            let VC = eventsVC.viewControllers.first as! SharingHistoryTableViewController
             
             
-            
-            eventsVC.delegate = self
+           // eventsVC.delegate = self
             
             
         }
@@ -1719,10 +1720,9 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         
         
         let query = PFQuery.orQueryWithSubqueries([query1, query2])
-        
-        //var query1 = PFQuery(className:"UsersEvents")
+
         query.fromLocalDatastore()
-        //query.whereKey("SenderId", equalTo: PFUser.currentUser()!.objectId!)
+
         query.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]?, error: NSError?) -> Void in
             if error == nil {
@@ -1737,6 +1737,8 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
                         var etype = object["EventType"] as! String
                         
                         if etype == "GoShop" {
+                            // DONT USE THIS ANYMORE
+                            /*
                         var enote = object["EventText"] as! String
                         var edate = object.createdAt//object["createdAt"] as! NSDate
                         var euser = object["senderInfo"] as! [AnyObject]
@@ -1749,7 +1751,8 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
                           } else {
                             print("Such event is already loaded")
                        }
-                        
+                        */
+                            
                     } else if etype == "AddContact" {
                             
                             var enote = object["EventText"] as! String

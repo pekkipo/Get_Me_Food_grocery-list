@@ -438,7 +438,11 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
         
         if senderVC == "ShopList" {
         delegate?.changecolor(colorcode)
+        } else if senderVC == "ToDoList" {
+        delegate?.changecolor(colorcode)
         } else if senderVC == "AllListsVC" {
+            
+            if listtype == "Shop" {
             
             let query = PFQuery(className:"shopLists")
             query.fromLocalDatastore()
@@ -464,6 +468,36 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
                 
             }
             
+            } else if listtype == "ToDo" {
+                
+                let query = PFQuery(className:"toDoLists")
+                query.fromLocalDatastore()
+                query.whereKey("listUUID", equalTo: listtoupdate)
+                query.getFirstObjectInBackgroundWithBlock() {
+                    (toDoList: PFObject?, error: NSError?) -> Void in
+                    if error != nil {
+                    } else if let toDoList = toDoList {
+                        
+                        toDoList["ListColorCode"] = self.colorcode
+                        
+                        toDoList.pinInBackground()
+                        
+                    }
+                    
+                }
+                
+                
+                if let foundtodolist = UserToDoLists.map({ $0.listid }).lazy.indexOf(listtoupdate) {
+                    
+                    UserToDoLists[foundtodolist].listcolorcode = colorcode
+                    
+                    
+                }
+
+                
+                
+            }
+        
             if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(listtoupdate) {
 
                     UserLists[foundlist].listcolorcode = colorcode
@@ -741,6 +775,9 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
     }
 
     
+    @IBOutlet var worldpic: UIImageView!
+    @IBOutlet var chooseccy: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -758,7 +795,17 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
 
         view.backgroundColor = UIColorFromRGB(0xFAFAFA)
 
-       
+        if listtype == "ToDo" {
+            tableView.hidden = true
+            worldpic.hidden = true
+            chooseccy.hidden = true
+            currencylabel.hidden = true
+        } else {
+            tableView.hidden = false
+            worldpic.hidden = false
+            chooseccy.hidden = false
+            currencylabel.hidden = false
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -780,8 +827,8 @@ class ListOptionsPopover: UIViewController, UIPopoverPresentationControllerDeleg
             
            // popoverViewController.preferredContentSize = CGSize(width: 300, height: 320)
             
-            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
-            popoverViewController.popoverPresentationController!.delegate = self
+            popoverViewController.modalPresentationStyle = .OverCurrentContext
+            
             
             if senderVC == "ShopList" {
             

@@ -1120,7 +1120,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         
         //contactemail.layer.sublayerTransform = CATransform3DMakeTranslation(4, 0, 0)
         
-        contactemail.leftTextMargin = 5
+        contactemail.leftTextMargin = 0
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -1166,10 +1166,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     */
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-      return 30
-        
-    }
+  
     
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
         return UIColor(
@@ -1181,11 +1178,8 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         )
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-       
-        return NSLocalizedString("yourcontacts", comment: "")
-    }
-    
+   
+    /*
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         header.contentView.backgroundColor = UIColorFromRGB(0xEFEFEF)//UIColor(red: 238/255, green: 168/255, blue: 15/255, alpha: 0.8)
@@ -1205,7 +1199,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
       
         
     }
-    
+    */
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // the cells you would like the actions to appear needs to be editable
         return true

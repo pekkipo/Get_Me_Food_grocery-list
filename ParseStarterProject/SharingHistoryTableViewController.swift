@@ -50,7 +50,7 @@ class SharingHistoryTableViewController: UITableViewController {
     var sendlistreceiverId = String()
    // var sections = Dictionary<String, Array<Dictionary<String, AnyObject>>>()
     
-    var accepted : UIImage = UIImage(named: "accepted")!
+    var accepted : UIImage = UIImage(named: "4CheckMark")!
     var notaccepted : UIImage = UIImage(named: "notaccepted")!
     
     var shopicon : UIImage = UIImage(named: "BlackCart")!
@@ -235,9 +235,7 @@ class SharingHistoryTableViewController: UITableViewController {
                     }
                     
                     self.automaticcheck()
-                    
-                    //ListsArray.sort({ $0.date.compare($1.date) == NSComparisonResult.OrderedAscending })
-                      //UserLists.sort({ $0.listcreationdate.compare($1.listcreationdate) == NSComparisonResult.OrderedAscending })
+
                 }
                 
                 // println(self.SharedLists)
@@ -252,7 +250,7 @@ class SharingHistoryTableViewController: UITableViewController {
             }
         }
         
-        //ListsArray.sort({ $0.date.compare($1.date) == NSComparisonResult.OrderedAscending })
+
         
         return ListsArray
     }
@@ -291,17 +289,8 @@ class SharingHistoryTableViewController: UITableViewController {
                             
                             if receivedlist["confirmReception"] as! Bool == true {
                                 
-                               // println(self.ListsArray)
-                               // println(self.ListsArray[index])
-                                //println(self.ListsArray[index][5])
-                                
-                                
-                                //self.ListsArray[index][5] = true
-                                
-                               // if let founditem = find(lazy(self.ListsArray).map({ $0[4] as! String }), self.sendlistid) {
-                                
-                                 if let founditem = self.ListsArray.map({ $0[4] as! String }).lazy.indexOf(self.sendlistid) {
-                                    //let catalogitem = catalogitems[founditem]
+                                                               if let founditem = self.ListsArray.map({ $0[4] as! String }).lazy.indexOf(self.sendlistid) {
+                           
                                     
                                     self.ListsArray[founditem][5] = true
                                 }
@@ -336,14 +325,7 @@ class SharingHistoryTableViewController: UITableViewController {
                                             if (arrayofshared[i][0] as! String == self.sendlistreceiverId) && (arrayofshared[i][4] as! String == self.sendlistid) {
                                                 
                                                 arrayofshared[i][5] = true
-                                                /*
-                                                if (listinarray[0] as! String == self.sendlistreceiveremail) && (listinarray[3] as! String == self.sendlistid) {
-                                                
-                                                //change isReceived value in this subarray
-                                                
-                                                listinarray[4] = true
-                                                //should have changed from let to var in else if list = list statement
-                                                */
+
                                                 break;
                                             } else {
                                                 print("Not that list")
@@ -373,14 +355,12 @@ class SharingHistoryTableViewController: UITableViewController {
                                         
                                     }
                                 }
-                                /////
-                                
-                               // self.displayAlert("Affirmative!", message: "User has successfully received your list!")
+
                                 
                             } else {
                                 
                                 print("NOPE")
-                               // self.displayAlert("Haven't saved yet!", message: "User has not save your list yet!")
+
                                 
                             }
                             
@@ -446,14 +426,7 @@ class SharingHistoryTableViewController: UITableViewController {
                                             if (arrayofshared[i][0] as! String == self.sendlistreceiverId) && (arrayofshared[i][4] as! String == self.sendlistid) {
                                                 
                                                 arrayofshared[i][5] = true
-                                                /*
-                                                if (listinarray[0] as! String == self.sendlistreceiveremail) && (listinarray[3] as! String == self.sendlistid) {
-                                                
-                                                //change isReceived value in this subarray
-                                                
-                                                listinarray[4] = true
-                                                //should have changed from let to var in else if list = list statement
-                                                */
+
                                                 break;
                                             } else {
                                                 print("Not that list")
@@ -483,14 +456,12 @@ class SharingHistoryTableViewController: UITableViewController {
                                         
                                     }
                                 }
-                                /////
-                                
-                               // self.displayAlert("Affirmative!", message: "User has successfully received your list!")
+
                                 
                             } else {
                                 
                                 print("NOPE")
-                               // self.displayAlert("Haven't saved yet!", message: "User has not save your list yet!")
+ 
                                 
                             }
                             
@@ -528,10 +499,9 @@ class SharingHistoryTableViewController: UITableViewController {
         let view = button.superview!
         let cell = view.superview as! SharingHistoryCell
         let indexPathCheck = tableView.indexPathForCell(cell)
-        
-        //sendlistid = ListsIds[indexPathCheck!.row]
+
         sendlistid = ListsArray[indexPathCheck!.row][4] as! String
-       // sendlistreceiveremail = ListsArray[indexPathCheck!.row][0] as! String
+
             sendlistreceiverId = ListsArray[indexPathCheck!.row][0] as! String
 
         

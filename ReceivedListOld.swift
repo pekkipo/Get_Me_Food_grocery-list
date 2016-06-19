@@ -19,23 +19,18 @@ class ReceivedListOld: UITableViewCell {
     
     @IBOutlet var sendername: UILabel!
     
-    @IBOutlet var deletereceivedlist: UIButton!
     
     @IBOutlet var acceptlist: UIButton!
    // @IBOutlet var sharereceivedlist: UIButton! //Means SAVE, don't want to reassign button
     
 
-    @IBOutlet var addtofavs: UIButton!
+
     
+    @IBOutlet var addtofavs: UIImageView!
    
     
     @IBOutlet var receivedlistnamebutton: UILabel!
-    
-    
-    @IBOutlet var listnote: UIButton!
-    
-    
-    
+
     
     @IBOutlet var container: UIView!
     
@@ -46,9 +41,17 @@ class ReceivedListOld: UITableViewCell {
     @IBOutlet var colorcodeviewoutlet: UIView!
     
     
+    @IBOutlet var newlisttype: UIImageView!
+    
+    @IBOutlet var storyline: UIView!
     
     
-    @IBOutlet var iconimage: UIImageView!
+    @IBOutlet var progresscircle: KDCircularProgress!
+
+    @IBOutlet var percents: UILabel!
+    
+    @IBOutlet var acceptlabel: UILabel!
+    
     
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
         return UIColor(

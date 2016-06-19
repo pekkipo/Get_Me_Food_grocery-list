@@ -302,6 +302,11 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     /////////////
     
+    override func viewWillDisappear(animated: Bool) {
+        
+        additemstoarrayandsave()
+    }
+    
     
     func additemstoarrayandsave() {
     
@@ -942,6 +947,8 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             popoverViewController.senderVC = "ToDoList"
             
             popoverViewController.listtype = "ToDo"
+            
+            popoverViewController.listtoupdate = currenttodolist
             
         }
 
