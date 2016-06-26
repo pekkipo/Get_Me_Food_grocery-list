@@ -203,6 +203,7 @@
 		14C71A051C5C2A1A00358144 /* ReceivedListOldx.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C71A071C5C2A1A00358144 /* ReceivedListOldx.xib */; };
 		14C7CD871BFE5CEF00775B06 /* ManageFavouritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7CD861BFE5CEF00775B06 /* ManageFavouritesVC.swift */; };
 		14C7CD891BFE5D1500775B06 /* EditFavItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7CD881BFE5D1500775B06 /* EditFavItemsCell.swift */; };
+		14CBAD5C1D201A3800984EA2 /* EventsTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBAD5B1D201A3800984EA2 /* EventsTabController.swift */; };
 		14D849951BFA8E2200DC30CE /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D849921BFA8E2200DC30CE /* FBSDKCoreKit.framework */; };
 		14D849961BFA8E2200DC30CE /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D849931BFA8E2200DC30CE /* FBSDKLoginKit.framework */; };
 		14D849971BFA8E2200DC30CE /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D849941BFA8E2200DC30CE /* FBSDKShareKit.framework */; };
@@ -440,6 +441,7 @@
 		14C71A0B1C5C2A3400358144 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/ReceivedListOldx.strings; sourceTree = "<group>"; };
 		14C7CD861BFE5CEF00775B06 /* ManageFavouritesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageFavouritesVC.swift; sourceTree = "<group>"; };
 		14C7CD881BFE5D1500775B06 /* EditFavItemsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFavItemsCell.swift; sourceTree = "<group>"; };
+		14CBAD5B1D201A3800984EA2 /* EventsTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsTabController.swift; sourceTree = "<group>"; };
 		14D849921BFA8E2200DC30CE /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../../../Documents/FacebookSDKs-iOS-20150813/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		14D849931BFA8E2200DC30CE /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../../Documents/FacebookSDKs-iOS-20150813/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		14D849941BFA8E2200DC30CE /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../../Documents/FacebookSDKs-iOS-20150813/FBSDKShareKit.framework"; sourceTree = "<group>"; };
@@ -765,6 +767,7 @@
 				14ADB9961BB97B0A00CDF260 /* AddItemWithOptions.swift */,
 				14339EDD1BE960A000722440 /* LoginInfoCell.swift */,
 				147BA56C1B5DB68D007FAABB /* ShoppingListCreation.swift */,
+				14CBAD5B1D201A3800984EA2 /* EventsTabController.swift */,
 				141F04FB1D01CB720014AFDF /* B68UIFloatLabelTextField.swift */,
 				1480CE2B1CB9029200F1C36C /* File1.swift */,
 				14861A2F1C4979E400F08728 /* HelperVC.swift */,
@@ -1142,6 +1145,7 @@
 				146BB3B21C69241D00C49DFF /* GeneralHelpVC.swift in Sources */,
 				147BA56D1B5DB68D007FAABB /* ShoppingListCreation.swift in Sources */,
 				146C444D1BA7111600FF610F /* LoginViewController.swift in Sources */,
+				14CBAD5C1D201A3800984EA2 /* EventsTabController.swift in Sources */,
 				14A70F941BFBE08B00D063A6 /* CustomItemsPopup.swift in Sources */,
 				14585DA71BB5E1070030C609 /* ShareFromContactsCell.swift in Sources */,
 				14BB8A681D16B8B3001F9466 /* NVActivityIndicatorAnimationBallClipRotatePulse.swift in Sources */,

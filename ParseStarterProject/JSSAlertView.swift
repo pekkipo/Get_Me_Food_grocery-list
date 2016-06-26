@@ -43,7 +43,7 @@ class JSSAlertView: UIViewController {
     enum TextColorTheme {
         case Dark, Light
     }
-    var darkTextColor = UIColorFromHex(0x000000, alpha: 0.75)
+    var darkTextColor = UIColorFromHex(0x898989, alpha: 0.75)
     var lightTextColor = UIColorFromHex(0xffffff, alpha: 0.9)
     
     enum ActionType {
@@ -100,26 +100,26 @@ class JSSAlertView: UIViewController {
         switch type {
         case .Title:
             self.titleFont = fontStr
-            if let font = UIFont(name: self.titleFont, size: 24) {
+            if let font = UIFont(name: self.titleFont, size: 18) {
                 self.titleLabel.font = font
             } else {
-                self.titleLabel.font = UIFont.systemFontOfSize(24)
+                self.titleLabel.font = UIFont.systemFontOfSize(18)
             }
         case .Text:
             if self.textView != nil {
                 self.textFont = fontStr
-                if let font = UIFont(name: self.textFont, size: 16) {
+                if let font = UIFont(name: self.textFont, size: 14) {
                     self.textView.font = font
                 } else {
-                    self.textView.font = UIFont.systemFontOfSize(16)
+                    self.textView.font = UIFont.systemFontOfSize(14)
                 }
             }
         case .Button:
             self.buttonFont = fontStr
-            if let font = UIFont(name: self.buttonFont, size: 24) {
+            if let font = UIFont(name: self.buttonFont, size: 20) {
                 self.buttonLabel.font = font
             } else {
-                self.buttonLabel.font = UIFont.systemFontOfSize(24)
+                self.buttonLabel.font = UIFont.systemFontOfSize(20)
             }
         }
         // relayout to account for size changes

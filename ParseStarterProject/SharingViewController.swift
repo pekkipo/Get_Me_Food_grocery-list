@@ -28,6 +28,9 @@ class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableView
 
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
+    var succespict : UIImage = UIImage(named: "4CheckMark")!
+    var errorpict : UIImage = UIImage(named: "4Close")!
+    
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -248,7 +251,8 @@ class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableView
         var dataPath = NSBundle.mainBundle().pathForResource("sample_data", ofType: "json")
         var data = NSData.dataWithContentsOfFile(dataPath!, options: NSDataReadingOptions.DataReadingUncached, error: err!)
         */
-        
+        indicator.hidden = false
+        indicator.startAnimation()
         
         sampleData.removeAll(keepCapacity: true)
         
@@ -274,9 +278,14 @@ class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableView
                         }
                         
                     }
+                    
+                    self.indicator.hidden = true
+                    self.indicator.stopAnimation()
                 }
             } else {
                 // Log details of the failure
+                self.indicator.hidden = true
+                self.indicator.stopAnimation()
                 print("Error: \(error!) \(error!.userInfo)")
             }
         }
@@ -323,36 +332,40 @@ class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableView
     
     func pause() {
         
-        
+        /*
         self.view.addSubview(progressHUD)
         
         progressHUD.setup()
         progressHUD.show()
         
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+ */
+        loading_simple(true)
     }
     
     
     func restore() {
-        
+        /*
         progressHUD.hide()
         
         
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
+ */
+        loading_simple(false)
     }
     
     func displaySuccessAlert(title: String, message: String) {
         
-        let customIcon = UIImage(named: "ListSentSuccess")
-        let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "OK", color: UIColorFromHex(0x31797D, alpha: 0.9), iconImage: customIcon)
-        alertview.setTextTheme(.Light)
+        let customIcon = UIImage(named: "4SentSuccess")
+        let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "OK", color: UIColorFromHex(0xFFFFFF, alpha: 1), iconImage: customIcon)
+        alertview.setTextTheme(.Dark)
         //alertview.addAction(closeCallback)
         alertview.addCancelAction(closeCallback)
     }
     
     func displayFailAlert(title: String, message: String) {
         
-        let customIcon = UIImage(named: "FailAlert")
+        let customIcon = UIImage(named: "4SentFail")
         let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "OK", color: UIColorFromHex(0xF23D55, alpha: 0.9), iconImage: customIcon)
         alertview.setTextTheme(.Light)
        // alertview.addAction(cancelCallback)
@@ -1670,18 +1683,13 @@ class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableView
                         
                         var push:PFPush = PFPush()
                         push.setQuery(pushQuery)
-                        //push.setChannel("Reload")
-                        
-                        //var alert : NSString = "\(currentusername) is going shopping! Maybe you need something to buy?"
-                        
-                       // var alert : String = "Incoming shopping list from \(currentusername) (\(currentuseremail))"
+
                         NSLocalizedString("listwassent", comment: "")
                         
                         var alert : String = "\(NSLocalizedString("incomingpush", comment: "")) \(currentusername) (\(currentuseremail))"
-                        
-                        //  var data:NSDictionary = ["alert":alert,"badge":"0","content-available":"1","sound":""]
+
                         var data:NSDictionary = ["alert":alert,"badge":"Increment", "sound":"default"]
-                        // push.setMessage(alert)
+
                         push.setData(data as [NSObject : AnyObject])
                         push.sendPushInBackground()
                         
@@ -2590,6 +2598,10 @@ func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
+        
+        lineview.backgroundColor = UIColorFromRGB(0x31797D)
+        name.textInputView.tintColor = UIColorFromRGB(0x31797D)
+        
         return
     }
     
@@ -2598,15 +2610,167 @@ func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        if name.text! == "" {
+            lineview.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            
+        } else {
+            lineview.backgroundColor = UIColorFromRGB(0x31797D)
+        }
+
+        
         textField.resignFirstResponder()
         return true
     }
     //myTextField.delegate = self
     ///
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+  
+    
+    
+    /// show loading function 
+    func changeloadingresult(success: Bool, label: UILabel, imageview: UIImageView, indicator : NVActivityIndicatorView)
+    {
+        if success {
+            
+            indicator.hidden = true
+            
+            label.text = NSLocalizedString("successload", comment: "")
+            imageview.image = succespict
+            //imageview.fadeIn()
+            imageview.alpha = 1
+            
+        } else {
+            
+            indicator.hidden = true
+            
+            imageview.image = errorpict
+           // imageview.fadeIn()
+            imageview.alpha = 1
+
+            label.text = NSLocalizedString("errorload", comment: "")
+            
+        }
+        
     }
+    
+    func loading(show: Bool) {
+        
+        
+        let dimmer : UIView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
+        dimmer.backgroundColor = UIColorFromRGB(0x2A2F36)
+        dimmer.alpha = 0.3
+        
+        let viewframe = CGRectMake(self.view.frame.width / 2 - 50, self.view.frame.height / 2 - 50, 100, 100)
+        let loadingview: UIView = UIView(frame: viewframe);
+        
+        let indicator : NVActivityIndicatorView =  NVActivityIndicatorView(frame: CGRectMake(22, 8, 56, 56), type: .BallSpinFadeLoader, color: UIColorFromRGB(0x1EB2BB))
+        
+        let labelview = UILabel(frame: CGRectMake(8, 71, 84, 26))
+        
+        let imageview = UIImageView(frame: CGRectMake(22, 8, 56, 56))
+        imageview.alpha = 0
+        
+        loadingview.addSubview(indicator)
+        loadingview.addSubview(labelview)
+        loadingview.addSubview(imageview)
+        
+        dimmer.tag = 871
+        loadingview.tag = 872
+        labelview.tag = 873
+        imageview.tag = 874
+        
+        
+        if show {
+        
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+            
+        self.view.addSubview(dimmer)
+        dimmer.sendSubviewToBack(self.view)
+        self.view.addSubview(loadingview)
+            
+        
+            
+        } else {
+            
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            
+            let triggerTime = (Int64(NSEC_PER_SEC) * 2)
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
+                if let viewWithTag = self.view.viewWithTag(871) {
+                    viewWithTag.removeFromSuperview()
+                }
+                if let viewWithTag = self.view.viewWithTag(872) {
+                    viewWithTag.removeFromSuperview()
+                }
+
+            })
+            /*
+            if let viewWithTag = self.view.viewWithTag(871) {
+                viewWithTag.removeFromSuperview()
+            }
+            if let viewWithTag = self.view.viewWithTag(872) {
+                viewWithTag.removeFromSuperview()
+            }
+            */
+            
+            
+            
+        }
+        
+    }
+    
+    
+    func loading_simple(show: Bool) {
+        
+        
+        let dimmer : UIView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
+        dimmer.backgroundColor = UIColorFromRGB(0x2A2F36)
+        dimmer.alpha = 0.3
+        
+        let viewframe = CGRectMake(self.view.frame.width / 2 - 50, self.view.frame.height / 2 - 50, 100, 100)
+        let loadingview: UIView = UIView(frame: viewframe);
+        loadingview.backgroundColor = UIColor.whiteColor()
+        loadingview.layer.cornerRadius = 12
+        
+        let indicator : NVActivityIndicatorView =  NVActivityIndicatorView(frame: CGRectMake(20, 20, 60, 60), type: NVActivityIndicatorType.BallClipRotate, color: UIColorFromRGB(0x1EB2BB))
+        
+        
+        loadingview.addSubview(indicator)
+        
+        
+        
+        dimmer.tag = 871
+        loadingview.tag = 872
+
+        
+        
+        if show {
+            
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+            self.view.addSubview(dimmer)
+            dimmer.sendSubviewToBack(self.view)
+            self.view.addSubview(loadingview)
+            
+            indicator.startAnimation()
+
+        } else {
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+             if let viewWithTag = self.view.viewWithTag(871) {
+             viewWithTag.removeFromSuperview()
+             }
+             if let viewWithTag = self.view.viewWithTag(872) {
+             viewWithTag.removeFromSuperview()
+             }
+            
+        }
+        
+    }
+    
+    
+    @IBOutlet var lineview: UIView!
+    
+    @IBOutlet var indicator: NVActivityIndicatorView!
     
     
     override func viewDidLoad() {
@@ -2616,11 +2780,11 @@ func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo
         
         
         name.delegate = self
-       name.leftTextMargin = 5
+        name.leftTextMargin = 1//5
         
-        name.layer.borderWidth = 1
-        name.layer.borderColor = UIColorFromRGB(0xE8E8E8).CGColor
-        name.layer.cornerRadius = 4
+        //name.layer.borderWidth = 1
+        //name.layer.borderColor = UIColorFromRGB(0xE8E8E8).CGColor
+       // name.layer.cornerRadius = 4
         
         
        // self.generateData()

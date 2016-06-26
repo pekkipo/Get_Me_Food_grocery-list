@@ -140,6 +140,8 @@
 
 "incomingtodopush" = "Incoming To Do list from"; // Eingegangene To-Do-liste Liste von
 
+
+
 "unknownemail" = "Unknown email"; // Unbekkante e-mail
 
 "choosecontacts" = "Choose from contacts"; // Waehlen Sie von der Kontaktliste jemanden aus
@@ -887,3 +889,5 @@
 "spentsum" = "Spent:";
 
 "something" = "Create category";
+
+"listwasaccepted" = "has accepted your list";

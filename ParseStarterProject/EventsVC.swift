@@ -634,7 +634,11 @@ class EventsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        /*
+        if receivedeventscount > 0 {
+            tabBarItem.badgeValue = String(receivedeventscount)
+        }
+        */
         menuitem.target = self.revealViewController()
         menuitem.action = #selector(SWRevealViewController.revealToggle(_:)) // wtf?
         
@@ -653,7 +657,7 @@ class EventsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
 
        
         
-        self.view.backgroundColor = UIColorFromRGB(0xF1F1F1)
+       // self.view.backgroundColor = UIColorFromRGB(0xFAFAFA)
         
         // Do any additional setup after loading the view.
         

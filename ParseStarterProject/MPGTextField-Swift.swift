@@ -133,14 +133,14 @@ class MPGTextField_Swift: UITextField, UITextFieldDelegate, UITableViewDelegate,
             else{
                 //PopoverSize frame has not been set. Use default parameters instead.
                 var frameForPresentation = self.frame
-                frameForPresentation.origin.y += self.frame.size.height + 65//self.superview!.frame.size.height;
+                frameForPresentation.origin.y += self.frame.size.height + 120//self.superview!.frame.size.height;
                 frameForPresentation.size.height = 200
                 self.tableViewController!.tableView.frame = frameForPresentation
             }
             // ALMOST. now it is higher than required
             //try adding the height
             var frameForPresentation = self.frame//self.superview!.frame //self.frame
-            frameForPresentation.origin.y += self.frame.size.height + 65;//self.frame.size.height;
+            frameForPresentation.origin.y += self.frame.size.height + 120//65;//self.frame.size.height;
             frameForPresentation.size.height = 200;
             tableViewController!.tableView.frame = frameForPresentation
             

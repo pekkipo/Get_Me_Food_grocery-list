@@ -2269,7 +2269,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
             //if let foundlist = find(lazy(UserShopLists).map({ $0.listid }), listtosave!) {
               if let foundlist = UserShopLists.map({ $0.listid }).lazy.indexOf(listtosave!) {
                 UserShopLists[foundlist].listissaved = true
-                    UserShopLists[foundlist].listconfirmreception = true
+                UserShopLists[foundlist].listconfirmreception = true
                 }
                 
                  cell.receivedlistnamebutton.enabled = true
@@ -2299,6 +2299,20 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         shopList["confirmReception"] = true // WTF, I already had isSaved!
                         
                         
+                        var receiverUser = UserLists[indexPathSave!.row].listreceivedfrom[0]
+                        
+                        
+                        var currentusername = String()
+                        ///
+                        
+                        
+                        if PFUser.currentUser()?["name"] != nil {
+                            currentusername = PFUser.currentUser()?["name"] as! String
+                        } else {
+                            currentusername = NSLocalizedString("AnonUser", comment: "")
+                        }
+                        
+                        
                         /////////
                         
                         //shopList.pinInBackground()
@@ -2306,6 +2320,19 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         shopList.pinInBackgroundWithBlock({ (success, error) -> Void in
                             if success {
                                 self.restoresaving()
+
+                                let userQuery = PFUser.query()
+                                userQuery!.whereKey("objectId", equalTo: receiverUser)
+                                let pushQuery = PFInstallation.query()
+                                pushQuery!.whereKey("user", matchesQuery: userQuery!)
+                                var push:PFPush = PFPush()
+                                push.setQuery(pushQuery)
+                                NSLocalizedString("listwassent", comment: "")
+                                var alert : String = "\(currentusername) \(NSLocalizedString("listwasaccepted", comment: ""))"
+                                var data:NSDictionary = ["alert":alert,"badge":"Increment", "sound":"default"]
+                                push.setData(data as [NSObject : AnyObject])
+                                push.sendPushInBackground()
+
                             } else {
                                 print("Failed!")
                             }
@@ -2356,9 +2383,37 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         todoList["confirmReception"] = true // WTF, I already had isSaved!
                         
                         self.restoresaving()
+                        
+                        var receiverUser = UserLists[indexPathSave!.row].listreceivedfrom[0]
+                        
+                        
+                        var currentusername = String()
+                        ///
+                        
+                        
+                        if PFUser.currentUser()?["name"] != nil {
+                            currentusername = PFUser.currentUser()?["name"] as! String
+                        } else {
+                            currentusername = NSLocalizedString("AnonUser", comment: "")
+                        }
+                        
+                        
+                        
                         todoList.pinInBackgroundWithBlock({ (success, error) -> Void in
                             if success {
                                 self.restoresaving()
+                                
+                                let userQuery = PFUser.query()
+                                userQuery!.whereKey("objectId", equalTo: receiverUser)
+                                let pushQuery = PFInstallation.query()
+                                pushQuery!.whereKey("user", matchesQuery: userQuery!)
+                                var push:PFPush = PFPush()
+                                push.setQuery(pushQuery)
+                                NSLocalizedString("listwassent", comment: "")
+                                var alert : String = "\(currentusername) \(NSLocalizedString("listwasaccepted", comment: ""))"
+                                var data:NSDictionary = ["alert":alert,"badge":"Increment", "sound":"default"]
+                                push.setData(data as [NSObject : AnyObject])
+                                push.sendPushInBackground()
                             } else {
                                 print("Failed!")
                             }
@@ -2426,10 +2481,35 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     /////////
                     
                     //shopList.pinInBackground()
+                    var receiverUser = UserShopLists[indexPathSave!.row].listreceivedfrom[0]
+                    
+                    
+                    var currentusername = String()
+                    ///
+                    
+                    
+                    if PFUser.currentUser()?["name"] != nil {
+                        currentusername = PFUser.currentUser()?["name"] as! String
+                    } else {
+                        currentusername = NSLocalizedString("AnonUser", comment: "")
+                    }
+                    
+                    
                     
                     shopList.pinInBackgroundWithBlock({ (success, error) -> Void in
                         if success {
                             self.restoresaving()
+                            let userQuery = PFUser.query()
+                            userQuery!.whereKey("objectId", equalTo: receiverUser)
+                            let pushQuery = PFInstallation.query()
+                            pushQuery!.whereKey("user", matchesQuery: userQuery!)
+                            var push:PFPush = PFPush()
+                            push.setQuery(pushQuery)
+                            NSLocalizedString("listwassent", comment: "")
+                            var alert : String = "\(currentusername) \(NSLocalizedString("listwasaccepted", comment: ""))"
+                            var data:NSDictionary = ["alert":alert,"badge":"Increment", "sound":"default"]
+                            push.setData(data as [NSObject : AnyObject])
+                            push.sendPushInBackground()
                         } else {
                             print("Failed!")
                         }
@@ -2486,9 +2566,35 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     todoList["confirmReception"] = true // WTF, I already had isSaved!
                     
                     
+                    var receiverUser = UserToDoLists[indexPathSave!.row].listreceivedfrom[0]
+                    
+                    
+                    var currentusername = String()
+                    ///
+                    
+                    
+                    if PFUser.currentUser()?["name"] != nil {
+                        currentusername = PFUser.currentUser()?["name"] as! String
+                    } else {
+                        currentusername = NSLocalizedString("AnonUser", comment: "")
+                    }
+                    
+                    
+                    
                     todoList.pinInBackgroundWithBlock({ (success, error) -> Void in
                         if success {
                             self.restoresaving()
+                            let userQuery = PFUser.query()
+                            userQuery!.whereKey("objectId", equalTo: receiverUser)
+                            let pushQuery = PFInstallation.query()
+                            pushQuery!.whereKey("user", matchesQuery: userQuery!)
+                            var push:PFPush = PFPush()
+                            push.setQuery(pushQuery)
+                            NSLocalizedString("listwassent", comment: "")
+                            var alert : String = "\(currentusername) \(NSLocalizedString("listwasaccepted", comment: ""))"
+                            var data:NSDictionary = ["alert":alert,"badge":"Increment", "sound":"default"]
+                            push.setData(data as [NSObject : AnyObject])
+                            push.sendPushInBackground()
                         } else {
                             print("Failed!")
                         }
@@ -5241,6 +5347,11 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     receivedcell.progresscircle.progressColors = [changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).pcol]
                     receivedcell.progresscircle.angle = changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).theangle
                     //
+                    
+                    
+                    if UserLists[indexPath.row].listissaved != true {
+                       receivedcell.selectionStyle = UITableViewCellSelectionStyle.None
+                    }
                     
                     
                     return receivedcell

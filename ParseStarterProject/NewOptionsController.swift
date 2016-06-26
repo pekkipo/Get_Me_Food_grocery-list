@@ -962,10 +962,22 @@ class NewOptionsController: UIViewController, UITableViewDelegate, UITableViewDa
     // end of history
     
     // MARK: - SEARCH
+    var searchshown : Bool = false
     
     @IBAction func showsearch(sender: AnyObject) {
         
+      //  configureCustomSearchController()
+        
+        if !searchshown {
         configureCustomSearchController()
+            searchshown = true
+        } else {
+        self.tableView.tableHeaderView?.removeFromSuperview()
+            self.tableView.tableHeaderView?.removeFromSuperview()
+            tableView.reloadData()
+            searchshown = false
+        }
+        
     }
     
     @IBAction func doneediting(sender: AnyObject) {
@@ -978,7 +990,7 @@ class NewOptionsController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func configureCustomSearchController() {
-        customSearchController = CustomSearchController(searchResultsController: self, searchBarFrame: CGRectMake(0.0, 0.0, tableView.frame.size.width, 40.0), searchBarFont: UIFont(name: "HelveticaNeue-Light", size: 14.0)!, searchBarTextColor: UIColorFromRGB(0x61C791), searchBarTintColor: UIColorFromRGB(0x2A2F36))
+        customSearchController = CustomSearchController(searchResultsController: self, searchBarFrame: CGRectMake(0.0, 0.0, tableView.frame.size.width, 40.0), searchBarFont: UIFont(name: "AvenirNext-Regular", size: 12.0)!, searchBarTextColor: UIColorFromRGB(0x31797D), searchBarTintColor: UIColorFromRGB(0xFAFAFA))
         
         customSearchController.customSearchBar.placeholder = NSLocalizedString("Search1", comment: "Search")
         tableView.tableHeaderView = customSearchController.customSearchBar
@@ -1077,9 +1089,7 @@ class NewOptionsController: UIViewController, UITableViewDelegate, UITableViewDa
     // end of search
     
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
+ 
 
     
     @IBOutlet var segmentedcontrol: UISegmentedControl!
@@ -1109,7 +1119,10 @@ class NewOptionsController: UIViewController, UITableViewDelegate, UITableViewDa
             searchoutlet.enabled = false
             searchoutlet.tintColor = UIColorFromRGB(0x31797D)
             
-            
+            self.tableView.tableHeaderView?.removeFromSuperview()
+            self.tableView.tableHeaderView?.removeFromSuperview()
+            tableView.reloadData()
+            searchshown = false
             
             
             break;
@@ -1117,6 +1130,12 @@ class NewOptionsController: UIViewController, UITableViewDelegate, UITableViewDa
             searchoutlet.enabled = false
             searchoutlet.tintColor = UIColorFromRGB(0x31797D)
             break;
+            
+            self.tableView.tableHeaderView?.removeFromSuperview()
+            self.tableView.tableHeaderView?.removeFromSuperview()
+            tableView.reloadData()
+            searchshown = false
+            
         default:
             break
         }
@@ -1142,8 +1161,8 @@ class NewOptionsController: UIViewController, UITableViewDelegate, UITableViewDa
         histitemsretrieval()
          onlydefaults()
         
-        segmview.layer.cornerRadius = 8
-         tableView.layer.cornerRadius = 8
+        //segmview.layer.cornerRadius = 8
+         //tableView.layer.cornerRadius = 8
 
         // Do any additional setup after loading the view.
     }

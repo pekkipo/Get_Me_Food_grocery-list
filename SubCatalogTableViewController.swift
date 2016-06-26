@@ -914,10 +914,7 @@ class SubCatalogTableViewController: UITableViewController, UISearchResultsUpdat
         performSegueWithIdentifier("backtooptions", sender: self)
     }
     
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

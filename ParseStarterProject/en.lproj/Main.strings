@@ -234,7 +234,7 @@
 "Mbg-ky-5Av.normalTitle" = "Save";
 
 /* Class = "UITextField"; placeholder = "Start typing email"; ObjectID = "N0l-J6-bPr"; */
-"N0l-J6-bPr.placeholder" = "Start typing email";
+"N0l-J6-bPr.placeholder" = "START TYPING APP USER EMAIL";
 
 /* Class = "UILabel"; text = "Russian"; ObjectID = "N77-j9-9j7"; */
 "N77-j9-9j7.text" = "Russian";

@@ -80,7 +80,7 @@ class ManageCategoriesVC: UIViewController, UITableViewDelegate, UITableViewData
         newcatname.text = ""
         newcatimage.image = catalogcategories[0].catimage
         
-        textline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+       // textline.backgroundColor = UIColorFromRGB(0xE0E0E0)
         
         tableView.reloadData()
         
@@ -231,7 +231,7 @@ class ManageCategoriesVC: UIViewController, UITableViewDelegate, UITableViewData
     func textFieldDidBeginEditing(textField: UITextField) {
         
         //here
-        textline.backgroundColor = UIColorFromRGB(0x31797D)
+       // textline.backgroundColor = UIColorFromRGB(0x31797D)
         newcatname.textInputView.tintColor = UIColorFromRGB(0x31797D)
         
         return
@@ -245,10 +245,10 @@ class ManageCategoriesVC: UIViewController, UITableViewDelegate, UITableViewData
         
         //here
         if newcatname.text! == "" {
-            textline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+         //   textline.backgroundColor = UIColorFromRGB(0xE0E0E0)
             
         } else {
-            textline.backgroundColor = UIColorFromRGB(0x31797D)
+          //  textline.backgroundColor = UIColorFromRGB(0x31797D)
         }
         
         textField.resignFirstResponder()

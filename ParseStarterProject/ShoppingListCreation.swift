@@ -735,6 +735,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             if let foundcategory = catalogcategories.map({ $0.catId }).lazy.indexOf((self.catalogitemtochoose?.itemcategory.catId)!) {
                 
                 setcategoryinscroller("catalog", catindex: foundcategory)
+                // hereman
+                quickcategory = catalogcategories[foundcategory]
+                quickcategoryUUID = catalogcategories[foundcategory].catId
                 
             }
             
@@ -844,6 +847,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     func getinfofrompop(unit: String, quantity: String, perunit: String, price: String, totalsum: String, icon: UIImage, category: Category, catUUID: String) {
         
+        
+        
         quickunit = unit
         quickqty = quantity
         
@@ -942,6 +947,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             getinfofrompop(quickunit, quantity: popqty.text!, perunit: quickperunit, price: quickpriceoutlet.text!, totalsum: quicksum.text!, icon: quickcategory.catimage, category: quickcategory, catUUID: quickcategoryUUID)
         }
         
+        print(quickqty)
+        print(popqty.text!)
+        
       
         
         let shopItem = PFObject(className:"shopItems")
@@ -955,7 +963,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         shopItem["belongsToUser"] = PFUser.currentUser()!.objectId!
         
         shopItem["itemNote"] = ""
-        shopItem["itemQuantity"] = quickqty//"0"
+        shopItem["itemQuantity"] = popqty.text//quickqty//"0"
         shopItem["itemPriceS"] = self.quickpriceoutlet.text//0.0
         shopItem["TotalSumS"] = self.quicksum.text//0.0
         shopItem["chosenFromHistory"] = false
@@ -999,7 +1007,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             let itemname = chosencatalogitem.itemname
             let itemnote = ""
-            let itemquantity = quickqty//""
+            let itemquantity = popqty.text!//quickqty//""
             let itemprice = self.quickpriceoutlet.text!//0.0
             let itemischecked = false
             let itemimagepath = ""//self.imagespaths[indexPathCatalogProduct!.row]//"Banana.png"//self.imagePath
@@ -1204,7 +1212,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             shopItem["itemName"] = autocomplete.text//quickitemadd.text
             shopItem["itemImage"] = NSNull()//imageFile
             shopItem["itemNote"] = ""
-            shopItem["itemQuantity"] = quickqty//"0"
+            shopItem["itemQuantity"] = popqty.text//quickqty//"0"
             shopItem["itemPriceS"] = self.quickpriceoutlet.text//0.0
             shopItem["TotalSumS"] = self.quicksum.text//0.0
             
@@ -1261,7 +1269,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             var itemname = autocomplete.text!//quickitemadd.text
             var itemnote = ""
-            var itemquantity = quickqty//""
+            var itemquantity = popqty.text!//quickqty//""
             var itemprice = self.quicksum.text!//0.0
             var itemoneunitprice = self.quickpriceoutlet.text!//0.0
             //var itemimage = imageFile
@@ -2378,6 +2386,16 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         navbutton.imageView!.transform = CGAffineTransformMakeRotation(CGFloat(2*M_PI))
        settingsopen = false
     }
+    
+    
+    
+    @IBAction func showsettingsbutton(sender: AnyObject) {
+        
+        
+        clickthetitle()
+        
+    }
+    
     
     func closesets() {
         
@@ -3897,6 +3915,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                                                button.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
                         self.navigationItem.titleView = button
                         */
+                        // NAV TITLE AS A BUTTON
+                        /*
                         self.navbutton.frame = CGRectMake((((self.view.frame.size.width) / 2) - 130),0,260,40) as CGRect
                         self.navbutton.setTitle(object["ShopListName"] as! String, forState: UIControlState.Normal)
                         self.navbutton.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
@@ -3918,7 +3938,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                         
                         self.navbutton.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
                         self.navigationItem.titleView = self.navbutton
-
+                        */
                         
                         self.tableView.reloadData()
                         
@@ -6246,16 +6266,17 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     var settingsopen : Bool = false
     
-    func clickthetitle(button: UIButton) {
+   // func clickthetitle(button: UIButton) {
+    func clickthetitle() {
         
         if !settingsopen {
             
-            navbutton.imageView!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+            //navbutton.imageView!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
             showsettings()
             settingsopen = true
             
         } else if settingsopen {
-            navbutton.imageView!.transform = CGAffineTransformMakeRotation(CGFloat(2*M_PI))
+            //navbutton.imageView!.transform = CGAffineTransformMakeRotation(CGFloat(2*M_PI))
             closesets()
             settingsopen = false
             
@@ -7002,6 +7023,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                // noitemview.hidden = false
            
            // let button =  UIButton(type: .Custom)
+            // NAV TITILE AS A BUTTON
+            /*
             navbutton.frame = CGRectMake((((self.view.frame.size.width) / 2) - 130),0,260,40) as CGRect
             navbutton.setTitle(NSLocalizedString("listshop", comment: ""), forState: UIControlState.Normal)
             navbutton.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
@@ -7023,7 +7046,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             navbutton.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
             self.navigationItem.titleView = navbutton
-            
+            */
             showprogress()
             
         } else {

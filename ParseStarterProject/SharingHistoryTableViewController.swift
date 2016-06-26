@@ -53,8 +53,8 @@ class SharingHistoryTableViewController: UITableViewController {
     var accepted : UIImage = UIImage(named: "4CheckMark")!
     var notaccepted : UIImage = UIImage(named: "notaccepted")!
     
-    var shopicon : UIImage = UIImage(named: "BlackCart")!
-    var todoicon: UIImage = UIImage(named: "BlackDoH25")!
+    var shopicon : UIImage = UIImage(named: "4ShopType")!
+    var todoicon: UIImage = UIImage(named: "4ToDoType")!
     
     func displayAlert(title: String, message: String) {
         
@@ -718,10 +718,7 @@ class SharingHistoryTableViewController: UITableViewController {
     }
     
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
-    
+
     
     @IBOutlet var menuitem: UIBarButtonItem!
     
@@ -776,6 +773,15 @@ class SharingHistoryTableViewController: UITableViewController {
     }
 
     
+    func UIColorFromRGB(rgbValue: UInt) -> UIColor {
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("sharinghistorycell", forIndexPath: indexPath) as! SharingHistoryCell
 
@@ -795,9 +801,11 @@ class SharingHistoryTableViewController: UITableViewController {
         
         if ListsArray[indexPath.row][5] as! Bool == true {
             cell.issavedlabel.text = NSLocalizedString("accepted", comment: "")
+            cell.issavedlabel.textColor = UIColorFromRGB(0x61C791)
             cell.iconimage.image = accepted
         } else {
             cell.issavedlabel.text = NSLocalizedString("notaccepted", comment: "")
+            cell.issavedlabel.textColor = UIColorFromRGB(0xF23D55)
             cell.iconimage.image = notaccepted
         }
         

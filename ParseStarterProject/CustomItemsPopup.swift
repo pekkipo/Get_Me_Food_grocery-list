@@ -340,7 +340,7 @@ class CustomItemsPopup: UIViewController, UITableViewDelegate, UITableViewDataSo
             self.newitemname.text = ""
             self.newitemimage.image = imagestochoose[0].itemimage
             
-             self.textline.backgroundColor = self.UIColorFromRGB(0xE0E0E0)
+          //   self.textline.backgroundColor = self.UIColorFromRGB(0xE0E0E0)
             
         self.tableView.reloadData()
         })
@@ -550,7 +550,7 @@ class CustomItemsPopup: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func textFieldDidBeginEditing(textField: UITextField) {
         
-        textline.backgroundColor = UIColorFromRGB(0x31797D)
+        //textline.backgroundColor = UIColorFromRGB(0x31797D)
         
         return
     }
@@ -562,10 +562,10 @@ class CustomItemsPopup: UIViewController, UITableViewDelegate, UITableViewDataSo
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         if newitemname.text! == "" {
-            textline.backgroundColor = UIColorFromRGB(0xE0E0E0)
+            //textline.backgroundColor = UIColorFromRGB(0xE0E0E0)
             
         } else {
-            textline.backgroundColor = UIColorFromRGB(0x31797D)
+          //  textline.backgroundColor = UIColorFromRGB(0x31797D)
         }
         
         textField.resignFirstResponder()
