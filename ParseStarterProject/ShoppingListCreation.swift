@@ -622,6 +622,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         checkeditemsqty = 0
         
+        itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsoverallqty))/\(String(checkeditemsqty))"
+        
         summationcheckedPrices()
         
         showprogress()
@@ -841,6 +843,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     var quickcategory: Category = catalogcategories[0]
     var quickcategoryUUID = catalogcategories[0].catId
     var isdefaultpicture : Bool = true
+    
+    
+    @IBOutlet var quickdescription: UITextView!
 
     //var quickicon : UIImage = UIImage(named: "DefaultProduct")!
     
@@ -962,7 +967,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         shopItem["ItemsList"] = currentList
         shopItem["belongsToUser"] = PFUser.currentUser()!.objectId!
         
-        shopItem["itemNote"] = ""
+        shopItem["itemNote"] = quickdescription.text//""
         shopItem["itemQuantity"] = popqty.text//quickqty//"0"
         shopItem["itemPriceS"] = self.quickpriceoutlet.text//0.0
         shopItem["TotalSumS"] = self.quicksum.text//0.0
@@ -1006,7 +1011,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             let itemId = catalogitemuuid
             
             let itemname = chosencatalogitem.itemname
-            let itemnote = ""
+            let itemnote = self.quickdescription.text!//""
             let itemquantity = popqty.text!//quickqty//""
             let itemprice = self.quickpriceoutlet.text!//0.0
             let itemischecked = false
@@ -1104,6 +1109,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         quickpriceoutlet.text = ""
         quicksum.text = ""
+        
+        quickdescription.text = ""
         
         unline.backgroundColor = UIColorFromRGB(0xE0E0E0)
         perunline.backgroundColor = UIColorFromRGB(0xE0E0E0)
@@ -1211,7 +1218,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             shopItem["itemUUID"] = itemuuid
             shopItem["itemName"] = autocomplete.text//quickitemadd.text
             shopItem["itemImage"] = NSNull()//imageFile
-            shopItem["itemNote"] = ""
+            shopItem["itemNote"] = quickdescription.text
             shopItem["itemQuantity"] = popqty.text//quickqty//"0"
             shopItem["itemPriceS"] = self.quickpriceoutlet.text//0.0
             shopItem["TotalSumS"] = self.quicksum.text//0.0
@@ -1268,7 +1275,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             var itemid = itemuuid
             
             var itemname = autocomplete.text!//quickitemadd.text
-            var itemnote = ""
+            var itemnote = quickdescription.text!
             var itemquantity = popqty.text!//quickqty//""
             var itemprice = self.quicksum.text!//0.0
             var itemoneunitprice = self.quickpriceoutlet.text!//0.0
@@ -1357,6 +1364,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         quickpriceoutlet.text = ""
         quicksum.text = ""
+        
+        quickdescription.text = ""
         
         unline.backgroundColor = UIColorFromRGB(0xE0E0E0)
         perunline.backgroundColor = UIColorFromRGB(0xE0E0E0)
@@ -6707,11 +6716,23 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var sumline: UIView!
     
     
+    @IBOutlet var nameview: UIView!
+    
+    @IBOutlet var noteview: UIView!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
          //UINavigationBar.appearance().backgroundColor = UIColor.clearColor()
+        /*
+        nameview.layer.borderWidth = 1
+        nameview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
         
+        noteview.layer.borderWidth = 1
+        noteview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+        */
         unitsview.hidden = true
         
         unitsview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor

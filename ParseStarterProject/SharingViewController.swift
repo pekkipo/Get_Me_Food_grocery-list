@@ -203,6 +203,8 @@ class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableView
 
     
     
+    var loadeddata : Bool = false
+    
     @IBAction func adressediting(sender: AnyObject) {
         
         
@@ -213,28 +215,27 @@ class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableView
         
         var length = string.characters.count//count(string)
         
-        print(length)
-        
-      //  if length >= 5 {
-        /*
-        if (length < 4) {
-            
-            print("less than 5")
-        } else if length > 5 {
-            print("more than 6")
-        } else {
-          */
-        if (length == 4) || (length == 6) {
-            //sampleData.removeAll(keepCapacity: true) // might need it
+
+
+        if (length == 4) {//|| (length == 6) {
+
             
             print(length)
             print(string)
+            //dispatch_async(dispatch_get_main_queue()) {
+            if !loadeddata {
+            self.generateData(string)
+            loadeddata = true
+            }
             
-            generateData(string)
-            
+                      // }
            
             
         }
+        
+       
+//        name.layoutSubviews()
+
         
         
     }
@@ -246,11 +247,7 @@ class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableView
      var dictionary = Dictionary<String, AnyObject>()
     //maybe its not feasible to load data ince the view is loaded, maybe I should search directly in parse without loading the whole list of users to an array
     func generateData(tempprefix: String){
-        /*
-        var err : NSErrorPointer?
-        var dataPath = NSBundle.mainBundle().pathForResource("sample_data", ofType: "json")
-        var data = NSData.dataWithContentsOfFile(dataPath!, options: NSDataReadingOptions.DataReadingUncached, error: err!)
-        */
+
         indicator.hidden = false
         indicator.startAnimation()
         
@@ -281,6 +278,19 @@ class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableView
                     
                     self.indicator.hidden = true
                     self.indicator.stopAnimation()
+                    
+                    for var i = 0;i<self.contentsnames.count;++i {
+                        var name = self.contentsnames[i] as String//["username"] as! String
+                        //name += " " + lName
+                        var email = self.contentsemails[i] as String
+                        self.dictionary = ["DisplayText":email,"DisplaySubText":name, "CustomObject":self.contentsnames[i]]
+                        
+                        self.sampleData.append(self.dictionary)
+                        
+                    }
+                    print("Users are \(self.sampleData)")
+
+                    
                 }
             } else {
                 // Log details of the failure
@@ -289,19 +299,6 @@ class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableView
                 print("Error: \(error!) \(error!.userInfo)")
             }
         }
-        
-            for var i = 0;i<contentsnames.count;++i {
-            var name = contentsnames[i] as String//["username"] as! String
-            //name += " " + lName
-            var email = contentsemails[i] as String
-            dictionary = ["DisplayText":email,"DisplaySubText":name, "CustomObject":contentsnames[i]]
-            
-                                sampleData.append(dictionary)
-                
-        }
-        print("Users are \(sampleData)")
-        print("names are \(dictionary)")
-        print("names in contents are \(contentsnames)")
 
     }
     
@@ -366,9 +363,9 @@ class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableView
     func displayFailAlert(title: String, message: String) {
         
         let customIcon = UIImage(named: "4SentFail")
-        let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "OK", color: UIColorFromHex(0xF23D55, alpha: 0.9), iconImage: customIcon)
-        alertview.setTextTheme(.Light)
-       // alertview.addAction(cancelCallback)
+        let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "OK", color: UIColorFromHex(0xFFFFFF, alpha: 0.9), iconImage: customIcon)
+        alertview.setTextTheme(.Dark)
+        alertview.addAction(cancelCallback)
         alertview.addCancelAction(closeCallback)
     }
     /*
@@ -384,12 +381,14 @@ class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableView
     
       
     func cancelCallback() {
+        name.text = ""
         print("CANCELED")
     }
     
     func closeCallback() {
         
         //self.tableView.reloadData()
+        name.text = ""
         
         print("JUST CLOSED")
         

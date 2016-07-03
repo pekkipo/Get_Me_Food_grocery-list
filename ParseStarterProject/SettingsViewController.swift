@@ -20,17 +20,7 @@ protocol refreshmainviewDelegate
 
 
 class SettingsViewController: UIViewController, GIDSignInUIDelegate, MFMailComposeViewControllerDelegate {
-    /*
-    var account : [String] = ["Account Info", "Subscription Type", "Synchronize", "Contacts", "Sharing History", "Restore purchases", "Logout"]
-    var accounticons : [UIImage] = [UIImage(named: "SetAccount")!, UIImage(named: "SetSubscription")!, UIImage(named: "SetSynchro")!, UIImage(named: "SetContacts")!, UIImage(named: "SetSharing")!, UIImage(named: "SetRestore")!, UIImage(named: "SetLogout")!]
-  
-    var app : [String] = ["Custom categories", "Favourite Groceries","Clear Events History", "Change Language"]
-    var appicons : [UIImage] = [UIImage(named: "SetCategories")!, UIImage(named: "SetFavs")!, UIImage(named: "SetClear")!, UIImage(named: "SetLanguages")!]
-    var support : [String] = ["F.A.Q.", "Send Feedback", "Report a Problem", "Rate the app"]
-    var supporticons : [UIImage] = [UIImage(named: "SetHelp")!, UIImage(named: "SetFeedback")!, UIImage(named: "SetReport")!, UIImage(named: "SetRate")!]
-    var about : [String] = ["App Features", "Privacy Policy", "Acknowledgements"]
-    var abouticons : [UIImage] = [UIImage(named: "SetFeatures")!, UIImage(named: "SetPolicy")!, UIImage(named: "check.png")!]
-    */
+
     
     var account : [String] = [NSLocalizedString("account", comment: ""), NSLocalizedString("synchronize", comment: ""), NSLocalizedString("contacts", comment: ""), NSLocalizedString("shhistory", comment: ""), NSLocalizedString("logout", comment: "")]
     var accounticons : [UIImage] = [UIImage(named: "SetAccount")!, UIImage(named: "SetSynchro")!, UIImage(named: "SetContacts")!, UIImage(named: "SetSharing")!, UIImage(named: "SetLogout")!]
@@ -331,7 +321,9 @@ class SettingsViewController: UIViewController, GIDSignInUIDelegate, MFMailCompo
             
             let destVC = segue.destinationViewController as! AccountDetailsVC
             
-            //let destVC = navVC.viewControllers.first as! AccountDetailsVC
+           // let navVC = segue.destinationViewController as! UINavigationController
+            
+           // let destVC = navVC.viewControllers.first as! AccountDetailsVC
             
             destVC.maindelegate = maindelegate
             

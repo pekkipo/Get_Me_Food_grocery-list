@@ -25,6 +25,8 @@ var submitimage : UIImage = UIImage(named: "SubmitIcon")!
 var closeimage : UIImage = UIImage(named: "CloseIcon")!
 
 
+var alldataloaded : Bool = false
+
 class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, refreshliststableDelegate, sortlistsDelegate, UIGestureRecognizerDelegate, UITextViewDelegate, UITextFieldDelegate {
     
     
@@ -520,16 +522,34 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         //refreshControl?.endRefreshing()
     }
 
+    func displayWalkthroughs()
+    {
+        // Create the walkthrough screens
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let displayedWalkthrough = userDefaults.boolForKey("DisplayedWalkthrough")
+        if !displayedWalkthrough {
+            
+            
+            if let pageViewController = storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as? PageViewController {
+                
+                
+                
+                self.presentViewController(pageViewController, animated: true, completion: nil)
+            }
+        }
+    }
+
     
-    /*
     override func viewDidAppear(animated: Bool) {
        
-        checkreceivedlists()
+       // checkreceivedlists()
         
-        tableView.reloadData()
+      //  tableView.reloadData()
+        
+        displayWalkthroughs()
         
     }
-    */
+    
     
     
     @IBOutlet var toptoolbar: UIToolbar!
@@ -650,40 +670,935 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     
     let navbutton =  UIButton(type: .Custom)
     
+    
+    @IBAction func newtodobutton(sender: AnyObject) {
+        
+        performSegueWithIdentifier("createnewtodolistfromall", sender: self)
+        
+    }
+    
+    @IBAction func newshoplistbutton(sender: AnyObject) {
+        performSegueWithIdentifier("createnewshoplistfromall", sender: self)
+        
+    }
+    
+    func loaduserdata() {
+    
+    
+    
+    
+    if (PFUser.currentUser() != nil) && !PFAnonymousUtils.isLinkedWithUser(PFUser.currentUser()) {
+    
+    
+    //loggedusername = PFUser.currentUser()!.username!
+    if PFUser.currentUser()!.email != nil {
+    loggeduseremail = PFUser.currentUser()!.email!
+    //loggedusername = PFUser.currentUser()!.username!
+    loggedusername = PFUser.currentUser()?["name"] as! String
+    loggedIn = true
+    } else {
+    loggedIn = false
+    loggeduseremail = ""
+    loggedusername = NSLocalizedString("Anonymous", comment: "")
+    }
+    if PFUser.currentUser()?["Avatar"] != nil {
+    let file : PFFile = (PFUser.currentUser()?["Avatar"] as? PFFile)!
+    
+    file.getDataInBackgroundWithBlock { (data, error) -> Void in
+    if let downloadedImage = UIImage(data: data!) {
+    //downloadedImage.frame = CGRectMake(0,0,50,50)
+    loggeduserimage = downloadedImage
+    self.tableView.reloadData()
+    }
+    
+    }
+    
+    // loggeduserimage = UIImage(named: "checkeduser.png")!
+    print("Image is \(loggeduserimage)")
+    } else {
+    loggeduserimage = defaultcatimages[1].itemimage//UIImage(named: "checkeduser.png")!
+    }
+    
+    listsretrieval()
+    
+    retrievecustomcategories() // includes retrieval of custom items
+    
+    loadcontacts()
+    
+    loadevents()
+    
+    loadblacklist()
+    
+    tableView.reloadData()
+    
+    } else if (PFUser.currentUser() != nil) {//{
+    /// if currentUser = nil
+    
+    loggedIn = false
+    
+    // login anonymous
+    PFAnonymousUtils.logInWithBlock {
+    (user: PFUser?, error: NSError?) -> Void in
+    if error != nil || user == nil {
+    print("Anonymous login failed.")
+    } else {
+    print("Anonymous user logged in.")
+    }
+    }
+    
+    
+    loggedusername = NSLocalizedString("Anonymous", comment: "AnonymousUser")
+    loggeduseremail = ""
+    loggeduserimage = defaultcatimages[1].itemimage//UIImage(named: "checkeduser.png")!
+    
+    
+    }
+    
+    if !(PFAnonymousUtils.isLinkedWithUser(PFUser.currentUser())) {
+    
+    if CheckConnection.isConnectedToNetwork() {
+    
+    //dispatch_async(dispatch_get_main_queue(), {
+    self.checkreceivedlists()
+    self.checkreceivedevents()
+    //})
+    } else {
+    print("No internet connection found")
+    }
+    
+    
+    }
+    
+    self.restore()
+    self.tableView.reloadData()
+    }
+    
+    func listsretrieval() {
+        
+        UserShopLists.removeAll(keepCapacity: true)
+        UserToDoLists.removeAll(keepCapacity: true)
+        UserLists.removeAll(keepCapacity: true)
+        UserFavLists.removeAll(keepCapacity: true)
+        
+        pause()
+        
+        var query = PFQuery(className:"shopLists")
+        query.fromLocalDatastore()
+        query.whereKey("BelongsToUser", equalTo: PFUser.currentUser()!.objectId!)
+        // query.orderByDescending("updateDate")
+        query.orderByDescending("creationDate")
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                
+                print("Successfully retrieved \(objects!.count) scores.")
+                
+                if let lists = objects as? [PFObject] {
+                    
+                    
+                    for object in lists {
+                        
+                        if self.containslistid(UserLists.map({ $0.listid }), element: object["listUUID"] as! String) {
+                            
+                            print("object is already retrieved from local datastore")
+                        } else {
+                            
+                            if (object["listUUID"] != nil) && (object["ShopListName"] != nil) && (object["ShopListNote"] != nil) && (object["updateDate"] != nil) && (object["isFavourite"] != nil) && (object["isReceived"] != nil) && (object["BelongsToUser"] != nil) && (object["sentFromArray"] != nil) &&
+                                (object["isSaved"] != nil) && (object["confirmReception"] != nil) &&
+                                (object["listUUID"] != nil) &&
+                                (object["isDeleted"] != nil) && (object["isShared"] != nil) &&
+                                (object["ShareWithArray"] != nil) && (object["ItemsCount"] != nil) &&
+                                (object["CheckedItemsCount"] != nil) && (object["CurrencyArray"] != nil) &&
+                                (object["ShowCats"] != nil) &&
+                                (object["ListColorCode"] != nil) { //ListCurrency may stay nil now
+                                
+                                var listid = object["listUUID"] as! String
+                                var listname = object["ShopListName"] as! String
+                                var listnote = object["ShopListNote"] as! String
+                                
+                                // var listcreationdate = object["updateDate"] as! NSDate
+                                var listcreationdate = object["creationDate"] as! NSDate
+                                
+                                var listisfav = object["isFavourite"] as! Bool
+                                var listisreceived = object["isReceived"] as! Bool
+                                var listbelongsto = object["BelongsToUser"] as! String
+                                var listissentfrom = object["sentFromArray"] as! [(String)]
+                                var listissaved = object["isSaved"] as! Bool
+                                
+                                var listconfirm = object["confirmReception"] as! Bool
+                                var listisdeleted = object["isDeleted"] as! Bool
+                                var listisshared = object["isShared"] as! Bool
+                                var listsharewitharray = object["ShareWithArray"] as! [[AnyObject]]
+                                
+                                var listitemscount = object["ItemsCount"] as! Int
+                                var listcheckeditems = object["CheckedItemsCount"] as! Int
+                                var listtype = "Shop"
+                                //var listcurrency = object["ListCurrency"] as! String
+                                var listcurrency = object["CurrencyArray"] as! [AnyObject]
+                                var listshowcats = object["ShowCats"] as! Bool
+                                
+                                var listscolor = object["ListColorCode"] as! String
+
+                                if listscolor == "DAFFA4" {
+                                    listscolor = "A2AF36"
+                                }
+                                
+                                
+                                var userlist : UserList = UserList(
+                                    listid:listid,
+                                    listname:listname,
+                                    listnote:listnote,
+                                    listcreationdate:listcreationdate,
+                                    listisfavourite:listisfav,
+                                    listisreceived:listisreceived,
+                                    listbelongsto:listbelongsto,
+                                    listreceivedfrom:listissentfrom,
+                                    listissaved:listissaved,
+                                    listconfirmreception:listconfirm,
+                                    listisdeleted:listisdeleted,
+                                    listisshared:listisshared,
+                                    listsharedwith:listsharewitharray,
+                                    listitemscount:listitemscount,
+                                    listcheckeditemscount:listcheckeditems,
+                                    listtype:listtype,
+                                    listcurrency:listcurrency,
+                                    listcategories:listshowcats,
+                                    listcolorcode: listscolor
+                                    
+                                    
+                                )
+                                
+                                UserShopLists.append(userlist)
+                                UserLists.append(userlist)
+                                
+                                if listisfav == true {
+                                    UserFavLists.append(userlist)
+                                }
+                                
+                            } else {
+                                self.restore()
+                                print("There is a nil value in a list!")
+                                
+                            }
+                            
+                        }
+
+                    }
+
+                }
+                self.restore()
+                //self.restore()
+            } else {
+                self.restore()
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
+        
+        ////// NOW TODOLISTSPART
+        
+        var querytodo = PFQuery(className:"toDoLists")
+        querytodo.fromLocalDatastore()
+        //query.whereKey("objectId", equalTo:"T7MqKFyDbQ")
+        querytodo.whereKey("BelongsToUser", equalTo: PFUser.currentUser()!.objectId!)
+
+        querytodo.orderByDescending("CreationDate")
+        
+        querytodo.findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                
+                print("Successfully retrieved \(objects!.count) scores.")
+                // Do something with the found objects
+                
+                
+                
+                if let lists = objects as? [PFObject] {
+
+                    for object in lists {
+                        
+                        if ((object["listUUID"] != nil) && (object["ToDoListName"] != nil) && (object["ToDoListNote"] != nil) && (object["updateDate"] != nil) && (object["isFavourite"] != nil) && (object["isReceived"] != nil) && (object["BelongsToUser"] != nil) && (object["SentFromArray"] != nil) &&
+                            (object["isSaved"] != nil) && (object["confirmReception"] != nil) &&
+                            (object["listUUID"] != nil) &&
+                            (object["isDeleted"] != nil) && (object["isShared"] != nil) &&
+                            (object["ShareWithArray"] != nil) && (object["ItemsCount"] != nil) &&
+                            (object["CheckedItemsCount"] != nil) &&
+                            (object["ListColorCode"] != nil)) {
+                            
+                            
+                            var listid = object["listUUID"] as! String
+                            var listname = object["ToDoListName"] as! String
+                            var listnote = object["ToDoListNote"] as! String
+                            // var listcreationdate = object["updateDate"] as! NSDate
+                            var listcreationdate = object["CreationDate"] as! NSDate
+                            
+                            var listisfav = object["isFavourite"] as! Bool
+                            var listisreceived = object["isReceived"] as! Bool
+                            var listbelongsto = object["BelongsToUser"] as! String
+                            var listissentfrom = object["SentFromArray"] as! [(String)]
+                            var listissaved = object["isSaved"] as! Bool
+                            
+                            var listconfirm = object["confirmReception"] as! Bool
+                            var listisdeleted = object["isDeleted"] as! Bool
+                            var listisshared = object["isShared"] as! Bool
+                            var listsharewitharray = object["ShareWithArray"] as! [[AnyObject]]
+                            
+                            var listitemscount = object["ItemsCount"] as! Int
+                            var listcheckeditems = object["CheckedItemsCount"] as! Int
+                            
+                            var listscolor = object["ListColorCode"] as! String
+                            var listtype = "ToDo"
+                      
+                            
+                            var usertodolist : UserList = UserList(
+                                listid:listid,
+                                listname:listname,
+                                listnote:listnote,
+                                listcreationdate:listcreationdate,
+                                listisfavourite:listisfav,
+                                listisreceived:listisreceived,
+                                listbelongsto:listbelongsto,
+                                listreceivedfrom:listissentfrom,
+                                listissaved:listissaved,
+                                listconfirmreception:listconfirm,
+                                listisdeleted:listisdeleted,
+                                listisshared:listisshared,
+                                listsharedwith:listsharewitharray,
+                                listitemscount:listitemscount,
+                                listcheckeditemscount:listcheckeditems,
+                                listtype:listtype,
+                                listcolorcode: listscolor
+                                
+                                
+                            )
+                            
+                            UserToDoLists.append(usertodolist)
+                            UserLists.append(usertodolist)
+                            
+                            if listisfav == true {
+                                UserFavLists.append(usertodolist)
+                            }
+                            
+                        } else {
+                            self.restore()
+                            print("There is a nil value!")
+                        }
+
+                    }
+
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.restore()
+                        self.tableView.reloadData()
+                    }
+                    
+                }
+                
+                self.restore()
+            } else {
+                // Log details of the failure
+                self.restore()
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
+
+    }
+    
+    ///// CATEGORIES STUFF
+    
+    func addcustomstocategories(customlist: [Category]) -> [Category] {
+        
+        //retrievecustomcategories()
+        
+        catalogcategories.appendContentsOf(customlist)
+        
+        return catalogcategories
+    }
+    
+    
+    
+    var customcategory : Category?
+    
+    func retrievecustomcategories() {
+
+        var query = PFQuery(className:"shopListsCategory")
+        query.fromLocalDatastore()
+        query.whereKey("CatbelongsToUser", equalTo: PFUser.currentUser()!.objectId!)
+        query.whereKey("isDeleted", equalTo: false) //TEMPORARILY SWITCHED THIS OFF!
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]?, error: NSError?) -> Void in
+            if error == nil {
+                print("Successfully retrieved \(objects!.count) scores.")
+                // Do something with the found objects
+                
+                customcategories.removeAll(keepCapacity: true)
+                
+                if let listitems = objects as? [PFObject] {
+                    for object in listitems {
+                        
+                        var customId = object["categoryUUID"] as! String
+                        var customName = object["catname"] as! String
+                        var customIs = object["isCustom"] as! Bool
+                        var customImagePath = object["imagePath"] as! String
+                        var customIsAllowed = object["ShouldShowInCatalog"] as! Bool //TEMPORARILY SWITCHED THIS OFF!
+                        var customImage = UIImage()
+                        //customImage
+                        
+                        //self.loadImageFromLocalStore(customImagePath)
+                        
+                        if object["defaultpicture"] as! Bool == true {
+                            
+                            var imagename = object["OriginalInDefaults"] as! String
+                            
+                            if (UIImage(named: "\(imagename)") != nil) {
+                                customImage = UIImage(named: "\(imagename)")!
+                            } else {
+                                customImage = imagestochoose[0].itemimage
+                            }
+                            
+                        } else {
+                            
+                            self.loadImageFromLocalStore(customImagePath)
+                            customImage = self.imageToLoad
+
+                            
+                        }
+                        
+                        // var customImage = UIImage()
+                        
+                        self.customcategory = Category(catId: customId, catname: customName, catimage: customImage, isCustom: customIs, isAllowed: customIsAllowed)
+                        
+                        
+                        
+                        customcategories.append(self.customcategory!)
+                        
+                        
+                        
+                    }
+                    
+                    
+                    
+                    
+                }
+                
+
+                
+                self.addcustomstocategories(customcategories)
+                
+                self.customitemsretrieval()
+            } else {
+                // Log details of the failure
+                //self.restore()
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
+        
+    }
+    
+    var customcatalogitem : CatalogItem?
+    
+    func customitemsretrieval() {
+        
+        var query = PFQuery(className:"shopListCatalogItems")
+        query.fromLocalDatastore()
+        query.whereKey("itemsbelongstouser", equalTo: PFUser.currentUser()!.objectId!)
+        query.whereKey("isDeleted", equalTo: false)
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]?, error: NSError?) -> Void in
+            if error == nil {
+                print("Successfully retrieved \(objects!.count) scores.")
+                // Do something with the found objects
+                customcatalogitems.removeAll(keepCapacity: true)
+                
+                if let listitems = objects as? [PFObject] {
+                    for object in listitems {
+                        
+                        var customitemId = object["itemid"] as! String
+                        var customitemName = object["itemname"] as! String
+                        var customitemCategoryId = object["itemcategoryid"] as! String
+                        var customitemImagePath = object["imagepath"] as! String
+                        var customitemcategory : Category?
+                        var customImage = UIImage()
+                        //customImage
+                        
+                        
+                        
+                        if object["defaultpicture"] as! Bool == true {
+                            
+                            var imagename = object["OriginalInDefaults"] as! String
+                            
+                            if (UIImage(named: "\(imagename)") != nil) {
+                                customImage = UIImage(named: "\(imagename)")!
+                            } else {
+                                customImage = imagestochoose[0].itemimage
+                            }
+                            
+                        } else {
+                            self.loadImageFromLocalStore(customitemImagePath)
+                            customImage = self.imageToLoad
+                            
+                        }
+                        
+                        
+                        if let foundcategory = catalogcategories.map({ $0.catId }).lazy.indexOf(customitemCategoryId) {
+                            customitemcategory = catalogcategories[foundcategory]
+                        } else {
+                            
+                            customitemcategory = catalogcategories[0]
+                            
+                        }
+                        
+                        // var customImage = UIImage()
+                        
+                        self.customcatalogitem = CatalogItem(itemId: customitemId, itemname: customitemName, itemimage: customImage, itemcategory: customitemcategory!, itemischecked:false, itemaddedid: "")
+                        
+                        
+                        customcatalogitems.append(self.customcatalogitem!)
+                        
+                        
+                    }
+                    
+                    
+                }
+                
+                self.addcustomstocatalogitems(customcatalogitems)
+                
+                alldataloaded = true
+                
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
+        
+    }
+    
+    func addcustomstocatalogitems(customlist: [CatalogItem]) -> [CatalogItem] {
+        
+        //retrievecustomcategories()
+        
+        catalogitems.appendContentsOf(customlist)
+        
+        return catalogitems
+    }
+    
+    func checkreceivedevents() {
+        var query = PFQuery(className:"UsersEvents")
+        
+        query.whereKey("ReceiverId", equalTo: PFUser.currentUser()!.objectId!)
+        query.whereKey("isReceived", equalTo: false)
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]?, error: NSError?) -> Void in
+            if error == nil {
+                //userevents.removeAll(keepCapacity: true)
+                print("Successfully retrieved \(objects!.count) scores.")
+                // Do something with the found objects
+                
+                //receivedeventscount = objects!.count
+                
+                if let listitems = objects as? [PFObject] {
+                    for object in listitems {
+                        
+                        var etype = object["EventType"] as! String
+                        
+                        if etype == "GoShop" {
+                            
+                            var enote = object["EventText"] as! String
+                            var edate = object.createdAt //["createdAt"] as! NSDate
+                            var euser = object["senderInfo"] as! [AnyObject]
+                            var erecuser = object["receiverInfo"] as! [AnyObject]
+                            var eid = object["eventUUID"] as! String
+                            
+                            
+                            
+                            if !self.containseventid(blacklistarray, element: euser[0] as! String) {
+                                
+                                if !self.containseventid(userevents.map({ $0.eventid! }), element: eid) {
+                                    
+                                    userevents.append(Event(eventtype: etype, eventnote: enote, eventdate: edate!, eventuser: euser, eventreceiver: erecuser, eventid: eid))
+
+                                    
+                                    
+                                    object["isReceived"] = true
+                                    
+                                    receivedeventscount += 1
+                                    
+                                    
+                                    object.pinInBackgroundWithBlock({ (success, error) -> Void in
+                                        if success {
+                                            //self.restore()
+                                            print("saved item")
+                                            object["isReceived"] = true
+                                            object.saveEventually()
+                                            
+                                        } else {
+                                            print("no id found")
+                                        }
+                                    })
+                                    
+                                } else {
+                                    print("Such event is already loaded")
+                                }
+                            } else {
+                                print("This sender id is blocked")
+                            }
+                            
+                        } else if etype == "AddContact" {
+                            
+                            var enote = object["EventText"] as! String
+                            var edate = object.createdAt//object["createdAt"] as! NSDate
+                            var euser = object["senderInfo"] as! [AnyObject]
+                            var erecuser = object["receiverInfo"] as! [AnyObject]
+                            
+                            var eid = object["eventUUID"] as! String
+                            
+                            var senderavatarfile = object["senderavatar"] as? PFFile
+                            
+                            var senderimage = UIImage()
+                            
+                            if senderavatarfile != nil {
+                                var imageData = senderavatarfile!.getData()
+                                if (imageData != nil) {
+                                    var image = UIImage(data: imageData!)
+                                    senderimage = image!
+                                } else {
+                                    senderimage = defaultcatimages[1].itemimage//UIImage(named: "checkeduser.png")!
+                                }
+                            } else {
+                                senderimage = defaultcatimages[1].itemimage//UIImage(named: "checkeduser.png")!
+                            }
+                            
+                            
+                            if !self.containseventid(blacklistarray, element: euser[0] as! String) {
+                                
+                                if !self.containseventid(userevents.map({ $0.eventid! }), element: eid) {
+                                    
+                                    userevents.append(Event(eventtype: etype, eventnote: enote, eventdate: edate!, eventuser: euser, eventreceiver: erecuser, eventid: eid, eventreceiverimage: senderimage))
+                                    
+                                    object["isReceived"] = true
+                                    
+                                    receivedeventscount += 1
+                                    
+                                    
+                                    object.pinInBackgroundWithBlock({ (success, error) -> Void in
+                                        if success {
+                                            //self.restore()
+                                            print("saved item")
+                                            object["isReceived"] = true
+                                            object.saveEventually()
+                                            
+                                        } else {
+                                            print("no id found")
+                                        }
+                                    })
+                                    
+                                    
+                                    
+                                } else {
+                                    print("Such event is already loaded")
+                                }
+                                
+                            } else {
+                                print("This sender id is blocked!")
+                            }
+                            
+                        }
+                        
+                    }
+                    userevents.sortInPlace({ $0.eventdate.compare($1.eventdate) == NSComparisonResult.OrderedDescending })
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        
+                        print(receivedeventscount)
+                        
+                        self.tableView.reloadData()
+                    }
+                    
+                    
+                    
+                }
+                
+                //self.addcustomstocatalogitems(customcatalogitems)
+                
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
+        
+    }
+
+    
+    func containseventid(values: [String], element: String) -> Bool {
+        
+        for value in values {
+            
+            if value == element {
+                return true
+            }
+        }
+        // The element was not found.
+        return false
+    }
+
+    
+    func loadcontacts() {
+        
+        
+        var contactquery:PFQuery = PFUser.query()!
+        contactquery.fromLocalDatastore()
+        contactquery.whereKey("objectId", equalTo: PFUser.currentUser()!.objectId!)
+        contactquery.findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]?, error: NSError?) -> Void in
+            if error == nil {
+                print("Successfully retrieved \(objects!.count) scores.")
+                // Do something with the found objects
+                usercontacts.removeAll(keepCapacity: true)
+                contactsarray.removeAll(keepCapacity: true)
+                
+                if let users = objects as? [PFObject] {
+                    
+                    
+                    for object in users {
+                        // println(object.objectId)
+                        if let arr = object["UserContacts"] as? [AnyObject] {//!= nil {
+                            
+                            print(object["UserContacts"])
+                            
+                            contactsarray = object["UserContacts"] as! [[AnyObject]]
+                            //: [[AnyObject]]
+                            
+                            
+                            
+                            for element in contactsarray {
+                                
+                                var avatar = UIImage()
+                                
+                                var imageFile = element[2] as? PFFile
+                                if imageFile != nil {
+                                    var imageData = imageFile!.getData()
+                                    if (imageData != nil) {
+                                        var image = UIImage(data: imageData!)
+                                        avatar = image!
+                                    } else {
+                                        avatar = defaultcatimages[1].itemimage//UIImage(named: "checkeduser.png")!
+                                    }
+                                } else {
+                                    avatar = defaultcatimages[1].itemimage//UIImage(named: "checkeduser.png")!
+                                }
+                                
+                                usercontacts.append(Contact(contactid:element[3] as! String,contactimage: avatar, contactname: element[0] as! String, contactemail: element[1] as! String))
+
+                            }
+                            
+                            print("USER CONTACTS \(usercontacts)")
+      
+                            
+                        } else {
+                            print("no contacts so far")
+                        }
+                        
+                    }
+                    
+                } else {
+                    // Log details of the failure
+                    print("Error: \(error!) \(error!.userInfo)")
+                }
+            } else {
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+
+        }
+        
+        
+        
+    }
+    
+    func loadblacklist() {
+        let querycontacts:PFQuery = PFUser.query()!
+        querycontacts.whereKey("objectId", equalTo: PFUser.currentUser()!.objectId!)
+        querycontacts.fromLocalDatastore()
+        querycontacts.limit = 1
+        let thisusercontacts = querycontacts.findObjects()
+        if (thisusercontacts != nil) {
+            for thisusercontact in thisusercontacts! {
+                
+                if let blacklist = thisusercontact["blacklist"] as? [AnyObject] { //used to be username
+                    
+                    print(thisusercontact["blacklist"])
+                    
+                    blacklistarray.appendContentsOf(thisusercontact["blacklist"] as! [String])
+                    
+                }
+                
+                
+            }
+        } else {
+            print("Error")
+        }
+    }
+    
+    
+    func loadevents() {
+        
+        var query1 = PFQuery(className:"UsersEvents")
+        query1.whereKey("SenderId", equalTo: PFUser.currentUser()!.objectId!)
+        
+        
+        var query2 = PFQuery(className:"UsersEvents")
+        query2.whereKey("ReceiverId", equalTo: PFUser.currentUser()!.objectId!)
+        
+        
+        let query = PFQuery.orQueryWithSubqueries([query1, query2])
+        
+        query.fromLocalDatastore()
+        
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]?, error: NSError?) -> Void in
+            if error == nil {
+                // userevents.removeAll(keepCapacity: true)
+                print("Successfully events retrieved \(objects!.count) scores.")
+                // Do something with the found objects
+                
+                
+                if let listitems = objects as? [PFObject] {
+                    for object in listitems {
+                        
+                        var etype = object["EventType"] as! String
+                        
+                        if etype == "GoShop" {
+ 
+                            
+                        } else if etype == "AddContact" {
+                            
+                            var enote = object["EventText"] as! String
+                            var edate = object.createdAt//object["createdAt"] as! NSDate
+                            var euser = object["senderInfo"] as! [AnyObject]
+                            var erecuser = object["receiverInfo"] as! [AnyObject]
+                            
+                            var eid = object["eventUUID"] as! String
+                            
+                            var senderavatarfile = object["senderavatar"] as? PFFile
+                            
+                            var senderimage = UIImage()
+                            
+                            if senderavatarfile != nil {
+                                var imageData = senderavatarfile!.getData()
+                                if (imageData != nil) {
+                                    var image = UIImage(data: imageData!)
+                                    senderimage = image!
+                                } else {
+                                    senderimage = defaultcatimages[1].itemimage//UIImage(named: "checkeduser.png")!
+                                }
+                            } else {
+                                senderimage = defaultcatimages[1].itemimage//UIImage(named: "checkeduser.png")!
+                            }
+                            
+                            
+                            if !self.containseventid(userevents.map({ $0.eventid! }), element: eid) {
+                                
+                                userevents.append(Event(eventtype: etype, eventnote: enote, eventdate: edate!, eventuser: euser, eventreceiver: erecuser, eventid: eid, eventreceiverimage: senderimage))
+                            } else {
+                                print("Such event is already loaded")
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                    userevents.sortInPlace({ $0.eventdate.compare($1.eventdate) == NSComparisonResult.OrderedDescending })
+                    print("USER EVENTS \(userevents)")
+                    
+                }
+
+                
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
+
+        
+    }
+    
+    
+    @IBAction func unwindToStartView(sender: UIStoryboardSegue) {
+       
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        // navigation title as a button
+        // Load data for the first time
+            // delete old data if any
+        if !alldataloaded {
+        customcategories.removeAll(keepCapacity: true)
+        customcatalogitems.removeAll(keepCapacity: true)
+        itemsDataDict.removeAll(keepCapacity: true)
+        itemsinbuffer.removeAll(keepCapacity: true)
+        itemsinbuffertopaste.removeAll(keepCapacity: true)
+        HistoryitemsDataDict.removeAll(keepCapacity: true)
+        userevents.removeAll(keepCapacity: true)
+        usercontacts.removeAll(keepCapacity: true)
+        blacklistarray.removeAll(keepCapacity: true)
+        contactsarray.removeAll(keepCapacity: true)
         
-        /*
-        navbutton.frame = CGRectMake((((self.view.frame.size.width) / 2) - 80),0,140,40) as CGRect
-        navbutton.setTitle("My lists", forState: UIControlState.Normal)
-        navbutton.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
-        navbutton.setTitleColor(UIColorFromRGB(0x31797D), forState: .Normal)
-        /*
-        let spacing: CGFloat = 10; // the amount of spacing to appear between image and title
-        navbutton.imageEdgeInsets = UIEdgeInsetsMake(2, 100, 0, 0); // top left bottom right
-        navbutton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
- */
-        let titleimage = UIImage(named: "myliststitle") as UIImage?
-        navbutton.setImage(titleimage, forState: .Normal)
-        navbutton.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
+        for var i = 0;i<catalogitems.count;++i {
+            
+            catalogitems[i].itemischecked = false
+            
+        }
+        toDoItems.removeAll(keepCapacity: true)
+        
+        receivedcount = 0
+        receivedeventscount = 0
         
         
-        let spacing : CGFloat = 3;
-        let insetAmount : CGFloat = 0.5 * spacing;
+        // Deal with currencies
+        let allcurrencies = NSLocale.ISOCurrencyCodes()
         
-        // First set overall size of the button:
-        navbutton.contentEdgeInsets = UIEdgeInsetsMake(0, insetAmount, 0, insetAmount);
-        navbutton.sizeToFit()
+        for currency in allcurrencies { //Currency = "USD" etc
+            let localeComponents = [NSLocaleCurrencyCode: currency]
+            let localeIdentifier = NSLocale.localeIdentifierFromComponents(localeComponents)
+            let locale = NSLocale(localeIdentifier: localeIdentifier)
+            let currencySymbol = locale.objectForKey(NSLocaleCurrencySymbol) as! String
+            currencies.append([currency ,currencySymbol])
+            
+        }
         
-        // Then adjust title and image insets so image is flipped to the right and there is spacing between title and image:
-        navbutton.titleEdgeInsets  = UIEdgeInsetsMake(0, -navbutton.imageView!.frame.size.width - insetAmount, 0,  navbutton.imageView!.frame.size.width  + insetAmount);
-        navbutton.imageEdgeInsets  = UIEdgeInsetsMake(2, navbutton.titleLabel!.frame.size.width + insetAmount, 0, -navbutton.titleLabel!.frame.size.width - insetAmount);
-        */
+        let local = NSLocale.currentLocale()
+        let lsymbol = local.objectForKey(NSLocaleCurrencySymbol) as! String
+        var lcode = String()
+        // code = local.objectForKey(NSLocaleCurrencyCode) as! String
+        if let currencyCode = NSLocale.currentLocale().objectForKey(NSLocaleCurrencyCode) as? String {
+            lcode = currencyCode
+            //Will display "USD", for example
+        }
         
-        //self.navigationItem.titleView = navbutton
+        commoncurrencies.append([lcode,lsymbol])
+        
+        for currency in allcurrencies { //Currency = "USD" etc
+            
+            if (currency == "USD") || (currency == "EUR") || (currency == "RUB") || (currency == "BRL") || (currency == "CNY") || (currency == "GBP") || currency == "JPY" {
+                
+                let localeComponents = [NSLocaleCurrencyCode: currency]
+                let localeIdentifier = NSLocale.localeIdentifierFromComponents(localeComponents)
+                let locale = NSLocale(localeIdentifier: localeIdentifier)
+                let currencySymbol = locale.objectForKey(NSLocaleCurrencySymbol) as! String
+                commoncurrencies.append([currency ,currencySymbol])
+            }
+            
+        }
+
+        loaduserdata()
+        
+    }
+        //
+        
+
         self.navigationItem.title = "My lists"
         
         //
@@ -699,34 +1614,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
             revealController.tapGestureRecognizer()
         }
         
-       // self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        
-        /*
-        newclosebuttonoutlet.layer.borderWidth = 1
-        newclosebuttonoutlet.layer.borderColor = UIColorFromRGB(0xF23D55).CGColor
-        newclosebuttonoutlet.layer.cornerRadius = 4
-        
-        newdonebutton.layer.cornerRadius = 4
-        
-        newlistname.leftTextMargin = 10
-        
-        newnotetextview.layer.borderWidth = 1
-        newnotetextview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-        newnotetextview.layer.cornerRadius = 4
-        
-        newnotetextview.delegate = self
-        newlistname.delegate = self
-        
-        newlistname.layer.borderWidth = 1
-        newlistname.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-        newlistname.layer.cornerRadius = 4
-        
-        blurredview.layer.cornerRadius = 4
-        self.blurredview.clipsToBounds = true
-        */
-        
-       // toptoolbar.barTintColor = UIColorFromRGB(0x31797D)//2a2f36)
-        
+
 
         
         self.view.layoutMargins = UIEdgeInsetsZero
@@ -736,25 +1624,6 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         
         print("Option is \(showoption)")
         
-      //  showoption = "alllists"
-        
-       // showalloutlet.tintColor = UIColorFromRGB(0xE0FFB2)
-        
-        /*
-        print("all [\(UserLists), \(UserLists.count)]")
-        print("all [\(UserShopLists), \(UserShopLists.count)]")
-        print("all [\(UserToDoLists), \(UserToDoLists.count)]")
-        
-        
-        print(UserLists.map({ $0.listtype }))
-        print(UserShopLists.map({ $0.listtype }))
-        print(UserToDoLists.map({ $0.listtype }))
-*/
-            //find(lazy(UserLists).map({ $0.listid }), listtosave!)
-        
-        //UserLists.sort(self.sortListsDESC)
-        //UserShopLists.sort(self.sortListsDESC)
-       // UserToDoLists.sort(self.sortListsDESC)
         
         UserLists.sortInPlace({ $0.listcreationdate.compare($1.listcreationdate) == NSComparisonResult.OrderedDescending })
          UserShopLists.sortInPlace({ $0.listcreationdate.compare($1.listcreationdate) == NSComparisonResult.OrderedDescending })
@@ -2126,26 +2995,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     }
     
     var imageToLoad = UIImage()
-    /*
-    func loadImageFromLocalStore(imageName: String) -> UIImage {
-        let fileManager = NSFileManager.defaultManager()
-        let dir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        
-        let path = (dir as NSString).stringByAppendingPathComponent(imageName)
-        
-        if(!path.isEmpty){
-            let image = UIImage(contentsOfFile: path)
-            print(image);
-            if(image != nil){
-                //return image!;
-                self.imageToLoad = image!
-                return imageToLoad
-            }
-        }
-        
-        return imagestochoose[0].itemimage//UIImage(named: "activity.png")!
-    }
-    */
+
     
     func loadImageFromLocalStore(imageName: String) -> UIImage {
         let fileManager = NSFileManager.defaultManager()
@@ -5117,7 +5967,12 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
             self.todooptionsaction(indexPath)
             
         }
-        todooptionsAction.backgroundColor = UIColorFromRGB(0x31797D)
+        
+        
+        if let atodooptions = UIImage(named: "4SettingsButton") {
+            todooptionsAction.backgroundColor = UIColor.imageWithBackgroundColor(atodooptions, bgColor: UIColor.clearColor(), w: 50, h: 70)
+        }
+
         
         // FAV
         let favAction = UITableViewRowAction(style: .Normal, title: "    ") { (action , indexPath) -> Void in

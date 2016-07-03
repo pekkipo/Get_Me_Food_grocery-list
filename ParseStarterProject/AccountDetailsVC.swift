@@ -193,7 +193,7 @@ class AccountDetailsVC: UIViewController,UINavigationControllerDelegate, UIImage
         maindelegate?.loaduserdata()
         maindelegate?.refreshmainview()
         
-        performSegueWithIdentifier("backtomainfromaccount", sender: self)
+        performSegueWithIdentifier("backtostartview", sender: self)
         
     }
     
@@ -1158,9 +1158,7 @@ class AccountDetailsVC: UIViewController,UINavigationControllerDelegate, UIImage
     //myTextField.delegate = self
     ///
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
+    
     
     
     @IBOutlet var topspacing: NSLayoutConstraint!
@@ -1179,60 +1177,52 @@ class AccountDetailsVC: UIViewController,UINavigationControllerDelegate, UIImage
     
     @IBOutlet var deleteoutlet: UIButton!
     
+    
+    
+    @IBOutlet var OpenMenu: UIBarButtonItem!
+    
+    
+    @IBOutlet var pictureview: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        OpenMenu.target = self.revealViewController()
+        OpenMenu.action = Selector("revealToggle:")
+        
+        if let revealController = self.revealViewController() {
+      
+            revealController.tapGestureRecognizer()
+        }
+
+        
         
         userdisplayname.delegate = self
         
         useremaillogin.delegate = self
         
 
-        if senderVC == "MainMenu" {
-            //performSegueWithIdentifier("backtomainfromaccount", sender: self)
-            toolbar.hidden = false
-            
-        } else {
-            toolbar.hidden = true
-            topspacing.constant = 14
-        }
-        
-        // Do any additional setup after loading the view.
-        
-       // userdisplayname.layer.sublayerTransform = CATransform3DMakeTranslation(3, 0, 0)
-       // useremaillogin.layer.sublayerTransform = CATransform3DMakeTranslation(3, 0, 0)
-        
-        userdisplayname.leftTextMargin = 5
-        useremaillogin.leftTextMargin = 5
-       
-        changepictoutlet.layer.borderWidth = 1
-        changepictoutlet.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
-         changepictoutlet.layer.cornerRadius = 4
-        
 
-        saveoutlet.layer.cornerRadius = 4
         
-        deleteoutlet.layer.cornerRadius = 4
-        
-        logoutoutlet.layer.cornerRadius = 4
-        
-        toolbar.barTintColor = UIColorFromRGB(0x31797D)//2a2f36)//020811)
-        toolbar.alpha = 1
-        toolbar.translucent = false
-        
-        smalltopview.backgroundColor = UIColorFromRGB(0x31797D)//2a2f36)
-        
+        userdisplayname.leftTextMargin = 12
+        useremaillogin.leftTextMargin = 12
+       
+
         
         self.userdisplayname.text = loggedusername
         self.useremaillogin.text = loggeduseremail
         self.userimage.image = loggeduserimage
+        /*
+        pictureview.layer.borderWidth = 1
+        pictureview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
         
         userdisplayname.layer.borderWidth = 1
         userdisplayname.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-        userdisplayname.layer.cornerRadius = 4
+
         
         useremaillogin.layer.borderWidth = 1
         useremaillogin.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-        useremaillogin.layer.cornerRadius = 4
+ */
         
         self.userimage.layer.cornerRadius = self.userimage.frame.size.width / 2
         self.userimage.layer.masksToBounds = true

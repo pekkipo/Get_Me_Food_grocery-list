@@ -22,14 +22,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     var dictionary = Dictionary<String, AnyObject>()
     
     func generateData(tempprefix: String){
-        /*
-        var err : NSErrorPointer?
-        var dataPath = NSBundle.mainBundle().pathForResource("sample_data", ofType: "json")
-        var data = NSData.dataWithContentsOfFile(dataPath!, options: NSDataReadingOptions.DataReadingUncached, error: err!)
-        
-        
-        */
-        
+
         sampleData.removeAll(keepCapacity: true) 
         
         var query:PFQuery = PFUser.query()!//:PFQuery = PFUser.query()!
@@ -54,6 +47,17 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
                         }
                         
                     }
+                    
+                    for i in 0 ..< self.contentsnames.count {
+                        var name = self.contentsnames[i] as String//["username"] as! String
+                        //name += " " + lName
+                        var email = self.contentsemails[i] as String
+                        self.dictionary = ["DisplayText":email,"DisplaySubText":name, "CustomObject":self.contentsnames[i]]
+                        
+                        self.sampleData.append(self.dictionary)
+                        
+                    }
+                    
                 }
             } else {
                 // Log details of the failure
@@ -61,15 +65,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         
-        for var i = 0;i<contentsnames.count;++i {
-            var name = contentsnames[i] as String//["username"] as! String
-            //name += " " + lName
-            var email = contentsemails[i] as String
-            dictionary = ["DisplayText":email,"DisplaySubText":name, "CustomObject":contentsnames[i]]
-            
-            sampleData.append(dictionary)
-            
-        }
+       
         
         
     }
@@ -368,6 +364,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet var contactemail: MPGTextField_Swift!
     
+    var loadeddata : Bool = false
     
     @IBAction func emaileditingchanged(sender: AnyObject) {
         
@@ -380,14 +377,14 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         print(length)
         
         //if length >= 6 {
-        if (length == 4) || (length == 6) {
+        if (length == 4) {
+
             
-           // sampleData.removeAll(keepCapacity: true) // might need it
             
-            print(length)
-            print(string)
-            
-            generateData(string)
+            if !loadeddata {
+                self.generateData(string)
+                loadeddata = true
+            }
             
           //  print(sampleData)
             
@@ -553,31 +550,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         pause()
 
         self.getcontactavatar(self.contactemail.text!)
-///     
-        //self.contactsarray.removeAll(keepCapacity: true)
-        /*
-        var querycontacts:PFQuery = PFUser.query()!
-        querycontacts.whereKey("objectId", equalTo: PFUser.currentUser()!.objectId!)
-        querycontacts.fromLocalDatastore()
-        querycontacts.limit = 1
-        var thisusercontacts = querycontacts.findObjects()
-        if (thisusercontacts != nil) {
-            for thisusercontact in thisusercontacts! {
-                
-                if let avatar = thisusercontact["UserContacts"] as? [AnyObject] { //used to be username
-                    
-                    println(thisusercontact["UserContacts"])
-                    
-                    self.contactsarray.extend(thisusercontact["UserContacts"] as! [[AnyObject]])
 
-                }
-               
-                
-            }
-        } else {
-            println("Error")
-        }        ///
-        */
         var query:PFQuery = PFUser.query()!
         query.getObjectInBackgroundWithId(PFUser.currentUser()!.objectId!) {
             (thisuser: PFObject?, error: NSError?) -> Void in
@@ -597,11 +570,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
                     } else {
                         useravatar = defaultcatimages[1].itemimage//UIImage(named: "checkeduser.png")!
                 }
-           
-                
-                //self.contactsarray = thisuser["UserContacts"] as! [[AnyObject]]
-                //self.contactsarray.extend(thisuser["UserContacts"] as! [[AnyObject]])
-               // println(thisuser["UserContacts"] as! [[AnyObject]])
+
                 print(contactsarray)
              
                     
@@ -646,64 +615,10 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
                         
                         self.tableView.reloadData()
                     })
-                    /*thisuser.saveEventually({ (success, error) -> Void in
-                        if success {
-                            println("saved user to server")
-                        } else {
-                            println("error server")
-                        }
-                    })//saveEventually()
-                    */
-                    //self.tableView.reloadData()
+
                            }
         }
-        /*
-        var finduser:PFQuery = PFUser.query()!
-        //var query = PFQuery(className: "_User")
-        finduser.whereKey("objectId", equalTo: PFUser.currentUser()!.objectId!)
-        finduser.whereKey("email", equalTo: self.contactemail.text)
-        finduser.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]?, error: NSError?) -> Void in
-            if error == nil {
-                if let objects = objects as? [PFObject] {
-                    for object in objects {
-                        
-                        var query1:PFQuery = PFUser.query()!
-                        query1.whereKey("email", equalTo:self.contactemail.text)
-                         var checkemail = query1.findObjects()
-                        println(checkemail)
-
-                        if checkemail != nil {
-                        object["UsersContactsDict"] = [[(self.contactemail.text):(self.contactemail.text)]]
-                        object.saveInBackground()
-                        } else {
-                            println("email doesnt exist")
-                        }
-                    }
-                }
-            } else {//if let myuser = myuser {
-                println(error)
-                //var query1 = PFQuery(className:"User")
-               // query1.whereKey("email", equalTo:self.contactemail.text)
-               // var checkemail = query1.findObjects()
-               // println(checkemail)
-                
-               // if checkemail != nil {
-                
-                //myuser["UsersContactsDict"] = [(self.contactname.text):(self.contactemail.text)]
-                //myuser.saveInBackground()
-                    
-               // } else {
-                    //println("Email doesnt exist")
-                //}
-            }
-            
-            
-        }
-        */
-        //retrieveContacts1()
-        
-        //tableView.reloadData()
+ 
         
         } else {
             
@@ -775,12 +690,9 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
                         }
                         
                     }
-                    
-                  //  self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-                    
+ 
                     dispatch_async(dispatch_get_main_queue()) {
-                        
-                        //self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
+
                          self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
                         self.tableView.reloadData()
                     }
@@ -793,283 +705,13 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
             } else {
                 print("Error: \(error!) \(error!.userInfo)")
             }
-            
-            //self.tableView.reloadData()
+
         }
 
         
         
         
     }
-    /*
-    func deletecontact(sender: UIButton!) {
-        
-        let button = sender as UIButton
-        let view = button.superview!
-        let cell = view.superview as! ContactsCell
-        var indexPath = tableView.indexPathForCell(cell)
-        
-       // self.contactsarray.removeAll(keepCapacity: true)
-        /*
-        var querycontacts:PFQuery = PFUser.query()!
-        querycontacts.whereKey("objectId", equalTo: PFUser.currentUser()!.objectId!)
-        querycontacts.fromLocalDatastore()
-        querycontacts.limit = 1
-        var thisusercontacts = querycontacts.findObjects()
-        if (thisusercontacts != nil) {
-            for thisusercontact in thisusercontacts! {
-        
-                if let contactlist = thisusercontact["UserContacts"] as? [AnyObject] { //used to be username
-        
-                    println(thisusercontact["UserContacts"])
-        
-                    self.contactsarray.extend(thisusercontact["UserContacts"] as! [[AnyObject]])
-        
-                }
-        
-        
-            }
-        } else {
-            println("Error")
-        }
-        */
-        var contacttodelete = usercontacts[indexPath!.row].contactid
-        
-        var contacttodeleteemail = usercontacts[indexPath!.row].contactemail
-        
-        /*
-        var contactquery2:PFQuery = PFUser.query()!
-        contactquery2.whereKey("objectId", equalTo: PFUser.currentUser()!.objectId!)
-        contactquery2.fromLocalDatastore()
-        contactquery2.limit = 1
-        var objects = contactquery2.findObjects()
-        if (objects != nil) {
-            
-            if let users = objects as? [PFObject] {
-                
-            for user in users {
-                
-                if let arr = user["UserContacts"] as? [AnyObject] {//!= nil {
-                    
-                    println(self.contactsarray)
-                    
-                    if contacttodelete != "" {
-                        
-                        for element in self.contactsarray {
-                            // for var i = 0;i<self.contactsarray.count;++i {
-                            
-                            if var foundcontact1 = find(lazy(element).map({ $0[3] as! String }), contacttodelete) {
-                                //  if self.contactsarray[i][3] as! String == contacttodelete {
-                                
-                                //  for var i = 0;i<catalogitems.count;++i {
-                                
-                                self.contactsarray.removeAtIndex(foundcontact1)
-                                //   self.contactsarray.removeAtIndex(i)
-                                
-                                
-                                
-                                
-                            }
-                            
-                            if var foundcontact2 = find(lazy(usercontacts).map({ $0.contactid }), contacttodelete) {
-                                
-                                usercontacts.removeAtIndex(foundcontact2)
-                                
-                            }
-                            
-                            
-                        }
-                    } else {
-                        for element in self.contactsarray {
-                            
-                            if var foundcontact1 = find(lazy(element).map({ $0[1] as! String }), contacttodeleteemail) {
-                                
-                                self.contactsarray.removeAtIndex(foundcontact1)
-                                
-                            }
-                            
-                            if var foundcontact2 = find(lazy(usercontacts).map({ $0.contactemail }), contacttodeleteemail) {
-                                
-                                usercontacts.removeAtIndex(foundcontact2)
-                                
-                            }
-                            
-                            
-                        }
-                    }
-                    
-                    
-                    
-                    user["UserContacts"] = self.contactsarray
-                    
-                    println("USER CONTACTS AFTER \(self.contactsarray)")
-                    
-                    user.pinInBackground()
-                    user.saveEventually()
-                    
-                } else {
-                    println("no contacts so far")
-                }
-                
-                
-                }
-                
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    
-                    self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
-                    self.tableView.reloadData()
-                }
-            
-        }
-        } else {
-            println("No objects")
-        }
-    */
-    
-    
-        var contactquery:PFQuery = PFUser.query()!
-        contactquery.fromLocalDatastore()
-        contactquery.whereKey("objectId", equalTo: PFUser.currentUser()!.objectId!)
-        contactquery.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]?, error: NSError?) -> Void in
-            if error == nil {
-                print("Successfully retrieved \(objects!.count) scores.")
-                // Do something with the found objects
-                //usercontacts.removeAll(keepCapacity: true)
-                
-                if let users = objects as? [PFObject] {
-                    
-                    
-                    for object in users {
-                        // println(object.objectId)
-                        if let arr = object["UserContacts"] as? [AnyObject] {//!= nil {
-                            
-                            print(contactsarray)
-                            
-                            
-                            for var i = 0;i<contactsarray.count;++i {
-                                
-                                
-                                print(i)
-                                /*
-                                if var foundcontact1 = find(lazy(self.contactsarray[i]).map({ $0[3] as! String }), contacttodelete) {
-                                    
-                                    self.contactsarray.removeAtIndex(foundcontact1)
-  
-                                    
-                                }
-                                */
-                                if contactsarray[i][3] as! String == contacttodelete {
-                                    contactsarray.removeAtIndex(i)
-                                }
-                                
-                                
-                               // if let foundcontact2 = find(lazy(usercontacts).map({ $0.contactid }), contacttodelete) {
-                                
-                                if let foundcontact2 = usercontacts.map({ $0.contactid }).lazy.indexOf(contacttodelete) {
-
-                                    usercontacts.removeAtIndex(foundcontact2)
-                                    
-                                }
-                                
-                                
-                                
-                                
-                            }
-                            
-                            
-                            
-                            /*
-                            if contacttodelete != "" {
-                            
-                            for element in self.contactsarray {
-                               // for var i = 0;i<self.contactsarray.count;++i {
-                                
-                                println(element)
-                                
-                                println(element[0])
-                                
-                                println(element[3])
-                                
-                                if var foundcontact1 = find(lazy(element).map({ $0[3] as! String }), contacttodelete) {
-                                  //  if self.contactsarray[i][3] as! String == contacttodelete {
-                                
-                              //  for var i = 0;i<catalogitems.count;++i {
-                                    
-                                    self.contactsarray.removeAtIndex(foundcontact1)
-                                     //   self.contactsarray.removeAtIndex(i)
-                                
-                              
-                                    
-                                    
-                                }
-                                
-                                if var foundcontact2 = find(lazy(usercontacts).map({ $0.contactid }), contacttodelete) {
-                                    
-                                    usercontacts.removeAtIndex(foundcontact2)
-                                    
-                                    }
-                                
-                                
-                                }
-                            } else {
-                                for element in self.contactsarray {
-                                    
-                                    if var foundcontact1 = find(lazy(element).map({ $0[1] as! String }), contacttodeleteemail) {
-                                        
-                                        self.contactsarray.removeAtIndex(foundcontact1)
-                                        
-                                    }
-                                    
-                                    if var foundcontact2 = find(lazy(usercontacts).map({ $0.contactemail }), contacttodeleteemail) {
-                                        
-                                        usercontacts.removeAtIndex(foundcontact2)
-                                        
-                                    }
-                                    
-                                    
-                                }
-                            }
-                            */
-                           
-                            
-                            object["UserContacts"] = contactsarray
-                            
-                            print("USER CONTACTS AFTER \(contactsarray)")
-                            
-                            object.pinInBackground()
-                            object.saveEventually()
-                            
-                        } else {
-                            print("no contacts so far")
-                        }
-                        
-                    }
-                    
-                    self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
-
-                    //self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
-                    self.tableView.reloadData()
-                    }
-
-                    
-                } else {
-                    // Log details of the failure
-                    print("Error: \(error!) \(error!.userInfo)")
-                }
-            } else {
-                print("Error: \(error!) \(error!.userInfo)")
-            }
-            
-            //self.tableView.reloadData()
-        }
-        
-        
-    }
-    */
     
    
     @IBOutlet var tableView: UITableView!

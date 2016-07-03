@@ -492,9 +492,7 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
             
             let  toViewController = navVC.viewControllers.first as! AllListsVC
             
-           // self.modalPresentationStyle = UIModalPresentationStyle.Custom
-            
-           // toViewController.transitioningDelegate = self.transitionOperator
+
             toViewController.showoption = "alllists"
             
             toViewController.maindelegate = self
@@ -505,16 +503,11 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         //createnewshoplist
 
         if segue.identifier == "createnewshoplist" {
-           // let toViewController = segue.destinationViewController as! ShoppingListCreation
+
             let navVC1 = segue.destinationViewController as! UINavigationController
             
             let toViewController = navVC1.viewControllers.first as! ShoppingListCreation
-            
-          //  self.modalPresentationStyle = UIModalPresentationStyle.Custom
-          //  toViewController.transitioningDelegate = self.transitionOperator
-            
 
-                
                 toViewController.justCreatedList = true
                 toViewController.senderVC = self
                 toViewController.isReceivedList = false
@@ -526,11 +519,7 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         if segue.identifier == "openshoplist" {
             let toViewController = segue.destinationViewController as! ShoppingListCreation
 
-            
-            // self.modalPresentationStyle = UIModalPresentationStyle.Custom
-            // toViewController.transitioningDelegate = self.transitionOperator
 
-           // if isFromShopList == true {
             
             toViewController.justCreatedList = false
             //toViewController.currentList = globalshoplistid
@@ -538,21 +527,7 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
             toViewController.senderVC = self
             toViewController.isReceivedList = shopisreceived
             
-            
-/*
-                toViewController.justCreatedList = false
-                //toViewController.currentList = globalshoplistid
-                toViewController.activeList = globalshoplistid
-                toViewController.senderVC = self
-                toViewController.isReceivedList = gloablshopisreceived
-*/
-           
-        /*    } else {
-                toViewController.justCreatedList = true
-                toViewController.senderVC = self
-                toViewController.isReceivedList = shopisreceived
 
-        } */
         
         }
 
@@ -591,16 +566,7 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
             toViewController.isReceived = todoisreceived
             
             toViewController.delegatefortodolist = self
-                //toViewController.isReceivedList = false
-         /*   } else {
-                
-                toViewController.justCreated = true
-                toViewController.senderVC = self
-                toViewController.isReceived = false
-            }
-             */
-            
-                //  toViewController.isReceivedList = false
+        
 
         }
 
@@ -617,7 +583,7 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         
         if segue.identifier == "showlogin" {
             
-            //let toViewController = segue.destinationViewController as! SettingsViewController
+
             let navVC = segue.destinationViewController as! UINavigationController
             
             let loginVC = navVC.viewControllers.first as! LoginViewController
@@ -627,11 +593,11 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         
         if segue.identifier == "menushowaccount" {
             
-            //let toViewController = segue.destinationViewController as! SettingsViewController
-            //let navVC = segue.destinationViewController as! UINavigationController
+
+            let navVC = segue.destinationViewController as! UINavigationController
             
-           // let accountVC = navVC.viewControllers.first as! AccountDetailsVC
-            let accountVC = segue.destinationViewController as! AccountDetailsVC
+           let accountVC = navVC.viewControllers.first as! AccountDetailsVC
+            
             accountVC.maindelegate = self
             accountVC.senderVC = "MainMenu"
         }
@@ -1272,7 +1238,27 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
     func loaduserdata() {
         
        
+        customcategories.removeAll(keepCapacity: true)
+        customcatalogitems.removeAll(keepCapacity: true)
         
+        
+        itemsDataDict.removeAll(keepCapacity: true)
+        itemsinbuffer.removeAll(keepCapacity: true)
+        itemsinbuffertopaste.removeAll(keepCapacity: true)
+        HistoryitemsDataDict.removeAll(keepCapacity: true)
+        
+        userevents.removeAll(keepCapacity: true)
+        usercontacts.removeAll(keepCapacity: true)
+        blacklistarray.removeAll(keepCapacity: true)
+        contactsarray.removeAll(keepCapacity: true)
+        
+        for var i = 0;i<catalogitems.count;++i {
+            
+            catalogitems[i].itemischecked = false
+            
+        }
+        
+        toDoItems.removeAll(keepCapacity: true)
         
         if (PFUser.currentUser() != nil) && !PFAnonymousUtils.isLinkedWithUser(PFUser.currentUser()) {
             
@@ -2123,10 +2109,7 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
 
             if let pageViewController = storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as? PageViewController {
                 
-                
-               // let top : UIViewController = UIApplication.sharedApplication().keyWindow!.rootViewController!
-               // top.presentViewController(pageViewController, animated: true, completion: nil)
-                
+
                 
                 self.presentViewController(pageViewController, animated: true, completion: nil)
             }
@@ -2151,34 +2134,13 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Image tint
-        //testimage.image = testimage.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        //testimage.tintColor = UIColor.redColor() // w
-        
-              /*
-        if UIDevice().screenType == .iPhone4 {
-            
-            resizemenu()
-        }
-        */
-       // displayWalkthroughs()
+
         
          NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadTableAfterPush", name: "reloadTableMenu", object: nil)
         
-       // NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadTableAfterPush2", name: "reloadTable2", object: nil)
-        
-        //loadcontacts()
-        
-       // tableView.estimatedRowHeight = 89
-        //tableView.rowHeight = UITableViewAutomaticDimension
-        
-        //Just in case clear all arrays once loaded the app
-        
-        
-        
-        //darkview.backgroundColor = UIColorFromRGBdark(0x2A2F36)
+
         tableView.backgroundColor = UIColor.clearColor()
-        
+        /*
         customcategories.removeAll(keepCapacity: true)
         customcatalogitems.removeAll(keepCapacity: true)
         
@@ -2192,24 +2154,24 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         usercontacts.removeAll(keepCapacity: true)
         blacklistarray.removeAll(keepCapacity: true)
         contactsarray.removeAll(keepCapacity: true)
-        
+        */
         for var i = 0;i<catalogitems.count;++i {
             
             catalogitems[i].itemischecked = false
             
         }
         
-        toDoItems.removeAll(keepCapacity: true)
+       // toDoItems.removeAll(keepCapacity: true)
         
-                receivedcount = 0
-        receivedeventscount = 0
+            //    receivedcount = 0
+        //receivedeventscount = 0
         
         
         
         tableView.separatorStyle = .None
               bgImageView.image = UIImage(named: "BgShop")//"DarkBg")
         self.view.sendSubviewToBack(bgImageView)
-        
+        /*
         let allcurrencies = NSLocale.ISOCurrencyCodes()
         
         for currency in allcurrencies { //Currency = "USD" etc
@@ -2244,7 +2206,7 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
             }
             
         }
-        
+        */
        
 
 
@@ -2252,7 +2214,7 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         
 
 
-        loaduserdata()
+      //  loaduserdata()
        
         
     
