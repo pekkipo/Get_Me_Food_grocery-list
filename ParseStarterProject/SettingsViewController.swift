@@ -346,9 +346,7 @@ class SettingsViewController: UIViewController, GIDSignInUIDelegate, MFMailCompo
         
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
+    
     
     @IBOutlet var menuitem: UIBarButtonItem!
     
@@ -2901,7 +2899,7 @@ class SettingsViewController: UIViewController, GIDSignInUIDelegate, MFMailCompo
     
     func notificationswitcherchanged(sender: UISwitch) {
         
-        print("SWITCH CHANGED")
+        
     }
     
     
@@ -2962,11 +2960,7 @@ class SettingsViewController: UIViewController, GIDSignInUIDelegate, MFMailCompo
     }
 
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        return 30
-        
-    }
+   
     
     func tableView(tableView: UITableView,
         willDisplayCell cell: UITableViewCell,
@@ -2979,32 +2973,7 @@ class SettingsViewController: UIViewController, GIDSignInUIDelegate, MFMailCompo
     
   
     
-    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-       // header.contentView.backgroundColor = UIColorFromRGB(0x2A2F36)//UIColor(red: 238/255, green: 168/255, blue: 15/255, alpha: 0.8)
-        header.textLabel!.textColor = UIColorFromRGB(0x31797D)//UIColor.whiteColor()
-        header.alpha = 1
-        
-        var topline = UIView(frame: CGRectMake(0, 0, header.contentView.frame.size.width, 1))
-        topline.backgroundColor = UIColorFromRGB(0x31797D)
-        
-       // header.contentView.addSubview(topline)
-        
-        var bottomline = UIView(frame: CGRectMake(0, 30, header.contentView.frame.size.width, 1))
-        bottomline.backgroundColor = UIColorFromRGB(0x31797D)
-        
-      //  header.contentView.addSubview(bottomline)
-
-        
-        var positionx = header.contentView.frame.size.width * 0.9
-        var positiony = header.contentView.frame.size.height / 15//* 0.1
-        var imageViewGame = UIImageView(frame: CGRectMake(positionx, positiony, 26, 26));
-        var image = UIImage(named: "GreenSet");
-        imageViewGame.image = image;
-        header.contentView.addSubview(imageViewGame)
-        
-    }
-    
+   
     
     
     

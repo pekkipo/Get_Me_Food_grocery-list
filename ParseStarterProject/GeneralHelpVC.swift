@@ -421,13 +421,24 @@ class GeneralHelpVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
     }
 
-
+    func tableView(tableView: UITableView,
+                   willDisplayCell cell: UITableViewCell,
+                                   forRowAtIndexPath indexPath: NSIndexPath)
+    {
+        cell.separatorInset = UIEdgeInsetsZero
+        cell.preservesSuperviewLayoutMargins = false
+        cell.layoutMargins = UIEdgeInsetsZero
+    }
     
+    
+    
+    
+    /*
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
         
     }
-    
+    */
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
        
     
@@ -462,9 +473,7 @@ class GeneralHelpVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
 
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
+    
     
     
     @IBOutlet var menuitem: UIBarButtonItem!

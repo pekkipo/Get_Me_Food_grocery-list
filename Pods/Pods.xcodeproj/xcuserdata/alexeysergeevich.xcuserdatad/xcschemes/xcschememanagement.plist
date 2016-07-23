@@ -9,7 +9,27 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Charts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Graphs.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-ParseStarterProject.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Realm.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RealmSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,27 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0F98BAC562BE431A88ADB91B6F1CEBAF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>101D99AF8CFA0B0C18F697114933EA9C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1FFDED0E91BD4A445E3A218BE097AEB6</key>
+		<key>172540AF82562DD7D919F3537A0D0588</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>619E91FC0D0A77BB939D8EBE4DA957ED</key>
+		<key>355645E83B05BFC02323C578C7A0ECF2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>85C42C38FB8E12665400D602C983485B</key>
+		<key>99CB734ED7A8D25ECB243E7D0CA028C9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BCC1BEDEF8CE5E837F3105EE4FBF7525</key>
+		<key>A001AF8E5B0B0A7C42A84E0302E2DC9C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C8054477F561602F6D25FE6192CF35D8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E5BFCDA354DEA9BDA5F970A1EA9945E8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FAC2AD1B65FA1864FA52EA7097870177</key>
 		<dict>
 			<key>primary</key>
 			<true/>

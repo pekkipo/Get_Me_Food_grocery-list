@@ -9,7 +9,17 @@
 import UIKit
 import Parse
 
+
+protocol choosecontactsdelegate
+{
+    func choosefromcontact(email:String)
+}
+
 class ContactsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MPGTextFieldDelegate,UIPopoverPresentationControllerDelegate, UITextFieldDelegate {
+    
+    
+    
+    var delegate : choosecontactsdelegate?
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.None
@@ -137,35 +147,76 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     func pause() {
         
         
-        self.view.addSubview(progressHUD)
-        
-        progressHUD.setup()
-        progressHUD.show()
-        
+        loading_simple(true)
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
     }
 
     
     func restore() {
         
-        progressHUD.hide()
-        
+        loading_simple(false)
         
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
     }
     
+    func loading_simple(show: Bool) {
+        
+        
+        let dimmer : UIView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
+        dimmer.backgroundColor = UIColorFromRGB(0x2A2F36)
+        dimmer.alpha = 0.3
+        
+        let viewframe = CGRectMake(self.view.frame.width / 2 - 50, self.view.frame.height / 2 - 50, 100, 100)
+        let loadingview: UIView = UIView(frame: viewframe);
+        loadingview.backgroundColor = UIColor.whiteColor()
+        loadingview.layer.cornerRadius = 12
+        
+        let indicator : NVActivityIndicatorView =  NVActivityIndicatorView(frame: CGRectMake(20, 20, 60, 60), type: NVActivityIndicatorType.BallClipRotate, color: UIColorFromRGB(0x1EB2BB))
+        
+        
+        loadingview.addSubview(indicator)
+        
+        
+        
+        dimmer.tag = 871
+        loadingview.tag = 872
+        
+        
+        
+        if show {
+            
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+            self.view.addSubview(dimmer)
+            dimmer.sendSubviewToBack(self.view)
+            self.view.addSubview(loadingview)
+            
+            indicator.startAnimation()
+            
+        } else {
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            if let viewWithTag = self.view.viewWithTag(871) {
+                viewWithTag.removeFromSuperview()
+            }
+            if let viewWithTag = self.view.viewWithTag(872) {
+                viewWithTag.removeFromSuperview()
+            }
+            
+        }
+        
+    }
+    
     func displaySuccessAlert(title: String, message: String) {
         
-        let customIcon = UIImage(named: "AddContactAlert")
-        let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "OK", color: UIColorFromHex(0x31797D, alpha: 0.9), iconImage: customIcon)
-        alertview.setTextTheme(.Light)
-        alertview.addAction(closeCallback)
+        let customIcon = UIImage(named: "4SentSuccess")
+        let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "OK", color: UIColorFromHex(0xFFFFFF, alpha: 1), iconImage: customIcon)
+        alertview.setTextTheme(.Dark)
+        alertview.addCancelAction(closeCallback)
     }
     
     func displayFailAlert(title: String, message: String) {
         
-        let customIcon = UIImage(named: "FailAlert")
-        let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "OK", color: UIColorFromHex(0xF23D55, alpha: 0.9), iconImage: customIcon)
+        let customIcon = UIImage(named: "4SentFail")
+        let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "OK", color: UIColorFromHex(0xFFFFFF, alpha: 0.9), iconImage: customIcon)
         alertview.setTextTheme(.Light)
         alertview.addAction(cancelCallback)
     }
@@ -180,187 +231,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
-    /*
-    func displayAlert(title: String, message: String) {
-        
-        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction((UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-            
-            self.tableView.reloadData()
-            alert.dismissViewControllerAnimated(true, completion: nil)
-            
-        })))
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-        
-        
-    }
-    
-    func pause() {
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-    }
-    
-    func restore() {
-        activityIndicator.stopAnimating()
-        UIApplication.sharedApplication().endIgnoringInteractionEvents()
-    }
-    */
-    /*
-    func saveImageLocally(imageData:NSData!) -> String {
-        var uuid = NSUUID().UUIDString
-        //let time =  NSDate().timeIntervalSince1970
-        let fileManager = NSFileManager.defaultManager()
-        let dir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
-        //.stringByAppendingPathComponent(subDirForImage) as String
-        
-        if !fileManager.fileExistsAtPath(dir) {
-            var error: NSError?
-            if !fileManager.createDirectoryAtPath(dir, withIntermediateDirectories: true, attributes: nil, error: &error) {
-                print("Unable to create directory: \(error)")
-                return ""
-            }
-        }
-        
-        let pathToSaveImage = dir.stringByAppendingPathComponent("item\(uuid).png")
-        //("item\(Int(time)).png")
-        
-        imageData.writeToFile(pathToSaveImage, atomically: true)
-        
-        imagePath = "item\(uuid).png"
-        
-        return imagePath
-    }
-    
-    
 
-    
-    func loadImageFromLocalStore(imageName: String) -> UIImage {
-        let fileManager = NSFileManager.defaultManager()
-        let dir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
-        
-        let path = dir.stringByAppendingPathComponent(imageName)
-        
-        if(!path.isEmpty){
-            let image = UIImage(contentsOfFile: path)
-            print(image);
-            if(image != nil){
-                //return image!;
-                self.imageToLoad = image!
-                return imageToLoad
-            }
-        }
-        
-        return UIImage(named: "checkeduser.png")!
-    }
-    */
-    /*
-    func retrieveContacts1() {
-        
-        var contactquery:PFQuery = PFUser.query()!
-        contactquery.fromLocalDatastore()
-        contactquery.whereKey("objectId", equalTo: PFUser.currentUser()!.objectId!)
-        contactquery.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]?, error: NSError?) -> Void in
-            if error == nil {
-                println("Successfully retrieved \(objects!.count) scores.")
-                // Do something with the found objects
-               self.contactsarray.removeAll(keepCapacity: true)
-                self.contactsemails.removeAll(keepCapacity: true)
-                self.contactsnames.removeAll(keepCapacity: true)
-                self.contactsavatars.removeAll(keepCapacity: true)
-                if let users = objects as? [PFObject] {
-                    for object in users {
-                        println(object.objectId)
-                        //self.contactsarray.append(object["UserContacts"] as! [[String : String]])
-                        if object["UserContacts"] != nil {
-                        self.contactsarray = (object["UserContacts"] as! [[AnyObject]]) //getting the contacts array
-                            //AnyObject because two strings and one pffile
-                          
-                            
-                          println(self.contactsarray)
-                           
-                            //contactsarrayafter = contactsarray
-                        
-                        //getting names and emails from array
-                            for element in self.contactsarray {
-                                //self.contactsdictionary[element.values.first! as String] = "certain name"//"certain name"
-                               // self.contactsdictionary.append(self.contactsarray[element])
-                                //self.contactsemails.append(element.values.first! as String)
-                                self.contactsnames.append(element[0] as! String)
-                                self.contactsemails.append(element[1] as! String)
-                                self.contactsavatars.append(element[2] as! PFFile)
-                                /*
-                                var getavatar = UIImage()
-                                
-                                element[3].getDataInBackgroundWithBlock { (data, error) -> Void in
-                                    if let downloadedImage = UIImage(data: data!) {
-                                        getavatar = downloadedImage
-                                    }
-                                    
-                                }
-                                */
-                                
-                                
-                                
-                                
-                            }
-                        } else {
-                            println("no contacts so far")
-                        }
-                        println("my contacts are \(self.contactsdictionary)")
-                        println("my contacts emails are \(self.contactsemails)")
-                        println("my contacts names are \(self.contactsnames)")
-                        println("my contacts avatars are \(self.contactsavatars)")
-
-                        /*
-                        if self.contactsdictionary != ["":""] {
-                        self.contactsnames = [self.contactsdictionary.values.first! as String] //have to cast String
-                        //self.contactsemails = [self.contactsdictionary.values.endIndex as String]
-                        //let v = dict.allValues[0] as String
-                        //previous method I will use for sharedWith
-                            println("my contacts are \(self.contactsdictionary)")
-                            println("my contacts names are \(self.contactsnames)")
-                        } else {
-                            println("No contacts available")
-                        }
-                        */
-                    }
-                }
-            } else {
-                // Log details of the failure
-                println("Error: \(error!) \(error!.userInfo!)")
-            }
-        }
-        
-         self.tableView.reloadData()
-    }
-    */
-    /*
-    func checkexistance() -> Bool {
-        var query1:PFQuery = PFUser.query()!
-        query1.whereKey("email", equalTo:self.contactemail.text)
-       // self.checkemail = //query1.findObjects()!
-       // var checkemailone : PFObject = query1.getFirstObject()
-        var checkemailone = query1.getFirstObject()
-        //if query1.isEqual(nil) {
-        if checkemailone == nil {
-            emailexists = false
-        } else {
-            emailexists = true
-        }
-        // query1.getFirstObject()
-                
-        
-        return emailexists
-        
-    }
-    */
     
     @IBOutlet var contactemail: MPGTextField_Swift!
     
@@ -745,12 +616,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         textField.resignFirstResponder()
         return true
     }
-    //myTextField.delegate = self
-    ///
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
+ 
     
     
     override func viewDidLoad() {
@@ -861,16 +727,25 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         return usercontacts.count//contactsemails.count
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if (delegate != nil) {
+            
+            delegate?.choosefromcontact(usercontacts[indexPath.row].contactemail)
+            
+        }
+        
+         performSegueWithIdentifier("backtoshare", sender: self)
+        
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let ItemCellIdentifier = "ContactsCell"
         let contactcell = tableView.dequeueReusableCellWithIdentifier(ItemCellIdentifier, forIndexPath: indexPath) as! ContactsCell
         
-        //contactcell.contactnameoutlet.text = contact
-       // recentcell.recentListName.text = newarray[indexPath.row]
-        
-        //contactcell.contactnameoutlet.text = contactsarray[indexPath.row]
-        //contactcell.contactemailoutlet.text = contactsemails[indexPath.row]
+
         
         contactcell.contactnameoutlet.text = usercontacts[indexPath.row].contactname//contactsnames[indexPath.row]
         contactcell.contactemailoutlet.text = usercontacts[indexPath.row].contactemail//contactsemails[indexPath.row]
@@ -926,12 +801,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
 
 
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-        let row = indexPath.row
-        
-            }
+    
 
 
 }

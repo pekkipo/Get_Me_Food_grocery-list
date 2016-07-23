@@ -39,12 +39,12 @@ class AboutVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        /*
         menuitem.target = self.revealViewController()
         menuitem.action = Selector("revealToggle:")
         
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        
+        */
       //  if UIDevice().screenType == UIDevice.ScreenType.iPhone4 {
         
      

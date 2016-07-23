@@ -85,16 +85,28 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/ASHorizontalScrollView/ASHorizontalScrollView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Charts/Charts.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Graphs/Graphs.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Realm/Realm.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RealmSwift/RealmSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SRKControls/SRKControls.framework"
   install_framework "$BUILT_PRODUCTS_DIR/VK-ios-sdk/VK_ios_sdk.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/ASHorizontalScrollView/ASHorizontalScrollView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Charts/Charts.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Graphs/Graphs.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Realm/Realm.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RealmSwift/RealmSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SRKControls/SRKControls.framework"
   install_framework "$BUILT_PRODUCTS_DIR/VK-ios-sdk/VK_ios_sdk.framework"
 fi
 if [[ "$CONFIGURATION" == "adHoc" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/ASHorizontalScrollView/ASHorizontalScrollView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Charts/Charts.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Graphs/Graphs.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Realm/Realm.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RealmSwift/RealmSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SRKControls/SRKControls.framework"
   install_framework "$BUILT_PRODUCTS_DIR/VK-ios-sdk/VK_ios_sdk.framework"
 fi

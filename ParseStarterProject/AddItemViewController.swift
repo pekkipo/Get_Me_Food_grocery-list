@@ -1520,6 +1520,8 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet var prodnamelabel: UILabel!
     @IBOutlet var photobuttonoutlet: UIButton!
     
+    @IBOutlet var iconlabel: UILabel!
+    
     func retrieveexistingitemfromdictionary(current:String) {
         
         for ( var i = 0; i < itemsDataDict.count; i++ ) {
@@ -1543,9 +1545,12 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                   //  self.chooseitemimageoutlet.enabled = false
                     self.itemNameOutlet.enabled = false
                     self.prodnamelabel.textColor = UIColorFromRGB(0xC6C6C6)
+                    self.iconlabel.textColor = UIColorFromRGB(0xC6C6C6)
 
+                    self.photobuttonoutlet.enabled = false
+                    
                     self.itemNameOutlet.alpha = 0.6
-                    self.photobuttonoutlet.alpha = 0.3
+                    self.photobuttonoutlet.alpha = 0.1
                     
                 }
                 
@@ -2223,6 +2228,11 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet var sumline: UIView!
     
     
+    @IBAction func showimagesvc(sender: AnyObject) {
+        
+        performSegueWithIdentifier("showimagesfromadditem", sender: self)
+    }
+    
     
         override func viewDidLoad() {
         super.viewDidLoad()
@@ -2252,54 +2262,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
 
             categoriessetup()
 
-            /*
-                // add custom cat button
-            let addcustom = UIView(frame: CGRectZero)
-            let labelview = UILabel(frame: CGRectMake(2, 36, 66, 31))
-            let imageview = UIImageView(frame: CGRectMake(21, 8, 28, 28))
-            
-            labelview.text = "Add Custom"
-            imageview.image = UIImage(named: "4Share")
-            
-            addcustom.addSubview(labelview)
-            addcustom.addSubview(imageview)
-            
-            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("addcustomhere:"))
-            addcustom.userInteractionEnabled = true
-            addcustom.addGestureRecognizer(tapGestureRecognizer)
-            
-            setupbuttonview(addcustom, buttonimage: imageview, buttonlabel: labelview)
-            horizontalScrollView.addItem(addcustom)
-            */
-            /*
-            //categories setup
-            for i in (0..<catalogcategories.count) {
-                
-                let addcat = UIView(frame: CGRectZero)
-                let labelview = UILabel(frame: CGRectMake(2, 36, 66, 31))
-                let imageview = UIImageView(frame: CGRectMake(21, 8, 28, 28))
-                
-                labelview.text = catalogcategories[i].catname
-                imageview.image = catalogcategories[i].catimage
-                
-                addcat.addSubview(labelview)
-                addcat.addSubview(imageview)
-                
-                addcat.tag = i
-                //"addcustomhere:"
-                
-                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("choosecategoryhere:"))
-                addcat.userInteractionEnabled = true
-                addcat.addGestureRecognizer(tapGestureRecognizer)
-                
-                
-                setupbuttonview(addcat, buttonimage: imageview, buttonlabel: labelview)
-                horizontalScrollView.addItem(addcat)
-                
-            }
-            print(catalogcategories)
-            self.viewforcats.addSubview(horizontalScrollView)
-            */
+
             curcodelabel.text = symbol
            // if UIDevice().screenType == UIDevice.ScreenType.iPhone4 {
           //  if UIScreen.mainScreen().sizeType == .iPhone4 {
@@ -2374,47 +2337,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             
             
             
-            /*
-            pictview.layer.borderWidth = 1
-            pictview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-            pictview.layer.cornerRadius = 4
            
-            
-            
-            amountview.layer.borderWidth = 1
-            amountview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-            amountview.layer.cornerRadius = 4
-            
-            
-            totalsumlabel.layer.borderWidth = 1
-            totalsumlabel.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-            totalsumlabel.layer.cornerRadius = 4
-            
-          
-
-            UnitsButton.layer.borderWidth = 1
-            UnitsButton.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-            UnitsButton.layer.cornerRadius = 4
-            
-            perUnitOutlet.layer.borderWidth = 1
-            perUnitOutlet.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-            perUnitOutlet.layer.cornerRadius = 4
-            
-            itemNameOutlet.layer.borderWidth = 1
-            itemNameOutlet.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-            itemNameOutlet.layer.cornerRadius = 4
-            
-            itemNoteOutlet.layer.borderWidth = 1
-            itemNoteOutlet.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-            itemNoteOutlet.layer.cornerRadius = 4
-           
-           
-            
-            itemPriceOutlet.layer.borderWidth = 1
-            itemPriceOutlet.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-            itemPriceOutlet.layer.cornerRadius = 4
-            */
-
         
             
         if existingitem == true {

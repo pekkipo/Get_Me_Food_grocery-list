@@ -111,7 +111,6 @@ class SharingHistoryTableViewController: UITableViewController {
         // var userquery = PF
         var query = PFQuery(className:"shopLists")
         query.fromLocalDatastore()
-        //query.whereKey("objectId", equalTo:"T7MqKFyDbQ")
         query.whereKey("BelongsToUser", equalTo: PFUser.currentUser()!.objectId!)
         query.whereKey("isShared", equalTo: true)
         
@@ -122,130 +121,140 @@ class SharingHistoryTableViewController: UITableViewController {
             if error == nil {
                 
                 print("Successfully retrieved \(objects!.count) scores.")
-                // Do something with the found objects
-                
-               // self.SharedLists.removeAll(keepCapacity: true)
-               // self.ListsArray.removeAll(keepCapacity: true)
+
                 if let lists = objects as? [PFObject] {
                     for object in lists {
-                        print(object.objectId)
-                        //  self.ListsIds.append(object.objectId!)//["itemName"] as)
+                        
                         var thislistissharedwith = [[AnyObject]]()
                         thislistissharedwith = object["ShareWithArray"] as! [[AnyObject]]
                         
                         for sharedlist in thislistissharedwith {
-                        
-                        //SharedLists[object["listUUID"] as! String]:sharedlist)
-                           // self.SharedLists[object["listUUID"] as! String] = sharedlist
+                       
                             var listid : String = object["listUUID"] as! String
-                            
-                           // self.SharedLists = [listname:sharedlist]
                             
                             self.ListsArray.append(sharedlist)
                             self.ListsNames.append(object["ShopListName"] as! String)
                             self.ListsIds.append(listid)
                             self.ListsType.append("Shop")
-                            
-                           
-                            //self.sections[commoncategory] = [items[i]]
+
                         
                         }
-                        
+                        /*
                         self.ListsArray = self.ListsArray.reverse()
                         self.ListsNames = self.ListsNames.reverse()
                         self.ListsIds = self.ListsIds.reverse()
                         self.ListsType = self.ListsType.reverse()
+                        */
                         
-                        
-                        
+                        /*
                         self.restore()
                         self.tableView.reloadData()
-                    }
-                    
-                    self.automaticcheck()
-                }
-                
-               // println(self.SharedLists)
-                print(self.ListsNames)
-                print(self.ListsArray)
-               // self.automaticcheck()
-                
-            } else {
-                self.restore()
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
-            }
-        }
-        
-        
-        ///now todos
-        
-        var querytodo = PFQuery(className:"toDoLists")
-        querytodo.fromLocalDatastore()
-        //query.whereKey("objectId", equalTo:"T7MqKFyDbQ")
-        querytodo.whereKey("BelongsToUser", equalTo: PFUser.currentUser()!.objectId!)
-        querytodo.whereKey("isShared", equalTo: true)
-        
-        querytodo.orderByAscending("updateDate")
-        querytodo.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]?, error: NSError?) -> Void in
-            
-            if error == nil {
-                
-                print("Successfully retrieved \(objects!.count) scores.")
-                // Do something with the found objects
-                
-                // self.SharedLists.removeAll(keepCapacity: true)
-                //self.ListsArray.removeAll(keepCapacity: true)
-                
-                if let lists = objects as? [PFObject] {
-                    for object in lists {
-                        print(object.objectId)
-                        //  self.ListsIds.append(object.objectId!)//["itemName"] as)
-                        var thislistissharedwith = [[AnyObject]]()
-                        thislistissharedwith = object["ShareWithArray"] as! [[AnyObject]]
+ */
                         
-                        for sharedlist in thislistissharedwith {
+                    }
+                    // end of for loop 
+                    
+                    ////// NOW TO LISTS
+                    
+                    
+                    var querytodo = PFQuery(className:"toDoLists")
+                    querytodo.fromLocalDatastore()
+                    //query.whereKey("objectId", equalTo:"T7MqKFyDbQ")
+                    querytodo.whereKey("BelongsToUser", equalTo: PFUser.currentUser()!.objectId!)
+                    querytodo.whereKey("isShared", equalTo: true)
+                    
+                    querytodo.orderByAscending("updateDate")
+                    querytodo.findObjectsInBackgroundWithBlock {
+                        (objects: [AnyObject]?, error: NSError?) -> Void in
+                        
+                        if error == nil {
                             
-                            //SharedLists[object["listUUID"] as! String]:sharedlist)
-                            // self.SharedLists[object["listUUID"] as! String] = sharedlist
-                            var listid : String = object["listUUID"] as! String
+                            print("Successfully retrieved \(objects!.count) scores.")
                             
-                            // self.SharedLists = [listname:sharedlist]
+                                if let lists = objects as? [PFObject] {
+                                for object in lists {
+                                    print(object.objectId)
+                                   
+                                    var thislistissharedwith = [[AnyObject]]()
+                                    thislistissharedwith = object["ShareWithArray"] as! [[AnyObject]]
+                                    
+                                    for sharedlist in thislistissharedwith {
+                                        
+
+                                        var listid : String = object["listUUID"] as! String
+
+                                        
+                                        self.ListsArray.append(sharedlist)
+                                        self.ListsNames.append(object["ToDoListName"] as! String)
+                                        self.ListsIds.append(listid)
+                                        self.ListsType.append("ToDo")
+
+                                        
+                                    }
+                                    
+                                   
+                                }
+                                // END OF TO DO FOR LOOP
+                                    
+                                    print(self.ListsNames)
+                                    print(self.ListsArray)
+                                    print(self.ListsIds)
+                                    print(self.ListsType)
+                                    
+                                    self.ListsArray = self.ListsArray.reverse()
+                                    self.ListsNames = self.ListsNames.reverse()
+                                    self.ListsIds = self.ListsIds.reverse()
+                                    self.ListsType = self.ListsType.reverse()
+
+                                    print(self.ListsNames)
+                                    print(self.ListsArray)
+                                    print(self.ListsIds)
+                                    print(self.ListsType)
+                                    
+                                    self.automaticcheck()
+                                    
+                                    self.restore()
+                                    self.tableView.reloadData()
+                                
+                            }
+
                             
-                            self.ListsArray.append(sharedlist)
-                            self.ListsNames.append(object["ToDoListName"] as! String)
-                            self.ListsIds.append(listid)
-                            self.ListsType.append("ToDo")
+                        } else {
                             
+                            //if error occured here, still need to deal with loaded SHop lists
                             
-                            //self.sections[commoncategory] = [items[i]]
+                            print(self.ListsNames)
+                            print(self.ListsArray)
+                            print(self.ListsIds)
+                            print(self.ListsType)
                             
+                            self.ListsArray = self.ListsArray.reverse()
+                            self.ListsNames = self.ListsNames.reverse()
+                            self.ListsIds = self.ListsIds.reverse()
+                            self.ListsType = self.ListsType.reverse()
+                            
+                            print(self.ListsNames)
+                            print(self.ListsArray)
+                            print(self.ListsIds)
+                            print(self.ListsType)
+                            
+                            self.automaticcheck()
+                            
+                            self.restore()
+                            print("Error: \(error!) \(error!.userInfo)")
                         }
-                        
-                        self.ListsArray = self.ListsArray.reverse()
-                        self.ListsNames = self.ListsNames.reverse()
-                        self.ListsIds = self.ListsIds.reverse()
-                        self.ListsType = self.ListsType.reverse()
-
-                        //self.automaticcheck()
-                        
-                        self.restore()
-                        self.tableView.reloadData()
                     }
                     
-                    self.automaticcheck()
+                    
+                    ////// END OF TODOS
 
+                    
+                    //self.automaticcheck()
                 }
-                
-                // println(self.SharedLists)
-                print(self.ListsNames)
-                print(self.ListsArray)
-               // self.automaticcheck()
-                
+
             } else {
-                // Log details of the failure
                 self.restore()
+
                 print("Error: \(error!) \(error!.userInfo)")
             }
         }
@@ -262,8 +271,10 @@ class SharingHistoryTableViewController: UITableViewController {
         
             print(ListsArray.count)
             
+            //for var index = 0; index < ListsArray.count; index++ {
+        for index in 0 ..< ListsArray.count {
             
-        for var index = 0; index < ListsArray.count; index++ {
+            print(ListsArray[index])
             
             if ListsArray[index][5] as! Bool == false {
                 //means if that list is not received yet, then I check it
@@ -289,7 +300,7 @@ class SharingHistoryTableViewController: UITableViewController {
                             
                             if receivedlist["confirmReception"] as! Bool == true {
                                 
-                                                               if let founditem = self.ListsArray.map({ $0[4] as! String }).lazy.indexOf(self.sendlistid) {
+                            if let founditem = self.ListsArray.map({ $0[4] as! String }).lazy.indexOf(self.sendlistid) {
                            
                                     
                                     self.ListsArray[founditem][5] = true
@@ -389,10 +400,7 @@ class SharingHistoryTableViewController: UITableViewController {
                             print("Successfully retrieved the object.")
                             
                             if receivedlist["confirmReception"] as! Bool == true {
-                               // self.ListsArray[index][5] = true
-                                
-                                
-                                
+
                                 if let founditem = self.ListsArray.map({ $0[4] as! String }).lazy.indexOf(self.sendlistid) {
                                     //let catalogitem = catalogitems[founditem]
                                     
@@ -784,6 +792,10 @@ class SharingHistoryTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("sharinghistorycell", forIndexPath: indexPath) as! SharingHistoryCell
+        
+        cell.userInteractionEnabled = false
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+
 
         // Configure the cell...
         

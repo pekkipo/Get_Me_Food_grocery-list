@@ -17,8 +17,13 @@ protocol takepicturedelegate
     func savetogallery()
 }
 
-class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, UIPopoverPresentationControllerDelegate, UITextFieldDelegate {
+class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, UIPopoverPresentationControllerDelegate, UITextFieldDelegate, choosecontactsdelegate {
     
+    
+    
+    func choosefromcontact(email: String) {
+        name.text = email
+    }
     
     var delegate : takepicturedelegate?
     
@@ -1841,7 +1846,16 @@ class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableView
             
         }
         
+        if segue.identifier == "choosefromcontsegue" {
+            
+
+            let contVC = segue.destinationViewController as! ContactsViewController
+            contVC.delegate = self
+            
+            
+        }
     
+        
     }
     
     

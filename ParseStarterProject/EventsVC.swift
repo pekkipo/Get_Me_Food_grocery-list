@@ -68,11 +68,67 @@ class EventsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     }
 
 
+    func custompause() {
+        
+               loading_simple(true)
+    }
+    
+    func restore() {
+      
+        loading_simple(false)
+    }
+    
+     func loading_simple(show: Bool) {
+    
+    
+    let dimmer : UIView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
+    dimmer.backgroundColor = UIColorFromRGB(0x2A2F36)
+    dimmer.alpha = 0.3
+    
+    let viewframe = CGRectMake(self.view.frame.width / 2 - 50, self.view.frame.height / 2 - 50, 100, 100)
+    let loadingview: UIView = UIView(frame: viewframe);
+    loadingview.backgroundColor = UIColor.whiteColor()
+    loadingview.layer.cornerRadius = 12
+    
+    let indicator : NVActivityIndicatorView =  NVActivityIndicatorView(frame: CGRectMake(20, 20, 60, 60), type: NVActivityIndicatorType.BallClipRotate, color: UIColorFromRGB(0x1EB2BB))
+    
+    
+    loadingview.addSubview(indicator)
+    
+    
+    
+    dimmer.tag = 871
+    loadingview.tag = 872
+    
+    
+    
+    if show {
+    
+    UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+    self.view.addSubview(dimmer)
+    dimmer.sendSubviewToBack(self.view)
+    self.view.addSubview(loadingview)
+    
+    indicator.startAnimation()
+    
+    } else {
+    UIApplication.sharedApplication().endIgnoringInteractionEvents()
+    if let viewWithTag = self.view.viewWithTag(871) {
+    viewWithTag.removeFromSuperview()
+    }
+    if let viewWithTag = self.view.viewWithTag(872) {
+    viewWithTag.removeFromSuperview()
+    }
+    
+    }
+    
+    }
     
     
     func addusertocontacts(sender: AnyObject) {
         
-        pause()
+        //pause()
+        custompause()
         
         let button = sender as! UIButton
         let view = button.superview!
@@ -86,6 +142,7 @@ class EventsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             (thisuser: PFObject?, error: NSError?) -> Void in
             if error != nil {
                 print(error)
+                self.restore()
             } else if let thisuser = thisuser {
                 
                 var useravatar : UIImage = userevents[indexPath!.row].eventreceiverimage!
@@ -106,10 +163,11 @@ class EventsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                 thisuser.pinInBackgroundWithBlock({ (success, error) -> Void in
                     if success {
 
-                       
+                       self.restore()
                         
                     } else {
                        
+                        self.restore()
                         print("error")
                     }
                 })//pinInBackground()
@@ -183,6 +241,10 @@ class EventsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         
         let ItemCellIdentifier = "eventscell"
         let cell = tableView.dequeueReusableCellWithIdentifier(ItemCellIdentifier, forIndexPath: indexPath) as! EventCell
+            
+            cell.userInteractionEnabled = true
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            // cell.selectionStyle = UITableViewCellSelectionStyle.None
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd MMM yyyy"
@@ -276,6 +338,9 @@ class EventsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         } else {
             let ItemCellIdentifier = "addcontaceventcell"
             let cell = tableView.dequeueReusableCellWithIdentifier(ItemCellIdentifier, forIndexPath: indexPath) as! ContactEventCell
+            
+            cell.userInteractionEnabled = true
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
             
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd MMM yyyy"

@@ -8,4 +8,6 @@ pod 'Google/SignIn'
 pod "VK-ios-sdk"
 pod 'ASHorizontalScrollView', '~> 1.1'
 pod 'SRKControls', '~> 3.0.1'
+pod 'Graphs', '~> 0.1.2'
+pod 'Charts/Realm'
 end

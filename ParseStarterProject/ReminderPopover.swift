@@ -64,6 +64,7 @@ class ReminderPopover: UIViewController, UITextFieldDelegate {
     
     
     func cancelCallback() {
+         dismissViewControllerAnimated(true, completion: nil)
         print("CANCELED")
     }
     

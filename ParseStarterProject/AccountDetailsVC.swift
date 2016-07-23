@@ -1204,15 +1204,15 @@ class AccountDetailsVC: UIViewController,UINavigationControllerDelegate, UIImage
 
 
         
-        userdisplayname.leftTextMargin = 12
-        useremaillogin.leftTextMargin = 12
+        userdisplayname.leftTextMargin = 13
+        useremaillogin.leftTextMargin = 13
        
 
         
         self.userdisplayname.text = loggedusername
         self.useremaillogin.text = loggeduseremail
         self.userimage.image = loggeduserimage
-        /*
+        
         pictureview.layer.borderWidth = 1
         pictureview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
         
@@ -1222,7 +1222,7 @@ class AccountDetailsVC: UIViewController,UINavigationControllerDelegate, UIImage
         
         useremaillogin.layer.borderWidth = 1
         useremaillogin.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
- */
+
         
         self.userimage.layer.cornerRadius = self.userimage.frame.size.width / 2
         self.userimage.layer.masksToBounds = true

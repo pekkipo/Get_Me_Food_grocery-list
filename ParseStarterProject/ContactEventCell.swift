@@ -77,6 +77,10 @@ class ContactEventCell: UITableViewCell {
       //  container.layer.borderWidth = 1
        // container.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
         container.layer.cornerRadius = 8
+        
+        addcontact.layer.cornerRadius = 8
+        
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

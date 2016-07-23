@@ -746,7 +746,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             quickicon.image = catalogitemtochoose?.itemimage
             
             changepicture.enabled = false
-            changepicture.alpha = 0.2
+            changepicture.alpha = 0.1
             
         }
         
@@ -785,6 +785,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    
+    @IBAction func changepictureaction(sender: AnyObject) {
+        
+        performSegueWithIdentifier("showimagesfromshoplist", sender: self)
+    }
     
     
     @IBOutlet var noitemview: UIView!
@@ -3604,9 +3609,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         if segue.identifier == "showimagesfromshoplist" {
             
-            let popoverViewController = segue.destinationViewController as! ImagesCollectionVC//UIViewController
-            
-
+            let popoverViewController = segue.destinationViewController as! ImagesCollectionVC
             
             popoverViewController.delegate = self
             
@@ -5259,8 +5262,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
   
             }
         }
-    
         
+        self.navigationItem.title = self.listnameinview.text
+    
+        /*
         navbutton.setTitle(self.listnameinview.text, forState: UIControlState.Normal)
         
         let spacing : CGFloat = 3;
@@ -5272,7 +5277,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
 
         navbutton.titleEdgeInsets  = UIEdgeInsetsMake(0, -navbutton.imageView!.frame.size.width - insetAmount, 0,  navbutton.imageView!.frame.size.width  + insetAmount);
         navbutton.imageEdgeInsets  = UIEdgeInsetsMake(2, navbutton.titleLabel!.frame.size.width + insetAmount, 0, -navbutton.titleLabel!.frame.size.width - insetAmount);
-        
+        */
     }
     
     
@@ -6726,13 +6731,13 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         
          //UINavigationBar.appearance().backgroundColor = UIColor.clearColor()
-        /*
+        
         nameview.layer.borderWidth = 1
         nameview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
         
         noteview.layer.borderWidth = 1
         noteview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-        */
+        
         unitsview.hidden = true
         
         unitsview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor

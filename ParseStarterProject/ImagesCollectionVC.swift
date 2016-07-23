@@ -8,55 +8,6 @@
 
 import UIKit
 
-/*
-var imagestochoose : [UIImage] = [
-    UIImage(named: "defaultitemimage.png")!,
-    UIImage(named: "check.png")!,
-    UIImage(named: "activity.png")!,
-    UIImage(named: "check.png")!,
-    UIImage(named: "restau.png")!,
-    UIImage(named: "plus.png")!,
-    UIImage(named: "GrayStar.png")!,
-    UIImage(named: "check.png")!,
-    UIImage(named: "activity.png")!,
-    UIImage(named: "check.png")!,
-    UIImage(named: "activity.png")!,
-    UIImage(named: "check.png")!,
-    UIImage(named: "restau.png")!,
-    UIImage(named: "plus.png")!,
-    UIImage(named: "GrayStar.png")!,
-    UIImage(named: "check.png")!,
-    UIImage(named: "check.png")!,
-    UIImage(named: "activity.png")!,
-    UIImage(named: "check.png")!,
-    UIImage(named: "restau.png")!,
-    UIImage(named: "plus.png")!,
-    UIImage(named: "GrayStar.png")!,
-    UIImage(named: "check.png")!,
-    UIImage(named: "check.png")!,
-    UIImage(named: "activity.png")!,
-    UIImage(named: "check.png")!,
-    UIImage(named: "restau.png")!,
-    UIImage(named: "plus.png")!,
-    UIImage(named: "GrayStar.png")!,
-    UIImage(named: "check.png")!,
-    UIImage(named: "check.png")!,
-    UIImage(named: "activity.png")!,
-    UIImage(named: "check.png")!,
-    UIImage(named: "restau.png")!,
-    UIImage(named: "plus.png")!,
-    UIImage(named: "GrayStar.png")!,
-    UIImage(named: "check.png")!,
-    UIImage(named: "check.png")!,
-    UIImage(named: "activity.png")!,
-    UIImage(named: "check.png")!,
-    UIImage(named: "restau.png")!,
-    UIImage(named: "plus.png")!,
-    UIImage(named: "GrayStar.png")!,
-    UIImage(named: "check.png")!
-
-]
-*/
 
 
 var defaultcatimages : [DefaultPicture] = [
@@ -185,8 +136,8 @@ class ImagesCollectionVC: UIViewController,UICollectionViewDelegateFlowLayout, U
         self.presentViewController(chosenimage, animated: true, completion: nil)
         
         
-        addthisimageoutlet.alpha = 1.0
-        addthisimageoutlet.enabled = true
+        confirmoutlet.enabled = true
+        confirmoutlet.alpha = 1.0
         
     }
     
@@ -198,43 +149,42 @@ class ImagesCollectionVC: UIViewController,UICollectionViewDelegateFlowLayout, U
     
     var defaultpicture = Bool()
     
-    /*
-    func imageResize (imageObj:UIImage, sizeChange:CGSize)-> UIImage{
-        
-        let hasAlpha = false
-        let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
-        
-        UIGraphicsBeginImageContextWithOptions(sizeChange, hasAlpha, scale)
-        imageObj.drawInRect(CGRect(origin: CGPointZero, size: sizeChange))
-        
-        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
-        return scaledImage
-    }
-    */
-    
-    func tester() {
-        var smth = String()
-        
-        
-        ///tttes
-    }
+
+
+    @IBOutlet var confirmoutlet: UIButton!
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage chosenimage: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         
         self.dismissViewControllerAnimated(true, completion:nil)
-        
-        //chosenimage.frame = CGRectMake(0,0, 41, 41)
-        
+
         chosenimage.drawInRect(CGRectMake(0,0, 50, 50))
         
-       // self.newimage.image = chosenimage
         self.choosenewpicture.setImage(chosenimage, forState: .Normal)
         
         self.defaultpicture = false
         
+       // confirmoutlet.enabled = true
+       // confirmoutlet.alpha = 1.0
+        
         
     }
 
+    @IBAction func closetheimages(sender: AnyObject) {
+        
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    @IBAction func confirmtheimages(sender: AnyObject) {
+        
+        imageResize(self.choosenewpicture.imageForState(.Normal)!)
+        
+        
+        delegate?.choosecollectionimage(scaledpicture, defaultpicture: false, picturename: nil)
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
     
     @IBAction func closebutton(sender: AnyObject) {
         
@@ -263,10 +213,10 @@ class ImagesCollectionVC: UIViewController,UICollectionViewDelegateFlowLayout, U
        // imageResize(self.newimage.image!)
         imageResize(self.choosenewpicture.imageForState(.Normal)!)
         
-       // delegate?.choosecollectionimage(self.newimage.image!, defaultpicture: false, picturename: nil)
+
          delegate?.choosecollectionimage(scaledpicture, defaultpicture: false, picturename: nil)
         
-         self.dismissViewControllerAnimated(true, completion: nil)
+        // self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
@@ -286,21 +236,17 @@ class ImagesCollectionVC: UIViewController,UICollectionViewDelegateFlowLayout, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addthisimageoutlet.enabled = false
-        addthisimageoutlet.alpha = 0.3
+        
+       // view.backgroundColor = UIColor.clearColor()
+       // view.opaque = false
+        
+        
+        
+        confirmoutlet.enabled = false
+        confirmoutlet.alpha = 0.3
         
         self.choosenewpicture.setImage(emptyImage, forState: .Normal)
-        /*
-        let topline = UIView(frame: CGRectMake(0, 0, headerviewforcollection.frame.size.width, 1))
-        topline.backgroundColor = UIColorFromRGB(0x2A2F36)
-        
-        headerviewforcollection.addSubview(topline)
-        
-        let bottomline = UIView(frame: CGRectMake(0, 30, headerviewforcollection.frame.size.width, 1))
-        bottomline.backgroundColor = UIColorFromRGB(0x2A2F36)
-        
-        headerviewforcollection.addSubview(bottomline)
-        */
+
         // Do any additional setup after loading the view.
     }
 

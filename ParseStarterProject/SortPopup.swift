@@ -419,6 +419,7 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                 print("Sums")
             } else if indexPath.row == 2 {
                 print("Statistics")
+                performSegueWithIdentifier("showstatistics", sender: self)
             }
             
         } else if indexPath.section == 3 {
