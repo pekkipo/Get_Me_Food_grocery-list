@@ -13,6 +13,8 @@ import Charts
 
 class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var senderVC = String()
+    
     
     // OUTLETS
     
@@ -27,10 +29,51 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var pieButtonOutlet: UIButton!
     
 
+    @IBOutlet var listsSumLabel: UILabel!
+    
+    @IBOutlet var listsCountLabel: UILabel!
+    
     
     @IBOutlet var slidingView: UIView!
+    @IBOutlet var slidingbottomconstraint: NSLayoutConstraint! // 0 or -320
+    
+    func slide(value: CGFloat) {
+        
+        slidingbottomconstraint.constant = value
+        
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            
+            self.view.layoutIfNeeded()
+            }, completion: { (value: Bool) -> Void in
+                
+        })
+    }
+    
+    @IBAction func closesliding(sender: AnyObject) {
+        
+        slide(-450)
+
+    }
+    
+    @IBAction func confirmtimeperiod(sender: AnyObject) {
+        
+    timeperiodtype = TimePeriodType.custom
+    
+    setChart(barView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: chosentimestep, timeperiodtype: timeperiodtype))
+      
+        
+      slide(-450)
+
+        
+    }
+    
+    
     
     @IBAction func chooseTimePeriod(sender: AnyObject) {
+        
+        
+        slide(0)
+        
         
     }
     
@@ -55,12 +98,12 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         
         
-        if show {
+        if show == true {
             UIApplication.sharedApplication().beginIgnoringInteractionEvents()
             self.graphView.addSubview(loadingview)
             indicator.startAnimation()
             
-        } else {
+        } else if show == false {
             UIApplication.sharedApplication().endIgnoringInteractionEvents()
             if let viewWithTag = self.view.viewWithTag(945) {
                 viewWithTag.removeFromSuperview()
@@ -112,10 +155,14 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var sections = Dictionary<String, Array<UserList>>()
     var sortedLists = [String]()
     
-    func sortlists(lists: [UserList], timestep: TimeStep) {
+    func sortlists(lists: [UserList], timestep: TimeStep, from: NSDate?, due: NSDate?) {
+        
+        
+        sections.removeAll(keepCapacity: true)
+        sortedLists.removeAll(keepCapacity: true)
         
         if timestep == TimeStep.days {
-        
+            
             for ( var i = 0; i < lists.count; i++ ) {
                 
                 let dateFormatter = NSDateFormatter()
@@ -131,13 +178,115 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
             
             //we are storing our sections in dictionary, so we need to sort it
-            self.sortedLists = self.sections.keys.elements.sort(>)
-
+            self.sortedLists = self.sections.keys.elements.sort(<)
+                
                 
         }
         
         print(sections)
         print(sortedLists)
+            
+        } else if timestep == TimeStep.weeks {
+            
+            let numberofdays : Int = dividetimeperiod(timestep, from: from!, due: due!)
+            let numberofweeks = numberofdays / 7
+            
+            print(numberofdays)
+            print(numberofweeks)
+            
+            for ( var i = 0; i < lists.count; i++ ) {
+                
+                
+                for j in (1..<numberofweeks) {
+                    
+                    var leftborderweek = NSDate()
+                    var rightborderweek = NSDate()
+                    
+                    if j == 1 {
+                        
+                        leftborderweek = from!
+                        rightborderweek = NSCalendar.currentCalendar().dateByAddingUnit(
+                            .Day,
+                            value: 7,
+                            toDate: from!,
+                            options: NSCalendarOptions.MatchStrictly)!
+                        
+                        
+                        
+                    } else {
+                    leftborderweek = NSCalendar.currentCalendar().dateByAddingUnit(
+                            .Day,
+                            value: 7*(j-1),
+                            toDate: from!,
+                            options: NSCalendarOptions.MatchStrictly)!
+                        
+                    rightborderweek = NSCalendar.currentCalendar().dateByAddingUnit(
+                        .Day,
+                        value: 7*j,
+                        toDate: from!,
+                        options: NSCalendarOptions.MatchStrictly)!
+
+                    }
+                    
+                    if (lists[i].listcreationdate.timeIntervalSince1970 >= leftborderweek.timeIntervalSince1970) && (lists[i].listcreationdate.timeIntervalSince1970 < rightborderweek.timeIntervalSince1970) {
+                        
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = "dd MMM"
+                        
+                        let leftdate: String = dateFormatter.stringFromDate(leftborderweek)
+                        let rightdate: String = dateFormatter.stringFromDate(rightborderweek)
+                        
+                        let commondate : String = "\(leftdate) - \(rightdate)"
+                        
+                        if self.sections.indexForKey(commondate) == nil {
+                            self.sections[commondate] = [lists[i]]
+                        }
+                        else {
+                            self.sections[commondate]?.append(lists[i])
+                        }
+                        
+                        
+                        
+                        //self.sortedLists = self.sections.keys.elements.sort(<)
+                        
+                        
+                        
+                        
+                    }
+                
+                }
+                
+                
+                
+                //self.sortedLists = self.sections.keys.elements.sort(<)
+                
+                self.sortedLists = self.sections.keys.elements.sort({
+                    return ($0.componentsSeparatedByString(" -")[0]) > ($1.componentsSeparatedByString(" -")[0])
+                    
+                })
+
+               // var str = "str.str"
+               // str = str.componentsSeparatedByString(".")[0]
+              
+                
+                /// HAVE TO SORT THIS BITCH SOMEHOW
+              /*  sortedLists.sortInPlace({
+                    return ($0.componentsSeparatedByString(" -")[0]) > ($1.componentsSeparatedByString(" -")[0])
+                    
+                })
+                */
+                /*
+                var sortedArray = sortedLists.sort({
+                    let dict = self.sections.keys.elements
+                    return dict[$0] > dict[$1]
+                })
+                */
+                
+            }
+            
+            print(sections)
+            print(sortedLists)
+
             
         }
         
@@ -146,13 +295,11 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     
-    func dividetimeperiod(step: TimeStep, from: NSDate, due: NSDate?) -> (ints: Int, date: NSDate) {
+    func dividetimeperiod(step: TimeStep, from: NSDate, due: NSDate?) -> Int {
         
         var numberofsubperiods = Int()
-        var subperiod = NSDate()
         
-        if step == TimeStep.days {
-            
+      
             var calendar: NSCalendar = NSCalendar.currentCalendar()
             let date1 = calendar.startOfDayForDate(from)
             let date2 = calendar.startOfDayForDate(due!)
@@ -161,13 +308,16 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let components = calendar.components(flags, fromDate: date1, toDate: date2, options: [])
             
             numberofsubperiods = components.day
-            
-            subperiod = from
-            
-            
-        }
+
         
-        return (numberofsubperiods, subperiod)
+        return numberofsubperiods
+    }
+    
+    func sumpricesofoldstylelists(listid: String) -> Double {
+        
+        var totalsum = Double()
+        
+        return totalsum
     }
     
     func sumliststotalsums(lists: [UserList]) -> Double {
@@ -214,31 +364,64 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
         // STEP 2 - Sort the chosenlistsarray
             
-        sortlists(chosenlists, timestep: timestep)
+            sortlists(chosenlists, timestep: timestep, from: fromdate, due: duedate)
+             
             
         // STEP 3 - Sum all lists in subperiods
-            
-        for (date, lists) in sections {
+            if timestep == TimeStep.days {
+                for (date, lists) in sections {
                 print("date: \(date)")
                 //sumliststotalsums(lists)
             
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "dd MMM yyyy"
-            let formatdate = dateFormatter.dateFromString(date)
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "dd MMM yyyy"
+                    let formatdate = dateFormatter.dateFromString(date)
             
-            var dayName = String()
+                    var dayName = String()
             
-            if formatdate != nil {
-            dayName = formatdate!.dayOfTheWeek()!
-            } else {
-            dayName = date
+                        if formatdate != nil {
+                            dayName = "\(formatdate!.dayOfTheWeek()!)\n\(date)"
+                        } else {
+                            dayName = date
+                        }
+            
+                        let price = Price(step: dayName, price: sumliststotalsums(lists))
+                        prices.append(price)
+                }
+            } else if timestep == TimeStep.weeks {
+               
+                for (date, lists) in sections {
+                    print("date: \(date)")
+                    //sumliststotalsums(lists)
+                    
+                    let price = Price(step: date, price: sumliststotalsums(lists))
+                    prices.append(price)
+                }
+
+                
             }
             
-            let price = Price(step: dayName, price: sumliststotalsums(lists))
-            prices.append(price)
-        }
-            
             print(prices)
+            
+            
+            
+            // STEP 4 - sum all lists from given period to show
+            sumliststotalsums(chosenlists)
+            
+            var formatter = NSNumberFormatter()
+            formatter.maximumFractionDigits = 4
+            formatter.usesSignificantDigits = false
+            formatter.minimumSignificantDigits = 1
+            formatter.maximumSignificantDigits = 9
+            
+            
+            
+            var sum : String = formatter.stringFromNumber(sumliststotalsums(chosenlists))!
+            
+            listsSumLabel.text = "\(sum) \(code)"
+            listsCountLabel.text = "\(chosenlists.count)"
+            
+            
         
            
             
@@ -332,8 +515,10 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         //Appearance customization
         
+        //barchart.legend.enabled = false
+        
         barchart.noDataText = "You need to provide data for the chart."
-        barchart.descriptionText = "Monthly test data"
+        barchart.descriptionText = ""
         barchart.xAxis.labelPosition = .Bottom
         barchart.xAxis.setLabelsToSkip(0)
         barchart.scaleYEnabled = false
@@ -344,6 +529,11 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         barchart.rightAxis.enabled = false
         barchart.leftAxis.enabled = false
         barchart.xAxis.drawGridLinesEnabled = false
+        barchart.xAxis.labelFont = UIFont(name: "AvenirNext-Regular", size: 8)!
+        barchart.xAxis.wordWrapEnabled = true
+        //barchart.xAxis.labelHeight = 50
+        
+        
         
         
         barchart.backgroundColor = UIColorFromHex(0xFAFAFA, alpha: 1)
@@ -363,7 +553,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         
         
-        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Prices per Month")
+        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: nil)
         let chartData = BarChartData(xVals: stepsEntries, dataSet: chartDataSet)
         barchart.data = chartData
         
@@ -396,49 +586,31 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             barView.hidden = false
             
             //define data
-            let _fromdate = NSDate(dateString:"2016-04-01")
+            let _fromdate = NSDate(dateString:"2016-01-01")
             let _duedate = NSDate(dateString:"2016-07-30")
             
 
             setChart(barView, prices: handledata(_fromdate, duedate: _duedate, timestep: TimeStep.days, timeperiodtype: TimePeriodType.custom))
 
             
-        }
-        
-    }
-    /* GRAPHS
-    func choosebartype(type: charttype) {
-        
-        computedarray = [8.0, 12.0, 20.0, 10.0, 6.0, 20.0, 11.0, 9.0, 12.0, 16.0, 10.0, 6.0, 20.0]
-        
-        graphView.subviews.forEach({ $0.removeFromSuperview() })
-        
-        if type == charttype.bar {
-        
-        let view = computedarray.barGraph(GraphRange(min: 0, max: 25)).view(graphView.bounds).barGraphConfiguration({ BarGraphViewConfig(barColor: UIColor(hex: "#31797D"), barWidthScale: 0.8) })
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        graphView.addSubview(view)
-        
-        } else if type == charttype.line {
+        } else if type == charttype.line { // now for test
             
-            let view = computedarray.lineGraph().view(graphView.bounds).lineGraphConfiguration({ LineGraphViewConfig(lineColor: UIColor(hex: "#1EB2BB"), contentInsets: UIEdgeInsets(top: 32.0, left: 32.0, bottom: 32.0, right: 32.0)) })
-            view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-            graphView.addSubview(view)
+            barView.hidden = false
+            
+            //define data
+            let _fromdate = NSDate(dateString:"2016-01-01")
+            let _duedate = NSDate(dateString:"2016-07-30")
             
             
-        } else if type == charttype.pie {
-            
-            //let view = [8, 12, 20, -10, 6, 20, -11, 9, 12, 16, -10, 6, 20, -12].pieGraph().view(graphView.bounds).lineGraphConfiguration({ LineGraphViewConfig(lineColor: UIColor(hex: "#ff6699"), contentInsets: UIEdgeInsets(top: 32.0, left: 32.0, bottom: 32.0, right: 32.0)) })
-            let view = computedarray.pieGraph(){ (u, t) -> String? in String(format: "%.0f%%", (Float(u.value) / Float(t)))}.view(graphView.bounds).pieGraphConfiguration({ PieGraphViewConfig(textFont: UIFont(name: "DINCondensed-Bold", size: 14.0), isDounut: true, contentInsets: UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)) })
-            view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-            graphView.addSubview(view)
-            
+            setChart(barView, prices: handledata(_fromdate, duedate: _duedate, timestep: TimeStep.weeks, timeperiodtype: TimePeriodType.custom))
             
         }
         
     }
-    */
+
     @IBAction func barAction(sender: AnyObject) {
+        
+        
         
         choosebartype(charttype.bar)
         
@@ -446,7 +618,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func lineAction(sender: AnyObject) {
         
-        choosebartype(charttype.line)
+        choosebartype(charttype.line) //line)
     }
     
     
@@ -456,18 +628,35 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     
+   
+    
+    @IBAction func donebutton(sender: AnyObject) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 
+    @IBOutlet var openMenu: UIBarButtonItem!
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
- 
-        
-        //months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        
-       // prices = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0, 4.0, 18.0, 2.0, 4.0, 5.0, 4.0]
+      
+       
+        openMenu.target = self.revealViewController()
+        openMenu.action = Selector("revealToggle:")
+        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            
+
         
         tblExpandable.registerNib(UINib(nibName: "choosedatescell", bundle: nil), forCellReuseIdentifier: "choosedates")
         // Do any additional setup after loading the view.
+        
+        tblExpandable.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -622,15 +811,15 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             pickerexpanded = false
         }
         
-        tblExpandable.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.None)
-       // tblExpandable.reloadData()
+       // tblExpandable.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.None)
+        tblExpandable.reloadData()
     }
     
-    var fromdate : Bool = true
+    var isfromdate : Bool = true
     
     func choosefromdate(sender: UIButton!) {
         
-        fromdate = true
+        isfromdate = true
         
 
         
@@ -650,7 +839,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func chooseduedate(sender: UIButton!) {
         
-        fromdate = false
+        isfromdate = false
         
 
         
@@ -670,28 +859,37 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    var chosenfromdate = NSDate()
+    var chosenduedate = NSDate()
+    var timeperiodtype = TimePeriodType.custom
+    
+    var chosentimestep = TimeStep.weeks
+    
     func datePickerChanged(datePicker:UIDatePicker) {
         
         let picker = datePicker as UIDatePicker
         let view = picker.superview!
-        //let cell = view.superview as! choosedatescell
+
         
         var indexs = NSIndexPath(forRow: 0, inSection: 0)
-        //let celll = tblExpandable.dequeueReusableCellWithIdentifier("choosecell", forIndexPath: indexs) as! choosedatescell
+
         
         let cell = tblExpandable.cellForRowAtIndexPath(indexs) as! choosedatescell
         
         
         var dateFormatter = NSDateFormatter()
-        
-        //dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
-       // dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        var dateFormatter1 = NSDateFormatter()
+
         dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        dateFormatter1.dateFormat = "yyyy-MM-dd"
         
         var strDate = dateFormatter.stringFromDate(datePicker.date)
-        if fromdate {
+        if isfromdate {
+            
+        chosenfromdate = datePicker.date
         cell.fromdate.text = strDate
         } else {
+        chosenduedate = datePicker.date
         cell.duedate.text = strDate
         }
     }

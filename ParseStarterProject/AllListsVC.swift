@@ -1527,12 +1527,141 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
        
     }
 
+    func createtestlist() {
+        
+        
+        let uuid = NSUUID().UUIDString
+        let listuuid = "shoplist\(uuid)"
+        var listId: String?
+        let shopListNew = PFObject(className:"shopLists")
+        
+        let local = NSLocale.currentLocale()
+        symbol = local.objectForKey(NSLocaleCurrencySymbol) as! String
+        //   code = local.objectForKey(NSLocaleCurrencyCode) as! String
+        
+        if let currencyCode = NSLocale.currentLocale().objectForKey(NSLocaleCurrencyCode) as? String {
+            code = currencyCode
+            //Will display "USD", for example
+        }
+        
+        
+        shopListNew["listUUID"] = listuuid
+        
+        shopListNew["ShopListName"] = "Test"
+        shopListNew["ShopListNote"] = ""//ShopListNoteOutlet.text
+        //for user stuff
+        shopListNew["BelongsToUser"] = PFUser.currentUser()!.objectId!
+        // shopListNew["BelongsToUsers"] = [PFUser.currentUser()!.objectId!]
+        shopListNew["isReceived"] = false
+        shopListNew["isFavourite"] = false
+        shopListNew["ShareWithArray"] = []
+        shopListNew["sentFromArray"] = ["",""]
+        shopListNew["ItemsInTheShopList"] = []
+        shopListNew["isSaved"] = false
+        
+        shopListNew["isDeleted"] = false
+        shopListNew["confirmReception"] = false
+        shopListNew["isShared"] = false
+        
+        let months : [String] = ["01","02","03","04","05","06","07","08","09","10","11","12"]
+        let days : [String] = ["01","05","10","15","19","25","30"]
+        
+        let int1 : Int = Int(arc4random_uniform(11))
+        let int2 : Int = Int(arc4random_uniform(6))
+        
+       // let creationdate = NSDate(dateString:"2016-\(months[Int(arc4random_uniform(11)])-\(days[5])"
+        let creationdate = NSDate(dateString: "2016-\(months[int1])-\(days[int2])")
+        
+        
+        shopListNew["creationDate"] = creationdate
+        shopListNew["updateDate"] = creationdate
+        
+        shopListNew["ServerUpdateDate"] = creationdate.dateByAddingTimeInterval(-120)
+        
+        shopListNew["ItemsCount"] = 0
+        shopListNew["CheckedItemsCount"] = 0
+        
+        shopListNew["ListCurrency"] = code
+        shopListNew["ShowCats"] = false
+        
+        shopListNew["CurrencyArray"] = [code,symbol]
+        
+        shopListNew["ListColorCode"] = "2A2F36"
+        
+        let sum : Double = Double(arc4random_uniform(5000))
+        
+        shopListNew["ListTotalSum"] = "\(sum)"
+        
 
+        let listid = listuuid
+        let listname = "Test"
+        let listnote = ""//ShopListNoteOutlet.text
+        let listcreationdate = creationdate
+        let listisfav = false
+        let listisreceived = false
+        let listbelongsto = PFUser.currentUser()!.objectId!
+        let listissentfrom = ["",""]
+        let listissaved = false
+        
+        let listconfirm = false
+        let listisdeleted = false
+        let listisshared = false
+        let listsharewitharray = []
+        
+        let listitemscount = 0
+        let listcheckeditems = 0
+        let listtype = "Shop"
+        let listcurrency = code
+        let listshowcats = false
+        let listscolor = "2A2F36"
+        
+        let listtotalsum = "\(sum)"
+        
+        
+        let userlist : UserList = UserList(
+            listid:listid,
+            listname:listname,
+            listnote:listnote,
+            listcreationdate:listcreationdate,
+            listisfavourite:listisfav,
+            listisreceived:listisreceived,
+            listbelongsto:listbelongsto,
+            listreceivedfrom:listissentfrom,
+            listissaved:listissaved,
+            listconfirmreception:listconfirm,
+            listisdeleted:listisdeleted,
+            listisshared:listisshared,
+            listsharedwith:listsharewitharray as! [[AnyObject]],
+            listitemscount:listitemscount,
+            listcheckeditemscount:listcheckeditems,
+            listtype:listtype,
+            listcurrency:listcurrency,
+            listcategories:listshowcats,
+            listcolorcode:listscolor,
+            listtotalsum: listtotalsum
+            
+        )
+        
+        UserShopLists.append(userlist)
+        UserLists.append(userlist)
+        
+        
+        shopListNew.pinInBackground()
+        
+        
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        // TEST FUNC
+        /*
+        for i in (0..<30) {
+            createtestlist()
+        }
+        */
         
         // Load data for the first time
             // delete old data if any

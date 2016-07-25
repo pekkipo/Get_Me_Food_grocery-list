@@ -460,7 +460,7 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         } else if (indexPath.section == 3) {
             performSegueWithIdentifier("showalllistssegue", sender: self)
         } else if (indexPath.section == 4) {
-            performSegueWithIdentifier("menushowsharing", sender: self)
+            performSegueWithIdentifier("showstatisticsmenu", sender: self)
         } else if (indexPath.section == 5) {
             performSegueWithIdentifier("showeventssegue", sender: self)
         } else if (indexPath.section == 6) {
@@ -487,6 +487,23 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         toViewController.transitioningDelegate = self.transitionOperator
         */
         /////// This is for fancy slide-out stuff
+        
+        
+        if segue.identifier == "showstatisticsmenu" {
+            
+            
+            let navVC = segue.destinationViewController as! UINavigationController
+            
+            let  toViewController = navVC.viewControllers.first as! GraphsVC
+            
+            
+            toViewController.senderVC = "Menu"
+            
+            
+            
+            
+        }
+        
         if segue.identifier == "showalllistssegue" {
             
             

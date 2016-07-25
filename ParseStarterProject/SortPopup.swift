@@ -529,6 +529,11 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         cell.layoutMargins = UIEdgeInsetsZero
     }
 
+    
+    @IBAction func unwindToSort(sender: UIStoryboardSegue){
+        
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -553,14 +558,25 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     }
     
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "showstatistics" {
+            
+            let navVC = segue.destinationViewController as! UINavigationController
+            
+            let  toViewController = navVC.viewControllers.first as! GraphsVC
+            
+            
+            toViewController.senderVC = "Other"
+            
+        }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+
 
 }
