@@ -3259,6 +3259,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 shopList["ShowCats"] = self.showcats
                 
+                
+                shopList["ListTotalSum"] = self.totalsumforlist
 
                 shopList.pinInBackground()
 
@@ -3274,6 +3276,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             UserLists[foundlist].listcheckeditemscount = checkeditemsqty
             // UserLists[foundlist].listcreationdate = updatedate
             UserLists[foundlist].listcolorcode = colorcode
+            UserLists[foundlist].listtotalsum = totalsumforlist
             
         }
 
@@ -3288,6 +3291,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             UserShopLists[foundshoplist].listcheckeditemscount = checkeditemsqty
           //  UserShopLists[foundshoplist].listcreationdate = updatedate
             UserShopLists[foundshoplist].listcolorcode = colorcode
+            UserShopLists[foundshoplist].listtotalsum = totalsumforlist
         }
         
      //   if let foundfavlist = find(lazy(UserFavLists).map({ $0.listid }), currentList) {
@@ -3301,6 +3305,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             UserFavLists[foundfavlist].listcheckeditemscount = checkeditemsqty
          //   UserFavLists[foundfavlist].listcreationdate = updatedate
             UserFavLists[foundfavlist].listcolorcode = colorcode
+            UserFavLists[foundfavlist].listtotalsum = totalsumforlist
         }
 
         
@@ -3361,6 +3366,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         shopListNew["ListColorCode"] = colorcode
         
+        shopListNew["ListTotalSum"] = ""
+        
         self.currentList = listuuid
         print("Current list is \(self.currentList)")
         //shopList["ItemsInTheShopList"] = shoppingListItemsIds
@@ -3388,6 +3395,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         let listshowcats = false
         let listscolor = colorcode
         
+        let listtotalsum = ""
+        
         
         let userlist : UserList = UserList(
             listid:listid,
@@ -3408,7 +3417,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             listtype:listtype,
             listcurrency:listcurrency,
             listcategories:listshowcats,
-            listcolorcode:listscolor
+            listcolorcode:listscolor,
+            listtotalsum: listtotalsum
             
         )
 
@@ -3625,6 +3635,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     //shoppingListItemsPrices.
     
+    var totalsumforlist : String = String()
+    
     func summationPrices() {
         
         var itemsprices = [Double]()
@@ -3645,6 +3657,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         var textsum: String = formatter.stringFromNumber(sum)!
+        
+        totalsumforlist = textsum
         
 
         var rubsymbol : String = "руб."
@@ -7655,16 +7669,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
         } else {
             
-            /*
-            let button = sender as UIButton
-            let view = button.superview!
-            let innerview = view.superview!
-            let cell = innerview.superview as! ItemShopListCell
-            */
-            
-           // let position: CGPoint = sender.convertPoint(CGPointZero, toView: self.tableView)
-           // if let indexPathIteminSection = self.tableView.indexPathForRowAtPoint(position)
-           // {
+
                 let section = indexPathCheck.section//indexPathIteminSection.section
                 let rowsect = indexPathCheck.row//indexPathIteminSection.row
 

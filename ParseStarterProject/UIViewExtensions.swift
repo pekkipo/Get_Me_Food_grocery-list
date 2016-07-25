@@ -428,6 +428,34 @@ extension UIColor {
         
     }
 }
+
+extension NSDate
+{
+    convenience
+    init(dateString:String) {
+        let dateStringFormatter = NSDateFormatter()
+        dateStringFormatter.dateFormat = "yyyy-MM-dd"
+        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        let d = dateStringFormatter.dateFromString(dateString)!
+        self.init(timeInterval:0, sinceDate:d)
+    }
+}
+
+extension NSDate {
+    func dayOfTheWeek() -> String? {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        return dateFormatter.stringFromDate(self)
+    }
+}
+
+extension NSDate {
+    func pickyear() -> String? {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        return dateFormatter.stringFromDate(self)
+    }
+}
 /*
 public extension UIDevice {
     

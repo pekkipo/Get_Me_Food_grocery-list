@@ -4568,7 +4568,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     func askfordeleteAlert(title: String, message: String) {
         
        // let customIcon = UIImage(named: "FailAlert")
-        let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "\(NSLocalizedString("delete", comment: ""))", cancelButtonText: "\(NSLocalizedString("cancelbutton", comment: ""))", color: UIColorFromHex(0xFFFFFF, alpha: 0.9))
+        let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "\(NSLocalizedString("delete", comment: ""))", cancelButtonText: "\(NSLocalizedString("cancelbutton", comment: ""))", color: UIColorFromHex(0xFFFFFF, alpha: 1))
         alertview.setTextTheme(.Dark)
         alertview.addAction(closeCallbackDelete)
         alertview.addCancelAction(cancelCallbackDelete)

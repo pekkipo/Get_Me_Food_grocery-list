@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Graphs
+//import Graphs
 import Charts
 
 
@@ -38,28 +38,273 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    
+    func loading_simple(show: Bool) {
+        
+        let viewframe = CGRectMake(self.view.frame.width / 2 - 50, self.view.frame.height / 2 - 50, 100, 100)
+        let loadingview: UIView = UIView(frame: viewframe);
+        loadingview.backgroundColor = UIColor.whiteColor()
+        loadingview.layer.cornerRadius = 12
+        
+        let indicator : NVActivityIndicatorView =  NVActivityIndicatorView(frame: CGRectMake(20, 20, 60, 60), type: NVActivityIndicatorType.BallClipRotate, color: UIColorFromHex(0x1EB2BB))
+        
+        
+        loadingview.addSubview(indicator)
+        
+        loadingview.tag = 945
+        
+        
+        
+        if show {
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+            self.graphView.addSubview(loadingview)
+            indicator.startAnimation()
+            
+        } else {
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            if let viewWithTag = self.view.viewWithTag(945) {
+                viewWithTag.removeFromSuperview()
+            }
+            
+        }
+        
+    }
+
+    
+    
+    
     // MARK: - Handling data for charts
     
     struct Price {
     
         var step: String
         var price: Double
-      //  var fromdate: NSDate
-      //  var duedate: NSDate
         
     }
     
-    func handledata(fromdate: NSDate, duedate: NSDate) -> [Price] {
+    enum TimePeriodType {
         
-        var prices = [Price]()
+        case week
+        case month
+        case year
+        case custom
+    }
+    
+    enum TimeStep {
+        case days
+        case weeks
+        case months
+        case years
+    }
+    
+    
+   // let timeperiods : [String] = ["week", "month", "year", "custom"]
+    
+    let timesteps : [String] = ["days", "weeks", "months", "years"]
+    
+    var totalsum : Double = Double()
+    
+    var totallistscount : Double = Double()
+    
+    
+
+    
+    var sections = Dictionary<String, Array<UserList>>()
+    var sortedLists = [String]()
+    
+    func sortlists(lists: [UserList], timestep: TimeStep) {
         
-        // grab the lists that satisfy the condition
-        for list in UserLists {
-            if list.listtype == "Shop" {
+        if timestep == TimeStep.days {
+        
+            for ( var i = 0; i < lists.count; i++ ) {
                 
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "dd MMM yyyy"
+                
+                let commondate: String = dateFormatter.stringFromDate(lists[i].listcreationdate)
+
+            if self.sections.indexForKey(commondate) == nil {
+                self.sections[commondate] = [lists[i]]
+            }
+            else {
+                self.sections[commondate]?.append(lists[i])
+            }
+            
+            //we are storing our sections in dictionary, so we need to sort it
+            self.sortedLists = self.sections.keys.elements.sort(>)
+
+                
+        }
+        
+        print(sections)
+        print(sortedLists)
+            
+        }
+        
+    }
+    
+    
+    
+    
+    func dividetimeperiod(step: TimeStep, from: NSDate, due: NSDate?) -> (ints: Int, date: NSDate) {
+        
+        var numberofsubperiods = Int()
+        var subperiod = NSDate()
+        
+        if step == TimeStep.days {
+            
+            var calendar: NSCalendar = NSCalendar.currentCalendar()
+            let date1 = calendar.startOfDayForDate(from)
+            let date2 = calendar.startOfDayForDate(due!)
+            
+            let flags = NSCalendarUnit.Day
+            let components = calendar.components(flags, fromDate: date1, toDate: date2, options: [])
+            
+            numberofsubperiods = components.day
+            
+            subperiod = from
+            
+            
+        }
+        
+        return (numberofsubperiods, subperiod)
+    }
+    
+    func sumliststotalsums(lists: [UserList]) -> Double {
+        
+        var totalsum = Double()
+        var array = [Double]()
+        
+        for list in lists {
+            if list.listtotalsum != nil {
+            var doublevalue = list.listtotalsum!.doubleConverter
+            array.append(doublevalue)
+            } else {
+            //array.append(0.0)
+            array.append(Double(arc4random_uniform(2000))) //FOR TESTING
             }
         }
         
+        totalsum = array.reduce(0, combine: +)
+        
+        return totalsum
+        
+    }
+
+    
+    func handledata(fromdate: NSDate?, duedate: NSDate?, timestep: TimeStep, timeperiodtype: TimePeriodType) -> [Price] {
+        
+        var chosenlists = [UserList]()
+        var prices = [Price]()
+        
+        loading_simple(true)
+        
+        if timeperiodtype == TimePeriodType.custom {
+            
+        // STEP 1 - Grab all list for the given TIME PERIOD
+        for list in UserLists {
+            if list.listtype == "Shop" {
+                
+                if (list.listcreationdate.timeIntervalSince1970 >= fromdate?.timeIntervalSince1970) && (list.listcreationdate.timeIntervalSince1970 <= duedate?.timeIntervalSince1970) {
+                    chosenlists.append(list)
+                }
+                
+            }
+        }
+            
+        // STEP 2 - Sort the chosenlistsarray
+            
+        sortlists(chosenlists, timestep: timestep)
+            
+        // STEP 3 - Sum all lists in subperiods
+            
+        for (date, lists) in sections {
+                print("date: \(date)")
+                //sumliststotalsums(lists)
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd MMM yyyy"
+            let formatdate = dateFormatter.dateFromString(date)
+            
+            var dayName = String()
+            
+            if formatdate != nil {
+            dayName = formatdate!.dayOfTheWeek()!
+            } else {
+            dayName = date
+            }
+            
+            let price = Price(step: dayName, price: sumliststotalsums(lists))
+            prices.append(price)
+        }
+            
+            print(prices)
+        
+           
+            
+      
+      
+            
+            
+            // STEP 2 - Create an array of arrays of lists 
+            // Number of arrays is the number of days (in case days timeperiod) between fromdate and duedate
+            
+        // At this point I have all lists from the chosen period
+            
+            
+        /*
+        for list in chosenlists {
+            
+            let calendar = NSCalendar.currentCalendar()
+            let components = calendar.components([.Day , .Month , .Year], fromDate: list.listcreationdate)
+            let year =  components.year
+            let month = components.month
+            let day = components.day
+            var stepname = String()
+            let weekName = ""
+            let monthName = NSDateFormatter().monthSymbols[month - 1]
+            let dayName = list.listcreationdate.dayOfTheWeek()
+            let yearName = list.listcreationdate.pickyear()
+            var sum = Double()
+
+            if timestep == TimeStep.days {
+            stepname = dayName!
+                
+                
+             let tomorrow = NSCalendar.currentCalendar().dateByAddingUnit(
+                    .Day,
+                    value: 1,
+                    toDate: list.listcreationdate,
+                    options: NSCalendarOptions.MatchStrictly)
+                
+                
+            } else if timestep == TimeStep.weeks {
+            stepname = weekName
+                
+            } else if timestep == TimeStep.months {
+            stepname = monthName
+            } else if timestep == TimeStep.years {
+            stepname = yearName!
+            }
+            
+            if list.listtotalsum != nil {
+                
+                sum = summationfortheschosenperiod()
+            } else {
+                sum = Double(arc4random_uniform(2000))
+            }
+            
+
+            let price = Price(step: stepname, price: sum)
+            prices.append(price)
+
+        }
+        */
+            
+        loading_simple(false)
+        
+    }
+    
         return prices
     }
     
@@ -97,7 +342,12 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         barchart.doubleTapToZoomEnabled = false
         barchart.highlighter = nil // might use later, shows description when tap the bar
         barchart.rightAxis.enabled = false
+        barchart.leftAxis.enabled = false
         barchart.xAxis.drawGridLinesEnabled = false
+        
+        
+        barchart.backgroundColor = UIColorFromHex(0xFAFAFA, alpha: 1)
+        
         
         barchart.animate(yAxisDuration: 1.0, easingOption: .EaseInOutQuart)
         
@@ -126,7 +376,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             UIColorFromHex(0xE88996, alpha: 1),
         ]
         
-        chartDataSet.colors = ChartColorTemplates.joyful()
+        //chartDataSet.colors = ChartColorTemplates.joyful()
         
         barchart.descriptionText = ""
         
@@ -146,10 +396,11 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             barView.hidden = false
             
             //define data
-            let _fromdate = NSDate()
-            let _duedate = NSDate()
+            let _fromdate = NSDate(dateString:"2016-04-01")
+            let _duedate = NSDate(dateString:"2016-07-30")
+            
 
-            setChart(barView, prices: handledata(_fromdate, duedate: _duedate))
+            setChart(barView, prices: handledata(_fromdate, duedate: _duedate, timestep: TimeStep.days, timeperiodtype: TimePeriodType.custom))
 
             
         }
@@ -262,14 +513,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let identifiers : [String] = ["weekcell", "monthcell","yearcell", "choosecell", "choosedates"]
     
-    
-    let timeperiods : [String] = ["week", "month", "year", "custom"]
-    
-    let timesteps : [String] = ["days", "weeks", "months", "years"]
-    
-    var totalsum : Double = Double()
-    
-    var totallistscount : Double = Double()
+
     
 
     

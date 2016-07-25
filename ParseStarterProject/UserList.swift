@@ -33,6 +33,7 @@ class UserList: NSObject {//, Equatable, Hashable, NSCopying {//, Comparable {
     //var listcurrency:String?
     var listcurrency:AnyObject?
     var listcategories:Bool?
+    var listtotalsum:String?//Double?
     
     //optional
     var listcolorcode:String!
@@ -124,10 +125,56 @@ class UserList: NSObject {//, Equatable, Hashable, NSCopying {//, Comparable {
             
     }
     
+    init( // INIT FOR SHOP with total sum
+        listid:String,
+        listname:String,
+        listnote:String,
+        listcreationdate:NSDate,
+        listisfavourite:Bool,
+        listisreceived:Bool,
+        listbelongsto:String,
+        listreceivedfrom:[String],
+        listissaved:Bool,
+        listconfirmreception:Bool,
+        listisdeleted:Bool,
+        listisshared:Bool,
+        listsharedwith:[[AnyObject]],
+        listitemscount:Int,
+        listcheckeditemscount:Int,
+        listtype:String,
+        listcurrency:AnyObject,//String,
+        listcategories:Bool,
+        listcolorcode:String,
+        listtotalsum:String
+        ) {
+        
+        self.listid = listid
+        self.listname = listname
+        self.listnote = listnote
+        self.listcreationdate = listcreationdate
+        self.listisfavourite = listisfavourite
+        self.listisreceived = listisreceived
+        self.listbelongsto = listbelongsto
+        self.listreceivedfrom = listreceivedfrom
+        self.listissaved = listissaved
+        self.listconfirmreception = listconfirmreception
+        self.listisdeleted = listisdeleted
+        self.listisshared = listisshared
+        self.listsharedwith = listsharedwith
+        self.listitemscount = listitemscount
+        self.listcheckeditemscount = listcheckeditemscount
+        self.listtype = listtype
+        self.listcurrency = listcurrency
+        self.listcategories = listcategories
+        self.listcolorcode = listcolorcode
+        self.listtotalsum = listtotalsum
+        
+        
+    }
 
     
  
-    
+   
 
     
     override var hash: Int {
