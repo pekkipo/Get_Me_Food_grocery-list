@@ -11,6 +11,31 @@ import UIKit
 import Charts
 
 
+
+/// This stuff so that I can use Subperiod struct in a dictionary
+struct Subperiod {
+    var left: NSDate
+    var right: NSDate
+}
+
+// MARK: Hashable
+
+extension Subperiod: Hashable {
+    var hashValue: Int {
+        return left.hashValue ^ right.hashValue
+    }
+}
+
+func ==(lhs: Subperiod, rhs: Subperiod) -> Bool {
+    return lhs.left == rhs.left && lhs.right == rhs.right
+}
+
+func >(lhs: Subperiod, rhs: Subperiod) -> Bool {
+    return lhs.left.timeIntervalSince1970 > rhs.left.timeIntervalSince1970 && lhs.right.timeIntervalSince1970 > rhs.right.timeIntervalSince1970
+}
+
+
+
 class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var senderVC = String()
@@ -155,11 +180,21 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var sections = Dictionary<String, Array<UserList>>()
     var sortedLists = [String]()
     
+  
+    
+    
+    var weekssections = Dictionary<Subperiod, Array<UserList>>()
+    var sortedListsbyDate = [Subperiod]()
+    
     func sortlists(lists: [UserList], timestep: TimeStep, from: NSDate?, due: NSDate?) {
+        
         
         
         sections.removeAll(keepCapacity: true)
         sortedLists.removeAll(keepCapacity: true)
+        
+        weekssections.removeAll(keepCapacity: true)
+        sortedListsbyDate.removeAll(keepCapacity: true)
         
         if timestep == TimeStep.days {
             
@@ -178,11 +213,12 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
             
             //we are storing our sections in dictionary, so we need to sort it
-            self.sortedLists = self.sections.keys.elements.sort(<)
+          //  self.sortedLists = self.sections.keys.elements.sort(<)
                 
                 
         }
-        
+        self.sortedLists = self.sections.keys.elements.sort(<)
+            
         print(sections)
         print(sortedLists)
             
@@ -230,6 +266,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     
                     if (lists[i].listcreationdate.timeIntervalSince1970 >= leftborderweek.timeIntervalSince1970) && (lists[i].listcreationdate.timeIntervalSince1970 < rightborderweek.timeIntervalSince1970) {
                         
+                       /*
                         let dateFormatter = NSDateFormatter()
                         dateFormatter.dateFormat = "dd MMM"
                         
@@ -237,12 +274,15 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         let rightdate: String = dateFormatter.stringFromDate(rightborderweek)
                         
                         let commondate : String = "\(leftdate) - \(rightdate)"
+                        */
+                        let commondate : Subperiod = Subperiod(left: leftborderweek, right: rightborderweek)
+                        //"\(leftdate) - \(rightdate)"
                         
-                        if self.sections.indexForKey(commondate) == nil {
-                            self.sections[commondate] = [lists[i]]
+                        if self.weekssections.indexForKey(commondate) == nil {
+                            self.weekssections[commondate] = [lists[i]]
                         }
                         else {
-                            self.sections[commondate]?.append(lists[i])
+                            self.weekssections[commondate]?.append(lists[i])
                         }
                         
                         
@@ -255,15 +295,20 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     }
                 
                 }
-                
-                
-                
+                /*
+                self.sortedListsbyDate = self.weekssections.keys.elements.sort({
+                    return $0.0 > $0.1
+                })
+                */
                 //self.sortedLists = self.sections.keys.elements.sort(<)
                 
+                /*
                 self.sortedLists = self.sections.keys.elements.sort({
                     return ($0.componentsSeparatedByString(" -")[0]) > ($1.componentsSeparatedByString(" -")[0])
                     
                 })
+                */
+                
 
                // var str = "str.str"
                // str = str.componentsSeparatedByString(".")[0]
@@ -284,8 +329,17 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
             }
             
-            print(sections)
-            print(sortedLists)
+            self.sortedListsbyDate = self.weekssections.keys.elements.sort({
+                //return $0.0.left.timeIntervalSince1970 > $1.0.left.timeIntervalSince1970
+                return $0.left.timeIntervalSince1970 > $1.left.timeIntervalSince1970
+            })
+            
+            self.weekssections.keys.elements.sort({
+                return $0.left.timeIntervalSince1970 > $1.left.timeIntervalSince1970
+            })
+            
+            print("Sections are: \(weekssections)")
+            print("SortedLists are: \(sortedListsbyDate)")
 
             
         }
@@ -344,6 +398,9 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func handledata(fromdate: NSDate?, duedate: NSDate?, timestep: TimeStep, timeperiodtype: TimePeriodType) -> [Price] {
         
+        
+        
+        
         var chosenlists = [UserList]()
         var prices = [Price]()
         
@@ -367,6 +424,8 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             sortlists(chosenlists, timestep: timestep, from: fromdate, due: duedate)
              
             
+            
+            
         // STEP 3 - Sum all lists in subperiods
             if timestep == TimeStep.days {
                 for (date, lists) in sections {
@@ -389,21 +448,31 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         prices.append(price)
                 }
             } else if timestep == TimeStep.weeks {
-               
+               /*
                 for (date, lists) in sections {
-                    print("date: \(date)")
-                    //sumliststotalsums(lists)
-                    
                     let price = Price(step: date, price: sumliststotalsums(lists))
                     prices.append(price)
                 }
+                */
+                
+                for (date, lists) in weekssections {
 
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "dd MMM"
+                    
+                    let leftdate: String = dateFormatter.stringFromDate(date.left)
+                    let rightdate: String = dateFormatter.stringFromDate(date.right)
+                    
+                    let stringdate : String = "\(leftdate) - \(rightdate)"
+
+                    let price = Price(step: stringdate, price: sumliststotalsums(lists))
+                    prices.append(price)
+                }
                 
             }
             
             print(prices)
-            
-            
+
             
             // STEP 4 - sum all lists from given period to show
             sumliststotalsums(chosenlists)
@@ -486,7 +555,13 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
         loading_simple(false)
         
-    }
+        } else if timeperiodtype == TimePeriodType.month {
+            
+        } else if timeperiodtype == TimePeriodType.week {
+            
+        } else if timeperiodtype == TimePeriodType.year {
+            
+        }
     
         return prices
     }

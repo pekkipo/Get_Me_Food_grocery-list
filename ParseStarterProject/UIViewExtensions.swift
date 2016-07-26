@@ -441,6 +441,18 @@ extension NSDate
     }
 }
 
+extension NSDate
+{
+    convenience
+    init(dateString2:String) {
+        let dateStringFormatter = NSDateFormatter()
+        dateStringFormatter.dateFormat = "MMM-dd"
+        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        let d = dateStringFormatter.dateFromString(dateString2)!
+        self.init(timeInterval:0, sinceDate:d)
+    }
+}
+
 extension NSDate {
     func dayOfTheWeek() -> String? {
         let dateFormatter = NSDateFormatter()
@@ -456,6 +468,8 @@ extension NSDate {
         return dateFormatter.stringFromDate(self)
     }
 }
+
+
 /*
 public extension UIDevice {
     
