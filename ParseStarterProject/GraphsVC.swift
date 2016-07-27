@@ -147,6 +147,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
         var step: String
         var price: Double
+        var date: NSDate
         
     }
     
@@ -218,17 +219,13 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
         }
         self.sortedLists = self.sections.keys.elements.sort(<)
-            
-        print(sections)
-        print(sortedLists)
+
             
         } else if timestep == TimeStep.weeks {
             
             let numberofdays : Int = dividetimeperiod(timestep, from: from!, due: due!)
             let numberofweeks = numberofdays / 7
-            
-            print(numberofdays)
-            print(numberofweeks)
+
             
             for ( var i = 0; i < lists.count; i++ ) {
                 
@@ -337,12 +334,161 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.weekssections.keys.elements.sort({
                 return $0.left.timeIntervalSince1970 > $1.left.timeIntervalSince1970
             })
+
             
-            print("Sections are: \(weekssections)")
-            print("SortedLists are: \(sortedListsbyDate)")
+        } else if timestep == TimeStep.months {
+            
+            var calendar: NSCalendar = NSCalendar.currentCalendar()
+            let date1 = calendar.startOfDayForDate(from!)
+            let date2 = calendar.startOfDayForDate(due!)
+            
+            let flags = NSCalendarUnit.Month
+            let components = calendar.components(flags, fromDate: date1, toDate: date2, options: [])
+            
+            var numberofmonths = components.month
+            
+            for ( var i = 0; i < lists.count; i++ ) {
+                
+                
+                for j in (1..<numberofmonths) {
+                    
+                    var leftborderweek = NSDate()
+                    var rightborderweek = NSDate()
+                    
+                    if j == 1 {
+                        
+                        leftborderweek = from!
+                        rightborderweek = NSCalendar.currentCalendar().dateByAddingUnit(
+                            .Month,
+                            value: 1,
+                            toDate: from!,
+                            options: NSCalendarOptions.MatchStrictly)!
+                        
+                        
+                        
+                    } else {
+                        leftborderweek = NSCalendar.currentCalendar().dateByAddingUnit(
+                            .Month,
+                            value: (j-1),
+                            toDate: from!,
+                            options: NSCalendarOptions.MatchStrictly)!
+                        
+                        rightborderweek = NSCalendar.currentCalendar().dateByAddingUnit(
+                            .Month,
+                            value: j,
+                            toDate: from!,
+                            options: NSCalendarOptions.MatchStrictly)!
+                        
+                    }
+                    
+                    if (lists[i].listcreationdate.timeIntervalSince1970 >= leftborderweek.timeIntervalSince1970) && (lists[i].listcreationdate.timeIntervalSince1970 < rightborderweek.timeIntervalSince1970) {
+                        
+
+                        let commondate : Subperiod = Subperiod(left: leftborderweek, right: rightborderweek)
+
+                        if self.weekssections.indexForKey(commondate) == nil {
+                            self.weekssections[commondate] = [lists[i]]
+                        }
+                        else {
+                            self.weekssections[commondate]?.append(lists[i])
+                        }
+
+                    }
+                    
+                }
+
+                
+            }
+            
+            self.sortedListsbyDate = self.weekssections.keys.elements.sort({
+                //return $0.0.left.timeIntervalSince1970 > $1.0.left.timeIntervalSince1970
+                return $0.left.timeIntervalSince1970 > $1.left.timeIntervalSince1970
+            })
+            
+            self.weekssections.keys.elements.sort({
+                return $0.left.timeIntervalSince1970 > $1.left.timeIntervalSince1970
+            })
+
+            
+            
+        } else if timestep == TimeStep.years {
+            
+            var calendar: NSCalendar = NSCalendar.currentCalendar()
+            let date1 = calendar.startOfDayForDate(from!)
+            let date2 = calendar.startOfDayForDate(due!)
+            
+            let flags = NSCalendarUnit.Year
+            let components = calendar.components(flags, fromDate: date1, toDate: date2, options: [])
+            
+            var numberofyears = components.year
+            
+            for ( var i = 0; i < lists.count; i++ ) {
+                
+                
+                for j in (1..<numberofyears) {
+                    
+                    var leftborderweek = NSDate()
+                    var rightborderweek = NSDate()
+                    
+                    if j == 1 {
+                        
+                        leftborderweek = from!
+                        rightborderweek = NSCalendar.currentCalendar().dateByAddingUnit(
+                            .Year,
+                            value: 1,
+                            toDate: from!,
+                            options: NSCalendarOptions.MatchStrictly)!
+                        
+                        
+                        
+                    } else {
+                        leftborderweek = NSCalendar.currentCalendar().dateByAddingUnit(
+                            .Year,
+                            value: (j-1),
+                            toDate: from!,
+                            options: NSCalendarOptions.MatchStrictly)!
+                        
+                        rightborderweek = NSCalendar.currentCalendar().dateByAddingUnit(
+                            .Year,
+                            value: j,
+                            toDate: from!,
+                            options: NSCalendarOptions.MatchStrictly)!
+                        
+                    }
+                    
+                    if (lists[i].listcreationdate.timeIntervalSince1970 >= leftborderweek.timeIntervalSince1970) && (lists[i].listcreationdate.timeIntervalSince1970 < rightborderweek.timeIntervalSince1970) {
+                        
+                        
+                        let commondate : Subperiod = Subperiod(left: leftborderweek, right: rightborderweek)
+                        
+                        if self.weekssections.indexForKey(commondate) == nil {
+                            self.weekssections[commondate] = [lists[i]]
+                        }
+                        else {
+                            self.weekssections[commondate]?.append(lists[i])
+                        }
+                        
+                    }
+                    
+                }
+                
+                
+            }
+            
+            self.sortedListsbyDate = self.weekssections.keys.elements.sort({
+                //return $0.0.left.timeIntervalSince1970 > $1.0.left.timeIntervalSince1970
+                return $0.left.timeIntervalSince1970 > $1.left.timeIntervalSince1970
+            })
+            
+            self.weekssections.keys.elements.sort({
+                return $0.left.timeIntervalSince1970 > $1.left.timeIntervalSince1970
+            })
 
             
         }
+        
+        print("Sections are: \(weekssections)")
+        print("SortedLists are: \(sortedListsbyDate)")
         
     }
     
@@ -444,9 +590,12 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                             dayName = date
                         }
             
-                        let price = Price(step: dayName, price: sumliststotalsums(lists))
+                    let price = Price(step: dayName, price: sumliststotalsums(lists), date: formatdate!)
                         prices.append(price)
                 }
+                
+                prices.sortInPlace({ $0.date.timeIntervalSince1970 < $1.date.timeIntervalSince1970 })
+                
             } else if timestep == TimeStep.weeks {
                /*
                 for (date, lists) in sections {
@@ -465,9 +614,49 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     
                     let stringdate : String = "\(leftdate) - \(rightdate)"
 
-                    let price = Price(step: stringdate, price: sumliststotalsums(lists))
+                    let price = Price(step: stringdate, price: sumliststotalsums(lists), date: date.left)
                     prices.append(price)
                 }
+                
+                prices.sortInPlace({ $0.date.timeIntervalSince1970 < $1.date.timeIntervalSince1970 })
+                
+            } else if timestep == TimeStep.months {
+
+                
+                for (date, lists) in weekssections {
+                    
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "dd MMM"
+                    
+                    let leftdate: String = dateFormatter.stringFromDate(date.left)
+                    let rightdate: String = dateFormatter.stringFromDate(date.right)
+                    
+                    let stringdate : String = "\(leftdate) - \(rightdate)"
+                    
+                    let price = Price(step: stringdate, price: sumliststotalsums(lists), date: date.left)
+                    prices.append(price)
+                }
+                
+                prices.sortInPlace({ $0.date.timeIntervalSince1970 < $1.date.timeIntervalSince1970 })
+                
+            } else if timestep == TimeStep.years {
+                
+                
+                for (date, lists) in weekssections {
+                    
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "yyyy"
+                    
+                    let leftdate: String = dateFormatter.stringFromDate(date.left)
+                    let rightdate: String = dateFormatter.stringFromDate(date.right)
+                    
+                    let stringdate : String = "\(leftdate) - \(rightdate)"
+                    
+                    let price = Price(step: stringdate, price: sumliststotalsums(lists), date: date.left)
+                    prices.append(price)
+                }
+                
+                prices.sortInPlace({ $0.date.timeIntervalSince1970 < $1.date.timeIntervalSince1970 })
                 
             }
             
@@ -556,11 +745,15 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         loading_simple(false)
         
         } else if timeperiodtype == TimePeriodType.month {
+            // Allowed timesteps Days or Weeks
+            
+            
             
         } else if timeperiodtype == TimePeriodType.week {
+            // Allowed time steps Days
             
         } else if timeperiodtype == TimePeriodType.year {
-            
+            // Allowed time steps years, month, weeks
         }
     
         return prices
@@ -661,11 +854,11 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             barView.hidden = false
             
             //define data
-            let _fromdate = NSDate(dateString:"2016-01-01")
-            let _duedate = NSDate(dateString:"2016-07-30")
+           // let _fromdate = NSDate(dateString:"2016-01-01")
+            //let _duedate = NSDate(dateString:"2016-07-30")
             
 
-            setChart(barView, prices: handledata(_fromdate, duedate: _duedate, timestep: TimeStep.days, timeperiodtype: TimePeriodType.custom))
+            setChart(barView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: TimeStep.days, timeperiodtype: TimePeriodType.custom))
 
             
         } else if type == charttype.line { // now for test
