@@ -41,6 +41,14 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var senderVC = String()
     
     
+    // CHOSEN PARAMETERS
+    
+    var chosenfromdate = NSDate()
+    var chosenduedate = NSDate()
+    var timeperiodtype = TimePeriodType.custom
+    var chosentimestep = TimeStep.weeks
+    
+    
     // OUTLETS
     
     @IBOutlet var graphView: UIView!
@@ -59,11 +67,50 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var listsCountLabel: UILabel!
     
     
-    @IBOutlet var slidingView: UIView!
-    @IBOutlet var slidingbottomconstraint: NSLayoutConstraint! // 0 or -320
+    @IBOutlet var slideSteps: UIView!
     
-    func slide(value: CGFloat) {
+    @IBOutlet var slideStepsConstraint: NSLayoutConstraint! // 0 or -340
+    
+    @IBOutlet var slidingView: UIView!
+    @IBOutlet var slidingbottomconstraint: NSLayoutConstraint! // 0 or -450
+    
+    
+    @IBAction func cancelSteps(sender: AnyObject) {
         
+        slide(-340, view: "Steps")
+        
+    }
+    
+    @IBOutlet var timeperiodbuttonoutlet: UIButton!
+    
+    @IBOutlet var timestepbuttonoutlet: UIButton!
+    
+    @IBAction func confirmSteps(sender: AnyObject) {
+        
+        timeperiodtype = TimePeriodType.custom
+        
+        setChart(barView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: chosentimestep, timeperiodtype: timeperiodtype))
+        
+        if chosentimestep == TimeStep.days {
+        timestepbuttonoutlet.titleLabel!.text = NSLocalizedString("days", comment: "")
+        } else if chosentimestep == TimeStep.weeks {
+            timestepbuttonoutlet.titleLabel!.text = NSLocalizedString("weeks", comment: "")
+        } else if chosentimestep == TimeStep.months {
+            timestepbuttonoutlet.titleLabel!.text = NSLocalizedString("months", comment: "")
+        } else if chosentimestep == TimeStep.years {
+            timestepbuttonoutlet.titleLabel!.text = NSLocalizedString("years", comment: "")
+        }
+        
+        slide(-340, view: "Steps")
+    }
+    
+    
+    @IBOutlet var stepsTbl: UITableView!
+    
+    
+    func slide(value: CGFloat, view: String) {
+        
+        if view == "Period" {
         slidingbottomconstraint.constant = value
         
         UIView.animateWithDuration(0.2, animations: { () -> Void in
@@ -72,11 +119,21 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }, completion: { (value: Bool) -> Void in
                 
         })
+        } else if view == "Steps" {
+            slideStepsConstraint.constant = value
+            
+            UIView.animateWithDuration(0.2, animations: { () -> Void in
+                
+                self.view.layoutIfNeeded()
+                }, completion: { (value: Bool) -> Void in
+                    
+            })
+        }
     }
     
     @IBAction func closesliding(sender: AnyObject) {
         
-        slide(-450)
+        slide(-450, view: "Period")
 
     }
     
@@ -87,7 +144,27 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     setChart(barView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: chosentimestep, timeperiodtype: timeperiodtype))
       
         
-      slide(-450)
+        if timeperiodtype == TimePeriodType.custom {
+            
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd MMM yyyy"
+            let leftdate: String = dateFormatter.stringFromDate(chosenfromdate)
+            let rightdate: String = dateFormatter.stringFromDate(chosenduedate)
+            let stringdate : String = "\(leftdate) - \(rightdate)"
+            
+            timestepbuttonoutlet.titleLabel!.text = stringdate
+        } else if timeperiodtype == TimePeriodType.custom {
+            timestepbuttonoutlet.titleLabel!.text = NSLocalizedString("oneweek", comment: "")
+        } else if timeperiodtype == TimePeriodType.custom {
+            timestepbuttonoutlet.titleLabel!.text = NSLocalizedString("onemonth", comment: "")
+        } else if timeperiodtype == TimePeriodType.custom {
+            timestepbuttonoutlet.titleLabel!.text = NSLocalizedString("oneyear", comment: "")
+        }
+    
+        
+        
+      slide(-450, view: "Period")
 
         
     }
@@ -97,7 +174,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func chooseTimePeriod(sender: AnyObject) {
         
         
-        slide(0)
+        slide(0, view: "Period")
         
         
     }
@@ -545,14 +622,12 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func handledata(fromdate: NSDate?, duedate: NSDate?, timestep: TimeStep, timeperiodtype: TimePeriodType) -> [Price] {
         
         
-        
-        
         var chosenlists = [UserList]()
         var prices = [Price]()
         
         loading_simple(true)
         
-        if timeperiodtype == TimePeriodType.custom {
+        //if timeperiodtype == TimePeriodType.custom {
             
         // STEP 1 - Grab all list for the given TIME PERIOD
         for list in UserLists {
@@ -744,17 +819,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
         loading_simple(false)
         
-        } else if timeperiodtype == TimePeriodType.month {
-            // Allowed timesteps Days or Weeks
-            
-            
-            
-        } else if timeperiodtype == TimePeriodType.week {
-            // Allowed time steps Days
-            
-        } else if timeperiodtype == TimePeriodType.year {
-            // Allowed time steps years, month, weeks
-        }
+       
     
         return prices
     }
@@ -925,6 +990,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // Do any additional setup after loading the view.
         
         tblExpandable.tableFooterView = UIView()
+        stepsTbl.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -932,19 +998,26 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // Dispose of any resources that can be recreated.
     }
     
+
     
     @IBOutlet var tblExpandable: UITableView!
+    
+
     
     // MARK: UITableView Delegate and Datasource Functions
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
         return 4
+       
     
     
     }
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        if tableView == tblExpandable {
         
         if section == 0 {
             if pickerexpanded {
@@ -953,6 +1026,13 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 return 1
             }
         }
+    
+        return 1
+        
+        } else if tableView == stepsTbl {
+            return 1
+        }
+        
         return 1
     }
     
@@ -970,11 +1050,11 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let identifiers : [String] = ["weekcell", "monthcell","yearcell", "choosecell", "choosedates"]
     
-
-    
-
+    let stepidentifiers : [String] = ["daysstep", "weeksstep", "monthsstep", "yearsstep"]
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+         if tableView == tblExpandable {
         
         var identifier = String()
         if indexPath.section == 1 {
@@ -989,18 +1069,13 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             } else {
             identifier = identifiers[4]
             }
-            
-            
-            // assign actions
-            
-            
+
         }
+        
         let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! choosedatescell
         
         if indexPath.section == 0 {
-            /*
-            cell.frombutton.addTarget(self, action: #selector(GraphsVC.choosefromdate(_:)), forControlEvents: .TouchUpInside)
- */
+
             if indexPath.row == 0 {
             cell.frombutton.addTarget(self, action: "choosefromdate:", forControlEvents: .TouchUpInside)
             
@@ -1017,13 +1092,38 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         
         
+        
         return cell
+        
+    } else {
+            
+            var identifier = String()
+            if indexPath.section == 0 {
+                identifier = stepidentifiers[0]
+            } else if indexPath.section == 1 {
+                identifier = stepidentifiers[1]
+            } else if indexPath.section == 2 {
+                identifier = stepidentifiers[2]
+            } else if indexPath.section == 3 {
+                identifier = stepidentifiers[3]
+                
+            }
+
+             let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! choosedatescell
+            
+            return cell
+    
+    }
+    
+    
     }
     
     
     var pickerexpanded : Bool = false
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        if tableView == tblExpandable {
         
         if indexPath.section == 0 && indexPath.row == 1 {
             
@@ -1038,6 +1138,9 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         
     return 44
+        } else {
+            return 44
+        }
     }
     
     func donebuttontapped(sender: UIButton) {
@@ -1127,11 +1230,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    var chosenfromdate = NSDate()
-    var chosenduedate = NSDate()
-    var timeperiodtype = TimePeriodType.custom
-    
-    var chosentimestep = TimeStep.weeks
+   
     
     func datePickerChanged(datePicker:UIDatePicker) {
         
@@ -1163,6 +1262,100 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if tableView == tblExpandable {
+            
+            let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! choosedatescell
+            
+            if indexPath.section == 1 {
+                
+                cell.accessoryType = .Checkmark
+                
+                let today = NSDate()
+                let seconddate = NSCalendar.currentCalendar().dateByAddingUnit(
+                    .Day,
+                    value: 7,
+                    toDate: today,
+                    options: NSCalendarOptions.MatchStrictly)!
+                
+                chosenfromdate = seconddate
+                chosenduedate = today
+                
+                chosentimestep = TimeStep.days
+                
+                let indexs = NSIndexPath(forRow: 0, inSection: 0)
+                let cell = tblExpandable.cellForRowAtIndexPath(indexs) as! choosedatescell
+                
+                cell.fromdate.text = ""
+                cell.duedate.text = ""
+                cell.duedateline.backgroundColor = UIColorFromHex(0xE0E0E), alpha: 1)
+                cell.fromdateline.backgroundColor = UIColorFromHex(0xE0E0E0, alpha: 1)
+
+
+                
+            } else if indexPath.section == 2 {
+                
+                cell.accessoryType = .Checkmark
+                
+                let today = NSDate()
+                let seconddate = NSCalendar.currentCalendar().dateByAddingUnit(
+                    .Month,
+                    value: 1,
+                    toDate: today,
+                    options: NSCalendarOptions.MatchStrictly)!
+                
+                chosenfromdate = seconddate
+                chosenduedate = today
+                
+                chosentimestep = TimeStep.weeks
+
+                
+            } else if indexPath.section == 3 {
+                
+                cell.accessoryType = .Checkmark
+                
+                let today = NSDate()
+                let seconddate = NSCalendar.currentCalendar().dateByAddingUnit(
+                    .Year,
+                    value: 1,
+                    toDate: today,
+                    options: NSCalendarOptions.MatchStrictly)!
+                
+                chosenfromdate = seconddate
+                chosenduedate = today
+                
+                chosentimestep = TimeStep.months
+
+                
+            }
+            
+        } else {
+            
+                
+                let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! choosedatescell
+                
+                if indexPath.section == 0 {
+                    
+                    cell.accessoryType = .Checkmark
+
+                    chosentimestep = TimeStep.days
+                } else if indexPath.section == 1 {
+                    
+                    cell.accessoryType = .Checkmark
+                    
+                    chosentimestep = TimeStep.weeks
+                } else if indexPath.section == 2 {
+                    
+                    cell.accessoryType = .Checkmark
+                    
+                    chosentimestep = TimeStep.months
+                } else if indexPath.section == 3 {
+                    
+                    cell.accessoryType = .Checkmark
+                    
+                    chosentimestep = TimeStep.years
+            }
+        }
         
         //var selectedRowIndex: NSIndexPath = NSIndexPath(forRow: 0, inSection: 3)
         /*

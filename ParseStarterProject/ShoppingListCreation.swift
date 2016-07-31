@@ -6744,6 +6744,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        tableView.tableFooterView = UIView()
          //UINavigationBar.appearance().backgroundColor = UIColor.clearColor()
         
         nameview.layer.borderWidth = 1

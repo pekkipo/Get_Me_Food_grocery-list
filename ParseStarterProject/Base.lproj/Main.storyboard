@@ -1770,12 +1770,122 @@
                                     <constraint firstAttribute="height" constant="411" id="go8-pE-yE9"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4M-aB-0fe">
+                                <rect key="frame" x="0.0" y="650" width="320" height="256"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4MQ-9E-d0c">
+                                        <rect key="frame" x="0.0" y="51" width="320" height="205"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="daysstep" id="sWB-oB-ehi" customClass="choosedatescell" customModule="ParseStarterProject" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sWB-oB-ehi" id="1EZ-VB-KX1">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sR0-jK-IIz">
+                                                            <rect key="frame" x="12" y="11" width="291" height="21"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                                            <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="weeksstep" id="ukL-vc-03M" customClass="choosedatescell" customModule="ParseStarterProject" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="72" width="320" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ukL-vc-03M" id="k1n-3K-SVt">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Weeks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21O-Wv-NWH">
+                                                            <rect key="frame" x="12" y="11" width="293" height="21"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                                            <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="monthsstep" id="Mbf-rF-vjC" customClass="choosedatescell" customModule="ParseStarterProject" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="116" width="320" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mbf-rF-vjC" id="RY9-19-8wl">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Months" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOd-Ei-bpG">
+                                                            <rect key="frame" x="12" y="11" width="292" height="21"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                                            <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="yearsstep" id="Sob-lP-OHG" customClass="choosedatescell" customModule="ParseStarterProject" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="160" width="320" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sob-lP-OHG" id="VfT-gI-PlP">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Years" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q6h-j0-fVS">
+                                                            <rect key="frame" x="12" y="11" width="290" height="21"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                                            <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Kel-Cx-N6P" id="Bkt-fS-qpg"/>
+                                            <outlet property="delegate" destination="Kel-Cx-N6P" id="KPO-f8-wJV"/>
+                                        </connections>
+                                    </tableView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2g0-DR-Nsf">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                                        <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nfa-mt-WLh">
+                                        <rect key="frame" x="0.0" y="48" width="320" height="1"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zsS-Cd-Qyq">
+                                        <rect key="frame" x="8" y="2" width="147" height="45"/>
+                                        <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="4Close"/>
+                                        <connections>
+                                            <action selector="cancelSteps:" destination="Kel-Cx-N6P" eventType="touchUpInside" id="ddN-Yw-isK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rK1-qc-1oT">
+                                        <rect key="frame" x="163" y="2" width="149" height="46"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="4" maxY="0.0"/>
+                                        <state key="normal" image="4Done"/>
+                                        <connections>
+                                            <action selector="confirmSteps:" destination="Kel-Cx-N6P" eventType="touchUpInside" id="4cs-Fl-EQU"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="256" id="8OW-Vi-81q"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vC7-AQ-JUm" firstAttribute="leading" secondItem="UlR-AH-kBX" secondAttribute="leadingMargin" constant="-16" id="0TU-j7-brg"/>
                             <constraint firstItem="9dj-7g-ADf" firstAttribute="top" secondItem="vC7-AQ-JUm" secondAttribute="bottom" constant="-443" id="Mte-oP-UPD"/>
+                            <constraint firstItem="9dj-7g-ADf" firstAttribute="top" secondItem="y4M-aB-0fe" secondAttribute="bottom" constant="-338" id="Nfu-ui-ASA"/>
+                            <constraint firstItem="y4M-aB-0fe" firstAttribute="leading" secondItem="UlR-AH-kBX" secondAttribute="leadingMargin" constant="-16" id="juf-lA-K84"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vC7-AQ-JUm" secondAttribute="trailing" constant="-16" id="oKq-Sr-LCo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="y4M-aB-0fe" secondAttribute="trailing" constant="-16" id="uYi-yq-jR2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Statistics" id="HYs-ml-p8B">
@@ -1794,9 +1904,14 @@
                         <outlet property="listsSumLabel" destination="sbk-8J-2ll" id="Io1-dp-ThG"/>
                         <outlet property="openMenu" destination="SvY-uH-KMs" id="sqE-Pj-yse"/>
                         <outlet property="pieButtonOutlet" destination="Gly-IO-e93" id="gTs-dT-Lm4"/>
+                        <outlet property="slideSteps" destination="y4M-aB-0fe" id="Mtk-AQ-od9"/>
+                        <outlet property="slideStepsConstraint" destination="Nfu-ui-ASA" id="q9p-zR-7Zg"/>
                         <outlet property="slidingView" destination="vC7-AQ-JUm" id="z49-bo-LUN"/>
                         <outlet property="slidingbottomconstraint" destination="Mte-oP-UPD" id="gcg-MC-fye"/>
+                        <outlet property="stepsTbl" destination="4MQ-9E-d0c" id="nnN-yd-jVe"/>
                         <outlet property="tblExpandable" destination="Fff-oP-8zf" id="bLi-U4-Qq5"/>
+                        <outlet property="timeperiodbuttonoutlet" destination="StW-Ba-83w" id="gMg-kj-fSA"/>
+                        <outlet property="timestepbuttonoutlet" destination="ZRb-S9-M1c" id="ybz-ZN-p8c"/>
                         <segue destination="OJb-7G-t5o" kind="unwind" identifier="backtosort" unwindAction="unwindToSort:" id="ygi-8y-fd4"/>
                     </connections>
                 </viewController>
@@ -3570,6 +3685,12 @@
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4eJ-aW-gBs">
+                                        <rect key="frame" x="8" y="303" width="110" height="21"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="11"/>
+                                        <color key="textColor" red="0.19215686269999999" green="0.47450980390000003" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xam-Cg-go8">
                                         <rect key="frame" x="8" y="500" width="288" height="271"/>
                                         <subviews>
@@ -3598,12 +3719,6 @@
                                             <constraint firstAttribute="height" constant="271" id="AGW-qx-jMp"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Picture" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4eJ-aW-gBs">
-                                        <rect key="frame" x="8" y="303" width="110" height="21"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="11"/>
-                                        <color key="textColor" red="0.19215686269999999" green="0.47450980390000003" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -3932,7 +4047,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="w3V-90-Gyy" firstAttribute="leading" secondItem="yA7-dt-lsf" secondAttribute="leadingMargin" constant="-8" id="06s-J0-sPJ"/>
                             <constraint firstItem="Nxe-FH-66R" firstAttribute="top" secondItem="y06-hK-z5i" secondAttribute="bottom" constant="-93" id="1HX-Wb-1Fg"/>
@@ -7451,21 +7566,21 @@ DHSmartScreenshot
         <image name="restorebutton2" width="28" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="0X5-ZI-vRx"/>
+        <segue reference="qoN-pn-5jN"/>
+        <segue reference="1oe-ui-M36"/>
         <segue reference="1gj-0L-ugB"/>
         <segue reference="vpD-8Y-PMP"/>
         <segue reference="YBj-g4-HMt"/>
-        <segue reference="1oe-ui-M36"/>
         <segue reference="4HM-tt-P7g"/>
         <segue reference="r1m-jf-Tg0"/>
-        <segue reference="qoN-pn-5jN"/>
-        <segue reference="4Sz-qM-ZN5"/>
-        <segue reference="Lqs-LU-XD3"/>
-        <segue reference="0X5-ZI-vRx"/>
-        <segue reference="vSG-RP-Zon"/>
-        <segue reference="7td-2f-VHx"/>
-        <segue reference="Cvr-tZ-fV3"/>
-        <segue reference="wQt-nB-Pe2"/>
         <segue reference="Yyy-Rf-C7z"/>
         <segue reference="EpM-0E-VsM"/>
+        <segue reference="93h-Q7-Cgi"/>
+        <segue reference="hOe-w5-ydT"/>
+        <segue reference="vSG-RP-Zon"/>
+        <segue reference="jDi-bs-Hfh"/>
+        <segue reference="Cvr-tZ-fV3"/>
+        <segue reference="wQt-nB-Pe2"/>
     </inferredMetricsTieBreakers>
 </document>
