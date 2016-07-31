@@ -34,6 +34,12 @@ func >(lhs: Subperiod, rhs: Subperiod) -> Bool {
     return lhs.left.timeIntervalSince1970 > rhs.left.timeIntervalSince1970 && lhs.right.timeIntervalSince1970 > rhs.right.timeIntervalSince1970
 }
 
+enum Errors: ErrorType {
+    case ErrorWeek
+    case ErrorMonth
+    case ErrorYear
+    case Default
+}
 
 
 class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -54,6 +60,10 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var graphView: UIView!
     
 
+    @IBOutlet var periodlabel: UILabel!
+    
+    @IBOutlet var steplabel: UILabel!
+    
     
     @IBOutlet var graylinetop: UIView!
     
@@ -85,11 +95,15 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var timestepbuttonoutlet: UIButton!
     
+    
+    
     @IBAction func confirmSteps(sender: AnyObject) {
         
         timeperiodtype = TimePeriodType.custom
         
-        setChart(barView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: chosentimestep, timeperiodtype: timeperiodtype))
+       
+       setChart(barView, linechart: lineView, piechart: pieView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: chosentimestep, timeperiodtype: timeperiodtype))
+        
         
         if chosentimestep == TimeStep.days {
         timestepbuttonoutlet.titleLabel!.text = NSLocalizedString("days", comment: "")
@@ -141,8 +155,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     timeperiodtype = TimePeriodType.custom
     
-    setChart(barView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: chosentimestep, timeperiodtype: timeperiodtype))
-      
+     setChart(barView, linechart: lineView, piechart: pieView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: chosentimestep, timeperiodtype: timeperiodtype))
         
         if timeperiodtype == TimePeriodType.custom {
             
@@ -153,13 +166,13 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let rightdate: String = dateFormatter.stringFromDate(chosenduedate)
             let stringdate : String = "\(leftdate) - \(rightdate)"
             
-            timestepbuttonoutlet.titleLabel!.text = stringdate
+            timeperiodbuttonoutlet.titleLabel!.text = stringdate
         } else if timeperiodtype == TimePeriodType.custom {
-            timestepbuttonoutlet.titleLabel!.text = NSLocalizedString("oneweek", comment: "")
+            timeperiodbuttonoutlet.titleLabel!.text = NSLocalizedString("oneweek", comment: "")
         } else if timeperiodtype == TimePeriodType.custom {
-            timestepbuttonoutlet.titleLabel!.text = NSLocalizedString("onemonth", comment: "")
+            timeperiodbuttonoutlet.titleLabel!.text = NSLocalizedString("onemonth", comment: "")
         } else if timeperiodtype == TimePeriodType.custom {
-            timestepbuttonoutlet.titleLabel!.text = NSLocalizedString("oneyear", comment: "")
+            timeperiodbuttonoutlet.titleLabel!.text = NSLocalizedString("oneyear", comment: "")
         }
     
         
@@ -172,45 +185,50 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     @IBAction func chooseTimePeriod(sender: AnyObject) {
-        
-        
+
         slide(0, view: "Period")
-        
-        
+
     }
     
     @IBAction func chooseTimeStep(sender: AnyObject) {
-        
+        slide(0, view: "Steps")
     }
     
+    @IBOutlet var loadingview: UIView!
     
     func loading_simple(show: Bool) {
         
+        /*
         let viewframe = CGRectMake(self.view.frame.width / 2 - 50, self.view.frame.height / 2 - 50, 100, 100)
         let loadingview: UIView = UIView(frame: viewframe);
         loadingview.backgroundColor = UIColor.whiteColor()
         loadingview.layer.cornerRadius = 12
-        
+        */
         let indicator : NVActivityIndicatorView =  NVActivityIndicatorView(frame: CGRectMake(20, 20, 60, 60), type: NVActivityIndicatorType.BallClipRotate, color: UIColorFromHex(0x1EB2BB))
         
         
         loadingview.addSubview(indicator)
         
-        loadingview.tag = 945
+        //loadingview.tag = 945
         
         
         
         if show == true {
             UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-            self.graphView.addSubview(loadingview)
+            //self.graphView.addSubview(loadingview)
+           // self.graphView.bringSubviewToFront(loadingview)
+            loadingview.hidden = false
+        
             indicator.startAnimation()
             
         } else if show == false {
             UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            /*
             if let viewWithTag = self.view.viewWithTag(945) {
                 viewWithTag.removeFromSuperview()
             }
-            
+            */
+            loadingview.hidden = true
         }
         
     }
@@ -243,6 +261,20 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         case years
     }
     
+    func displayFailAlert(title: String, message: String) {
+        
+        let customIcon = UIImage(named: "4SentFail")
+        let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "OK", color: UIColorFromHex(0xFFFFFF, alpha: 0.9), iconImage: customIcon)
+        alertview.setTextTheme(.Dark)
+        alertview.addCancelAction(closeCallback)
+    }
+    
+    func closeCallback() {
+        
+        print("JUST CLOSED")
+        
+    }
+    
     
    // let timeperiods : [String] = ["week", "month", "year", "custom"]
     
@@ -264,7 +296,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var weekssections = Dictionary<Subperiod, Array<UserList>>()
     var sortedListsbyDate = [Subperiod]()
     
-    func sortlists(lists: [UserList], timestep: TimeStep, from: NSDate?, due: NSDate?) {
+    func sortlists(lists: [UserList], timestep: TimeStep, from: NSDate?, due: NSDate?) throws {
         
         
         
@@ -273,6 +305,8 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         weekssections.removeAll(keepCapacity: true)
         sortedListsbyDate.removeAll(keepCapacity: true)
+        
+       
         
         if timestep == TimeStep.days {
             
@@ -300,14 +334,23 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
         } else if timestep == TimeStep.weeks {
             
-            let numberofdays : Int = dividetimeperiod(timestep, from: from!, due: due!)
-            let numberofweeks = numberofdays / 7
-
+            /*
+            guard let numberofdays : Int = dividetimeperiod(timestep, from: from!, due: due!) else {
+                throw Errors.Error
+            }
+ */
+            do {
+            let numberofdays = try dividetimeperiod(timestep, from: from!, due: due!)
+             let numberofweeks = numberofdays / 7
+           
+                guard numberofweeks > 1 else {
+                     throw Errors.ErrorWeek
+                }
             
             for ( var i = 0; i < lists.count; i++ ) {
                 
                 
-                for j in (1..<numberofweeks) {
+                for j in (1..<numberofweeks+1) { //+1 not sure
                     
                     var leftborderweek = NSDate()
                     var rightborderweek = NSDate()
@@ -403,6 +446,12 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
             }
             
+            } catch Errors.ErrorWeek {
+                print("WeekError")
+            } catch {
+                print("JustError")
+            }
+        
             self.sortedListsbyDate = self.weekssections.keys.elements.sort({
                 //return $0.0.left.timeIntervalSince1970 > $1.0.left.timeIntervalSince1970
                 return $0.left.timeIntervalSince1970 > $1.left.timeIntervalSince1970
@@ -422,12 +471,18 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let flags = NSCalendarUnit.Month
             let components = calendar.components(flags, fromDate: date1, toDate: date2, options: [])
             
-            var numberofmonths = components.month
+          
+        
+           var numberofmonths = components.month
+            
+            guard numberofmonths > 1 else {
+                throw Errors.ErrorMonth
+            }
             
             for ( var i = 0; i < lists.count; i++ ) {
                 
                 
-                for j in (1..<numberofmonths) {
+                for j in (1..<numberofmonths+1) { //+1 might be needed
                     
                     var leftborderweek = NSDate()
                     var rightborderweek = NSDate()
@@ -477,6 +532,8 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
             }
             
+        
+        
             self.sortedListsbyDate = self.weekssections.keys.elements.sort({
                 //return $0.0.left.timeIntervalSince1970 > $1.0.left.timeIntervalSince1970
                 return $0.left.timeIntervalSince1970 > $1.left.timeIntervalSince1970
@@ -497,12 +554,18 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let flags = NSCalendarUnit.Year
             let components = calendar.components(flags, fromDate: date1, toDate: date2, options: [])
             
+            
+            
             var numberofyears = components.year
+            
+            guard numberofyears > 1 else {
+                throw Errors.ErrorYear
+            }
             
             for ( var i = 0; i < lists.count; i++ ) {
                 
                 
-                for j in (1..<numberofyears) {
+                for j in (1..<numberofyears+1) {
                     
                     var leftborderweek = NSDate()
                     var rightborderweek = NSDate()
@@ -563,7 +626,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
             
         }
-        
+    
         print("Sections are: \(weekssections)")
         print("SortedLists are: \(sortedListsbyDate)")
         
@@ -572,7 +635,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     
-    func dividetimeperiod(step: TimeStep, from: NSDate, due: NSDate?) -> Int {
+    func dividetimeperiod(step: TimeStep, from: NSDate, due: NSDate?) throws -> Int {
         
         var numberofsubperiods = Int()
         
@@ -585,6 +648,10 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let components = calendar.components(flags, fromDate: date1, toDate: date2, options: [])
             
             numberofsubperiods = components.day
+        
+       guard numberofsubperiods > 1 else {
+            throw Errors.ErrorWeek
+        }
 
         
         return numberofsubperiods
@@ -641,9 +708,22 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
             
         // STEP 2 - Sort the chosenlistsarray
+        
+        
+        do {
+        try sortlists(chosenlists, timestep: timestep, from: fromdate, due: duedate)
+        } catch Errors.ErrorWeek {
+            print("WeekError")
+        } catch Errors.ErrorMonth {
+            print("MonthError")
+        } catch Errors.ErrorYear {
+            print("YearError")
             
-            sortlists(chosenlists, timestep: timestep, from: fromdate, due: duedate)
-             
+        } catch {
+            
+        }
+        
+        
             
             
             
@@ -751,9 +831,9 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             var sum : String = formatter.stringFromNumber(sumliststotalsums(chosenlists))!
             
-            listsSumLabel.text = "\(sum) \(code)"
+            listsSumLabel.text = "\(sum) \(symbol)"
             listsCountLabel.text = "\(chosenlists.count)"
-            
+        
             
         
            
@@ -843,13 +923,17 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var barchart : BarChartView = BarChartView()
     
     
+    
+    
    // func setChart(barchart: BarChartView, dataPoints: [String], values: [Double]) {
-    func setChart(barchart: BarChartView, prices: [Price]) {
+    func setChart(barchart: BarChartView, linechart: LineChartView, piechart: PieChartView, prices: [Price]) {
         
         //Appearance customization
         
         //barchart.legend.enabled = false
         
+        
+        // BARCHART
         barchart.noDataText = "You need to provide data for the chart."
         barchart.descriptionText = ""
         barchart.xAxis.labelPosition = .Bottom
@@ -865,32 +949,103 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         barchart.xAxis.labelFont = UIFont(name: "AvenirNext-Regular", size: 8)!
         barchart.xAxis.wordWrapEnabled = true
         //barchart.xAxis.labelHeight = 50
-        
-        
-        
-        
+
         barchart.backgroundColor = UIColorFromHex(0xFAFAFA, alpha: 1)
         
-        
+        barchart.xAxis.axisLineColor = UIColorFromHex(0xFAFAFA)
+
         barchart.animate(yAxisDuration: 1.0, easingOption: .EaseInOutQuart)
         
+        // LINECHART
+        linechart.noDataText = "You need to provide data for the chart."
+        linechart.descriptionText = ""
+        linechart.xAxis.labelPosition = .Bottom
+        linechart.xAxis.setLabelsToSkip(0)
+        linechart.scaleYEnabled = false
+        linechart.scaleXEnabled = false
+        linechart.pinchZoomEnabled = false
+        linechart.doubleTapToZoomEnabled = false
+        linechart.highlighter = nil // might use later, shows description when tap the bar
+        linechart.rightAxis.enabled = false
+        linechart.leftAxis.enabled = false
+        linechart.xAxis.drawGridLinesEnabled = false
+        linechart.drawGridBackgroundEnabled = false
+        linechart.xAxis.labelFont = UIFont(name: "AvenirNext-Regular", size: 8)!
+        linechart.xAxis.wordWrapEnabled = true
+        //barchart.xAxis.labelHeight = 50
+        
+        linechart.backgroundColor = UIColorFromHex(0xFAFAFA, alpha: 1)
+        
+        linechart.animate(yAxisDuration: 1.0, easingOption: .EaseInOutQuart)
+        
+        linechart.xAxis.axisLineColor = UIColorFromHex(0xFAFAFA)
+        
+        // PIECHART
+        piechart.noDataText = "You need to provide data for the chart."
+        
+                piechart.highlighter = nil // might use later, shows description when tap the bar
 
-        var dataEntries = [BarChartDataEntry]()
+        //barchart.xAxis.labelHeight = 50
+        
+        piechart.backgroundColor = UIColorFromHex(0xFAFAFA, alpha: 1)
+        
+        
+        piechart.infoFont = UIFont(name: "AvenirNext-Regular", size: 8)!
+        
+        piechart.animate(yAxisDuration: 1.0, easingOption: .EaseInOutQuart)
+
+        
+
+        var dataEntries = [BarChartDataEntry]() // for bar
+        var dataEntriesline = [ChartDataEntry]() // for line and pie
         var stepsEntries = [String]()
         
         for i in 0..<prices.count {
             let dataEntry = BarChartDataEntry(value: prices[i].price, xIndex: i)
+            let dataEntrylineandpie = ChartDataEntry(value: prices[i].price, xIndex: i)
+            
+            
             dataEntries.append(dataEntry)
+            
+            dataEntriesline.append(dataEntrylineandpie)
             
             stepsEntries.append(prices[i].step)
         }
         
-        
+        // bar
         let chartDataSet = BarChartDataSet(yVals: dataEntries, label: nil)
         let chartData = BarChartData(xVals: stepsEntries, dataSet: chartDataSet)
         barchart.data = chartData
         
+        //line and pie
+        let pieChartDataSet = PieChartDataSet(yVals: dataEntriesline, label: nil)
+        let pieChartData = PieChartData(xVals: stepsEntries, dataSet: pieChartDataSet)
+        pieView.data = pieChartData
+        
+        let lineChartDataSet = LineChartDataSet(yVals: dataEntriesline, label: nil)
+        let lineChartData = LineChartData(xVals: stepsEntries, dataSet: lineChartDataSet)
+        lineView.data = lineChartData
+        
+        
         chartDataSet.colors = [
+            UIColorFromHex(0x31797D, alpha: 1),
+            UIColorFromHex(0x1EB2BB, alpha: 1),
+            UIColorFromHex(0x7FC2C6, alpha: 1),
+            UIColorFromHex(0x61C791, alpha: 1),
+            UIColorFromHex(0xA2AF36, alpha: 1),
+            UIColorFromHex(0xE88996, alpha: 1),
+        ]
+        
+        lineChartDataSet.colors = [
+            UIColorFromHex(0x31797D, alpha: 1),
+            UIColorFromHex(0x1EB2BB, alpha: 1),
+            UIColorFromHex(0x7FC2C6, alpha: 1),
+            UIColorFromHex(0x61C791, alpha: 1),
+            UIColorFromHex(0xA2AF36, alpha: 1),
+            UIColorFromHex(0xE88996, alpha: 1),
+        ]
+        
+        pieChartDataSet.colors = [
             UIColorFromHex(0x31797D, alpha: 1),
             UIColorFromHex(0x1EB2BB, alpha: 1),
             UIColorFromHex(0x7FC2C6, alpha: 1),
@@ -903,13 +1058,76 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         barchart.descriptionText = ""
         
+        linechart.descriptionText = ""
     }
     
     
     @IBOutlet var barView: BarChartView!
     
+    @IBOutlet var lineView: LineChartView!
+    
+    @IBOutlet var pieView: PieChartView!
+    
+    
+    @IBOutlet var barline: UIView!
+
+    @IBOutlet var lineline: UIView!
+    
+    @IBOutlet var pieline: UIView!
+    
+    
+    func changebuttontint(type: charttype) {
+        
+        if type == charttype.bar {
+            
+            barButtonOutlet.tintColor = UIColorFromHex(0x31797D)
+            lineButtonOutlet.tintColor = UIColorFromHex(0x979797)
+            pieButtonOutlet.tintColor = UIColorFromHex(0x979797)
+            
+            barButtonOutlet.backgroundColor = UIColorFromHex(0xFFFFFF)
+            lineButtonOutlet.backgroundColor = UIColorFromHex(0xFAFAFA)
+            pieButtonOutlet.backgroundColor = UIColorFromHex(0xFAFAFA)
+            
+            barline.backgroundColor = UIColorFromHex(0xFFFFFF)
+            lineline.backgroundColor = UIColorFromHex(0xE0E0E0)
+            pieline.backgroundColor = UIColorFromHex(0xE0E0E0)
+            
+        } else if type == charttype.line { // now for test
+            barButtonOutlet.tintColor = UIColorFromHex(0x979797)
+            lineButtonOutlet.tintColor = UIColorFromHex(0x31797D)
+            pieButtonOutlet.tintColor = UIColorFromHex(0x979797)
+            
+            barButtonOutlet.backgroundColor = UIColorFromHex(0xFAFAFA)
+            lineButtonOutlet.backgroundColor = UIColorFromHex(0xFFFFFF)
+            pieButtonOutlet.backgroundColor = UIColorFromHex(0xFAFAFA)
+            
+            barline.backgroundColor = UIColorFromHex(0xE0E0E0)
+            lineline.backgroundColor = UIColorFromHex(0xFFFFFF)
+            pieline.backgroundColor = UIColorFromHex(0xE0E0E0)
+
+            
+        } else if type == charttype.pie { // now for test
+            
+            barButtonOutlet.tintColor = UIColorFromHex(0x979797)
+            lineButtonOutlet.tintColor = UIColorFromHex(0x979797)
+            pieButtonOutlet.tintColor = UIColorFromHex(0x31797D)
+            
+            barButtonOutlet.backgroundColor = UIColorFromHex(0xFAFAFA)
+            lineButtonOutlet.backgroundColor = UIColorFromHex(0xFAFAFA)
+            pieButtonOutlet.backgroundColor = UIColorFromHex(0xFFFFFF)
+            
+            barline.backgroundColor = UIColorFromHex(0xE0E0E0)
+            lineline.backgroundColor = UIColorFromHex(0xE0E0E0)
+            pieline.backgroundColor = UIColorFromHex(0xFFFFFF)
+
+        }
+        
+    }
+    
     // CHARTS REALM
     func choosebartype(type: charttype) {
+        
+        changebuttontint(type)
         
        // graphView.subviews.forEach({ $0.removeFromSuperview() })
         graphView.subviews.forEach({ $0.hidden = true })
@@ -918,24 +1136,21 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             barView.hidden = false
             
-            //define data
-           // let _fromdate = NSDate(dateString:"2016-01-01")
-            //let _duedate = NSDate(dateString:"2016-07-30")
             
-
-            setChart(barView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: TimeStep.days, timeperiodtype: TimePeriodType.custom))
+           // setChart(barView, linechart: lineView, piechart: pieView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: chosentimestep, timeperiodtype: TimePeriodType.custom))
 
             
         } else if type == charttype.line { // now for test
             
-            barView.hidden = false
+            lineView.hidden = false
             
-            //define data
-            let _fromdate = NSDate(dateString:"2016-01-01")
-            let _duedate = NSDate(dateString:"2016-07-30")
+         //setChart(barView, linechart: lineView, piechart: pieView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: chosentimestep, timeperiodtype: TimePeriodType.custom))
             
+        } else if type == charttype.pie { // now for test
             
-            setChart(barView, prices: handledata(_fromdate, duedate: _duedate, timestep: TimeStep.weeks, timeperiodtype: TimePeriodType.custom))
+            pieView.hidden = false
+            
+           // setChart(barView, linechart: lineView, piechart: pieView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: chosentimestep, timeperiodtype: TimePeriodType.custom))
             
         }
         
@@ -978,7 +1193,39 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        let local = NSLocale.currentLocale()
+        symbol = local.objectForKey(NSLocaleCurrencySymbol) as! String
+
+        if let currencyCode = NSLocale.currentLocale().objectForKey(NSLocaleCurrencyCode) as? String {
+            code = currencyCode
+
+        }
+        
+        loadingview.backgroundColor = UIColor.whiteColor()
+        loadingview.layer.cornerRadius = 12
       
+        // set defaults 
+        timeperiodtype = TimePeriodType.week
+        chosentimestep = TimeStep.days
+        
+        chosenduedate = NSDate()
+        chosenfromdate = NSCalendar.currentCalendar().dateByAddingUnit(
+            .Day,
+            value: -7,
+            toDate: chosenduedate,
+            options: NSCalendarOptions.MatchStrictly)!
+        
+        
+        //setChart(barView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: chosentimestep, timeperiodtype: timeperiodtype))
+        setChart(barView, linechart: lineView, piechart: pieView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: chosentimestep, timeperiodtype: timeperiodtype))
+        choosebartype(charttype.bar)
+
+            timestepbuttonoutlet.titleLabel!.text = NSLocalizedString("days", comment: "")
+        
+            timeperiodbuttonoutlet.titleLabel!.text = NSLocalizedString("oneweek", comment: "")
+        
+        //
        
         openMenu.target = self.revealViewController()
         openMenu.action = Selector("revealToggle:")
@@ -1091,6 +1338,29 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         }
         
+            if timeperiodtype == TimePeriodType.custom {
+                
+                    cell.accessoryType = .None
+                
+            } else if timeperiodtype == TimePeriodType.week {
+                if indexPath.section == 1 {
+                    cell.accessoryType = .Checkmark
+                } else {
+                    cell.accessoryType = .None
+                }
+            } else if timeperiodtype == TimePeriodType.month {
+                if indexPath.section == 2 {
+                    cell.accessoryType = .Checkmark
+                } else {
+                    cell.accessoryType = .None
+                }
+            } else if timeperiodtype == TimePeriodType.year {
+                if indexPath.section == 3 {
+                    cell.accessoryType = .Checkmark
+                } else {
+                    cell.accessoryType = .None
+                }
+            }
         
         
         return cell
@@ -1110,6 +1380,33 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
 
              let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! choosedatescell
+            
+            if chosentimestep == TimeStep.days {
+                if indexPath.section == 0 {
+                    cell.accessoryType = .Checkmark
+                } else {
+                    cell.accessoryType = .None
+                }
+            } else if chosentimestep == TimeStep.weeks {
+                if indexPath.section == 1 {
+                    cell.accessoryType = .Checkmark
+                } else {
+                    cell.accessoryType = .None
+                }
+            } else if chosentimestep == TimeStep.months {
+                if indexPath.section == 2 {
+                    cell.accessoryType = .Checkmark
+                } else {
+                    cell.accessoryType = .None
+                }
+            } else if chosentimestep == TimeStep.years {
+                if indexPath.section == 3 {
+                    cell.accessoryType = .Checkmark
+                } else {
+                    cell.accessoryType = .None
+                }
+            }
+            
             
             return cell
     
@@ -1265,7 +1562,8 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         if tableView == tblExpandable {
             
-            let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! choosedatescell
+            let cell = tblExpandable.cellForRowAtIndexPath(indexPath) as! choosedatescell
+           
             
             if indexPath.section == 1 {
                 
@@ -1274,13 +1572,14 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 let today = NSDate()
                 let seconddate = NSCalendar.currentCalendar().dateByAddingUnit(
                     .Day,
-                    value: 7,
+                    value: -7,
                     toDate: today,
                     options: NSCalendarOptions.MatchStrictly)!
                 
                 chosenfromdate = seconddate
                 chosenduedate = today
                 
+                timeperiodtype = TimePeriodType.week
                 chosentimestep = TimeStep.days
                 
                 let indexs = NSIndexPath(forRow: 0, inSection: 0)
@@ -1288,7 +1587,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 cell.fromdate.text = ""
                 cell.duedate.text = ""
-                cell.duedateline.backgroundColor = UIColorFromHex(0xE0E0E), alpha: 1)
+                cell.duedateline.backgroundColor = UIColorFromHex(0xE0E0E, alpha: 1)
                 cell.fromdateline.backgroundColor = UIColorFromHex(0xE0E0E0, alpha: 1)
 
 
@@ -1300,13 +1599,14 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 let today = NSDate()
                 let seconddate = NSCalendar.currentCalendar().dateByAddingUnit(
                     .Month,
-                    value: 1,
+                    value: -1,
                     toDate: today,
                     options: NSCalendarOptions.MatchStrictly)!
                 
                 chosenfromdate = seconddate
                 chosenduedate = today
                 
+                timeperiodtype = TimePeriodType.month
                 chosentimestep = TimeStep.weeks
 
                 
@@ -1317,22 +1617,24 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 let today = NSDate()
                 let seconddate = NSCalendar.currentCalendar().dateByAddingUnit(
                     .Year,
-                    value: 1,
+                    value: -1,
                     toDate: today,
                     options: NSCalendarOptions.MatchStrictly)!
                 
                 chosenfromdate = seconddate
                 chosenduedate = today
                 
+                timeperiodtype = TimePeriodType.year
                 chosentimestep = TimeStep.months
-
                 
             }
+            
+            tblExpandable.reloadData()
             
         } else {
             
                 
-                let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! choosedatescell
+                let cell = stepsTbl.cellForRowAtIndexPath(indexPath) as! choosedatescell
                 
                 if indexPath.section == 0 {
                     
@@ -1355,6 +1657,8 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     
                     chosentimestep = TimeStep.years
             }
+            
+            stepsTbl.reloadData()
         }
         
         //var selectedRowIndex: NSIndexPath = NSIndexPath(forRow: 0, inSection: 3)

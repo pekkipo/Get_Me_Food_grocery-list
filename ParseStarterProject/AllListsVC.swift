@@ -844,6 +844,13 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                                     listscolor = "A2AF36"
                                 }
                                 
+                                var listtotalsum = String()
+                                if object["ListTotalSum"] != nil {
+                                listtotalsum = object["ListTotalSum"] as! String
+                                } else {
+                                    listtotalsum = "0.0"
+                                }
+                                
                                 
                                 var userlist : UserList = UserList(
                                     listid:listid,
@@ -864,7 +871,8 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                                     listtype:listtype,
                                     listcurrency:listcurrency,
                                     listcategories:listshowcats,
-                                    listcolorcode: listscolor
+                                    listcolorcode: listscolor,
+                                    listtotalsum: listtotalsum
                                     
                                     
                                 )
@@ -885,7 +893,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         }
 
                     }
-
+                    self.tableView.reloadData()
                 }
                 self.restore()
                 //self.restore()
