@@ -420,12 +420,7 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
         textField.resignFirstResponder()
         return true
     }
-    //myTextField.delegate = self
-    ///
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -437,9 +432,7 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
         userpassword.delegate = self
         
         
-        username.layer.cornerRadius = 4
-        useremail.layer.cornerRadius = 4
-        userpassword.layer.cornerRadius = 4
+        
          username.layer.borderWidth = 1
          useremail.layer.borderWidth = 1
          userpassword.layer.borderWidth = 1
@@ -451,17 +444,10 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
         useravatar.layer.masksToBounds = true
        
         
-        pictureoutlet.layer.borderWidth = 1
-        pictureoutlet.layer.cornerRadius = 4
-        pictureoutlet.layer.borderColor = UIColorFromRGB(0x31797D, alp: 1.0).CGColor
-        
-        registeroutlet.layer.borderWidth = 1
-        registeroutlet.layer.cornerRadius = 4
-        registeroutlet.layer.borderColor = UIColorFromRGB(0xF23D55, alp: 1.0).CGColor
-        
-        username.leftTextMargin = 5
-        userpassword.leftTextMargin = 5
-        useremail.leftTextMargin = 5
+      
+        username.leftTextMargin = 17
+        userpassword.leftTextMargin = 17
+        useremail.leftTextMargin = 17
         
     }
 

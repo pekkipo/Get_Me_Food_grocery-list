@@ -1365,22 +1365,14 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
        // loginoutlet.layer.borderWidth = 1
        // loginoutlet.layer.borderColor = UIColorFromRGB(0x31797D).CGColor
         
-        self.view.backgroundColor = UIColorFromRGB(0xF1F1F1)
-        
-        loginoutlet.layer.cornerRadius = 4
         
         logview.layer.borderWidth = 1
-        logview.layer.cornerRadius = 4
         logview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
         
         
         passview.layer.borderWidth = 1
-        passview.layer.cornerRadius = 4
         passview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
         
-        registeroutlet.layer.borderWidth = 1
-        registeroutlet.layer.cornerRadius = 4
-        registeroutlet.layer.borderColor = UIColorFromRGB(0xF23D55).CGColor
         
         sendpassoutlet.layer.borderWidth = 1
         sendpassoutlet.layer.borderColor = UIColorFromRGB(0x2A2F36).CGColor

@@ -893,7 +893,9 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         }
 
                     }
+                    dispatch_async(dispatch_get_main_queue()) { [unowned self] in
                     self.tableView.reloadData()
+                    }
                 }
                 self.restore()
                 //self.restore()
@@ -1619,7 +1621,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         let listitemscount = 0
         let listcheckeditems = 0
         let listtype = "Shop"
-        let listcurrency = code
+        let listcurrency = [code,symbol]//code
         let listshowcats = false
         let listscolor = "2A2F36"
         
@@ -1663,6 +1665,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.tableFooterView = UIView()
         
         // TEST FUNC
         /*
@@ -6395,7 +6398,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     let thiscolor : String = UserLists[indexPath.row].listcolorcode
                     
                     cell.colorcodeviewoutlet.backgroundColor = colorWithHexString(thiscolor)
-                   // cell.storyline.backgroundColor = colorWithHexString(thiscolor)
+                    cell.storyline.backgroundColor = colorWithHexString(thiscolor)
                     cell.newlisttype.tintColor = colorWithHexString(thiscolor)
                     cell.ShopListNameButton.text = UserLists[indexPath.row].listname
                     

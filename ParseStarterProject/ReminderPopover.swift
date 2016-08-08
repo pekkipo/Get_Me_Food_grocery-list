@@ -42,8 +42,8 @@ class ReminderPopover: UIViewController, UITextFieldDelegate {
         let customIcon = UIImage(named: "FailAlert")
         let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "OK", color: UIColorFromHex(0xF23D55, alpha: 0.9), iconImage: customIcon)
         alertview.setTextTheme(.Light)
-        // alertview.addAction(cancelCallback)
-        alertview.addCancelAction(closeCallback)
+         alertview.addAction(cancelCallback)
+        //alertview.addCancelAction(closeCallback)
     }
     
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {

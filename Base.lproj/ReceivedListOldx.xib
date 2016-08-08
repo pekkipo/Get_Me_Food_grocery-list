@@ -107,8 +107,8 @@
                         <rect key="frame" x="42" y="0.0" width="4" height="73"/>
                         <color key="backgroundColor" red="0.19215686269999999" green="0.47450980390000003" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ki-37-z0V">
-                        <rect key="frame" x="0.0" y="36" width="41" height="1"/>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ki-37-z0V">
+                        <rect key="frame" x="20" y="0.0" width="1" height="73"/>
                         <color key="backgroundColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="4ReceivedType" translatesAutoresizingMaskIntoConstraints="NO" id="p5V-Qb-a6z">

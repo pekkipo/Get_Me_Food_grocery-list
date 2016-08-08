@@ -274,6 +274,7 @@ class ManageCategoriesVC: UIViewController, UITableViewDelegate, UITableViewData
         newcatname.leftTextMargin = 1
         
        
+        tableView.tableFooterView = UIView()
         
         //newcatname.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
         //newcatname.layer.borderWidth = 1

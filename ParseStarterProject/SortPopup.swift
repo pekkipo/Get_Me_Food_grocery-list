@@ -35,23 +35,29 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         NSLocalizedString("showalllists", comment: ""),
         NSLocalizedString("showonlyshops", comment: ""),
         NSLocalizedString("showonlytodos", comment: ""),
-        NSLocalizedString("showonlyfavs", comment: ""),
+        NSLocalizedString("showonlyfavs", comment: "")
     ]
     
     var tablelabels1 = [
         NSLocalizedString("popasc", comment: ""),
         NSLocalizedString("popdesc", comment: ""),
-        NSLocalizedString("popalpha", comment: ""),
+        NSLocalizedString("popalpha", comment: "")
         ]
-    
+    /*
     var tablelabels2 = [
     NSLocalizedString("popcheck", comment: ""),
     NSLocalizedString("calculatesumlists", comment: ""),
     NSLocalizedString("statistics", comment: ""),
     ]
+    */
+    
+    var tablelabels2 = [
+        NSLocalizedString("popcheck", comment: "")
+        ]
+    
     
     var tablelabels3 = [
-        NSLocalizedString("close", comment: ""),
+        NSLocalizedString("close", comment: "")
     ]
     
     @IBOutlet weak var tableView: UITableView!
@@ -390,7 +396,7 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                 fadecheck(indexPath, err: false)
             }
             
-            
+             self.dismissViewControllerAnimated(true, completion: nil)
             
         } else if indexPath.section == 1 {
             
@@ -405,6 +411,8 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                 fadecheck(indexPath, err: false)
             }
             
+             self.dismissViewControllerAnimated(true, completion: nil)
+            
         } else if indexPath.section == 2 {
             
             if indexPath.row == 0 {
@@ -415,11 +423,6 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                 fadecheck(indexPath, err: true)
                     displayFailAlert(NSLocalizedString("NoConnection", comment: ""), message: NSLocalizedString("cannotcheck", comment: ""))
                 }
-            } else if indexPath.row == 1 {
-                print("Sums")
-            } else if indexPath.row == 2 {
-                print("Statistics")
-                performSegueWithIdentifier("showstatistics", sender: self)
             }
             
         } else if indexPath.section == 3 {

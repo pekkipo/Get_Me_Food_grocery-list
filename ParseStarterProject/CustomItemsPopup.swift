@@ -571,12 +571,7 @@ class CustomItemsPopup: UIViewController, UITableViewDelegate, UITableViewDataSo
         textField.resignFirstResponder()
         return true
     }
-    //myTextField.delegate = self
-    ///
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
+
     
     
     func tableViewScrollToBottom(animated: Bool) {
@@ -609,9 +604,7 @@ class CustomItemsPopup: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         newitemname.textInputView.tintColor = UIColorFromRGB(0x31797D)
         
-        newitemname.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-        newitemname.layer.borderWidth = 1
-        newitemname.layer.cornerRadius = 4
+        tableView.tableFooterView = UIView()
         
         newitemname.delegate = self
         

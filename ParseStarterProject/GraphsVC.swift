@@ -106,13 +106,13 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         
         if chosentimestep == TimeStep.days {
-        timestepbuttonoutlet.titleLabel!.text = NSLocalizedString("days", comment: "")
+        steplabel.text = NSLocalizedString("days", comment: "")
         } else if chosentimestep == TimeStep.weeks {
-            timestepbuttonoutlet.titleLabel!.text = NSLocalizedString("weeks", comment: "")
+            steplabel.text = NSLocalizedString("weeks", comment: "")
         } else if chosentimestep == TimeStep.months {
-            timestepbuttonoutlet.titleLabel!.text = NSLocalizedString("months", comment: "")
+           steplabel.text = NSLocalizedString("months", comment: "")
         } else if chosentimestep == TimeStep.years {
-            timestepbuttonoutlet.titleLabel!.text = NSLocalizedString("years", comment: "")
+            steplabel.text = NSLocalizedString("years", comment: "")
         }
         
         slide(-340, view: "Steps")
@@ -166,13 +166,13 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let rightdate: String = dateFormatter.stringFromDate(chosenduedate)
             let stringdate : String = "\(leftdate) - \(rightdate)"
             
-            timeperiodbuttonoutlet.titleLabel!.text = stringdate
+            periodlabel.text = stringdate
         } else if timeperiodtype == TimePeriodType.custom {
-            timeperiodbuttonoutlet.titleLabel!.text = NSLocalizedString("oneweek", comment: "")
+            periodlabel.text = NSLocalizedString("oneweek", comment: "")
         } else if timeperiodtype == TimePeriodType.custom {
-            timeperiodbuttonoutlet.titleLabel!.text = NSLocalizedString("onemonth", comment: "")
+           periodlabel.text = NSLocalizedString("onemonth", comment: "")
         } else if timeperiodtype == TimePeriodType.custom {
-            timeperiodbuttonoutlet.titleLabel!.text = NSLocalizedString("oneyear", comment: "")
+            periodlabel.text = NSLocalizedString("oneyear", comment: "")
         }
     
         
@@ -341,9 +341,9 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
  */
             do {
             let numberofdays = try dividetimeperiod(timestep, from: from!, due: due!)
-             let numberofweeks = numberofdays / 7
+            let numberofweeks = numberofdays / 7
            
-                guard numberofweeks > 1 else {
+                guard numberofweeks >= 1 else {
                      throw Errors.ErrorWeek
                 }
             
@@ -381,7 +381,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
                     }
                     
-                    if (lists[i].listcreationdate.timeIntervalSince1970 >= leftborderweek.timeIntervalSince1970) && (lists[i].listcreationdate.timeIntervalSince1970 < rightborderweek.timeIntervalSince1970) {
+                    if (lists[i].listcreationdate.timeIntervalSince1970 >= leftborderweek.timeIntervalSince1970) && (lists[i].listcreationdate.timeIntervalSince1970 <= rightborderweek.timeIntervalSince1970) {
                         
                        /*
                         let dateFormatter = NSDateFormatter()
@@ -475,7 +475,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
            var numberofmonths = components.month
             
-            guard numberofmonths > 1 else {
+            guard numberofmonths >= 1 else {
                 throw Errors.ErrorMonth
             }
             
@@ -513,7 +513,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         
                     }
                     
-                    if (lists[i].listcreationdate.timeIntervalSince1970 >= leftborderweek.timeIntervalSince1970) && (lists[i].listcreationdate.timeIntervalSince1970 < rightborderweek.timeIntervalSince1970) {
+                    if (lists[i].listcreationdate.timeIntervalSince1970 >= leftborderweek.timeIntervalSince1970) && (lists[i].listcreationdate.timeIntervalSince1970 <= rightborderweek.timeIntervalSince1970) {
                         
 
                         let commondate : Subperiod = Subperiod(left: leftborderweek, right: rightborderweek)
@@ -558,7 +558,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             var numberofyears = components.year
             
-            guard numberofyears > 1 else {
+            guard numberofyears >= 1 else {
                 throw Errors.ErrorYear
             }
             
@@ -596,7 +596,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         
                     }
                     
-                    if (lists[i].listcreationdate.timeIntervalSince1970 >= leftborderweek.timeIntervalSince1970) && (lists[i].listcreationdate.timeIntervalSince1970 < rightborderweek.timeIntervalSince1970) {
+                    if (lists[i].listcreationdate.timeIntervalSince1970 >= leftborderweek.timeIntervalSince1970) && (lists[i].listcreationdate.timeIntervalSince1970 <= rightborderweek.timeIntervalSince1970) {
                         
                         
                         let commondate : Subperiod = Subperiod(left: leftborderweek, right: rightborderweek)
@@ -701,7 +701,17 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             if list.listtype == "Shop" {
                 
                 if (list.listcreationdate.timeIntervalSince1970 >= fromdate?.timeIntervalSince1970) && (list.listcreationdate.timeIntervalSince1970 <= duedate?.timeIntervalSince1970) {
+                    
+                    // LATER I WILL ADD AN OPPORTUNITY TO CHANGE THE CURRENCY
+                    // now check if the symbol of lists currency is equal to symbol var
+                    
+                    if ((list.listcurrency as! [String])[0] == code)
+                    {
                     chosenlists.append(list)
+                    } else {
+                        print("wrong currency")
+                    }
+                
                 }
                 
             }
@@ -930,8 +940,9 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         //Appearance customization
         
-        //barchart.legend.enabled = false
-        
+        barchart.legend.enabled = false
+        //barchart.legend.direction = .LeftToRight
+        barchart.extraBottomOffset = 15
         
         // BARCHART
         barchart.noDataText = "You need to provide data for the chart."
@@ -947,6 +958,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         barchart.leftAxis.enabled = false
         barchart.xAxis.drawGridLinesEnabled = false
         barchart.xAxis.labelFont = UIFont(name: "AvenirNext-Regular", size: 8)!
+        barchart.xAxis.labelTextColor = UIColorFromHex(0x898989)
         barchart.xAxis.wordWrapEnabled = true
         //barchart.xAxis.labelHeight = 50
 
@@ -957,6 +969,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         barchart.animate(yAxisDuration: 1.0, easingOption: .EaseInOutQuart)
         
         // LINECHART
+        linechart.legend.enabled = false
         linechart.noDataText = "You need to provide data for the chart."
         linechart.descriptionText = ""
         linechart.xAxis.labelPosition = .Bottom
@@ -970,9 +983,12 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         linechart.leftAxis.enabled = false
         linechart.xAxis.drawGridLinesEnabled = false
         linechart.drawGridBackgroundEnabled = false
-        linechart.xAxis.labelFont = UIFont(name: "AvenirNext-Regular", size: 8)!
+        linechart.xAxis.labelFont = UIFont(name: "AvenirNext-Regular", size: 9)!
+        linechart.xAxis.labelTextColor = UIColorFromHex(0x898989)
         linechart.xAxis.wordWrapEnabled = true
         //barchart.xAxis.labelHeight = 50
+        linechart.extraLeftOffset = 30
+        linechart.extraRightOffset = 30
         
         linechart.backgroundColor = UIColorFromHex(0xFAFAFA, alpha: 1)
         
@@ -983,17 +999,37 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // PIECHART
         piechart.noDataText = "You need to provide data for the chart."
         
-                piechart.highlighter = nil // might use later, shows description when tap the bar
+        piechart.highlighter = nil // might use later, shows description when tap the bar
 
         //barchart.xAxis.labelHeight = 50
         
         piechart.backgroundColor = UIColorFromHex(0xFAFAFA, alpha: 1)
         
+        piechart.legend.enabled = false
         
-        piechart.infoFont = UIFont(name: "AvenirNext-Regular", size: 8)!
+        //piechart.style
+        
+        //piechart.infoFont = UIFont(name: "AvenirNext-Regular", size: 8)!
         
         piechart.animate(yAxisDuration: 1.0, easingOption: .EaseInOutQuart)
 
+      //  piechart.descriptionFont = UIFont(name: "AvenirNext-Regular", size: 8)!
+        
+        piechart.descriptionText = ""
+        
+        
+        piechart.holeRadiusPercent = 0
+        piechart.transparentCircleRadiusPercent = 0
+       // piechart.label
+        /*
+        let stringAttributes = [
+            NSFontAttributeName : UIFont(name: "AvenirNext-Regular", size: 8.0)!,
+            NSUnderlineStyleAttributeName : 1,
+            NSForegroundColorAttributeName : UIColorFromHex(0xFAFAFA),
+            NSTextEffectAttributeName : NSTextEffectLetterpressStyle,
+            NSStrokeWidthAttributeName : 2.0]
+        */
+      //  piechart.usePercentValuesEnabled = true
         
 
         var dataEntries = [BarChartDataEntry]() // for bar
@@ -1017,14 +1053,31 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let chartData = BarChartData(xVals: stepsEntries, dataSet: chartDataSet)
         barchart.data = chartData
         
+        chartData.setValueFont(UIFont(name: "AvenirNext-Regular", size: 9)!)
+        
+        chartData.setValueTextColor(UIColorFromHex(0x898989))
+        
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .CurrencyStyle
+        
+        chartDataSet.valueFormatter = formatter
+        
         //line and pie
         let pieChartDataSet = PieChartDataSet(yVals: dataEntriesline, label: nil)
         let pieChartData = PieChartData(xVals: stepsEntries, dataSet: pieChartDataSet)
         pieView.data = pieChartData
         
+        pieChartData.setValueFont(UIFont(name: "AvenirNext-Regular", size: 7)!)
+        
+        pieChartData.setValueTextColor(UIColorFromHex(0xFAFAFA))
+        
         let lineChartDataSet = LineChartDataSet(yVals: dataEntriesline, label: nil)
         let lineChartData = LineChartData(xVals: stepsEntries, dataSet: lineChartDataSet)
         lineView.data = lineChartData
+        
+        lineChartData.setValueFont(UIFont(name: "AvenirNext-Regular", size: 9)!)
+        
+        lineChartData.setValueTextColor(UIColorFromHex(0x898989))
         
         
         chartDataSet.colors = [
@@ -1056,9 +1109,9 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         //chartDataSet.colors = ChartColorTemplates.joyful()
         
-        barchart.descriptionText = ""
+     
         
-        linechart.descriptionText = ""
+       // linechart.descriptionText = ""
     }
     
     
@@ -1221,9 +1274,9 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         setChart(barView, linechart: lineView, piechart: pieView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: chosentimestep, timeperiodtype: timeperiodtype))
         choosebartype(charttype.bar)
 
-            timestepbuttonoutlet.titleLabel!.text = NSLocalizedString("days", comment: "")
+            steplabel.text = NSLocalizedString("days", comment: "")
         
-            timeperiodbuttonoutlet.titleLabel!.text = NSLocalizedString("oneweek", comment: "")
+           periodlabel.text = NSLocalizedString("oneweek", comment: "")
         
         //
        
@@ -1587,7 +1640,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 cell.fromdate.text = ""
                 cell.duedate.text = ""
-                cell.duedateline.backgroundColor = UIColorFromHex(0xE0E0E, alpha: 1)
+                cell.duedateline.backgroundColor = UIColorFromHex(0xE0E0E0, alpha: 1)
                 cell.fromdateline.backgroundColor = UIColorFromHex(0xE0E0E0, alpha: 1)
 
 
@@ -1608,6 +1661,14 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 timeperiodtype = TimePeriodType.month
                 chosentimestep = TimeStep.weeks
+                
+                let indexs = NSIndexPath(forRow: 0, inSection: 0)
+                let cell = tblExpandable.cellForRowAtIndexPath(indexs) as! choosedatescell
+                
+                cell.fromdate.text = ""
+                cell.duedate.text = ""
+                cell.duedateline.backgroundColor = UIColorFromHex(0xE0E0E0, alpha: 1)
+                cell.fromdateline.backgroundColor = UIColorFromHex(0xE0E0E0, alpha: 1)
 
                 
             } else if indexPath.section == 3 {
@@ -1626,6 +1687,14 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 timeperiodtype = TimePeriodType.year
                 chosentimestep = TimeStep.months
+                
+                let indexs = NSIndexPath(forRow: 0, inSection: 0)
+                let cell = tblExpandable.cellForRowAtIndexPath(indexs) as! choosedatescell
+                
+                cell.fromdate.text = ""
+                cell.duedate.text = ""
+                cell.duedateline.backgroundColor = UIColorFromHex(0xE0E0E0, alpha: 1)
+                cell.fromdateline.backgroundColor = UIColorFromHex(0xE0E0E0, alpha: 1)
                 
             }
             

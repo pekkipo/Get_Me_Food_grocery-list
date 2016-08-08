@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1400D5BA1BB94F2C007E2C8C /* UnitsPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1400D5B91BB94F2C007E2C8C /* UnitsPopover.swift */; };
+		141EB6291D587DD500FB9987 /* CustomValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141EB6281D587DD500FB9987 /* CustomValueFormatter.swift */; };
 		141F04FC1D01CB720014AFDF /* B68UIFloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141F04FB1D01CB720014AFDF /* B68UIFloatLabelTextField.swift */; };
 		14339EDC1BE9553500722440 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14339EDB1BE9553500722440 /* MainMenuViewController.swift */; };
 		14339EDE1BE960A000722440 /* LoginInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14339EDD1BE960A000722440 /* LoginInfoCell.swift */; };
@@ -232,6 +233,7 @@
 
 /* Begin PBXFileReference section */
 		1400D5B91BB94F2C007E2C8C /* UnitsPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitsPopover.swift; sourceTree = "<group>"; };
+		141EB6281D587DD500FB9987 /* CustomValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomValueFormatter.swift; sourceTree = "<group>"; };
 		141F04FB1D01CB720014AFDF /* B68UIFloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = B68UIFloatLabelTextField.swift; sourceTree = "<group>"; };
 		14339EDB1BE9553500722440 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		14339EDD1BE960A000722440 /* LoginInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInfoCell.swift; sourceTree = "<group>"; };
@@ -649,6 +651,7 @@
 			isa = PBXGroup;
 			children = (
 				14C58B5A1CF615B6000E72BF /* KDCircularProgress.swift */,
+				141EB6281D587DD500FB9987 /* CustomValueFormatter.swift */,
 				14783EB91D31851000638577 /* GraphsVC.swift */,
 				14783EBD1D318DAD00638577 /* choosedatescell.swift */,
 				14783EBE1D318DAD00638577 /* choosedatescell.xib */,
@@ -1119,6 +1122,7 @@
 				146FFE321C931C8D005AF1AE /* MessageComposer.swift in Sources */,
 				147611CB1BDD0F0C00F928AD /* CustomSearchController.swift in Sources */,
 				14BB8A8A1D17425A001F9466 /* Tabbar.swift in Sources */,
+				141EB6291D587DD500FB9987 /* CustomValueFormatter.swift in Sources */,
 				147DEA131BA83281000B86CA /* ContactsCell.swift in Sources */,
 				14AE267F1BD97A4600DA8AF3 /* SharingHistoryCell.swift in Sources */,
 				14C7CD871BFE5CEF00775B06 /* ManageFavouritesVC.swift in Sources */,

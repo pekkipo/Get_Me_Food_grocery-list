@@ -449,6 +449,8 @@ protocol passListtoMenuDelegate
 var symbol = String()
 var code = String()
 
+
+
 class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDataSource, RefreshListDelegate, MPGTextFieldDelegateCatalog, UIPopoverPresentationControllerDelegate, OptionsPopupDelegate, UITextFieldDelegate, takepicturedelegate, UIGestureRecognizerDelegate, UITextViewDelegate, CategoryPopupDelegate, ImagesPopupDelegate, UIPickerViewDataSource, UIPickerViewDelegate, ManageCatsDelegate {//, sendBackParametersToShopDelegate, SmallPopupDelegate {
     
     var delegateforlist : passListtoMenuDelegate?
@@ -3391,7 +3393,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         let listitemscount = 0
         let listcheckeditems = 0
         let listtype = "Shop"
-        let listcurrency = code
+        let listcurrency = [code,symbol]//code
         let listshowcats = false
         let listscolor = colorcode
         
