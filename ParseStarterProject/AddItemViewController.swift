@@ -2253,7 +2253,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             
             // SETUP CATEGORIES SCROLLER
             
-            horizontalScrollView = ASHorizontalScrollView(frame:CGRectMake(12, 4, viewforcats.frame.width - 12, 70))//viewforcats.frame.height - 5))
+            horizontalScrollView = ASHorizontalScrollView(frame:CGRectMake(12, 4, viewforcats.frame.width - 24, 70))//viewforcats.frame.height - 5))
             horizontalScrollView.uniformItemSize = CGSizeMake(70, 70)
             horizontalScrollView.leftMarginPx = 0
             horizontalScrollView.miniMarginPxBetweenItems = 0

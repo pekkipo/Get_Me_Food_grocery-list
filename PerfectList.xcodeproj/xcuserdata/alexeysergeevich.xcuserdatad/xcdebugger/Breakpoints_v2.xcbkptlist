@@ -6674,8 +6674,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "5469"
             endingLineNumber = "5469"
-            landmarkName = "newopenreceivedlistbyname(_:)"
-            landmarkType = "5">
+            landmarkName = "AllListsVC"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -6690,8 +6690,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "4168"
             endingLineNumber = "4168"
-            landmarkName = "AllListsVC"
-            landmarkType = "3">
+            landmarkName = "newdeletereceivedlist(_:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

@@ -167,12 +167,15 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let stringdate : String = "\(leftdate) - \(rightdate)"
             
             periodlabel.text = stringdate
-        } else if timeperiodtype == TimePeriodType.custom {
+        } else if timeperiodtype == TimePeriodType.week {
             periodlabel.text = NSLocalizedString("oneweek", comment: "")
-        } else if timeperiodtype == TimePeriodType.custom {
+            steplabel.text = NSLocalizedString("days", comment: "")
+        } else if timeperiodtype == TimePeriodType.month {
            periodlabel.text = NSLocalizedString("onemonth", comment: "")
-        } else if timeperiodtype == TimePeriodType.custom {
+            steplabel.text = NSLocalizedString("weeks", comment: "")
+        } else if timeperiodtype == TimePeriodType.year {
             periodlabel.text = NSLocalizedString("oneyear", comment: "")
+            steplabel.text = NSLocalizedString("months", comment: "")
         }
     
         
@@ -342,6 +345,8 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             do {
             let numberofdays = try dividetimeperiod(timestep, from: from!, due: due!)
             let numberofweeks = numberofdays / 7
+                
+                print("Number of weeks: \(numberofweeks)")
            
                 guard numberofweeks >= 1 else {
                      throw Errors.ErrorWeek
@@ -716,6 +721,8 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
             }
         }
+        
+        print("lists are: \(chosenlists)")
             
         // STEP 2 - Sort the chosenlistsarray
         
@@ -1669,6 +1676,10 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 cell.duedate.text = ""
                 cell.duedateline.backgroundColor = UIColorFromHex(0xE0E0E0, alpha: 1)
                 cell.fromdateline.backgroundColor = UIColorFromHex(0xE0E0E0, alpha: 1)
+                
+                let index2 = NSIndexPath(forRow: 0, inSection: 0)
+                let cel2 = tblExpandable.cellForRowAtIndexPath(indexs) as! choosedatescell
+
 
                 
             } else if indexPath.section == 3 {
@@ -1699,6 +1710,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
             
             tblExpandable.reloadData()
+            stepsTbl.reloadData()
             
         } else {
             

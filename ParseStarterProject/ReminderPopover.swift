@@ -96,7 +96,7 @@ class ReminderPopover: UIViewController, UITextFieldDelegate {
         }
         
         
-
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     var eventStore: EKEventStore!
