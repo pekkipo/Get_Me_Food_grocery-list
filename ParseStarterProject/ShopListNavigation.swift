@@ -33,6 +33,8 @@ class ShopListNavigation: UINavigationController {
         
         
         
+        //UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColorFromRGB(0x0B6065),NSFontAttributeName:UIFont(name: "AvenirNext-Regular", size: 16)!]
+        
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColorFromRGB(0x0B6065),NSFontAttributeName:UIFont(name: "AvenirNext-Regular", size: 16)!]
 
         

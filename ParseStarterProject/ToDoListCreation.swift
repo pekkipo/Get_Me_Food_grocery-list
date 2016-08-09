@@ -18,8 +18,49 @@ protocol passtodoListtoMenuDelegate
 }
 
 
-class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSource, RefreshToDoListDelegate, UITextFieldDelegate, OptionsPopupDelegate, takepicturedelegate, UITextViewDelegate {
+class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSource, RefreshToDoListDelegate, UITextFieldDelegate, OptionsPopupDelegate, takepicturedelegate, UITextViewDelegate, UIGestureRecognizerDelegate {
     
+    
+    // New stuff
+    
+    var isediting : Bool = false
+    
+    
+    @IBOutlet var additemfield: UITextField!
+    
+    @IBAction func beginedit(sender: AnyObject) {
+        
+        if !isediting {
+        
+        additemfield.text = ""
+        
+        additemfield.placeholder = NSLocalizedString("todoplchldr", comment: "")
+        
+        addpulse()
+            
+            isediting = true
+            
+        }
+        
+    }
+    
+    @IBOutlet var addbuttonoutlet: UIButton!
+    
+    @IBAction func additem(sender: AnyObject) {
+    }
+    
+    @IBOutlet var openmenu: UIBarButtonItem!
+    
+    
+    @IBAction func openmenuaction(sender: AnyObject) {
+    }
+    
+    @IBOutlet var showsettings: UIBarButtonItem!
+    
+    @IBAction func showsettingsaction(sender: AnyObject) {
+        
+        clickthetitle()
+    }
     
     func createpicture() {
         // generateImage(tableView)
@@ -61,43 +102,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
     var delegatefortodolist : passtodoListtoMenuDelegate?
     var senderVC : UIViewController?
     
-    
-    @IBOutlet var backbaroutlet: UIBarButtonItem!
-    
-    @IBAction func backBar(sender: AnyObject) {
-        /*
-        if senderVC == senderVC as? AllListsVC || senderVC == senderVC as? ChooseListToCreateView {
-        
-        //if senderVC == senderVC as? ChooseListToCreateView {
-        additemstoarrayandsave()
-            performSegueWithIdentifier("gobacktoalllists", sender: self)
-            
-        } else if senderVC == senderVC as? MainMenuViewController {
-            
-           // delegatefortodolist?.gettodolistparameters(true, listid:currenttodolist, isreceived: isReceived)
-            
-            
-            additemstoarrayandsave()
-            dismissViewControllerAnimated(true, completion: nil)
-            
-        }
-*/
 
-    }
-    
-    
-    @IBAction func optionsBar(sender: AnyObject) {
-        
-        performSegueWithIdentifier("optionsfromtodo", sender: self)
- 
-        
-    }
-    
-    @IBAction func AddItemBar(sender: AnyObject) {
-        performSegueWithIdentifier("createtodoitem", sender: self)
-    }
-    
-    
     //performSegueWithIdentifier("createtodoitem", sender: self)
     
     func refreshtodotable() {
@@ -109,18 +114,11 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             activelist = currenttodolist
             if currenttodolist != "" {
-                
-                /*
-                countitems()
-                itemsoverall.text = String(itemsquantity)
-                countchecked()
-                itemschecked.text = String(checkeditemsquantity)
-*/
+
                 countitems()
                 countchecked()
-                 itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsquantity))/\(String(checkeditemsquantity))"
-               // itemsoverall.text = "\(String(itemsquantity))/\(String(checkeditemsquantity))"
-                
+
+
                 tableView.reloadData()
                 
             } else {
@@ -128,16 +126,11 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             }
             
         } else {
-            /*
-            countitems()
-            itemsoverall.text = String(itemsquantity)
-            countchecked()
-            itemschecked.text = String(checkeditemsquantity)
-            */
+
             countitems()
             countchecked()
-            itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsquantity))/\(String(checkeditemsquantity))"
-          //  itemsoverall.text = "\(String(itemsquantity))/\(String(checkeditemsquantity))"
+
+          
             tableView.reloadData()
         }
         
@@ -174,114 +167,6 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     @IBOutlet weak var tableView: UITableView!
-    
-    
-    @IBOutlet weak var listname: UITextField!
-    
-    @IBOutlet weak var listnote: UITextField!
-    
-    
-  
-    @IBAction func SaveList(sender: AnyObject) {
-    
-            
-            print(currenttodolist)
-        
-         let updatedate = NSDate()
-            
-            let query = PFQuery(className:"toDoLists")
-            query.fromLocalDatastore()
-            
-            query.whereKey("listUUID", equalTo: currenttodolist)
-            query.getFirstObjectInBackgroundWithBlock() {
-                
-                (todolist: PFObject?, error: NSError?) -> Void in
-                if error != nil {
-                    print(error)
-                } else if let todolist = todolist {
-                    
-                    todolist["ToDoListName"] = self.listname.text
-                    todolist["ToDoListNote"] = self.listnote.text
-                    //todoist["isFavourite"] = false
-                    if self.isReceived == false {
-                        todolist["isReceived"] = false
-                    } else {
-                        todolist["isReceived"] = true
-                    }
-                    
-                    if self.isReceived == false {
-                        todolist["isSaved"] = false
-                    } else {
-                        todolist["isSaved"] = true
-                    }
-                    
-                    
-                    
-                    
-                    self.additemstoarray()
-                    
-                    print("ARRAY IS \(self.idsinthislist)")
-                    
-                    todolist["ItemsInTheToDoList"] = self.idsinthislist
-                    
-                    todolist["ItemsCount"] = self.itemsquantity
-                    todolist["CheckedItemsCount"] = self.checkeditemsquantity
-                    
-                    todolist["CreationDate"] = updatedate
-                    
-                    todolist["updateDate"] = updatedate
-                    
-                    
-                    
-                    todolist.pinInBackground()
-                    //shopList.saveInBackground()
-                   // todolist.saveEventually()
-                }
-            }
-        
-        ////// NOW SAVE IN ITEMSLIST ARRAY
-        
-      //  if let foundlist = find(lazy(UserLists).map({ $0.listid }), currenttodolist) {
-        
-         if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(currenttodolist) {
-            UserLists[foundlist].listname = listname.text
-            UserLists[foundlist].listnote = listnote.text
-
-            UserLists[foundlist].listitemscount = itemsquantity
-            UserLists[foundlist].listcheckeditemscount = checkeditemsquantity
-            UserLists[foundlist].listcreationdate = updatedate
-            
-        }
-        
-        //if let foundtodolist = find(lazy(UserToDoLists).map({ $0.listid }), currenttodolist) {
-        if let foundtodolist = UserToDoLists.map({ $0.listid }).lazy.indexOf(currenttodolist) {
-            
-            
-            UserToDoLists[foundtodolist].listname = listname.text
-            UserToDoLists[foundtodolist].listnote = listnote.text
-            UserToDoLists[foundtodolist].listitemscount = itemsquantity
-            UserToDoLists[foundtodolist].listcheckeditemscount = checkeditemsquantity
-            UserToDoLists[foundtodolist].listcreationdate = updatedate
-            
-        }
-        
-        if let foundfavlist = UserFavLists.map({ $0.listid }).lazy.indexOf(currenttodolist) {
-            
-            
-            UserFavLists[foundfavlist].listname = listname.text
-            UserFavLists[foundfavlist].listnote = listnote.text
-            UserFavLists[foundfavlist].listitemscount = itemsquantity
-            UserFavLists[foundfavlist].listcheckeditemscount = checkeditemsquantity
-            UserFavLists[foundfavlist].listcreationdate = updatedate
-            
-        }
-
-
-            
-            
-            
-        }
-    
     
     ///////// COLOR CODER PART
     var colorcode = String()
@@ -354,23 +239,16 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
                 todolist["ItemsCount"] = self.itemsquantity
                 todolist["CheckedItemsCount"] = self.checkeditemsquantity
                 
-                
-                
                 todolist["updateDate"] = updatedate
                 
                 todolist["ListColorCode"] = self.colorcode
-                
-                
-                
+
                 todolist.pinInBackground()
-                //shopList.saveInBackground()
-                //todolist.saveEventually()
+
             }
         }
         
-        ////// NOW SAVE IN ITEMSLIST ARRAY
-        
-        //  if let foundlist = find(lazy(UserLists).map({ $0.listid }), currenttodolist) {
+
         
         if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(currenttodolist) {
             UserLists[foundlist].listname = listname.text
@@ -378,12 +256,11 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             UserLists[foundlist].listitemscount = itemsquantity
             UserLists[foundlist].listcheckeditemscount = checkeditemsquantity
-           // UserLists[foundlist].listcreationdate = updatedate
+
             UserLists[foundlist].listcolorcode = self.colorcode
             
         }
-        
-        //if let foundtodolist = find(lazy(UserToDoLists).map({ $0.listid }), currenttodolist) {
+
         if let foundtodolist = UserToDoLists.map({ $0.listid }).lazy.indexOf(currenttodolist) {
             
             
@@ -403,7 +280,6 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             UserFavLists[foundfavlist].listnote = listnote.text
             UserFavLists[foundfavlist].listitemscount = itemsquantity
             UserFavLists[foundfavlist].listcheckeditemscount = checkeditemsquantity
-          //  UserFavLists[foundfavlist].listcreationdate = updatedate
             UserFavLists[foundfavlist].listcolorcode = self.colorcode
             
         }
@@ -414,39 +290,17 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     
-    
-    @IBOutlet weak var itemsoverall: UILabel!
-    
-    
-    @IBOutlet weak var itemschecked: UILabel!
+
     
     var idsinthislist = [String]()
     
     func additemstoarray() -> [String]{
-            
-           // var idsinthislist = [String]()
+
             
             for item in toDoItems {
                 idsinthislist.append(item.itemid)
             }
-            /*
-            var query = PFQuery(className:"toDoLists")
-            query.fromLocalDatastore()
-            query.whereKey("listUUID", equalTo: currenttodolist)
-            query.getFirstObjectInBackgroundWithBlock() {
-                
-                (todolist: PFObject?, error: NSError?) -> Void in
-                if error != nil {
-                    println(error)
-                } else if let todolist = todolist {
-                    todolist["ItemsInTheToDoList"] = idsinthislist
-                    todolist.pinInBackground()
-                    todolist.saveEventually()
-                }
-            }
-            */
-            //ItemsCount = idsinthislist.count
-            // return ItemsCount
+
         
         return idsinthislist
         
@@ -492,7 +346,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
                 
                 todolist["ToDoListNote"] = self.listnote.text
                 todolist.pinInBackground()
-               // todolist.saveEventually()
+
             }
         }
         
@@ -542,17 +396,11 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
                         
                     }
                     
-                    // COUNT ITEMS BITCH!
-                   /*
-                    self.countitems()
-                    self.itemsoverall.text = String(self.itemsquantity)
-                    self.countchecked()
-                    self.itemschecked.text = String(self.checkeditemsquantity)
-                    */
+
                     self.countitems()
                     self.countchecked()
-                    self.itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(self.itemsquantity))/\(String(self.checkeditemsquantity))"
-                    // self.itemsoverall.text = "\(String(self.itemsquantity))/\(String(self.checkeditemsquantity))"
+                   
+
                     self.tableView.reloadData()
                 }
                 
@@ -702,28 +550,11 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         //shopList["ItemsInTheShopList"] = shoppingListItemsIds
         toDoListNew.pinInBackground()
-        //shopListNew.saveInBackgroundWithBlock {
-        /*
-        toDoListNew.saveEventually() {
-            (success: Bool, error: NSError?) -> Void in
-            if (success) {
-                // self.currentList = shopListNew.objectId!
-                //self.trycurrent = shopListNew.objectId!
-                print("Current list is \(self.currenttodolist)")
-            } else {
-                // There was a problem, check error.description
-            }
-            
-            print("Current list is \(self.currenttodolist)")
-        }
-        */
-        // self.currentList = trycurrent
+
         
         itemsquantity = 0
         checkeditemsquantity = 0
-        itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsquantity))/\(String(checkeditemsquantity))"
-        //itemsoverall.text = "\(String(self.itemsquantity))/\(String(self.checkeditemsquantity))"//String(0)
-        //itemschecked.text = String(0)
+
         
     }
     
@@ -733,11 +564,9 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         let view = button.superview!
         let cell = view.superview as! ToDoListCell
         let indexPathItem = tableView.indexPathForCell(cell)
-        
-        //itemtoedit = shoppingListItemsIds[indexPathItem!.row]
+
         itemtoedit = toDoItems[indexPathItem!.row].itemid
-        
-       // performSegueWithIdentifier("edittodoitemsegue", sender: self)
+
         performSegueWithIdentifier("edittodoitem", sender: self)
     }
     
@@ -784,16 +613,10 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             
         }
-        
-        
-       // toDoItems[indexPathCheck!.row].ischecked = false
-        
-        
-        
+
         checkeditemsquantity -= 1
-       // itemschecked.text = String(checkeditemsquantity)
-        itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsquantity))/\(String(checkeditemsquantity))"
-      //  itemsoverall.text = "\(String(self.itemsquantity))/\(String(self.checkeditemsquantity))"
+
+
     }
     
     func checkitem(sender: UIButton!) {
@@ -818,7 +641,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             cell.checkview.hidden = false
             
             let attributes = [NSStrikethroughStyleAttributeName : 1]
-            // var title = NSAttributedString(string: shoppingListItemsNames[indexPathCheck!.row], attributes: attributes)
+
             let title = NSAttributedString(string: toDoItems[indexPathCheck!.row].itemname, attributes: attributes)
             cell.itemname.attributedText = title
             
@@ -843,9 +666,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
 
             
             checkeditemsquantity += 1
-           // itemschecked.text = String(checkeditemsquantity)
-            itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsquantity))/\(String(checkeditemsquantity))"
-            //itemsoverall.text = "\(String(self.itemsquantity))/\(String(self.checkeditemsquantity))"
+
             
         } else {
           
@@ -868,9 +689,9 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
                 print("Not checked")
             }
         }
-        //checkeditemsqty = quantityofchecked.count
+
         checkeditemsquantity = quantityofchecked.count
-       // checkeditemsquantity = checkeditems
+
         return checkeditemsquantity
 
     }
@@ -897,8 +718,8 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
 
                 countitems()
                 countchecked()
-                itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsquantity))/\(String(checkeditemsquantity))"
-               // itemsoverall.text = "\(String(itemsquantity))/\(String(checkeditemsquantity))"
+
+
                 tableView.reloadData()
 
             } else {
@@ -909,8 +730,8 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
 
             countitems()
             countchecked()
-            itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsquantity))/\(String(checkeditemsquantity))"
-           // itemsoverall.text = "\(String(itemsquantity))/\(String(checkeditemsquantity))"
+
+
         tableView.reloadData()
         }
     }
@@ -935,9 +756,9 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         //here I will prepare the data for my list
         
         
-        if segue.identifier == "showtodooptions" {
+        if segue.identifier == "settingsfortodo" {
             
-            let popoverViewController = segue.destinationViewController as! ListOptionsPopover//
+            let popoverViewController = segue.destinationViewController as! ListOptionsPopover
             
             popoverViewController.delegate = self //
             
@@ -966,10 +787,8 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             
         }
         
-        if segue.identifier == "ShareFromToDoCreationNew" {//"ShareFromToDo" {
-        let shareNav = segue.destinationViewController as! UINavigationController
-        
-        let shareVC = shareNav.viewControllers.first as! SharingViewController
+        if segue.identifier == "ShareFromToDoCreation" {//"ShareFromToDo" {
+        let shareVC = segue.destinationViewController as! SharingViewController
         
         additemstoarrayandsave()
         
@@ -979,24 +798,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         shareVC.senderVC = "ToDoCreationVC"
             
         }
-        
-        //edittodoitemsegue
-        /*
-        if segue.identifier == "edittodoitemsegue" {
-            let naveditVC = segue.destinationViewController as! UINavigationController
-            
-            let edititemVC = naveditVC.viewControllers.first as! AddToDoItemViewController
-            
-            //additemVC.currentitem = //currentList
-            edititemVC.currentlist = currenttodolist
-            
-            edititemVC.currentitem = itemtoedit
-            
-            edititemVC.existingitem = true
-            
-            
-        }
-        */
+
         
          if segue.identifier == "createtodoitem" {
         
@@ -1017,11 +819,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             
             let toViewController = segue.destinationViewController as! AddToDoItemViewController
-           
-            
-           // self.navigationController!.modalPresentationStyle = UIModalPresentationStyle.OverFullScreen
-            
-            
+
             toViewController.tododelegate = self // NEED THIS FOR REFRESHING FUNCTION!
             toViewController.existingitem = true
             toViewController.currentlist = currenttodolist
@@ -1049,6 +847,17 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         //toViewController.maindelegate = self
             
         }
+        
+        if segue.identifier == "showreminderfromtodo" {
+            
+            let popoverViewController = segue.destinationViewController as! ReminderPopover
+            
+            popoverViewController.todocaption = additemfield.text!
+            popoverViewController.senderVC = "ToDoItem"
+            
+        }
+        
+        
 
     }
 
@@ -1105,48 +914,18 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         tableView.reloadData()
 
-        /*
-        countitems()
-        itemsoverall.text = String(itemsquantity)
-        countchecked()
-        itemschecked.text = String(checkeditemsquantity)
-        */
         countitems()
         countchecked()
-        itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsquantity))/\(String(checkeditemsquantity))"
-       // itemsoverall.text = "\(String(itemsquantity))/\(String(checkeditemsquantity))"
-        
-        //IF SHOWCATS == TRUE
-        
-        
-        
+
         
     }
     
     
     @IBAction func unwindToCreationOfToDoList(sender: UIStoryboardSegue){
-        // bug? exit segue doesn't dismiss so we do it manually...
-        //self.dismissViewControllerAnimated(true, completion: nil)
+
     }
-    
-    
-    @IBOutlet var sharebaroutlet: UIBarButtonItem!
-    
-    @IBAction func shareaction(sender: AnyObject) {
-        
-        
-        
-        
-    }
-    @IBOutlet var savebaroutlet: UIBarButtonItem!
-    
-    
- 
-    
-    @IBOutlet var toptoolbar: UIToolbar!
-    
-    @IBOutlet var bottomtoolbar: UIToolbar!
-    
+
+
     /// Text field stuff
     
     
@@ -1285,9 +1064,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
                                 
                                 //UserLists.extend(UserShopLists)
                                 UserLists.append(receivedshoplist)
-                                
-                                
-                                //self.tableView.reloadData() // without this thing, table would contain only 1 row
+           
                                 
                                 receivedcount += 1
                                 
@@ -1604,7 +1381,6 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
                         }
                         
                         checkeditemsquantity += 1
-                        itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsquantity))/\(String(checkeditemsquantity))"
 
                         
                     } else {
@@ -1622,57 +1398,359 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
 
     
-    @IBOutlet var lighbgview: UIView!
+    var closepadimage = UIImage(named: "ClosePad")!
+    var editproductimage = UIImage(named:"4EditProduct20")!
+    var addproductimage = UIImage(named:"4AddProduct20")!
     
-    @IBOutlet var topview: UIView!
     
-    @IBOutlet var smalltopview: UIView!
+    func addproductfromkeyboard(sender: UIButton) {
+
+
+        quickadditem(currenttodolist)
+
+    }
+    
+    func editproductfromkeyboard(sender: UIButton) {
+        self.view.endEditing(true)
+        
+        showproperties()
+ 
+        
+    }
+    
+    func showproperties() {
+        
+        smallpopover.hidden = false
+        dimmerforpopover.hidden = false
+        
+        
+        addpulse()
+        
+    }
+ 
+    func addpulse() {
+        
+        var pulseAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.scale");
+        pulseAnimation.duration = 1.0;
+        pulseAnimation.fromValue = NSNumber(float: 0.9)
+        pulseAnimation.toValue = NSNumber(float: 1.0);
+        pulseAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut);
+        pulseAnimation.autoreverses = true;
+        pulseAnimation.repeatCount = FLT_MAX;
+        addbuttonoutlet.layer.addAnimation(pulseAnimation, forKey: nil)
+    }
+    
+    @IBOutlet var smallpopover: UIView!
+    @IBOutlet var dimmerforpopover: UIView!
+    
+   
+    @IBAction func cancelinpopover(sender: AnyObject) {
+        
+        hideproperties()
+        
+        self.quickitemnote.text = ""
+        self.additemfield.text = NSLocalizedString("addtodoitemtext", comment: "")
+        
+        self.priorityswitcher.on = false
+        
+        isediting = false
+        
+    }
+    
+    @IBAction func doneinpopover(sender: AnyObject) {
+        
+        quickadditem(currenttodolist)
+    }
+    
+    func hideproperties() {
+
+        self.view.endEditing(true)
+        smallpopover.hidden = true
+        dimmerforpopover.hidden = true
+
+        addbuttonoutlet.layer.removeAllAnimations()
+    }
+    
+    
+    @IBOutlet var quickitemnote: UITextView!
+    
+    @IBOutlet var priorityswitcher: UISwitch!
+    
+    func quickadditem(list: String) {
+        
+        let todoitem = PFObject(className:"toDoItems")
+        let uuid = NSUUID().UUIDString
+        let itemuuid = "todoitem\(uuid)"
+        
+        todoitem["itemUUID"] = itemuuid
+        todoitem["todoitemname"] = additemfield.text
+        todoitem["todoitemnote"] = quickitemnote.text
+        
+        if priorityswitcher.on {
+            todoitem["isImportant"] = true
+        } else {
+            todoitem["isImportant"] = false
+        }
+        
+        let date = NSDate()
+        
+        todoitem["creationDate"] = date
+        todoitem["updateDate"] = date
+        
+        todoitem["ServerUpdateDate"] = date.dateByAddingTimeInterval(-120)
+        
+        todoitem["BelongsToUser"] = PFUser.currentUser()!.objectId!
+        todoitem["ItemsList"] = list//currentlist
+        
+        todoitem["isChecked"] = false
+        
+        todoitem["isDeleted"] = false
+        
+        //create new object
+        let id = itemuuid
+        let name = additemfield.text
+        let note = quickitemnote.text
+        var importance = Bool()
+        
+        if priorityswitcher.on {
+            importance = true
+        } else {
+            importance = false
+        }
+        let check = false
+        
+        //page 87 of Pro Design Patterns
+        
+        let newtodoitem: toDoItem = toDoItem(itemid:id,itemname:name!,itemnote:note,itemimportant:importance, ischecked:check)
+        
+        toDoItems.append(newtodoitem)
+        
+        
+        tableView.reloadData()
+        
+        todoitem.pinInBackgroundWithBlock({ (success, error) -> Void in
+            if success {
+                
+                print("saved item")
+                
+            } else {
+                print("no id found")
+            }
+        })
+        
+        
+        hideproperties()
+        
+        self.quickitemnote.text = ""
+        self.additemfield.text = NSLocalizedString("addtodoitemtext", comment: "")
+        
+        self.priorityswitcher.on = false
+        
+        isediting = false
+        
+
+        
+    }
+    
+    
+    @IBOutlet var listname: UITextField!
+    
+    @IBOutlet var listnote: UITextView!
+    
+    
+    @IBAction func opensettings(sender: AnyObject) {
+        
+        performSegueWithIdentifier("settingsfortodo", sender: self)
+        
+    }
+    
+    @IBAction func sendthelist(sender: AnyObject) {
+        
+         performSegueWithIdentifier("ShareFromToDoCreation", sender: self)
+        
+    }
+    
+    @IBAction func closepopover(sender: AnyObject) {
+        
+        dimmer.removeFromSuperview()
+        
+        popovertopconstraint.constant = -500
+        
+        UIView.animateWithDuration(0.4, animations: { () -> Void in
+            
+            self.view.layoutIfNeeded()
+            }, completion: { (value: Bool) -> Void in
+                
+        })
+        
+        self.view.endEditing(true)
+        
+        self.settingsview.hidden = true
+
+        
+    }
+    
+    
+    var settingsopen : Bool = false
+    
+    // func clickthetitle(button: UIButton) {
+    func clickthetitle() {
+        
+        if !settingsopen {
+            
+
+            showsettingsfunc()
+            settingsopen = true
+            
+        } else if settingsopen {
+
+            closesets()
+            settingsopen = false
+            
+        }
+        
+        
+    }
+    
+    let dimmer : UIView = UIView()
+    
+    func UIColorFromRGBalpha(rgbValue: UInt, alp: Double) -> UIColor {
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(alp)//(1.0)
+        )
+    }
+    
+    func showsettingsfunc() {
+        
+        view.endEditing(true)
+        
+        // slidedown
+        settingsview.hidden = false
+        
+        dimmer.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
+        dimmer.backgroundColor = UIColorFromRGBalpha(0x2a2f36, alp: 0.3)
+        
+        
+        let blurredtap = UITapGestureRecognizer(target: self, action: Selector("handlebvTap:"))
+        blurredtap.delegate = self
+        dimmer.userInteractionEnabled = true
+        dimmer.addGestureRecognizer(blurredtap)
+        
+        self.view.addSubview(dimmer)
+        
+        popovertopconstraint.constant = 0
+        
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            
+            self.view.layoutIfNeeded()
+            }, completion: { (value: Bool) -> Void in
+                
+        })
+        
+        self.view.bringSubviewToFront(settingsview)
+        
+    }
+
+    
+    func closesets() {
+        
+        dimmer.removeFromSuperview()
+        
+        
+        popovertopconstraint.constant = -500
+
+        view.endEditing(true)
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            
+            self.view.layoutIfNeeded()
+            }, completion: { (value: Bool) -> Void in
+                self.settingsview.hidden = true
+        })
+        
+        //self.shownoteview.hidden = true
+    }
+    
+    
+    @IBOutlet var settingsview: UIView!
+    
+    @IBOutlet var popovertopconstraint: NSLayoutConstraint! //0 or -500
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backbaroutlet.target = self.revealViewController()
-        backbaroutlet.action = Selector("revealToggle:")
+        tableView.tableFooterView = UIView()
+        
+        openmenu.target = self.revealViewController()
+        openmenu.action = Selector("revealToggle:")
         
         
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadTableAfterPush", name: "reloadTableToDo", object: nil)
+
         
-        smalltopview.backgroundColor = UIColorFromRGB(0x31797D)
+        let toolFrame = CGRectMake(0, 0, self.view.frame.size.width, 46); // x y w h
+        let toolView: UIView = UIView(frame: toolFrame);
+        toolView.backgroundColor = UIColorFromRGB(0xFAFAFA)
+        let linetop : UIView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 1))
+        linetop.backgroundColor = UIColorFromRGB(0xE0E0E0)
+        let linebottom : UIView = UIView(frame: CGRectMake(0, 45, self.view.frame.size.width, 1))
+        linebottom.backgroundColor = UIColorFromRGB(0x31797D)
+        let closepadframe3: CGRect = CGRectMake(0, 0, self.view.frame.size.width / 2, 46)
+        let closepadframe4: CGRect = CGRectMake(self.view.frame.size.width / 2, 0, self.view.frame.size.width / 2, 46)
+        let editproduct: UIButton = UIButton(frame: closepadframe3);
+        let addproduct: UIButton = UIButton(frame: closepadframe4);
+        editproduct.setTitle(NSLocalizedString("qeditproduct", comment: ""), forState: UIControlState.Normal)
+        addproduct.setTitle(NSLocalizedString("qaddproduct", comment: ""), forState: UIControlState.Normal)
+        editproduct.tintColor = UIColorFromRGB(0x1695A3)
+        addproduct.tintColor = UIColorFromRGB(0x31797D)
+        editproduct.setImage(editproductimage, forState: UIControlState.Normal)
+        addproduct.setImage(addproductimage, forState: UIControlState.Normal)
+        editproduct.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 12)
+        addproduct.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 12)
+        editproduct.setTitleColor(UIColorFromRGB(0x1695A3), forState: .Normal)
+        editproduct.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 20);
+        editproduct.titleEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 10);
+        addproduct.setTitleColor(UIColorFromRGB(0x31797D), forState: .Normal)
+        addproduct.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 20);
+        addproduct.titleEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 10);
+        toolView.addSubview(editproduct);
+        toolView.addSubview(addproduct);
+        toolView.addSubview(linetop);
+        editproduct.addTarget(self, action: "editproductfromkeyboard:", forControlEvents: UIControlEvents.TouchDown);
+        addproduct.addTarget(self, action: "addproductfromkeyboard:", forControlEvents: UIControlEvents.TouchDown);
         
-        lighbgview.backgroundColor = UIColorFromRGB(0xF1F1F1)
+        additemfield.inputAccessoryView = toolView
         
-        topview.backgroundColor = UIColorFromRGB(0xF1F1F1)
         
-        self.view.backgroundColor = UIColorFromRGB(0x31797D)//2A2F36)
+        
+        
+        
         
         
         listname.delegate = self
         
         listnote.delegate = self
         
-        var swipecell = UISwipeGestureRecognizer(target: self, action: "didSwipeCell:")
-        swipecell.direction = .Right
-        self.tableView.addGestureRecognizer(swipecell)
-        
-        toptoolbar.barTintColor = UIColorFromRGB(0x31797D)//2a2f36)
-        
-      
-        
-        self.view.backgroundColor = UIColorFromRGB(0x31797D)//2a2f36)
-        
-       
+       // var swipecell = UISwipeGestureRecognizer(target: self, action: "didSwipeCell:")
+       // swipecell.direction = .Right
+       // self.tableView.addGestureRecognizer(swipecell)
+
+
 
         
         if justCreated == true {
             
-            let todaydate = NSDate()
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "dd MMM yyyy"
-            let namedate = dateFormatter.stringFromDate(todaydate)
+            
+            
+            self.listnote.text = ""
             
             self.listname.text = "\(NSLocalizedString("listtodo", comment: ""))"
+
+            self.navigationItem.title = "\(NSLocalizedString("listtodo", comment: ""))"
             colorcode = magenta
             
             newPFObject()
@@ -1682,11 +1760,8 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         } else {
             currenttodolist = activelist
             
-           
             
-           
-            
-            itemsretrieval(activelist)//currenttodolist)
+            itemsretrieval(activelist)
             if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(activelist) {
             if (UserLists[foundlist].listcolorcode != nil) {
                 colorcode = UserLists[foundlist].listcolorcode!
@@ -1701,13 +1776,11 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             tableView.reloadData()
 
         }
-        
-        // COUNT ITEMS BITCH!
+
         countitems()
         countchecked()
-        itemsoverall.text = "\(NSLocalizedString("items", comment: "")) \(String(itemsquantity))/\(String(checkeditemsquantity))"
-       // itemsoverall.text = "\(String(itemsquantity))/\(String(checkeditemsquantity))"
-        //Navigation configuration
+
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -1756,7 +1829,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // the cells you would like the actions to appear needs to be editable
+
         return true
     }
     
@@ -1774,7 +1847,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         
-        return 81
+        return 50
     }
     
     func tableView(tableView: UITableView,
@@ -1805,16 +1878,11 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     
     
+   
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cellIdentifier = "todoitemcell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ToDoListCell
-        
-        
-        
-      
-
-   
         
         
         cell.itemname.text = toDoItems[indexPath.row].itemname
@@ -1829,11 +1897,19 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         
         
+        if toDoItems[indexPath.row].itemnote == "" {
+            cell.topname.constant = 5
+            cell.impconstr.constant = 12
+        } else {
+            cell.topname.constant = 1
+            cell.impconstr.constant = 6
+        }
+        
         if toDoItems[indexPath.row].ischecked == true {
             cell.checkitem.setImage(checkedImage, forState: .Normal)
             
             let attributes = [NSStrikethroughStyleAttributeName : 1]
-            // var title = NSAttributedString(string: shoppingListItemsNames[indexPathCheck!.row], attributes: attributes)
+
             let title = NSAttributedString(string: toDoItems[indexPath.row].itemname, attributes: attributes)
             cell.itemname.attributedText = title
             
@@ -1847,7 +1923,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             cell.checkitem.setImage(notcheckedImage, forState: .Normal)
             
             let attributes = [NSStrikethroughStyleAttributeName : 0]
-            // var title = NSAttributedString(string: shoppingListItemsNames[indexPathCheck!.row], attributes: attributes)
+
             let title = NSAttributedString(string: toDoItems[indexPath.row].itemname, attributes: attributes)
             cell.itemname.attributedText = title
             
@@ -1862,29 +1938,11 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         
          cell.checkitem.addTarget(self, action: "checkitem:", forControlEvents: .TouchUpInside)
         
-        //cell.edititemoutlet.addTarget(self, action: "edititem:", forControlEvents: .TouchUpInside)
 
-      
-        
-       // prodhistorycell.plus.tag = indexPath.row
-       // prodhistorycell.addedlabel.hidden = true
-       // prodhistorycell.plus.addTarget(self, action: "addItemToTheList:", forControlEvents: .TouchUpInside)
-        
-        // Configure the cell...
-        
         
         return cell
     }
 
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -30,7 +30,13 @@ class ToDoListCell: UITableViewCell {
     
     
     @IBOutlet var restoreitem: UIButton!
+// 1 or 5
     
+   // 6 or 12
+    
+    @IBOutlet var topname: NSLayoutConstraint!
+    
+    @IBOutlet var impconstr: NSLayoutConstraint!
     
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
         return UIColor(

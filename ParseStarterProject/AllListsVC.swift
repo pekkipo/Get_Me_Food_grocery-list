@@ -2136,8 +2136,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         
         if segue.identifier == "createnewtodolistfromall" {
             
-            //  let shopNav = segue.destinationViewController as! UINavigationController
-            //let shopVC = shopNav.viewControllers.first as! ShoppingListCreation
+             
             
             let todoVC = segue.destinationViewController as! ToDoListCreation
             

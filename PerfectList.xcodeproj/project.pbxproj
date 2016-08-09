@@ -211,6 +211,7 @@
 		14D849951BFA8E2200DC30CE /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D849921BFA8E2200DC30CE /* FBSDKCoreKit.framework */; };
 		14D849961BFA8E2200DC30CE /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D849931BFA8E2200DC30CE /* FBSDKLoginKit.framework */; };
 		14D849971BFA8E2200DC30CE /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D849941BFA8E2200DC30CE /* FBSDKShareKit.framework */; };
+		14DB4B011D59FEDC003C8F54 /* ToDoNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DB4B001D59FEDC003C8F54 /* ToDoNavigation.swift */; };
 		14DD6FC11D09E020007977ED /* messagelistcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DD6FC01D09E020007977ED /* messagelistcell.swift */; };
 		14EBAC731C696B8E00D74A98 /* HelpNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EBAC721C696B8E00D74A98 /* HelpNew.swift */; };
 		14EC0EF41BFD39FD007D15A6 /* CatalogAutocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EC0EF31BFD39FD007D15A6 /* CatalogAutocomplete.swift */; };
@@ -454,6 +455,7 @@
 		14D849931BFA8E2200DC30CE /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../../Documents/FacebookSDKs-iOS-20150813/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		14D849941BFA8E2200DC30CE /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../../Documents/FacebookSDKs-iOS-20150813/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		14D849981BFA8E2900DC30CE /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBAudienceNetwork.framework; path = "../../../../../Documents/FacebookSDKs-iOS-20150813/FBAudienceNetwork.framework"; sourceTree = "<group>"; };
+		14DB4B001D59FEDC003C8F54 /* ToDoNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoNavigation.swift; sourceTree = "<group>"; };
 		14DD6FC01D09E020007977ED /* messagelistcell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = messagelistcell.swift; sourceTree = "<group>"; };
 		14EBAC721C696B8E00D74A98 /* HelpNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpNew.swift; sourceTree = "<group>"; };
 		14EC0EF31BFD39FD007D15A6 /* CatalogAutocomplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogAutocomplete.swift; sourceTree = "<group>"; };
@@ -776,6 +778,7 @@
 				14A685121C0FAC7400ADA1C0 /* CategoriesHeader.swift */,
 				14A685141C0FAC9000ADA1C0 /* CategoriesHeader.xib */,
 				147BA56E1B5DB7AC007FAABB /* ShopListNavigation.swift */,
+				14DB4B001D59FEDC003C8F54 /* ToDoNavigation.swift */,
 				14ADB9961BB97B0A00CDF260 /* AddItemWithOptions.swift */,
 				14339EDD1BE960A000722440 /* LoginInfoCell.swift */,
 				147BA56C1B5DB68D007FAABB /* ShoppingListCreation.swift */,
@@ -1103,6 +1106,7 @@
 				14A70F921BFBAE0700D063A6 /* ManageCategoriesVC.swift in Sources */,
 				14BB8A7A1D16B8B3001F9466 /* NVActivityIndicatorAnimationLineScale.swift in Sources */,
 				14965ED21C15F2EC0009D130 /* ContactsPopup.swift in Sources */,
+				14DB4B011D59FEDC003C8F54 /* ToDoNavigation.swift in Sources */,
 				14BBDC5C1C146E2200390D4C /* menueventscell.swift in Sources */,
 				147BDA221BAB42CF00560B9E /* ProductHistoryCell.swift in Sources */,
 				14EC0EF41BFD39FD007D15A6 /* CatalogAutocomplete.swift in Sources */,

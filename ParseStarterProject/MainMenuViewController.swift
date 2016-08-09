@@ -553,11 +553,11 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         
         if segue.identifier == "createnewtodolist" {
             
-            let toViewController = segue.destinationViewController as! ToDoListCreation
 
             
-            self.modalPresentationStyle = UIModalPresentationStyle.Custom
-            toViewController.transitioningDelegate = self.transitionOperator
+            let navVC1 = segue.destinationViewController as! UINavigationController
+            
+            let toViewController = navVC1.viewControllers.first as! ToDoListCreation
             
             toViewController.justCreated = true
            
@@ -1709,9 +1709,7 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         return false
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
+
     
     ////// LOAD USER EVENTSx
     func loadevents() {

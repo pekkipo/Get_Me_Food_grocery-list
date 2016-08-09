@@ -853,6 +853,10 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     @IBOutlet var quickdescription: UITextView!
+    
+    @IBOutlet var mosttopconstraint: NSLayoutConstraint! // 10
+    
+    @IBOutlet var quickdescriptionconstr: NSLayoutConstraint! // -7
 
     //var quickicon : UIImage = UIImage(named: "DefaultProduct")!
     
@@ -5376,6 +5380,9 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     func textViewDidBeginEditing(textView: UITextView) {
         //shiftview(true)
+        if textView == quickdescription {
+            shiftview(true)
+        }
     }
     
     func textViewDidEndEditing(textView: UITextView) {
@@ -5417,6 +5424,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         navbutton.setTitle(self.listnameinview.text, forState: UIControlState.Normal)
         
+        
+        if textView == quickdescription {
+            shiftview(false)
+        }
+        
     }
     
     
@@ -5427,7 +5439,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         if up == true {
             
-            notetopconstraint.constant = 30
+            mosttopconstraint.constant = 10
             
             UIView.animateWithDuration(0.2, animations: { () -> Void in
                 
@@ -5439,7 +5451,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
         } else if up == false {
             
-           notetopconstraint.constant = 130
+           mosttopconstraint.constant = -100
             
             
             UIView.animateWithDuration(0.2, animations: { () -> Void in
@@ -6899,7 +6911,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         quickpriceoutlet.inputAccessoryView = toolView2
         
         let toolFrame3 = CGRectMake(0, 0, self.view.frame.size.width, 46); // x y w h
-        let toolView3: UIView = UIView(frame: toolFrame);
+        let toolView3: UIView = UIView(frame: toolFrame3);
         toolView3.backgroundColor = UIColorFromRGB(0xFAFAFA)
         let linetop : UIView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 1))
         linetop.backgroundColor = UIColorFromRGB(0xE0E0E0)
