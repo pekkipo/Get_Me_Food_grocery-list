@@ -5439,7 +5439,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         if up == true {
             
-            mosttopconstraint.constant = 10
+            quicksmallconstraint.constant = -200
             
             UIView.animateWithDuration(0.2, animations: { () -> Void in
                 
@@ -5451,7 +5451,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
         } else if up == false {
             
-           mosttopconstraint.constant = -100
+           quicksmallconstraint.constant = -1
             
             
             UIView.animateWithDuration(0.2, animations: { () -> Void in
@@ -6981,7 +6981,11 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         //addedindicator.hidden = true
         addedindicator.alpha = 0
         addedindicator.layer.cornerRadius = 8
-        addedindicator.backgroundColor = UIColorFromRGBalpha(0x31797D, alp: 1) //2a2f36
+        addedindicator.backgroundColor = UIColorFromRGBalpha(0xFFFFFF, alp: 1) //2a2f36
+        
+        addedindicator.layer.borderWidth = 1
+         addedindicator.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
+        
         
         autocomplete.delegate = self
 

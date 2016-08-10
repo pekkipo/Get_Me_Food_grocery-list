@@ -26,7 +26,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
     var isediting : Bool = false
     
     
-    @IBOutlet var additemfield: UITextField!
+    @IBOutlet var additemfield: CustomTextField!
     
     @IBAction func beginedit(sender: AnyObject) {
         
@@ -35,6 +35,8 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         additemfield.text = ""
         
         additemfield.placeholder = NSLocalizedString("todoplchldr", comment: "")
+            
+        addbuttonoutlet.hidden = false
         
         addpulse()
             
@@ -47,6 +49,8 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet var addbuttonoutlet: UIButton!
     
     @IBAction func additem(sender: AnyObject) {
+        
+        quickadditem(currenttodolist)
     }
     
     @IBOutlet var openmenu: UIBarButtonItem!
@@ -584,10 +588,6 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         toDoItems[indexPathCheck!.row].ischecked = false
 
         
-        let checkbutton = cell.viewWithTag(71) as! UIButton
-        
-        checkbutton.setImage(notcheckedImage, forState: .Normal)
-        
         cell.checkview.hidden = true
         
         
@@ -619,22 +619,18 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     }
     
-    func checkitem(sender: UIButton!) {
+    func checkitem(indexPath: NSIndexPath) {
     
-        let button = sender as UIButton
-        let view = button.superview!
-        let cell = view.superview as! ToDoListCell
-        let indexPathCheck = tableView.indexPathForCell(cell)
-        
+     
 
-        itemtocheck = toDoItems[indexPathCheck!.row].itemid
+        itemtocheck = toDoItems[indexPath.row].itemid
         
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ToDoListCell
 
-        if toDoItems[indexPathCheck!.row].ischecked == false {
+       // if toDoItems[indexPath.row].ischecked == false {
+
             
-            button.setImage(checkedImage, forState: .Normal)
-            
-              toDoItems[indexPathCheck!.row].ischecked = true
+              toDoItems[indexPath.row].ischecked = true
             
             cell.checkview.frame = cell.bounds
             
@@ -642,7 +638,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             let attributes = [NSStrikethroughStyleAttributeName : 1]
 
-            let title = NSAttributedString(string: toDoItems[indexPathCheck!.row].itemname, attributes: attributes)
+            let title = NSAttributedString(string: toDoItems[indexPath.row].itemname, attributes: attributes)
             cell.itemname.attributedText = title
             
             let querynew = PFQuery(className:"toDoItems")
@@ -668,9 +664,9 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             checkeditemsquantity += 1
 
             
-        } else {
+       // } else {
           
-        }
+       // }
 
         
         
@@ -851,6 +847,8 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         if segue.identifier == "showreminderfromtodo" {
             
             let popoverViewController = segue.destinationViewController as! ReminderPopover
+            
+             popoverViewController.modalPresentationStyle = .OverCurrentContext
             
             popoverViewController.todocaption = additemfield.text!
             popoverViewController.senderVC = "ToDoItem"
@@ -1325,11 +1323,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         }) // end of dispatch
     }
 
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
-    
+
     
     
     func didSwipeCell(recognizer: UIGestureRecognizer) {
@@ -1455,6 +1449,8 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         isediting = false
         
+        addbuttonoutlet.hidden = true
+        
     }
     
     @IBAction func doneinpopover(sender: AnyObject) {
@@ -1548,6 +1544,8 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         isediting = false
         
+        addbuttonoutlet.hidden = true
+        
 
         
     }
@@ -1556,6 +1554,14 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet var listname: UITextField!
     
     @IBOutlet var listnote: UITextView!
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
     
     
     @IBAction func opensettings(sender: AnyObject) {
@@ -1574,24 +1580,30 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         dimmer.removeFromSuperview()
         
-        popovertopconstraint.constant = -500
+        settingsconstraint.constant = -500
         
         UIView.animateWithDuration(0.4, animations: { () -> Void in
             
             self.view.layoutIfNeeded()
             }, completion: { (value: Bool) -> Void in
-                
+                self.settingsview.hidden = true
+                self.settingsopen = false
         })
         
         self.view.endEditing(true)
         
-        self.settingsview.hidden = true
+        
+        
+        
 
         
     }
     
     
     var settingsopen : Bool = false
+    
+    
+    @IBOutlet var settingsconstraint: NSLayoutConstraint!
     
     // func clickthetitle(button: UIButton) {
     func clickthetitle() {
@@ -1641,7 +1653,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         self.view.addSubview(dimmer)
         
-        popovertopconstraint.constant = 0
+        settingsconstraint.constant = 0
         
         UIView.animateWithDuration(0.3, animations: { () -> Void in
             
@@ -1660,7 +1672,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         dimmer.removeFromSuperview()
         
         
-        popovertopconstraint.constant = -500
+        settingsconstraint.constant = -500
 
         view.endEditing(true)
         UIView.animateWithDuration(0.3, animations: { () -> Void in
@@ -1680,6 +1692,16 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        smallpopover.hidden = true
+        
+        addbuttonoutlet.hidden = true
+        
+        additemfield.delegate = self
+        
+        additemfield.leftTextMargin = 5
+        
+        additemfield.text = NSLocalizedString("addtodoitemtext", comment: "")
         
         tableView.tableFooterView = UIView()
         
@@ -1814,6 +1836,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
+        /*
         if toDoItems[indexPath.row].ischecked == false {
         
         itemtoedit = toDoItems[indexPath.row].itemid
@@ -1822,7 +1845,9 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         } else {
             print("checked")
         }
+        */
         
+        checkitem(indexPath)
        // let row = indexPath.row
         
     }
@@ -1906,7 +1931,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         
         if toDoItems[indexPath.row].ischecked == true {
-            cell.checkitem.setImage(checkedImage, forState: .Normal)
+            
             
             let attributes = [NSStrikethroughStyleAttributeName : 1]
 
@@ -1920,7 +1945,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             cell.restoreitem.addTarget(self, action: "restoreitem:", forControlEvents: UIControlEvents.TouchUpInside)
             
         } else {
-            cell.checkitem.setImage(notcheckedImage, forState: .Normal)
+            
             
             let attributes = [NSStrikethroughStyleAttributeName : 0]
 
@@ -1935,8 +1960,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             
         }
 
-        
-         cell.checkitem.addTarget(self, action: "checkitem:", forControlEvents: .TouchUpInside)
+
         
 
         

@@ -55,7 +55,16 @@ class ToDoListCell: UITableViewCell {
        
         //CGRect(x: 0, y: yPos, width: buttonWidth-0.5, height: self.buttonHeight)
         
-      checkview.backgroundColor = UIColorFromRGB(0x2A2F36)
+      //checkview.backgroundColor = UIColorFromRGB(0x2A2F36)
+        
+
+        
+        // copybuttonoutlet.hidden = true
+        
+        checkview.backgroundColor = UIColorFromRGB(0xFFFFFF)
+        self.separatorInset = UIEdgeInsetsZero
+        self.preservesSuperviewLayoutMargins = false
+        self.layoutMargins = UIEdgeInsetsZero
         
         
     }

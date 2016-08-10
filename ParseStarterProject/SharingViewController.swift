@@ -1837,11 +1837,17 @@ class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableView
         if segue.identifier == "sharinghistory" {
             
             //let toViewController = segue.destinationViewController as! SettingsViewController
-           // let navVC = segue.destinationViewController as! UINavigationController
+            //let navVC = segue.destinationViewController as! UINavigationController
             
-           // let shareVC = navVC.viewControllers.first as! SharingHistoryTableViewController
-            let shareVC = segue.destinationViewController as! SharingHistoryTableViewController
-            shareVC.sendercontroller = "SharingVC"
+            //let shareVC = navVC.viewControllers.first as! SharingHistoryTableViewController
+            //let shareVC = segue.destinationViewController as! SharingHistoryTableViewController
+            let tabVC = segue.destinationViewController as! UITabBarController//UINavigationController
+            
+            let eventsVC = tabVC.viewControllers!.first as! UINavigationController //EventsVC
+            
+            let VC = eventsVC.viewControllers.first as! SharingHistoryTableViewController
+            
+            VC.sendercontroller = "SharingVC"
             
             
         }

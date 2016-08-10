@@ -372,15 +372,18 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         
                         
                     } else {
+                        let intnumber1 : Int = 7*(j-1)
+                        let intnumber2 : Int = 7*j
+                        
                     leftborderweek = NSCalendar.currentCalendar().dateByAddingUnit(
                             .Day,
-                            value: 7*(j-1),
+                            value: intnumber1,
                             toDate: from!,
                             options: NSCalendarOptions.MatchStrictly)!
                         
                     rightborderweek = NSCalendar.currentCalendar().dateByAddingUnit(
                         .Day,
-                        value: 7*j,
+                        value: intnumber2,
                         toDate: from!,
                         options: NSCalendarOptions.MatchStrictly)!
 

@@ -726,17 +726,20 @@ class SharingHistoryTableViewController: UITableViewController {
     }
     
     
-
+    
     
     @IBOutlet var menuitem: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if sendercontroller != "SharingVC" {
        menuitem.target = self.revealViewController()
        menuitem.action = Selector("revealToggle:")
         
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
+        }
         
         dataretrieval()
         
