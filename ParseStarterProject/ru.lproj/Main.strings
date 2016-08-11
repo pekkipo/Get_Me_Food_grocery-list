@@ -3,7 +3,7 @@
 "0WZ-mL-in8.text" = "Еще не зарегистрированы?";
 
 /* Class = "UILabel"; text = "Product Note:"; ObjectID = "0ah-T9-eaL"; */
-"0ah-T9-eaL.text" = "Заметка";
+"0ah-T9-eaL.text" = "ОПИСАНИЕ";
 
 /* Class = "UILabel"; text = "Send via email"; ObjectID = "0kd-XU-7B0"; */
 "0kd-XU-7B0.text" = "Отправить эл.почтой";
@@ -12,7 +12,10 @@
 "1Sq-ay-MJI.placeholder" = "Введите название продукта";
 
 /* Class = "UILabel"; text = "Price:"; ObjectID = "26f-dg-EOZ"; */
-"26f-dg-EOZ.text" = "Цена";
+"26f-dg-EOZ.text" = "ЦЕНА";
+
+/* Class = "UILabel"; text = "Price:"; ObjectID = "26f-dg-EOZ"; */
+"l1A-Ta-EOi.text" = "ЗА ЕДИНИЦУ";
 
 /* Class = "UIButton"; normalTitle = "I forgot my password"; ObjectID = "2Lr-q6-KRy"; */
 "2Lr-q6-KRy.normalTitle" = "Не помню пароль";
@@ -26,8 +29,7 @@
 /* Class = "UILabel"; text = "Status:"; ObjectID = "3WY-ab-Dcu"; */
 "3WY-ab-Dcu.text" = "Статус:";
 
-/* Class = "UILabel"; text = "Email:"; ObjectID = "3Yj-Hh-ioy"; */
-"3Yj-Hh-ioy.text" = "Эл.почта:";
+
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "3ZZ-kV-FL8"; */
 "3ZZ-kV-FL8.text" = "Label";
@@ -199,7 +201,7 @@
 "JzV-ct-jZa.placeholder" = "Введите название";
 
 /* Class = "UILabel"; text = "Sharing History"; ObjectID = "KLc-8y-W31"; */
-"KLc-8y-W31.text" = "Отправленные списки";
+"KLc-8y-W31.text" = "Статистика";
 
 /* Class = "UILabel"; text = "or login via"; ObjectID = "Kbl-8Q-2xI"; */
 "Kbl-8Q-2xI.text" = "или войти с помощью";
@@ -289,10 +291,10 @@
 "T3O-2E-lwt.text" = "Название в каталоге";
 
 /* Class = "UILabel"; text = "Product Name"; ObjectID = "TXc-ZY-Xip"; */
-"TXc-ZY-Xip.text" = "Название";
+"TXc-ZY-Xip.text" = "НАЗВАНИЕ";
 
 /* Class = "UILabel"; text = "Quantity:"; ObjectID = "TXs-bT-eWS"; */
-"TXs-bT-eWS.text" = "Кол-во";
+"TXs-bT-eWS.text" = "КОЛ-ВО";
 
 /* Class = "UIBarButtonItem"; title = "Done"; ObjectID = "TbB-pY-TgC"; */
 "TbB-pY-TgC.title" = "Готово";
@@ -388,7 +390,7 @@
 "arr-9B-nRe.text" = "Название листа";
 
 /* Class = "UILabel"; text = "Choose unit:"; ObjectID = "b0R-Zz-E1Q"; */
-"b0R-Zz-E1Q.text" = "Ед. измерения";
+"b0R-Zz-E1Q.text" = "ЕД. ИЗМЕРЕНИЯ";
 
 /* Class = "UILabel"; text = "Change display name:"; ObjectID = "bAn-3g-vCW"; */
 "bAn-3g-vCW.text" = "Отображаемое имя:";
@@ -430,7 +432,7 @@
 "cxn-Ia-iuU.text" = "Сообщите о походе в магазин:";
 
 /* Class = "UILabel"; text = "Total sum: "; ObjectID = "d3O-MX-n6g"; */
-"d3O-MX-n6g.text" = "Сумма";
+"d3O-MX-n6g.text" = "СУММА";
 
 /* Class = "UIButton"; normalTitle = "Plus"; ObjectID = "dHl-j2-uo1"; */
 "dHl-j2-uo1.normalTitle" = "Плюс";
@@ -439,7 +441,7 @@
 "dda-Yt-FXx.normalTitle" = " Закрыть";
 
 /* Class = "UINavigationItem"; title = "Recent Events"; ObjectID = "ert-z4-FMw"; */
-"ert-z4-FMw.title" = "События";
+"ert-z4-FMw.title" = "Контакты";
 
 /* Class = "UINavigationItem"; title = "List Creation"; ObjectID = "f2P-qa-kNm"; */
 "f2P-qa-kNm.title" = "Новый список покупок";
@@ -518,7 +520,7 @@
 "jBd-Up-u4n.title" = "Готово";
 
 /* Class = "UINavigationItem"; title = "Adding New Item"; ObjectID = "jK4-ZU-UUm"; */
-"jK4-ZU-UUm.title" = "Новый продукт";
+"jK4-ZU-UUm.title" = "Продукт";
 
 /* Class = "UINavigationItem"; title = "Sharing the List"; ObjectID = "jLX-Lg-yVS"; */
 "jLX-Lg-yVS.title" = "Отправка списка";
@@ -850,7 +852,7 @@
 "vYa-W6-jAE.normalTitle" = "Готово";
 
 /* Class = "UILabel"; text = ""; ObjectID = "z6D-Rj-Ei7"; */
-"fNZ-sH-88w.text" = "Картинка";
+"fNZ-sH-88w.text" = "КАРТИНКА";
 
 /* Class = "UILabel"; text = ""; ObjectID = "z6D-Rj-Ei7"; */
 "B7k-oD-5L8.text" = "Кол-во";
@@ -859,7 +861,7 @@
 "7VF-BO-cCS.text" = "Выбрать ед. измерения";
 
 /* Class = "UILabel"; text = ""; ObjectID = "z6D-Rj-Ei7"; */
-"SSd-BV-Zql.text" = "Ед.измерения";
+"SSd-BV-Zql.text" = "Изображение";
 
 /* Class = "UILabel"; text = ""; ObjectID = "QGg-Bw-fl1"; */
 "QGg-Bw-fl1.text" = "Текстовое сообщение";
@@ -880,7 +882,7 @@
 "vgq-bE-pRM.normalTitle" = "Отправить";
 
 /* Class = "UILabel"; text = ""; ObjectID = "geX-ly-RNp"; */
-"geX-ly-RNp.text" = "Категория";
+"geX-ly-RNp.text" = "КАТЕГОРИЯ";
 
 
 /* Class = "UILabel"; text = ""; ObjectID = "JjQ-Az-eSL"; */
@@ -890,10 +892,184 @@
 "cRE-4w-0jo.normalTitle" = "Готово";
 
 /* Class = "UILabel"; text = ""; ObjectID = "lc9-fK-r7g"; */
-"lc9-fK-r7g.text" = "Заметка";
+"lc9-fK-r7g.text" = "ОПИСАНИЕ";
 
 /* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
 "SQh-zx-1z9.normalTitle" = "Готово";
 
 /* Class = "UILabel"; text = ""; ObjectID = "RWs-O8-Wl7"; */
 "RWs-O8-Wl7.normalTitle" = "Закрыть";
+
+/* Class = "UILabel"; text = ""; ObjectID = "RWs-O8-Wl7"; */
+"P0D-OQ-hS8.title" = "Контакты";
+
+/* Class = "UILabel"; text = ""; ObjectID = "cRE-4w-0jo"; */
+"0JN-tu-IYb.normalTitle" = "Список дел";
+
+/* Class = "UILabel"; text = ""; ObjectID = "cRE-4w-0jo"; */
+"CTF-EV-0cQ.normalTitle" = "Настройки списка";
+
+/* Class = "UILabel"; text = ""; ObjectID = "cRE-4w-0jo"; */
+"EMe-t4-BH8.normalTitle" = "Копир./Вставить/Удалить";
+
+/* Class = "UILabel"; text = ""; ObjectID = "cRE-4w-0jo"; */
+"XAH-3E-6Bb.normalTitle" = "Снять отметки о покупке";
+
+/* Class = "UILabel"; text = ""; ObjectID = "cRE-4w-0jo"; */
+"ZPk-Av-qrC.normalTitle" = "Отправить список";
+
+/* Class = "UILabel"; text = ""; ObjectID = "lc9-fK-r7g"; */
+"bBw-0V-KYe.text" = "НАЗВАНИЕ";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"DLn-bM-q2x.text" = "Общая сумма";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"wiL-ZW-8kE.text" = "За единицу";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"1MH-dm-4wn.text" = "Цена";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"dTu-ge-Wcb.text" = "Категория";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"4eJ-aW-gBs.text" = "Описание";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"8AX-M2-EDa.title" = "Выбор продуктов";
+
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"HYs-ml-p8B.title" = "Статистика";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"ofq-BF-k9f.text" = "Период времени";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"lNg-rB-cP5.text" = "Общая сумма";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"lmQ-ts-4rn.text" = "Временной шаг";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"G7g-11-V4b.text" = "Учтено списков";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"qzs-hu-s2c.text" = "Выбрать отрезок времени";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"jhP-i9-VHK.text" = "От";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"Gb7-N0-QUs.text" = "До";
+
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"Fdb-Lk-UwP.text" = "СОЗДАТЬ КАТЕГОРИЮ";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"PUo-Rc-NkD.text" = "МОИ КАТЕГОРИИ";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"nZo-54-d6b.text" = "ДОБАВИТЬ ПРОДУКТ";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"fmr-do-ihw.text" = "ПРОДУКТЫ В КАТЕГОРИИ";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"gxK-pE-vPd.text" = "ПОЛЬЗОВАТЕЛЮ ПРИЛОЖЕНИЯ";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"gRJ-hL-nOO.text" = "ДРУГИЕ ОПЦИИ ОТПРАВКИ";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"VAU-1C-3eb.normalTitle" = "Выбрать из контактов";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"3Yj-Hh-ioy.text" = "ДОБАВИТЬ НОВЫЙ КОНТАКТ";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"756-vw-lho.text" = "МОИ КОНТАКТЫ";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"hcS-ki-qUg.title" = "Отмена";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"awM-cc-npg.title" = "Сохранить";
+
+/* Class = "UILabel"; text = ""; ObjectID = "cRE-4w-0jo"; */
+"6ln-5h-hq0.normalTitle" = "Покупки";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"MDc-sN-hfn.text" = "ДЕЙСТВИЯ";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"aTc-Rr-auK.text" = "НАЗВАНИЕ";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"bdX-Pg-yiQ.text" = "ОПИСАНИЕ";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"3JE-ez-xUn.text" = "ДЕЙСТВИЯ";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"loj-pP-lni.normalTitle" = "Настройки списка";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"yR4-cZ-tvA.normalTitle" = "Отправить список";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"caz-1Y-MsA.text" = "Описание";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"xyM-VP-Du4.normalTitle" = "НАПОМИНАНИЕ";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"sqD-SS-fp1.text" = "Срочно";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"stk-3d-8j4.normalTitle" = "Отмена";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"Sjj-k4-fkQ.normalTitle" = "Готово";
+
+/* Class = "UILabel"; text = ""; ObjectID = "RWs-O8-Wl7"; */
+"Yln-cr-SW1.title" = "Отправленные списки";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"OLx-cj-ssK.text" = "Неделя";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"tl2-Ma-3Ch.text" = "Месяц";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"nc4-Ii-Vet.text" = "Год";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"sR0-jK-IIz.text" = "Дни";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"21O-Wv-NWH.text" = "Недели";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"eOd-Ei-bpG.text" = "Месяцы";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"q6h-j0-fVS.text" = "Годы";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"fj0-pp-Hrp.normalTitle" = "Копировать";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"vJS-P2-3G7.normalTitle" = "Вставить";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"dW6-6L-QkU.normalTitle" = "Удалить";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"gtY-W2-i0d.normalTitle" = "Закрыть";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"WMz-SR-ccQ.text" = "Отметьте продукты и выберите действие";
+

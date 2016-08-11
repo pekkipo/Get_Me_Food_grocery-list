@@ -99,7 +99,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func confirmSteps(sender: AnyObject) {
         
-        timeperiodtype = TimePeriodType.custom
+        //timeperiodtype = TimePeriodType.custom
         
        
        setChart(barView, linechart: lineView, piechart: pieView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: chosentimestep, timeperiodtype: timeperiodtype))
@@ -153,7 +153,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func confirmtimeperiod(sender: AnyObject) {
         
-    timeperiodtype = TimePeriodType.custom
+    //timeperiodtype = TimePeriodType.custom
     
      setChart(barView, linechart: lineView, piechart: pieView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: chosentimestep, timeperiodtype: timeperiodtype))
         

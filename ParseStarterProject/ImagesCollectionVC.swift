@@ -202,6 +202,7 @@ class ImagesCollectionVC: UIViewController,UICollectionViewDelegateFlowLayout, U
         UIGraphicsBeginImageContextWithOptions(avsize, false, 1.0) //false - in order to add alpha channel
         imageObj.drawInRect(CGRect(origin: CGPointZero, size: avsize))
         
+        
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
         scaledpicture = scaledImage
         return scaledpicture

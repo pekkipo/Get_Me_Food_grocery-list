@@ -541,7 +541,7 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       backview.backgroundColor = UIColorFromRGB(0x2A2F36, alp: 0.3)
+       //backview.backgroundColor = UIColorFromRGB(0x2A2F36, alp: 0.3)
         
         let viewtap = UITapGestureRecognizer(target: self, action: Selector("handlebvTap:"))
         viewtap.delegate = self

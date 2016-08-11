@@ -15,10 +15,7 @@ class showallcell: UITableViewCell {
     
     @IBOutlet var itemname: UILabel!
     
-    @IBOutlet var itemcount: UILabel!
-    
-    
-    @IBOutlet var container: UIView!
+
     
     @IBOutlet var receivedcontainer: UIView!
     
@@ -37,13 +34,7 @@ class showallcell: UITableViewCell {
         )
     }
 
-    
-    @IBOutlet var viewheight: NSLayoutConstraint!
-    
-    @IBOutlet var w1: NSLayoutConstraint!
-    
-    @IBOutlet var h1: NSLayoutConstraint!
-    
+
     
     @IBOutlet var shopimage: UIImageView!
     
@@ -57,40 +48,22 @@ class showallcell: UITableViewCell {
          if UIScreen.mainScreen().nativeBounds.height == 960 {
         
             cellcontainer.frame.size.height = 34
-            viewheight.constant = 34
             
             shopimage.frame.size.width = 17
             shopimage.frame.size.height = 20
-            
-            w1.constant = 17
-            h1.constant = 20
+
         }
         
-        cellcontainer.backgroundColor = UIColorFromRGB(0x2A2F36)
-        cellcontainer.layer.borderWidth = 1
-        cellcontainer.layer.borderColor = UIColorFromRGB(0xFAFAFA).CGColor
+
         
-        //itemname.font = UIFont(name: "Avenir-Black", size: 16)
-       // itemname.textColor = UIColor.whiteColor()
+
         
-        itemcount.font = UIFont(name: "Helvetica-Neue", size: 14)
-        itemcount.textColor = UIColorFromRGB(0xE0FFB2)//UIColor.whiteColor()
+       // receivedcontainer.backgroundColor = UIColorFromRGB(0x31797D)
+        receivedcontainer.layer.cornerRadius = receivedcontainer.layer.frame.width / 2
         
-        container.backgroundColor = UIColorFromRGB(0x61C791)
-        container.layer.cornerRadius = 8
-        
-        receivedcontainer.backgroundColor = UIColorFromRGB(0xF23D55)
-        receivedcontainer.layer.cornerRadius = 8
-        
-        receiveditemcount.font = UIFont(name: "Helvetica-Neue", size: 8)
+        //receiveditemcount.font = UIFont(name: "Helvetica-Neue", size: 8)
         receiveditemcount.textColor = UIColorFromRGB(0xFAFAFA)//UIColor.whiteColor()
-        
-        
-        
-        //let myframe = CGRectMake(0, 45, self.frame.width, 2)
-       // borderofcell.frame.height = 2
-        //borderofcell.frame = myframe
-       // borderofcell.backgroundColor = UIColor(patternImage: UIImage(named: "MenuLine")!)
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

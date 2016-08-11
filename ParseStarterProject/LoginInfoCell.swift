@@ -18,10 +18,7 @@ class LoginInfoCell: UITableViewCell {
     
     @IBOutlet var useremail: UILabel!
     
-    @IBOutlet var logincellview: UIView!
-    
-    
-    @IBOutlet var loginimage: UIButton!
+
     
     func UIColorFromRGBalpha(rgbValue: UInt, alp: Double) -> UIColor {
         return UIColor(
@@ -52,7 +49,7 @@ class LoginInfoCell: UITableViewCell {
         
         if UIScreen.mainScreen().nativeBounds.height == 960 {
         
-         logincellview.frame.size.height = 60
+       
             logininnerview.frame.size.height = 49
             
             viewheight.constant = 60
@@ -74,7 +71,7 @@ class LoginInfoCell: UITableViewCell {
         logincellview.addSubview(visuaEffectView)
         logincellview.sendSubviewToBack(visuaEffectView)
         */
-        logincellview.backgroundColor = UIColorFromRGBalpha(0x2A2F36, alp: 0.4)
+        //logincellview.backgroundColor = UIColorFromRGBalpha(0x2A2F36, alp: 0.4)
        // self.backgroundColor = UIColorFromRGBalpha(0xFAFAFA, alp: 0.1)
         
     }

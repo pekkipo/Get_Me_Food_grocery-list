@@ -286,13 +286,7 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
             logincell.userimage.layer.cornerRadius = logincell.userimage.layer.frame.size.width / 2
             logincell.userimage.layer.masksToBounds = true
 
-           // logincell.userimage.layer.cornerRadius = logincell.userimage.layer.frame.size.width/2
-            
-            if loggedIn == true {
-                logincell.loginimage.setImage(loggedinimage, forState: UIControlState.Normal)
-            } else {
-                logincell.loginimage.setImage(notloggedinimage, forState: UIControlState.Normal)
-            }
+
             
             let backgroundView = UIView()
             backgroundView.backgroundColor = UIColorFromRGBalpha(0xFAFAFA, alp:0.3)
@@ -302,10 +296,7 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         } else if indexPath.section == 1 {
              createshop = tableView.dequeueReusableCellWithIdentifier("createshoplist", forIndexPath: indexPath) as! createshopcell
              createshop.backgroundColor = UIColor.clearColor()
-            //8C8B8B  dimmerView.backgroundColor = UIColorFromRGB(0x1695A3)
-           // cell.layer.borderWidth = 1.0
-            //cell.layer.borderColor = UIColor.whiteColor().CGColor
-           // cell.layer.borderColor = UIColorFromRGB(0x8C8B8B).CGColor
+
             let backgroundView = UIView()
             backgroundView.backgroundColor = UIColorFromRGBalpha(0xFAFAFA, alp:0.3)
             createshop.selectedBackgroundView = backgroundView
@@ -313,9 +304,7 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         else if indexPath.section == 2 {
             createtodo = tableView.dequeueReusableCellWithIdentifier("createtodolist", forIndexPath: indexPath) as! createtodocell
              createtodo.backgroundColor = UIColor.clearColor()
-           // cell.layer.borderWidth = 1.0
-            //cell.layer.borderColor = UIColor.whiteColor().CGColor
-           // cell.layer.borderColor = UIColorFromRGB(0x8C8B8B).CGColor
+
             let backgroundView = UIView()
             backgroundView.backgroundColor = UIColorFromRGBalpha(0xFAFAFA, alp:0.3)
             createtodo.selectedBackgroundView = backgroundView
@@ -323,7 +312,7 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         else if indexPath.section == 3 {
             showall = tableView.dequeueReusableCellWithIdentifier("showalllists", forIndexPath: indexPath) as! showallcell
                 showall.backgroundColor = UIColor.clearColor()
-                showall.itemcount.text = String(UserLists.count)
+             let itemcount : String = String(UserLists.count)
             
                 showall.receiveditemcount.text = String(receivedcount)
                 if receivedcount > 0 {
@@ -332,6 +321,8 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
                    showall.receivedcontainer.hidden = true
                 }
             
+            showall.itemname.text = "\(NSLocalizedString("mylists", comment: ""))  (\(itemcount))"
+            
             let backgroundView = UIView()
             backgroundView.backgroundColor = UIColorFromRGBalpha(0xFAFAFA, alp:0.3)
             showall.selectedBackgroundView = backgroundView
@@ -339,7 +330,7 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         else if indexPath.section == 4 {
            history = tableView.dequeueReusableCellWithIdentifier("showsharing", forIndexPath: indexPath) as! menusharecell
              history.backgroundColor = UIColor.clearColor()
-            // cell.layer.borderColor = UIColor(patternImage: UIImage(named: "MenuLine")!)
+
             let backgroundView = UIView()
             backgroundView.backgroundColor = UIColorFromRGBalpha(0xFAFAFA, alp:0.3)
             history.selectedBackgroundView = backgroundView
@@ -417,10 +408,10 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
           //  if UIDevice().screenType == UIDevice.ScreenType.iPhone4 {
            // if UIScreen.mainScreen().sizeType == .iPhone4 {
                 if UIScreen.mainScreen().nativeBounds.height == 960 {
-                return 35
+                return 40
             }
             
-        return 49//49
+        return 56//49
         }
     }
     
@@ -471,11 +462,11 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         
     }
     
-    /*
+    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
-*/
+
     
     
 
@@ -2156,22 +2147,7 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
          NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadTableAfterPush", name: "reloadTableMenu", object: nil)
         
 
-        tableView.backgroundColor = UIColor.clearColor()
-        /*
-        customcategories.removeAll(keepCapacity: true)
-        customcatalogitems.removeAll(keepCapacity: true)
-        
-        
-        itemsDataDict.removeAll(keepCapacity: true)
-        itemsinbuffer.removeAll(keepCapacity: true)
-        itemsinbuffertopaste.removeAll(keepCapacity: true)
-        HistoryitemsDataDict.removeAll(keepCapacity: true)
-        
-        userevents.removeAll(keepCapacity: true)
-        usercontacts.removeAll(keepCapacity: true)
-        blacklistarray.removeAll(keepCapacity: true)
-        contactsarray.removeAll(keepCapacity: true)
-        */
+
         for var i = 0;i<catalogitems.count;++i {
             
             catalogitems[i].itemischecked = false
@@ -2185,54 +2161,10 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
         
         
         
-        tableView.separatorStyle = .None
-              bgImageView.image = UIImage(named: "BgShop")//"DarkBg")
+        //tableView.separatorStyle = .None
+              bgImageView.image = UIImage(named: "4GradBg")//"DarkBg")
         self.view.sendSubviewToBack(bgImageView)
-        /*
-        let allcurrencies = NSLocale.ISOCurrencyCodes()
-        
-        for currency in allcurrencies { //Currency = "USD" etc
-            let localeComponents = [NSLocaleCurrencyCode: currency]
-            let localeIdentifier = NSLocale.localeIdentifierFromComponents(localeComponents)
-            let locale = NSLocale(localeIdentifier: localeIdentifier)
-            let currencySymbol = locale.objectForKey(NSLocaleCurrencySymbol) as! String
-            currencies.append([currency ,currencySymbol])
-            
-        }
-        
-        let local = NSLocale.currentLocale()
-        let lsymbol = local.objectForKey(NSLocaleCurrencySymbol) as! String
-        var lcode = String()
-        // code = local.objectForKey(NSLocaleCurrencyCode) as! String
-        if let currencyCode = NSLocale.currentLocale().objectForKey(NSLocaleCurrencyCode) as? String {
-            lcode = currencyCode
-            //Will display "USD", for example
-        }
-        
-        commoncurrencies.append([lcode,lsymbol])
-        
-        for currency in allcurrencies { //Currency = "USD" etc
-            
-            if (currency == "USD") || (currency == "EUR") || (currency == "RUB") || (currency == "BRL") || (currency == "CNY") || (currency == "GBP") || currency == "JPY" {
-            
-            let localeComponents = [NSLocaleCurrencyCode: currency]
-            let localeIdentifier = NSLocale.localeIdentifierFromComponents(localeComponents)
-            let locale = NSLocale(localeIdentifier: localeIdentifier)
-            let currencySymbol = locale.objectForKey(NSLocaleCurrencySymbol) as! String
-            commoncurrencies.append([currency ,currencySymbol])
-            }
-            
-        }
-        */
-       
 
-
-        
-        
-
-
-      //  loaduserdata()
-       
         
     
     }

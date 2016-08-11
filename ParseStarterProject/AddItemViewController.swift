@@ -2132,7 +2132,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         let labelview = UILabel(frame: CGRectMake(2, 36, 66, 31))
         let imageview = UIImageView(frame: CGRectMake(21, 8, 28, 28))
         
-        labelview.text = "Add Custom"
+        labelview.text = NSLocalizedString("addcustom", comment: "")
         imageview.image = UIImage(named: "4EmptyImage")
         
         addcustom.addSubview(labelview)

@@ -62,9 +62,9 @@
 		147611C91BDD0D7200F928AD /* CategoriesSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147611C81BDD0D7200F928AD /* CategoriesSearchBar.swift */; };
 		147611CB1BDD0F0C00F928AD /* CustomSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147611CA1BDD0F0B00F928AD /* CustomSearchController.swift */; };
 		147652141C32AA95001FBA68 /* ContactEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147652121C32AA95001FBA68 /* ContactEventCell.swift */; };
+		1476E4D51D5D06C800689064 /* choosedatescell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1476E4D71D5D06C800689064 /* choosedatescell.xib */; };
 		14783EBA1D31851000638577 /* GraphsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14783EB91D31851000638577 /* GraphsVC.swift */; };
 		14783EBF1D318DAD00638577 /* choosedatescell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14783EBD1D318DAD00638577 /* choosedatescell.swift */; };
-		14783EC01D318DAD00638577 /* choosedatescell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14783EBE1D318DAD00638577 /* choosedatescell.xib */; };
 		147AEFA71C01F43600C1BAA4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 147AEFA61C01F43600C1BAA4 /* GoogleService-Info.plist */; };
 		147BA56D1B5DB68D007FAABB /* ShoppingListCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147BA56C1B5DB68D007FAABB /* ShoppingListCreation.swift */; };
 		147BA56F1B5DB7AC007FAABB /* ShopListNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147BA56E1B5DB7AC007FAABB /* ShopListNavigation.swift */; };
@@ -292,9 +292,11 @@
 		147611C81BDD0D7200F928AD /* CategoriesSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesSearchBar.swift; sourceTree = "<group>"; };
 		147611CA1BDD0F0B00F928AD /* CustomSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchController.swift; sourceTree = "<group>"; };
 		147652121C32AA95001FBA68 /* ContactEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactEventCell.swift; sourceTree = "<group>"; };
+		1476E4D61D5D06C800689064 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/choosedatescell.xib; sourceTree = "<group>"; };
+		1476E4D91D5D06CD00689064 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/choosedatescell.strings; sourceTree = "<group>"; };
+		1476E4DB1D5D06CD00689064 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/choosedatescell.strings; sourceTree = "<group>"; };
 		14783EB91D31851000638577 /* GraphsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphsVC.swift; sourceTree = "<group>"; };
 		14783EBD1D318DAD00638577 /* choosedatescell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = choosedatescell.swift; sourceTree = "<group>"; };
-		14783EBE1D318DAD00638577 /* choosedatescell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = choosedatescell.xib; sourceTree = "<group>"; };
 		147AEFA61C01F43600C1BAA4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		147BA56C1B5DB68D007FAABB /* ShoppingListCreation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingListCreation.swift; sourceTree = "<group>"; };
 		147BA56E1B5DB7AC007FAABB /* ShopListNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopListNavigation.swift; sourceTree = "<group>"; };
@@ -656,7 +658,7 @@
 				141EB6281D587DD500FB9987 /* CustomValueFormatter.swift */,
 				14783EB91D31851000638577 /* GraphsVC.swift */,
 				14783EBD1D318DAD00638577 /* choosedatescell.swift */,
-				14783EBE1D318DAD00638577 /* choosedatescell.xib */,
+				1476E4D71D5D06C800689064 /* choosedatescell.xib */,
 				147FBC921CA185D700F6BD9B /* TableSectionHeader.xib */,
 				147FBC941CA1864F00F6BD9B /* TableSectionHeader.swift */,
 				14DD6FC01D09E020007977ED /* messagelistcell.swift */,
@@ -945,7 +947,7 @@
 				14BB8A841D16B8B3001F9466 /* Info.plist in Resources */,
 				146A7EEA1C53E3D6008418AA /* Localizable.strings in Resources */,
 				14C719F71C5C214200358144 /* Info.plist in Resources */,
-				14783EC01D318DAD00638577 /* choosedatescell.xib in Resources */,
+				1476E4D51D5D06C800689064 /* choosedatescell.xib in Resources */,
 				1463ECD51C658C3C00005BDA /* LaunchScreen.storyboard in Resources */,
 				148C793C1BD5A00D0086794B /* apple-fruit-icon.jpg in Resources */,
 				1488DF161BCAE4990054A8D6 /* fruits_icon.jpg in Resources */,
@@ -1249,6 +1251,16 @@
 				14927CBE1CEF5E130059AC8A /* de */,
 			);
 			name = ContactEventCell.xib;
+			sourceTree = "<group>";
+		};
+		1476E4D71D5D06C800689064 /* choosedatescell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1476E4D61D5D06C800689064 /* Base */,
+				1476E4D91D5D06CD00689064 /* en */,
+				1476E4DB1D5D06CD00689064 /* ru */,
+			);
+			name = choosedatescell.xib;
 			sourceTree = "<group>";
 		};
 		14C719F91C5C214200358144 /* Info.plist */ = {

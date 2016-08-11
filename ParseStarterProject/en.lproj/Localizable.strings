@@ -8,7 +8,7 @@
 
 /* Dynamic strings */
 
-"TapHere" = "Tap here to register/login";
+"TapHere" = "Tap to register/login";
 
 "Anonymous" = "Anonymous"; // Anonym
 
@@ -902,3 +902,26 @@
 
 "mylists" = "My lists";
 
+"showalllists" = "Show All lists";
+
+"showonlyshops" = "Show Shopping lists";
+
+"showonlytodos" = "Show To Do lists";
+
+"showonlyfavs" = "Show Favourite lists";
+
+"days" = "Days";
+
+"weeks" = "Weeks";
+
+"months" = "Months";
+
+"years" = "Years";
+
+"oneweek" = "One week";
+
+"onemonth" = "One month";
+
+"oneyear" = "One year";
+
+"addcustom" = "Add Custom";

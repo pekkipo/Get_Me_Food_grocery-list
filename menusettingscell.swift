@@ -25,12 +25,7 @@ class menusettingscell: UITableViewCell {
     
     @IBOutlet var shopimage: UIImageView!
     
-    @IBOutlet var viewheight: NSLayoutConstraint!
-    
-    
-    @IBOutlet var w1: NSLayoutConstraint!
-    
-    @IBOutlet var h1: NSLayoutConstraint!
+  
     
     
     override func awakeFromNib() {
@@ -41,18 +36,14 @@ class menusettingscell: UITableViewCell {
        // if UIScreen.mainScreen().sizeType == .iPhone4 {
             if UIScreen.mainScreen().nativeBounds.height == 960 {   
             container.frame.size.height = 34
-            viewheight.constant = 34
+ 
             shopimage.frame.size.width = 24
             shopimage.frame.size.height = 24
             
-            w1.constant = 24
-            h1.constant = 24
-            
+
         }
         
-        container.backgroundColor = UIColorFromRGB(0x2A2F36)
-        container.layer.borderWidth = 1
-        container.layer.borderColor = UIColorFromRGB(0xFAFAFA).CGColor
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

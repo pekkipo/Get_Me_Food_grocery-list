@@ -2445,6 +2445,12 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         view.endEditing(true)
         
+        if showcats == true {
+            listcategoriesoutlet.setTitle(NSLocalizedString("hidecats", comment: ""), forState: UIControlState.Normal)
+        } else {
+            listcategoriesoutlet.setTitle(NSLocalizedString("showcats", comment: ""), forState: UIControlState.Normal)
+        }
+        
        // slidedown
         shownoteview.hidden = false
         
@@ -6696,7 +6702,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         let labelview = UILabel(frame: CGRectMake(2, 36, 66, 31))
         let imageview = UIImageView(frame: CGRectMake(21, 8, 28, 28)) // left top widht height
         
-        labelview.text = "Add Custom"
+        labelview.text = NSLocalizedString("addcustom", comment: "")//"Add Custom"
         imageview.image = UIImage(named: "4EmptyImage")
         
         addcustom.addSubview(labelview)

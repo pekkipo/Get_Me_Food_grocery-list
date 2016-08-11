@@ -382,9 +382,6 @@ class ManageFavouritesVC: UIViewController,UITableViewDelegate, UITableViewDataS
     }
     
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
     
     
 

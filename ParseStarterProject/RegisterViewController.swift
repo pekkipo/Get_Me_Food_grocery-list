@@ -35,7 +35,7 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
         let chosenimage = UIImagePickerController()
         chosenimage.delegate = self
         chosenimage.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        chosenimage.allowsEditing = false
+        chosenimage.allowsEditing = true
         
         self.presentViewController(chosenimage, animated: true, completion: nil)
     }
@@ -155,6 +155,7 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
         
         self.dismissViewControllerAnimated(true, completion:nil)
         
+        
         useravatar.image = chosenimage
         
         //chosenPicture = chosenimage
@@ -180,7 +181,7 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
                  loggedIn = true
                 //self.performSegueWithIdentifier("LoggedInSegue", sender: self)
                 
-                 print(self.maindelegate)
+               //  print(self.maindelegate)
                 
                 
                 var installation: PFInstallation = PFInstallation.currentInstallation()
@@ -189,31 +190,27 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
                 installation.saveInBackground()
                 
                 
-                self.maindelegate?.loaduserdata()
-                
-                self.maindelegate?.refreshmainview()
-                
-                if self.maindelegate == nil {
+              
                 
                 let myStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
                 
-                let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuViewController
+                let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! AllListsVC
                 
                 //let protectedPageNav = UINavigationController(rootViewController: protectedPage)
                 
                 
                 mainmenu.loaduserdata()
                 
-                mainmenu.refreshmainview()
+                mainmenu.refreshafterlogin()
                 
-                }
+             
                 
                 
                 //self.displayAlert("Success!", message: "You've logged in!")
                 
                 self.restore()
                 
-               self.performSegueWithIdentifier("loginafterreg", sender: self)
+               self.performSegueWithIdentifier("RegisteredSegue", sender: self)
                
                 
                 

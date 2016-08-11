@@ -31,8 +31,6 @@
 /* Class = "UILabel"; text = "Status:"; ObjectID = "3WY-ab-Dcu"; */
 "3WY-ab-Dcu.text" = "Status:";
 
-/* Class = "UILabel"; text = "Email:"; ObjectID = "3Yj-Hh-ioy"; */
-"3Yj-Hh-ioy.text" = "Email:";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "3ZZ-kV-FL8"; */
 "3ZZ-kV-FL8.text" = "Label";
@@ -195,13 +193,13 @@
 "J1y-EH-zkf.normalTitle" = "Done";
 
 /* Class = "UILabel"; text = "Recent Events"; ObjectID = "J4T-44-vOe"; */
-"J4T-44-vOe.text" = "Events";
+"J4T-44-vOe.text" = "Activity";
 
 /* Class = "UITextField"; placeholder = "Type new item name"; ObjectID = "JzV-ct-jZa"; */
 "JzV-ct-jZa.placeholder" = "Type new item name";
 
 /* Class = "UILabel"; text = "Sharing History"; ObjectID = "KLc-8y-W31"; */
-"KLc-8y-W31.text" = "Sharing History";
+"KLc-8y-W31.text" = "Statistics";
 
 /* Class = "UILabel"; text = "or login via"; ObjectID = "Kbl-8Q-2xI"; */
 "Kbl-8Q-2xI.text" = "or login via";
@@ -440,7 +438,7 @@
 "dda-Yt-FXx.normalTitle" = " CLOSE";
 
 /* Class = "UINavigationItem"; title = "Recent Events"; ObjectID = "ert-z4-FMw"; */
-"ert-z4-FMw.title" = "Events";
+"ert-z4-FMw.title" = "New contacts";
 
 /* Class = "UINavigationItem"; title = "List Creation"; ObjectID = "f2P-qa-kNm"; */
 "f2P-qa-kNm.title" = "List Creation";
@@ -517,7 +515,7 @@
 "jBd-Up-u4n.title" = "Done";
 
 /* Class = "UINavigationItem"; title = "Adding New Item"; ObjectID = "jK4-ZU-UUm"; */
-"jK4-ZU-UUm.title" = "Adding New Item";
+"jK4-ZU-UUm.title" = "Edit item";
 
 /* Class = "UINavigationItem"; title = "Sharing the List"; ObjectID = "jLX-Lg-yVS"; */
 "jLX-Lg-yVS.title" = "Sharing the List";
@@ -856,10 +854,10 @@
 "B7k-oD-5L8.text" = "Amount";
 
 /* Class = "UILabel"; text = ""; ObjectID = "z6D-Rj-Ei7"; */
-"7VF-BO-cCS.text" = "Choose unit";
+"7VF-BO-cCS.text" = "Units";
 
 /* Class = "UILabel"; text = ""; ObjectID = "z6D-Rj-Ei7"; */
-"SSd-BV-Zql.text" = "Units";
+"SSd-BV-Zql.text" = "Image";
 
 /* Class = "UILabel"; text = ""; ObjectID = "QGg-Bw-fl1"; */
 "QGg-Bw-fl1.text" = "Text message";
@@ -889,10 +887,186 @@
 "cRE-4w-0jo.normalTitle" = "Done";
 
 /* Class = "UILabel"; text = ""; ObjectID = "lc9-fK-r7g"; */
-"lc9-fK-r7g.text" = "Note";
+"lc9-fK-r7g.text" = "DESCRIPTION";
 
 /* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
 "SQh-zx-1z9.normalTitle" = "Done";
 
 /* Class = "UILabel"; text = ""; ObjectID = "RWs-O8-Wl7"; */
 "RWs-O8-Wl7.normalTitle" = "Close";
+
+
+/* Class = "UILabel"; text = ""; ObjectID = "RWs-O8-Wl7"; */
+"P0D-OQ-hS8.title" = "Contacts";
+
+/* Class = "UILabel"; text = ""; ObjectID = "cRE-4w-0jo"; */
+"0JN-tu-IYb.normalTitle" = "To Do";
+
+/* Class = "UILabel"; text = ""; ObjectID = "cRE-4w-0jo"; */
+"6ln-5h-hq0.normalTitle" = "Shopping";
+
+/* Class = "UILabel"; text = ""; ObjectID = "cRE-4w-0jo"; */
+"CTF-EV-0cQ.normalTitle" = "List settings";
+
+/* Class = "UILabel"; text = ""; ObjectID = "cRE-4w-0jo"; */
+"EMe-t4-BH8.normalTitle" = "Copy/Paste/Delete";
+
+/* Class = "UILabel"; text = ""; ObjectID = "cRE-4w-0jo"; */
+"XAH-3E-6Bb.normalTitle" = "Uncheck all items";
+
+/* Class = "UILabel"; text = ""; ObjectID = "cRE-4w-0jo"; */
+"ZPk-Av-qrC.normalTitle" = "Send the list";
+
+/* Class = "UILabel"; text = ""; ObjectID = "lc9-fK-r7g"; */
+"bBw-0V-KYe.text" = "LIST NAME";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"DLn-bM-q2x.text" = "Total sum";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"wiL-ZW-8kE.text" = "Per unit";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"1MH-dm-4wn.text" = "Price";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"dTu-ge-Wcb.text" = "Category";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"4eJ-aW-gBs.text" = "Description";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"8AX-M2-EDa.title" = "Products";
+
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"HYs-ml-p8B.title" = "Statistics";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"ofq-BF-k9f.text" = "Time period";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"lNg-rB-cP5.text" = "Total sum";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"lmQ-ts-4rn.text" = "Time step";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"G7g-11-V4b.text" = "Lists count";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"qzs-hu-s2c.text" = "Custom time period";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"jhP-i9-VHK.text" = "From";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"Gb7-N0-QUs.text" = "To";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"caz-1Y-MsA.text" = "Description";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"xyM-VP-Du4.normalTitle" = "SET REMINDER";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"sqD-SS-fp1.text" = "Urgent";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"stk-3d-8j4.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"Sjj-k4-fkQ.normalTitle" = "Done";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"aTc-Rr-auK.text" = "NAME";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"bdX-Pg-yiQ.text" = "DESCRIPTION";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"3JE-ez-xUn.text" = "ACTIONS";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"loj-pP-lni.normalTitle" = "List settings";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"yR4-cZ-tvA.normalTitle" = "Send the list";
+
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"Fdb-Lk-UwP.text" = "ADD NEW CATEGORY";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"PUo-Rc-NkD.text" = "MY CATEGORIES";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"nZo-54-d6b.text" = "ADD ITEM";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"fmr-do-ihw.text" = "ITEMS IN THIS CATEGORY";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"gxK-pE-vPd.text" = "SEND TO THE APP USER";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"gRJ-hL-nOO.text" = "OTHER OPTIONS";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"VAU-1C-3eb.normalTitle" = "Choose from contacts";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"3Yj-Hh-ioy.text" = "ADD NEW CONTACT";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"756-vw-lho.text" = "MY CONTACTS";
+
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"hcS-ki-qUg.title" = "Cancel";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"awM-cc-npg.title" = "Save";
+
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"MDc-sN-hfn.text" = "ACTIONS";
+
+/* Class = "UILabel"; text = ""; ObjectID = "RWs-O8-Wl7"; */
+"Yln-cr-SW1.title" = "Sharing History";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"OLx-cj-ssK.text" = "One week";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"tl2-Ma-3Ch.text" = "One month";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"nc4-Ii-Vet.text" = "One year";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"sR0-jK-IIz.text" = "Days";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"21O-Wv-NWH.text" = "Weeks";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"eOd-Ei-bpG.text" = "Months";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"q6h-j0-fVS.text" = "Years";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"fj0-pp-Hrp.normalTitle" = "Copy";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"vJS-P2-3G7.normalTitle" = "Paste";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"dW6-6L-QkU.normalTitle" = "Delete";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"gtY-W2-i0d.normalTitle" = "Close"";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"WMz-SR-ccQ.text" = "Check items and choose the action";

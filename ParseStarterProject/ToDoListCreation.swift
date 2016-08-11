@@ -1635,6 +1635,30 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         )
     }
     
+    
+    func handlebvTap(sender: UITapGestureRecognizer? = nil) {
+        
+        dimmer.removeFromSuperview()
+        
+        settingsconstraint.constant = -500
+        
+        UIView.animateWithDuration(0.4, animations: { () -> Void in
+            
+            self.view.layoutIfNeeded()
+            }, completion: { (value: Bool) -> Void in
+                self.settingsview.hidden = true
+                self.settingsopen = false
+        })
+        
+        self.view.endEditing(true)
+        
+        
+        
+
+        
+    }
+    
+    
     func showsettingsfunc() {
         
         view.endEditing(true)

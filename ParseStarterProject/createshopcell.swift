@@ -11,7 +11,7 @@ import UIKit
 class createshopcell: UITableViewCell {
     
     
-    @IBOutlet var leftspacing: NSLayoutConstraint!
+
     
     @IBOutlet var shopimage: UIImageView!
    
@@ -29,12 +29,7 @@ class createshopcell: UITableViewCell {
 
     @IBOutlet var createview: UIView!
     
-    @IBOutlet var viewheight: NSLayoutConstraint!
-    
-    
-    @IBOutlet var w1: NSLayoutConstraint!
-    
-    @IBOutlet var h1: NSLayoutConstraint!
+
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,21 +42,17 @@ class createshopcell: UITableViewCell {
        // if UIScreen.mainScreen().sizeType == .iPhone4 {
           if UIScreen.mainScreen().nativeBounds.height == 960 {            
             createview.frame.size.height = 34
-            viewheight.constant = 34
+
             
             shopimage.frame.size.width = 30
             shopimage.frame.size.height = 20
-            
-            w1.constant = 30
-            h1.constant = 20
-            
-            leftspacing.constant = 16
+
         }
-        
+        /*
         container.backgroundColor = UIColorFromRGB(0x2A2F36)//UIColorFromRGB(0x2A2F36)
         container.layer.borderWidth = 1
         container.layer.borderColor = UIColorFromRGB(0xFAFAFA).CGColor
-        
+        */
            
     }
 
