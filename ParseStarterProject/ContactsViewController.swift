@@ -31,8 +31,16 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     var contentsnames = [String]()
     var dictionary = Dictionary<String, AnyObject>()
     
+    
+    @IBOutlet var indicator: NVActivityIndicatorView!
+    
+    
     func generateData(tempprefix: String){
 
+        
+        indicator.hidden = false
+        indicator.startAnimation()
+        
         sampleData.removeAll(keepCapacity: true) 
         
         var query:PFQuery = PFUser.query()!//:PFQuery = PFUser.query()!
@@ -58,6 +66,9 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
                         
                     }
                     
+                    self.indicator.hidden = true
+                    self.indicator.stopAnimation()
+                    
                     for i in 0 ..< self.contentsnames.count {
                         var name = self.contentsnames[i] as String//["username"] as! String
                         //name += " " + lName
@@ -71,6 +82,8 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
                 }
             } else {
                 // Log details of the failure
+                self.indicator.hidden = true
+                self.indicator.stopAnimation()
                 print("Error: \(error!) \(error!.userInfo)")
             }
         }

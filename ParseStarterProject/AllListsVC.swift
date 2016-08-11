@@ -30,6 +30,19 @@ var alldataloaded : Bool = false
 class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, refreshliststableDelegate, sortlistsDelegate, UIGestureRecognizerDelegate, UITextViewDelegate, UITextFieldDelegate {
     
     
+    func refreshafterlogin() {
+        
+        if CheckConnection.isConnectedToNetwork() {
+            checkreceivedlists()
+        }
+        
+        setnavigationtitle()
+        
+        tableView.reloadData()
+ 
+        
+    }
+    
     
     func sortandrefreshlists()
     {
@@ -708,7 +721,11 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     if let downloadedImage = UIImage(data: data!) {
     //downloadedImage.frame = CGRectMake(0,0,50,50)
     loggeduserimage = downloadedImage
-    self.tableView.reloadData()
+    
+        dispatch_async(dispatch_get_main_queue()) {
+            self.tableView.reloadData()
+            self.setnavigationtitle()
+        }
     }
     
     }
@@ -717,7 +734,13 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     print("Image is \(loggeduserimage)")
     } else {
     loggeduserimage = defaultcatimages[1].itemimage//UIImage(named: "checkeduser.png")!
+        dispatch_async(dispatch_get_main_queue()) {
+        self.setnavigationtitle()
+        }
     }
+        
+        
+        
     
     listsretrieval()
     
@@ -1662,6 +1685,52 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     }
     
     
+    func setnavigationtitle() {
+        
+        navigationItem.titleView?.removeFromSuperview()
+    
+        let navview = UIView(frame: CGRectMake(0,0,300,30))
+        let label = UILabel(frame: CGRectMake(70,0,300,30))
+        
+        label.font = UIFont(name: "AvenirNext-Regular", size: 16)
+        label.textColor = UIColorFromHex(0x31797D)
+
+        label.text = NSLocalizedString("mylists", comment: "")
+        navview.addSubview(label)
+        
+        let imageview = UIImageView(frame: CGRectMake(30,0,30,30))
+        imageview.image = loggeduserimage
+        imageview.layer.cornerRadius = imageview.layer.frame.size.width / 2
+        imageview.layer.masksToBounds = true
+        navview.addSubview(imageview)
+
+ 
+    /*
+        let navbutton =  UIButton(type: .Custom)
+        navbutton.frame = CGRectMake((((self.view.frame.size.width) / 2) - 130),0,260,40) as CGRect
+        navbutton.setTitle(NSLocalizedString("mylists", comment: ""), forState: UIControlState.Normal)
+        navbutton.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 16)
+        navbutton.setTitleColor(self.UIColorFromRGB(0x31797D), forState: .Normal)
+        
+        let titleimage = loggeduserimage
+        navbutton.imageView?.layer.cornerRadius = (navbutton.imageView?.layer.frame.size.width)! / 2
+        navbutton.imageView?.layer.masksToBounds = true
+        
+        navbutton.setImage(titleimage, forState: .Normal)
+        
+        let spacing : CGFloat = 10;
+        let insetAmount : CGFloat = 0.5 * spacing;
+        
+        // First set overall size of the button:
+        navbutton.contentEdgeInsets = UIEdgeInsetsMake(0, insetAmount, 0, insetAmount);
+        navbutton.imageEdgeInsets = UIEdgeInsetsMake(10,20,10,20) // top left bottom right
+        navbutton.sizeToFit()
+        */
+
+        self.navigationItem.titleView = navview//navbutton
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -1740,8 +1809,12 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     }
         //
         
-
-        self.navigationItem.title = "My lists"
+        setnavigationtitle()
+        //self.navigationItem.title = (NSLocalizedString("listshop", comment: "")
+        
+        //nav title
+        
+        //self.navigationItem.titleView
         
         //
         

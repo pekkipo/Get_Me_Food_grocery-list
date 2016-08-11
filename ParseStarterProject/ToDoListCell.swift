@@ -11,9 +11,9 @@ import UIKit
 class ToDoListCell: UITableViewCell {
     
     
+
     
-    @IBOutlet weak var importantimage: UIImageView!
-    
+    @IBOutlet var importantview: UILabel!
     
     @IBOutlet weak var itemname: UILabel!
     
@@ -36,7 +36,6 @@ class ToDoListCell: UITableViewCell {
     
     @IBOutlet var topname: NSLayoutConstraint!
     
-    @IBOutlet var impconstr: NSLayoutConstraint!
     
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
         return UIColor(

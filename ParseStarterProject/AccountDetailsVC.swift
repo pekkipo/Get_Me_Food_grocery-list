@@ -115,6 +115,8 @@ class AccountDetailsVC: UIViewController,UINavigationControllerDelegate, UIImage
         
         GIDSignIn.sharedInstance().signOut()
         
+        VKAccessToken.delete("what")
+        
         
         
         /// un assign device for pushes

@@ -1914,20 +1914,18 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.itemnote.text = toDoItems[indexPath.row].itemnote
         
         if toDoItems[indexPath.row].itemimportant == true {
-            cell.importantimage.hidden = false
+            cell.importantview.hidden = false
        
         } else {
-            cell.importantimage.hidden = true
+            cell.importantview.hidden = true
             
         }
         
         
         if toDoItems[indexPath.row].itemnote == "" {
             cell.topname.constant = 5
-            cell.impconstr.constant = 12
         } else {
             cell.topname.constant = 1
-            cell.impconstr.constant = 6
         }
         
         if toDoItems[indexPath.row].ischecked == true {

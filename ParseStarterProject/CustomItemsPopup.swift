@@ -612,7 +612,7 @@ class CustomItemsPopup: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         addedindicator.alpha = 0
         addedindicator.layer.cornerRadius = 8
-        addedindicator.backgroundColor = UIColorFromRGB(0x2a2f36)
+       
 
         // Do any additional setup after loading the view.
     }

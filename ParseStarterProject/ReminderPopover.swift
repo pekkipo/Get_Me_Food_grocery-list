@@ -30,9 +30,9 @@ class ReminderPopover: UIViewController, UITextFieldDelegate {
     
     func displaySuccessAlert(title: String, message: String) {
         
-        let customIcon = UIImage(named: "SuccessAlert")
-        let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "OK", color: UIColorFromHex(0x31797D, alpha: 0.9), iconImage: customIcon)
-        alertview.setTextTheme(.Light)
+        let customIcon = UIImage(named: "4SuccessAlert")
+        let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "OK", color: UIColorFromHex(0xFFFFFF, alpha: 1), iconImage: customIcon)
+        alertview.setTextTheme(.Dark)
         //alertview.addAction(closeCallback)
         alertview.addCancelAction(closeCallback)
     }
@@ -43,7 +43,7 @@ class ReminderPopover: UIViewController, UITextFieldDelegate {
         let alertview = JSSAlertView().show(self, title: title, text: message, buttonText: "OK", color: UIColorFromHex(0xF23D55, alpha: 0.9), iconImage: customIcon)
         alertview.setTextTheme(.Light)
          alertview.addAction(cancelCallback)
-        //alertview.addCancelAction(closeCallback)
+        alertview.addCancelAction(closeCallback)
     }
     
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
@@ -96,7 +96,7 @@ class ReminderPopover: UIViewController, UITextFieldDelegate {
         }
         
         
-        dismissViewControllerAnimated(true, completion: nil)
+       // dismissViewControllerAnimated(true, completion: nil)
     }
     
     var eventStore: EKEventStore!

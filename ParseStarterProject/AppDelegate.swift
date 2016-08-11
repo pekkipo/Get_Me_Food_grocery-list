@@ -257,18 +257,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                                     
                                     let myStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
                                     
-                                    let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuViewController
+                                    let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! AllListsVC
                                     
-                                    //let protectedPageNav = UINavigationController(rootViewController: protectedPage)
+                                    let listsnav = myStoryBoard.instantiateViewControllerWithIdentifier("ListsNav") as! UINavigationController
                                     
-                                    self.window?.rootViewController = mainmenu
                                     
+                                   
+                                    
+                                   // self.window?.
+                                    
+                                   // self.window?.rootViewController = mainmenu
+                                   
                                     
                                     mainmenu.loaduserdata()
                                     
-                                    mainmenu.refreshmainview()
+                                    mainmenu.refreshafterlogin()
                                     
+                                    var sw = self.window!.rootViewController as! SWRevealViewController//
                                     
+                                    mainmenu.loaduserdata()
+                                    
+                                    mainmenu.refreshafterlogin()
+                                    
+                                    // self.window?.rootViewController = listsnav
+                                    sw.pushFrontViewController(listsnav, animated: true)
+                                    
+                                   // var rootViewController = self.window!.rootViewController as! SWRevealViewController//
+                                  // self.window?.rootViewController?.revealViewController().pushFrontViewController(mainmenu, animated: true)
+                                   
+                                   // self.window?.rootViewController!.navigationController?.revealViewController().pushFrontViewController(mainmenu, animated: true)
                                     
                                 } else {
                                     
@@ -322,17 +339,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                             
                             let myStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
                             
-                            let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuViewController
+                            let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! AllListsVC
                             
                             
-                            self.window?.rootViewController = mainmenu
+                           // self.window?.rootViewController = mainmenu
                             
+                            let listsnav = myStoryBoard.instantiateViewControllerWithIdentifier("ListsNav") as! UINavigationController
+                            
+                            
+                            var sw = self.window!.rootViewController as! SWRevealViewController//
                             
                             mainmenu.loaduserdata()
                             
-                            mainmenu.refreshmainview()
+                            mainmenu.refreshafterlogin()
                             
-                            
+                           // self.window?.rootViewController = listsnav
+                            sw.pushFrontViewController(listsnav, animated: true)
+                           // self.window?.rootViewController?.revealViewController().pushFrontViewController(mainmenu, animated: true)
                             
                         } else {
                             

@@ -49,23 +49,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
 
     @IBOutlet var dimmerview: UIView!
     
-    /*
-    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
-    
-    func displayAlert(title: String, message: String) {
-        
-        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction((UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-            
-            self.dismissViewControllerAnimated(true, completion: nil)
-            
-        })))
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-        
-        
-    }
-*/
+
     let progressHUD = ProgressHUD(text: NSLocalizedString("loggingin", comment: ""))
     
     func pause() {
@@ -551,24 +535,17 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
                                                                 installation["user"] = PFUser.currentUser()
                                                                 installation.saveInBackground()
                                                                 
-                                                                self.maindelegate?.loaduserdata()
+                                                                let myStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
                                                                 
-                                                                self.maindelegate?.refreshmainview()
+                                                                let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! AllListsVC
                                                                 
-                                                                if self.maindelegate == nil {
-                                                                    
-                                                                    let myStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
-                                                                    
-                                                                    let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuViewController
-                                                                    
-
-                                                                    
-                                                                    mainmenu.loaduserdata()
-                                                                    
-                                                                    mainmenu.refreshmainview()
-                                                                    
-                                                                }
-
+                                                                //let protectedPageNav = UINavigationController(rootViewController: protectedPage)
+                                                                
+                                                                
+                                                                mainmenu.loaduserdata()
+                                                                
+                                                                mainmenu.refreshafterlogin()
+                                                                
                                                                 self.performSegueWithIdentifier("LoggedInSegue", sender: self)
                                                                 
                                                             } else {
@@ -591,7 +568,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
                                                     } else {
                                                         
                                                         if let errorString = error!.userInfo["error"] as? String {
-                                                            
+                                                            self.restore()
                                                             print(errorString)
                                                             
                                                         }
@@ -623,23 +600,16 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
                                             installation["user"] = PFUser.currentUser()
                                             installation.saveInBackground()
                                             
-                                            self.maindelegate?.loaduserdata()
+                                            let myStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
                                             
-                                            self.maindelegate?.refreshmainview()
+                                            let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! AllListsVC
                                             
-                                            if self.maindelegate == nil {
-                                                
-                                                let myStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
-                                                
-                                                let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuViewController
-                                                
-                                                
-                                                
-                                                mainmenu.loaduserdata()
-                                                
-                                                mainmenu.refreshmainview()
-                                                
-                                            }
+                                            //let protectedPageNav = UINavigationController(rootViewController: protectedPage)
+                                            
+                                            
+                                            mainmenu.loaduserdata()
+                                            
+                                            mainmenu.refreshafterlogin()
                                             
                                             
                                             
@@ -648,11 +618,11 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
                                         } else {
                                             
                                             if let errorString = error!.userInfo["error"] as? String {
-                                                
+                                                self.restore()
                                                 print(errorString)
                                                 
                                             }
-                                            
+                                            self.restore()
                                             print("failedlogin")
                                             
                                         }
@@ -663,7 +633,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
                                     
                                     
                                 } else {
-                                    
+                                    self.restore()
                                     print("error! \(error)")
                                 }
                                 
@@ -694,9 +664,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
 // THIS IS REAL BUTTON
     @IBAction func FacebookLoginButton(sender: AnyObject) {
         
-     //   customfacebooklogin()
+        customfacebooklogin()
         
-        
+        /*
         
         self.pause()
         
@@ -792,24 +762,24 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
                                             
                                             loggedIn = true
                                             
-                                            self.maindelegate?.loaduserdata()
+                                           // self.maindelegate?.loaduserdata()
                                             
-                                            self.maindelegate?.refreshmainview()
+                                           // self.maindelegate?.refreshmainview()
                                             
-                                            if self.maindelegate == nil {
+                                           // if self.maindelegate == nil {
                                                 
                                                 let myStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
                                                 
-                                                let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuViewController
+                                                let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! AllListsVC
                                                 
                                                 //let protectedPageNav = UINavigationController(rootViewController: protectedPage)
                                                 
                                                 
                                                 mainmenu.loaduserdata()
                                                 
-                                                mainmenu.refreshmainview()
+                                                mainmenu.refreshafterlogin()
                                                 
-                                            }
+                                           // }
                                             
                                             
                                             
@@ -841,24 +811,26 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
                     
                     print("User logged in through Facebook!")
                     
-                    self.maindelegate?.loaduserdata()
+                   // self.maindelegate?.loaduserdata()
                     
-                    self.maindelegate?.refreshmainview()
+                   // self.maindelegate?.refreshmainview()
                     
-                    if self.maindelegate == nil {
+                   // if self.maindelegate == nil {
                         
                         let myStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
                         
-                        let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuViewController
+                        let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! AllListsVC
                         
                         //let protectedPageNav = UINavigationController(rootViewController: protectedPage)
                         
                         
                         mainmenu.loaduserdata()
                         
-                        mainmenu.refreshmainview()
-                        
-                    }
+                        mainmenu.refreshafterlogin()
+                    
+                    
+                    
+                   // }
 
                     
                    
@@ -875,7 +847,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
                 print("Uh oh. The user cancelled the Facebook login.")
             }
         }
-        
+        */
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -1000,60 +972,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
                     var avatar = UIImage()
                     var imageFile = PFFile()
                     
-                   // if photo {
-                /*
-                    var imgURL: NSURL = NSURL(string: photo as! String)!
-                    let request: NSURLRequest = NSURLRequest(URL: imgURL)
-                    NSURLConnection.sendAsynchronousRequest(
-                        request, queue: NSOperationQueue.mainQueue(),
-                        completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
-                            if error == nil {
-                                
-                                
-                                avatar = UIImage(data: data!)!
-                                
-                                imageFile = PFFile(name:"user_avatar.png", data:data!)
-                            
-                                
-                            }
-                    })
-*/
-                     /*
-                    } else {
-                        var imageData = UIImagePNGRepresentation(UIImage(named:"checkeduser.png")!)
-                        imageFile = PFFile(name:"default_user_avatar.png", data:imageData!)
-                    }
-*/
-                    /*
-                    let url = NSURL(string: photo as! String)
-                    let request = NSURLRequest(URL: url!)
-                    let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-                    let session = NSURLSession(configuration: config)
-                    
-                    let task = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
-                        
-                        // notice that I can omit the types of data, response and error
-                        
-                        // your code
-                        
-                        avatar = UIImage(data: data!)!
-                        
-                    });
-                    
-                    // do whatever you need with the task e.g. run
-                    task.resume()
-                    */
-                    
-                    
-                    /*
-                    if let data = NSData(contentsOfURL: photo as! NSURL) {
-                        avatar = UIImage(data: data)!
-                    }
-                    */
-                  //  let imageData = UIImagePNGRepresentation(avatar)
-                    //let imageData = UIImagePNGRepresentation(chosenPicture)
-                   // let imageFile = PFFile(name:"user_avatar.png", data:imageData!)
-                    
+
                     
                     //// PARSE PART 
                     
@@ -1109,44 +1028,31 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
                                                         loggedIn = true
                                                         
                                                         var installation: PFInstallation = PFInstallation.currentInstallation()
-                                                        // installation.addUniqueObject("ReloadNew", forKey: "channels")
+                                                    
                                                         installation["user"] = PFUser.currentUser()
                                                         installation.saveInBackground()
                                                         
-                                                        self.maindelegate?.loaduserdata()
+                                                      //  self.maindelegate?.loaduserdata()
                                                         
-                                                        self.maindelegate?.refreshmainview()
+                                                      //  self.maindelegate?.refreshmainview()
                                                         
-                                                        if self.maindelegate == nil {
+                                                       // if self.maindelegate == nil {
                                                             
                                                             let myStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
                                                             
-                                                            let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuViewController
+                                                            let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! AllListsVC
                                                             
                                                             //let protectedPageNav = UINavigationController(rootViewController: protectedPage)
                                                             
                                                             
                                                             mainmenu.loaduserdata()
                                                             
-                                                            mainmenu.refreshmainview()
+                                                            mainmenu.refreshafterlogin()
                                                             
-                                                        }
+                                                       // }
                                                         
-                                                        /*
-                                                        let myStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
-                                                        
-                                                        let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuViewController
-                                                        
-                                                        //let protectedPageNav = UINavigationController(rootViewController: protectedPage)
-                                                        
-                                                        // window?.rootViewController = mainmenu
-                                                        
-                                                        
-                                                        mainmenu.loaduserdata()
-                                                        
-                                                        mainmenu.refreshmainview()
-                                                        */
-                                                        self.performSegueWithIdentifier("LoggedInSegue", sender: self)
+                                                
+                                                      self.performSegueWithIdentifier("LoggedInSegue", sender: self)
                                                         // loggedIn = true
                                                         
                                                     } else {
@@ -1216,24 +1122,24 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
                                     installation["user"] = PFUser.currentUser()
                                     installation.saveInBackground()
                                     
-                                    self.maindelegate?.loaduserdata()
+                                   // self.maindelegate?.loaduserdata()
                                     
-                                    self.maindelegate?.refreshmainview()
+                                   // self.maindelegate?.refreshmainview()
                                     
-                                    if self.maindelegate == nil {
+                                   // if self.maindelegate == nil {
                                         
                                         let myStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
                                         
-                                        let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuViewController
+                                        let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! AllListsVC
                                         
                                         //let protectedPageNav = UINavigationController(rootViewController: protectedPage)
                                         
                                         
                                         mainmenu.loaduserdata()
                                         
-                                        mainmenu.refreshmainview()
+                                        mainmenu.refreshafterlogin()
                                         
-                                    }
+                                    //}
 
                                     
                                    // mainmenu.loaduserdata()
