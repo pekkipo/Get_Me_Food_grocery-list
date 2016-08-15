@@ -312,8 +312,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     
-    
-    @IBAction func didendeditname(sender: AnyObject) {
+    @IBAction func nameendedit(sender: AnyObject) {
         
         
         let query = PFQuery(className:"toDoLists")
@@ -328,14 +327,81 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
                 todolist["ToDoListName"] = self.listname.text
                 todolist.pinInBackground()
                 //todolist.saveEventually()
+                
+                if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(self.currenttodolist) {
+                    UserLists[foundlist].listname = self.listname.text
+                    
+                }
+                
+                if let foundtodolist = UserToDoLists.map({ $0.listid }).lazy.indexOf(self.currenttodolist) {
+                    
+                    
+                    UserToDoLists[foundtodolist].listname = self.listname.text
+                    
+                    
+                }
+                
+                if let foundfavlist = UserFavLists.map({ $0.listid }).lazy.indexOf(self.currenttodolist) {
+                    
+                    
+                    UserFavLists[foundfavlist].listname = self.listname.text
+                    
+                    
+                }
+                
+                self.view.endEditing(true)
             }
         }
         
+     
         
-        
+         self.navigationItem.title = self.listname.text
         
     }
-    
+
+    func textViewDidEndEditing(textView: UITextView) {
+     
+        if textView != quickitemnote {
+            let query = PFQuery(className:"toDoLists")
+            query.fromLocalDatastore()
+            query.whereKey("listUUID", equalTo: currenttodolist)
+            query.getFirstObjectInBackgroundWithBlock() {
+                (todolist: PFObject?, error: NSError?) -> Void in
+                if error != nil {
+                    print(error)
+                } else if let todolist = todolist {
+                    
+                    todolist["ToDoListNote"] = self.listnote.text
+                    todolist.pinInBackground()
+                    
+                    if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(self.currenttodolist) {
+                        UserLists[foundlist].listnote = self.listname.text
+                        
+                    }
+                    
+                    if let foundtodolist = UserToDoLists.map({ $0.listid }).lazy.indexOf(self.currenttodolist) {
+                        
+                        
+                        UserToDoLists[foundtodolist].listnote = self.listname.text
+                        
+                        
+                    }
+                    
+                    if let foundfavlist = UserFavLists.map({ $0.listid }).lazy.indexOf(self.currenttodolist) {
+                        
+                        
+                        UserFavLists[foundfavlist].listnote = self.listname.text
+                        
+                        
+                    }
+                    
+                    self.view.endEditing(true)
+                    
+                }
+            }
+            
+        }
+    }
     
     @IBAction func didendeditnote(sender: AnyObject) {
         
@@ -437,6 +503,8 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
                         
                         self.listname.text = object["ToDoListName"] as! String
                         self.listnote.text = object["ToDoListNote"] as! String
+                        
+                        self.navigationItem.title = object["ToDoListName"] as! String
                         
                         //need to know if its received
                         self.isReceived = object["isReceived"] as! Bool
@@ -1717,6 +1785,8 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColorFromRGB(0xF1F1F1)
+        
         smallpopover.hidden = true
         
         addbuttonoutlet.hidden = true
@@ -1953,10 +2023,10 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         if toDoItems[indexPath.row].itemimportant == true {
             cell.importantview.hidden = false
-       
+           cell.markview.backgroundColor = UIColorFromRGB(0x31797D)
         } else {
             cell.importantview.hidden = true
-            
+            cell.markview.backgroundColor = UIColorFromRGB(0xAAAAAA)
         }
         
         

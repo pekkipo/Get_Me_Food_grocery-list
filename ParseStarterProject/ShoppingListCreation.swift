@@ -3206,6 +3206,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func openmenuaction(sender: AnyObject) {
         
       //  additemstolistsarrayandsave()
+        
     }
     
     func additemstolistsarrayandsave() {
@@ -7001,7 +7002,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         // TITLE
      
         
-       // self.view.backgroundColor = UIColorFromRGB(0xF1F1F1)//(0x2a2f36)F1F1F1
+        self.view.backgroundColor = UIColorFromRGB(0xF1F1F1)//(0x2a2f36)F1F1F1
         
         
         //tableView.backgroundColor = UIColorFromRGB(0xF1F1F1) //f1

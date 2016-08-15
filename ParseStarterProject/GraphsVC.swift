@@ -1253,7 +1253,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     override func viewDidAppear(animated: Bool) {
-        <#code#>
+    
     }
     
     override func viewDidLoad() {

@@ -1076,3 +1076,25 @@
 /* Class = "UINavigationItem"; title = "Adding New Item"; ObjectID = "jK4-ZU-UUm"; */
 "EAH-qs-Nar.title" = "Задача";
 
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"Mwi-3H-JEG.text" = "Задача";
+
+/* Class = "UITextField"; placeholder = "Type item name"; ObjectID = "1Sq-ay-MJI"; */
+"avf-qt-FTz.placeholder" = "Что вам нужно сделать?";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"fJr-ND-UJM.text" = "ОПИСАНИЕ";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"u6N-pi-igZ.text" = "СРОЧНО";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"YZC-MM-psg.normalTitle" = "ПОСТАВИТЬ НАПОМИНАНИЕ";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"sit-SF-xPJ.title" = "Сохранить";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"iRP-Ib-RhJ.title" = "Отмена";
+
+

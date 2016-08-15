@@ -1074,3 +1074,25 @@
 
 /* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
 "WMz-SR-ccQ.text" = "Check items and choose the action";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"Mwi-3H-JEG.text" = "TASK";
+
+/* Class = "UITextField"; placeholder = "Type item name"; ObjectID = "1Sq-ay-MJI"; */
+"avf-qt-FTz.placeholder" = "Enter the task";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"fJr-ND-UJM.text" = "DESCRIPTION";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"u6N-pi-igZ.text" = "URGENT";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"YZC-MM-psg.normalTitle" = "SET A REMINDER";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"sit-SF-xPJ.title" = "Save";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"iRP-Ib-RhJ.title" = "Cancel";
+

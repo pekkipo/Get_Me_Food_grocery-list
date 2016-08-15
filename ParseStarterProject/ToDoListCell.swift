@@ -20,6 +20,8 @@ class ToDoListCell: UITableViewCell {
     
     @IBOutlet weak var itemnote: UILabel!
     
+
+    @IBOutlet var markview: UIView!
     
     @IBOutlet weak var edititemoutlet: UIButton!
     

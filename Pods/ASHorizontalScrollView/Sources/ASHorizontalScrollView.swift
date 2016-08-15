@@ -229,7 +229,7 @@ public class ASHorizontalScrollView: UIScrollView, UIScrollViewDelegate {
         
         for i in (0..<self.items.count) {
             if i < index {
-                xPosition += items[i].frame.width + self.miniMarginPxBetweenItems
+                xPosition += items[i].frame.width + 20 + self.miniMarginPxBetweenItems
             } else {
                 break;
             }

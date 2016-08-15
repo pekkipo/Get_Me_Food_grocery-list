@@ -308,6 +308,12 @@ class AddToDoItemViewController: UIViewController, UITextFieldDelegate, UITextVi
         text.resignFirstResponder()
     }
     
+    
+    @IBOutlet var canceloutlet: UIBarButtonItem!
+    
+    
+    @IBOutlet var saveoutlet: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -334,17 +340,10 @@ class AddToDoItemViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         text.delegate = self
         
-        caption.leftTextMargin = 5
         
-        text.layer.cornerRadius = 4
-        caption.layer.cornerRadius = 4
+        canceloutlet.tintColor = UIColorFromRGB(0xF23D55)
+        saveoutlet.tintColor = UIColorFromRGB(0x31797D)
         
-        text.layer.borderWidth = 1
-        text.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-        
-        caption.layer.borderWidth = 1
-        caption.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-
 
         
         self.view.backgroundColor = UIColorFromRGB(0xFAFAFA)

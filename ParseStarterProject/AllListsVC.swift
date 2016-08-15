@@ -215,10 +215,10 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     func pause() {
         
         
-        self.view.addSubview(progressHUD)
+       // self.view.addSubview(progressHUD)
         
-        progressHUD.setup()
-        progressHUD.show()
+       // progressHUD.setup()
+       // progressHUD.show()
         
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
     }
@@ -249,7 +249,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     
     func restore() {
         
-        progressHUD.hide()
+        //progressHUD.hide()
        
         
         UIApplication.sharedApplication().endIgnoringInteractionEvents()

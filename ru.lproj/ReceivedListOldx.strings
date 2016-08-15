@@ -6,7 +6,10 @@
 "4XW-ja-vXU.text" = "Sender Name Long, prettylong@email.com";
 
 /* Class = "UIButton"; normalTitle = "Save"; ObjectID = "Arn-8s-NUB"; */
-"Arn-8s-NUB.normalTitle" = " Принять";
+"Arn-8s-NUB.normalTitle" = "Принять";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "Arn-8s-NUB"; */
+"t0W-0W-VHt.text" = "Принять";
 
 /* Class = "UIButton"; normalTitle = "Note"; ObjectID = "n9e-nC-8cd"; */
 "n9e-nC-8cd.normalTitle" = " Заметка";
