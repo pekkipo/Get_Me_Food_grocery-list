@@ -1073,3 +1073,6 @@
 /* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
 "WMz-SR-ccQ.text" = "Отметьте продукты и выберите действие";
 
+/* Class = "UINavigationItem"; title = "Adding New Item"; ObjectID = "jK4-ZU-UUm"; */
+"EAH-qs-Nar.title" = "Задача";
+

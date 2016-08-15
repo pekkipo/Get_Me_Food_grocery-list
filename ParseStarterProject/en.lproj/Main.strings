@@ -517,6 +517,10 @@
 /* Class = "UINavigationItem"; title = "Adding New Item"; ObjectID = "jK4-ZU-UUm"; */
 "jK4-ZU-UUm.title" = "Edit item";
 
+/* Class = "UINavigationItem"; title = "Adding New Item"; ObjectID = "jK4-ZU-UUm"; */
+"EAH-qs-Nar.title" = "Edit task";
+
+
 /* Class = "UINavigationItem"; title = "Sharing the List"; ObjectID = "jLX-Lg-yVS"; */
 "jLX-Lg-yVS.title" = "Sharing the List";
 

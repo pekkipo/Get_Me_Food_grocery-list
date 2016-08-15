@@ -1825,7 +1825,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         OpenMenu2.action = Selector("revealToggle:")
         
         if let revealController = self.revealViewController() {
-           // revealController.panGestureRecognizer()
+            revealController.panGestureRecognizer()
             revealController.tapGestureRecognizer()
         }
         
@@ -6608,8 +6608,8 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                     // Progress change
                     
-                    receivedcell.progresscircle.progressColors = [changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).pcol]
-                    receivedcell.progresscircle.angle = changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).theangle
+                    receivedcell.progresscircle.progressColors = [changeprogress(UserShopLists[indexPath.row].listitemscount, checked: UserShopLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).pcol]
+                    receivedcell.progresscircle.angle = changeprogress(UserShopLists[indexPath.row].listitemscount, checked: UserShopLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).theangle
                     //
 
                     
@@ -6628,7 +6628,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     cell.colorcodeviewoutlet.backgroundColor = colorWithHexString(thiscolor)
                     cell.storyline.backgroundColor = colorWithHexString(thiscolor)
                     cell.newlisttype.tintColor = colorWithHexString(thiscolor)
-                    cell.ShopListNameButton.text = UserLists[indexPath.row].listname
+                    cell.ShopListNameButton.text = UserShopLists[indexPath.row].listname
                     
                     cell.ShopListNameButton.textColor = colorWithHexString(thiscolor)
                     
@@ -6666,8 +6666,8 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                     // Progress change
                     
-                    cell.progresscircle.progressColors = [changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).pcol]
-                    cell.progresscircle.angle = changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).theangle
+                    cell.progresscircle.progressColors = [changeprogress(UserShopLists[indexPath.row].listitemscount, checked: UserShopLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).pcol]
+                    cell.progresscircle.angle = changeprogress(UserShopLists[indexPath.row].listitemscount, checked: UserShopLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).theangle
                     //
 
                     
@@ -6767,8 +6767,8 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                     // Progress change
                     
-                    receivedcell.progresscircle.progressColors = [changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).pcol]
-                    receivedcell.progresscircle.angle = changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).theangle
+                    receivedcell.progresscircle.progressColors = [changeprogress(UserToDoLists[indexPath.row].listitemscount, checked: UserToDoLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).pcol]
+                    receivedcell.progresscircle.angle = changeprogress(UserToDoLists[indexPath.row].listitemscount, checked: UserToDoLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).theangle
                     //
 
                     
@@ -6824,8 +6824,8 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                     // Progress change
                     
-                    cell.progresscircle.progressColors = [changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).pcol]
-                    cell.progresscircle.angle = changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).theangle
+                    cell.progresscircle.progressColors = [changeprogress(UserToDoLists[indexPath.row].listitemscount, checked: UserToDoLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).pcol]
+                    cell.progresscircle.angle = changeprogress(UserToDoLists[indexPath.row].listitemscount, checked: UserToDoLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).theangle
                     //
 
                     
@@ -6927,8 +6927,8 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                     // Progress change
                     
-                    receivedcell.progresscircle.progressColors = [changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).pcol]
-                    receivedcell.progresscircle.angle = changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).theangle
+                    receivedcell.progresscircle.progressColors = [changeprogress(UserFavLists[indexPath.row].listitemscount, checked: UserFavLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).pcol]
+                    receivedcell.progresscircle.angle = changeprogress(UserFavLists[indexPath.row].listitemscount, checked: UserFavLists[indexPath.row].listcheckeditemscount, thelabel: receivedcell.percents).theangle
                     //
                     
                     return receivedcell
@@ -6991,8 +6991,8 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     
                     // Progress change
                     
-                    cell.progresscircle.progressColors = [changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).pcol]
-                    cell.progresscircle.angle = changeprogress(UserLists[indexPath.row].listitemscount, checked: UserLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).theangle
+                    cell.progresscircle.progressColors = [changeprogress(UserFavLists[indexPath.row].listitemscount, checked: UserFavLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).pcol]
+                    cell.progresscircle.angle = changeprogress(UserFavLists[indexPath.row].listitemscount, checked: UserFavLists[indexPath.row].listcheckeditemscount, thelabel: cell.percents).theangle
                     //
 
                     

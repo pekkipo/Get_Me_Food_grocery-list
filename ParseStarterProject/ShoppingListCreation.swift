@@ -6636,6 +6636,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 var vel: CGPoint = CGPointMake(horizontalScrollView.finditem(catindex!, inScrollView: horizontalScrollView), 0.0)
                 horizontalScrollView.contentOffset = vel
             
+
+            
         } else if type == "usual" {
             
             for view in horizontalScrollView.subviews {

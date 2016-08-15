@@ -1909,7 +1909,8 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .Normal, title: NSLocalizedString("delete", comment: "")) { (action , indexPath ) -> Void in
+        
+        let deleteAction = UITableViewRowAction(style: .Normal, title: "    ") { (action , indexPath ) -> Void in
             
             
             
@@ -1918,11 +1919,24 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
             self.swipedeleteitem(indexPath)
         }
         
-        deleteAction.backgroundColor = UIColorFromRGB(0xF23D55)
+        if let adelete = UIImage(named: "4DeleteButton50") {
+            deleteAction.backgroundColor = UIColor.imageWithBackgroundColor(adelete, bgColor: UIColorFromRGB(0xF23D55), w: 50, h: 50)
+        }
+        
 
+        // EDIT
+        let editAction = UITableViewRowAction(style: .Normal, title: "    ") { (action , indexPath ) -> Void in
+            
+        self.itemtoedit = toDoItems[indexPath.row].itemid
         
+        self.performSegueWithIdentifier("edittodoitem", sender: self)
+        }
         
-        return [deleteAction]//, shareAction]
+        if let editpict = UIImage(named: "4EditButton50") {
+            editAction.backgroundColor = UIColor.imageWithBackgroundColor(editpict, bgColor: UIColorFromRGB(0x7ED0A5), w: 50, h: 50)
+        }
+        
+        return [deleteAction, editAction]//, shareAction]
     }
 
     

@@ -18,12 +18,7 @@ protocol RefreshToDoListDelegate
 
 class AddToDoItemViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPopoverPresentationControllerDelegate {
     
-   /*
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.None
-    }
-    */
-    @IBOutlet var borderView: UIView!
+
     
     var tododelegate : RefreshToDoListDelegate?
     
@@ -60,12 +55,7 @@ class AddToDoItemViewController: UIViewController, UITextFieldDelegate, UITextVi
     
     @IBOutlet weak var text: UITextView!
     
-    
-    @IBAction func priority(sender: AnyObject) {
-        
-        
-    }
-    
+
     @IBOutlet weak var priorityswitcher: UISwitch!
     
     @IBAction func cancel(sender: AnyObject) {
@@ -123,72 +113,12 @@ class AddToDoItemViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         
     }
-    /* APPROACH 1
-    func saveexistingitem() {
-    
-    var query = PFQuery(className:"toDoItems")
-    query.fromLocalDatastore()
-    query.whereKey("itemUUID", equalTo: currentitem)
-    query.getFirstObjectInBackgroundWithBlock() {
-    (item: PFObject?, error: NSError?) -> Void in
-    if error != nil {
-    println(error)
-    } else if let item = item {
-    
-    item["todoitemname"] = self.caption.text
-    item["todoitemnote"] = self.text.text
-    if self.priorityswitcher.on {
-    item["isImportant"] = true
-    } else {
-    item["isImportant"] = false
-    }
-    
-    item.pinInBackgroundWithBlock({
-    (success: Bool, error: NSError?) -> Void in
-    if (success) {
-    
-    
-    if let founditem = find(lazy(toDoItems).map({ $0.itemid }), self.currentitem) {
-    
-    let item = toDoItems[founditem]
-    
-    item.itemname = self.caption.text
-    
-    item.itemnote = self.text.text
-    
-    if self.priorityswitcher.on {
-    item.itemimportant = true
-    } else {
-    item.itemimportant = false
-    }
-    
-    }
-    
-    
-    
-    } else {
-    
-    }
-    })
-    
-    item.saveEventually()
-    
-    
-    
-    }
-    }
-    
-    
-    
-    }
-    */
+
     
     //APPROACH 2
     func saveexistingitem() {
         
-        
-       // if let founditem = find(lazy(toDoItems).map({ $0.itemid }), self.currentitem) {
-        
+
         
          if let founditem = toDoItems.map({ $0.itemid }).lazy.indexOf(self.currentitem) {
             let item = toDoItems[founditem]
@@ -317,18 +247,7 @@ class AddToDoItemViewController: UIViewController, UITextFieldDelegate, UITextVi
             }
         })
         
-        
-        // todoitem.saveEventually()
-        /* {
-        (success: Bool, error: NSError?) -> Void in
-        if (success) {
-        
-        } else {
-        
-        }
-        }
-        */
-        
+
         
     }
     
@@ -336,15 +255,7 @@ class AddToDoItemViewController: UIViewController, UITextFieldDelegate, UITextVi
     
     
     override func viewWillAppear(animated: Bool) {
-        /*if existingitem == true {
-        
-        retrieveexistingitem(currentitem)
-        
-        } else {
-        
-        priorityswitcher.on = false
-        
-        }*/
+
     }
     
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
@@ -387,21 +298,7 @@ class AddToDoItemViewController: UIViewController, UITextFieldDelegate, UITextVi
         textField.resignFirstResponder()
         return true
     }
-    //myTextField.delegate = self
-    ///
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .Default
-    }
-    
-    
-    @IBOutlet var textheight: NSLayoutConstraint!
-    
-    
-    @IBOutlet var cancelb: UIButton!
-    
-    
-    @IBOutlet var doneb: UIButton!
+
     
     let closepadimage = UIImage(named: "ClosePad")!
     
@@ -414,19 +311,10 @@ class AddToDoItemViewController: UIViewController, UITextFieldDelegate, UITextVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        cancelb.layer.borderWidth = 1
-        cancelb.layer.borderColor = UIColorFromRGB(0xF23D55).CGColor
-        cancelb.layer.cornerRadius = 8
-        
-        
-        doneb.layer.cornerRadius = 8
-      //  if UIDevice().screenType == UIDevice.ScreenType.iPhone4 {
-        
-       // if UIScreen.mainScreen().sizeType == .iPhone4 {
+        caption.leftTextMargin = 1
         
            if UIScreen.mainScreen().nativeBounds.height == 960 {
             text.frame.size.height = 110
-            textheight.constant = 110
             
         }
         
@@ -441,9 +329,7 @@ class AddToDoItemViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         text.inputAccessoryView = toolView
         
-        
-        //caption.layer.sublayerTransform = CATransform3DMakeTranslation(3, 0, 0)
-        
+
         caption.delegate = self
         
         text.delegate = self
@@ -458,37 +344,10 @@ class AddToDoItemViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         caption.layer.borderWidth = 1
         caption.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-        /*
-        let visuaEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .ExtraLight))
-        visuaEffectView.frame = self.view.bounds
-        visuaEffectView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-        visuaEffectView.setTranslatesAutoresizingMaskIntoConstraints(true)
-        self.view.addSubview(visuaEffectView)
-        */
-        /*
-        var blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
-        var blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        view.addSubview(blurEffectView)
-        view.sendSubviewToBack(blurEffectView)
+
+
         
-        borderView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
-        self.view.bringSubviewToFront(borderView)
-        
-        borderView.layer.borderWidth = 1
-        
-        borderView.layer.borderColor = UIColorFromRGB(0x2A2F36).CGColor
-        */
-        
-       
-        
-        
-        
-        borderView.backgroundColor = UIColorFromRGB(0xF1F1F1)
-        
-      
-        
-        self.view.backgroundColor = UIColorFromRGB(0xF1F1F1)
+        self.view.backgroundColor = UIColorFromRGB(0xFAFAFA)
         
         
         if existingitem == true {
@@ -523,10 +382,8 @@ class AddToDoItemViewController: UIViewController, UITextFieldDelegate, UITextVi
             
             let popoverViewController = segue.destinationViewController as! ReminderPopover//UIViewController
             
-            
-           // popoverViewController.preferredContentSize = CGSize(width: 300, height: 320)
-            
-            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
+            popoverViewController.modalPresentationStyle = .OverCurrentContext
+
             popoverViewController.popoverPresentationController!.delegate = self
             popoverViewController.todocaption = caption.text!
             popoverViewController.senderVC = "ToDoItem"

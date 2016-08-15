@@ -999,6 +999,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         //barchart.xAxis.labelHeight = 50
         linechart.extraLeftOffset = 30
         linechart.extraRightOffset = 30
+        linechart.extraBottomOffset = 15
         
         linechart.backgroundColor = UIColorFromHex(0xFAFAFA, alpha: 1)
         
@@ -1251,7 +1252,9 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     
-    
+    override func viewDidAppear(animated: Bool) {
+        <#code#>
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
