@@ -274,6 +274,10 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
             
         }
         
+        if length < 4 {
+            loadeddata = false
+        }
+        
        // print(sampleData)
         
     }

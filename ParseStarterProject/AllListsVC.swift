@@ -21,26 +21,42 @@ protocol refreshnumbeofreceivedlistsDelegate
     func refreshreceivednumber()
 }
 
-var submitimage : UIImage = UIImage(named: "SubmitIcon")!
-var closeimage : UIImage = UIImage(named: "CloseIcon")!
+//var submitimage : UIImage = UIImage(named: "SubmitIcon")!
+//var closeimage : UIImage = UIImage(named: "CloseIcon")!
 
 
 var alldataloaded : Bool = false
 
-class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, refreshliststableDelegate, sortlistsDelegate, UIGestureRecognizerDelegate, UITextViewDelegate, UITextFieldDelegate {
+class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, refreshliststableDelegate, sortlistsDelegate, UIGestureRecognizerDelegate, UITextViewDelegate, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
     
     
     func refreshafterlogin() {
-        
+        /*
         if CheckConnection.isConnectedToNetwork() {
             checkreceivedlists()
         }
+        */
         
-        setnavigationtitle()
+        dispatch_async(dispatch_get_main_queue(), {
+        //self.tableView.reloadData()
+            self.setnavigationtitle()
+        })
         
-        tableView.reloadData()
- 
+    }
+    
+    func reloadstuff() {
+        if CheckConnection.isConnectedToNetwork() {
+            if PFUser.currentUser()?.objectId != nil {
+            checkreceivedlists()
+            }
+        }
         
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
+            self.setnavigationtitle()
+        })
+
     }
     
     
@@ -58,7 +74,8 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
    var showoption : String = "alllists"
     
     
-    @IBOutlet var tableView: UITableView!
+    
+    @IBOutlet weak var tableView: UITableView!
     
     var maindelegate : refreshmainviewDelegate?
     
@@ -293,6 +310,8 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         
         //CHECK SHOP LISTS
         var query = PFQuery(className:"shopLists")
+        
+        print(PFUser.currentUser()?.objectId)
         query.whereKey("BelongsToUser", equalTo: PFUser.currentUser()!.objectId!)
         query.whereKey("isReceived", equalTo: true)
         query.whereKey("isSaved", equalTo: false)
@@ -335,6 +354,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                             var listcheckeditems = object["CheckedItemsCount"] as! Int
                             var listtype = "Shop"
                             var listcurrency = object["ListCurrency"] as! String
+                            var listcurrencyarray = object["CurrencyArray"] as! [AnyObject]
                             var listshowcats = object["ShowCats"] as! Bool
                             var listscolor = object["ListColorCode"] as! String
                             
@@ -356,7 +376,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                                 listitemscount:listitemscount,
                                 listcheckeditemscount:listcheckeditems,
                                 listtype:listtype,
-                                listcurrency:listcurrency,
+                                listcurrency:listcurrencyarray,//listcurrency,
                                 listcategories:listshowcats,
                                 listcolorcode:listscolor
                                 
@@ -386,9 +406,11 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     UserFavLists.sortInPlace({ $0.listcreationdate.compare($1.listcreationdate) == NSComparisonResult.OrderedDescending })
                     
                     dispatch_async(dispatch_get_main_queue(), {
-                     self.tableView.reloadData()
+                        if self.tableView != nil {
+                        self.tableView.reloadData()
+                        }
                     })
-                    
+ 
                 }
             } else {
                 // Log details of the failure
@@ -478,10 +500,16 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         
                         }
                     }
+                    /*
                      dispatch_async(dispatch_get_main_queue(), {
                     self.tableView.reloadData()
                         })
-                    
+                    */
+                    dispatch_async(dispatch_get_main_queue(), {
+                        if self.tableView != nil {
+                            self.tableView.reloadData()
+                        }
+                    })
                     if receivedcount != 0 {
                         
                        // self.displayAlert("Incoming lists!", message: "You have received \(String(receivedcount)) lists")
@@ -558,7 +586,20 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
        // checkreceivedlists()
         
       //  tableView.reloadData()
-        
+        if !alldataloaded {
+            UserLists.sortInPlace({ $0.listcreationdate.compare($1.listcreationdate) == NSComparisonResult.OrderedDescending })
+            UserShopLists.sortInPlace({ $0.listcreationdate.compare($1.listcreationdate) == NSComparisonResult.OrderedDescending })
+            UserToDoLists.sortInPlace({ $0.listcreationdate.compare($1.listcreationdate) == NSComparisonResult.OrderedDescending })
+            UserFavLists.sortInPlace({ $0.listcreationdate.compare($1.listcreationdate) == NSComparisonResult.OrderedDescending })
+            
+            
+            //tableView.reloadData()
+            reloadstuff()
+        }
+        //reloadstuff()
+        if PFUser.currentUser()?.objectId != nil {
+      //  checkreceivedlists()
+        }
         displayWalkthroughs()
         
     }
@@ -575,7 +616,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     //displayReceivedAlert("", message: mesalert)
         
       checkreceivedlists()
-      tableView.reloadData()
+      //tableView.reloadData()
  
     }
 
@@ -723,7 +764,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     loggeduserimage = downloadedImage
     
         dispatch_async(dispatch_get_main_queue()) {
-            self.tableView.reloadData()
+           // self.tableView.reloadData()
             self.setnavigationtitle()
         }
     }
@@ -751,9 +792,12 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     loadevents()
     
     loadblacklist()
-    
-    tableView.reloadData()
-    
+        /*
+    dispatch_async(dispatch_get_main_queue()) {
+    self.tableView.reloadData() // FUCK
+        
+    }
+    */
     } else if (PFUser.currentUser() != nil) {//{
     /// if currentUser = nil
     
@@ -782,7 +826,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     if CheckConnection.isConnectedToNetwork() {
     
     //dispatch_async(dispatch_get_main_queue(), {
-    self.checkreceivedlists()
+    //self.checkreceivedlists()
     self.checkreceivedevents()
     //})
     } else {
@@ -793,8 +837,15 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     }
     
     self.restore()
+        /*
+        dispatch_async(dispatch_get_main_queue()) {
     self.tableView.reloadData()
+        }
+ */
     }
+    
+    
+
     
     func listsretrieval() {
         
@@ -916,9 +967,11 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         }
 
                     }
+                    /*
                     dispatch_async(dispatch_get_main_queue()) { [unowned self] in
                     self.tableView.reloadData()
                     }
+ */
                 }
                 self.restore()
                 //self.restore()
@@ -1020,12 +1073,12 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         }
 
                     }
-
+                    /*
                     dispatch_async(dispatch_get_main_queue()) {
                         self.restore()
                         self.tableView.reloadData()
                     }
-                    
+                    */
                 }
                 
                 self.restore()
@@ -1132,6 +1185,8 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     var customcatalogitem : CatalogItem?
     
     func customitemsretrieval() {
+        
+        self.setnavigationtitle()
         
         var query = PFQuery(className:"shopListCatalogItems")
         query.fromLocalDatastore()
@@ -1340,14 +1395,14 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         
                     }
                     userevents.sortInPlace({ $0.eventdate.compare($1.eventdate) == NSComparisonResult.OrderedDescending })
-                    
+                    /*
                     dispatch_async(dispatch_get_main_queue()) {
                         
                         print(receivedeventscount)
                         
                         self.tableView.reloadData()
                     }
-                    
+                    */
                     
                     
                 }
@@ -1690,7 +1745,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         navigationItem.titleView?.removeFromSuperview()
     
         let navview = UIView(frame: CGRectMake(0,0,300,30))
-        let label = UILabel(frame: CGRectMake(70,0,300,30))
+        let label = UILabel(frame: CGRectMake(80,0,300,30)) //70
         
         label.font = UIFont(name: "AvenirNext-Regular", size: 16)
         label.textColor = UIColorFromHex(0x31797D)
@@ -1698,7 +1753,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         label.text = NSLocalizedString("mylists", comment: "")
         navview.addSubview(label)
         
-        let imageview = UIImageView(frame: CGRectMake(30,0,30,30))
+        let imageview = UIImageView(frame: CGRectMake(40,0,30,30)) //30
         imageview.image = loggeduserimage
         imageview.layer.cornerRadius = imageview.layer.frame.size.width / 2
         imageview.layer.masksToBounds = true

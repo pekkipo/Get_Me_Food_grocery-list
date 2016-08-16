@@ -238,6 +238,9 @@ class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableView
             
         }
         
+        if length < 4 {
+            loadeddata = false
+        }
        
 //        name.layoutSubviews()
 

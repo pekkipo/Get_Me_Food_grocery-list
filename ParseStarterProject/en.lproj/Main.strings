@@ -714,7 +714,7 @@
 "xYf-ao-Rbs.title" = "Back";
 
 /* Class = "UIBarButtonItem"; title = "Done"; ObjectID = "xlQ-ox-mog"; */
-"xlQ-ox-mog.title" = "Done";
+"xlQ-ox-mog.title" = "Close";
 
 /* Class = "UIButton"; normalTitle = "Units"; ObjectID = "yAL-K0-Nbv"; */
 "yAL-K0-Nbv.normalTitle" = "Units";
@@ -1095,4 +1095,11 @@
 
 /* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
 "iRP-Ib-RhJ.title" = "Cancel";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"eGd-JX-V2S.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"EKB-IZ-Bav.title" = "Registration";
+
 

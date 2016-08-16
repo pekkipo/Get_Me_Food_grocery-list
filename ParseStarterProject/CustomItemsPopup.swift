@@ -593,7 +593,7 @@ class CustomItemsPopup: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     
-    @IBOutlet var textline: UIView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

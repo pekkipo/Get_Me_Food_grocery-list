@@ -344,7 +344,7 @@ class AddToDoItemViewController: UIViewController, UITextFieldDelegate, UITextVi
         canceloutlet.tintColor = UIColorFromRGB(0xF23D55)
         saveoutlet.tintColor = UIColorFromRGB(0x31797D)
         
-
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColorFromRGB(0x979797),NSFontAttributeName:UIFont(name: "AvenirNext-Regular", size: 16)!]
         
         self.view.backgroundColor = UIColorFromRGB(0xFAFAFA)
         
@@ -383,7 +383,6 @@ class AddToDoItemViewController: UIViewController, UITextFieldDelegate, UITextVi
             
             popoverViewController.modalPresentationStyle = .OverCurrentContext
 
-            popoverViewController.popoverPresentationController!.delegate = self
             popoverViewController.todocaption = caption.text!
             popoverViewController.senderVC = "ToDoItem"
             

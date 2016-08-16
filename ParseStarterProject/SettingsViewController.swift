@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import MessageUI
+import Social
 
 protocol refreshmainviewDelegate
 {
@@ -29,8 +30,8 @@ class SettingsViewController: UIViewController, GIDSignInUIDelegate, MFMailCompo
     var appicons : [UIImage] = [UIImage(named: "SetCategories")!, UIImage(named: "SetFavs")!, UIImage(named: "SetClear")!]
     var support : [String] = [NSLocalizedString("sendfeedback", comment: ""), NSLocalizedString("reportproblem", comment: ""), NSLocalizedString("rateapp", comment: "")]
     var supporticons : [UIImage] = [UIImage(named: "SetFeedback")!, UIImage(named: "SetReport")!, UIImage(named: "SetRate")!]
-    var about : [String] = [NSLocalizedString("about", comment: ""), NSLocalizedString("acknow", comment: ""),NSLocalizedString("privacy1", comment: "")]
-    var abouticons : [UIImage] = [UIImage(named: "SetHelp")!, UIImage(named: "SetFeatures")!,UIImage(named: "SetPolicy")!]
+    var about : [String] = [NSLocalizedString("share", comment: ""), NSLocalizedString("about", comment: ""), NSLocalizedString("acknow", comment: ""),NSLocalizedString("privacy1", comment: "")]
+    var abouticons : [UIImage] = [UIImage(named: "SetShare")!, UIImage(named: "SetHelp")!, UIImage(named: "SetFeatures")!,UIImage(named: "SetPolicy")!]
     
     var maindelegate : refreshmainviewDelegate?
 
@@ -333,13 +334,16 @@ class SettingsViewController: UIViewController, GIDSignInUIDelegate, MFMailCompo
         
         if segue.identifier == "sharinghistoryfromsettings" {
             
-            //let shareVC = segue.destinationViewController as! SharingHistoryTableViewController
-            let navVC = segue.destinationViewController as! UINavigationController
+     
             
-            let shareVC = navVC.viewControllers.first as! SharingHistoryTableViewController
             
+            let tabVC = segue.destinationViewController as! UITabBarController//UINavigationController
+            
+            let eventsVC = tabVC.viewControllers!.first as! UINavigationController //EventsVC
+            
+            let shareVC = eventsVC.viewControllers.first as! SharingHistoryTableViewController
+
             shareVC.sendercontroller = "SettingsVC"
-            
             
         }
         
@@ -3167,6 +3171,78 @@ class SettingsViewController: UIViewController, GIDSignInUIDelegate, MFMailCompo
         
     }
 
+    func showAlertMessage(message: String!) {
+        let alertController = UIAlertController(title: "", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func showShareOptions() {
+        
+        let actionSheet = UIAlertController(title: "", message: NSLocalizedString("sharemyapp", comment: ""), preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        
+        // Configure a new action for sharing the note in Twitter.
+        let tweetAction = UIAlertAction(title: NSLocalizedString("twittertitle", comment: ""), style: UIAlertActionStyle.Default) { (action) -> Void in
+            
+            // Check if sharing to Twitter is possible.
+            if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
+                // Initialize the default view controller for sharing the post.
+                let twitterComposeVC = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+                
+                // Set the note text as the default post message.
+               
+                    twitterComposeVC.setInitialText("\(NSLocalizedString("sharingtexttw", comment: "")) https://itunes.apple.com/app/id1083564553")
+                
+              
+                
+                // Display the compose view controller.
+                self.presentViewController(twitterComposeVC, animated: true, completion: nil)
+                
+            }
+            else {
+                self.showAlertMessage(NSLocalizedString("notloggedtotwitter", comment: ""))
+            }
+            
+        }
+        
+        
+        // Configure a new action to share on Facebook.
+        let facebookPostAction = UIAlertAction(title: NSLocalizedString("facebooktitle", comment: ""), style: UIAlertActionStyle.Default) { (action) -> Void in
+            
+            if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
+                let facebookComposeVC = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+                
+                facebookComposeVC.setInitialText("\(NSLocalizedString("sharingtextfb", comment: "")) \nhttps://itunes.apple.com/app/id1083564553")
+                
+                self.presentViewController(facebookComposeVC, animated: true, completion: nil)
+            }
+            else {
+                self.showAlertMessage(NSLocalizedString("notloggedtofacebook", comment: ""))
+            }
+            
+        }
+        
+        // Configure a new action to show the UIActivityViewController
+        let moreAction = UIAlertAction(title: NSLocalizedString("more", comment: ""), style: UIAlertActionStyle.Default) { (action) -> Void in
+            let activityViewController = UIActivityViewController(activityItems: ["\(NSLocalizedString("sharingtext", comment: "")) \nhttps://itunes.apple.com/app/id1083564553"], applicationActivities: nil)
+            
+            self.presentViewController(activityViewController, animated: true, completion: nil)
+        }
+        
+        
+        let dismissAction = UIAlertAction(title: NSLocalizedString("cancelbutton", comment: ""), style: UIAlertActionStyle.Cancel) { (action) -> Void in
+            
+        }
+        
+        
+        actionSheet.addAction(tweetAction)
+        actionSheet.addAction(facebookPostAction)
+        actionSheet.addAction(moreAction)
+        actionSheet.addAction(dismissAction)
+        
+        presentViewController(actionSheet, animated: true, completion: nil)
+    }
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -3240,19 +3316,25 @@ class SettingsViewController: UIViewController, GIDSignInUIDelegate, MFMailCompo
                         
                 } else if indexPath.section == 3 {
                             
-                            if indexPath.row == 0 {
-                                
+                                if indexPath.row == 0 {
+                
+                                // sharing stuff
+                
+                        showShareOptions()
+                
+                            } else if indexPath.row == 1 {
+                
                                 performSegueWithIdentifier("aboutfromsettings", sender: self)
                                 
                                 //
                                 
-                            } else if indexPath.row == 1 {
+                            } else if indexPath.row == 2 {
                                 
                                 // 
                                 performSegueWithIdentifier("showacknowledgments", sender: self)
                                 
                                 
-                            } else if indexPath.row == 2 {
+                            } else if indexPath.row == 3 {
                                 
                                 //
                                 performSegueWithIdentifier("showpolicy", sender: self)

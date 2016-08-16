@@ -149,11 +149,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var isReceived = Bool()
     
-    
-    var checkedImage: UIImage = UIImage(named: "EditModeCheckIcon")!
-    //UIImage(named: "check.png")!
-    
-    var notcheckedImage: UIImage = UIImage(named: "EditModeUncheckIcon")!
+
 
     var itemtocheck = String()
     
@@ -854,7 +850,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         if segue.identifier == "ShareFromToDoCreation" {//"ShareFromToDo" {
         let shareVC = segue.destinationViewController as! SharingViewController
         
-        additemstoarrayandsave()
+        //additemstoarrayandsave()
         
         shareVC.listToShare = currenttodolist
         shareVC.listToShareType = "ToDo"
@@ -1412,7 +1408,7 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
                     
                     if toDoItems[indexPathCheck.row].ischecked == false {
                         
-                        cell.checkitem.setImage(checkedImage, forState: .Normal)
+                       // cell.checkitem.setImage(checkedImage, forState: .Normal)
                         
                         toDoItems[indexPathCheck.row].ischecked = true
                         

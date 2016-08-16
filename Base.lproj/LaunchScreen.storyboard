@@ -18,16 +18,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch" translatesAutoresizingMaskIntoConstraints="NO" id="Pbc-JJ-YcD">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="613"/>
-                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get Me Food" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hf-Th-PDt">
+                                <rect key="frame" x="46" y="236" width="521" height="129"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="129" id="R40-Hn-Y6p"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="36"/>
+                                <color key="textColor" red="0.19215686269999999" green="0.47450980390000003" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.16470588235294117" green="0.18431372549019609" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Pbc-JJ-YcD" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="V0L-5V-TWu"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="Pbc-JJ-YcD" secondAttribute="bottom" constant="-13" id="moh-nA-Uei"/>
-                            <constraint firstItem="Pbc-JJ-YcD" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="oc5-IF-UmE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Pbc-JJ-YcD" secondAttribute="trailing" constant="-20" id="p7v-d6-4Lj"/>
+                            <constraint firstItem="7hf-Th-PDt" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="JYq-PL-ocl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7hf-Th-PDt" secondAttribute="trailing" constant="13" id="NdF-op-Icf"/>
+                            <constraint firstItem="7hf-Th-PDt" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="26" id="WkO-TH-YD1"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -36,7 +41,4 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Launch" width="640" height="1136"/>
-    </resources>
 </document>

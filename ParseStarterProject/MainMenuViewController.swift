@@ -47,10 +47,7 @@ protocol refreshliststableDelegate
 
 class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refreshmainviewDelegate {//, passListtoMenuDelegate {//, sendBackParametersToShopDelegate {
     
-    var loggedinimage : UIImage = UIImage(named: "LoggedInIcon")!
-    var notloggedinimage : UIImage = UIImage(named: "LoginButtonIcon2")!
-    
-    
+
     
     var delegateshowlists : refreshliststableDelegate?
     

@@ -664,9 +664,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
 // THIS IS REAL BUTTON
     @IBAction func FacebookLoginButton(sender: AnyObject) {
         
-        customfacebooklogin()
+        //customfacebooklogin()
         
-        /*
+        
         
         self.pause()
         
@@ -767,26 +767,23 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
                                            // self.maindelegate?.refreshmainview()
                                             
                                            // if self.maindelegate == nil {
-                                                
-                                                let myStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
-                                                
-                                                let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! AllListsVC
-                                                
-                                                //let protectedPageNav = UINavigationController(rootViewController: protectedPage)
-                                                
-                                                
-                                                mainmenu.loaduserdata()
-                                                
-                                                mainmenu.refreshafterlogin()
-                                                
-                                           // }
+                                            
+                                            let myStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
+                                            
+                                            let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! AllListsVC
+                                            
+                                            //let protectedPageNav = UINavigationController(rootViewController: protectedPage)
                                             
                                             
+                                            mainmenu.loaduserdata()
                                             
+                                            mainmenu.refreshafterlogin()
                                             self.restore()
                                             
                                             self.performSegueWithIdentifier("LoggedInSegue", sender: self)
-                                           // loggedIn = true
+                                            
+                                            
+                                       
                                             
                                         } else {
                                             self.restore()
@@ -817,27 +814,20 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
                     
                    // if self.maindelegate == nil {
                         
-                        let myStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
-                        
-                        let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! AllListsVC
-                        
-                        //let protectedPageNav = UINavigationController(rootViewController: protectedPage)
-                        
-                        
-                        mainmenu.loaduserdata()
-                        
-                        mainmenu.refreshafterlogin()
+                    let myStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
+                    
+                    let mainmenu = myStoryBoard.instantiateViewControllerWithIdentifier("MainMenu") as! AllListsVC
+                    
+                    //let protectedPageNav = UINavigationController(rootViewController: protectedPage)
                     
                     
+                    mainmenu.loaduserdata()
                     
-                   // }
-
+                    mainmenu.refreshafterlogin()
                     
-                   
                     self.restore()
-                   // loggedIn = true
+                    
                     self.performSegueWithIdentifier("LoggedInSegue", sender: self)
-                    //loggedIn = true
                 }
                 
                 
@@ -847,7 +837,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
                 print("Uh oh. The user cancelled the Facebook login.")
             }
         }
-        */
+ 
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

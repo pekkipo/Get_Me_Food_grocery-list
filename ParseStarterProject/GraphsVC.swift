@@ -42,6 +42,9 @@ enum Errors: ErrorType {
 }
 
 
+var statsymbol = String()
+var statcode = String()
+
 class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var senderVC = String()
@@ -712,13 +715,15 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     
                     // LATER I WILL ADD AN OPPORTUNITY TO CHANGE THE CURRENCY
                     // now check if the symbol of lists currency is equal to symbol var
-                    
-                    if ((list.listcurrency as! [String])[0] == code)
+                    //if let cur = list.listcurrency as! [String] {
+                    if ((list.listcurrency as! [String])[0] == statcode)
+                   // if cur[0] == code
                     {
                     chosenlists.append(list)
                     } else {
                         print("wrong currency")
                     }
+                    
                 
                 }
                 
@@ -851,7 +856,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             var sum : String = formatter.stringFromNumber(sumliststotalsums(chosenlists))!
             
-            listsSumLabel.text = "\(sum) \(symbol)"
+            listsSumLabel.text = "\(sum) \(statsymbol)"
             listsCountLabel.text = "\(chosenlists.count)"
         
             
@@ -1261,10 +1266,10 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
         
         let local = NSLocale.currentLocale()
-        symbol = local.objectForKey(NSLocaleCurrencySymbol) as! String
+        statsymbol = local.objectForKey(NSLocaleCurrencySymbol) as! String
 
         if let currencyCode = NSLocale.currentLocale().objectForKey(NSLocaleCurrencyCode) as? String {
-            code = currencyCode
+            statcode = currencyCode
 
         }
         

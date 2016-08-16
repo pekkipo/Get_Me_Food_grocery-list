@@ -915,3 +915,24 @@
 
 "addcustom" = "Создать категорию";
 
+"sharemyapp" = "Расскажите о приложении";
+
+"sharingtext" = "Я нашел отличное приложение для покупок!";
+
+"twittertitle" = "Twitter";
+
+"facebooktitle" = "Facebook";
+
+"notloggedtotwitter" = "Вы не вошли в аккаунт в Twitter";
+
+"notloggedtofacebook" = "Вы не вошли в аккаунт Facebook";
+
+"sharingtexttw" = "Отличный список покупок!";
+
+"sharingtextfb" = "Я нашел отличное приложение для покупок!";
+
+"more" = "Еще";
+
+"share" = "Рассказать друзьям";
+
+

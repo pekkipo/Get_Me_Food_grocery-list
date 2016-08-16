@@ -1985,14 +1985,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     var itemtocheck = String()
     
-    var checkedImage: UIImage = UIImage(named: "EditModeCheckIcon")!
-//UIImage(named: "check.png")!
-    
-    var notcheckedImage: UIImage = UIImage(named: "EditModeUncheckIcon")!//UIImage(named: "notchecked.png")!
-    
-    var checkedImageToCopy: UIImage = UIImage(named: "EditModeCheckIcon")!//UIImage(named: "check.png")!
-    
-    var notcheckedImageToCopy: UIImage = UIImage(named: "EditModeUncheckIcon")!//UIImage(named: "notchecked.png")!
+
     
     var imageToLoad = UIImage()
     var itemsoverallqty = Int()
@@ -3066,14 +3059,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    
-    func WantToSaveAlert() {
-        let customIcon = UIImage(named: "activity.png")
-        let alertview = JSSAlertView().show(self, title: "Save the list?", text: "List data still will be available during this session", buttonText: "Yes", cancelButtonText: "Cancel", iconImage: customIcon)
-        alertview.addAction(closeCallbackSave)
-        alertview.addCancelAction(cancelCallbackSave)
-    }
-    
+
     func closeCallbackSave() {
         
         
@@ -3164,11 +3150,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     
-    
-    func SaveListLocal() {
-        
-        WantToSaveAlert()
-    }
+
     
     var idsinthislist = [String]()
     
@@ -4887,10 +4869,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var quicksmallconstraint: NSLayoutConstraint!
     
     @IBOutlet var newquantitybutton: UIButton!
-    let blackquantity: UIImage = UIImage(named:"OpenQuantityB")!
-    
-    let redquantity: UIImage = UIImage(named:"CloseQuantityB")!
-    
+
     
     func showproperties() {
         
@@ -5470,7 +5449,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
 
-    
+    /*
     func didSwipeCell(recognizer: UIGestureRecognizer) {
         if recognizer.state == UIGestureRecognizerState.Ended {
             let swipeLocation = recognizer.locationInView(self.tableView)
@@ -5673,7 +5652,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
     }
-    
+    */
     
     @IBOutlet var openmenu: UIBarButtonItem!
     

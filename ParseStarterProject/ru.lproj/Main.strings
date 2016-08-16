@@ -715,7 +715,7 @@
 "xYf-ao-Rbs.title" = "Назад";
 
 /* Class = "UIBarButtonItem"; title = "Done"; ObjectID = "xlQ-ox-mog"; */
-"xlQ-ox-mog.title" = "Готово";
+"xlQ-ox-mog.title" = "Закрыть";
 
 /* Class = "UIButton"; normalTitle = "Units"; ObjectID = "yAL-K0-Nbv"; */
 "yAL-K0-Nbv.normalTitle" = "Единицы измерения";
@@ -1077,7 +1077,7 @@
 "EAH-qs-Nar.title" = "Задача";
 
 /* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
-"Mwi-3H-JEG.text" = "Задача";
+"Mwi-3H-JEG.text" = "ЗАДАЧА";
 
 /* Class = "UITextField"; placeholder = "Type item name"; ObjectID = "1Sq-ay-MJI"; */
 "avf-qt-FTz.placeholder" = "Что вам нужно сделать?";
@@ -1097,4 +1097,9 @@
 /* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
 "iRP-Ib-RhJ.title" = "Отмена";
 
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"eGd-JX-V2S.normalTitle" = "Отмена";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"EKB-IZ-Bav.title" = "Регистрация";
 

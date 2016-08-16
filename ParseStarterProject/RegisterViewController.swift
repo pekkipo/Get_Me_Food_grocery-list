@@ -424,6 +424,8 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
 
         // Do any additional setup after loading the view.
         
+        useravatar.tintColor = UIColor.whiteColor()
+        
         username.delegate = self
         useremail.delegate = self
         userpassword.delegate = self
