@@ -245,6 +245,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
 
+    @IBOutlet var addcontactoutlet: UIButton!
     
     @IBOutlet var contactemail: MPGTextField_Swift!
     
@@ -279,6 +280,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
        // print(sampleData)
+        
         
     }
     

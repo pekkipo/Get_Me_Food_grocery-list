@@ -2438,7 +2438,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                // cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
                // cell.addToFavOutlet.imageForState(.Normal).
                 
-                cell.addToFavOutlet.tintColor = UIColorFromRGB(0xD9D9D9)
+                cell.addToFavOutlet.tintColor = UIColorFromRGB(0xFFFFFF)
                 
                 
             } else {
@@ -2576,7 +2576,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                 
                // notfavimage = UIImage(named: "ICFavStar") as UIImage!
                // cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
-                cell.addToFavOutlet.tintColor = UIColorFromRGB(0xD9D9D9)
+                cell.addToFavOutlet.tintColor = UIColorFromRGB(0xFFFFFF)
                 
             } else {
                 //add to favs
@@ -2674,7 +2674,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                 
                 //notfavimage = UIImage(named: "ICFavStar") as UIImage!
                // cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
-                cell.addToFavOutlet.tintColor = UIColorFromRGB(0xD9D9D9)
+                cell.addToFavOutlet.tintColor = UIColorFromRGB(0xFFFFFF)
                 
             } else {
                 //add to favs
@@ -2841,7 +2841,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                 
                // notfavimage = UIImage(named: "ICFavStar") as UIImage!
                // cell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
-                cell.addtofavs.tintColor = UIColorFromRGB(0xD9D9D9)
+                cell.addtofavs.tintColor = UIColorFromRGB(0xFFFFFF)
                 
                 
                 
@@ -2992,7 +2992,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                // notfavimage = UIImage(named: "ICFavStar") as UIImage!
                // cell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
                 
-                cell.addtofavs.tintColor = UIColorFromRGB(0xD9D9D9)
+                cell.addtofavs.tintColor = UIColorFromRGB(0xFFFFFF)
                 
                 
             } else {
@@ -3107,7 +3107,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                 
                // notfavimage = UIImage(named: "ICFavStar") as UIImage!
                // cell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
-                cell.addtofavs.tintColor = UIColorFromRGB(0xD9D9D9)
+                cell.addtofavs.tintColor = UIColorFromRGB(0xFFFFFF)
                 
                 
             } else {
@@ -6458,11 +6458,12 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         //favimage = UIImage(named: "ICFavStarActive") as UIImage!
                         //receivedcell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
                         receivedcell.addtofavs.tintColor = UIColorFromRGB(0xA2AF36)
-
+                        receivedcell.addtofavs.hidden = false
                     } else {
                        // notfavimage = UIImage(named: "ICFavStar") as UIImage!
                        // receivedcell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
-                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xD9D9D9)
+                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xFFFFFF)
+                        receivedcell.addtofavs.hidden = true
                     }
                     
                    
@@ -6546,13 +6547,14 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     if UserLists[indexPath.row].listisfavourite == true {
                        // favimage = UIImage(named: "ICFavStarActive") as UIImage!
                         //cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
-                        
+                        cell.addToFavOutlet.hidden = false
                         cell.addToFavOutlet.tintColor = UIColorFromRGB(0xA2AF36)
                     } else {
                        // notfavimage = UIImage(named: "ICFavStar") as UIImage!
                        // cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
                         
-                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xD9D9D9)
+                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xFFFFFF)
+                        cell.addToFavOutlet.hidden = true
                     }
                     
                   
@@ -6626,11 +6628,13 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                        // favimage = UIImage(named: "ICFavStarActive") as UIImage!
                        // receivedcell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
                         receivedcell.addtofavs.tintColor = UIColorFromRGB(0xA2AF36)
+                        receivedcell.addtofavs.hidden = false
                         
                     } else {
                       //  notfavimage = UIImage(named: "ICFavStar") as UIImage!
                       //  receivedcell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
-                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xD9D9D9)
+                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xFFFFFF)
+                        receivedcell.addtofavs.hidden = true
                         
                     }
                     
@@ -6702,13 +6706,13 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     if UserShopLists[indexPath.row].listisfavourite == true {
                       //  favimage = UIImage(named: "ICFavStarActive") as UIImage!
                       //  cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
-                        
+                        cell.addToFavOutlet.hidden = false
                         cell.addToFavOutlet.tintColor = UIColorFromRGB(0xA2AF36)
                     } else {
                        // notfavimage = UIImage(named: "ICFavStar") as UIImage!
                        // cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
-                       
-                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xD9D9D9)
+                       cell.addToFavOutlet.hidden = true
+                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xFFFFFF)
                     }
                     
                     
@@ -6783,13 +6787,13 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                        // receivedcell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
                         // cell.addToFavOutlet.addTarget(self, action: "delfromfav:", forControlEvents: .TouchUpInside)
                         receivedcell.addtofavs.tintColor = UIColorFromRGB(0xA2AF36)
-                        
+                        receivedcell.addtofavs.hidden = false
                     } else {
                        // notfavimage = UIImage(named: "ICFavStar") as UIImage!
                        // receivedcell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
                         // cell.addToFavOutlet.addTarget(self, action: "addtofav:", forControlEvents: .TouchUpInside)
-                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xD9D9D9)
-                        
+                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xFFFFFF)
+                        receivedcell.addtofavs.hidden = true
                     }
                     
                     
@@ -6860,13 +6864,14 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     if UserToDoLists[indexPath.row].listisfavourite == true {
                        // favimage = UIImage(named: "ICFavStarActive") as UIImage!
                        // cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
-                        
+                        cell.addToFavOutlet.hidden = false
                         cell.addToFavOutlet.tintColor = UIColorFromRGB(0xA2AF36)
+                        
                     } else {
                        // notfavimage = UIImage(named: "ICFavStar") as UIImage!
                        // cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
-                        
-                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xD9D9D9)
+                        cell.addToFavOutlet.hidden = true
+                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xFFFFFF)
                     }
                     
                     
@@ -6945,13 +6950,13 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                        // favimage = UIImage(named: "ICFavStarActive") as UIImage!
                        // receivedcell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
                         receivedcell.addtofavs.tintColor = UIColorFromRGB(0xA2AF36)
-                        
+                        receivedcell.addtofavs.hidden = false
 
                     } else {
                        // notfavimage = UIImage(named: "ICFavStar") as UIImage!
                        // receivedcell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
-                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xD9D9D9)
-                        
+                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xFFFFFF)
+                        receivedcell.addtofavs.hidden = true
                     }
                     
                     
@@ -7027,13 +7032,13 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     if UserFavLists[indexPath.row].listisfavourite == true {
                         //favimage = UIImage(named: "ICFavStarActive") as UIImage!
                         //cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
-                        
+                        cell.addToFavOutlet.hidden = false
                         cell.addToFavOutlet.tintColor = UIColorFromRGB(0xA2AF36)
                     } else {
                         //notfavimage = UIImage(named: "ICFavStar") as UIImage!
                        // cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
-                        
-                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xD9D9D9)
+                        cell.addToFavOutlet.hidden = true
+                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xFFFFFF)
                     }
                     
                     
@@ -7117,12 +7122,12 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                         //favimage = UIImage(named: "ICFavStarActive") as UIImage!
                         //receivedcell.addtofavs.setImage(favimage, forState: UIControlState.Normal)
                         receivedcell.addtofavs.tintColor = UIColorFromRGB(0xA2AF36)
-                        
+                        receivedcell.addtofavs.hidden = false
                     } else {
                        // notfavimage = UIImage(named: "ICFavStar") as UIImage!
                        // receivedcell.addtofavs.setImage(notfavimage, forState: UIControlState.Normal)
-                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xD9D9D9)
-                        
+                        receivedcell.addtofavs.tintColor = UIColorFromRGB(0xFFFFFF)
+                        receivedcell.addtofavs.hidden = true
                     }
                     
                     
@@ -7207,13 +7212,13 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
                     if UserLists[indexPath.row].listisfavourite == true {
                       //  favimage = UIImage(named: "ICFavStarActive") as UIImage!
                       //  cell.addToFavOutlet.setImage(favimage, forState: UIControlState.Normal)
-                        
+                        cell.addToFavOutlet.hidden = false
                         cell.addToFavOutlet.tintColor = UIColorFromRGB(0xA2AF36)
                     } else {
                       //  notfavimage = UIImage(named: "ICFavStar") as UIImage!
                       //  cell.addToFavOutlet.setImage(notfavimage, forState: UIControlState.Normal)
-                        
-                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xD9D9D9)
+                        cell.addToFavOutlet.hidden = true
+                        cell.addToFavOutlet.tintColor = UIColorFromRGB(0xFFFFFF)
                     }
                     
                     

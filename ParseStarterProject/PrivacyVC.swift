@@ -14,9 +14,6 @@ class PrivacyVC: UIViewController {
     @IBOutlet var privacytext: UITextView!
     
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

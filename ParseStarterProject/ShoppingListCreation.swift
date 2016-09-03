@@ -2765,69 +2765,74 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         alertview.addAction(closeCallback)
     }
     
-    let progressHUD = ProgressHUD(text: NSLocalizedString("pasting", comment: ""))
-      let progressHUDsave = ProgressHUD(text: NSLocalizedString("saving", comment: ""))
-    let progressHUDload = ProgressHUD(text: NSLocalizedString("loading", comment: ""))
+    //let progressHUD = ProgressHUD(text: NSLocalizedString("pasting", comment: ""))
+    //  let progressHUDsave = ProgressHUD(text: NSLocalizedString("saving", comment: ""))
+    //let progressHUDload = ProgressHUD(text: NSLocalizedString("loading", comment: ""))
+    
+    
+    func loading_simple(show: Bool) {
+        
+        
+        let dimmer : UIView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
+        dimmer.backgroundColor = UIColorFromRGB(0x2A2F36)
+        dimmer.alpha = 0.3
+        
+        let viewframe = CGRectMake(self.view.frame.width / 2 - 50, self.view.frame.height / 2 - 50, 100, 100)
+        let loadingview: UIView = UIView(frame: viewframe);
+        loadingview.backgroundColor = UIColor.whiteColor()
+        loadingview.layer.cornerRadius = 12
+        
+        let indicator : NVActivityIndicatorView =  NVActivityIndicatorView(frame: CGRectMake(20, 20, 60, 60), type: NVActivityIndicatorType.BallClipRotate, color: UIColorFromRGB(0x1EB2BB))
+        
+        
+        loadingview.addSubview(indicator)
+        
+        
+        
+        dimmer.tag = 873
+        loadingview.tag = 874
+        
+        
+        
+        if show {
+            
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+            self.view.addSubview(dimmer)
+            dimmer.sendSubviewToBack(self.view)
+            self.view.addSubview(loadingview)
+            
+            indicator.startAnimation()
+            
+        } else {
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            if let viewWithTag = self.view.viewWithTag(873) {
+                viewWithTag.removeFromSuperview()
+            }
+            if let viewWithTag = self.view.viewWithTag(874) {
+                viewWithTag.removeFromSuperview()
+            }
+            
+        }
+        
+    }
+    
     
     func pause() {
         
         
-        self.view.addSubview(progressHUD)
-        
-        progressHUD.setup()
-        progressHUD.show()
-        
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+       loading_simple(true)
     }
     
-    func pauseload() {
-        
-        
-        self.view.addSubview(progressHUDload)
-        
-        progressHUDload.setup()
-        progressHUDload.show()
-        
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-    }
-    
-    func pausesave() {
-        
-        
-        self.view.addSubview(progressHUDsave)
-        
-        progressHUDsave.setup()
-        progressHUDsave.show()
-        
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-    }
+
 
     
     
     func restore() {
         
-        progressHUD.hide()
-        
-        
-        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        loading_simple(false)
     }
     
-    func restoresave() {
-        
-        progressHUDsave.hide()
-        
-        
-        UIApplication.sharedApplication().endIgnoringInteractionEvents()
-    }
     
-    func restoreload() {
-        
-        progressHUDload.hide()
-        
-        
-        UIApplication.sharedApplication().endIgnoringInteractionEvents()
-    }
-
 
     
     
@@ -3083,7 +3088,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             (shopList: PFObject?, error: NSError?) -> Void in
             if error != nil {
                 print(error)
-                self.restoresave()
+                self.restore()
             } else if let shopList = shopList {
                 
                 shopList["ShopListName"] = self.self.listnameinview.text
@@ -3713,7 +3718,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
 
         
-        pauseload()
+        pause()
         
         var query1 = PFQuery(className:"shopItems")
         //query.whereKey("objectId", equalTo:"T7MqKFyDbQ")
@@ -3865,7 +3870,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 self.getcategoriesnames(self.shoppingListItemsCategories)
                 self.fillthedict()
                 
-                self.restoreload()
+                self.restore()
                 
                 if itemsDataDict.count > 0 {
                   //  self.noitemview.hidden = true
@@ -3875,7 +3880,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 
             } else {
                 // Log details of the failure
-                self.restoreload()
+                self.restore()
                 print("Error: \(error!) \(error!.userInfo)")
             }
         }
@@ -3969,7 +3974,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             } else {
                 // Log details of the failure
-                self.restoreload()
+                self.restore()
                 print("Error: \(error!) \(error!.userInfo)")
             }
             
@@ -6742,6 +6747,8 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var noteview: UIView!
     
     
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -6764,6 +6771,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         picker.delegate = self
         picker.dataSource = self
         
+ 
         setupButtons([copyoutlet, pasteoutlet, deleteoutlet, canceloutlet])
         
         resetunitsback()
@@ -6778,57 +6786,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         horizontalScrollView.setItemsMarginOnce()
         
         categoriessetup()
-        /*
-        horizontalScrollView = ASHorizontalScrollView(frame:CGRectMake(0, 0, horscrollview.frame.width, 34))
-        horizontalScrollViewper = ASHorizontalScrollView(frame:CGRectMake(0, 0, horscrollviewper.frame.width, 34))
-        horizontalScrollView.uniformItemSize = CGSizeMake(40, 34)
-        horizontalScrollViewper.uniformItemSize = CGSizeMake(40, 34)
-        horizontalScrollView.leftMarginPx = 0
-        horizontalScrollViewper.leftMarginPx = 0
-        horizontalScrollView.miniMarginPxBetweenItems = 8
-        horizontalScrollView.miniAppearPxOfLastItem = 10
-        horizontalScrollViewper.miniMarginPxBetweenItems = 8
-        horizontalScrollViewper.miniAppearPxOfLastItem = 10
-        horizontalScrollView.setItemsMarginOnce()
-        horizontalScrollViewper.setItemsMarginOnce()
-        
-        
-        
-        for i in (0..<units.count) {
-
-            var button = UIButton(frame: CGRectZero)
-            button.backgroundColor = UIColor.clearColor()
-            button.setTitle(units[i][1], forState: .Normal)
-            button.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
-            button.tintColor = UIColorFromRGB(0x31797D)
-            button.setTitleColor(UIColorFromRGB(0x31797D), forState: UIControlState.Normal)
-            button.layer.borderWidth = 1
-            button.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-            button.layer.cornerRadius = 8
-            
-            button.addTarget(self, action: "pickedunit:", forControlEvents: UIControlEvents.TouchDown)
-            button.tag = 0 + i
-            
-            var buttonper = UIButton(frame:CGRectMake(0, 0, 52, 42))
-            buttonper.backgroundColor = UIColor.clearColor()
-            buttonper.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
-            buttonper.tintColor = UIColorFromRGB(0x31797D)
-            buttonper.setTitleColor(UIColorFromRGB(0x31797D), forState: UIControlState.Normal)
-            
-            buttonper.layer.borderWidth = 1
-            buttonper.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-            buttonper.layer.cornerRadius = 8
-            buttonper.setTitle(units[i][1], forState: .Normal)
-            buttonper.addTarget(self, action: "pickedperunit:", forControlEvents: UIControlEvents.TouchDown)
-            buttonper.tag = 10 + i
-            
-            horizontalScrollView.addItem(button)
-            horizontalScrollViewper.addItem(buttonper)
-        }
-        */
-        
-      // self.horscrollview.addSubview(horizontalScrollView)
-       // self.horscrollviewper.addSubview(horizontalScrollViewper)
+   
         
         // not sure
         itemsDataDict.removeAll(keepCapacity: true)
@@ -6877,6 +6835,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadTableAfterPush", name: "reloadTableShop", object: nil)
+        
         
         let toolFrame = CGRectMake(0, 0, self.view.frame.size.width, 46);
         let toolView: UIView = UIView(frame: toolFrame);
@@ -6942,7 +6901,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         closepad5.addTarget(self, action: "closenumberpad5:", forControlEvents: UIControlEvents.TouchDown);
         
         quicksum.inputAccessoryView = toolView5
-        
+       
         
         popqty.text = ""
         
@@ -6956,7 +6915,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
 
       //  quickcategorybutton.setTitle(catalogcategories[0].catname, forState: .Normal)
         
-         setcategoryinscroller("usual", catindex: nil)
+        setcategoryinscroller("usual", catindex: nil)
         
         quickicon.image = imagestochoose[0].itemimage
         
@@ -6989,33 +6948,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         smallpopover.backgroundColor = UIColorFromRGB(0xFFFFFF)//UIColorFromRGB(0xF7F7F7)
         
         smallpopover.hidden = true
-        /*
-        inamountview.layer.cornerRadius = 8
-        
-        inamountview.layer.borderWidth = 1
-        inamountview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-        
-        
-        quickpriceoutlet.layer.cornerRadius = 8
-        
-        quickpriceoutlet.layer.borderWidth = 1
-        quickpriceoutlet.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-        
-        quicksum.layer.cornerRadius = 8
-        
-        quicksum.layer.borderWidth = 1
-        quicksum.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-        */
-        
-        
-        
-        /*
-        prodiconview.layer.cornerRadius = 8
-        
-        prodiconview.layer.borderWidth = 1
-        prodiconview.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-        */
-        
+
        autocomplete.leftTextMargin = 5
         
   
@@ -7067,57 +7000,15 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             newPFObject()
             
-            
-               // noitemview.hidden = false
-           
-           // let button =  UIButton(type: .Custom)
-            // NAV TITILE AS A BUTTON
-            /*
-            navbutton.frame = CGRectMake((((self.view.frame.size.width) / 2) - 130),0,260,40) as CGRect
-            navbutton.setTitle(NSLocalizedString("listshop", comment: ""), forState: UIControlState.Normal)
-            navbutton.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 14)
-            navbutton.setTitleColor(self.UIColorFromRGB(0x31797D), forState: .Normal)
-
-            let titleimage = UIImage(named: "myliststitle") as UIImage?
-            navbutton.setImage(titleimage, forState: .Normal)
-
-            let spacing : CGFloat = 3;
-            let insetAmount : CGFloat = 0.5 * spacing;
-            
-            // First set overall size of the button:
-            navbutton.contentEdgeInsets = UIEdgeInsetsMake(0, insetAmount, 0, insetAmount);
-            navbutton.sizeToFit()
-            
-            // Then adjust title and image insets so image is flipped to the right and there is spacing between title and image:
-            navbutton.titleEdgeInsets  = UIEdgeInsetsMake(0, -navbutton.imageView!.frame.size.width - insetAmount, 0,  navbutton.imageView!.frame.size.width  + insetAmount);
-            navbutton.imageEdgeInsets  = UIEdgeInsetsMake(2, navbutton.titleLabel!.frame.size.width + insetAmount, 0, -navbutton.titleLabel!.frame.size.width - insetAmount);
-            
-            navbutton.addTarget(self, action: Selector("clickthetitle:"), forControlEvents: UIControlEvents.TouchUpInside)
-            self.navigationItem.titleView = navbutton
-            */
+ 
             showprogress()
             
         } else {
-            
-            //  if senderVC == senderVC as? MainMenuViewController {
-            
-            // currentList = globalshoplistid
-            // currentList = activeList!
-            // tableView.reloadData()
-            
-            //  } else {
+
             
             currentList = activeList!
             dataretrievallist()
-            //dataretrievalinorder()
-            //summationPrices()
-            
-          //  print("DICT IS \(itemsDataDict)")
-            
-           
-            
-            
-           // if let foundlist = find(lazy(UserLists).map({ $0.listid }), activeList!) {
+
             
               if let foundlist = UserLists.map({ $0.listid }).lazy.indexOf(activeList!) {
                 if (UserLists[foundlist].listcategories != nil) {

@@ -207,6 +207,7 @@ class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableView
    // var tempstring = String()
 
     
+    @IBOutlet var sharebuttonoutlet: UIButton!
     
     var loadeddata : Bool = false
     
@@ -244,7 +245,7 @@ class SharingViewController: UIViewController, MPGTextFieldDelegate, UITableView
        
 //        name.layoutSubviews()
 
-        
+       
         
     }
     

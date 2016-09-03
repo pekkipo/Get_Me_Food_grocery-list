@@ -162,7 +162,7 @@
 
 "contacts" = "Contacts"; //
 
-"shhistory" = "Sharing History"; // Vergangener (Gesamter) Verlauf
+"shhistory" = "Activity"; // Vergangener (Gesamter) Verlauf
 
 "restorepurch" = "Restore purchases"; //
 
@@ -944,6 +944,6 @@
 
 "more" = "More";
 
-
+"share" = "Tell friends about the app";
 
 

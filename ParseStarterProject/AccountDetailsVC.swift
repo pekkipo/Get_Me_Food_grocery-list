@@ -1189,6 +1189,8 @@ class AccountDetailsVC: UIViewController,UINavigationControllerDelegate, UIImage
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        if senderVC != "SettingsVC" {
         OpenMenu.target = self.revealViewController()
         OpenMenu.action = Selector("revealToggle:")
         
@@ -1196,7 +1198,10 @@ class AccountDetailsVC: UIViewController,UINavigationControllerDelegate, UIImage
       
             revealController.tapGestureRecognizer()
         }
-
+            
+        } else {
+            navigationItem.setLeftBarButtonItem(nil, animated: true)
+        }
         
         
         userdisplayname.delegate = self

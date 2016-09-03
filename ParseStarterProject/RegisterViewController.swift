@@ -244,7 +244,7 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
         // Automatically use scale factor of main screen
         
         let avsize = CGSizeMake(100, 100)
-        UIGraphicsBeginImageContextWithOptions(avsize, false, 1.0)
+        UIGraphicsBeginImageContextWithOptions(avsize, true, 1.0) // was false
         imageObj.drawInRect(CGRect(origin: CGPointZero, size: avsize))
         
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()

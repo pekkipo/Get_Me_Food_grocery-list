@@ -686,7 +686,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             array.append(doublevalue)
             } else {
             //array.append(0.0)
-            array.append(Double(arc4random_uniform(2000))) //FOR TESTING
+            //array.append(Double(arc4random_uniform(2000))) //FOR TESTING
             }
         }
         
@@ -1258,7 +1258,8 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     override func viewDidAppear(animated: Bool) {
-    
+        //setChart(barView, linechart: lineView, piechart: pieView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: chosentimestep, timeperiodtype: timeperiodtype))
+        choosebartype(charttype.bar)
     }
     
     override func viewDidLoad() {
@@ -1289,8 +1290,12 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         
         //setChart(barView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: chosentimestep, timeperiodtype: timeperiodtype))
+        // MOVED TO DID APPEAR
+        
         setChart(barView, linechart: lineView, piechart: pieView, prices: handledata(chosenfromdate, duedate: chosenduedate, timestep: chosentimestep, timeperiodtype: timeperiodtype))
-        choosebartype(charttype.bar)
+      //  choosebartype(charttype.bar)
+       
+        //
 
             steplabel.text = NSLocalizedString("days", comment: "")
         
