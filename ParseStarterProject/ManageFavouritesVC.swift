@@ -390,6 +390,8 @@ class ManageFavouritesVC: UIViewController,UITableViewDelegate, UITableViewDataS
         
          itemsretrieval()
         // Do any additional setup after loading the view.
+        
+        tableView.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {

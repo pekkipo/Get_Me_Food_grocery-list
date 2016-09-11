@@ -967,7 +967,7 @@ class AccountDetailsVC: UIViewController,UINavigationControllerDelegate, UIImage
         let chosenimage = UIImagePickerController()
         chosenimage.delegate = self//self
         chosenimage.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        chosenimage.allowsEditing = false
+        chosenimage.allowsEditing = true
         
         self.presentViewController(chosenimage, animated: true, completion: nil)
         

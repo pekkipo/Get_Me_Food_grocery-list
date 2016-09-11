@@ -641,6 +641,8 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         contactemail.delegate = self
         
         contactemail.mDelegate = self
@@ -651,6 +653,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableFooterView = UIView()
         
         //retrieveContacts1()
         

@@ -1744,14 +1744,19 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         
         navigationItem.titleView?.removeFromSuperview()
     
-        let navview = UIView(frame: CGRectMake(0,0,300,30))
-        let label = UILabel(frame: CGRectMake(80,0,300,30)) //70
+       // let navview = UIView(frame: CGRectMake(0,0,300,30))
+       // let label = UILabel(frame: CGRectMake(80,0,300,30)) //70
+        
+        let navview = UIView(frame: CGRectMake(0,0,150,30))
+        let label = UILabel(frame: CGRectMake(70,0,150,30)) //70
         
         label.font = UIFont(name: "AvenirNext-Regular", size: 16)
         label.textColor = UIColorFromHex(0x31797D)
 
         label.text = NSLocalizedString("mylists", comment: "")
         navview.addSubview(label)
+        
+        //navigationItem.titleView?.set
         
         let imageview = UIImageView(frame: CGRectMake(40,0,30,30)) //30
         imageview.image = loggeduserimage

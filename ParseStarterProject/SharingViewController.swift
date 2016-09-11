@@ -2801,6 +2801,7 @@ func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo
         print("List is \(listToShare)")
         // Do any additional setup after loading the view.
         
+        tableView.tableFooterView = UIView()
         
         name.delegate = self
         name.leftTextMargin = 1//5

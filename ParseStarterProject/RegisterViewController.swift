@@ -244,7 +244,7 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
         // Automatically use scale factor of main screen
         
         let avsize = CGSizeMake(100, 100)
-        UIGraphicsBeginImageContextWithOptions(avsize, true, 1.0) // was false
+        UIGraphicsBeginImageContextWithOptions(avsize, false, 1.0) // was false
         imageObj.drawInRect(CGRect(origin: CGPointZero, size: avsize))
         
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -444,7 +444,7 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate, 
        
         
       
-        username.leftTextMargin = 17
+        username.leftTextMargin = 17 // was 17
         userpassword.leftTextMargin = 17
         useremail.leftTextMargin = 17
         

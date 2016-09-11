@@ -1309,6 +1309,7 @@ class GraphsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
 
         
+        
         tblExpandable.registerNib(UINib(nibName: "choosedatescell", bundle: nil), forCellReuseIdentifier: "choosedates")
         // Do any additional setup after loading the view.
         
