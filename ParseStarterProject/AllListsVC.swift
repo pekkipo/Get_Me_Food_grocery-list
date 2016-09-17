@@ -1748,7 +1748,7 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
        // let label = UILabel(frame: CGRectMake(80,0,300,30)) //70
         
         let navview = UIView(frame: CGRectMake(0,0,150,30))
-        let label = UILabel(frame: CGRectMake(70,0,150,30)) //70
+        let label = UILabel(frame: CGRectMake(70,0,150,30)) //first 70
         
         label.font = UIFont(name: "AvenirNext-Regular", size: 16)
         label.textColor = UIColorFromHex(0x31797D)

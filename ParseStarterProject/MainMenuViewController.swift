@@ -2122,7 +2122,7 @@ class MainMenuViewController: UIViewController, passtodoListtoMenuDelegate, refr
     }
     
     override func viewDidAppear(animated: Bool) {
-          displayWalkthroughs()
+          //displayWalkthroughs()
         
     }
     

@@ -22,14 +22,13 @@ class PageViewController: UIPageViewController
     
     var pageHeaders = [NSLocalizedString("tutheaderintro", comment: ""), NSLocalizedString("tutheader1", comment: ""), NSLocalizedString("tutheader2", comment: ""), NSLocalizedString("tutheader3", comment: ""), NSLocalizedString("tutheader4", comment: ""), NSLocalizedString("tutheader5", comment: "")]
     
-    var pageImages = [NSLocalizedString("tutimintro", comment: ""), NSLocalizedString("tutim1", comment: ""), NSLocalizedString("tutim2", comment: ""), NSLocalizedString("tutim3", comment: ""), NSLocalizedString("tutim4", comment: ""), "Tutorial5"]
+    //var pageImages = [NSLocalizedString("tutimintro", comment: ""), NSLocalizedString("tutim1", comment: ""), NSLocalizedString("tutim2", comment: ""), NSLocalizedString("tutim3", comment: ""), NSLocalizedString("tutim4", comment: ""), "Tutorial5"]
+    
+     var pageImages = [NSLocalizedString("tutimintro", comment: "")]
+    
     var pageDescriptions = ["", "", "", "", "", ""]
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle
-    {
-        return .Default
-    }
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

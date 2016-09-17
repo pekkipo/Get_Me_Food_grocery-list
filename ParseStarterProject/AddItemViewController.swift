@@ -1349,6 +1349,62 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                 println("item \(self.currentitem) was updated and saved")
                 
                 }*/
+                
+                
+                for ( var i = 0; i < itemsDataDict.count; i++ ) {
+                    if itemsDataDict[i]["ItemId"] as? String == self.currentitem {
+                        
+                        
+                        print(itemsDataDict[i])
+                        
+                        
+                        ////get cat name
+                        self.getcategoryname(self.itemcategoryUUID)
+                        
+                        ////
+                        
+                        itemsDataDict[i]["ItemName"] = self.itemNameOutlet.text
+                        itemsDataDict[i]["ItemNote"] = self.itemNoteOutlet.text
+                        itemsDataDict[i]["ItemQuantity"] = self.Qfield.text
+                        itemsDataDict[i]["ItemTotalPrice"] = self.totalsumlabel.text//((self.totalsumlabel.text) as NSString?)?.doubleValue
+                        itemsDataDict[i]["ItemImagePath"] = self.imagePath
+                        if self.UnitsButton.titleForState(.Normal) == "Units" || self.UnitsButton.titleForState(.Normal) == "" {
+                            itemsDataDict[i]["ItemUnit"] = ""
+                        } else {
+                            itemsDataDict[i]["ItemUnit"] = self.UnitsButton.titleForState(.Normal)
+                        }
+                        //itemsDataDict[i]["ItemIsChecked"] = self.itemNameOutlet.text
+                        itemsDataDict[i]["ItemImage2"] = self.itemImageOutlet.image
+                        itemsDataDict[i]["ItemCategory"] = self.itemcategoryUUID
+                        // itemsDataDict[i]["ItemIsCatalog"] = self.itemNameOutlet.text
+                        // itemsDataDict[i]["ItemOriginal"] = self.itemNameOutlet.text
+                        itemsDataDict[i]["ItemCategoryName"] = self.itemcategoryname
+                        
+                        // print(self.itemPriceOutlet.text)
+                        
+                        itemsDataDict[i]["ItemOneUnitPrice"] = self.itemPriceOutlet.text//((self.itemPriceOutlet.text)! as NSString).doubleValue
+                        //  print( itemsDataDict[i]["ItemOneUnitPrice"])
+                        
+                        itemsDataDict[i]["ItemIsFav"] = self.isFavouriteItem
+                        
+                        if self.perUnitOutlet.titleForState(.Normal) == "Units" || self.perUnitOutlet.titleForState(.Normal) == "" {
+                            itemsDataDict[i]["ItemPerUnit"] = ""
+                            
+                        } else {
+                            itemsDataDict[i]["ItemPerUnit"] = self.perUnitOutlet.titleForState(.Normal)
+                        }
+                        itemsDataDict[i]["UpdateDate"] = update
+                        itemsDataDict[i]["ItemIsDefPict"] = self.isdefaultpicture
+                        itemsDataDict[i]["ItemOriginalInDefaults"] = self.defaultpicturename
+                        
+                        
+                        
+                        print(itemsDataDict[i])
+                        
+                    }
+                }
+                
+                
                 itemch.pinInBackgroundWithBlock({
                 (success: Bool, error: NSError?) -> Void in
                 if (success) {
@@ -1356,58 +1412,6 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                     
                     
                     // now update this item in itemsDataDict
-                    for ( var i = 0; i < itemsDataDict.count; i++ ) {
-                        if itemsDataDict[i]["ItemId"] as? String == self.currentitem {
-                           
-                            
-                            print(itemsDataDict[i])
-                            
-                            
-                            ////get cat name
-                            self.getcategoryname(self.itemcategoryUUID)
-                            
-                            ////
-                            
-                            itemsDataDict[i]["ItemName"] = self.itemNameOutlet.text
-                            itemsDataDict[i]["ItemNote"] = self.itemNoteOutlet.text
-                            itemsDataDict[i]["ItemQuantity"] = self.Qfield.text
-                            itemsDataDict[i]["ItemTotalPrice"] = self.totalsumlabel.text//((self.totalsumlabel.text) as NSString?)?.doubleValue
-                            itemsDataDict[i]["ItemImagePath"] = self.imagePath
-                            if self.UnitsButton.titleForState(.Normal) == "Units" || self.UnitsButton.titleForState(.Normal) == "" {
-                                itemsDataDict[i]["ItemUnit"] = ""
-                            } else {
-                            itemsDataDict[i]["ItemUnit"] = self.UnitsButton.titleForState(.Normal)
-                            }
-                            //itemsDataDict[i]["ItemIsChecked"] = self.itemNameOutlet.text
-                            itemsDataDict[i]["ItemImage2"] = self.itemImageOutlet.image
-                            itemsDataDict[i]["ItemCategory"] = self.itemcategoryUUID
-                           // itemsDataDict[i]["ItemIsCatalog"] = self.itemNameOutlet.text
-                           // itemsDataDict[i]["ItemOriginal"] = self.itemNameOutlet.text
-                            itemsDataDict[i]["ItemCategoryName"] = self.itemcategoryname
-                            
-                           // print(self.itemPriceOutlet.text)
-                            
-                            itemsDataDict[i]["ItemOneUnitPrice"] = self.itemPriceOutlet.text//((self.itemPriceOutlet.text)! as NSString).doubleValue
-                          //  print( itemsDataDict[i]["ItemOneUnitPrice"])
-                            
-                            itemsDataDict[i]["ItemIsFav"] = self.isFavouriteItem
-                            
-                            if self.perUnitOutlet.titleForState(.Normal) == "Units" || self.perUnitOutlet.titleForState(.Normal) == "" {
-                             itemsDataDict[i]["ItemPerUnit"] = ""
-                                
-                            } else {
-                            itemsDataDict[i]["ItemPerUnit"] = self.perUnitOutlet.titleForState(.Normal)
-                            }
-                            itemsDataDict[i]["UpdateDate"] = update
-                            itemsDataDict[i]["ItemIsDefPict"] = self.isdefaultpicture
-                            itemsDataDict[i]["ItemOriginalInDefaults"] = self.defaultpicturename
-                            
-   
-                            
-                            print(itemsDataDict[i])
-                            
-                        }
-                    }
                     
                     // now the same for HISTORY ITEMS if such exists
                     if HistoryitemsDataDict.count != 0 {
@@ -1453,24 +1457,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                         }
                     }
                     
-                    ////segue stuff 
-                   if self.sendercontroller == "ShopListCreation" {
-                        
-                        if((self.shopdelegate) != nil)
-                        {
-                            self.shopdelegate?.refreshtable()
-
-                            
-                        }
-
-                    self.performSegueWithIdentifier("gobacktocreationshoplist", sender: self)
-                        
-                    } else {
-                        
-                        self.dismissViewControllerAnimated(true, completion: nil)
-    
-                        
-                    }
+                  
                     
                     ////
                     
@@ -1479,6 +1466,26 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                     // There was a problem, check error.description
                     }
                 })
+                
+                
+                ////segue stuff
+                if self.sendercontroller == "ShopListCreation" {
+                    
+                    if((self.shopdelegate) != nil)
+                    {
+                        self.shopdelegate?.refreshtable()
+                        
+                        
+                    }
+                    
+                    self.performSegueWithIdentifier("gobacktocreationshoplist", sender: self)
+                    
+                } else {
+                    
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    
+                    
+                }
                 //
                 //itemch.saveInBackground()
                 //itemch.saveEventually()
