@@ -11,25 +11,7 @@ import UIKit
 class EventCell: UITableViewCell {
 
     
-    
-    //@IBOutlet var userimage: UIImageView!
-    
-    @IBOutlet var receiverimage: UIImageView!
-    
-    @IBOutlet var nameandevent: UILabel!
-    
-    @IBOutlet var receiveremail: UILabel!
-    
-   
-    @IBOutlet var eventnote: UITextView!
-    
-    @IBOutlet var eventtext: UILabel!
-    
-    @IBOutlet var eventdate: UILabel!
-    
-    @IBOutlet var eventhours: UILabel!
-    
-    @IBOutlet var blockuseroutlet: UIButton!
+    @IBOutlet var alertlabel: UILabel!
     
     @IBOutlet var container: UIView!
     

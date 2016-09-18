@@ -2851,7 +2851,12 @@ func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         
-        
+         if UIScreen.mainScreen().nativeBounds.height == 960 {
+            
+            return 40
+            
+            
+        }
           return 52
         
 

@@ -401,10 +401,12 @@ class SortPopup: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         } else if indexPath.section == 1 {
             
             if indexPath.row == 0 {
-                sortbydateasc()
+                //sortbydateasc()
+                sortbydate()
                 fadecheck(indexPath, err: false)
             } else if indexPath.row == 1 {
-                sortbydate()
+                //sortbydate()
+                sortbydateasc()
                 fadecheck(indexPath, err: false)
             } else if indexPath.row == 2 {
                 sortalphabetically()

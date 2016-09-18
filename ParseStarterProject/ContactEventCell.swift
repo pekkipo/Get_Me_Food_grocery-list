@@ -73,10 +73,7 @@ class ContactEventCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-      //  container.layer.borderWidth = 1
-       // container.layer.borderColor = UIColorFromRGB(0xE0E0E0).CGColor
-        container.layer.cornerRadius = 8
+
         
         addcontact.layer.cornerRadius = 8
         

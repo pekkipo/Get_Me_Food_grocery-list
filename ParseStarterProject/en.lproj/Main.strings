@@ -76,7 +76,7 @@
 "8HJ-eO-2Wc.title" = "Save";
 
 /* Class = "UITextField"; placeholder = "Type here an email"; ObjectID = "8p1-34-8y4"; */
-"8p1-34-8y4.placeholder" = "Type here an email";
+"8p1-34-8y4.placeholder" = "Type Get Me Food app user's email";
 
 /* Class = "UITextField"; placeholder = "Item Name"; ObjectID = "90k-Xn-cpg"; */
 "90k-Xn-cpg.placeholder" = "Item Name";
@@ -781,27 +781,27 @@
 "8kD-KM-ETW.normalTitle" = "Next";
 
 /* Class = "UIButton"; normalTitle = "SIGN UP / LOGIN"; ObjectID = "Tia-hV-2Bg"; */
-"Tia-hV-2Bg.normalTitle" = "Yes! Sign Up / Login";
+"Tia-hV-2Bg.normalTitle" = "Got it! Let's get started";
 
 
 
 /* Class = "UILabel"; text = "150"; ObjectID = "VxA-hb-n7R"; */
-"VxA-hb-n7R.text" = "Create an account?";
+"VxA-hb-n7R.text" = "Second small tip";
 
 
 /* Class = "UILabel"; text = "150"; ObjectID = "I1D-VQ-21e"; */
-"I1D-VQ-21e.text" = "It takes less than a minute and is absolutely free. You can login via social networks";
+"I1D-VQ-21e.text" = "Sign up and create an account. It takes less than a minute and is free. You can sign up via social networks!";
 
 /* Class = "UILabel"; text = "150"; ObjectID = "3Zr-DV-IRs"; */
 "3Zr-DV-IRs.text" = "Having an account enables easier connection with your friends, adding contacts, synchronization between devices and other useful features";
 
 
 /* Class = "UILabel"; text = "150"; ObjectID = "F9E-sL-Htw"; */
-"F9E-sL-Htw.normalTitle" = "No, thanks. Get started";
+"F9E-sL-Htw.normalTitle" = "MAYBE LATER";
 
 
 /* Class = "UILabel"; text = "150"; ObjectID = "F9E-sL-Htw"; */
-"miC-cp-ZR8.normalTitle" = "Yes, let's take a look!";
+"miC-cp-ZR8.normalTitle" = "Got it!";
 
 /* Class = "UILabel"; text = "150"; ObjectID = "F9E-sL-Htw"; */
 "Lhl-OB-L6c.normalTitle" = "No, thanks";
@@ -812,7 +812,7 @@
 
 
 /* Class = "UILabel"; text = ""; ObjectID = "gqN-It-vkK"; */
-"gqN-It-vkK.text" = "Version: 3.1";
+"gqN-It-vkK.text" = "Version: 4.0";
 
 /* Class = "UILabel"; text = ""; ObjectID = "Si8-O2-jwN"; */
 "Si8-O2-jwN.text" = "Grocery/To Do list app";
@@ -1101,5 +1101,24 @@
 
 /* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
 "EKB-IZ-Bav.title" = "Registration";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"VTD-dp-Ca6.text" = "You have sent the list to";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"x0Q-WW-OMI.text" = "You have sent the list to";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"ybl-PI-gZE.text" = "A small tip";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"pS3-cZ-faf.text" = "Swipe left to access additional options. ";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"c1M-pP-uVE.text" = "In order to track your expenses, you should enter the prices for groceries in your lists ";
+
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"Mug-Iy-V9w.text" = "Going shopping messages are not supported ";
 
 

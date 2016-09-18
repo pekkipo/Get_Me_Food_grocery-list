@@ -32,9 +32,7 @@ class LoginInfoCell: UITableViewCell {
 
     @IBOutlet var logininnerview: UIView!
     
-    @IBOutlet var viewheight: NSLayoutConstraint!
-    
-    @IBOutlet var innerheight: NSLayoutConstraint!
+
     
     
     override func awakeFromNib() {
@@ -51,9 +49,7 @@ class LoginInfoCell: UITableViewCell {
         
        
             logininnerview.frame.size.height = 49
-            
-            viewheight.constant = 60
-            innerheight.constant = 49
+
         }
         
 

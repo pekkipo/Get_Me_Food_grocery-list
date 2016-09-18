@@ -65,9 +65,9 @@
 
 "findout" = "узнает о вашем походе в магазин!";
 
-"eventuseradded" = "добавлен в ваш контакт-лист";
+"eventuseradded" = "добавлен(-а) в ваш контакт-лист";
 
-"useraddedyou" = "добавил вас в контакт-лист";
+"useraddedyou" = "добавил(-а) вас в контакт-лист";
 
 /* PICTURES STUFF */
 
@@ -827,6 +827,9 @@
 "tutheader8" = "";
 
 /* IMAGES NAMES */
+
+"tutintro1" = "intro1ru";
+
 "tutimintro" = "TutorialIntro";
 "tutim1" = "Tutorial1";
 "tutim2" = "Tutorial2";
@@ -872,8 +875,12 @@
 
 // MAY STUFF
 
-"qeditproduct" = "Редактировать";
+"qeditproduct" = "Кол-во/Цена (и др.)";
 "qaddproduct" = "Добавить";
+
+"qeditproducttodo" = "Редактировать";
+"qaddproducttodo" = "Добавить";
+
 "spentsum" = "Куплено на сумму:";
 
 

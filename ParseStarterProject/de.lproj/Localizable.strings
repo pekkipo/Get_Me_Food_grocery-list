@@ -8,864 +8,944 @@
 
 /* Dynamic strings */
 
-"TapHere" = "Нажмите для регистрации/входа"; //
+"TapHere" = "Tap to register/login";
 
-"Anonymous" = "Пользователь";
+"Anonymous" = "Anonymous"; // Anonym
 
-"AnonUser" = "Неизвестный пользователь";
+"AnonUser" = "Anonymous User"; // Anonymer Benutzer
 
-"DoneExc" = "Готово!";
+"DoneExc" = "Done!";
 
-"RemSet" = "Напоминание установлено";
+"RemSet" = "Reminder is set";
 
-"Oops" = "Упс!";
+"Oops" = "Oops!";
 
-"WasError" = "Возникла ошибка"; // Ein Fehler ist aufgetreten
+"WasError" = "There was an error";
 
-"Search1" = "Поиск по каталогу"; //Suche nach dem *Katalog
+"Search1" = "Search in the catalog";
 
-"Search2" = "Поиск..."; // Suche
+"Search2" = "Search here...";
 
-"SearchCat" = "Поиск среди категорий"; // Suche in den Kategorien
+"SearchCat" = "Search for category ";
 
-"DoneButton" = "Готово"; // Fertig
+"DoneButton" = "Done";
 
-"EditButton" = "Правка"; // Bearbeiten
+"EditButton" = "Edit";
 
-"NoConnection" = "Нет интернет-соединения. Поробуйте позже"; // Gibt es keine Internetverbindung. Versuchen Sie es spaeter noch einmal
+"NoConnection" = "No internet connection. Please try again later";
 
-"CantSend" = "Не удается отправить эл.письмо"; // E-mail kann nicht gesendet werden
+"CantSend" = "Could Not Send Email";
 
-"NoEmailInfo" = "Устройство не может отправить эл. письмо. Пожалуйста, проверьте настройки электронной почты"; // Die Email kann von diesen Geraet nicht gesendet werden
+"NoEmailInfo" = "Your device could not send e-mail.  Please check e-mail configuration and try again.";
 
-"reportEmail" = "Репорт: Пользователь, id:"; // Melden: user
+"reportEmail" = "REPORT: Disturbing user, id:";
 
-"addNotes" = "Дополнительные заметки:"; // Zusaetzliche Notizen
+"addNotes" = "Additional notes:";
 
-"userDistText" = "Пользователь ведет себя не подобающим образом. Пожалуйста, проверьте."; // Missbrauch melden.
+"userDistText" = "User is dusturbing other people. Please check on that.";
 
-"wait" = "Подождите"; // Warten Sie bitte
+"wait" = "Please, wait";
 
 
-"useradded" = "Пользователь добавлен"; // Der Benutzer wurde hinzugefuegt
+"useradded" = "User added";
 
-"useraddedfull" = "Пользователь добавлен в ваш контакт-лист"; // Der Benutzer wurde Ihrer Kontaktliste hinzugefuegt
+"useraddedfull" = "User added to your contacts list";
 
-"thisperson" = "Этот человек теперь в вашем контакт-листе"; // Dieser Benutzer ist jetzt Ihrer Kontaktliste hinzugefuegt worden
+"thisperson" = "This person is now in your contact list";
 
-"errorExc" = "Ошибка!"; // Fehler!
+"errorExc" = "Error!";
 
-"error2" = "Возникла непредвиденная ошибка"; // Unerwarteter Fehler ist aufgetreten
+"error2" = "An error occured";
 
-"nouser" = "В нашей базе нет такого пользователя"; // Dieser Benutzer ist nicht in unserer Datenbank registriert
+"nouser" = "No such user in our database";
 
-"messend" = "Сообщение отправлено"; // Wurde gesendet
+"messend" = "Message is sent";
 
-"goingshopping" = "собирается идти за покупками! Может быть вам нужно что-то купить?"; //Jemand will einkaufen gehen! Vielleicht, muessen Sie etwas bestimmtes kaufen?
+"goingshopping" = "is going shopping! Maybe you need something to buy?";
 
-"findout" = "узнает о вашем походе в магазин!"; //Jemand wird ueber
+"findout" = "finds out you go shopping!";
 
-"eventuseradded" = "добавлен в ваш контакт-лист";
+"eventuseradded" = "User was added to contact list";
 
-"useraddedyou" = "добавил вас в контакт-лист";
+"useraddedyou" = "This user has added you to contact list";
 
 /* PICTURES STUFF */
 
-"usual" = "Стандартные картинки"; // Standartiezerte Bilder
+"usual" = "Usual pictures";
 
-"artistic" = "Красивые картинки"; // Schoene Bilder
+"artistic" = "Artistic pictures";
 
-"setcolored" = "Цветные"; // Farbige Bilder
-"setsketchy" = "Нарисованные"; // Gezeichnete Bilder
-"setbw" = "Черно-белые"; // Schwarz-weisse Bilder
-"setforcats" = "Для категорий"; // Fuer Kategorien
+"setcolored" = "Colored";
+"setsketchy" = "Sketchy";
+"setbw" = "Black and white";
+"setforcats" = "For categories";
 
-"addingitem" = "Добавляется"; // Wird zugefuegt
+"addingitem" = "Adding item";
 
-"delete" = "Удалить"; // Loeschen
+"delete" = "Delete";
 
-"deleting" = "Удаление"; // Wird geloescht
+"deleting" = "Deleting";
 
-"catrem1" = "Категория удалена"; // Die Kategorie ist geloescht
+"catrem1" = "Category was removed";
 
-"catrem2" = "Все продукты этой категории теперь перемещены в категорию \"Другие\""; // Die Produke dieser Kategorie sind jetzt in die "Andere" kategorie umgesetzt
+"catrem2" = "All items of this category from now on belong to \"Others\" category";
 
-"yourcats" = "Мои категории"; // Meine Kategorien
+"yourcats" = "My custom categories";
 
-"deletebig" = "Удалить";
+"deletebig" = "DELETE";
 
-"getting" = "Загрузка"; //
+"getting" = "Getting lists";
 
-"saving" = "Сохранение"; // Wird gespeichert
+"saving" = "Saving. Please, wait";
 
-"cannotcheck" = "Не удается проверить входящие списки"; // Es gibt keine Moeglichkeit die Eingangslisten  kontrolieren
+"cannotcheck" = "Cannot check incoming lists";
 
-"saveplease" = "Примите список"; // Einkaufsliste eingegangen
+"saveplease" = "Save the list";
 
-"saveplease2" = "Пожалуйста, сперва примите список, нажав на \"Принять\""; // Bitte ein
+"saveplease2" = "Please, first accept the list by tapping Save"; // Bestaetigen Sie die Einkaufsliste indem sie aufspeichern klicken
 
-"close" = " Закрыть";
+"close" = " Close"; // Schliessen
 
-"options" = "Настройки";
+"options" = "OPTIONS"; // Optionen
 
-"items" = "В списке:";
+"items" = "Items:"; // Gegenstaende
 
-"accepted" = "Отправлен. Принят";
+"accepted" = "Sent. Accepted"; // Gesendet. Angekommen
 
-"notaccepted" = "Отправлен. Еще не принят";
+"notaccepted" = "Sent. Not yet accepted"; // Gesendet. Noch nicht angekommen
 
-"checkemail" = "Проверьте вашу эл.почту";
+"checkemail" = "Check your email for the link"; // Pruefen Sie im email account ob der Link angekommen ist
 
-"accountremoved" = "Учетная запись полностью удалена.";
+"accountremoved" = "The account was completely removed."; // Der Account vorllstandig geloescht
 
-"wrongemail" = "Неправильный формат эл.почты";
+"wrongemail" = "Invalid email format"; // Nicht valides email format
 
-"validemail" = "Введите эл.почту, содержащую \"@\"";
+"validemail" = "Please enter valid email with \"@\""; // Bitte vervollstandigen Sie Ihre email Adresse mit at
 
-"typename" = "Пожалуйста, введите хоть какое-нибудь имя";
+"typename" = "Please type a name"; // Bitte geben Sie eine Name ein
 
-"persdata" = "Ваши данные были изменены";
+"persdata" = "Your personal data was changed successfully"; // Ihre personlichen Daten wurden erfolgreich aktualieseren
 
-"exccats" = "Стандартные категории";
+"exccats" = "Existing categories"; // Kategorien
 
-"sending" = "Отправляется";
+"sending" = "Sending the list"; // Liste wird gesendet
 
-"warning" = "Внимание!";
+"warning" = "Warning!"; // Warnung!
 
-"wasntsaved" = "Продукт не был сохранен";
+"wasntsaved" = "This item wasn't saved"; // Dieser Gegenschtand wurde nicht gespeichert
 
-"listwassent" = "Список успешно отправлен. Проверьте получение в разделе Отправленные Списки";
+"listwassent" = "The list was sent successfully. Later check the delivery in sharing history"; // Die Liste wurde erfolgreich gesendet
 
-"incomingpush" = "Входящий список покупок от";
+"incomingpush" = "Incoming Shopping list from"; // Eingegangene Einkaufsliste von
 
-"incomingtodopush" = "Входящий список дел от";
+"incomingtodopush" = "Incoming To Do list from"; // Eingegangene To-Do-liste Liste von
 
-"unknownemail" = "Незвестный email";
 
-"choosecontacts" = "Список контактов";
 
-"loading" = "Загрузка";
+"unknownemail" = "Unknown email"; // Unbekkante e-mail
 
-"pasting" = "Вставка";
+"choosecontacts" = "Choose from contacts"; // Waehlen Sie von der Kontaktliste jemanden aus
+
+"loading" = "Loading"; // Wird geladen
+
+"pasting" = "Pasting items"; // Wird eingefuegt
+
+"goshoppingreminder" = "Go shopping"; // Gehe einkaufen
 
 /* SETTINGS VC */
 
-"account" = "Мой аккаунт";
+"account" = "Account Info"; // Account Info
 
-"subscription" = "Тип подписки";
+"subscription" = "Subscription Info";
 
-"synchronize" = "Синхронизировать";
+"synchronize" = "Synchronize"; // Synchronisieren
 
-"contacts" = "Контакты";
+"contacts" = "Contacts"; //
 
-"shhistory" = "Отправленные списки";
+"shhistory" = "Activity"; // Vergangener (Gesamter) Verlauf
 
-"restorepurch" = "Восстановить покупки";
+"restorepurch" = "Restore purchases"; //
 
-"logout" = "Выход";
+"logout" = "Logout"; // Logout
 
-"customcats" = "Мои категории";
+"customcats" = "Manage categories"; // Kategorien verwalten
 
-"favgroc" = "Любимые продукты";
+"favgroc" = "Favourite groceries"; // Belliebtest Produkte
 
-"clearhist" = "Очистить историю событий";
+"clearhist" = "Clear Events History"; // Gesamtverlauf loeschen
 
-"lang" = "Язык";
+"lang" = "Change Language"; // Sprache wechseln * aendern
 
-"faq" = "Частые вопросы";
+"faq" = "F.A.Q."; // FAQ
 
-"sendfeedback" = "Обратная связь";
+"sendfeedback" = "Send Feedback"; // Feedback senden
 
-"reportproblem" = "Сообщить о проблеме";
+"reportproblem" = "Report a Problem"; // Probleme melden
 
-"rateapp" = "Оценить приложение";
+"rateapp" = "Rate the app"; // Bewerten Sie die App
 
-"feat" = "Особенности приложения";
+"feat" = "App Features"; //
 
-"privacy1" = "Информация об использовании";
+"privacy1" = "Privacy Policy"; //
 
-"acknow" = "Благодарность";
+"acknow" = "Acknowledgements"; //  egal
 
-"accdet" = "Учетная запись";
+"accdet" = "Account Details"; // Account Details
 
-"appset" = "Настройки приложения";
+"appset" = "App Settings"; // App *
 
-"sup" = "Тех. поддержка";
+"sup" = "Support"; // Support
 
-"about" = "О приложении";
+"about" = "About"; // Ueber
 
-"goshoppingreminder" = "Пойти за покупками";
-
-"cancelbutton" = "ОТМЕНА";
-
-
+"cancelbutton" = "Cancel"; // Schliessen
 
 
 
 /* */
 
-"synchr" = "Синхронизация";
+"synchr" = "Syncronizing";
 
-"unknown" = "Неизвестно";
+"unknown" = "Unknown";
 
-"addedyou" = "добавил(а) вас в список контактов";
+"addedyou" = "added you to contact list";
 
-"yourcontacts" = "Мои контакты";
+"yourcontacts" = "My contacts";
 
-"trylater" = "Попробуйте позже";
+"trylater" = "Please try again later"; // Bitte versuchen Sie es spaeter noch einmal
 
-"failedlogin" = "Не удалось войти";
+"failedlogin" = "Failed login"; // Failed login
 
-"oneerror" = "Возникла ошибка:";
+"oneerror" = "Error occured:"; // Fehler
 
-"errorinform" = "Ошибка в форме";
+"errorinform" = "The error in form"; // Unvollstaendig ausgefuelt
 
-"enternameandpass" = "Введите имя пользователя и пароль";
+"enternameandpass" = "Please enter a username and password"; // Bitte geben Sie das passwort und benutzer name ein
 
-"failedsignup" = "Регистрация не удалась";
+"failedsignup" = "Failed SignUp"; // Anmelden ist fehlgeschlagen
 
-"loggingin" = "Вход";
+"loggingin" = "Logging in"; // Einloggen
 
 
 /* CATEGORIES NAME */
 
-"catvegs" = "Овощи";
-"catfruits" = "Фрукты и ягоды";
-"catdairy" = "Молочная продукция/Яйца";
-"catmeat" = "Мясо";
-"catseafood" = "Морепродукты";
-"catbakery" = "Хлебобулочные изделия";
-"catsnacks" = "Закуски";
-"catbeverages" = "Напитки";
-"catalcohol" = "Алкоголь";
-"catcereals" = "Хлопья/На завтрак";
-"catsweets" = "Сладкое";
-"catcondiments" = "Соусы/Приправы";
-"catcanned" = "Консервы";
-"catberries" = "Ягоды";
-"catpasta" = "Паста/Макароны";
-"catgrains" = "Зерновые";
-"catfrozen" = "Замороженные продукты";
-"catdeli" = "Гастроном";
-"catbaby" = "Для детей";
-"catpets" = "Для домашних животных";
-"catpersonalcare" = "Личная гигиена";
-"catpharmacy" = "Медикаменты";
-"cathousehold" = "Домашнее хозяйство";
-"cattobacco" = "Табачные изделия";
-"catothers" = "Другие";
-
+"catvegs" = "Vegetables";
+"catfruits" = "Fruits & Berries";
+"catdairy" = "Dairy";
+"catmeat" = "Meat";
+"catseafood" = "Seafood";
+"catbakery" = "Bakery";
+"catsnacks" = "Snacks";
+"catbeverages" = "Beverages";
+"catalcohol" = "Alcohol";
+"catcereals" = "Cereals & Breakfast";
+"catsweets" = "Sweets";
+"catcondiments" = "Condiments/Sauces/Pantry";
+"catcanned" = "Canned food";
+"catberries" = "Berries";
+"catpasta" = "Pasta";
+"catgrains" = "Grains";
+"catfrozen" = "Frozen Food";
+"catdeli" = "Deli";
+"catbaby" = "Baby Care";
+"catpets" = "Pet Supplies";
+"catpersonalcare" = "Personal Care";
+"catpharmacy" = "Pharmacy";
+"cathousehold" = "Household";
+"cattobacco" = "Tobacco";
+"catothers" = "Others";
 
 
 /* ADD ITEM VC */
 
-"units" = "";
+"units" = ""; // units - Massinhalt
 "un" = "";
-"pieces" = "штуки";
-"pcs" = "шт";
-"dozens" = "дюжины";
-"dz" = "дж";
-"kilograms" = "килограммы";
-"kg" = "кг";
-"grams" = "граммы";
-"g" = "г";
-"liters" = "литры";
-"L" = "л";
-"milliliters" = "миллилитр";
-"ml" = "мл.";
-"flonz" = "жидк. унции (амер.)";
-"floz" = "ж. ун.";
-"ounces" = "унции";
-"oz" = "ун";
-"pounds" = "фунты";
-"lb" = "ф";
-"gallons" = "галлоны";
-"gal" = "гал";
-"meters" = "метры";
-"m" = "м";
-"centimeters" = "сантиметры";
-"cm" = "см";
-"inches" = "дюймы";
-"packages" = "упаковки";
-"packs" = "уп";
+"pieces" = "pieces"; // artikel
+"pcs" = "pcs"; // art
+"dozens" = "dozens"; // dutzend
+"dz" = "dz"; // dz
+"kilograms" = "kilograms"; // egal mm
+"kg" = "Kg";
+"grams" = "grams"; // gramm
+"g" = "g";
+"liters" = "Liters"; //
+"L" = "L";
+"milliliters" = "milliliters";
+"ml" = "ml";
+"flonz" = "fluid ounces"; // (Amer.)
+"floz" = "fl oz";
+"ounces" = "ounces";
+"oz" = "oz";
+"pounds" = "pounds"; //Pfunde
+"lb" = "lb"; //pfd.
+"gallons" = "gallons"; //
+"gal" = "gal";
+"meters" = "meters"; //
+"m" = "m";
+"centimeters" = "centimeters";
+"cm" = "cm";
+"inches" = "inches"; //
+"packages" = "packages"; // Packete
+"packs" = "pkg";  //
 
-"dontmatch" = "Единицы измерения не совпадают";
+"dontmatch" = "Units don't match, sum is not calculated"; // Einhaiten stimmen nicht ueber ein, die Gesamtsumme konnten nicht berechnet werden
 
-"thefollowingitems" = "Добавленные продукты";
+"thefollowingitems" = "Added Items"; // Einzugefuegt Produkte
 
 /* CATALOG ITEMS */
 
+
+
 /* VEGETABLES */
-"vegetables" = "Овощи";
-"tomatoes" = "Помидоры";
-"cucumbers" = "Огурцы";
-"brocolli" = "Брокколи";
-"carrot" = "Морковь";
-"lettuce" = "Салат";
-"cabbage" = "Капуста";
-"mushrooms" = "Грибы";
-"onion" = "Лук";
-"potato" = "Картофель";
-"spinach" = "Шпинат";
-"eggplant" = "Баклажаны";
-"pumpkin" = "Тыква";
-"radish" = "Редис";
-"garlic" = "Чеснок";
-"greenbeans" = "Зеленые бобы";
-"bellpepper" = "Сладкий перец";
-"corn" = "Кукуруза";
-"celery" = "Сельдерей";
-"beans" = "Бобы";
-"asparagus" = "Спаржа";
-"beetroot" = "Свекла";
-"cauliflower" = "Цветная капуста";
-"cherrytomatoes" = "Томаты Черри";
-"chillies" = "Чили";
-"chives" = "Лук";
-"cilantro" = "Кориандр";
-"zucchini" = "Цуккини";
+"vegetables" = "Vegetables";
+"tomatoes" = "Tomatoes";
+"cucumbers" = "Cucumbers";
+"brocolli" = "Brocolli";
+"carrot" = "Carrot";
+"lettuce" = "Lettuce";
+"cabbage" = "Cabbage";
+"mushrooms" = "Mushrooms";
+"onion" = "Onion";
+"potato" = "Potato";
+"spinach" = "Spinach";
+"eggplant" = "Eggplant";
+"pumpkin" = "Pumpkin";
+"radish" = "Radish";
+"garlic" = "Garlic";
+"greenbeans" = "Green Beans";
+"bellpepper" = "Bell Pepper";
+"corn" = "Corn";
+"celery" = "Celery";
+"beans" = "Beans";
+"asparagus" = "Asparagus";
+"beetroot" = "Beetroot";
+"cauliflower" = "Cauliflower";
+"cherrytomatoes" = "Cherry Tomatoes";
+"chillies" = "Chillies";
+"chives" = "Chives";
+"cilantro" = "Cilantro";
+"zucchini" = "Zucchini";
+
 
 
 
 /* FRUITS */
 
-"fruits" = "Фрукты";
-"apples" = "Яблоки";
-"oranges" = "Апельсины";
-"lemons" = "Лимоны";
-"limes" = "Лаймы";
-"bananas" = "Бананы";
-"cherries" = "Вишня";
-"grapefruits" = "Грейпфруты";
-"grapes" = "Виноград";
-"kiwi" = "Киви";
-"tangerines" = "Мандарины";
-"mango" = "Манго";
-"avocado" = "Авокадо";
-"melons" = "Дыни";
-"peaches" = "Персики";
-"pears" = "Груши";
-"pineapples" = "Ананасы";
-"nectarines" = "Нектарины";
-"plums" = "Сливы";
-"papaya" = "Папайя";
-"figs" = "Инжир";
-"strawberries" = "Клубника";
-"blueberries" = "Черника";
-"raspberries" = "Малина";
-"blackberries" = "Ежевика";
-"watermelon" = "Арбуз";
+"fruits" = "Fruits";
+"apples" = "Apples";
+"oranges" = "Oranges";
+"lemons" = "Lemons";
+"limes" = "Limes";
+"bananas" = "Bananas";
+"cherries" = "Cherries";
+"grapefruits" = "Grapefruits";
+"grapes" = "Grapes";
+"kiwi" = "Kiwi";
+"tangerines" = "Tangerines";
+"mango" = "Mango";
+"avocado" = "Avocado";
+"melons" = "Melon";
+"peaches" = "Peaches";
+"pears" = "Pears";
+"pineapples" = "Pineapples";
+"nectarines" = "Nectarines";
+"plums" = "Plums";
+"papaya" = "Papaya";
+"figs" = "Figs";
+"strawberries" = "Strawberries";
+"blueberries" = "Blueberries";
+"raspberries" = "Raspberries";
+"blackberries" = "Blackberries";
+"watermelon" = "Melon (Watermelon)";
+
 
 /* DAIRY */
 
-
-"dairy" = "Молочные продукты";
-"milk" = "Молоко";
-"butter" = "Сливочное масло";
-"cheese" = "Сыр";
-"cream" = "Сливки";
-"creamcheese" = "Сливочный сыр";
-"eggs" = "Яйца";
-"feta" = "Сыр Фета";
-"parmesan" = "Пармезан";
-"margarine" = "Маргарин";
-"mascarpone" = "Маскарпоне";
-"mozarella" = "Моцарелла";
-"ricotta" = "Сыр Рикотта";
-"sourcream" = "Сметана";
-"soymilk" = "Соевое молоко";
-"yogurt" = "Йогурт";
-"schreddedcheese" = "Тертый сыр";
-"pudding" = "Пудинг";
-"drinkingyougurt" = "Питьевой йогурт";
-"cottagecheese" = "Творог";
-"kefir" = "Кефир";
+"dairy" = "Dairy";
+"milk" = "Milk";
+"butter" = "Butter";
+"cheese" = "Cheese";
+"cream" = "Cream";
+"creamcheese" = "Cream cheese";
+"eggs" = "Eggs";
+"feta" = "Feta";
+"parmesan" = "Parmesan";
+"margarine" = "Margarine";
+"mascarpone" = "Mascarpone";
+"mozarella" = "Mozarella";
+"ricotta" = "Ricotta";
+"sourcream" = "Sour Cream";
+"soymilk" = "Soy Milk";
+"yogurt" = "Yogurts";
+"schreddedcheese" = "Schredded Cheese";
+"pudding" = "Pudding";
+"drinkingyougurt" = "Drinking Yougurt";
+"cottagecheese" = "Cottage cheese";
+"kefir" = "Kefir";
 
 /* MEAT */
 
-"meat" = "Мясо";
-"beef" = "Говядина";
-"chicken" = "Курица";
-"groundbeef" = "Говяжий фарш";
-"steak" = "Стейк";
-"turkey" = "Индейка";
-"pork" = "Свинина";
-"porkchops" = "Свиная отбивная";
-"sausages" = "Сосиски";
-"duck" = "Утка";
-"bacon" = "Ветчина";
-"chickenbreast" = "Куриные грудки";
-"ham" = "Колбаса";
-"prosciutto" = "Прошутто";
-"salami" = "Салями";
-"veal" = "Телятина";
-"barbeque" = "Шашлык";
+"meat" = "Meat";
+"beef" = "Beef";
+"chicken" = "Chicken";
+"groundbeef" = "Ground Beef";
+"steak" = "Steak";
+"turkey" = "Turkey";
+"pork" = "Pork";
+"porkchops" = "Pork Chops";
+"sausages" = "Sausages";
+"duck" = "Duck";
+"bacon" = "Bacon";
+"chickenbreast" = "Chicken breast";
+"ham" = "Ham";
+"prosciutto" = "Prosciutto";
+"salami" = "Salami";
+"veal" = "Veal";
+"barbeque" = "Barbeque";
+
 
 /* SEAFOOD */
 
-"seafood" = "Морепродукты";
-"anchovies" = "Анчоусы";
-"fish" = "Рыба";
-"salmon" = "Лосось";
-"lobsters" = "Лобстеры";
-"schrimps" = "Креветки";
-"oysters" = "Устрицы";
-"tuna" = "Тунец";
-"clams" = "Моллюски";
-"scallops" = "Гребешки";
-"codfish" = "Треска";
-"pinksalmon" = "Горбуша";
-"sprats" = "Шпроты";
-"herring" = "Сельдь";
+
+"seafood" = "Seafood";
+"anchovies" = "Anchovies";
+"fish" = "Fish";
+"salmon" = "Salmon";
+"lobsters" = "Lobsters";
+"schrimps" = "Schrimps";
+"oysters" = "Oysters";
+"tuna" = "Tuna";
+"clams" = "Clams";
+"scallops" = "Scallops";
+"codfish" = "Codfish";
+"pinksalmon" = "Pink Salmon";
+"sprats" = "Sprats";
+"herring" = "Herring";
 
 /* BAKERY */
 
-"bakery" = "Хлебо-булочные изделия";
-"bread" = "Булка";
-"breadrolls" = "Багет";
-"hamburgerbuns" = "Булочки для бургеров";
-"bagels" = "Бублики";
-"pie" = "Пирог";
-"darkbread" = "Хлеб";
-"cookies" = "Печенье";
-"cakes" = "Торт";
-"waffles" = "Вафли";
-"pretzels" = "Претцли";
-"croissants" = "Круассаны";
-"biscuits" = "Бисквиты";
-"crispbread" = "Хрустящие хлебцы";
-"muffins" = "Маффины";
-"toasts" = "Тосты";
-"pizzadough" = "Тесто для пиццы";
-"slicedbread" = "Нарезанная булка";
-"tortillas" = "Тортильи";
+"bakery" = "Bakery";
+"bread" = "Bread";
+"breadrolls" = "Bread Rolls";
+"hamburgerbuns" = "Hamburger Buns";
+"bagels" = "Bagels";
+"pie" = "Pie";
+"darkbread" = "Dark bread";
+"cookies" = "Cookies";
+"cakes" = "Cake";
+"waffles" = "Waffles";
+"pretzels" = "Pretzels";
+"croissants" = "Croissants";
+"biscuits" = "Biscuits";
+"crispbread" = "Crispbread";
+"muffins" = "Muffins";
+"toasts" = "Toasts";
+"pizzadough" = "Pizza dough";
+"slicedbread" = "Sliced bread";
+"tortillas" = "Tortillas";
 
 /* SNACKS */
 
-"snacks" = "Закуски";
-"chips" = "Чипсы";
-"driedfruits" = "Сушеные фрукты";
-"crackers" = "Крекеры";
-"nachoes" = "Начос";
-"popcorn" = "Поп-корн";
-"peanuts" = "Арахис";
-"nuts" = "Орешки";
-"pistachios" = "Фисташки";
-"tortillachips" = "Тортильи";
-"cashews" = "Кешью";
-"greenolives" = "Оливки";
-"blackolives" = "Маслины";
+"snacks" = "Snacks";
+"chips" = "Chips";
+"driedfruits" = "Dried Fruits";
+"crackers" = "Crackers";
+"nachoes" = "Nachos";
+"popcorn" = "Popcorn";
+"peanuts" = "Peanuts";
+"nuts" = "Nuts";
+"pistachios" = "Pistachios";
+"tortillachips" = "Tortilla Chips";
+"cashews" = "Cashews";
+"greenolives" = "Green Olives";
+"blackolives" = "Black Olives";
 
 /* BEVERAGES */
 
-"beverages" = "Напитки";
-"water" = "Вода";
-"mineralwater" = "Минеральная вода";
-"juice" = "Сок";
-"orangejuice" = "Апельсиновый сок";
-"applejuice" = "Яблочный сок";
-"cherryjuice" = "Вишневый сок";
-"grapejuice" = "Виноградный сок";
-"lemonjuice" = "Лимонный сок";
-"cocacola" = "Кока-кола";
-"pepsi" = "Пепси-Кола";
-"lemonade" = "Лимонад";
-"drpepper" = "Доктор Пеппер";
-"soda" = "Содовая";
-"5lwater" = "Вода, канистра 5 л.";
-"tea" = "Чай";
-"coffee" = "Кофе";
-"icetea" = "Холодный чай";
-"cider" = "Сидр";
-"hotchocolate" = "Горячий шоколад";
-"energydrink" = "Энергетический напиток";
-"sportdrink" = "Спортивный напиток";
+"beverages" = "Beverages";
+"water" = "Water";
+"mineralwater" = "Mineral Water";
+"juice" = "Juice";
+"orangejuice" = "Orange Juice";
+"applejuice" = "Apple Juice";
+"cherryjuice" = "Cherry Juice";
+"grapejuice" = "Grape Juice";
+"lemonjuice" = "Lemon Juice";
+"cocacola" = "Coca-Cola";
+"pepsi" = "Pepsi";
+"lemonade" = "Lemonade";
+"drpepper" = "Dr. Pepper";
+"soda" = "Soda";
+"5lwater" = "Water 5L";
+"tea" = "Tea";
+"coffee" = "Coffee";
+"icetea" = "Ice Tea";
+"cider" = "Cider";
+"hotchocolate" = "Hot chocolate";
+"energydrink" = "Energy Drink";
+"sportdrink" = "Sport Drink";
 
 /* ALCOHOL */
 
-"alcohol" = "Алкоголь";
-"beer" = "Пиво";
-"champagne" = "Шампанское";
-"vodka" = "Водка";
-"redrum" = "Красный Ром";
-"whiterum" = "Белый Ром";
-"tequila" = "Текила";
-"whiskey" = "Виски";
-"gin" = "Джин";
-"tonic" = "Тоник";
-"prosecco" = "Просекко";
-"redwine" = "Красное Вино";
-"whitewine" = "Белое Вино";
-"pinkwine" = "Розовое Вино";
-"justwine" = "Вино";
+"alcohol" = "Alcohol";
+"beer" = "Beer";
+"champagne" = "Champagne";
+"vodka" = "Vodka";
+"redrum" = "Red Rum";
+"whiterum" = "White Rum";
+"tequila" = "Tequila";
+"whiskey" = "Whiskey";
+"gin" = "Gin";
+"tonic" = "Tonic";
+"prosecco" = "Prosecco";
+"redwine" = "Red Wine";
+"whitewine" = "White Wine";
+"pinkwine" = "Pink Wine";
+"justwine" = "Wine";
 
 /* CEREALS */
 
-"cereals" = "Хлопья";
-"honey" = "Мед";
-"oatmeal" = "Овсяные хлопья";
-"cornflakes" = "Кукурузные хлопья";
-"nesquick" = "Несквик";
-"granola" = "Хлопья с фруктами и орешками";
-"jam" = "Джем";
-"muesli" = "Мюсли";
-"porridge" = "Каша";
-"pancakes" = "Блины";
+
+"cereals" = "Cereals";
+"honey" = "Honey";
+"oatmeal" = "Oatmeal";
+"cornflakes" = "Corn Flakes";
+"nesquick" = "Nesquick";
+"granola" = "Granola";
+"jam" = "Jam";
+"muesli" = "Muesli";
+"porridge" = "Porridge";
+"pancakes" = "Pancakes";
 
 /* SWEETS */
 
-"sweets" = "Сладкое";
-"chocolate" = "Шоколад";
-"candy" = "Конфеты";
-"chewinggum" = "Жвачка";
-"nougatcreme" = "Нуга";
-"chocolatecream" = "Шоколадное масло";
-"dessert" = "Пирожные";
-"christmascookies" = "Новогоднее печенье";
+"sweets" = "Sweets";
+"chocolate" = "Chocolate";
+"candy" = "Candy";
+"chewinggum" = "Chewing Gum";
+"nougatcreme" = "Nougat Crème";
+"chocolatecream" = "Chocolate Cream";
+"dessert" = "Dessert";
+"christmascookies" = "Christmas Cookies";
 
 /* CONDIMENTS */
 
-"oil" = "Растительное масло";
-"oliveoil" = "Оливковое масло";
-"spices" = "Специи";
-"salt" = "Соль";
-"sugar" = "Сахар";
-"pepper" = "Перец";
-"mayonnaise" = "Майонез";
-"mustard" = "Горчица";
-"ketchup" = "Кетчуп";
-"salsa" = "Сальса";
-"pastasauce" = "Соус для пасты";
-"seasonings" = "Приправы";
-"syrup" = "Сироп";
-"soysauce" = "Соевый соус";
-"brownsugar" = "Коричневый сахар";
-"flour" = "Мука";
-"jelly" = "Желе";
-"peanutbutter" = "Арахисовое масло";
-"bbqsauce" = "Соус Барбекью";
-"bakingpowder" = "Мука";
-"balsamicvinegar" = "Бальзамический уксус";
-"soda2" = "Сода";
-"breadcrumbs" = "Панировочные сухари";
-"cinnamon" = "Корица";
-"maplesyrup" = "Кленовый сироп";
-"paprika" = "Паприка";
-"saladdressing" = "Заправка салата";
-"vanilla" = "Ваниль";
-"yeast" = "Дрожжи";
+
+"oil" = "Oil";
+"oliveoil" = "Olive Oil";
+"spices" = "Spices";
+"salt" = "Salt";
+"sugar" = "Sugar";
+"pepper" = "Pepper";
+"mayonnaise" = "Mayonnaise";
+"mustard" = "Mustard";
+"ketchup" = "Ketchup";
+"salsa" = "Salsa";
+"pastasauce" = "Pasta Sauce";
+"seasonings" = "Seasonings";
+"syrup" = "Syrup";
+"soysauce" = "Soy Sauce";
+"brownsugar" = "Brown Sugar";
+"flour" = "Flour";
+"jelly" = "Jelly";
+"peanutbutter" = "Peanut Butter";
+"bbqsauce" = "BBQ Sauce";
+"bakingpowder" = "Baking Powder";
+"balsamicvinegar" = "Balsamic vinegar";
+"soda2" = "Soda";
+"breadcrumbs" = "Breadcrumbs";
+"cinnamon" = "Cinnamon";
+"maplesyrup" = "Maple Syrup";
+"paprika" = "Paprika";
+"saladdressing" = "Salad Dressing";
+"vanilla" = "Vanilla";
+"yeast" = "Yeast";
 
 
 /* CANNED FOOD */
 
-"cannedfood" = "Консервы";
-"cannedbeans" = "Консервированные бобы";
-"cannedcorn" = "Консервированная кукуруза";
-"cannedfruits" = "Консервированные фрукты";
-"cannedfish" = "Рыбные консервы";
-"cannedsoup" = "Суп в банках";
+"cannedfood" = "Canned Food";
+"cannedbeans" = "Canned Beans";
+"cannedcorn" = "Canned Corn";
+"cannedfruits" = "Canned Fruits";
+"cannedfish" = "Canned Fish";
+"cannedsoup" = "Canned Soup";
 
 /* PASTA */
 
-"pastamacaroni" = "Паста/Макароны";
-"spaghetti" = "Спагетти";
-"noodles" = "Лапша";
-"vermicelli" = "Вермишель";
+
+"pastamacaroni" = "Pasta/Macaroni";
+"spaghetti" = "Spaghetti";
+"noodles" = "Noodles";
+"vermicelli" = "Vermicelli";
 
 /* GRAINS */
 
-"grains" = "Зерновые";
-"rice" = "Рис";
-"brownrice" = "Коричневый рис";
-"couscous" = "Кус-Кус";
-"cornflakes" = "Кукурузные хлопья";
-"risottorice" = "Рис ризотто";
-"wildrice" = "Дикий рис";
+"grains" = "Grains";
+"rice" = "Rice";
+"brownrice" = "Brown Rice";
+"couscous" = "Couscous";
+"risottorice" = "Risotto Rice";
+"wildrice" = "Wild Rice";
 
 /* FROZEN FOOD */
 
-"frozengoods" = "Замороженные продукты";
-"icecream" = "Мороженое";
-"frozenfruits" = "Замороженные фрукты";
-"frozenvegetables" = "Замороженные овощи";
-"frozenpizza" = "Замороженная пицца";
-"frozenmeals" = "Замороженнре блюдо";
-"frozenfish" = "Замороженная рыба";
-"frozenfries" = "Замороженная картошка-фри";
-"frozennuggets" = "Замороженные наггетсы";
-"frozenpancakes" = "Замороженные блины";
+
+"frozengoods" = "Frozen Food";
+"icecream" = "Ice Cream";
+"frozenfruits" = "Frozen Fruits";
+"frozenvegetables" = "Frozen Vegetables";
+"frozenpizza" = "Frozen Pizza";
+"frozenmeals" = "Frozen Meals";
+"frozenfish" = "Frozen Fish";
+"frozenfries" = "Frozen Fries";
+"frozennuggets" = "Frozen Nuggets";
+"frozenpancakes" = "Frozen Pancakes";
 
 /* BABY SUPPLIES */
 
-"babyfood" = "Детская еда";
-"diapers" = "Подгузники";
-"wipes" = "Салфетки";
-"babyshampoo" = "Детский шампунь";
-"babysoap" = "Детское мыло";
-"babyoil" = "Детское масло";
-"babypowder" = "Присыпка";
-"pacifiers" = "Соска";
-"rashcream" = "Крем против сыпи";
-"sanitizer" = "Дезинфицирующее средство";
-"toddler" = "Ползунки";
 
+"babyfood" = "Baby Food";
+"diapers" = "Diapers"; // Windeln
+"wipes" = "Wipes";
+"babyshampoo" = "Baby Shampoo";
+"babysoap" = "Baby Soap";
+"babyoil" = "Baby Oil";
+"babypowder" = "Baby powder";
+"pacifiers" = "Pacifiers";
+"rashcream" = "Rash Cream";
+"sanitizer" = "Sanitizer";
+"toddler" = "Toddler";
 
 /* PET SUPPLIES */
 
-"dogfood" = "Собачий корм";
-"catfood" = "Кошачий корм";
-"birdfood" = "Корм для птиц";
-"dogtreats" = "Игрушка для собак";
-"cattreats" = "Игрушка для котов";
-"fishfood" = "Корм для рыбок";
-"catlitter" = "Наполнитель для лотка";
+
+"dogfood" = "Dog Food";
+"catfood" = "Cat Food";
+"birdfood" = "Bird Food";
+"dogtreats" = "Dog Treats"; // Hundefutter
+"cattreats" = "Cat Treats";
+"fishfood" = "Fish Food";
+"catlitter" = "Cat Litter"; //
 
 /* PERSONAL CARE */
 
-"bodylotion" = "Лосьон для тела";
-"shampoo" = "Шампунь";
-"hairconditioner" = "Кондиционер для волос";
-"condoms" = "Презервативы";
-"lenssolution" = "Жидкость для линз";
-"cottonpads" = "Ватные диски";
-"dentalfloss" = "Зубная нить";
-"cottonswabs" = "Ватные палочки";
-"deodorant" = "Дезодорант";
-"facecream" = "Крем для лица";
-"facialtissues" = "Салфетки для лица";
-"toothpaste" = "Зубная паста";
-"toothbrush" = "Зубная щетка";
-"hairgel" = "Гель для волос";
-"hairspray" = "Спрей для волос";
-"handcream" = "Крем для рук";
-"mouthwash" = "Ополаскиватель для рта";
-"nailpolish" = "Лак для ногтей";
-"nailpolishremover" = "Жидкость для снятия лака";
-"razor" = "Бритва";
-"razorblades" = "Лезвия для бритвы";
-"shavingcream" = "Крем для бритья";
-"showergel" = "Гель для душка";
-"soap" = "Мыло";
-"sunscreen" = "Крем от солнца";
-"tampons" = "Тампоны";
-"tissues" = "Бумажные салфетки";
-"wetwipes" = "Влажные салфетки";
-"aftershave" = "Крем после бритья";
-"mascara" = "Тушь";
-"eyeshadow" = "Тени";
-"lipstick" = "Помада";
-"cottonballs" = "Хлопковые шарики";
-"toothpicks" = "Зубочистки";
+"bodylotion" = "Body Lotion";
+"shampoo" = "Shampoo";
+"hairconditioner" = "Hair Conditioner";
+"condoms" = "Condoms";
+"lenssolution" = "Lens Solution";
+"cottonpads" = "Cotton Pads";
+"dentalfloss" = "Dental Floss";
+"cottonswabs" = "Cotton Swabs";
+"deodorant" = "Deodorant";
+"facecream" = "Face Cream";
+"facialtissues" = "Facial Tissues";
+"toothpaste" = "Toothpaste";
+"toothbrush" = "Toothbrush";
+"hairgel" = "Hair Gel";
+"hairspray" = "Hair Spray";
+"handcream" = "Hand Cream";
+"mouthwash" = "Mouthwash";
+"nailpolish" = "Nail Polish";
+"nailpolishremover" = "Nail Polish remover";
+"razor" = "Razor";
+"razorblades" = "Razor Blades";
+"shavingcream" = "Shaving Cream";
+"showergel" = "Shower Gel";
+"soap" = "Soap";
+"sunscreen" = "Sunscreen";
+"tampons" = "Tampons";
+"tissues" = "Tissues";
+"wetwipes" = "Wet Wipes";
+"aftershave" = "After Shave";
+"mascara" = "Mascara";
+"eyeshadow" = "Eye Shadow";
+"lipstick" = "Lipstick";
+"cottonballs" = "Cotton Balls";
+"toothpicks" = "Toothpicks";
 
 /* PHARMACY */
 
-"medications" = "Лекарства";
-"plasters" = "Пластыри";
-"painreliever" = "Обезболивающие";
-"vitamins" = "Витамины";
-"antiflewtreatments" = "Средство против гриппа";
-"pyretic" = "Жаропонижающее";
-
+"medications" = "Medications";
+"plasters" = "Plasters";
+"painreliever" = "Pain Reliever"; // Schmerzmittel
+"vitamins" = "Vitamins";
+"antiflewtreatments" = "Anti-Flu Treatments"; // Medikamente gegen Erkaeltung
+"pyretic" = "Pyretic";
 
 /* HOUSEHOLD */
 
-"sponge" = "Губка";
-"papertowel" = "Бумажные полотенца";
-"toiletpaper" = "Туалетная бумага";
-"disinfectant" = "Средство дезинфекции";
-"laundrydetergent" = "Жидкость для стирки";
-"washingpowder" = "Стиральный порошок";
-"dishsoap" = "Мыло для мытья посуды";
-"wipes1" = "Салфетки";
-"trashbags" = "Мешки для мусора";
-"bucket" = "Ведро";
-"squeegee" = "Резиновая швабра";
-"liquidsoap" = "Жидкое мыло";
-"aluminiumfoil" = "Фольга";
-"bathroomcleaner" = "Очиститель для ванной";
-"toiletcleaner" = "Очиститель для туалета";
-"batteries" = "Батарейки";
-"candles" = "Свечи";
-"charcoal" = "Уголь";
-"dishwashersalt" = "Соль для посуд. мышины";
-"dishwashertabs" = "Таблетки для посуд. машины";
-"dishwashingliquid" = "Жидкость для мытья посуды";
-"fabricsoftener" = "Кондиционер для белья";
-"glasscleaner" = "Очиститель для стекла";
-"plasticwrap" = "Пластиковая упаковка";
-"wrappingpaper" = "Оберточная бумага";
-"brazier" = "Мангал";
-"plasticplates" = "Пластиковые тарелки";
-"plasticcups" = "Пластиковые стаканчики";
-"ignition" = "Розжиг";
+"sponge" = "Sponge";
+"papertowel" = "Paper Towels"; // Zewa
+"toiletpaper" = "Toilet Paper";
+"disinfectant" = "Disinfectant";
+"laundrydetergent" = "Laundry Detergent";
+"washingpowder" = "Laundry Powder";
+"dishsoap" = "Dish Soap";
+"wipes1" = "Wipes";
+"trashbags" = "Trash Bags";
+"bucket" = "Bucket";
+"squeegee" = "Squeegee";
+"liquidsoap" = "Liquid Soap";
+"aluminiumfoil" = "Aluminium Foil";
+"bathroomcleaner" = "Bathroom Cleaner";
+"toiletcleaner" = "Toilet Cleaner";
+"batteries" = "Batteries";
+"candles" = "Candles";
+"charcoal" = "Charcoal";
+"dishwashersalt" = "Dishwasher Salt";
+"dishwashertabs" = "Dishwasher Tabs";
+"dishwashingliquid" = "Dishwashing Liquid";
+"fabricsoftener" = "Fabric Softener";
+"glasscleaner" = "Glass Cleaner";
+"plasticwrap" = "Plastic Wrap";
+"wrappingpaper" = "Wrapping Paper";
+"brazier" = "Brazier";
+"plasticplates" = "Plastic Plates";
+"plasticcups" = "Plastic Cups";
+"ignition" = "Ignition";
 
 /* TOBACCO */
 
-"cigarettes" = "Сигареты";
-"lighter" = "Зажигалка";
-"tobacco" = "Табак";
+
+"cigarettes" = "Cigarettes";
+"lighter" = "Lighter";
+"tobacco" = "Tobacco";
 
 /* */
 
-"amount" = "Кол-во";
+"amount" = "Amount"; // Betrag
 
-"copy" = "Копировать";
+"copy" = "Copy"; // Kopieren
 
-"paste" = "Вставить";
+"paste" = "Paste"; // Einfugen
 
-"itemscopied" = "Скопировано";
+"itemscopied" = "Items were copied"; // Die Artikeln wurden kopiert
 
-"openthelist" = "Откройте нужный лист и вставьте продукты с помощью \"Редактировать\" - \"Вставить\"";
+"openthelist" = "Open the list you want to copy items to - Tap \"Edit All\" - \"Paste\""; // Offnen Sie die liste, in die sie die Artikel einfugen mochten
 
-"noitemsto" = "Ничего не скопировано";
+"noitemsto" = "No items to paste"; // Keine Artikel zum kopieren
 
-"pleasecopy" = "Сперва скопируйте продукты из списка";
+"pleasecopy" = "Please, copy some items first"; // Bitte kopieren zunachst einige Artikel
 
-"totalsum" = "Сумма:";
+"totalsum" = "Total sum:";
 
-"list" = "Список";
+"list" = "List"; //
 
-"listshop" = "Список покупок";
+"listshop" = "Shopping List";
 
-"listtodo" = "Список дел";
+"listtodo" = "To Do List";
 
-"hidecats" = "Не показывать категории";
+"hidecats" = "Hide categories"; // Kategorien verbergen
 
-"showcats" = "Показывать категории";
+"showcats" = "Show categories"; // Kategorien einzeigen
 
-"helpsh1" = "Отправка списка пользователю приложения Купика\n\nНачните вводить адрес электронной почты получателя. Во время ввода, приложение будет искать нужного пользователя в базе данных. Как только контакты желаемого получателя появились в списке - выберите пользователя и нажмите на иконку Отправить. Если в выпадющем меню ничего не появилось, скорее всего пользователя в базе данных нет. Если это действительно так, список будет отправлен на введенный адрес эл. почты вместе с предложением установить Купику\n\nДругие способы\n\nСписок также можно сразу отправить по эл.почте, сообщением или вы можете просто сохранить картинку со списком в галерею устройства и далее отправить в мессенджерах или социальных сетях. Сообщение можно отправить как в виде текста, так и в виде картинки (скриншота). Чтобы были доступны опции отправки списка в виде картинки - вы должны сперва открыть нужный список или уже находиться в окне его создания.";
+"helpsh1" = "Sending the list to Get Me Food App user\n\nStart typing users' email in the respective field. The app will start searching for such user in our database. Once the desired user is found and displayed in the drop-menu - choose the user and tap Send button. If nothing shows up in drop menu, most probably such user doesn't exist in our database. If this is the case, the list will be sent via email along with the invitation to install the app.\n\nOther options\n\nYou can send the list via email, via message or as a picture. Message can be sent in text or image format. Also, you can just save the screenshot of a list to the gallery on your device and later send it via messengers or social networks. Please note that in order to send a picture you should first open the list or be already in a list creation screen.";
+// Liste an andere Get Me Food App user senden .. Bitte geben Sie die email adresse des users in das entsprechende Feld ein. Die App wird darauf hin diesen User in der Datenbank suchen. Sobald dieser User gefunden ist, wird er Ihnen im drop-menu angezeigt - waehlen Sie einen User aus und druecken Sie auf  Senden
 
-"helpsh2" = "Или вы можете просто послать список по эл.почте, введя адрес в соответствующее поле";
 
-"helpcontact" = "Начните вводить адрес электронной почты получателя. Во время ввода, приложение будет искать нужного пользователя в нашей базе данных. Как только контакты желаемого получателя появились в списке - выберите его/ее и нажмите \"Добавить контакт\"";
+"helpcontact" = "Start typing email in the respective field. Autocomplete will find such user in our database. Once you found desired user - choose him/her from drop menu and tap \"Add Contact\" button."; // ... das Autocomplete wird diesen User in den Datenbank finden.
 
-"wantdelete1" = "Вы уверены?";
+"wantdelete1" = "Are you sure?"; // Sind Sie sicher?
 
-"wantdelete2" = "Вся информация, связанная с вашим аккаунтом будет удалена с устройства и из базы данных";
+"wantdelete2" = "All the data related to your account will be completely removed from the device and the server"; // Alle Daten bezuglich ihres Accounts werden von ihren Geraet und dem Server entfernt
 
-"incom" = "Входящий лист!";
-"recfrom" = "Получено от:";
-"availableapp" = "Купика - список покупок. Приложение доступно для скачивания в App Store";
+"incom" = "Incoming list!"; // Gesendete Liste
+"recfrom" = "Received from:"; // Empfangen von
+"availableapp" = "Get Me Food - grocery list. The app is available on the App Store"; // Get Me Food  - einkaufsliste. Diese App im App Store verfugbar
 
-"emaillistname" = "Список:";
-"emaillistnote" = "Заметка:";
-"inthelist" = "В списке:";
+"emaillistname" = "List:";
+"emaillistnote" = "Note:"; // Notizen
+"inthelist" = "List contains:"; // Die Liste enthaelt
 
-"appname" = "Купика";
+"appname" = "Get Me Food";
 
-"youreceived" = "Вам прислали список";
+"youreceived" = "Incoming list for you";
 
-"todoimportant" = "Важное!";
+"todoimportant" = "Important!"; // Wichtig!
+
+
 
 /* HELP */
+"aboutgraphic" = "Starting guide";
+"aboutitems" = "Adding/editing items";
+"aboutapp" = "App functions";
 
-"aboutgraphic" = "Стартовая инструкция";
-"aboutitems" = "Добавление/редактирование списков";
-"aboutapp" = "Функции приложения";
-
-"graphichelp" = "Стартовая инструкция";
-
-"howcreateshopitem" = "Как добавить новый продукт в список покупок?";
-"howedititem" = "Как отредактировать продукт?";
-"howcreatetodoitem" = "Как создать запись в списке дел?";
-"howedittodoitem" = "Как редактировать запись в списке дел?";
-"howquicklyadd" = "Как быстро добавить продукт в список покупок?";
-"howaddmultiple" = "Как добавить сразу несколько продуктов в список?";
-"howaddtofavs" = "Как добавить продукт в избранное?";
-"howreorder" = "Как поменять порядок продуктов в списке?";
-"howchangeunits" = "Как поменять единицы измерения?";
-"howaddpictures" = "Как добавить или поменять картинку продукта?";
-"howdeleteitems" = "Как удалить продукт?";
-"howcopy" = "Как скопировать/вставить/удалить продукты?";
+"graphichelp" = "Starting guide";
 
 
-
-"howcreateshopitemT" = "Когда вы находитесь в списке, вы можете добавить продукт двумя способами:\n 1) Нажмите на белый плюс в правом верхнем углу экрана\n 2) Начните вводить название продукта в поле прямо под названием и заметкой листа. Пока вы набираете текст, приложение будет искать продукт в каталоге. Если вы увидели нужный продукт - нажмите на него, затем просто нажмите красный плюс в круге. Также вы можете продолжить вводить название продукта, чтобы создать свой продукт. Затем также нажмите на красный плюс.\nНе забудьте, что вы сразу же можете задать количество и единицу измерения, нажав на кнопку \"Кол-во\"";
-"howedititemT" = "Просто нажмите на продукт в списке и появится окно редактирования. Избегайте нажатия в правой части экрана, так как, в данном случае вы скорее всего отметите продукт, как купленный. В любом случае, вернуть продукт из отмеченных легко и просто - нажмите на кнопку с белыми стрелками";
-"howcreatetodoitemT" = "Находясь в окне создания списка дел, нажмите на белый плюс в правом верхнем углу";
-"howedittodoitemT" = "Просто нажмите на запись в списке и появится окно редактирования. Избегайте нажатия в правой части экрана, так как, в данном случае вы скорее всего отметите продукт, как купленный. В любом случае, вернуть продукт из отмеченных легко и просто - нажмите на кнопку с белыми стрелками";
-"howquicklyaddT" = "Начните вводить название продукта в поле прямо под названием и заметкой листа. Пока вы набираете текст, приложение будет искать продукт в каталоге. Если вы увидели нужный продукт - нажмите на него, затем просто нажмите красный плюс в круге. Также вы можете продолжить вводить название продукта, чтобы создать свой продукт. Затем также нажмите на красный плюс.\nНе забудьте, что вы сразу же можете задать количество и единицу измерения, нажав на кнопку \"Кол-во\"";
-"howaddmultipleT" = "Находясь в списке продуктов, нажмите на первую из двух кнопок на верхней панели (выглядит как список с плюсиком в углу). В появившемся окне вы можете\n1) Быстро создать новый продукт\n2) Выбрать продукты из истории, каталога или избранного.\nПосле, вы можете отредактировать каждый из добавленных продуктов прежде чем вернуться обратно в окно создания списка";
-"howaddtofavsT" = "Когда вы создаете или редактируете продукт, внизу окна будет кнопка в виде звезды - нажмите на нее. Нажмите на нее еще раз, если хотите убрать продукт из избранного";
-"howreorderT" = "Нажмите на нужный продукт и немного подержите палец на нем, затем перетащите продукт на нужную позицию.\nОбращаем ваше внимание, что так можно сделать только в случае, если в списке не показаны категории (в этом случае продукты сортируются согласно принадлежности к соответствующим категориям";
-"howchangeunitsT" = "Во время редактирования или создания продукта найдите раздел \"Ед. измерения\" и нажмите на пустой прямоугольник - внизу экрана появится окно выбора единиц измерения";
-"howaddpicturesT" = "Во время создания или редактирования продукта нажмите на \"Изменить картинку\" (или иконку фотоаппарата) и выберите картинку из стандартных или загрузите свою (в этом случае не забудьте нажать на кнопку \"Добавить\"";
-"howdeleteitemsT" = "Продукты удаляются свайпом влево. То же относится и к контактам, категориям и так далее.";
-"howcopyT" = "В нижней части экрана создания списка нажмите на кнопку \"Правка\". Отметьте продукты, которые вы хотите скопировать или удалить. Затем нажмите на соответствующую кнопку на верхней панели. Если вы скопировали продукты, вы можете вставить их в любой список -> Зайдите в нужный список -> Нажмите на \"Правка\" и далее нажмите на \"Вставить\"";
+"howcreateshopitem" = "How do I create shop list item?";
+"howedititem" = "How do I edit shop list item?";
+"howcreatetodoitem" = "How do I create to do list item?";
+"howedittodoitem" = "How do I edit to do list item?";
+"howquicklyadd" = "How do I quickly add shop list item?";
+"howaddmultiple" = "How do I add multiple shop list items at once?";
+"howaddtofavs" = "How do I add shop item to favourites?";
+"howreorder" = "How do I re-order shop list items?";
+"howchangeunits" = "How do I change shop items units?";
+"howaddpictures" = "How do I add pictures to shop list items?";
+"howdeleteitems" = "How do I delete items from the list?";
+"howcopy" = "How do I copy/paste/delete items?";
 
 
 
-"howcreatecats" = "Как создать свои категории продуктов?";
-"howaddcontact" = "Как добавить новый контакт?";
-"howsendlists" = "Как отправить лист?";
-"howsendbyemail" = "Как отправить лист в сообщении/электронном письме?";
-"howrenameandnote" = "Как изменить название листа или заметку?";
-"howturnoncats" = "Как включить показ категорий в списке продуктов?";
-"howchangecurrency" = "Как изменить валюту списка покупок?";
-"howsynchronize" = "Как синхронизировать данные с другими устройствами?";
-"howchangeaccountdata" = "Как изменить персональные данные?";
+"howcreateshopitemT" = "When you find yourself in the shop list creation screen, you can:\n1) Tap on the white plus button in the top right corner\n2) Start typing product's name within the section under lists' name and note. The app will find the product in the catalog. Once you see the required item - tap on it and then tap on the red plus icon. Or you can keep typing products' name to create your own item and then also tap on the red plus icon.\nRemember! You can also immediately edit the amount and unit of an item tapping on \"Amount\" icon";
+"howedititemT" = "Just tap on the item within the list. Try to avoid tapping on the right corner of the item in a list, since thus you will mark the item as checked instead of editing it. Anyway, after that you can uncheck an item simply tapping on two white arrows icon";
+"howcreatetodoitemT" = "When you find yourself in the to do list creation screen, you can should tap on the white plus button in the right top corner";
+"howedittodoitemT" = "Just tap on the item within the list. Try to avoid tapping on the right corner of the item in a list, since thus you will mark the item as checked instead of editing it. Anyway, after that you can uncheck an item simply tapping on two white arrows icon";
+"howquicklyaddT" = "Start typing product's name within the section under lists' name and note. The app will find the product in the catalog. Once you see the required item - tap on it and then tap on the red plus icon. Or you can keep typing products' name to create your own item and then also tap on the red plus icon.\nRemember! You can also immediately edit the amount and unit of an item tapping on \"Amount\" icon";
+"howaddmultipleT" = "When you find yourself in the shop list creation screen, you can tap on the first icon (looks like list with a plus) in the top right corner. In the next screen you can:\n1) Create new item on a go\n2) Choose items from the catalog, history or your favourite items.\n Afterwards, you can edit each added item before going back to the shop list creation screen";
+"howaddtofavsT" = "When you edit a product, at the bottom of the screen you will find star-alike button. Just tap on it. Tap on it again to delete the product from favourites.";
+"howreorderT" = "When in the list creation screen, hold the item for a while and then drag it to the desirable position\n Note, that this is only possible when list doesn't show categories, otherwise all items would be sorted according to their categories";
+"howchangeunitsT" = "In the product editing (or creating new one) screen find the \"Units\" section and tap on an empty rectangle - the units choosing screen will show up in the bottom of the screen";
+"howaddpicturesT" = "Tap on the \"Change picture\" (or Photograph icon) and choose picture from defaults or upload your own";
+"howdeleteitemsT" = "Swipe the item to the left and tap on delete button. The same applies to contacts, categories and so on.";
+"howcopyT" = "In the bottom of the list tap on \"Edit All\" button. Check the items you want to copy or delete. Then tap on the respective button on the top panel. If you copied items, then you can paste them to any list you want -> Go to the list -> Tap on \"Edit All\" and tap on \"Paste\"";
 
 
-"howcreatecatsT" = "Есть два пути:\n 1) Когда вы выбираете категорию продукта, вы можете создать свою в верхней части экрана категорий\n 2) Также вы можете создать категорию зайдя в Настройки -> Мои категории/n После создания категории, вы можете зайти в нее и добавить в нее свои продукты для отображеиня в каталоге";
-"howaddcontactT" = "Зайдите в Настройки -> Контакты -> начните вводить эл.почту желаемого пользователя. Во время ввода появится выпадающее меню со списком пользователей приложения. Как только вы увидели нужного пользователя, нажмите на него и затем нажмите на кнопку \"Добавить контакт\"";
-"howsendlistsT" = "Прямо в списке, нажмите на кнопку \"Отправить\" в левом нижнем углу экрана. Так же кнопка отправки находится у любого списка в разделе \"Мои списки\". Далее, появится окно отправки, начните вводить эл.почту получателя и выберите нужного пользователя в выпадающем списке. Затем нажмите на кнопку Отправить.\nТакже вы можете нажать на зеленую стрелку напротив нужного контакта, если таковые имеются. Если вы отправите с помощью этого поля на эл.почту список человек, не имеющему приложение, список будет отправлен на указанную электронную почту вместе с приглашением установить приложение.";
-"howsendbyemailT" = "Нажмите на иконку либо в окне создания списка (средняя на верхней панели) либо в окне \"Мои списки\". В появившемся окне выберите один из вариантов отправки.\nВ случае сохранения списка в галерею, вы можете найти его в разделе Фото вашего телефона. В случае отправки по электронной почте или сообщение - появится стандартное окно отправки сообщения с заполненным списком. Вы можете отредактировать что посчитаете нужным";
-"howrenameandnoteT" = "Нажмите на крайнюю левую иконку на верхней панели в окне создания списка. Также это можно сделать из раздела \"Мои списки\", нажав на красную стрелку справа от названия нужного списка";
-"howturnoncatsT" = "В окне создания списка, справа от названия, вы увидите иконку в виде трех горизонтальных точек. Нажмите на нее -> Появится окно опций списка, в нем поменяйте необходимые настройки";
-"howchangecurrencyT" = "В окне создания списка, справа от названия, вы увидите иконку в виде трех горизонтальных точек. Нажмите на нее -> Появится окно опций списка, в нем поменяйте необходимые настройки";
-"howsynchronizeT" = "Зайдите в Настройки и нажмите на \"Синхронизация\". Данные будут загружены на сервер. На другом устройстве так же зайдите в Настройки и синхронизируйтесь.\nПожалуйста не забывайте сперва синхронизировать на устройстве, где вы создавали списки изначально.";
-"howchangeaccountdataT" = "Зайдите в Настройки -> Мой аккаунт - > Поменяйте то, что считаете нужным и нажмите на  \"Сохранить изменения\"";
+
+"howcreatecats" = "How do I create my own categories?";
+"howaddcontact" = "How do I add contacts?";
+"howsendlists" = "How do I send the list?";
+"howsendbyemail" = "How do I send the list via messages/email?";
+"howrenameandnote" = "How do I change list name and note?";
+"howturnoncats" = "How do I see categories in a shop list?";
+"howchangecurrency" = "How do I change the currency of a list?";
+"howsynchronize" = "How do I synchronize my data for using on other devices?";
+"howchangeaccountdata" = "How do I change my personal data?";
 
 
-"tutheader1" = "Окно создания списка покупок";
-"tutheader2" = "Работа с продуктами в списке";
-"tutheader3" = "Окно \"Мои списки\"";
-"tutheader4" = "Создавайте свои категории и продукты";
+"howcreatecatsT" = "There are two ways:\n 1) When you choose the category for shop item, you can create your own category on the top of the categories screen\n 2) You can create category from Settings -> Manage categories";
+"howaddcontactT" = "Go to Settings -> Contacts -> type email of the desired user, while you are typing, the dropdown menu will show up with list of possible users to add. Once you found the user, tap on the user in drop-down menu and then tap on \"Add contact\" button";
+"howsendlistsT" = "Directly in the list tap on the button \"Send\" in the bottom left corner or from \"My lists\" screen. There is a send button on each list\n In the sending list screen you should type the users' email and then choose the user from drop menu. Then tap on Send button. Or, if you have users in your contact list, then just tap on the green arrow button next to one of them";
+"howsendbyemailT" = "Tap on the \"Send\" button either in the list creation screen or \"My lists\" screen. Find the required way of sharing the list. In case of saving the list into device gallery, you can later find the list in Photos section of your device. In case of messaging or emailing - the usual message screen will show up with the filled list. You can edit what you want there";
+"howrenameandnoteT" = "Just tap on the name or note in the list creation screen";
+"howturnoncatsT" = "In the list creation list, to the right from lists' name there is a button looking like three points. Tap on it -> The screen with options will show up. Change the properties you want.";
+"howchangecurrencyT" = "In the list creation list, to the right from lists' name there is a button looking like three points. Tap on it -> The screen with options will show up. Change the properties you want.";
+"howsynchronizeT" = "Go to Settings and tap on \"Synchronize\". The data will be uploaded to our server. On the other device also go to Settings and tap on Synchronize.\n Please don't forget to tap synchronize button first on the device where the original data is.";
+"howchangeaccountdataT" = "Go to Settings -> Account Info - > Change what you want and tap on \"Save changes\"";
+
+
+
+
+"tutheader1" = "List creation screen"; // Einkaufsliste erstellen
+"tutheader2" = "Manage items"; // Verwalte Artikel
+"tutheader3" = "My lists screen"; // Meine Liste Fenster
+"tutheader4" = "Custom categories and items"; // kundenkategorien und artikel
 "tutheader5" = "";
-"tutheader6" = "Отправляйте уведомления друзьям";
-"tutheader7" = "Отправляйте списки";
+"tutheader6" = "Send notification to your friends"; // Benachrichtige deine Freunde
+"tutheader7" = "Send lists"; // Die Liste senden
 "tutheader8" = "";
 
 /* IMAGES NAMES */
-"tutimintro" = "TutorialIntro";
-"tutim1" = "Tutorial1";
-"tutim2" = "Tutorial2";
-"tutim3" = "Tutorial3";
-"tutim4" = "Tutorial4";
-"tutim5" = "Tutorial5";
-"tutim6" = "Tutorial6";
-"tutim7" = "Tutorial7";
 
-"reportproblem1" = "В приложении баг";
-"reportproblem2" = "Описание:";
+"tutintro1" = "intro1en";
 
-"privacy" = "Информация об использовании приложения Купика\n\nПриложение собирает следующую информацию (в случае регистрации аккаунта или логина через социальные сети):\n- Контактная информация (имя и адрес электронной почты)\n- Пароль (Только в случае регистрации аккаунта. Пароль недоступен разработчику приложения. В случае логина через социальные сети, пароли от аккаунтов  не доступны никому, в том числе разработчику, и не сохраняются в базе данных приложения)\n- Изображение\n- Информация, добавленная во время работы приложения, такая как списки и продукты, при синхронизации данных с сервером\nСобранная информация никак не используется и не анализируется.\n\nУдаление информации:\n\nВсе данные полдностью удаляются, если вы решите удалить аккаунт в разделе Мой аккаунт";
+"tutimintro" = "TutorialIntroen";
+"tutim1" = "Tutorial1en";
+"tutim2" = "Tutorial2en";
+"tutim3" = "Tutorial3en";
+"tutim4" = "Tutorial4en";
+"tutim5" = "Tutorial5en";
+"tutim6" = "Tutorial6en";
+"tutim7" = "Tutorial7en";
+
+"reportproblem1" = "I found a bug in the app";
+"reportproblem2" = "Description:";
+
+"privacy" = "Get Me Food Privacy Policy\n\nThe app collects the following information (in case of registration or signing-in via soical networks):\n- Contact info; name and email address\n- Password (Not available for developers. When signing-in via social networks, password is completely unavailable for the app)\n- Profile picture\n- Information you add within the app and upload to the server when synchronizing\nThis information is not further used or analyzed.\n\nDeletion of information:\n\nAll data will be removed if you decide to delete the account in Account Info section";
+
+"wrongsendemail" = "If you got this email by mistake, please ignore it";
+
+"newcat" = "Catalog"; // Katalog
+
+"newfavs" = "Favourites"; // Favoriten
+
+"newhist" = "History"; // Verlauf
+
+"savetogal" = "Saved"; // Gespeichert
+"savetogalmes" = "The list is saved into the gallery"; // Die Liste in wurde in Galerie gespeichert
+"notsavetogal" = "Something went wrong"; // Etwas ist schief gelaufen
+"notsavetogalmes" = "The list wasn't saved"; // Die Liste wurde nicht gespeichert
+
+"otheroptions" = "Other options"; // Andere Optionen
+
+"additemtext" = "+ Add item"; // + Artikel hinzufuegen
+
+"autocompleteplchldr" = "Item name"; // Artikel Name
+
+"popcheck" = "Check received lists"; // Liste anschauen
+"popasc" = "Sort by date (asc.)"; // nach Datum sortieren (aufst.)
+"popdesc" = "Sort by date (desc.)"; // nach Datum /// (abst.)
+"popalpha" = "Sort alphabetically"; // Alphabetisch sortieren
+
+"commoncur" = "Commonly used"; //  Haeufig verwendet
+"allcur" = "All currencies"; // Alle Waerungen
 
 
-"wrongsendemail" = "Если вы получили это письмо по ошибке, пожалуйста просто проигнорируйте его";
+// MAY STUFF
 
-"newcat" = "Каталог";
+"qeditproduct" = "Edit";
+"qaddproduct" = "Add product";
+"spentsum" = "Spent:";
 
-"newfavs" = "Избранное";
+"something" = "Create category";
 
-"newhist" = "История";
+"listwasaccepted" = "has accepted your list";
 
-"savetogal" = "Готово";
-"savetogalmes" = "Список сохранен в галерею устройства";
-"notsavetogal" = "Ошибка";
-"notsavetogalmes" = "К сожалению, список не был сохранен";
+"rusure" = "Sure?";
 
-"otheroptions" = "Другие варианты";
+"rusuremore" = "All info and items will also be deleted";
 
-"additemtext" = "+ Добавить продукт";
+"addtodoitemtext" = "+ Add a new task";
 
-"autocompleteplchldr" = "Введите название";
+"todoplchldr" = "Type your task";
+
+"mylists" = "My lists";
+
+"showalllists" = "Show All lists";
+
+"showonlyshops" = "Show Shopping lists";
+
+"showonlytodos" = "Show To Do lists";
+
+"showonlyfavs" = "Show Favourite lists";
+
+"days" = "Days";
+
+"weeks" = "Weeks";
+
+"months" = "Months";
+
+"years" = "Years";
+
+"oneweek" = "One week";
+
+"onemonth" = "One month";
+
+"oneyear" = "One year";
+
+"addcustom" = "Add Custom";
+
+"sharemyapp" = "Tell people about the app";
+
+"sharingtext" = "I've found an awesome grocery list app!";
+
+"sharingtexttw" = "Awesome grocery list app!";
+
+"sharingtextfb" = "I've found an awesome grocery list app!";
+
+"twittertitle" = "Twitter";
+
+"facebooktitle" = "Facebook";
+
+"notloggedtotwitter" = "You are not logged in to your Twitter account";
+
+"notloggedtofacebook" = "You are not logged in to your Facebook account";
+
+"more" = "More";
+
+"share" = "Tell friends about the app";
 
 
-"popcheck" = "Проверить входящие списки";
-"popasc" = "Сортировать по дате (новые сверху)";
-"popdesc" = "Сортировать по дате (новые снизу)";
-"popalpha" = "Сортировать по алфавиту";
-
-"commoncur" = "Часто используемые";
-"allcur" = "Весь список";

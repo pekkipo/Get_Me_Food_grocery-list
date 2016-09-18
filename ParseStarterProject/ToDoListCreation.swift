@@ -1815,8 +1815,8 @@ class ToDoListCreation: UIViewController, UITableViewDelegate, UITableViewDataSo
         let closepadframe4: CGRect = CGRectMake(self.view.frame.size.width / 2, 0, self.view.frame.size.width / 2, 46)
         let editproduct: UIButton = UIButton(frame: closepadframe3);
         let addproduct: UIButton = UIButton(frame: closepadframe4);
-        editproduct.setTitle(NSLocalizedString("qeditproduct", comment: ""), forState: UIControlState.Normal)
-        addproduct.setTitle(NSLocalizedString("qaddproduct", comment: ""), forState: UIControlState.Normal)
+        editproduct.setTitle(NSLocalizedString("qeditproducttodo", comment: ""), forState: UIControlState.Normal)
+        addproduct.setTitle(NSLocalizedString("qaddproducttodo", comment: ""), forState: UIControlState.Normal)
         editproduct.tintColor = UIColorFromRGB(0x1695A3)
         addproduct.tintColor = UIColorFromRGB(0x31797D)
         editproduct.setImage(editproductimage, forState: UIControlState.Normal)

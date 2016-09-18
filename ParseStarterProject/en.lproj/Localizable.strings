@@ -840,6 +840,8 @@
 
 /* IMAGES NAMES */
 
+"tutintro1" = "intro1en";
+
 "tutimintro" = "TutorialIntroen";
 "tutim1" = "Tutorial1en";
 "tutim2" = "Tutorial2en";
@@ -884,8 +886,12 @@
 
 // MAY STUFF
 
-"qeditproduct" = "Edit";
+"qeditproduct" = "Amount/Price (etc)";
 "qaddproduct" = "Add product";
+
+"qeditproducttodo" = "Edit";
+"qaddproducttodo" = "Add task";
+
 "spentsum" = "Spent:";
 
 "something" = "Create category";

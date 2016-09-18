@@ -24,7 +24,7 @@ Category(catId:"DefaultDomesticStuff",catname:"Domestic stuff",catimage:UIImage(
 ]
 */
 
-var messageimage : UIImage = UIImage(named: "Tutorial5")!
+var messageimage : UIImage = UIImage(named: "intro1en")!
 
 var customcatalogitems = [CatalogItem]()
 
@@ -753,7 +753,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
        
-        showproperties()
+        //showproperties() // SWITCH OFF TEMPORARILY!
         
        // if endediting == false {
         
@@ -5070,6 +5070,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
     func addproductfromkeyboard(sender: UIButton) {
         quickpriceoutlet.resignFirstResponder()
         
+        
         if (catalogitemtochoose != nil) {
             
             quickaddcatalogitem(catalogitemtochoose!)
@@ -5078,7 +5079,7 @@ class ShoppingListCreation: UIViewController, UITableViewDelegate, UITableViewDa
             
             quicknoncatalogitem()
         }
-
+        
         
     }
     

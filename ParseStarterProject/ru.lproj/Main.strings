@@ -75,7 +75,7 @@
 "8HJ-eO-2Wc.title" = "Сохранить";
 
 /* Class = "UITextField"; placeholder = "Type here an email"; ObjectID = "8p1-34-8y4"; */
-"8p1-34-8y4.placeholder" = "Введите email";
+"8p1-34-8y4.placeholder" = "Введите email пользователя Купики";
 
 /* Class = "UITextField"; placeholder = "Item Name"; ObjectID = "90k-Xn-cpg"; */
 "90k-Xn-cpg.placeholder" = "Название";
@@ -783,25 +783,25 @@
 "8kD-KM-ETW.normalTitle" = "Дальше";
 
 /* Class = "UIButton"; normalTitle = "SIGN UP / LOGIN"; ObjectID = "Tia-hV-2Bg"; */
-"Tia-hV-2Bg.normalTitle" = "Да! Регистрация / Логин";
+"Tia-hV-2Bg.normalTitle" = "Понятно! Начать работу";
 
 
 
 /* Class = "UILabel"; text = "150"; ObjectID = "VxA-hb-n7R"; */
-"VxA-hb-n7R.text" = "Создать учетную запись?";
+"VxA-hb-n7R.text" = "Второй маленький совет";
 
 
 /* Class = "UILabel"; text = "150"; ObjectID = "I1D-VQ-21e"; */
-"I1D-VQ-21e.text" = "Процесс займет меньше минуты и, естественно, регистрация бесплатная. Также можно войти через социальные сети";
+"I1D-VQ-21e.text" = "Создайте свою учетную запись. Это займет меньше минуты и, естественно, бесплатно. Можно войти с помощью социальных сетей!";
 
 /* Class = "UILabel"; text = "150"; ObjectID = "3Zr-DV-IRs"; */
 "3Zr-DV-IRs.text" = "Имея учетную запись, вы сможете легко установить связь с друзьями, добавлять контакты, синхронизировать устройства и пользоваться другими преимуществами";
 
 /* Class = "UILabel"; text = "150"; ObjectID = "F9E-sL-Htw"; */
-"F9E-sL-Htw.normalTitle" = "Нет, спасибо. Начать работу";
+"F9E-sL-Htw.normalTitle" = "Спасибо, может позже";
 
 /* Class = "UILabel"; text = "150"; ObjectID = "F9E-sL-Htw"; */
-"miC-cp-ZR8.normalTitle" = "Да, давайте!";
+"miC-cp-ZR8.normalTitle" = "Все понятно!";
 
 /* Class = "UILabel"; text = "150"; ObjectID = "F9E-sL-Htw"; */
 "Lhl-OB-L6c.normalTitle" = "Нет, спасибо";
@@ -812,7 +812,7 @@
 
 
 /* Class = "UILabel"; text = ""; ObjectID = "gqN-It-vkK"; */
-"gqN-It-vkK.text" = "Версия: 3.1";
+"gqN-It-vkK.text" = "Версия: 4.0";
 
 /* Class = "UILabel"; text = ""; ObjectID = "Si8-O2-jwN"; */
 "Si8-O2-jwN.text" = "Список покупок/дел";
@@ -1102,4 +1102,23 @@
 
 /* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
 "EKB-IZ-Bav.title" = "Регистрация";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"VTD-dp-Ca6.text" = "Получатель списка:";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"x0Q-WW-OMI.text" = "Получатель списка:";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"ybl-PI-gZE.text" = "Маленький совет";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"pS3-cZ-faf.text" = "Свайп влево, чтобы открыть дополнительные опции ";
+
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"c1M-pP-uVE.text" = "Чтобы отслеживать статистику затрат, указывайте цены на товары в ваших списках";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"Mug-Iy-V9w.text" = "К сожалению, сообщения о походе в магазин больше не поддерживаются";
 

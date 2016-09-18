@@ -13,9 +13,10 @@ class WalkthroughViewController: UIViewController
 
     
     @IBOutlet var imageView: UIImageView!
-
     
-    @IBOutlet var desclabel: UILabel!
+    @IBOutlet var smalltip: UILabel!
+    
+    @IBOutlet var swipeleft: UILabel!
     
     
     
@@ -33,24 +34,20 @@ class WalkthroughViewController: UIViewController
     @IBOutlet var yesoutlet: UIButton!
     
     
+    
+    
     var index = 0
     var headertext = ""
     var imageName = ""
     var descriptiontext = ""
     
 
-    
-    @IBOutlet var constr1: NSLayoutConstraint!
-    
-    
-    @IBOutlet var constr2: NSLayoutConstraint!
-    
+
    
     override func viewDidLoad() {
         super.viewDidLoad()
         
 
-        desclabel.text = descriptiontext
         imageView.image = UIImage(named: imageName)
         PageControl.currentPage = index
         
@@ -60,9 +57,17 @@ class WalkthroughViewController: UIViewController
 
         
         // customize the next and start button
-        getstarted.hidden = (index == 1) ? false : true
+        //getstarted.hidden = (index == 1) ? false : true
         
-        loginview.hidden = (index == 1) ? false : true
+        loginview.hidden = (index == 1) ? false : true // basically switched this off for now
+        
+        yesoutlet.hidden = (index == 0) ? false : true
+        
+        imageView.hidden = (index == 0) ? false : true
+        
+        smalltip.hidden = (index == 0) ? false : true
+        
+        swipeleft.hidden = (index == 0) ? false : true
         
     }
     
@@ -78,12 +83,15 @@ class WalkthroughViewController: UIViewController
         } else {
             
             // self.dismissViewControllerAnimated(true, completion: nil)
-            
+            /*
             if let loginViewController = storyboard?.instantiateViewControllerWithIdentifier("loginVC") as? PageViewController {
                 
                 self.presentViewController(loginViewController, animated: true, completion: nil)
                 
             }
+            */
+            let menu = storyboard?.instantiateViewControllerWithIdentifier("SideMenu") as? MainMenuViewController
+            performSegueWithIdentifier("signuporloginsegue", sender: menu)
             
             
         }
@@ -104,9 +112,9 @@ class WalkthroughViewController: UIViewController
         
         let pageViewController = self.parentViewController as! PageViewController
        // pageViewController.nextPageWithIndex(index+counter)
-        pageViewController.nextPageWithIndex(1)
+        pageViewController.nextPageWithIndex(index) //SWITCHED OFF
         
-       // self.dismissViewControllerAnimated(true, completion: nil)
+      //  self.dismissViewControllerAnimated(true, completion: nil)
         
     }
     
@@ -121,6 +129,20 @@ class WalkthroughViewController: UIViewController
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        
+        if segue.identifier == "signuporloginsegue" {
+            
+            
+            let navVC = segue.destinationViewController as! UINavigationController
+            
+            let  toViewController = navVC.viewControllers.first as! LoginViewController
+            
+            
+            toViewController.senderVC = "tutorial"
+        }
+    }
 
 }
 

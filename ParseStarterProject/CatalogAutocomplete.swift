@@ -201,7 +201,32 @@ class Catalog_Autocomplete: UITextField, UITextFieldDelegate, UITableViewDelegat
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         self.text = self.applyFilterWithSearchQuery(self.text!)[indexPath.row]["DisplayText"] as! String
         
-        self.resignFirstResponder()
+       
+        /// MY CHANGE - prevents from hiding the keyboard when product is chosen
+        // self.resignFirstResponder() - was only that
+        
+        UIView.animateWithDuration(0.3,
+                                   animations: ({
+                                    self.tableViewController?.tableView.alpha = 0.0
+                                   }),
+                                   completion:{
+                                    (finished : Bool) in
+                                    self.tableViewController?.tableView.removeFromSuperview()
+                                    self.tableViewController = nil
+        })
+        
+        if (mDelegate?.textFieldShouldSelect?(self) != nil){
+            if self.applyFilterWithSearchQuery(self.text!).count > 0 {
+                let selectedData = self.applyFilterWithSearchQuery(self.text!)[0]
+                let displayText : AnyObject? = selectedData["DisplayText"]
+                self.text = displayText as! String
+                mDelegate?.textFieldDidEndEditing?(self, withSelection: selectedData)
+            }
+            else{
+                mDelegate?.textFieldDidEndEditing?(self, withSelection: ["DisplayText":self.text!, "CustomObject":"NEW"])
+            }
+        }
+        
     }
     
     
@@ -226,9 +251,11 @@ class Catalog_Autocomplete: UITextField, UITextFieldDelegate, UITableViewDelegat
     }
     
     func handleExit(){
+        
         if let table = self.tableViewController{
             table.tableView.removeFromSuperview()
         }
+ 
         if (mDelegate?.textFieldShouldSelect?(self) != nil){
             if self.applyFilterWithSearchQuery(self.text!).count > 0 {
                 let selectedData = self.applyFilterWithSearchQuery(self.text!)[0]

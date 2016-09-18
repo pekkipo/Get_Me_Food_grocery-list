@@ -1838,13 +1838,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet var amountview: UIView!
     
     
-   
-    
-    
-    @IBOutlet var changeconstr1: NSLayoutConstraint!
 
-    @IBOutlet var changeconstr2: NSLayoutConstraint!
-    
     
     @IBOutlet var curcodelabel: UILabel!
     
@@ -1853,7 +1847,6 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     
     @IBOutlet var pictview: UIView!
     
-    @IBOutlet var noteheight: NSLayoutConstraint!
     
     
     // MARK: New categories stuff
@@ -2241,6 +2234,11 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     
+    
+    @IBOutlet var catviewhconstr: NSLayoutConstraint! // 78
+    
+    
+    
         override func viewDidLoad() {
         super.viewDidLoad()
             
@@ -2275,9 +2273,8 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
           //  if UIScreen.mainScreen().sizeType == .iPhone4 {
                if UIScreen.mainScreen().nativeBounds.height == 960 {
             
-                noteheight.constant = 42
-                changeconstr1.constant = 8
-                changeconstr2.constant = 8
+                catviewhconstr.constant = 40
+                
             }
             
 

@@ -1223,16 +1223,18 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, VKSdkDelegate,
     
     @IBOutlet var openmenu: UIBarButtonItem!
     
+    var senderVC = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         openmenu.target = self.revealViewController()
-        
         openmenu.action = Selector("revealToggle:")
         
+        //if senderVC != "tutorial" {
         
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+       // }
         
         LoginField.delegate = self
         

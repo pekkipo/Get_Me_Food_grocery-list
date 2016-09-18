@@ -3,7 +3,7 @@
 "2O8-yR-5og.normalTitle" = "Добавить";
 
 /* Class = "UILabel"; text = "This user added you to contacts"; ObjectID = "ISH-Te-Ve9"; */
-"ISH-Te-Ve9.text" = "добавил Вас в контакт-лист";
+"ISH-Te-Ve9.text" = "добавил(-а) Вас в контакт-лист";
 
 /* Class = "UILabel"; text = "Pretty Long Name"; ObjectID = "Tik-RI-bzh"; */
 "Tik-RI-bzh.text" = "Pretty Long Name";

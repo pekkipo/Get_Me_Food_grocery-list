@@ -826,8 +826,15 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
     if CheckConnection.isConnectedToNetwork() {
     
     //dispatch_async(dispatch_get_main_queue(), {
+        let qualityOfServiceClass = QOS_CLASS_BACKGROUND
+        let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
+        dispatch_async(backgroundQueue, {
+            print("This is run on the background queue")
+            self.checkreceivedevents()
+          
+        })
     //self.checkreceivedlists()
-    self.checkreceivedevents()
+    
     //})
     } else {
     print("No internet connection found")
@@ -1747,8 +1754,13 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
        // let navview = UIView(frame: CGRectMake(0,0,300,30))
        // let label = UILabel(frame: CGRectMake(80,0,300,30)) //70
         
+        
+        let screensize = self.view.layer.frame.width
+        
+        //let label = UILabel(frame: CGRectMake(screensize/6.4,0,150,30))
+        
         let navview = UIView(frame: CGRectMake(0,0,150,30))
-        let label = UILabel(frame: CGRectMake(70,0,150,30)) //first 70
+        let label = UILabel(frame: CGRectMake(50,0,150,30)) //first 70
         
         label.font = UIFont(name: "AvenirNext-Regular", size: 16)
         label.textColor = UIColorFromHex(0x31797D)
@@ -1757,8 +1769,8 @@ class AllListsVC: UIViewController, UIPopoverPresentationControllerDelegate, ref
         navview.addSubview(label)
         
         //navigationItem.titleView?.set
-        
-        let imageview = UIImageView(frame: CGRectMake(40,0,30,30)) //30
+        //let imageview = UIImageView(frame: CGRectMake(screensize/16,0,30,30))
+        let imageview = UIImageView(frame: CGRectMake(10,0,30,30)) //30
         imageview.image = loggeduserimage
         imageview.layer.cornerRadius = imageview.layer.frame.size.width / 2
         imageview.layer.masksToBounds = true

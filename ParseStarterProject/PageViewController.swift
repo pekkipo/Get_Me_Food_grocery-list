@@ -24,9 +24,10 @@ class PageViewController: UIPageViewController
     
     //var pageImages = [NSLocalizedString("tutimintro", comment: ""), NSLocalizedString("tutim1", comment: ""), NSLocalizedString("tutim2", comment: ""), NSLocalizedString("tutim3", comment: ""), NSLocalizedString("tutim4", comment: ""), "Tutorial5"]
     
-     var pageImages = [NSLocalizedString("tutimintro", comment: "")]
+     var pageImages = [NSLocalizedString("tutintro1", comment: ""), NSLocalizedString("tutintro1", comment: "")]
     
-    var pageDescriptions = ["", "", "", "", "", ""]
+    var pageDescriptions = ["", ""]
+    //var pageDescriptions = ["", "", "", "", "", ""]
     
 
     
@@ -60,9 +61,10 @@ class PageViewController: UIPageViewController
         
         // create a new walkthrough view controller and assing appropriate date
         if let walkthroughViewController = storyboard?.instantiateViewControllerWithIdentifier("WalkthroughViewController") as? WalkthroughViewController {
+            
             walkthroughViewController.imageName = pageImages[index]
-            walkthroughViewController.headertext = pageHeaders[index]
-            walkthroughViewController.descriptiontext = pageDescriptions[index]
+           // walkthroughViewController.headertext = pageHeaders[index]
+            //walkthroughViewController.descriptiontext = pageDescriptions[index]
             walkthroughViewController.index = index
             
             return walkthroughViewController

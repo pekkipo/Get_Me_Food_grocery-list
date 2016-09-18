@@ -805,7 +805,7 @@
 
 
 /* Class = "UILabel"; text = ""; ObjectID = "gqN-It-vkK"; */
-"gqN-It-vkK.text" = "Version: 3.1";
+"gqN-It-vkK.text" = "Version: 4.0";
 
 /* Class = "UILabel"; text = ""; ObjectID = "Si8-O2-jwN"; */
 "Si8-O2-jwN.text" = "Grocery/To Do list app";
@@ -891,3 +891,9 @@
 
 /* Class = "UILabel"; text = ""; ObjectID = "RWs-O8-Wl7"; */
 "RWs-O8-Wl7.normalTitle" = "Close";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"ybl-PI-gZE.text" = "A small tip!";
+
+/* Class = "UILabel"; text = ""; ObjectID = "SQh-zx-1z9"; */
+"pS3-cZ-faf.text" = "Swipe left to access additional options. ";

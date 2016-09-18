@@ -238,102 +238,19 @@ class EventsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if userevents[indexPath.row].eventtype == "GoShop" {
+            
         
         let ItemCellIdentifier = "eventscell"
         let cell = tableView.dequeueReusableCellWithIdentifier(ItemCellIdentifier, forIndexPath: indexPath) as! EventCell
             
             cell.userInteractionEnabled = true
             cell.selectionStyle = UITableViewCellSelectionStyle.None
-            // cell.selectionStyle = UITableViewCellSelectionStyle.None
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
-        let date = dateFormatter.stringFromDate(userevents[indexPath.row].eventdate)
-        cell.eventdate.text = date
-        
-        let dateFormatter2 = NSDateFormatter()
-        dateFormatter2.dateFormat = "HH:mm"
-        let date2 = dateFormatter2.stringFromDate(userevents[indexPath.row].eventdate)
-        cell.eventhours.text = date2
-        
-        
-        if userevents[indexPath.row].eventuser[0] as! String == PFUser.currentUser()!.objectId! {
-            //case when I send an event to a certain user
-            let recname : String = userevents[indexPath.row].eventreceiver[2] as! String
-            let recemail: String = userevents[indexPath.row].eventreceiver[1] as! String
-            cell.nameandevent.text = recname
-            cell.receiveremail.text = recemail
-            
-            cell.receiverimage.layer.cornerRadius = cell.receiverimage.frame.size.width / 2
-            cell.receiverimage.layer.masksToBounds = true
-            cell.receiverimage.layer.borderWidth = 0.7
-            cell.receiverimage.layer.borderColor = UIColorFromRGB(0x979797).CGColor
-            
-
-            if let founduser = usercontacts.map({ $0.contactid }).indexOf(userevents[indexPath.row].eventreceiver[0] as! String) {
-                let contactuser = usercontacts[founduser]
-                
-                cell.receiverimage.image = contactuser.contactimage
-               
-            } else {
-                cell.receiverimage.image = defaultcatimages[1].itemimage            }
-
-
-            
-            cell.eventtext.text = NSLocalizedString("findout", comment: "")
-            
-            
-            
-        } else {
-            // case if someone sends event to me
-            let recname : String = userevents[indexPath.row].eventuser[2] as! String
-            let recemail: String = userevents[indexPath.row].eventuser[1] as! String
-            cell.nameandevent.text = recname
-            cell.receiveremail.text = recemail
-            
-            cell.receiverimage.layer.cornerRadius = cell.receiverimage.frame.size.width / 2
-            cell.receiverimage.layer.masksToBounds = true
-            cell.receiverimage.layer.borderWidth = 0.7
-            cell.receiverimage.layer.borderColor = UIColorFromRGB(0x979797).CGColor
-            
-           // cell.userimage.layer.cornerRadius = cell.userimage.frame.size.width / 2
-           // cell.userimage.layer.masksToBounds = true
-           // cell.userimage.layer.borderWidth = 2
-           // cell.userimage.layer.borderColor = UIColorFromRGB(0x2A2F36).CGColor
-            //if PFUser.currentUser()?["UserContacts"] != nil
-            
-           // if let founduser = find(lazy(usercontacts).map({ $0.contactid }), userevents[indexPath.row].eventuser[0] as! String) {//eventreceiver[0] as! String) {
-            
-            if let founduser = usercontacts.map({ $0.contactid }).indexOf(userevents[indexPath.row].eventuser[0] as! String) {
-                let contactuser = usercontacts[founduser]
-                
-                //cell.userimage.image = contactuser.contactimage
-                cell.receiverimage.image = contactuser.contactimage
-            } else {
-                
-                cell.receiverimage.image = defaultcatimages[1].itemimage//UIImage(named: "checkeduser.png")!
-                
-                //cell.userimage.image = UIImage(named: "checkeduser.png")!
-                /*
-                if (userevents[indexPath.row].eventreceiverimage != nil) {
-                cell.receiverimage.image = userevents[indexPath.row].eventreceiverimage!
-                } else {
-                cell.receiverimage.image = UIImage(named: "checkeduser.png")!
-                }
-                */
-            }
-            
-           // cell.receiverimage.image = loggeduserimage
-            
-            cell.eventtext.text = NSLocalizedString("goingshopping", comment: "")
-            
-            
-        }
-        
         
        
         
         return cell
+ 
+            
             
         } else {
             let ItemCellIdentifier = "addcontaceventcell"
